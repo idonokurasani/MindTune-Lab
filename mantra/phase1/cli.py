@@ -37,9 +37,40 @@ def _resolve_provider(spec: MantraSpecification, args: argparse.Namespace) -> TT
             rate=args.rate or spec.speech.rate,
             pitch=args.pitch or spec.speech.pitch,
             fmt=args.format or spec.speech.format,
+            locale=spec.speech.locale,
         )
     if provider_name == "fake":
         return FakeTTSProvider()
+    raise SystemExit(f"Unknown TTS provider: {provider_name}")
+
+
+def _resolve_providers(
+    spec: MantraSpecification, args: argparse.Namespace
+) -> dict[str, TTSProvider]:
+    """Return a language-keyed provider mapping for multilingual synthesis."""
+    provider_name = args.provider or spec.speech.provider
+    if provider_name == "speechgen":
+        return {
+            spec.speech.language: SpeechGenTTSProvider(
+                voice=args.voice or spec.speech.voice,
+                rate=spec.speech.rate,
+                pitch=spec.speech.pitch,
+                fmt=spec.speech.format,
+                locale=spec.speech.locale,
+            ),
+            spec.italian_speech.language: SpeechGenTTSProvider(
+                voice=args.italian_voice or spec.italian_speech.voice,
+                rate=spec.italian_speech.rate,
+                pitch=spec.italian_speech.pitch,
+                fmt=spec.italian_speech.format,
+                locale=spec.italian_speech.locale,
+            ),
+        }
+    if provider_name == "fake":
+        return {
+            spec.speech.language: FakeTTSProvider(),
+            spec.italian_speech.language: FakeTTSProvider(),
+        }
     raise SystemExit(f"Unknown TTS provider: {provider_name}")
 
 
@@ -73,7 +104,15 @@ def cmd_build(args: argparse.Namespace) -> int:
         pitch=args.pitch or spec.speech.pitch,
         format=args.format or spec.speech.format,
     )
-    spec = dataclasses.replace(spec, speech=speech)
+    italian_speech = dataclasses.replace(
+        spec.italian_speech,
+        provider=args.provider or spec.italian_speech.provider,
+        voice=args.italian_voice or spec.italian_speech.voice,
+        rate=args.rate or spec.italian_speech.rate,
+        pitch=args.pitch or spec.italian_speech.pitch,
+        format=args.format or spec.italian_speech.format,
+    )
+    spec = dataclasses.replace(spec, speech=speech, italian_speech=italian_speech)
 
     timeline = compile_timeline(spec)
     events.emit(
@@ -81,16 +120,19 @@ def cmd_build(args: argparse.Namespace) -> int:
         {"segment_count": len(timeline), "planned_duration": sum(s.planned_duration for s in timeline)},
     )
 
-    provider = _resolve_provider(spec, args)
+    providers = _resolve_providers(spec, args)
+    # Provide the Hebrew provider as the default for segments without language.
+    hebrew_provider = providers.get(spec.speech.language, providers["he"])
     try:
         assembly = assemble_audio(
             spec,
             timeline,
-            provider,
+            hebrew_provider,
             output_dir,
             cache_dir=cache_dir,
             events=events,
             target_sample_rate=args.sample_rate,
+            providers=providers,
         )
     except Exception as exc:
         print(f"Error: audio assembly failed: {exc}", file=sys.stderr)
@@ -165,7 +207,8 @@ def main(argv: list[str] | None = None) -> int:
     build_p.add_argument("--output-dir", "-o", required=True, help="Output directory")
     build_p.add_argument("--cache-dir", "-c", help="TTS cache directory")
     build_p.add_argument("--provider", help="TTS provider (speechgen, fake)")
-    build_p.add_argument("--voice", help="TTS voice")
+    build_p.add_argument("--voice", help="TTS voice for Hebrew")
+    build_p.add_argument("--italian-voice", help="TTS voice for Italian")
     build_p.add_argument("--rate", type=float, help="Speech rate (0.5-2.0)")
     build_p.add_argument("--pitch", type=float, help="Speech pitch (-20..20)")
     build_p.add_argument("--format", help="Output audio format (wav, mp3, ogg)")

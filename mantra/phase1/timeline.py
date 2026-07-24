@@ -43,6 +43,8 @@ class TimelineSegment:
     planned_start_time: float
     planned_duration: float
     provider: str = ""
+    language: str = ""
+    locale: str = ""
     voice: str = ""
     artifact_reference: str | None = None
     generation_status: str = "pending"
@@ -64,6 +66,8 @@ class TimelineSegment:
             "planned_start_time": self.planned_start_time,
             "planned_duration": self.planned_duration,
             "provider": self.provider,
+            "language": self.language,
+            "locale": self.locale,
             "voice": self.voice,
             "artifact_reference": self.artifact_reference,
             "generation_status": self.generation_status,
@@ -135,6 +139,8 @@ def _silence_segment(
         planned_start_time=current_time,
         planned_duration=duration_ms / 1000.0,
         provider="silence",
+        language="",
+        locale="",
         voice="",
         generation_status="complete",
         format="pcm",
@@ -165,6 +171,8 @@ def _speech_segment(
             "stress_syllable_index": form.effective_stress(),
             "pronunciation_override": form.pronunciation_override,
         }
+    is_italian = segment_type in {SegmentType.ITALIAN_CUE, SegmentType.GRAMMATICAL_LABEL}
+    speech_cfg = spec.italian_speech if is_italian else spec.speech
     seg = TimelineSegment(
         segment_id=_stable_segment_id(
             segment_type,
@@ -185,10 +193,12 @@ def _speech_segment(
         form_index=form_index,
         planned_start_time=current_time,
         planned_duration=_speech_planned_duration(spec, text),
-        provider=spec.speech.provider,
-        voice=spec.speech.voice,
+        provider=speech_cfg.provider,
+        language=speech_cfg.language,
+        locale=speech_cfg.locale,
+        voice=speech_cfg.voice,
         generation_status="pending",
-        format=spec.speech.format,
+        format=speech_cfg.format,
     )
     return seg
 

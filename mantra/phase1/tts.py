@@ -35,6 +35,7 @@ class TTSResult:
     checksum: str
     rate: float = 1.0
     pitch: float = 0.0
+    locale: str = ""
 
     def __post_init__(self) -> None:
         if not self.audio_bytes:
@@ -64,10 +65,13 @@ def _cache_key(
     pitch: float,
     fmt: str,
     override: str | None,
+    *,
+    locale: str = "",
 ) -> str:
     payload = {
         "text": normalize_unicode(text),
         "provider": provider,
+        "locale": locale,
         "voice": voice,
         "rate": rate,
         "pitch": pitch,
@@ -104,6 +108,7 @@ class TTSCache:
             checksum=sha256_hex(audio),
             rate=meta.get("rate", 1.0),
             pitch=meta.get("pitch", 0.0),
+            locale=meta.get("locale", ""),
         )
 
     def put(self, key: str, result: TTSResult) -> Path:
@@ -116,6 +121,7 @@ class TTSCache:
             "duration": result.duration,
             "provider": result.provider,
             "voice": result.voice,
+            "locale": result.locale,
             "text": result.text,
             "format": result.format,
             "rate": result.rate,
@@ -158,6 +164,7 @@ class SpeechGenTTSProvider:
         rate: float = 1.0,
         pitch: float = 0.0,
         fmt: str = "wav",
+        locale: str | None = None,
         sample_rate: int | None = None,
         channels: int | None = None,
         api_url: str | None = None,
@@ -168,6 +175,7 @@ class SpeechGenTTSProvider:
         self.rate = rate
         self.pitch = pitch
         self.format = fmt
+        self.locale = locale or os.environ.get("SPEECHGEN_LOCALE", "he-IL")
         self.sample_rate = sample_rate or int(os.environ.get("SPEECHGEN_SAMPLE_RATE", "22050"))
         self.channels = channels or int(os.environ.get("SPEECHGEN_CHANNELS", "1"))
         self.api_url = api_url or os.environ.get(
@@ -298,6 +306,7 @@ class SpeechGenTTSProvider:
             ) from exc
 
         checksum = sha256_hex(audio_body)
+        locale = segment.locale or self.locale
         return TTSResult(
             audio_bytes=audio_body,
             sample_rate=sample_rate,
@@ -309,6 +318,7 @@ class SpeechGenTTSProvider:
             checksum=checksum,
             rate=self.rate,
             pitch=self.pitch,
+            locale=locale,
         )
 
 
@@ -367,6 +377,7 @@ class FakeTTSProvider:
             text=text,
             format="wav",
             checksum=checksum,
+            locale=segment.locale or "",
         )
 
 

@@ -30,6 +30,8 @@ class MantraManifest:
     total_segments: int
     provider: str
     voice: str
+    italian_provider: str
+    italian_voice: str
     speech_rate: float
     speech_pitch: float
     pause_configuration: dict[str, Any]
@@ -58,6 +60,8 @@ class MantraManifest:
             "total_segments": self.total_segments,
             "provider": self.provider,
             "voice": self.voice,
+            "italian_provider": self.italian_provider,
+            "italian_voice": self.italian_voice,
             "speech_rate": self.speech_rate,
             "speech_pitch": self.speech_pitch,
             "pause_configuration": self.pause_configuration,
@@ -86,6 +90,8 @@ def _validate_manifest(manifest: MantraManifest) -> dict[str, Any]:
         "planned_duration_positive": manifest.planned_duration > 0.0,
         "provider_set": bool(manifest.provider),
         "voice_set": bool(manifest.voice),
+        "italian_provider_set": bool(manifest.italian_provider),
+        "italian_voice_set": bool(manifest.italian_voice),
     }
     results["valid"] = all(results.values()) and not manifest.warnings
     return results
@@ -117,6 +123,8 @@ def write_manifest(
         total_segments=len(timeline),
         provider=spec.speech.provider,
         voice=spec.speech.voice,
+        italian_provider=spec.italian_speech.provider,
+        italian_voice=spec.italian_speech.voice,
         speech_rate=spec.speech.rate,
         speech_pitch=spec.speech.pitch,
         pause_configuration=spec.pauses.to_dict(),

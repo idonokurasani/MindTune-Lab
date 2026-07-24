@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from .events import EventEmitter, MantraEventType
-from .spec import MantraSpecification
+from .spec import MantraSpecification, SpeechConfig
 from .timeline import SegmentType, TimelineSegment
 from .tts import TTSCache, TTSProvider, TTSRuntimeError, _cache_key
 from .utils import normalize_unicode
@@ -100,6 +100,8 @@ def assemble_audio(
     cache_dir: Path | None = None,
     events: EventEmitter | None = None,
     target_sample_rate: int = 22050,
+    *,
+    providers: dict[str, TTSProvider] | None = None,
 ) -> AssemblyResult:
     """Synthesize or cache all speech segments and assemble a single WAV file."""
     emitter = events or EventEmitter()
@@ -107,6 +109,11 @@ def assemble_audio(
     cache = TTSCache(cache_dir or output_dir / "cache")
     segments_dir = output_dir / "segments"
     segments_dir.mkdir(exist_ok=True)
+
+    def _speech_config_for_segment(segment: TimelineSegment) -> SpeechConfig:
+        if segment.locale == spec.italian_speech.locale or segment.language == spec.italian_speech.language:
+            return spec.italian_speech
+        return spec.speech
 
     warnings: list[str] = []
     parts: list[NDArray[np.int16]] = []
@@ -143,14 +150,20 @@ def assemble_audio(
                 samples = _silence_int16(duration, target_sample_rate)
                 continue
 
+            speech_cfg = _speech_config_for_segment(segment)
+            segment_provider = provider
+            if providers and segment.language:
+                segment_provider = providers.get(segment.language, provider)
+
             key = _cache_key(
                 text,
                 segment.provider,
                 segment.voice,
-                spec.speech.rate,
-                spec.speech.pitch,
-                spec.speech.format,
+                speech_cfg.rate,
+                speech_cfg.pitch,
+                speech_cfg.format,
                 segment.grammatical_metadata.get("pronunciation_override"),
+                locale=segment.locale,
             )
 
             emitter.emit(
@@ -158,6 +171,9 @@ def assemble_audio(
                 {
                     "segment_id": segment.segment_id,
                     "segment_type": segment.segment_type.value,
+                    "language": segment.language,
+                    "locale": segment.locale,
+                    "voice": segment.voice,
                     "cache_key": key,
                 },
             )
@@ -168,6 +184,9 @@ def assemble_audio(
                     MantraEventType.SEGMENT_CACHE_HIT,
                     {
                         "segment_id": segment.segment_id,
+                        "language": segment.language,
+                        "locale": segment.locale,
+                        "voice": segment.voice,
                         "cache_key": key,
                         "duration": cached.duration,
                     },
@@ -175,12 +194,15 @@ def assemble_audio(
                 result = cached
             else:
                 try:
-                    result = provider.synthesize(segment)
+                    result = segment_provider.synthesize(segment)
                 except Exception as exc:
                     emitter.emit(
                         MantraEventType.SEGMENT_GENERATION_FAILED,
                         {
                             "segment_id": segment.segment_id,
+                            "language": segment.language,
+                            "locale": segment.locale,
+                            "voice": segment.voice,
                             "error": str(exc),
                         },
                     )
@@ -192,6 +214,9 @@ def assemble_audio(
                     MantraEventType.SEGMENT_GENERATED,
                     {
                         "segment_id": segment.segment_id,
+                        "language": segment.language,
+                        "locale": segment.locale,
+                        "voice": segment.voice,
                         "cache_key": key,
                         "duration": result.duration,
                         "sample_rate": result.sample_rate,

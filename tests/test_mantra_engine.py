@@ -192,8 +192,8 @@ class TimelineTests(unittest.TestCase):
 
 class TTSTests(unittest.TestCase):
     def test_cache_keys_deterministic(self) -> None:
-        k1 = _cache_key("שָׁלוֹם", "speechgen", "Avri", 0.85, 0.0, "wav", None)
-        k2 = _cache_key("שָׁלוֹם", "speechgen", "Avri", 0.85, 0.0, "wav", None)
+        k1 = _cache_key("שָׁלוֹם", "speechgen", "Avri", 0.85, 0.0, "wav", None, locale="he-IL")
+        k2 = _cache_key("שָׁלוֹם", "speechgen", "Avri", 0.85, 0.0, "wav", None, locale="he-IL")
         self.assertEqual(k1, k2)
 
     def test_cache_reuse(self) -> None:
@@ -220,7 +220,7 @@ class TTSTests(unittest.TestCase):
             provider = FakeTTSProvider()
             assemble_audio(spec, timeline, provider, out, cache_dir=cache_dir)
             cache = TTSCache(cache_dir)
-            key = _cache_key("שָׁלוֹם", "fake", "fake", 1.0, 0.0, "wav", None)
+            key = _cache_key("שָׁלוֹם", "fake", "fake", 1.0, 0.0, "wav", None, locale="he-IL")
             self.assertIsNotNone(cache.get(key))
 
     def test_failed_synthesis_detected(self) -> None:

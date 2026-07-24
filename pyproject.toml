@@ -40,6 +40,7 @@ ignore = ["E501"]
 "mantra/phase1/timeline.py" = ["C901"]
 "mantra/phase1/playback.py" = ["C901"]
 "mantra/phase1/spec.py" = ["C901"]
+"mantra/phase1/assembly.py" = ["C901"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["mpe", "mantra"]

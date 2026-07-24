@@ -157,9 +157,10 @@ class PauseConfig:
 
 @dataclass(frozen=True)
 class SpeechConfig:
-    """TTS provider configuration."""
+    """TTS provider configuration for one language."""
 
     provider: str = "speechgen"
+    language: str = "he"
     locale: str = "he-IL"
     voice: str = "Avri"
     rate: float = 1.0
@@ -181,6 +182,7 @@ class SpeechConfig:
     def to_dict(self) -> dict[str, Any]:
         return {
             "provider": self.provider,
+            "language": self.language,
             "locale": self.locale,
             "voice": self.voice,
             "rate": self.rate,
@@ -207,6 +209,9 @@ class MantraSpecification:
     repetitions_per_cycle: int = 1
     cycles: int = 1
     speech: SpeechConfig = field(default_factory=SpeechConfig)
+    italian_speech: SpeechConfig = field(
+        default_factory=lambda: SpeechConfig(provider="speechgen", language="it", locale="it-IT", voice="Giuseppe")
+    )
     pauses: PauseConfig = field(default_factory=PauseConfig)
     output_format: str = "wav"
     build_seed: str = ""
@@ -260,6 +265,7 @@ class MantraSpecification:
             "repetitions_per_cycle": self.repetitions_per_cycle,
             "cycles": self.cycles,
             "speech": self.speech.to_dict(),
+            "italian_speech": self.italian_speech.to_dict(),
             "pauses": self.pauses.to_dict(),
             "output_format": self.output_format,
             "build_seed": self.build_seed,
@@ -272,6 +278,7 @@ class MantraSpecification:
     def from_dict(cls, data: dict[str, Any]) -> "MantraSpecification":
         """Reconstruct a validated MantraSpecification from a dict."""
         speech = SpeechConfig(**data.get("speech", {}))
+        italian_speech = SpeechConfig(**data.get("italian_speech", {}))
         pauses = PauseConfig(**data.get("pauses", {}))
         groups = [
             GrammaticalGroup(
@@ -296,6 +303,7 @@ class MantraSpecification:
             repetitions_per_cycle=data.get("repetitions_per_cycle", 1),
             cycles=data.get("cycles", 1),
             speech=speech,
+            italian_speech=italian_speech,
             pauses=pauses,
             output_format=data.get("output_format", "wav"),
             build_seed=data.get("build_seed", ""),

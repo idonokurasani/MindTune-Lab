@@ -15,8 +15,9 @@ deterministic fake provider for testing and offline validation.
   `vocalized`, `ipa_phonemes`, stress index/override, and pronunciation
   override.
 - `GrammaticalGroup` — tense/section container.
-- `SpeechConfig` — `provider`, `locale` (`he-IL`), `voice`, `rate`,
-  `pitch`, `format`.
+- `SpeechConfig` — `provider`, `language`, `locale` (`he-IL`), `voice`,
+  `rate`, `pitch`, `format`.  A separate `italian_speech` config is held
+  on `MantraSpecification`.
 - `PauseConfig` — all configurable silence durations.
 - `OutputFormat` enum.
 - Consistent Unicode NFC normalization on construction.
@@ -33,6 +34,8 @@ deterministic fake provider for testing and offline validation.
   payload.
 - Supports `repetitions_per_form`, `repetitions_per_cycle`, `cycles`,
   `include_italian_cue`, and `include_grammatical_labels`.
+- Each `TimelineSegment` now carries `provider`, `language`, `locale`, and
+  `voice`, enabling per-segment multilingual routing.
 
 ### 1.3 TTS boundary and SpeechGen adapter (`mantra/phase1/tts.py`)
 
@@ -48,15 +51,19 @@ deterministic fake provider for testing and offline validation.
     header.
   - Fails with the exact missing credential name when credentials are
     absent.
+  - Uses the per-segment `voice` and `locale` from the timeline so a
+    single provider instance can serve multiple languages.
 - `FakeTTSProvider` — deterministic offline WAV generator used by tests
   and for sample production when the live service is unavailable.
-- `TTSCache` — deterministic disk cache keyed on text, provider, voice,
-  rate, pitch, format, and pronunciation override.
+- `TTSCache` — deterministic disk cache keyed on text, `locale`, provider,
+  voice, rate, pitch, format, and pronunciation override.
 
 ### 1.4 Audio assembly (`mantra/phase1/assembly.py`)
 
 - Synthesizes/caches each speech segment.
 - Generates silence segments from pause configuration.
+- Selects the correct `SpeechConfig` and provider instance per segment
+  language, so Hebrew and Italian segments can use different voices.
 - Decodes incoming WAV to int16 mono at the target sample rate,
   resampling if necessary.
 - Produces both a combined `mantra.wav` and per-segment WAVs in
@@ -68,6 +75,8 @@ deterministic fake provider for testing and offline validation.
 
 - `MantraManifest` records provenance, specification, full timeline,
   planned/actual duration, validation results, warnings, and status.
+- Records both `voice` / `provider` and `italian_voice` /
+  `italian_provider` for multilingual builds.
 - Deterministic `build_identity` derived from the canonical spec plus
   `build_seed`.
 
@@ -113,7 +122,7 @@ deterministic fake provider for testing and offline validation.
 python -m mantra.phase1.cli validate -i path/to/spec.json
 
 # Build with the default SpeechGen he-IL provider (requires credentials)
-python -m mantra.phase1.cli build -f 001_lichtov -o output/mantra_phase1
+python -m mantra.phase1.cli build -f 001_lichtov -o output/mantra_phase1 --voice Hila --italian-voice Giuseppe
 
 # Build with the fake provider for offline testing
 python -m mantra.phase1.cli build -f 001_lichtov -o output/mantra_phase1 --provider fake
@@ -196,8 +205,7 @@ Result: **all checks passed**.
 
 ## 4. Sample production output
 
-A complete sample was built with the fake provider because SpeechGen
-credentials were not available in the Devin environment.
+### 4.1 Fake-provider sample
 
 ```bash
 .venv/bin/python -m mantra.phase1.cli build \
@@ -212,35 +220,62 @@ Output:
 - `output/mantra_phase1_fake/manifest.json`
 - `output/mantra_phase1_fake/events.jsonl`
 - `output/mantra_phase1_fake/segments/*.wav`
-- Live SpeechGen artifact: `output/mantra_phase1_speechgen/mantra.wav` (mono, 22050 Hz, 16-bit, 87.84 s)
+
+### 4.2 Live SpeechGen rebuild with multilingual voice routing
+
+A complete rebuild was performed using live SpeechGen with explicit
+multilingual routing:
+
+```bash
+SPEECHGEN_API_KEY="..." SPEECHGEN_EMAIL="..." \
+.venv/bin/python -m mantra.phase1.cli build \
+  -f 001_lichtov \
+  -o output/mantra_phase1_speechgen \
+  --voice Hila \
+  --italian-voice Giuseppe \
+  --sample-rate 22050
+```
+
+Output:
+
+- `output/mantra_phase1_speechgen/mantra.wav` (mono, 22050 Hz, 16-bit, 83.57 s)
+- `output/mantra_phase1_speechgen/manifest.json`
+- `output/mantra_phase1_speechgen/events.jsonl`
+- `output/mantra_phase1_speechgen/segments/*.wav`
+
+Event log summary:
+
+- 46 speech segments requested (23 Hebrew + 23 Italian).
+- 23 Hebrew segments served from cache (valid prior audio reused).
+- 23 Italian segments newly synthesized with the native Italian voice
+  `Giuseppe`.
+- 0 synthesis failures.
 
 Manifest validation: `status: completed`.
 
+Voice routing validation:
+
+- 0 Italian segments use the Hebrew voice.
+- 0 Hebrew segments use the Italian voice.
+- Every timeline segment records `provider`, `language`, `locale`, and
+  `voice`.
+
 ## 5. SpeechGen live-access status
 
-No SpeechGen credentials were present in the environment:
+Live SpeechGen access is available.  Hebrew segments use the `he-IL`
+voice `Hila`; Italian segments use the native `it-IT` voice `Giuseppe`.
 
-```text
-$ env | grep -i speechgen
-(no output)
-```
-
-The `SpeechGenTTSProvider` will therefore fail before any network call
-with:
-
-```
-TTSRuntimeError: SpeechGen credentials missing: SPEECHGEN_API_KEY, SPEECHGEN_EMAIL. Set them as environment variables.
-```
-
-To build with live SpeechGen `he-IL`:
+To build with live SpeechGen:
 
 ```bash
 export SPEECHGEN_API_KEY="<your-api-token>"
 export SPEECHGEN_EMAIL="<account-email>"
-# Optional:
-export SPEECHGEN_VOICE="Avri"  # or any SpeechGen he-IL voice
 
-python -m mantra.phase1.cli build -f 001_lichtov -o output/mantra_phase1_speechgen
+python -m mantra.phase1.cli build \
+  -f 001_lichtov \
+  -o output/mantra_phase1_speechgen \
+  --voice Hila \
+  --italian-voice Giuseppe
 ```
 
 The adapter does **not** fall back to Azure, Mic, Hebrew-TTS, HebTTS,
