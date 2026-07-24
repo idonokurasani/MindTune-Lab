@@ -1,0 +1,318 @@
+{
+  "lemma": "לעשות",
+  "generated_at": "2026-07-23T07:48:17.193904+00:00",
+  "report": {
+    "lemma": "לעשות",
+    "approved_source": "pealim",
+    "form_reports": {
+      "infinitive": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "לַעֲשׂוֹת",
+            "lexical_stress": 3,
+            "phonemes_corrected": "laʔasˈot"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "לַעֲשׂוֹת",
+          "lexical_stress": 3
+        }
+      },
+      "present_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עוֹשֶׂה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔosˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עוֹשֶׂה",
+          "lexical_stress": 2
+        }
+      },
+      "present_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עוֹשָׂה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔosˈa"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עוֹשָׂה",
+          "lexical_stress": 2
+        }
+      },
+      "present_masculine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עוֹשִׂים",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔosˈim"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עוֹשִׂים",
+          "lexical_stress": 2
+        }
+      },
+      "present_feminine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עוֹשׂוֹת",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔosˈot"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עוֹשׂוֹת",
+          "lexical_stress": 2
+        }
+      },
+      "past_1_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשִׂיתִי",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔasˈiti"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשִׂיתִי",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשִׂיתָ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔasˈita"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשִׂיתָ",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשִׂית",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔasˈit"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשִׂית",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשָׂה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔasˈa"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשָׂה",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשְׂתָה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔastˈa"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשְׂתָה",
+          "lexical_stress": 2
+        }
+      },
+      "past_1_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשִׂינוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔasˈinu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשִׂינוּ",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_masculine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עֲשִׂיתֶם",
+            "lexical_stress": 3,
+            "phonemes_corrected": "ʔasitˈem"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עֲשִׂיתֶם",
+          "lexical_stress": 3
+        }
+      },
+      "past_2_feminine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עֲשִׂיתֶן",
+            "lexical_stress": 3,
+            "phonemes_corrected": "ʔasitˈen"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עֲשִׂיתֶן",
+          "lexical_stress": 3
+        }
+      },
+      "past_3_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "עָשׂוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔasˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "עָשׂוּ",
+          "lexical_stress": 2
+        }
+      },
+      "future_1_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "אֶעֱשֶׂה",
+            "lexical_stress": 3,
+            "phonemes_corrected": "ʔeʔesˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "אֶעֱשֶׂה",
+          "lexical_stress": 3
+        }
+      },
+      "future_2_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תַּעֲשֶׂה",
+            "lexical_stress": 3,
+            "phonemes_corrected": "taʔasˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תַּעֲשֶׂה",
+          "lexical_stress": 3
+        }
+      },
+      "future_2_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תַּעֲשִׂי",
+            "lexical_stress": 3,
+            "phonemes_corrected": "taʔasˈi"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תַּעֲשִׂי",
+          "lexical_stress": 3
+        }
+      },
+      "future_3_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "יַעֲשֶׂה",
+            "lexical_stress": 3,
+            "phonemes_corrected": "jaʔasˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "יַעֲשֶׂה",
+          "lexical_stress": 3
+        }
+      },
+      "future_3_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תַּעֲשֶׂה",
+            "lexical_stress": 3,
+            "phonemes_corrected": "taʔasˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תַּעֲשֶׂה",
+          "lexical_stress": 3
+        }
+      },
+      "future_1_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "נַעֲשֶׂה",
+            "lexical_stress": 3,
+            "phonemes_corrected": "naʔasˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "נַעֲשֶׂה",
+          "lexical_stress": 3
+        }
+      },
+      "future_2_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תַּעֲשׂוּ",
+            "lexical_stress": 3,
+            "phonemes_corrected": "taʔasˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תַּעֲשׂוּ",
+          "lexical_stress": 3
+        }
+      },
+      "future_3_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "יַעֲשׂוּ",
+            "lexical_stress": 3,
+            "phonemes_corrected": "jaʔasˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "יַעֲשׂוּ",
+          "lexical_stress": 3
+        }
+      }
+    }
+  }
+}

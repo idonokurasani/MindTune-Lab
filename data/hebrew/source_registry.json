@@ -1,0 +1,132 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-07-23T00:00:00+00:00",
+  "sources": [
+    {
+      "source_id": "eran_tomer",
+      "title": "Eran Tomer Vocalized Verb Dataset",
+      "local_path": "data/hebrew/resources/eran_tomer/InflectedVerbsExtended.csv",
+      "upstream_url": "https://github.com/NLPH/NLPH_Resources/tree/master/linguistic_resources/word_lists/hebrew_verbs_eran_tomer",
+      "license": "CC BY 4.0",
+      "license_confidence": "high",
+      "attribution_requirements": "Provide attribution to Eran Tomer and a link to the license",
+      "redistribution_allowed": true,
+      "derivative_data_implications": "Derivative data must be CC BY 4.0 compatible; attribution must be preserved",
+      "commercial_use_status": "allowed_with_attribution",
+      "production_eligibility": "production_approved",
+      "unresolved_questions": []
+    },
+    {
+      "source_id": "verb_inflector",
+      "title": "NLPH Hebrew Verb Inflector",
+      "local_path": "data/hebrew/resources/verb_inflector/VerbInflector.jar",
+      "upstream_url": "https://github.com/NLPH/NLPH_Resources/tree/master/code/VerbInflector",
+      "license": "Apache-2.0",
+      "license_confidence": "high",
+      "attribution_requirements": "Preserve Apache-2.0 notices in source distributions",
+      "redistribution_allowed": true,
+      "derivative_data_implications": "Generated inflections are not encumbered by the tool license, but the jar remains Apache-2.0",
+      "commercial_use_status": "allowed",
+      "production_eligibility": "production_approved",
+      "unresolved_questions": []
+    },
+    {
+      "source_id": "svlm",
+      "title": "SVLM Hebrew Wikipedia Corpus",
+      "local_path": "data/hebrew/resources/svlm/SVLM_Hebrew_Wikipedia_Corpus.txt",
+      "upstream_url": "https://github.com/NLPH/SVLM-Hebrew-Wikipedia-Corpus",
+      "license": "CC-BY-SA-3.0",
+      "license_confidence": "high",
+      "attribution_requirements": "Credit NLPH and Wikipedia/Wikimedia contributors; link to CC-BY-SA-3.0",
+      "redistribution_allowed": true,
+      "derivative_data_implications": "Share-alike: derived works must be CC-BY-SA-3.0 or a compatible license",
+      "commercial_use_status": "allowed_only_if_share_alike_obeyed",
+      "production_eligibility": "private_research_only",
+      "unresolved_questions": [
+        "Whether a curriculum dataset derived from CC-BY-SA-3.0 sentences can be kept private or must be published under the same license"
+      ]
+    },
+    {
+      "source_id": "pealim",
+      "title": "Pealim Conjugation Tables (scraped local reference)",
+      "local_path": "data/hebrew/resources/pealim/pealim_forms.json",
+      "upstream_url": "https://www.pealim.com",
+      "license": "unknown",
+      "license_confidence": "low",
+      "attribution_requirements": "unknown",
+      "redistribution_allowed": false,
+      "derivative_data_implications": "Cannot redistribute; should be replaced or relicensed before use in distributed content",
+      "commercial_use_status": "unknown",
+      "production_eligibility": "reference_only",
+      "unresolved_questions": [
+        "Does pealim.com grant any license for the conjugation data?",
+        "Can approved Pealim-derived records be kept as local reference only?"
+      ]
+    },
+    {
+      "source_id": "pealim_audit",
+      "title": "Manual phoneme/stress audit based on Pealim forms",
+      "local_path": "data/phonikud_eval/phonikud_evaluation.json",
+      "upstream_url": "internal",
+      "license": "internal",
+      "license_confidence": "high",
+      "attribution_requirements": "n/a",
+      "redistribution_allowed": false,
+      "derivative_data_implications": "Depends on the underlying Pealim data; cannot be redistributed independently",
+      "commercial_use_status": "unknown",
+      "production_eligibility": "reference_only",
+      "unresolved_questions": [
+        "Same as pealim source"
+      ]
+    },
+    {
+      "source_id": "phonikud",
+      "title": "Phonikud Python package",
+      "local_path": "installed package",
+      "upstream_url": "https://pypi.org/project/phonikud/",
+      "license": "unknown",
+      "license_confidence": "low",
+      "attribution_requirements": "unknown",
+      "redistribution_allowed": false,
+      "derivative_data_implications": "Runtime dependency only; no distribution of phonemes required",
+      "commercial_use_status": "unknown",
+      "production_eligibility": "private_research_only",
+      "unresolved_questions": [
+        "What is the exact license of phonikud on PyPI?"
+      ]
+    },
+    {
+      "source_id": "piper_voice_shaul",
+      "title": "Piper Phonikud-TTS voice (shaul)",
+      "local_path": "data/phonikud_models/shaul.onnx",
+      "upstream_url": "https://github.com/...",
+      "license": "unknown",
+      "license_confidence": "low",
+      "attribution_requirements": "unknown",
+      "redistribution_allowed": false,
+      "derivative_data_implications": "Voice model may not be redistributed; generated audio may have usage restrictions",
+      "commercial_use_status": "unknown",
+      "production_eligibility": "reference_only",
+      "unresolved_questions": [
+        "What is the license of shaul.onnx and the generated audio?",
+        "Is commercial use of generated audio permitted?"
+      ]
+    },
+    {
+      "source_id": "manual_override",
+      "title": "MindTune Lab manual linguistic overrides",
+      "local_path": "data/hebrew/overrides/",
+      "upstream_url": "internal",
+      "license": "internal",
+      "license_confidence": "high",
+      "attribution_requirements": "n/a",
+      "redistribution_allowed": true,
+      "derivative_data_implications": "Internal data owned by MindTune Lab; can be released under project license once underlying source is cleared",
+      "commercial_use_status": "allowed_once_source_cleared",
+      "production_eligibility": "production_approved",
+      "unresolved_questions": [
+        "Only authoritative when the underlying source data is also eligible"
+      ]
+    }
+  ]
+}

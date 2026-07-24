@@ -1,0 +1,29 @@
+claim_number,source,section,claim_text,evidence_grade,v1_1_status
+1,MPE v1.0,Vision,"MindTune Lab is becoming the first platform dedicated to Adaptive Cognitive Protocols",D,Quarantined as product-positioning hypothesis
+2,MPE v1.0,Vision,"The most effective learning state may happen with eyes closed, minimal visual stimulation, auditory guidance, internal speech, mental imagery, controlled cognitive load",C,Retained as experimental hypothesis
+3,MPE v1.0,2.2,"A protocol is a structured cognitive sequence with objective, cognitive target, linguistic target, timing, adaptation rules, progression rules, evaluation metrics",B,Retained with stricter trial-level observability
+4,MPE v1.0,4.1,"Perceive -> Predict -> Resolve -> Reinforce is the learning loop",D,Reclassified as Language Prediction-Retrieval Loop
+5,MPE v1.0,4.2,"arousal, attention, cognitive_load, fatigue, engagement, fluency can be estimated from listed EEG/behavioral features",D,Replaced by LatentEstimate with operational definitions
+6,MPE v1.0,11.4,"Alpha/theta ratio correlates with arousal; frontal asymmetry with attention; theta/beta with cognitive load",D,Removed from core; moved to experimental StateInferenceModel
+7,MPE v1.0,6.1 6.3,"expect(mental_hebrew) is a valid primitive",D,Replaced by INSTRUCT_COVERT_RETRIEVAL plus observable probe
+8,MPE v1.0,6.1,"wait_for_state(target, timeout) is a valid primitive",D,Removed
+9,MPE v1.0,5.4 14.1,"A single Provider can render, observe, and evaluate",D,Decomposed into six narrow interfaces
+10,MPE v1.0,6.1,"increase_difficulty() / decrease_difficulty() are valid primitives",D,Replaced by typed difficulty dimensions and AdaptationDecision
+11,MPE v1.0,8.3,"pause_duration 0.5-8.0s, speech_rate 0.7x-1.3x, new_item_rate 0-50% are safe/optimal ranges",D,Reclassified as provisional configurable bounds
+12,MPE v1.0,12.1,"time_in_target_state is a session-level KPI",D,Removed from Phase 4/5A KPIs
+13,MPE v1.0,19,"Phase 4 can implement core MPE + Hebrew + audio + DSL parser + runtime in one phase",D,Split into 4A 4B 4C
+14,Phase 3 Final Report,Key metrics,The Phase 3 Hebrew pipeline is internally consistent for a 100-verb subset,A,Accepted as domain authority within scope
+15,Phase 3 Final Report,Honest limitations,verified_consensus labels reflect self-consistency not independent corroboration,A,Retained as limitation
+16,Phase 3 Final Report,Honest limitations,Pronunciation validation depends on Phonikud and is advisory,A,MPE treats pronunciation as advisory
+17,Phase 3 Final Report,Honest limitations,Phase 3 coverage is limited to verbs,A,MPE restricts Phase 4C to 100-verb subset
+18,Docker Hebrew Review Audit,Recommendation,The Docker-processed CSV must not replace quizlet_hebrew_seed.json,A,No MPE impact
+19,Docker Hebrew Review Audit,Violations,Automatic front modification is dangerous for Hebrew didactic data,A,Reinforces Hebrew engine authority
+20,Mantra UNCERTAINTIES,1,Infinitive spelling variants are an open linguistic decision,A,MPE exposes variants via Hebrew engine
+21,Mantra UNCERTAINTIES,2,Past 2nd-person plural stress has variants,A,MPE uses Hebrew engine metadata
+22,Mantra UNCERTAINTIES,3,Transliteration of silent/glottal alef marked in metadata only,A,MPE does not generate transliterations
+23,Mantra UNCERTAINTIES,5,Future feminine plural forms omitted from recitation,A,ProtocolVersion may declare omissions
+24,Hebrew UNRESOLVED_ISSUES,1,standard_unvocalized is a heuristic not a full model,A,MPE uses canonical_unvocalized from orthography
+25,Hebrew UNRESOLVED_ISSUES,3,Imperative forms not manually validated,A,Exclude from Phase 4C
+26,Hebrew UNRESOLVED_ISSUES,4,Vocal shva from manual overrides not Phonikud,A,Treat phonology as advisory
+27,Hebrew UNRESOLVED_ISSUES,6,Weak roots and hollow verbs need systematic testing,A,Phase 4C restricted to 100-verb subset
+28,Hebrew UNRESOLVED_ISSUES,8,validate_user_answer lacks paradigm context diagnosis,A,Delegate to Hebrew Evaluator

@@ -1,0 +1,257 @@
+{
+  "order": 3,
+  "verb_key": "leechol",
+  "hebrew_infinitive": "לֶאֱכֹל",
+  "hebrew_infinitive_without_niqqud": "לאכול",
+  "italian_infinitive": "mangiare",
+  "root": "א-כ-ל",
+  "binyan": "PA'AL",
+  "source_url": "https://www.pealim.com/dict/30-leechol/",
+  "sections": [
+    {
+      "section": "infinitive",
+      "label_he": "שֵׁם הַפֹּעַל",
+      "label_it": "infinito",
+      "lines": [
+        {
+          "form_key": "infinitive",
+          "hebrew_with_niqqud": "לֶאֱכֹל",
+          "hebrew_without_niqqud": "לאכול",
+          "transliteration": "le'echol",
+          "tts_input": "לֶאֱכֹל",
+          "italian_gloss": "mangiare"
+        },
+        {
+          "form_key": "example",
+          "hebrew_with_niqqud": "אֲנִי אוֹכֵל תַּפּוּחַ",
+          "hebrew_without_niqqud": "אני אוכל תפוח",
+          "transliteration": "ani ochel tapuach",
+          "tts_input": "אֲנִי אוֹכֵל תַּפּוּחַ",
+          "italian_gloss": "Mangio una mela."
+        }
+      ]
+    },
+    {
+      "section": "present",
+      "label_he": "בַּהוֹוֶה",
+      "label_it": "presente",
+      "lines": [
+        {
+          "form_key": "masculine_singular",
+          "hebrew_with_niqqud": "אוֹכֵל",
+          "hebrew_without_niqqud": "אוכל",
+          "transliteration": "ochel",
+          "tts_input": "אוֹכֵל",
+          "italian_gloss": "io mangio",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "feminine_singular",
+          "hebrew_with_niqqud": "אוֹכֶלֶת",
+          "hebrew_without_niqqud": "אוכלת",
+          "transliteration": "ochelet",
+          "tts_input": "אוֹכֶלֶת",
+          "italian_gloss": "io mangio (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "masculine_plural",
+          "hebrew_with_niqqud": "אוֹכְלִים",
+          "hebrew_without_niqqud": "אוכלים",
+          "transliteration": "ochlim",
+          "tts_input": "אוֹכְלִים",
+          "italian_gloss": "noi/voi/loro mangiano",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "feminine_plural",
+          "hebrew_with_niqqud": "אוֹכְלוֹת",
+          "hebrew_without_niqqud": "אוכלות",
+          "transliteration": "ochlot",
+          "tts_input": "אוֹכְלוֹת",
+          "italian_gloss": "noi/voi/loro mangiano (f.)",
+          "stress_syllable_index": 2
+        }
+      ]
+    },
+    {
+      "section": "past",
+      "label_he": "בָּעָבָר",
+      "label_it": "passato",
+      "lines": [
+        {
+          "form_key": "1_singular",
+          "hebrew_with_niqqud": "אָכַלְתִּי",
+          "hebrew_without_niqqud": "אכלתי",
+          "transliteration": "achalti",
+          "tts_input": "אָכַלְתִּי",
+          "italian_gloss": "io mangiai",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_singular",
+          "hebrew_with_niqqud": "אָכַלְתָּ",
+          "hebrew_without_niqqud": "אכלת",
+          "transliteration": "achalta",
+          "tts_input": "אָכַלְתָּ",
+          "italian_gloss": "tu mangiasti",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_feminine_singular",
+          "hebrew_with_niqqud": "אָכַלְתְּ",
+          "hebrew_without_niqqud": "אכלת",
+          "transliteration": "achalt",
+          "tts_input": "אָכַלְתְּ",
+          "italian_gloss": "tu mangiasti (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_masculine_singular",
+          "hebrew_with_niqqud": "אָכַל",
+          "hebrew_without_niqqud": "אכל",
+          "transliteration": "achal",
+          "tts_input": "אָכַל",
+          "italian_gloss": "lui mangiò",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_feminine_singular",
+          "hebrew_with_niqqud": "אָכְלָה",
+          "hebrew_without_niqqud": "אכלה",
+          "transliteration": "achla",
+          "tts_input": "אָכְלָה",
+          "italian_gloss": "lei mangiò",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "1_plural",
+          "hebrew_with_niqqud": "אָכַלְנוּ",
+          "hebrew_without_niqqud": "אכלנו",
+          "transliteration": "achalnu",
+          "tts_input": "אָכַלְנוּ",
+          "italian_gloss": "noi mangiammo",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_plural",
+          "hebrew_with_niqqud": "אֲכַלְתֶּם",
+          "hebrew_without_niqqud": "אכלתם",
+          "transliteration": "achaltem",
+          "tts_input": "אֲכַלְתֶּם",
+          "italian_gloss": "voi mangiaste",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "2_feminine_plural",
+          "hebrew_with_niqqud": "אֲכַלְתֶּן",
+          "hebrew_without_niqqud": "אכלתן",
+          "transliteration": "achalten",
+          "tts_input": "אֲכַלְתֶּן",
+          "italian_gloss": "voi mangiaste (f.)",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_plural",
+          "hebrew_with_niqqud": "אָכְלוּ",
+          "hebrew_without_niqqud": "אכלו",
+          "transliteration": "achlu",
+          "tts_input": "אָכְלוּ",
+          "italian_gloss": "loro mangiarono",
+          "stress_syllable_index": 2
+        }
+      ]
+    },
+    {
+      "section": "future",
+      "label_he": "בָּעָתִיד",
+      "label_it": "futuro",
+      "lines": [
+        {
+          "form_key": "1_singular",
+          "hebrew_with_niqqud": "אֹכַל",
+          "hebrew_without_niqqud": "אוכל",
+          "transliteration": "ochal",
+          "tts_input": "אֹכַל",
+          "italian_gloss": "io mangerò",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_singular",
+          "hebrew_with_niqqud": "תֹּאכַל",
+          "hebrew_without_niqqud": "תאכול",
+          "transliteration": "tochal",
+          "tts_input": "תֹּאכַל",
+          "italian_gloss": "tu mangerai",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_feminine_singular",
+          "hebrew_with_niqqud": "תֹּאכְלִי",
+          "hebrew_without_niqqud": "תאכלי",
+          "transliteration": "tochli",
+          "tts_input": "תֹּאכְלִי",
+          "italian_gloss": "tu mangerai (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_masculine_singular",
+          "hebrew_with_niqqud": "יֹאכַל",
+          "hebrew_without_niqqud": "יאכול",
+          "transliteration": "yochal",
+          "tts_input": "יֹאכַל",
+          "italian_gloss": "lui mangerà",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_feminine_singular",
+          "hebrew_with_niqqud": "תֹּאכַל",
+          "hebrew_without_niqqud": "תאכול",
+          "transliteration": "tochal",
+          "tts_input": "תֹּאכַל",
+          "italian_gloss": "lei mangerà",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "1_plural",
+          "hebrew_with_niqqud": "נֹאכַל",
+          "hebrew_without_niqqud": "נאכול",
+          "transliteration": "nochal",
+          "tts_input": "נֹאכַל",
+          "italian_gloss": "noi mangeremo",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_plural",
+          "hebrew_with_niqqud": "תֹּאכְלוּ",
+          "hebrew_without_niqqud": "תאכלו",
+          "transliteration": "tochlu",
+          "tts_input": "תֹּאכְלוּ",
+          "italian_gloss": "voi mangerete",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_plural",
+          "hebrew_with_niqqud": "יֹאכְלוּ",
+          "hebrew_without_niqqud": "יאכלו",
+          "transliteration": "yochlu",
+          "tts_input": "יֹאכְלוּ",
+          "italian_gloss": "loro mangeranno",
+          "stress_syllable_index": 2
+        }
+      ]
+    }
+  ],
+  "spoken_script": "LE'ECHOL.\nMANGIARE.\nANI OCHEL TAPUACH.\n\nBA-HOVE:\nOCHEL.\nOCHELET.\nOCHLIM.\nOCHLOT.\n\nBE-AVAR:\nACHALTI.\nACHALTA.\nACHALT.\nACHAL.\nACHLA.\nACHALNU.\nACHALTEM.\nACHALTEN.\nACHLU.\n\nBE-ATID:\nOCHAL.\nTOCHAL.\nTOCHLI.\nYOCHAL.\nTOCHAL.\nNOCHAL.\nTOCHLU.\nYOCHLU.",
+  "display_script": "LE'ECHOL.\nMANGIARE.\nANI OCHEL TAPUACH.\n\nBA-HOVE:\nOCHEL.\nOCHELET.\nOCHLIM.\nOCHLOT.\n\nBE-AVAR:\nACHALTI.\nACHALTA.\nACHALT.\nACHAL.\nACHLA.\nACHALNU.\nACHALTEM.\nACHALTEN.\nACHLU.\n\nBE-ATID:\nOCHAL.\nTOCHAL.\nTOCHLI.\nYOCHAL.\nTOCHAL.\nNOCHAL.\nTOCHLU.\nYOCHLU.",
+  "hebrew_script": "לֶאֱכֹל.\nאֲנִי אוֹכֵל תַּפּוּחַ.\n\nבַּהוֹוֶה:\nאוֹכֵל.\nאוֹכֶלֶת.\nאוֹכְלִים.\nאוֹכְלוֹת.\n\nבָּעָבָר:\nאָכַלְתִּי.\nאָכַלְתָּ.\nאָכַלְתְּ.\nאָכַל.\nאָכְלָה.\nאָכַלְנוּ.\nאֲכַלְתֶּם.\nאֲכַלְתֶּן.\nאָכְלוּ.\n\nבָּעָתִיד:\nאֹכַל.\nתֹּאכַל.\nתֹּאכְלִי.\nיֹאכַל.\nתֹּאכַל.\nנֹאכַל.\nתֹּאכְלוּ.\nיֹאכְלוּ.",
+  "italian_script": "Mangiare.\nMangio una mela.\n\nPresente:\nio mangio.\nio mangio (f.).\nnoi/voi/loro mangiano.\nnoi/voi/loro mangiano (f.).\n\nPassato:\nio mangiai.\ntu mangiasti.\ntu mangiasti (f.).\nlui mangiò.\nlei mangiò.\nnoi mangiammo.\nvoi mangiaste.\nvoi mangiaste (f.).\nloro mangiarono.\n\nFuturo:\nio mangerò.\ntu mangerai.\ntu mangerai (f.).\nlui mangerà.\nlei mangerà.\nnoi mangeremo.\nvoi mangerete.\nloro mangeranno.",
+  "transliteration": "LE'ECHOL.\nMANGIARE.\nANI OCHEL TAPUACH.\n\nBA-HOVE:\nOCHEL.\nOCHELET.\nOCHLIM.\nOCHLOT.\n\nBE-AVAR:\nACHALTI.\nACHALTA.\nACHALT.\nACHAL.\nACHLA.\nACHALNU.\nACHALTEM.\nACHALTEN.\nACHLU.\n\nBE-ATID:\nOCHAL.\nTOCHAL.\nTOCHLI.\nYOCHAL.\nTOCHAL.\nNOCHAL.\nTOCHLU.\nYOCHLU.",
+  "pauses_ms": {
+    "between_forms": 500,
+    "between_sections": 900,
+    "after_example": 700
+  },
+  "speaking_rate": "-15%",
+  "ssml_path": "ssml/003_leechol.xml"
+}

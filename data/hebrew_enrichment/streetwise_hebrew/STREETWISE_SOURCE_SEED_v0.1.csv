@@ -1,0 +1,8 @@
+source_label,url,file_path,source_type,import_status,notes
+StreetWise Hebrew official RSS,https://streetwisehebrew.libsyn.com/swh.rss,,podcast_rss,selected,Primary public feed; importer creates one source record per episode
+StreetWise Hebrew RSS archive 2026-07-15,,mindtune_console/data/hebrew_enrichment/streetwise_hebrew/raw/STREETWISE_HEBREW_RSS_2026-07-15.xml,podcast_rss,archived,Immutable local copy sha256 5a3f7a9698fbbb06695fa13fb0b2319a2e8a0a25c0f31f3833e5e9e5c672354e
+StreetWise verified public snapshot,,mindtune_console/data/hebrew_enrichment/streetwise_hebrew/STREETWISE_VERIFIED_EPISODE_SEED_v0.2.json,verified_snapshot,local_fallback,Curated public metadata used when network access is unavailable
+StreetWise Hebrew official site,https://www.streetwisehebrew.com/,,site,not_imported,Landing/source index only
+StreetWise Hebrew TLV1 podcast,https://tlv1.fm/podcasts/streetwise-hebrew-show/,,podcast_index,not_imported,Use individual episode pages when possible
+StreetWise Hebrew quiz page,https://www.streetwisehebrew.com/quiz.html,,quiz,not_imported,Potential source of short prompts and examples
+StreetWise Hebrew snippets page,https://www.streetwisehebrew.com/snippets1.html,,snippet,not_imported,Potential source of colloquial snippets

@@ -1,0 +1,9 @@
+services:
+  mpe:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONUNBUFFERED: 1
+    command: python -m mpe.demo

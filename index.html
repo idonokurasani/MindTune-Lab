@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MindTune Lab</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="brand-lockup">
+          <img class="brand-icon" src="/assets/mindtune_icon.png" alt="" aria-hidden="true">
+          <div>
+            <h1>MindTune Lab</h1>
+            <p class="brand-meta">Andrea Amarante · EEG training lab · casco FC11</p>
+            <p id="bridgeLine">...</p>
+          </div>
+        </div>
+        <div class="top-actions">
+          <div id="ouraWidget" class="oura-pill" title="Oura: sonno, qualità, energia">
+            <span class="oura-dot" aria-hidden="true"></span>
+            <span id="ouraIcon">Oura</span>
+            <span id="ouraSleep" class="sr-only">--</span>
+            <span id="ouraEnergy" class="sr-only">--</span>
+          </div>
+          <div id="fc11Source" class="source-pill pending">
+            <span class="source-dot"></span>
+            <span>FC11</span>
+            <span id="helmetLed" class="helmet-led" title="LED casco FC11"></span>
+            <span id="batteryWidget" class="battery-widget unknown" title="Batteria casco FC11">
+              <span class="battery-shell" aria-hidden="true">
+                <span class="battery-bar"></span>
+                <span class="battery-bar"></span>
+                <span class="battery-bar"></span>
+                <span class="battery-unknown-mark">?</span>
+              </span>
+              <span id="batteryPct" class="battery-pct">--%</span>
+            </span>
+          </div>
+          <button id="exportBtn" class="primary">Esporta RPi</button>
+        </div>
+      </header>
+
+      <section class="launch-board" aria-label="Avvio sessione MindTune">
+        <article class="panel launch-hero">
+          <div class="launch-kicker">Sessione guidata</div>
+          <h2>Cosa facciamo oggi?</h2>
+          <div class="launch-choice-grid">
+            <button class="lab-card is-selected" type="button" data-family="memory" data-preset="hebrew_recovery">
+              <span>Ebraico</span>
+              <small>Comprensione · produzione · re-entry</small>
+            </button>
+            <button class="lab-card" type="button" data-family="piano" data-preset="piano_sight_reading">
+              <span>Pianoforte</span>
+              <small>Prima vista · memoria · controllo</small>
+            </button>
+            <button class="lab-card" type="button" data-family="baseline" data-preset="eyes_open">
+              <span>EEG libero</span>
+              <small>Baseline · regolazione · esplorazione</small>
+            </button>
+          </div>
+        </article>
+
+        <article class="panel launch-hero duration-hero">
+          <div class="launch-kicker">Dose</div>
+          <h2>Quanto dura?</h2>
+          <div class="duration-grid">
+            <button class="duration-card" type="button" data-duration="900">15 min</button>
+            <button class="duration-card is-selected" type="button" data-duration="1800">30 min</button>
+            <button class="duration-card" type="button" data-duration="2700">45 min</button>
+            <button class="duration-card" type="button" data-duration="3600">60 min</button>
+          </div>
+          <div class="guided-launch-actions">
+            <button id="guidedLaunchBtn" class="primary guided-launch" type="button">Avvia sessione</button>
+            <button id="guidedStopBtn" class="danger guided-stop" type="button">Stop</button>
+          </div>
+        </article>
+
+        <article class="panel launch-status">
+          <div class="launch-kicker">Fiducia sistema</div>
+          <div class="state-main">
+            <div>
+              <h2 id="dailyMode">Calibrazione</h2>
+              <p id="dailyModeReason">Indossa il casco. MindTune aggancia FC11, legge Oura e poi parte dal test preliminare.</p>
+            </div>
+            <div class="state-orb" id="dailyStateOrb" aria-hidden="true"></div>
+          </div>
+          <div class="state-metrics">
+            <span><b id="dailySleep">--</b> sonno</span>
+            <span><b id="dailyReadiness">--</b> readiness</span>
+            <span><b id="dailyEnergy">--</b> energia</span>
+          </div>
+          <p id="adaptivePlanLine" class="launch-plan-line">Prima attivazione cognitiva, poi piano adattivo sul laboratorio scelto.</p>
+          <p id="adaptivePlanTitle" class="launch-plan-title">Obiettivo: recuperare competenze dormienti e costruire prestazione a lungo termine.</p>
+        </article>
+      </section>
+
+      <section class="control-grid">
+        <section class="panel record-panel">
+          <div class="panel-head">
+            <h2>Motore sessione</h2>
+            <span id="lastUpdate">--:--:--</span>
+          </div>
+
+          <div class="session-layout">
+            <div class="session-picker">
+              <div class="form-grid">
+                <label>
+                  <span>Modulo</span>
+                  <select id="testFamily"></select>
+                </label>
+
+                <label>
+                  <span>Prova</span>
+                  <select id="testPreset"></select>
+                </label>
+
+                <label>
+                  <span>Durata</span>
+                  <input id="duration" type="number" min="5" max="7200" step="5" value="120">
+                </label>
+
+                <label>
+                  <span>Prep</span>
+                  <input id="prep" type="number" min="0" max="600" step="5" value="20">
+                </label>
+              </div>
+
+              <div class="advanced-row">
+                <label>
+                  <span>Condizione</span>
+                  <input id="condition" type="text" value="eyes_open">
+                </label>
+
+                <label class="toggle-row compact-toggle">
+                  <input id="guided" type="checkbox" checked>
+                  <span>Guidata</span>
+                </label>
+              </div>
+
+              <div class="music-row">
+                <label>
+                  <span>Pezzo</span>
+                  <input id="pieceId" type="text" placeholder="bach_wtc_unknown_01">
+                </label>
+
+                <label>
+                  <span>Difficolta</span>
+                  <input id="difficulty" type="number" min="1" max="10" step="1" value="5">
+                </label>
+
+                <label>
+                  <span>Note</span>
+                  <input id="sessionNote" type="text" placeholder="prima vista, mai ascoltato">
+                </label>
+              </div>
+
+              <div class="covariates-row covariates-row-minimal" hidden>
+                <label class="caffeine-cups-field">
+                  <span>Espresso</span>
+                  <input id="caffeineCups" type="number" min="0" max="12" step="0.5" value="0">
+                  <small id="caffeineMgLabel">0 mg caffeina</small>
+                </label>
+                <input id="sleepHours" type="hidden" value="0">
+                <input id="sleepQuality" type="hidden" value="">
+                <input id="exerciseIntensity" type="hidden" value="none">
+                <input id="caffeineMg" type="hidden" value="0">
+                <input id="stressLevel" type="hidden" value="">
+                <input id="cognitiveEnergy" type="hidden" value="">
+                <input id="sessionTimeOfDay" type="hidden" value="afternoon">
+              </div>
+            </div>
+
+            <div class="session-visual">
+              <canvas id="waveCanvas" width="360" height="120" aria-hidden="true"></canvas>
+              <div class="timer-stack">
+                <div id="phaseLabel" class="phase-label">Pronto</div>
+                <div id="countdown" class="countdown">00:00</div>
+                <div id="presetHint" class="preset-hint">Scegli un test</div>
+                <div id="liveFeatureLine" class="live-feature-line"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="button-row main-flow">
+            <button id="connectSessionBtn" class="primary" hidden>Auto casco</button>
+            <button id="startBtn" class="primary">Start</button>
+            <button id="stopBtn" class="danger">Stop</button>
+          </div>
+
+          <details class="advanced-tools">
+            <summary>Strumenti</summary>
+            <div class="button-row">
+              <button id="refreshBtn" class="ghost">Aggiorna</button>
+              <button id="batteryTestBtn" class="ghost">Leggi batteria</button>
+              <button id="dryRunBtn" class="ghost">Dry run</button>
+              <button id="bleBtn" class="ghost">Smoke Mac</button>
+              <button id="handshakeDumpBtn" class="ghost">Dump handshake</button>
+              <button id="handshakeStartBtn" class="ghost">Dump + START</button>
+              <button id="reconnectDumpBtn" class="ghost">Reconnect test</button>
+              <button id="bridgeBtn" class="ghost">Bridge RPi</button>
+              <button id="pingBtn" class="ghost">Ping RPi</button>
+              <button id="brainlabBtn" class="ghost">Preflight RPi</button>
+              <button id="statusBtn" class="ghost">Status</button>
+              <button id="tailBtn" class="ghost">Log RPi</button>
+              <button id="csvBtn" class="ghost">CSV RPi</button>
+            </div>
+          </details>
+
+        </section>
+
+        <section class="panel queue-panel">
+          <div class="panel-head">
+            <h2>Sessioni</h2>
+            <div class="session-actions">
+              <span id="jobCount">0</span>
+              <button id="deleteAbortedBtn" class="danger small-button" type="button">Elimina abortite</button>
+            </div>
+          </div>
+          <div id="jobs" class="jobs"></div>
+        </section>
+      </section>
+
+      <section class="panel apk-panel" id="apkPanel" hidden>
+        <div class="panel-head">
+          <h2>Training Lab</h2>
+          <span id="apkSummary">Reaction Time · Tachistoscopio · Coordinazione · Stroop · Mantra</span>
+        </div>
+        <div class="apk-grid">
+          <div class="apk-task-card">
+            <div class="apk-task-top">
+              <span id="apkTaskLabel">Modulo</span>
+              <span id="apkTaskStats">0 prove</span>
+            </div>
+            <button id="apkStimulus" class="apk-stimulus" type="button">
+              <span id="apkStimulusText">Pronto</span>
+            </button>
+            <div class="apk-response-row">
+              <input id="apkResponse" type="text" autocomplete="off" spellcheck="false" placeholder="Risposta" hidden>
+              <button id="apkPrimaryBtn" class="primary" type="button">Avvia prova</button>
+              <button id="apkSecondaryBtn" class="ghost" type="button">Reset</button>
+              <button id="apkTertiaryBtn" class="ghost" type="button" hidden></button>
+              <button id="apkQuaternaryBtn" class="ghost" type="button" hidden></button>
+            </div>
+          </div>
+          <aside class="apk-log-card">
+            <div class="memory-queue-head">
+              <span>Eventi</span>
+              <span id="apkEventCount">0</span>
+            </div>
+            <div id="apkEventList" class="apk-event-list"></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="panel memory-panel" id="memoryPanel" hidden>
+        <div class="panel-head">
+          <h2 id="memoryPanelTitle">Ebraico moderno</h2>
+          <span id="memorySummary">--</span>
+        </div>
+
+        <section id="hebrewRecoveryWorkspace" class="hebrew-recovery-workspace" hidden aria-live="polite">
+          <header class="hebrew-recovery-head">
+            <div>
+              <span class="hebrew-recovery-kicker">Percorso adattivo</span>
+              <h3>Riattivazione dell'ebraico avanzato</h3>
+              <p id="hebrewRecoveryRationale">Ricostruisco il piano dalle prestazioni osservate: produzione, comprensione, re-entry e morfologia prima della memoria passiva.</p>
+            </div>
+            <div class="hebrew-recovery-status">
+              <strong id="hebrewRecoveryStatus">Preparazione</strong>
+              <span id="hebrewRecoveryEvidence">HeLP in calibrazione</span>
+            </div>
+          </header>
+          <div id="hebrewRecoveryPhases" class="hebrew-recovery-phases">
+            <div class="hebrew-recovery-loading">Costruzione del percorso...</div>
+          </div>
+          <div class="hebrew-recovery-stage" id="hebrewRecoveryStage">
+            <div class="hebrew-recovery-stage-top">
+              <span id="hebrewRecoveryStageMoment">Prima</span>
+              <strong id="hebrewRecoveryStageTitle">Calibrazione comportamentale</strong>
+              <span id="hebrewRecoveryStageProgress">0 / 5</span>
+            </div>
+            <p id="hebrewRecoveryStageDescription">Misuro controllo inibitorio e accesso lessicale prima di scegliere la dose. Il domino inizierà soltanto dopo questa misura.</p>
+            <div id="hebrewRecoveryTaskSurface" class="hebrew-recovery-task-surface">
+              <div class="hebrew-recovery-preview-grid">
+                <article data-moment="before"><span>PRIMA</span><strong>Controllo + lessico</strong><small>misuro accuratezza e velocità prima del lavoro</small></article>
+                <article data-moment="work"><span>LAVORO</span><strong>Produzione + comprensione</strong><small>la dose si adatta alle risposte osservabili</small></article>
+                <article data-moment="after"><span>DOPO</span><strong>Re-entry mirato</strong><small>ripeto errori e risposte lente per un confronto diretto</small></article>
+              </div>
+            </div>
+            <div id="hebrewRecoveryStageActions" class="hebrew-recovery-stage-actions">
+              <span>Parte insieme alla registrazione EEG.</span>
+            </div>
+          </div>
+        </section>
+
+        <div class="memory-grid" id="flashcardWorkspace">
+          <div class="memory-form">
+            <div class="memory-fields flashcard-import-row">
+              <div class="field-block">
+                <span>Livelli</span>
+                <select id="flashcardDeck" hidden>
+                  <option value="">Nessun colore</option>
+                </select>
+                <div id="flashcardCatalog" class="flashcard-catalog"></div>
+                <small id="flashcardSelectedSummary" class="field-note">Nessun colore selezionato</small>
+              </div>
+            </div>
+
+            <div class="flashcard-stage" id="flashcardStage">
+              <div class="flashcard-status">
+                <div class="flashcard-meta" id="flashcardMeta">Nessuna carta pronta</div>
+                <div class="flashcard-scoreline">
+                  <span id="flashcardScore">0 sì · 0 forse · 0 no</span>
+                  <span id="flashcardTimer">0.0s</span>
+                </div>
+              </div>
+              <button id="flashcardCard" class="flashcard-card" type="button">
+                <span id="flashcardFront" class="flashcard-front">Scegli un colore</span>
+                <span id="flashcardBack" class="flashcard-back" hidden></span>
+              </button>
+              <section id="streetwisePanel" class="streetwise-panel" hidden aria-live="polite">
+                <div class="streetwise-head">
+                  <div>
+                    <span class="streetwise-kicker">Uso reale</span>
+                    <strong>Streetwise Hebrew</strong>
+                  </div>
+                  <span id="streetwiseStatus" class="streetwise-status"></span>
+                </div>
+                <div id="streetwiseList" class="streetwise-list"></div>
+              </section>
+              <section id="helpItemPanel" class="help-item-panel" hidden aria-live="polite">
+                <div class="help-item-head">
+                  <div>
+                    <span class="help-kicker">Profilo lessicale</span>
+                    <strong>HeLP</strong>
+                  </div>
+                  <span id="helpItemStatus" class="help-status"></span>
+                </div>
+                <div id="helpItemMetrics" class="help-item-metrics"></div>
+              </section>
+              <details id="hebrewKeyboard" class="hebrew-keyboard">
+                <summary>Tastiera ebraica</summary>
+                <div id="hebrewKeyboardKeys" class="hebrew-keyboard-keys" dir="ltr"></div>
+              </details>
+            </div>
+
+            <div class="button-row memory-actions">
+              <button id="flashcardShowBtn" class="flashcard-action flashcard-reveal" type="button">Mostra risposta</button>
+              <button id="flashcardKnowBtn" class="flashcard-action flashcard-grade grade-know" type="button">Sì</button>
+              <button id="flashcardHardBtn" class="flashcard-action flashcard-grade grade-hard" type="button">Forse</button>
+              <button id="flashcardMissBtn" class="flashcard-action flashcard-grade grade-miss" type="button">No</button>
+            </div>
+          </div>
+
+          <div class="memory-queue">
+            <div class="memory-queue-head">
+              <span>Prima / dopo</span>
+              <span id="memoryDueCount">0</span>
+            </div>
+            <div id="memoryDueList" class="memory-list"></div>
+          </div>
+        </div>
+
+        <div class="conjugation-workspace" id="conjugationWorkspace" hidden>
+          <div class="conjugation-card">
+            <div class="conjugation-stats">
+              <span id="conjugationScore">0 giuste · 0 errori</span>
+              <span id="conjugationTimer">0.0s</span>
+            </div>
+            <div class="conjugation-label">Tassello</div>
+            <div id="conjugationPresent" class="conjugation-present" dir="rtl">---</div>
+            <div id="conjugationPrompt" class="conjugation-prompt" dir="rtl">---</div>
+            <textarea id="conjugationAnswer" class="conjugation-answer" dir="rtl" spellcheck="false" placeholder="כתוב כאן"></textarea>
+            <div class="conjugation-help">Premi Invio per controllare.</div>
+            <div class="button-row conjugation-actions">
+              <button id="conjugationCheckBtn" class="primary" type="button">Controlla</button>
+              <button id="conjugationNextBtn" class="ghost" type="button">Prossimo</button>
+              <button id="conjugationSpeakBtn" class="ghost conjugation-speak" type="button" title="Pronuncia la risposta">Parla</button>
+            </div>
+            <div id="conjugationSpeechStatus" class="conjugation-speech-status" aria-live="polite"></div>
+            <div id="conjugationFeedback" class="conjugation-feedback" hidden></div>
+            <details id="conjugationKeyboard" class="hebrew-keyboard">
+              <summary>Tastiera ebraica</summary>
+              <div id="conjugationKeyboardKeys" class="hebrew-keyboard-keys" dir="ltr"></div>
+            </details>
+            <div class="verb-catalog-note">
+              Cache locale: 60 paradigmi Pealim verificati per il percorso.
+            </div>
+          </div>
+          <aside class="conjugation-history">
+            <div class="memory-queue-head">
+              <span>Risposte</span>
+              <span id="conjugationHistoryCount">0</span>
+            </div>
+            <div id="conjugationHistoryList" class="conjugation-history-list"></div>
+          </aside>
+        </div>
+
+        <div class="shoresh-workspace" id="shoreshWorkspace" hidden>
+          <div class="shoresh-card">
+            <div class="shoresh-top">
+              <div>
+                <div class="shoresh-label" id="shoreshModeLabel">Shoresh Test v1</div>
+                <div class="shoresh-sub" id="shoreshStatus">Baseline neutra e self-rating prima del test.</div>
+              </div>
+              <div class="shoresh-clock" id="shoreshClock">00:00</div>
+            </div>
+
+            <div class="shoresh-ratings" id="shoreshPreRatings">
+              <label>Lucidità
+                <select id="shoreshLucidity">
+                  <option>4</option><option>1</option><option>2</option><option>3</option><option>5</option><option>6</option><option>7</option>
+                </select>
+              </label>
+              <label>Stanchezza
+                <select id="shoreshFatigue">
+                  <option>4</option><option>1</option><option>2</option><option>3</option><option>5</option><option>6</option><option>7</option>
+                </select>
+              </label>
+              <label>Familiarità ebraico
+                <select id="shoreshFamiliarity">
+                  <option>4</option><option>1</option><option>2</option><option>3</option><option>5</option><option>6</option><option>7</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="shoresh-ratings" id="shoreshPostRatings" hidden>
+              <label>Sforzo
+                <select id="shoreshEffort">
+                  <option>4</option><option>1</option><option>2</option><option>3</option><option>5</option><option>6</option><option>7</option>
+                </select>
+              </label>
+              <label>Frustrazione
+                <select id="shoreshFrustration">
+                  <option>3</option><option>1</option><option>2</option><option>4</option><option>5</option><option>6</option><option>7</option>
+                </select>
+              </label>
+              <label>Concentrazione
+                <select id="shoreshFocus">
+                  <option>4</option><option>1</option><option>2</option><option>3</option><option>5</option><option>6</option><option>7</option>
+                </select>
+              </label>
+            </div>
+
+            <div class="shoresh-stimulus" id="shoreshStimulus" dir="rtl">שורש</div>
+            <div class="shoresh-prompt" id="shoreshPrompt">Premi Avvia test quando sei pronto.</div>
+            <div class="shoresh-options" id="shoreshOptions"></div>
+
+            <div class="button-row shoresh-actions">
+              <button id="shoreshStartBtn" class="primary" type="button">Avvia test</button>
+              <button id="shoreshTrainingBtn" class="ghost" type="button">Training</button>
+              <button id="shoreshSaveBtn" class="ghost" type="button" hidden>Salva sessione</button>
+            </div>
+          </div>
+
+          <aside class="shoresh-side">
+            <div class="memory-queue-head">
+              <span>Sessione</span>
+              <span id="shoreshProgress">0/60</span>
+            </div>
+            <div class="shoresh-metrics" id="shoreshMetrics">
+              <span>0 corrette</span>
+              <span>0 errori</span>
+              <span>0 timeout</span>
+            </div>
+            <div id="shoreshHistory" class="shoresh-history"></div>
+          </aside>
+        </div>
+
+        <div class="hebrew-mlf-workspace" id="hebrewMlfWorkspace" hidden>
+          <div class="hebrew-mlf-card">
+            <div class="hebrew-mlf-status">
+              <span class="hebrew-mlf-badge" dir="ltr">Ebraico moderno · MLF preview</span>
+              <span class="hebrew-mlf-note">Parte con Start insieme alla registrazione EEG.</span>
+            </div>
+            <div class="hebrew-mlf-fields">
+              <label>Unità
+                <select id="hebrewMlfUnit"><option value="">Scegli un'unità</option></select>
+              </label>
+              <label>Tipo di prova
+                <select id="hebrewMlfTrialType">
+                  <option value="recognition">Riconoscimento</option>
+                  <option value="recall" selected>Richiamo</option>
+                  <option value="production">Produzione</option>
+                  <option value="transfer">Trasferimento</option>
+                </select>
+              </label>
+            </div>
+            <div class="hebrew-mlf-actions">
+              <button id="hebrewMlfStartBtn" class="secondary" type="button" hidden>Anteprima senza EEG</button>
+            </div>
+            <div id="hebrewMlfPrompt" class="hebrew-mlf-prompt" dir="ltr">---</div>
+            <div id="hebrewMlfPromptArea" hidden>
+              <textarea id="hebrewMlfResponse" class="hebrew-mlf-answer" dir="rtl" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="כתוב כאן"></textarea>
+              <div class="button-row">
+                <button id="hebrewMlfSubmitBtn" class="primary" type="button" disabled>Invia risposta</button>
+              </div>
+            </div>
+            <div id="hebrewMlfResult" class="hebrew-mlf-result" hidden>
+              <div id="hebrewMlfOutcome" class="hebrew-mlf-outcome"></div>
+              <div id="hebrewMlfFeedback" class="hebrew-mlf-feedback"></div>
+              <div id="hebrewMlfNormalized" class="hebrew-mlf-meta"></div>
+              <div id="hebrewMlfM0State" class="hebrew-mlf-meta"></div>
+              <div id="hebrewMlfRetests" class="hebrew-mlf-retests"></div>
+            </div>
+            <div id="hebrewMlfError" class="hebrew-mlf-error" hidden></div>
+          </div>
+        </div>
+
+        <section id="helpProfilePanel" class="help-profile-panel" aria-live="polite">
+          <div class="help-profile-head">
+            <div>
+              <span class="help-kicker">Profilo personale rigenerabile</span>
+              <h3>HeLP</h3>
+            </div>
+            <button id="helpRefreshBtn" class="ghost small-button" type="button">Aggiorna</button>
+          </div>
+          <div id="helpProfileSummary" class="help-profile-summary">
+            <span class="help-profile-loading">Costruzione del profilo...</span>
+          </div>
+          <div id="helpProfileDimensions" class="help-profile-dimensions"></div>
+          <p id="helpProfileNote" class="help-profile-note"></p>
+        </section>
+      </section>
+
+      <details class="console-wrap">
+        <summary class="console-summary">
+          <span>Console diagnostica</span>
+          <span class="console-summary-meta">Apri log e comandi</span>
+        </summary>
+        <div class="console-head">
+          <h2>Console</h2>
+          <div class="console-actions">
+            <select id="logSelect"></select>
+            <button id="copyConsoleBtn" class="icon-button copy-button" type="button" title="Copia console" aria-label="Copia console">
+              <span class="copy-glyph" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+        <pre id="console" class="console">Caricamento...</pre>
+      </details>
+
+      <div id="ouraPanel" class="oura-panel hidden">
+        <div class="oura-panel-backdrop"></div>
+        <div class="oura-panel-content">
+          <div class="oura-panel-head">
+            <h2>Dati Oura</h2>
+            <button id="closeOuraPanel" class="icon-button" type="button" aria-label="Chiudi">×</button>
+          </div>
+          <div id="ouraPanelBody" class="oura-panel-body">
+            <p>Caricamento...</p>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>

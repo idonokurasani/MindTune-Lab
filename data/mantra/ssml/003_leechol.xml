@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:lang="he-IL">
+  <voice name="he-IL-AvriNeural">
+    <prosody rate="-15%">לֶאֱכֹל</prosody>
+    <break time="500ms"/>
+    <lang xml:lang="it-IT">mangiare.</lang>
+    <break time="700ms"/>
+    <prosody rate="-15%">אֲנִי אוֹכֵל תַּפּוּחַ</prosody>
+    <break time="700ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">אוֹכֵל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אוֹכֶלֶת</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אוֹכְלִים</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אוֹכְלוֹת</prosody>
+    <break time="500ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">אָכַלְתִּי</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אָכַלְתָּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אָכַלְתְּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אָכַל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אָכְלָה</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אָכַלְנוּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אֲכַלְתֶּם</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אֲכַלְתֶּן</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">אָכְלוּ</prosody>
+    <break time="500ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">אֹכַל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תֹּאכַל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תֹּאכְלִי</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">יֹאכַל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תֹּאכַל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">נֹאכַל</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תֹּאכְלוּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">יֹאכְלוּ</prosody>
+    <break time="500ms"/>
+  </voice>
+</speak>

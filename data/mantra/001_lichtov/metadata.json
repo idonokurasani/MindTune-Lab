@@ -1,0 +1,16 @@
+{
+  "order": 1,
+  "hebrew_infinitive_with_niqqud": "לִכְתֹּב",
+  "hebrew_infinitive_plain": "לכתוב",
+  "italian_translation": "scrivere",
+  "transliteration": "lichtov",
+  "root": "כ-ת-ב",
+  "binyan": "PA'AL",
+  "lexical_stress": 2,
+  "source": "Pealim",
+  "verification_status": "verified",
+  "example_hebrew_with_niqqud": "אֲנִי כּוֹתֵב מִכְתָּב",
+  "example_hebrew_plain": "אני כותב מכתב",
+  "example_italian": "Scrivo una lettera.",
+  "example_transliteration": "ani kotev mikhtav"
+}

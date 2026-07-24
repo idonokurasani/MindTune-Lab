@@ -1,0 +1,1886 @@
+{
+  "paradigm": {
+    "lemma": {
+      "lemma_vocalized": "לִכְתֹּב",
+      "lemma_plain": "לכתוב",
+      "root": "כ-ת-ב",
+      "binyan": "PA'AL",
+      "infinitive_form": null,
+      "forms": {}
+    },
+    "forms": {
+      "infinitive": {
+        "form_key": "infinitive",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "לִכְתֹּב",
+        "surface_plain": "לכתוב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "infinitive",
+        "mood": "",
+        "person": "",
+        "gender": "",
+        "number": "",
+        "transliteration": "lichtov",
+        "phonemes_raw": "liχtˈov",
+        "phonemes_corrected": "liχtˈov",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "infinitive",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "לִכְתֹּב",
+              "surface_plain": "לכתוב",
+              "transliteration": "lichtov",
+              "phonemes_raw": "liχtˈov",
+              "phonemes_corrected": "liχtˈov",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "infinitive",
+                "mood": "",
+                "person": "",
+                "gender": "",
+                "number": "",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_masculine_singular": {
+        "form_key": "present_masculine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כּוֹתֵב",
+        "surface_plain": "כותב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "kotev",
+        "phonemes_raw": "kotˈev",
+        "phonemes_corrected": "kotˈev",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "present_masculine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כּוֹתֵב",
+              "surface_plain": "כותב",
+              "transliteration": "kotev",
+              "phonemes_raw": "kotˈev",
+              "phonemes_corrected": "kotˈev",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_feminine_singular": {
+        "form_key": "present_feminine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כּוֹתֶבֶת",
+        "surface_plain": "כותבת",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "kotevet",
+        "phonemes_raw": "kotevˈet",
+        "phonemes_corrected": "kotˈevet",
+        "lexical_stress": 2,
+        "vocal_shva": true,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "present_feminine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כּוֹתֶבֶת",
+              "surface_plain": "כותבת",
+              "transliteration": "kotevet",
+              "phonemes_raw": "kotevˈet",
+              "phonemes_corrected": "kotˈevet",
+              "lexical_stress": 2,
+              "vocal_shva": true,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_masculine_plural": {
+        "form_key": "present_masculine_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כּוֹתְבִים",
+        "surface_plain": "כותבים",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "masculine",
+        "number": "plural",
+        "transliteration": "kotvim",
+        "phonemes_raw": "kotvˈim",
+        "phonemes_corrected": "kotvˈim",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "present_masculine_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כּוֹתְבִים",
+              "surface_plain": "כותבים",
+              "transliteration": "kotvim",
+              "phonemes_raw": "kotvˈim",
+              "phonemes_corrected": "kotvˈim",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "masculine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_feminine_plural": {
+        "form_key": "present_feminine_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כּוֹתְבוֹת",
+        "surface_plain": "כותבות",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "feminine",
+        "number": "plural",
+        "transliteration": "kotvot",
+        "phonemes_raw": "kotvˈot",
+        "phonemes_corrected": "kotvˈot",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "present_feminine_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כּוֹתְבוֹת",
+              "surface_plain": "כותבות",
+              "transliteration": "kotvot",
+              "phonemes_raw": "kotvˈot",
+              "phonemes_corrected": "kotvˈot",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "feminine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_1_singular": {
+        "form_key": "past_1_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתַבְתִּי",
+        "surface_plain": "כתבתי",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "singular",
+        "transliteration": "katavti",
+        "phonemes_raw": "katavtˈi",
+        "phonemes_corrected": "katˈavti",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_1_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתַבְתִּי",
+              "surface_plain": "כתבתי",
+              "transliteration": "katavti",
+              "phonemes_raw": "katavtˈi",
+              "phonemes_corrected": "katˈavti",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_masculine_singular": {
+        "form_key": "past_2_masculine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתַבְתָּ",
+        "surface_plain": "כתבת",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "katavta",
+        "phonemes_raw": "katavtˈa",
+        "phonemes_corrected": "katˈavta",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_2_masculine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתַבְתָּ",
+              "surface_plain": "כתבת",
+              "transliteration": "katavta",
+              "phonemes_raw": "katavtˈa",
+              "phonemes_corrected": "katˈavta",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_feminine_singular": {
+        "form_key": "past_2_feminine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתַבְתְּ",
+        "surface_plain": "כתבת",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "katavt",
+        "phonemes_raw": "katˈavt",
+        "phonemes_corrected": "katˈavt",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_2_feminine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתַבְתְּ",
+              "surface_plain": "כתבת",
+              "transliteration": "katavt",
+              "phonemes_raw": "katˈavt",
+              "phonemes_corrected": "katˈavt",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_masculine_singular": {
+        "form_key": "past_3_masculine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתַב",
+        "surface_plain": "כתב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "katav",
+        "phonemes_raw": "katˈav",
+        "phonemes_corrected": "katˈav",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_3_masculine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתַב",
+              "surface_plain": "כתב",
+              "transliteration": "katav",
+              "phonemes_raw": "katˈav",
+              "phonemes_corrected": "katˈav",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_feminine_singular": {
+        "form_key": "past_3_feminine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתְבָה",
+        "surface_plain": "כתבה",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "katva",
+        "phonemes_raw": "katvˈa",
+        "phonemes_corrected": "katvˈa",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_3_feminine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתְבָה",
+              "surface_plain": "כתבה",
+              "transliteration": "katva",
+              "phonemes_raw": "katvˈa",
+              "phonemes_corrected": "katvˈa",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_1_plural": {
+        "form_key": "past_1_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתַבְנוּ",
+        "surface_plain": "כתבנו",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "katavnu",
+        "phonemes_raw": "katavnˈu",
+        "phonemes_corrected": "katˈavnu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_1_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתַבְנוּ",
+              "surface_plain": "כתבנו",
+              "transliteration": "katavnu",
+              "phonemes_raw": "katavnˈu",
+              "phonemes_corrected": "katˈavnu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_masculine_plural": {
+        "form_key": "past_2_masculine_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כְּתַבְתֶּם",
+        "surface_plain": "כתבתם",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "transliteration": "ktavtem",
+        "phonemes_raw": "ktavtˈem",
+        "phonemes_corrected": "ktavtˈem",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_2_masculine_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כְּתַבְתֶּם",
+              "surface_plain": "כתבתם",
+              "transliteration": "ktavtem",
+              "phonemes_raw": "ktavtˈem",
+              "phonemes_corrected": "ktavtˈem",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_feminine_plural": {
+        "form_key": "past_2_feminine_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כְּתַבְתֶּן",
+        "surface_plain": "כתבתן",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "plural",
+        "transliteration": "ktavten",
+        "phonemes_raw": "ktavtˈen",
+        "phonemes_corrected": "ktavtˈen",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_2_feminine_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כְּתַבְתֶּן",
+              "surface_plain": "כתבתן",
+              "transliteration": "ktavten",
+              "phonemes_raw": "ktavtˈen",
+              "phonemes_corrected": "ktavtˈen",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_plural": {
+        "form_key": "past_3_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "כָּתְבוּ",
+        "surface_plain": "כתבו",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "katvu",
+        "phonemes_raw": "katvˈu",
+        "phonemes_corrected": "katvˈu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "past_3_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "כָּתְבוּ",
+              "surface_plain": "כתבו",
+              "transliteration": "katvu",
+              "phonemes_raw": "katvˈu",
+              "phonemes_corrected": "katvˈu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_1_singular": {
+        "form_key": "future_1_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "אֶכְתֹּב",
+        "surface_plain": "אכתוב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "singular",
+        "transliteration": "echtov",
+        "phonemes_raw": "ʔeχtˈov",
+        "phonemes_corrected": "ʔeχtˈov",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_1_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "אֶכְתֹּב",
+              "surface_plain": "אכתוב",
+              "transliteration": "echtov",
+              "phonemes_raw": "ʔeχtˈov",
+              "phonemes_corrected": "ʔeχtˈov",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_masculine_singular": {
+        "form_key": "future_2_masculine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "תִּכְתֹּב",
+        "surface_plain": "תכתוב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "tichtov",
+        "phonemes_raw": "tiχtˈov",
+        "phonemes_corrected": "tiχtˈov",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_2_masculine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּכְתֹּב",
+              "surface_plain": "תכתוב",
+              "transliteration": "tichtov",
+              "phonemes_raw": "tiχtˈov",
+              "phonemes_corrected": "tiχtˈov",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_feminine_singular": {
+        "form_key": "future_2_feminine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "תִּכְתְּבִי",
+        "surface_plain": "תכתבי",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "tichtevi",
+        "phonemes_raw": "tiχtvˈi",
+        "phonemes_corrected": "tiχtevˈi",
+        "lexical_stress": 3,
+        "vocal_shva": true,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_2_feminine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּכְתְּבִי",
+              "surface_plain": "תכתבי",
+              "transliteration": "tichtevi",
+              "phonemes_raw": "tiχtvˈi",
+              "phonemes_corrected": "tiχtevˈi",
+              "lexical_stress": 3,
+              "vocal_shva": true,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_masculine_singular": {
+        "form_key": "future_3_masculine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "יִכְתֹּב",
+        "surface_plain": "יכתוב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "yichtov",
+        "phonemes_raw": "jiχtˈov",
+        "phonemes_corrected": "jiχtˈov",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_3_masculine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "יִכְתֹּב",
+              "surface_plain": "יכתוב",
+              "transliteration": "yichtov",
+              "phonemes_raw": "jiχtˈov",
+              "phonemes_corrected": "jiχtˈov",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_feminine_singular": {
+        "form_key": "future_3_feminine_singular",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "תִּכְתֹּב",
+        "surface_plain": "תכתוב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "tichtov",
+        "phonemes_raw": "tiχtˈov",
+        "phonemes_corrected": "tiχtˈov",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_3_feminine_singular",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּכְתֹּב",
+              "surface_plain": "תכתוב",
+              "transliteration": "tichtov",
+              "phonemes_raw": "tiχtˈov",
+              "phonemes_corrected": "tiχtˈov",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_1_plural": {
+        "form_key": "future_1_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "נִכְתֹּב",
+        "surface_plain": "נכתוב",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "nichtov",
+        "phonemes_raw": "niχtˈov",
+        "phonemes_corrected": "niχtˈov",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_1_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "נִכְתֹּב",
+              "surface_plain": "נכתוב",
+              "transliteration": "nichtov",
+              "phonemes_raw": "niχtˈov",
+              "phonemes_corrected": "niχtˈov",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_plural": {
+        "form_key": "future_2_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "תִּכְתְּבוּ",
+        "surface_plain": "תכתבו",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "tichtevu",
+        "phonemes_raw": "tiχtvˈu",
+        "phonemes_corrected": "tiχtevˈu",
+        "lexical_stress": 3,
+        "vocal_shva": true,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_2_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּכְתְּבוּ",
+              "surface_plain": "תכתבו",
+              "transliteration": "tichtevu",
+              "phonemes_raw": "tiχtvˈu",
+              "phonemes_corrected": "tiχtevˈu",
+              "lexical_stress": 3,
+              "vocal_shva": true,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_plural": {
+        "form_key": "future_3_plural",
+        "lemma_vocalized": "לִכְתֹּב",
+        "lemma_plain": "לכתוב",
+        "surface_vocalized": "יִכְתְּבוּ",
+        "surface_plain": "יכתבו",
+        "root": "כ-ת-ב",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "yichtevu",
+        "phonemes_raw": "jiχtvˈu",
+        "phonemes_corrected": "jiχtevˈu",
+        "lexical_stress": 3,
+        "vocal_shva": true,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לכתוב",
+              "form_key": "future_3_plural",
+              "root": "כ-ת-ב",
+              "binyan": "PA'AL",
+              "surface_vocalized": "יִכְתְּבוּ",
+              "surface_plain": "יכתבו",
+              "transliteration": "yichtevu",
+              "phonemes_raw": "jiχtvˈu",
+              "phonemes_corrected": "jiχtevˈu",
+              "lexical_stress": 3,
+              "vocal_shva": true,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/1-lichtov/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      }
+    }
+  },
+  "inflector_forms": [
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתַבְתִּי",
+      "surface_plain": "כתבתי",
+      "morphology": "PAST+FIRST+MF+SINGULAR+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "masculine+feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתַבְתָּ",
+      "surface_plain": "כתבת",
+      "morphology": "PAST+SECOND+M+SINGULAR+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתַבְתְּ",
+      "surface_plain": "כתבת",
+      "morphology": "PAST+SECOND+F+SINGULAR+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתַב",
+      "surface_plain": "כתב",
+      "morphology": "PAST+THIRD+M+SINGULAR+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתְבָה",
+      "surface_plain": "כתבה",
+      "morphology": "PAST+THIRD+F+SINGULAR+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתַבְנוּ",
+      "surface_plain": "כתבנו",
+      "morphology": "PAST+FIRST+MF+PLURAL+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "masculine+feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כְּתַבְתֶּם",
+      "surface_plain": "כתבתם",
+      "morphology": "PAST+SECOND+M+PLURAL+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כְּתַבְתֶּן",
+      "surface_plain": "כתבתן",
+      "morphology": "PAST+SECOND+F+PLURAL+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתְבוּ",
+      "surface_plain": "כתבו",
+      "morphology": "PAST+THIRD+M+PLURAL+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 1,
+      "surface_vocalized": "כָּתְבוּ",
+      "surface_plain": "כתבו",
+      "morphology": "PAST+THIRD+F+PLURAL+COMPLETE",
+      "base_form_vocalized": "כָּתַב",
+      "base_form_plain": "כתב",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 1
+      }
+    }
+  ],
+  "report": {
+    "lemma_vocalized": "לִכְתֹּב",
+    "lemma_plain": "לכתוב",
+    "root": "כ-ת-ב",
+    "binyan": "PA'AL",
+    "paradigm_form_count": 22,
+    "inflector_form_count": 62,
+    "sentence_candidates": [
+      {
+        "sentence_id": "svlm-0000206",
+        "original_hebrew": "במהרה מצא צ'ייקובסקי את רוח היצירה וישב לכתוב קונצ'רטו לכינור",
+        "normalized_hebrew": "במהרה מצא צ'ייקובסקי את רוח היצירה וישב לכתוב קונצ'רטו לכינור",
+        "token_count": 12,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "vˈmhʁ mˈts tʃˈkvskj ʔˈt ʁˈχ hˈtsʁ ˈʃv lˈχtv kˈntʃʁtv lˈχnʁ",
+        "phoneme_inventory": [
+          "h",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t",
+          "v",
+          "ʁ",
+          "ʃ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 14,
+        "complexity_score": 12.0,
+        "approved": false,
+        "source": "svlm"
+      },
+      {
+        "sentence_id": "svlm-0000244",
+        "original_hebrew": "בשבועות האחרונים חלה מגמה לכתוב בצורה מסודרת את ההיסטוריה הרומית",
+        "normalized_hebrew": "בשבועות האחרונים חלה מגמה לכתוב בצורה מסודרת את ההיסטוריה הרומית",
+        "token_count": 10,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "vˈʃvʔt hˈχʁnm χˈl mˈɡm lˈχtv vˈtsʁ mˈsdʁt ʔˈt hˈhstʁ hˈʁmt",
+        "phoneme_inventory": [
+          "d",
+          "h",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t",
+          "v",
+          "ɡ",
+          "ʁ",
+          "ʃ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 14,
+        "complexity_score": 10.0,
+        "approved": false,
+        "source": "svlm"
+      },
+      {
+        "sentence_id": "svlm-0000359",
+        "original_hebrew": "למחוק לחלוטין לשכתב למחוק את הפרטים הקיימים ולכתוב אחרים במקומם",
+        "normalized_hebrew": "למחוק לחלוטין לשכתב למחוק את הפרטים הקיימים ולכתוב אחרים במקומם",
+        "token_count": 10,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "lˈmχk lˈχltn lˈʃχtv lˈmχk ʔˈt hˈfʁtm hˈkmm ˈlχtv ʔˈχʁm vˈmkmm",
+        "phoneme_inventory": [
+          "f",
+          "h",
+          "k",
+          "l",
+          "m",
+          "n",
+          "t",
+          "v",
+          "ʁ",
+          "ʃ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 13,
+        "complexity_score": 10.0,
+        "approved": false,
+        "source": "svlm"
+      }
+    ],
+    "infinitive_pronunciation": {
+      "phonemes_raw": "liχtˈov",
+      "phonemes_corrected": "liχtˈov",
+      "transliteration": "",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "source": "phonikud+overrides"
+    },
+    "source_comparison": {
+      "lemma": "לכתוב",
+      "approved_source": "pealim",
+      "form_reports": {
+        "infinitive": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "לִכְתֹּב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "liχtˈov"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "לִכְתֹּב",
+            "lexical_stress": 2
+          }
+        },
+        "present_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כּוֹתֵב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "kotˈev"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כּוֹתֵב",
+            "lexical_stress": 2
+          }
+        },
+        "present_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כּוֹתֶבֶת",
+              "lexical_stress": 2,
+              "phonemes_corrected": "kotˈevet"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כּוֹתֶבֶת",
+            "lexical_stress": 2
+          }
+        },
+        "present_masculine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כּוֹתְבִים",
+              "lexical_stress": 2,
+              "phonemes_corrected": "kotvˈim"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כּוֹתְבִים",
+            "lexical_stress": 2
+          }
+        },
+        "present_feminine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כּוֹתְבוֹת",
+              "lexical_stress": 2,
+              "phonemes_corrected": "kotvˈot"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כּוֹתְבוֹת",
+            "lexical_stress": 2
+          }
+        },
+        "past_1_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתַבְתִּי",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katˈavti"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתַבְתִּי",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתַבְתָּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katˈavta"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתַבְתָּ",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתַבְתְּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katˈavt"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתַבְתְּ",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתַב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katˈav"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתַב",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתְבָה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katvˈa"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתְבָה",
+            "lexical_stress": 2
+          }
+        },
+        "past_1_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתַבְנוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katˈavnu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתַבְנוּ",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_masculine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כְּתַבְתֶּם",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ktavtˈem"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כְּתַבְתֶּם",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_feminine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כְּתַבְתֶּן",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ktavtˈen"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כְּתַבְתֶּן",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "כָּתְבוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "katvˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "כָּתְבוּ",
+            "lexical_stress": 2
+          }
+        },
+        "future_1_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "אֶכְתֹּב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔeχtˈov"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "אֶכְתֹּב",
+            "lexical_stress": 2
+          }
+        },
+        "future_2_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּכְתֹּב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "tiχtˈov"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּכְתֹּב",
+            "lexical_stress": 2
+          }
+        },
+        "future_2_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּכְתְּבִי",
+              "lexical_stress": 3,
+              "phonemes_corrected": "tiχtevˈi"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּכְתְּבִי",
+            "lexical_stress": 3
+          }
+        },
+        "future_3_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "יִכְתֹּב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "jiχtˈov"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "יִכְתֹּב",
+            "lexical_stress": 2
+          }
+        },
+        "future_3_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּכְתֹּב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "tiχtˈov"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּכְתֹּב",
+            "lexical_stress": 2
+          }
+        },
+        "future_1_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "נִכְתֹּב",
+              "lexical_stress": 2,
+              "phonemes_corrected": "niχtˈov"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "נִכְתֹּב",
+            "lexical_stress": 2
+          }
+        },
+        "future_2_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּכְתְּבוּ",
+              "lexical_stress": 3,
+              "phonemes_corrected": "tiχtevˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּכְתְּבוּ",
+            "lexical_stress": 3
+          }
+        },
+        "future_3_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "יִכְתְּבוּ",
+              "lexical_stress": 3,
+              "phonemes_corrected": "jiχtevˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "יִכְתְּבוּ",
+            "lexical_stress": 3
+          }
+        }
+      }
+    }
+  }
+}

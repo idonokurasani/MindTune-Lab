@@ -1,0 +1,6309 @@
+{
+  "schema_version": "pealim_verb_cache_v1",
+  "source": "Pealim Hebrew conjugation tables",
+  "generated_at": "2026-07-15T04:02:27.666535+00:00",
+  "count": 60,
+  "failures": [],
+  "verbs": [
+    {
+      "id": "pealim_001",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/30-leechol/",
+      "source_query": "לאכול",
+      "source_expected_meaning_en": "eat",
+      "accessed_at": "2026-07-15T04:01:48.605166+00:00",
+      "root": "א-כ-ל",
+      "binyan": "PA'AL",
+      "infinitive": "לאכול",
+      "displayInfinitive": "לאכול",
+      "infinitive_key": "לאכול",
+      "italianInfinitive": "mangiare",
+      "italian": "mangiare",
+      "present": [
+        "אוכל",
+        "אוכלת",
+        "אוכלים",
+        "אוכלות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "אכלתי",
+          "io - passato: mangiare"
+        ],
+        "בעבר · אתה": [
+          "אכלת",
+          "tu m. - passato: mangiare"
+        ],
+        "בעבר · את": [
+          "אכלת",
+          "tu f. - passato: mangiare"
+        ],
+        "בעבר · הוא": [
+          "אכל",
+          "lui - passato: mangiare"
+        ],
+        "בעבר · היא": [
+          "אכלה",
+          "lei - passato: mangiare"
+        ],
+        "בעבר · אנחנו": [
+          "אכלנו",
+          "noi - passato: mangiare"
+        ],
+        "בעבר · אתם": [
+          "אכלתם",
+          "voi m. - passato: mangiare"
+        ],
+        "בעבר · אתן": [
+          "אכלתן",
+          "voi f. - passato: mangiare"
+        ],
+        "בעבר · הם": [
+          "אכלו",
+          "loro m. - passato: mangiare"
+        ],
+        "בעבר · הן": [
+          "אכלו",
+          "loro f. - passato: mangiare"
+        ],
+        "בעתיד · אני": [
+          "אוכל",
+          "io - futuro: mangiare"
+        ],
+        "בעתיד · אתה": [
+          "תאכל",
+          "tu m. - futuro: mangiare"
+        ],
+        "בעתיד · את": [
+          "תאכלי",
+          "tu f. - futuro: mangiare"
+        ],
+        "בעתיד · הוא": [
+          "יאכל",
+          "lui - futuro: mangiare"
+        ],
+        "בעתיד · היא": [
+          "תאכל",
+          "lei - futuro: mangiare"
+        ],
+        "בעתיד · אנחנו": [
+          "נאכל",
+          "noi - futuro: mangiare"
+        ],
+        "בעתיד · אתם": [
+          "תאכלו",
+          "voi m. - futuro: mangiare"
+        ],
+        "בעתיד · אתן": [
+          "תאכלנה",
+          "voi f. - futuro: mangiare"
+        ],
+        "בעתיד · הם": [
+          "יאכלו",
+          "loro m. - futuro: mangiare"
+        ],
+        "בעתיד · הן": [
+          "תאכלנה",
+          "loro f. - futuro: mangiare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_002",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/31-lishtot/",
+      "source_query": "לשתות",
+      "source_expected_meaning_en": "drink",
+      "accessed_at": "2026-07-15T04:01:49.252467+00:00",
+      "root": "ש-ת-ה",
+      "binyan": "PA'AL",
+      "infinitive": "לשתות",
+      "displayInfinitive": "לשתות",
+      "infinitive_key": "לשתות",
+      "italianInfinitive": "bere",
+      "italian": "bere",
+      "present": [
+        "שותה",
+        "שותה",
+        "שותים",
+        "שותות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שתיתי",
+          "io - passato: bere"
+        ],
+        "בעבר · אתה": [
+          "שתית",
+          "tu m. - passato: bere"
+        ],
+        "בעבר · את": [
+          "שתית",
+          "tu f. - passato: bere"
+        ],
+        "בעבר · הוא": [
+          "שתה",
+          "lui - passato: bere"
+        ],
+        "בעבר · היא": [
+          "שתתה",
+          "lei - passato: bere"
+        ],
+        "בעבר · אנחנו": [
+          "שתינו",
+          "noi - passato: bere"
+        ],
+        "בעבר · אתם": [
+          "שתיתם",
+          "voi m. - passato: bere"
+        ],
+        "בעבר · אתן": [
+          "שתיתן",
+          "voi f. - passato: bere"
+        ],
+        "בעבר · הם": [
+          "שתו",
+          "loro m. - passato: bere"
+        ],
+        "בעבר · הן": [
+          "שתו",
+          "loro f. - passato: bere"
+        ],
+        "בעתיד · אני": [
+          "אשתה",
+          "io - futuro: bere"
+        ],
+        "בעתיד · אתה": [
+          "תשתה",
+          "tu m. - futuro: bere"
+        ],
+        "בעתיד · את": [
+          "תשתי",
+          "tu f. - futuro: bere"
+        ],
+        "בעתיד · הוא": [
+          "ישתה",
+          "lui - futuro: bere"
+        ],
+        "בעתיד · היא": [
+          "תשתה",
+          "lei - futuro: bere"
+        ],
+        "בעתיד · אנחנו": [
+          "נשתה",
+          "noi - futuro: bere"
+        ],
+        "בעתיד · אתם": [
+          "תשתו",
+          "voi m. - futuro: bere"
+        ],
+        "בעתיד · אתן": [
+          "תשתינה",
+          "voi f. - futuro: bere"
+        ],
+        "בעתיד · הם": [
+          "ישתו",
+          "loro m. - futuro: bere"
+        ],
+        "בעתיד · הן": [
+          "תשתינה",
+          "loro f. - futuro: bere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_003",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/7-lalechet/",
+      "source_query": "ללכת",
+      "source_expected_meaning_en": "go",
+      "accessed_at": "2026-07-15T04:01:49.979788+00:00",
+      "root": "ה-ל-ך",
+      "binyan": "PA'AL",
+      "infinitive": "ללכת",
+      "displayInfinitive": "ללכת",
+      "infinitive_key": "ללכת",
+      "italianInfinitive": "andare",
+      "italian": "andare",
+      "present": [
+        "הולך",
+        "הולכת",
+        "הולכים",
+        "הולכות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הלכתי",
+          "io - passato: andare"
+        ],
+        "בעבר · אתה": [
+          "הלכת",
+          "tu m. - passato: andare"
+        ],
+        "בעבר · את": [
+          "הלכת",
+          "tu f. - passato: andare"
+        ],
+        "בעבר · הוא": [
+          "הלך",
+          "lui - passato: andare"
+        ],
+        "בעבר · היא": [
+          "הלכה",
+          "lei - passato: andare"
+        ],
+        "בעבר · אנחנו": [
+          "הלכנו",
+          "noi - passato: andare"
+        ],
+        "בעבר · אתם": [
+          "הלכתם",
+          "voi m. - passato: andare"
+        ],
+        "בעבר · אתן": [
+          "הלכתן",
+          "voi f. - passato: andare"
+        ],
+        "בעבר · הם": [
+          "הלכו",
+          "loro m. - passato: andare"
+        ],
+        "בעבר · הן": [
+          "הלכו",
+          "loro f. - passato: andare"
+        ],
+        "בעתיד · אני": [
+          "אלך",
+          "io - futuro: andare"
+        ],
+        "בעתיד · אתה": [
+          "תלך",
+          "tu m. - futuro: andare"
+        ],
+        "בעתיד · את": [
+          "תלכי",
+          "tu f. - futuro: andare"
+        ],
+        "בעתיד · הוא": [
+          "ילך",
+          "lui - futuro: andare"
+        ],
+        "בעתיד · היא": [
+          "תלך",
+          "lei - futuro: andare"
+        ],
+        "בעתיד · אנחנו": [
+          "נלך",
+          "noi - futuro: andare"
+        ],
+        "בעתיד · אתם": [
+          "תלכו",
+          "voi m. - futuro: andare"
+        ],
+        "בעתיד · אתן": [
+          "תלכנה",
+          "voi f. - futuro: andare"
+        ],
+        "בעתיד · הם": [
+          "ילכו",
+          "loro m. - futuro: andare"
+        ],
+        "בעתיד · הן": [
+          "תלכנה",
+          "loro f. - futuro: andare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_004",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/28-lavo/",
+      "source_query": "לבוא",
+      "source_expected_meaning_en": "come",
+      "accessed_at": "2026-07-15T04:01:50.645282+00:00",
+      "root": "ב-ו-א",
+      "binyan": "PA'AL",
+      "infinitive": "לבוא",
+      "displayInfinitive": "לבוא",
+      "infinitive_key": "לבוא",
+      "italianInfinitive": "venire",
+      "italian": "venire",
+      "present": [
+        "בא",
+        "באה",
+        "באים",
+        "באות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "באתי",
+          "io - passato: venire"
+        ],
+        "בעבר · אתה": [
+          "באת",
+          "tu m. - passato: venire"
+        ],
+        "בעבר · את": [
+          "באת",
+          "tu f. - passato: venire"
+        ],
+        "בעבר · הוא": [
+          "בא",
+          "lui - passato: venire"
+        ],
+        "בעבר · היא": [
+          "באה",
+          "lei - passato: venire"
+        ],
+        "בעבר · אנחנו": [
+          "באנו",
+          "noi - passato: venire"
+        ],
+        "בעבר · אתם": [
+          "באתם",
+          "voi m. - passato: venire"
+        ],
+        "בעבר · אתן": [
+          "באתן",
+          "voi f. - passato: venire"
+        ],
+        "בעבר · הם": [
+          "באו",
+          "loro m. - passato: venire"
+        ],
+        "בעבר · הן": [
+          "באו",
+          "loro f. - passato: venire"
+        ],
+        "בעתיד · אני": [
+          "אבוא",
+          "io - futuro: venire"
+        ],
+        "בעתיד · אתה": [
+          "תבוא",
+          "tu m. - futuro: venire"
+        ],
+        "בעתיד · את": [
+          "תבואי",
+          "tu f. - futuro: venire"
+        ],
+        "בעתיד · הוא": [
+          "יבוא",
+          "lui - futuro: venire"
+        ],
+        "בעתיד · היא": [
+          "תבוא",
+          "lei - futuro: venire"
+        ],
+        "בעתיד · אנחנו": [
+          "נבוא",
+          "noi - futuro: venire"
+        ],
+        "בעתיד · אתם": [
+          "תבואו",
+          "voi m. - futuro: venire"
+        ],
+        "בעתיד · אתן": [
+          "תבואנה",
+          "voi f. - futuro: venire"
+        ],
+        "בעתיד · הם": [
+          "יבואו",
+          "loro m. - futuro: venire"
+        ],
+        "בעתיד · הן": [
+          "תבואנה",
+          "loro f. - futuro: venire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_005",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/3-laasot/",
+      "source_query": "לעשות",
+      "source_expected_meaning_en": "do",
+      "accessed_at": "2026-07-15T04:01:51.349085+00:00",
+      "root": "ע-ש-ה",
+      "binyan": "PA'AL",
+      "infinitive": "לעשות",
+      "displayInfinitive": "לעשות",
+      "infinitive_key": "לעשות",
+      "italianInfinitive": "fare",
+      "italian": "fare",
+      "present": [
+        "עושה",
+        "עושה",
+        "עושים",
+        "עושות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "עשיתי",
+          "io - passato: fare"
+        ],
+        "בעבר · אתה": [
+          "עשית",
+          "tu m. - passato: fare"
+        ],
+        "בעבר · את": [
+          "עשית",
+          "tu f. - passato: fare"
+        ],
+        "בעבר · הוא": [
+          "עשה",
+          "lui - passato: fare"
+        ],
+        "בעבר · היא": [
+          "עשתה",
+          "lei - passato: fare"
+        ],
+        "בעבר · אנחנו": [
+          "עשינו",
+          "noi - passato: fare"
+        ],
+        "בעבר · אתם": [
+          "עשיתם",
+          "voi m. - passato: fare"
+        ],
+        "בעבר · אתן": [
+          "עשיתן",
+          "voi f. - passato: fare"
+        ],
+        "בעבר · הם": [
+          "עשו",
+          "loro m. - passato: fare"
+        ],
+        "בעבר · הן": [
+          "עשו",
+          "loro f. - passato: fare"
+        ],
+        "בעתיד · אני": [
+          "אעשה",
+          "io - futuro: fare"
+        ],
+        "בעתיד · אתה": [
+          "תעשה",
+          "tu m. - futuro: fare"
+        ],
+        "בעתיד · את": [
+          "תעשי",
+          "tu f. - futuro: fare"
+        ],
+        "בעתיד · הוא": [
+          "יעשה",
+          "lui - futuro: fare"
+        ],
+        "בעתיד · היא": [
+          "תעשה",
+          "lei - futuro: fare"
+        ],
+        "בעתיד · אנחנו": [
+          "נעשה",
+          "noi - futuro: fare"
+        ],
+        "בעתיד · אתם": [
+          "תעשו",
+          "voi m. - futuro: fare"
+        ],
+        "בעתיד · אתן": [
+          "תעשינה",
+          "voi f. - futuro: fare"
+        ],
+        "בעתיד · הם": [
+          "יעשו",
+          "loro m. - futuro: fare"
+        ],
+        "בעתיד · הן": [
+          "תעשינה",
+          "loro f. - futuro: fare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_006",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2-ledaber/",
+      "source_query": "לדבר",
+      "source_expected_meaning_en": "talk",
+      "accessed_at": "2026-07-15T04:01:52.115774+00:00",
+      "root": "ד-ב-ר",
+      "binyan": "PI'EL",
+      "infinitive": "לדבר",
+      "displayInfinitive": "לדבר",
+      "infinitive_key": "לדבר",
+      "italianInfinitive": "parlare",
+      "italian": "parlare",
+      "present": [
+        "מדבר",
+        "מדברת",
+        "מדברים",
+        "מדברות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "דיברתי",
+          "io - passato: parlare"
+        ],
+        "בעבר · אתה": [
+          "דיברת",
+          "tu m. - passato: parlare"
+        ],
+        "בעבר · את": [
+          "דיברת",
+          "tu f. - passato: parlare"
+        ],
+        "בעבר · הוא": [
+          "דיבר",
+          "lui - passato: parlare"
+        ],
+        "בעבר · היא": [
+          "דיברה",
+          "lei - passato: parlare"
+        ],
+        "בעבר · אנחנו": [
+          "דיברנו",
+          "noi - passato: parlare"
+        ],
+        "בעבר · אתם": [
+          "דיברתם",
+          "voi m. - passato: parlare"
+        ],
+        "בעבר · אתן": [
+          "דיברתן",
+          "voi f. - passato: parlare"
+        ],
+        "בעבר · הם": [
+          "דיברו",
+          "loro m. - passato: parlare"
+        ],
+        "בעבר · הן": [
+          "דיברו",
+          "loro f. - passato: parlare"
+        ],
+        "בעתיד · אני": [
+          "אדבר",
+          "io - futuro: parlare"
+        ],
+        "בעתיד · אתה": [
+          "תדבר",
+          "tu m. - futuro: parlare"
+        ],
+        "בעתיד · את": [
+          "תדברי",
+          "tu f. - futuro: parlare"
+        ],
+        "בעתיד · הוא": [
+          "ידבר",
+          "lui - futuro: parlare"
+        ],
+        "בעתיד · היא": [
+          "תדבר",
+          "lei - futuro: parlare"
+        ],
+        "בעתיד · אנחנו": [
+          "נדבר",
+          "noi - futuro: parlare"
+        ],
+        "בעתיד · אתם": [
+          "תדברו",
+          "voi m. - futuro: parlare"
+        ],
+        "בעתיד · אתן": [
+          "תדברנה",
+          "voi f. - futuro: parlare"
+        ],
+        "בעתיד · הם": [
+          "ידברו",
+          "loro m. - futuro: parlare"
+        ],
+        "בעתיד · הן": [
+          "תדברנה",
+          "loro f. - futuro: parlare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_007",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1-lichtov/",
+      "source_query": "לכתוב",
+      "source_expected_meaning_en": "write",
+      "accessed_at": "2026-07-15T04:01:52.729585+00:00",
+      "root": "כ-ת-ב",
+      "binyan": "PA'AL",
+      "infinitive": "לכתוב",
+      "displayInfinitive": "לכתוב",
+      "infinitive_key": "לכתוב",
+      "italianInfinitive": "scrivere",
+      "italian": "scrivere",
+      "present": [
+        "כותב",
+        "כותבת",
+        "כותבים",
+        "כותבות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "כתבתי",
+          "io - passato: scrivere"
+        ],
+        "בעבר · אתה": [
+          "כתבת",
+          "tu m. - passato: scrivere"
+        ],
+        "בעבר · את": [
+          "כתבת",
+          "tu f. - passato: scrivere"
+        ],
+        "בעבר · הוא": [
+          "כתב",
+          "lui - passato: scrivere"
+        ],
+        "בעבר · היא": [
+          "כתבה",
+          "lei - passato: scrivere"
+        ],
+        "בעבר · אנחנו": [
+          "כתבנו",
+          "noi - passato: scrivere"
+        ],
+        "בעבר · אתם": [
+          "כתבתם",
+          "voi m. - passato: scrivere"
+        ],
+        "בעבר · אתן": [
+          "כתבתן",
+          "voi f. - passato: scrivere"
+        ],
+        "בעבר · הם": [
+          "כתבו",
+          "loro m. - passato: scrivere"
+        ],
+        "בעבר · הן": [
+          "כתבו",
+          "loro f. - passato: scrivere"
+        ],
+        "בעתיד · אני": [
+          "אכתוב",
+          "io - futuro: scrivere"
+        ],
+        "בעתיד · אתה": [
+          "תכתוב",
+          "tu m. - futuro: scrivere"
+        ],
+        "בעתיד · את": [
+          "תכתבי",
+          "tu f. - futuro: scrivere"
+        ],
+        "בעתיד · הוא": [
+          "יכתוב",
+          "lui - futuro: scrivere"
+        ],
+        "בעתיד · היא": [
+          "תכתוב",
+          "lei - futuro: scrivere"
+        ],
+        "בעתיד · אנחנו": [
+          "נכתוב",
+          "noi - futuro: scrivere"
+        ],
+        "בעתיד · אתם": [
+          "תכתבו",
+          "voi m. - futuro: scrivere"
+        ],
+        "בעתיד · אתן": [
+          "תכתובנה",
+          "voi f. - futuro: scrivere"
+        ],
+        "בעתיד · הם": [
+          "יכתבו",
+          "loro m. - futuro: scrivere"
+        ],
+        "בעתיד · הן": [
+          "תכתובנה",
+          "loro f. - futuro: scrivere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_008",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/13-likro/",
+      "source_query": "לקרוא",
+      "source_expected_meaning_en": "read",
+      "accessed_at": "2026-07-15T04:01:53.313240+00:00",
+      "root": "ק-ר-א",
+      "binyan": "PA'AL",
+      "infinitive": "לקרוא",
+      "displayInfinitive": "לקרוא",
+      "infinitive_key": "לקרוא",
+      "italianInfinitive": "leggere / chiamare",
+      "italian": "leggere / chiamare",
+      "present": [
+        "קורא",
+        "קוראת",
+        "קוראים",
+        "קוראות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "קראתי",
+          "io - passato: leggere / chiamare"
+        ],
+        "בעבר · אתה": [
+          "קראת",
+          "tu m. - passato: leggere / chiamare"
+        ],
+        "בעבר · את": [
+          "קראת",
+          "tu f. - passato: leggere / chiamare"
+        ],
+        "בעבר · הוא": [
+          "קרא",
+          "lui - passato: leggere / chiamare"
+        ],
+        "בעבר · היא": [
+          "קראה",
+          "lei - passato: leggere / chiamare"
+        ],
+        "בעבר · אנחנו": [
+          "קראנו",
+          "noi - passato: leggere / chiamare"
+        ],
+        "בעבר · אתם": [
+          "קראתם",
+          "voi m. - passato: leggere / chiamare"
+        ],
+        "בעבר · אתן": [
+          "קראתן",
+          "voi f. - passato: leggere / chiamare"
+        ],
+        "בעבר · הם": [
+          "קראו",
+          "loro m. - passato: leggere / chiamare"
+        ],
+        "בעבר · הן": [
+          "קראו",
+          "loro f. - passato: leggere / chiamare"
+        ],
+        "בעתיד · אני": [
+          "אקרא",
+          "io - futuro: leggere / chiamare"
+        ],
+        "בעתיד · אתה": [
+          "תקרא",
+          "tu m. - futuro: leggere / chiamare"
+        ],
+        "בעתיד · את": [
+          "תקראי",
+          "tu f. - futuro: leggere / chiamare"
+        ],
+        "בעתיד · הוא": [
+          "יקרא",
+          "lui - futuro: leggere / chiamare"
+        ],
+        "בעתיד · היא": [
+          "תקרא",
+          "lei - futuro: leggere / chiamare"
+        ],
+        "בעתיד · אנחנו": [
+          "נקרא",
+          "noi - futuro: leggere / chiamare"
+        ],
+        "בעתיד · אתם": [
+          "תקראו",
+          "voi m. - futuro: leggere / chiamare"
+        ],
+        "בעתיד · אתן": [
+          "תקראנה",
+          "voi f. - futuro: leggere / chiamare"
+        ],
+        "בעתיד · הם": [
+          "יקראו",
+          "loro m. - futuro: leggere / chiamare"
+        ],
+        "בעתיד · הן": [
+          "תקראנה",
+          "loro f. - futuro: leggere / chiamare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_009",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2250-lishmoa/",
+      "source_query": "לשמוע",
+      "source_expected_meaning_en": "hear",
+      "accessed_at": "2026-07-15T04:01:53.976512+00:00",
+      "root": "ש-מ-ע",
+      "binyan": "PA'AL",
+      "infinitive": "לשמוע",
+      "displayInfinitive": "לשמוע",
+      "infinitive_key": "לשמוע",
+      "italianInfinitive": "sentire / ascoltare",
+      "italian": "sentire / ascoltare",
+      "present": [
+        "שומע",
+        "שומעת",
+        "שומעים",
+        "שומעות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שמעתי",
+          "io - passato: sentire / ascoltare"
+        ],
+        "בעבר · אתה": [
+          "שמעת",
+          "tu m. - passato: sentire / ascoltare"
+        ],
+        "בעבר · את": [
+          "שמעת",
+          "tu f. - passato: sentire / ascoltare"
+        ],
+        "בעבר · הוא": [
+          "שמע",
+          "lui - passato: sentire / ascoltare"
+        ],
+        "בעבר · היא": [
+          "שמעה",
+          "lei - passato: sentire / ascoltare"
+        ],
+        "בעבר · אנחנו": [
+          "שמענו",
+          "noi - passato: sentire / ascoltare"
+        ],
+        "בעבר · אתם": [
+          "שמעתם",
+          "voi m. - passato: sentire / ascoltare"
+        ],
+        "בעבר · אתן": [
+          "שמעתן",
+          "voi f. - passato: sentire / ascoltare"
+        ],
+        "בעבר · הם": [
+          "שמעו",
+          "loro m. - passato: sentire / ascoltare"
+        ],
+        "בעבר · הן": [
+          "שמעו",
+          "loro f. - passato: sentire / ascoltare"
+        ],
+        "בעתיד · אני": [
+          "אשמע",
+          "io - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · אתה": [
+          "תשמע",
+          "tu m. - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · את": [
+          "תשמעי",
+          "tu f. - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · הוא": [
+          "ישמע",
+          "lui - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · היא": [
+          "תשמע",
+          "lei - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · אנחנו": [
+          "נשמע",
+          "noi - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · אתם": [
+          "תשמעו",
+          "voi m. - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · אתן": [
+          "תשמענה",
+          "voi f. - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · הם": [
+          "ישמעו",
+          "loro m. - futuro: sentire / ascoltare"
+        ],
+        "בעתיד · הן": [
+          "תשמענה",
+          "loro f. - futuro: sentire / ascoltare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_010",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1961-lehakshiv/",
+      "source_query": "להקשיב",
+      "source_expected_meaning_en": "listen",
+      "accessed_at": "2026-07-15T04:01:54.680743+00:00",
+      "root": "ק-ש-ב",
+      "binyan": "HIF'IL",
+      "infinitive": "להקשיב",
+      "displayInfinitive": "להקשיב",
+      "infinitive_key": "להקשיב",
+      "italianInfinitive": "ascoltare / prestare attenzione",
+      "italian": "ascoltare / prestare attenzione",
+      "present": [
+        "מקשיב",
+        "מקשיבה",
+        "מקשיבים",
+        "מקשיבות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הקשבתי",
+          "io - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · אתה": [
+          "הקשבת",
+          "tu m. - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · את": [
+          "הקשבת",
+          "tu f. - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · הוא": [
+          "הקשיב",
+          "lui - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · היא": [
+          "הקשיבה",
+          "lei - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · אנחנו": [
+          "הקשבנו",
+          "noi - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · אתם": [
+          "הקשבתם",
+          "voi m. - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · אתן": [
+          "הקשבתן",
+          "voi f. - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · הם": [
+          "הקשיבו",
+          "loro m. - passato: ascoltare / prestare attenzione"
+        ],
+        "בעבר · הן": [
+          "הקשיבו",
+          "loro f. - passato: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · אני": [
+          "אקשיב",
+          "io - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · אתה": [
+          "תקשיב",
+          "tu m. - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · את": [
+          "תקשיבי",
+          "tu f. - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · הוא": [
+          "יקשיב",
+          "lui - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · היא": [
+          "תקשיב",
+          "lei - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · אנחנו": [
+          "נקשיב",
+          "noi - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · אתם": [
+          "תקשיבו",
+          "voi m. - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · אתן": [
+          "תקשבנה",
+          "voi f. - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · הם": [
+          "יקשיבו",
+          "loro m. - futuro: ascoltare / prestare attenzione"
+        ],
+        "בעתיד · הן": [
+          "תקשבנה",
+          "loro f. - futuro: ascoltare / prestare attenzione"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_011",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/41-lilmod/",
+      "source_query": "ללמוד",
+      "source_expected_meaning_en": "learn",
+      "accessed_at": "2026-07-15T04:01:55.351577+00:00",
+      "root": "ל-מ-ד",
+      "binyan": "PA'AL",
+      "infinitive": "ללמוד",
+      "displayInfinitive": "ללמוד",
+      "infinitive_key": "ללמוד",
+      "italianInfinitive": "studiare / imparare",
+      "italian": "studiare / imparare",
+      "present": [
+        "לומד",
+        "לומדת",
+        "לומדים",
+        "לומדות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "למדתי",
+          "io - passato: studiare / imparare"
+        ],
+        "בעבר · אתה": [
+          "למדת",
+          "tu m. - passato: studiare / imparare"
+        ],
+        "בעבר · את": [
+          "למדת",
+          "tu f. - passato: studiare / imparare"
+        ],
+        "בעבר · הוא": [
+          "למד",
+          "lui - passato: studiare / imparare"
+        ],
+        "בעבר · היא": [
+          "למדה",
+          "lei - passato: studiare / imparare"
+        ],
+        "בעבר · אנחנו": [
+          "למדנו",
+          "noi - passato: studiare / imparare"
+        ],
+        "בעבר · אתם": [
+          "למדתם",
+          "voi m. - passato: studiare / imparare"
+        ],
+        "בעבר · אתן": [
+          "למדתן",
+          "voi f. - passato: studiare / imparare"
+        ],
+        "בעבר · הם": [
+          "למדו",
+          "loro m. - passato: studiare / imparare"
+        ],
+        "בעבר · הן": [
+          "למדו",
+          "loro f. - passato: studiare / imparare"
+        ],
+        "בעתיד · אני": [
+          "אלמד",
+          "io - futuro: studiare / imparare"
+        ],
+        "בעתיד · אתה": [
+          "תלמד",
+          "tu m. - futuro: studiare / imparare"
+        ],
+        "בעתיד · את": [
+          "תלמדי",
+          "tu f. - futuro: studiare / imparare"
+        ],
+        "בעתיד · הוא": [
+          "ילמד",
+          "lui - futuro: studiare / imparare"
+        ],
+        "בעתיד · היא": [
+          "תלמד",
+          "lei - futuro: studiare / imparare"
+        ],
+        "בעתיד · אנחנו": [
+          "נלמד",
+          "noi - futuro: studiare / imparare"
+        ],
+        "בעתיד · אתם": [
+          "תלמדו",
+          "voi m. - futuro: studiare / imparare"
+        ],
+        "בעתיד · אתן": [
+          "תלמדנה",
+          "voi f. - futuro: studiare / imparare"
+        ],
+        "בעתיד · הם": [
+          "ילמדו",
+          "loro m. - futuro: studiare / imparare"
+        ],
+        "בעתיד · הן": [
+          "תלמדנה",
+          "loro f. - futuro: studiare / imparare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_012",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/51-laavod/",
+      "source_query": "לעבוד",
+      "source_expected_meaning_en": "work",
+      "accessed_at": "2026-07-15T04:01:55.913315+00:00",
+      "root": "ע-ב-ד",
+      "binyan": "PA'AL",
+      "infinitive": "לעבוד",
+      "displayInfinitive": "לעבוד",
+      "infinitive_key": "לעבוד",
+      "italianInfinitive": "lavorare",
+      "italian": "lavorare",
+      "present": [
+        "עובד",
+        "עובדת",
+        "עובדים",
+        "עובדות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "עבדתי",
+          "io - passato: lavorare"
+        ],
+        "בעבר · אתה": [
+          "עבדת",
+          "tu m. - passato: lavorare"
+        ],
+        "בעבר · את": [
+          "עבדת",
+          "tu f. - passato: lavorare"
+        ],
+        "בעבר · הוא": [
+          "עבד",
+          "lui - passato: lavorare"
+        ],
+        "בעבר · היא": [
+          "עבדה",
+          "lei - passato: lavorare"
+        ],
+        "בעבר · אנחנו": [
+          "עבדנו",
+          "noi - passato: lavorare"
+        ],
+        "בעבר · אתם": [
+          "עבדתם",
+          "voi m. - passato: lavorare"
+        ],
+        "בעבר · אתן": [
+          "עבדתן",
+          "voi f. - passato: lavorare"
+        ],
+        "בעבר · הם": [
+          "עבדו",
+          "loro m. - passato: lavorare"
+        ],
+        "בעבר · הן": [
+          "עבדו",
+          "loro f. - passato: lavorare"
+        ],
+        "בעתיד · אני": [
+          "אעבוד",
+          "io - futuro: lavorare"
+        ],
+        "בעתיד · אתה": [
+          "תעבוד",
+          "tu m. - futuro: lavorare"
+        ],
+        "בעתיד · את": [
+          "תעבדי",
+          "tu f. - futuro: lavorare"
+        ],
+        "בעתיד · הוא": [
+          "יעבוד",
+          "lui - futuro: lavorare"
+        ],
+        "בעתיד · היא": [
+          "תעבוד",
+          "lei - futuro: lavorare"
+        ],
+        "בעתיד · אנחנו": [
+          "נעבוד",
+          "noi - futuro: lavorare"
+        ],
+        "בעתיד · אתם": [
+          "תעבדו",
+          "voi m. - futuro: lavorare"
+        ],
+        "בעתיד · אתן": [
+          "תעבודנה",
+          "voi f. - futuro: lavorare"
+        ],
+        "בעתיד · הם": [
+          "יעבדו",
+          "loro m. - futuro: lavorare"
+        ],
+        "בעתיד · הן": [
+          "תעבודנה",
+          "loro f. - futuro: lavorare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_013",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1972-lirot/",
+      "source_query": "לראות",
+      "source_expected_meaning_en": "see",
+      "accessed_at": "2026-07-15T04:01:56.607191+00:00",
+      "root": "ר-א-ה",
+      "binyan": "PA'AL",
+      "infinitive": "לראות",
+      "displayInfinitive": "לראות",
+      "infinitive_key": "לראות",
+      "italianInfinitive": "vedere",
+      "italian": "vedere",
+      "present": [
+        "רואה",
+        "רואה",
+        "רואים",
+        "רואות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "ראיתי",
+          "io - passato: vedere"
+        ],
+        "בעבר · אתה": [
+          "ראית",
+          "tu m. - passato: vedere"
+        ],
+        "בעבר · את": [
+          "ראית",
+          "tu f. - passato: vedere"
+        ],
+        "בעבר · הוא": [
+          "ראה",
+          "lui - passato: vedere"
+        ],
+        "בעבר · היא": [
+          "ראתה",
+          "lei - passato: vedere"
+        ],
+        "בעבר · אנחנו": [
+          "ראינו",
+          "noi - passato: vedere"
+        ],
+        "בעבר · אתם": [
+          "ראיתם",
+          "voi m. - passato: vedere"
+        ],
+        "בעבר · אתן": [
+          "ראיתן",
+          "voi f. - passato: vedere"
+        ],
+        "בעבר · הם": [
+          "ראו",
+          "loro m. - passato: vedere"
+        ],
+        "בעבר · הן": [
+          "ראו",
+          "loro f. - passato: vedere"
+        ],
+        "בעתיד · אני": [
+          "אראה",
+          "io - futuro: vedere"
+        ],
+        "בעתיד · אתה": [
+          "תראה",
+          "tu m. - futuro: vedere"
+        ],
+        "בעתיד · את": [
+          "תראי",
+          "tu f. - futuro: vedere"
+        ],
+        "בעתיד · הוא": [
+          "יראה",
+          "lui - futuro: vedere"
+        ],
+        "בעתיד · היא": [
+          "תראה",
+          "lei - futuro: vedere"
+        ],
+        "בעתיד · אנחנו": [
+          "נראה",
+          "noi - futuro: vedere"
+        ],
+        "בעתיד · אתם": [
+          "תראו",
+          "voi m. - futuro: vedere"
+        ],
+        "בעתיד · אתן": [
+          "תראינה",
+          "voi f. - futuro: vedere"
+        ],
+        "בעתיד · הם": [
+          "יראו",
+          "loro m. - futuro: vedere"
+        ],
+        "בעתיד · הן": [
+          "תראינה",
+          "loro f. - futuro: vedere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_014",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/12-lirtzot/",
+      "source_query": "לרצות",
+      "source_expected_meaning_en": "want",
+      "accessed_at": "2026-07-15T04:01:57.313843+00:00",
+      "root": "ר-צ-ה",
+      "binyan": "PA'AL",
+      "infinitive": "לרצות",
+      "displayInfinitive": "לרצות",
+      "infinitive_key": "לרצות",
+      "italianInfinitive": "volere",
+      "italian": "volere",
+      "present": [
+        "רוצה",
+        "רוצה",
+        "רוצים",
+        "רוצות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "רציתי",
+          "io - passato: volere"
+        ],
+        "בעבר · אתה": [
+          "רצית",
+          "tu m. - passato: volere"
+        ],
+        "בעבר · את": [
+          "רצית",
+          "tu f. - passato: volere"
+        ],
+        "בעבר · הוא": [
+          "רצה",
+          "lui - passato: volere"
+        ],
+        "בעבר · היא": [
+          "רצתה",
+          "lei - passato: volere"
+        ],
+        "בעבר · אנחנו": [
+          "רצינו",
+          "noi - passato: volere"
+        ],
+        "בעבר · אתם": [
+          "רציתם",
+          "voi m. - passato: volere"
+        ],
+        "בעבר · אתן": [
+          "רציתן",
+          "voi f. - passato: volere"
+        ],
+        "בעבר · הם": [
+          "רצו",
+          "loro m. - passato: volere"
+        ],
+        "בעבר · הן": [
+          "רצו",
+          "loro f. - passato: volere"
+        ],
+        "בעתיד · אני": [
+          "ארצה",
+          "io - futuro: volere"
+        ],
+        "בעתיד · אתה": [
+          "תרצה",
+          "tu m. - futuro: volere"
+        ],
+        "בעתיד · את": [
+          "תרצי",
+          "tu f. - futuro: volere"
+        ],
+        "בעתיד · הוא": [
+          "ירצה",
+          "lui - futuro: volere"
+        ],
+        "בעתיד · היא": [
+          "תרצה",
+          "lei - futuro: volere"
+        ],
+        "בעתיד · אנחנו": [
+          "נרצה",
+          "noi - futuro: volere"
+        ],
+        "בעתיד · אתם": [
+          "תרצו",
+          "voi m. - futuro: volere"
+        ],
+        "בעתיד · אתן": [
+          "תרצינה",
+          "voi f. - futuro: volere"
+        ],
+        "בעתיד · הם": [
+          "ירצו",
+          "loro m. - futuro: volere"
+        ],
+        "בעתיד · הן": [
+          "תרצינה",
+          "loro f. - futuro: volere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_015",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/791-ladaat/",
+      "source_query": "לדעת",
+      "source_expected_meaning_en": "know",
+      "accessed_at": "2026-07-15T04:01:57.969347+00:00",
+      "root": "י-ד-ע",
+      "binyan": "PA'AL",
+      "infinitive": "לדעת",
+      "displayInfinitive": "לדעת",
+      "infinitive_key": "לדעת",
+      "italianInfinitive": "sapere",
+      "italian": "sapere",
+      "present": [
+        "יודע",
+        "יודעת",
+        "יודעים",
+        "יודעות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "ידעתי",
+          "io - passato: sapere"
+        ],
+        "בעבר · אתה": [
+          "ידעת",
+          "tu m. - passato: sapere"
+        ],
+        "בעבר · את": [
+          "ידעת",
+          "tu f. - passato: sapere"
+        ],
+        "בעבר · הוא": [
+          "ידע",
+          "lui - passato: sapere"
+        ],
+        "בעבר · היא": [
+          "ידעה",
+          "lei - passato: sapere"
+        ],
+        "בעבר · אנחנו": [
+          "ידענו",
+          "noi - passato: sapere"
+        ],
+        "בעבר · אתם": [
+          "ידעתם",
+          "voi m. - passato: sapere"
+        ],
+        "בעבר · אתן": [
+          "ידעתן",
+          "voi f. - passato: sapere"
+        ],
+        "בעבר · הם": [
+          "ידעו",
+          "loro m. - passato: sapere"
+        ],
+        "בעבר · הן": [
+          "ידעו",
+          "loro f. - passato: sapere"
+        ],
+        "בעתיד · אני": [
+          "אדע",
+          "io - futuro: sapere"
+        ],
+        "בעתיד · אתה": [
+          "תדע",
+          "tu m. - futuro: sapere"
+        ],
+        "בעתיד · את": [
+          "תדעי",
+          "tu f. - futuro: sapere"
+        ],
+        "בעתיד · הוא": [
+          "ידע",
+          "lui - futuro: sapere"
+        ],
+        "בעתיד · היא": [
+          "תדע",
+          "lei - futuro: sapere"
+        ],
+        "בעתיד · אנחנו": [
+          "נדע",
+          "noi - futuro: sapere"
+        ],
+        "בעתיד · אתם": [
+          "תדעו",
+          "voi m. - futuro: sapere"
+        ],
+        "בעתיד · אתן": [
+          "תדענה",
+          "voi f. - futuro: sapere"
+        ],
+        "בעתיד · הם": [
+          "ידעו",
+          "loro m. - futuro: sapere"
+        ],
+        "בעתיד · הן": [
+          "תדענה",
+          "loro f. - futuro: sapere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_016",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1285-latet/",
+      "source_query": "לתת",
+      "source_expected_meaning_en": "give",
+      "accessed_at": "2026-07-15T04:01:58.562336+00:00",
+      "root": "נ-ת-ן",
+      "binyan": "PA'AL",
+      "infinitive": "לתת",
+      "displayInfinitive": "לתת",
+      "infinitive_key": "לתת",
+      "italianInfinitive": "dare",
+      "italian": "dare",
+      "present": [
+        "נותן",
+        "נותנת",
+        "נותנים",
+        "נותנות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "נתתי",
+          "io - passato: dare"
+        ],
+        "בעבר · אתה": [
+          "נתת",
+          "tu m. - passato: dare"
+        ],
+        "בעבר · את": [
+          "נתת",
+          "tu f. - passato: dare"
+        ],
+        "בעבר · הוא": [
+          "נתן",
+          "lui - passato: dare"
+        ],
+        "בעבר · היא": [
+          "נתנה",
+          "lei - passato: dare"
+        ],
+        "בעבר · אנחנו": [
+          "נתנו",
+          "noi - passato: dare"
+        ],
+        "בעבר · אתם": [
+          "נתתם",
+          "voi m. - passato: dare"
+        ],
+        "בעבר · אתן": [
+          "נתתן",
+          "voi f. - passato: dare"
+        ],
+        "בעבר · הם": [
+          "נתנו",
+          "loro m. - passato: dare"
+        ],
+        "בעבר · הן": [
+          "נתנו",
+          "loro f. - passato: dare"
+        ],
+        "בעתיד · אני": [
+          "אתן",
+          "io - futuro: dare"
+        ],
+        "בעתיד · אתה": [
+          "תיתן",
+          "tu m. - futuro: dare"
+        ],
+        "בעתיד · את": [
+          "תיתני",
+          "tu f. - futuro: dare"
+        ],
+        "בעתיד · הוא": [
+          "ייתן",
+          "lui - futuro: dare"
+        ],
+        "בעתיד · היא": [
+          "תיתן",
+          "lei - futuro: dare"
+        ],
+        "בעתיד · אנחנו": [
+          "ניתן",
+          "noi - futuro: dare"
+        ],
+        "בעתיד · אתם": [
+          "תיתנו",
+          "voi m. - futuro: dare"
+        ],
+        "בעתיד · אתן": [
+          "תיתנה",
+          "voi f. - futuro: dare"
+        ],
+        "בעתיד · הם": [
+          "ייתנו",
+          "loro m. - futuro: dare"
+        ],
+        "בעתיד · הן": [
+          "תיתנה",
+          "loro f. - futuro: dare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_017",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2427-lakachat/",
+      "source_query": "לקחת",
+      "source_expected_meaning_en": "take",
+      "accessed_at": "2026-07-15T04:01:59.212658+00:00",
+      "root": "ל-ק-ח",
+      "binyan": "PA'AL",
+      "infinitive": "לקחת",
+      "displayInfinitive": "לקחת",
+      "infinitive_key": "לקחת",
+      "italianInfinitive": "prendere",
+      "italian": "prendere",
+      "present": [
+        "לוקח",
+        "לוקחת",
+        "לוקחים",
+        "לוקחות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "לקחתי",
+          "io - passato: prendere"
+        ],
+        "בעבר · אתה": [
+          "לקחת",
+          "tu m. - passato: prendere"
+        ],
+        "בעבר · את": [
+          "לקחת",
+          "tu f. - passato: prendere"
+        ],
+        "בעבר · הוא": [
+          "לקח",
+          "lui - passato: prendere"
+        ],
+        "בעבר · היא": [
+          "לקחה",
+          "lei - passato: prendere"
+        ],
+        "בעבר · אנחנו": [
+          "לקחנו",
+          "noi - passato: prendere"
+        ],
+        "בעבר · אתם": [
+          "לקחתם",
+          "voi m. - passato: prendere"
+        ],
+        "בעבר · אתן": [
+          "לקחתן",
+          "voi f. - passato: prendere"
+        ],
+        "בעבר · הם": [
+          "לקחו",
+          "loro m. - passato: prendere"
+        ],
+        "בעבר · הן": [
+          "לקחו",
+          "loro f. - passato: prendere"
+        ],
+        "בעתיד · אני": [
+          "אקח",
+          "io - futuro: prendere"
+        ],
+        "בעתיד · אתה": [
+          "תיקח",
+          "tu m. - futuro: prendere"
+        ],
+        "בעתיד · את": [
+          "תיקחי",
+          "tu f. - futuro: prendere"
+        ],
+        "בעתיד · הוא": [
+          "ייקח",
+          "lui - futuro: prendere"
+        ],
+        "בעתיד · היא": [
+          "תיקח",
+          "lei - futuro: prendere"
+        ],
+        "בעתיד · אנחנו": [
+          "ניקח",
+          "noi - futuro: prendere"
+        ],
+        "בעתיד · אתם": [
+          "תיקחו",
+          "voi m. - futuro: prendere"
+        ],
+        "בעתיד · אתן": [
+          "תיקחנה",
+          "voi f. - futuro: prendere"
+        ],
+        "בעתיד · הם": [
+          "ייקחו",
+          "loro m. - futuro: prendere"
+        ],
+        "בעתיד · הן": [
+          "תיקחנה",
+          "loro f. - futuro: prendere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_018",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1913-liknot/",
+      "source_query": "לקנות",
+      "source_expected_meaning_en": "buy",
+      "accessed_at": "2026-07-15T04:01:59.889457+00:00",
+      "root": "ק-נ-ה",
+      "binyan": "PA'AL",
+      "infinitive": "לקנות",
+      "displayInfinitive": "לקנות",
+      "infinitive_key": "לקנות",
+      "italianInfinitive": "comprare",
+      "italian": "comprare",
+      "present": [
+        "קונה",
+        "קונה",
+        "קונים",
+        "קונות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "קניתי",
+          "io - passato: comprare"
+        ],
+        "בעבר · אתה": [
+          "קנית",
+          "tu m. - passato: comprare"
+        ],
+        "בעבר · את": [
+          "קנית",
+          "tu f. - passato: comprare"
+        ],
+        "בעבר · הוא": [
+          "קנה",
+          "lui - passato: comprare"
+        ],
+        "בעבר · היא": [
+          "קנתה",
+          "lei - passato: comprare"
+        ],
+        "בעבר · אנחנו": [
+          "קנינו",
+          "noi - passato: comprare"
+        ],
+        "בעבר · אתם": [
+          "קניתם",
+          "voi m. - passato: comprare"
+        ],
+        "בעבר · אתן": [
+          "קניתן",
+          "voi f. - passato: comprare"
+        ],
+        "בעבר · הם": [
+          "קנו",
+          "loro m. - passato: comprare"
+        ],
+        "בעבר · הן": [
+          "קנו",
+          "loro f. - passato: comprare"
+        ],
+        "בעתיד · אני": [
+          "אקנה",
+          "io - futuro: comprare"
+        ],
+        "בעתיד · אתה": [
+          "תקנה",
+          "tu m. - futuro: comprare"
+        ],
+        "בעתיד · את": [
+          "תקני",
+          "tu f. - futuro: comprare"
+        ],
+        "בעתיד · הוא": [
+          "יקנה",
+          "lui - futuro: comprare"
+        ],
+        "בעתיד · היא": [
+          "תקנה",
+          "lei - futuro: comprare"
+        ],
+        "בעתיד · אנחנו": [
+          "נקנה",
+          "noi - futuro: comprare"
+        ],
+        "בעתיד · אתם": [
+          "תקנו",
+          "voi m. - futuro: comprare"
+        ],
+        "בעתיד · אתן": [
+          "תקנינה",
+          "voi f. - futuro: comprare"
+        ],
+        "בעתיד · הם": [
+          "יקנו",
+          "loro m. - futuro: comprare"
+        ],
+        "בעתיד · הן": [
+          "תקנינה",
+          "loro f. - futuro: comprare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_019",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1135-lehagid/",
+      "source_query": "להגיד",
+      "source_expected_meaning_en": "say",
+      "accessed_at": "2026-07-15T04:02:00.588780+00:00",
+      "root": "נ-ג-ד",
+      "binyan": "HIF'IL",
+      "infinitive": "להגיד",
+      "displayInfinitive": "להגיד",
+      "infinitive_key": "להגיד",
+      "italianInfinitive": "dire",
+      "italian": "dire",
+      "present": [
+        "מגיד",
+        "מגידה",
+        "מגידים",
+        "מגידות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הגדתי",
+          "io - passato: dire"
+        ],
+        "בעבר · אתה": [
+          "הגדת",
+          "tu m. - passato: dire"
+        ],
+        "בעבר · את": [
+          "הגדת",
+          "tu f. - passato: dire"
+        ],
+        "בעבר · הוא": [
+          "הגיד",
+          "lui - passato: dire"
+        ],
+        "בעבר · היא": [
+          "הגידה",
+          "lei - passato: dire"
+        ],
+        "בעבר · אנחנו": [
+          "הגדנו",
+          "noi - passato: dire"
+        ],
+        "בעבר · אתם": [
+          "הגדתם",
+          "voi m. - passato: dire"
+        ],
+        "בעבר · אתן": [
+          "הגדתן",
+          "voi f. - passato: dire"
+        ],
+        "בעבר · הם": [
+          "הגידו",
+          "loro m. - passato: dire"
+        ],
+        "בעבר · הן": [
+          "הגידו",
+          "loro f. - passato: dire"
+        ],
+        "בעתיד · אני": [
+          "אגיד",
+          "io - futuro: dire"
+        ],
+        "בעתיד · אתה": [
+          "תגיד",
+          "tu m. - futuro: dire"
+        ],
+        "בעתיד · את": [
+          "תגידי",
+          "tu f. - futuro: dire"
+        ],
+        "בעתיד · הוא": [
+          "יגיד",
+          "lui - futuro: dire"
+        ],
+        "בעתיד · היא": [
+          "תגיד",
+          "lei - futuro: dire"
+        ],
+        "בעתיד · אנחנו": [
+          "נגיד",
+          "noi - futuro: dire"
+        ],
+        "בעתיד · אתם": [
+          "תגידו",
+          "voi m. - futuro: dire"
+        ],
+        "בעתיד · אתן": [
+          "תגדנה",
+          "voi f. - futuro: dire"
+        ],
+        "בעתיד · הם": [
+          "יגידו",
+          "loro m. - futuro: dire"
+        ],
+        "בעתיד · הן": [
+          "תגדנה",
+          "loro f. - futuro: dire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_020",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/454-lihyot/",
+      "source_query": "להיות",
+      "source_expected_meaning_en": "be",
+      "accessed_at": "2026-07-15T04:02:01.114189+00:00",
+      "root": "ה-י-ה",
+      "binyan": "PA'AL",
+      "infinitive": "להיות",
+      "displayInfinitive": "להיות",
+      "infinitive_key": "להיות",
+      "italianInfinitive": "essere",
+      "italian": "essere",
+      "present": [
+        "",
+        "",
+        "",
+        ""
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הייתי",
+          "io - passato: essere"
+        ],
+        "בעבר · אתה": [
+          "היית",
+          "tu m. - passato: essere"
+        ],
+        "בעבר · את": [
+          "היית",
+          "tu f. - passato: essere"
+        ],
+        "בעבר · הוא": [
+          "היה",
+          "lui - passato: essere"
+        ],
+        "בעבר · היא": [
+          "הייתה",
+          "lei - passato: essere"
+        ],
+        "בעבר · אנחנו": [
+          "היינו",
+          "noi - passato: essere"
+        ],
+        "בעבר · אתם": [
+          "הייתם",
+          "voi m. - passato: essere"
+        ],
+        "בעבר · אתן": [
+          "הייתן",
+          "voi f. - passato: essere"
+        ],
+        "בעבר · הם": [
+          "היו",
+          "loro m. - passato: essere"
+        ],
+        "בעבר · הן": [
+          "היו",
+          "loro f. - passato: essere"
+        ],
+        "בעתיד · אני": [
+          "אהיה",
+          "io - futuro: essere"
+        ],
+        "בעתיד · אתה": [
+          "תהיה",
+          "tu m. - futuro: essere"
+        ],
+        "בעתיד · את": [
+          "תהיי",
+          "tu f. - futuro: essere"
+        ],
+        "בעתיד · הוא": [
+          "יהיה",
+          "lui - futuro: essere"
+        ],
+        "בעתיד · היא": [
+          "תהיה",
+          "lei - futuro: essere"
+        ],
+        "בעתיד · אנחנו": [
+          "נהיה",
+          "noi - futuro: essere"
+        ],
+        "בעתיד · אתם": [
+          "תהיו",
+          "voi m. - futuro: essere"
+        ],
+        "בעתיד · אתן": [
+          "תהיינה",
+          "voi f. - futuro: essere"
+        ],
+        "בעתיד · הם": [
+          "יהיו",
+          "loro m. - futuro: essere"
+        ],
+        "בעתיד · הן": [
+          "תהיינה",
+          "loro f. - futuro: essere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_021",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/860-lishon/",
+      "source_query": "לישון",
+      "source_expected_meaning_en": "sleep",
+      "accessed_at": "2026-07-15T04:02:01.678025+00:00",
+      "root": "י-ש-ן",
+      "binyan": "PA'AL",
+      "infinitive": "לישון",
+      "displayInfinitive": "לישון",
+      "infinitive_key": "לישון",
+      "italianInfinitive": "dormire",
+      "italian": "dormire",
+      "present": [
+        "ישן",
+        "ישנה",
+        "ישנים",
+        "ישנות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "ישנתי",
+          "io - passato: dormire"
+        ],
+        "בעבר · אתה": [
+          "ישנת",
+          "tu m. - passato: dormire"
+        ],
+        "בעבר · את": [
+          "ישנת",
+          "tu f. - passato: dormire"
+        ],
+        "בעבר · הוא": [
+          "ישן",
+          "lui - passato: dormire"
+        ],
+        "בעבר · היא": [
+          "ישנה",
+          "lei - passato: dormire"
+        ],
+        "בעבר · אנחנו": [
+          "ישנו",
+          "noi - passato: dormire"
+        ],
+        "בעבר · אתם": [
+          "ישנתם",
+          "voi m. - passato: dormire"
+        ],
+        "בעבר · אתן": [
+          "ישנתן",
+          "voi f. - passato: dormire"
+        ],
+        "בעבר · הם": [
+          "ישנו",
+          "loro m. - passato: dormire"
+        ],
+        "בעבר · הן": [
+          "ישנו",
+          "loro f. - passato: dormire"
+        ],
+        "בעתיד · אני": [
+          "אישן",
+          "io - futuro: dormire"
+        ],
+        "בעתיד · אתה": [
+          "תישן",
+          "tu m. - futuro: dormire"
+        ],
+        "בעתיד · את": [
+          "תישני",
+          "tu f. - futuro: dormire"
+        ],
+        "בעתיד · הוא": [
+          "יישן",
+          "lui - futuro: dormire"
+        ],
+        "בעתיד · היא": [
+          "תישן",
+          "lei - futuro: dormire"
+        ],
+        "בעתיד · אנחנו": [
+          "נישן",
+          "noi - futuro: dormire"
+        ],
+        "בעתיד · אתם": [
+          "תישנו",
+          "voi m. - futuro: dormire"
+        ],
+        "בעתיד · אתן": [
+          "תישנה",
+          "voi f. - futuro: dormire"
+        ],
+        "בעתיד · הם": [
+          "יישנו",
+          "loro m. - futuro: dormire"
+        ],
+        "בעתיד · הן": [
+          "תישנה",
+          "loro f. - futuro: dormire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_022",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1876-lakum/",
+      "source_query": "לקום",
+      "source_expected_meaning_en": "get up",
+      "accessed_at": "2026-07-15T04:02:02.356822+00:00",
+      "root": "ק-ו-ם",
+      "binyan": "PA'AL",
+      "infinitive": "לקום",
+      "displayInfinitive": "לקום",
+      "infinitive_key": "לקום",
+      "italianInfinitive": "alzarsi",
+      "italian": "alzarsi",
+      "present": [
+        "קם",
+        "קמה",
+        "קמים",
+        "קמות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "קמתי",
+          "io - passato: alzarsi"
+        ],
+        "בעבר · אתה": [
+          "קמת",
+          "tu m. - passato: alzarsi"
+        ],
+        "בעבר · את": [
+          "קמת",
+          "tu f. - passato: alzarsi"
+        ],
+        "בעבר · הוא": [
+          "קם",
+          "lui - passato: alzarsi"
+        ],
+        "בעבר · היא": [
+          "קמה",
+          "lei - passato: alzarsi"
+        ],
+        "בעבר · אנחנו": [
+          "קמנו",
+          "noi - passato: alzarsi"
+        ],
+        "בעבר · אתם": [
+          "קמתם",
+          "voi m. - passato: alzarsi"
+        ],
+        "בעבר · אתן": [
+          "קמתן",
+          "voi f. - passato: alzarsi"
+        ],
+        "בעבר · הם": [
+          "קמו",
+          "loro m. - passato: alzarsi"
+        ],
+        "בעבר · הן": [
+          "קמו",
+          "loro f. - passato: alzarsi"
+        ],
+        "בעתיד · אני": [
+          "אקום",
+          "io - futuro: alzarsi"
+        ],
+        "בעתיד · אתה": [
+          "תקום",
+          "tu m. - futuro: alzarsi"
+        ],
+        "בעתיד · את": [
+          "תקומי",
+          "tu f. - futuro: alzarsi"
+        ],
+        "בעתיד · הוא": [
+          "יקום",
+          "lui - futuro: alzarsi"
+        ],
+        "בעתיד · היא": [
+          "תקום",
+          "lei - futuro: alzarsi"
+        ],
+        "בעתיד · אנחנו": [
+          "נקום",
+          "noi - futuro: alzarsi"
+        ],
+        "בעתיד · אתם": [
+          "תקומו",
+          "voi m. - futuro: alzarsi"
+        ],
+        "בעתיד · אתן": [
+          "תקומנה",
+          "voi f. - futuro: alzarsi"
+        ],
+        "בעתיד · הם": [
+          "יקומו",
+          "loro m. - futuro: alzarsi"
+        ],
+        "בעתיד · הן": [
+          "תקומנה",
+          "loro f. - futuro: alzarsi"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_023",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/9-lashevet/",
+      "source_query": "לשבת",
+      "source_expected_meaning_en": "sit",
+      "accessed_at": "2026-07-15T04:02:03.109468+00:00",
+      "root": "י-ש-ב",
+      "binyan": "PA'AL",
+      "infinitive": "לשבת",
+      "displayInfinitive": "לשבת",
+      "infinitive_key": "לשבת",
+      "italianInfinitive": "sedersi / stare seduto",
+      "italian": "sedersi / stare seduto",
+      "present": [
+        "יושב",
+        "יושבת",
+        "יושבים",
+        "יושבות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "ישבתי",
+          "io - passato: sedersi / stare seduto"
+        ],
+        "בעבר · אתה": [
+          "ישבת",
+          "tu m. - passato: sedersi / stare seduto"
+        ],
+        "בעבר · את": [
+          "ישבת",
+          "tu f. - passato: sedersi / stare seduto"
+        ],
+        "בעבר · הוא": [
+          "ישב",
+          "lui - passato: sedersi / stare seduto"
+        ],
+        "בעבר · היא": [
+          "ישבה",
+          "lei - passato: sedersi / stare seduto"
+        ],
+        "בעבר · אנחנו": [
+          "ישבנו",
+          "noi - passato: sedersi / stare seduto"
+        ],
+        "בעבר · אתם": [
+          "ישבתם",
+          "voi m. - passato: sedersi / stare seduto"
+        ],
+        "בעבר · אתן": [
+          "ישבתן",
+          "voi f. - passato: sedersi / stare seduto"
+        ],
+        "בעבר · הם": [
+          "ישבו",
+          "loro m. - passato: sedersi / stare seduto"
+        ],
+        "בעבר · הן": [
+          "ישבו",
+          "loro f. - passato: sedersi / stare seduto"
+        ],
+        "בעתיד · אני": [
+          "אשב",
+          "io - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · אתה": [
+          "תשב",
+          "tu m. - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · את": [
+          "תשבי",
+          "tu f. - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · הוא": [
+          "ישב",
+          "lui - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · היא": [
+          "תשב",
+          "lei - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · אנחנו": [
+          "נשב",
+          "noi - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · אתם": [
+          "תשבו",
+          "voi m. - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · אתן": [
+          "תשבנה",
+          "voi f. - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · הם": [
+          "ישבו",
+          "loro m. - futuro: sedersi / stare seduto"
+        ],
+        "בעתיד · הן": [
+          "תשבנה",
+          "loro f. - futuro: sedersi / stare seduto"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_024",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/8-laamod/",
+      "source_query": "לעמוד",
+      "source_expected_meaning_en": "stand",
+      "accessed_at": "2026-07-15T04:02:03.833903+00:00",
+      "root": "ע-מ-ד",
+      "binyan": "PA'AL",
+      "infinitive": "לעמוד",
+      "displayInfinitive": "לעמוד",
+      "infinitive_key": "לעמוד",
+      "italianInfinitive": "stare in piedi",
+      "italian": "stare in piedi",
+      "present": [
+        "עומד",
+        "עומדת",
+        "עומדים",
+        "עומדות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "עמדתי",
+          "io - passato: stare in piedi"
+        ],
+        "בעבר · אתה": [
+          "עמדת",
+          "tu m. - passato: stare in piedi"
+        ],
+        "בעבר · את": [
+          "עמדת",
+          "tu f. - passato: stare in piedi"
+        ],
+        "בעבר · הוא": [
+          "עמד",
+          "lui - passato: stare in piedi"
+        ],
+        "בעבר · היא": [
+          "עמדה",
+          "lei - passato: stare in piedi"
+        ],
+        "בעבר · אנחנו": [
+          "עמדנו",
+          "noi - passato: stare in piedi"
+        ],
+        "בעבר · אתם": [
+          "עמדתם",
+          "voi m. - passato: stare in piedi"
+        ],
+        "בעבר · אתן": [
+          "עמדתן",
+          "voi f. - passato: stare in piedi"
+        ],
+        "בעבר · הם": [
+          "עמדו",
+          "loro m. - passato: stare in piedi"
+        ],
+        "בעבר · הן": [
+          "עמדו",
+          "loro f. - passato: stare in piedi"
+        ],
+        "בעתיד · אני": [
+          "אעמוד",
+          "io - futuro: stare in piedi"
+        ],
+        "בעתיד · אתה": [
+          "תעמוד",
+          "tu m. - futuro: stare in piedi"
+        ],
+        "בעתיד · את": [
+          "תעמדי",
+          "tu f. - futuro: stare in piedi"
+        ],
+        "בעתיד · הוא": [
+          "יעמוד",
+          "lui - futuro: stare in piedi"
+        ],
+        "בעתיד · היא": [
+          "תעמוד",
+          "lei - futuro: stare in piedi"
+        ],
+        "בעתיד · אנחנו": [
+          "נעמוד",
+          "noi - futuro: stare in piedi"
+        ],
+        "בעתיד · אתם": [
+          "תעמדו",
+          "voi m. - futuro: stare in piedi"
+        ],
+        "בעתיד · אתן": [
+          "תעמודנה",
+          "voi f. - futuro: stare in piedi"
+        ],
+        "בעתיד · הם": [
+          "יעמדו",
+          "loro m. - futuro: stare in piedi"
+        ],
+        "בעתיד · הן": [
+          "תעמודנה",
+          "loro f. - futuro: stare in piedi"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_025",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/918-lehikanes/",
+      "source_query": "להיכנס",
+      "source_expected_meaning_en": "enter",
+      "accessed_at": "2026-07-15T04:02:04.468079+00:00",
+      "root": "כ-נ-ס",
+      "binyan": "NIF'AL",
+      "infinitive": "להיכנס",
+      "displayInfinitive": "להיכנס",
+      "infinitive_key": "להיכנס",
+      "italianInfinitive": "entrare",
+      "italian": "entrare",
+      "present": [
+        "נכנס",
+        "נכנסת",
+        "נכנסים",
+        "נכנסות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "נכנסתי",
+          "io - passato: entrare"
+        ],
+        "בעבר · אתה": [
+          "נכנסת",
+          "tu m. - passato: entrare"
+        ],
+        "בעבר · את": [
+          "נכנסת",
+          "tu f. - passato: entrare"
+        ],
+        "בעבר · הוא": [
+          "נכנס",
+          "lui - passato: entrare"
+        ],
+        "בעבר · היא": [
+          "נכנסה",
+          "lei - passato: entrare"
+        ],
+        "בעבר · אנחנו": [
+          "נכנסנו",
+          "noi - passato: entrare"
+        ],
+        "בעבר · אתם": [
+          "נכנסתם",
+          "voi m. - passato: entrare"
+        ],
+        "בעבר · אתן": [
+          "נכנסתן",
+          "voi f. - passato: entrare"
+        ],
+        "בעבר · הם": [
+          "נכנסו",
+          "loro m. - passato: entrare"
+        ],
+        "בעבר · הן": [
+          "נכנסו",
+          "loro f. - passato: entrare"
+        ],
+        "בעתיד · אני": [
+          "אכנס",
+          "io - futuro: entrare"
+        ],
+        "בעתיד · אתה": [
+          "תיכנס",
+          "tu m. - futuro: entrare"
+        ],
+        "בעתיד · את": [
+          "תיכנסי",
+          "tu f. - futuro: entrare"
+        ],
+        "בעתיד · הוא": [
+          "ייכנס",
+          "lui - futuro: entrare"
+        ],
+        "בעתיד · היא": [
+          "תיכנס",
+          "lei - futuro: entrare"
+        ],
+        "בעתיד · אנחנו": [
+          "ניכנס",
+          "noi - futuro: entrare"
+        ],
+        "בעתיד · אתם": [
+          "תיכנסו",
+          "voi m. - futuro: entrare"
+        ],
+        "בעתיד · אתן": [
+          "תיכנסנה",
+          "voi f. - futuro: entrare"
+        ],
+        "בעתיד · הם": [
+          "ייכנסו",
+          "loro m. - futuro: entrare"
+        ],
+        "בעתיד · הן": [
+          "תיכנסנה",
+          "loro f. - futuro: entrare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_026",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/832-latzet/",
+      "source_query": "לצאת",
+      "source_expected_meaning_en": "exit",
+      "accessed_at": "2026-07-15T04:02:05.189040+00:00",
+      "root": "י-צ-א",
+      "binyan": "PA'AL",
+      "infinitive": "לצאת",
+      "displayInfinitive": "לצאת",
+      "infinitive_key": "לצאת",
+      "italianInfinitive": "uscire",
+      "italian": "uscire",
+      "present": [
+        "יוצא",
+        "יוצאת",
+        "יוצאים",
+        "יוצאות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "יצאתי",
+          "io - passato: uscire"
+        ],
+        "בעבר · אתה": [
+          "יצאת",
+          "tu m. - passato: uscire"
+        ],
+        "בעבר · את": [
+          "יצאת",
+          "tu f. - passato: uscire"
+        ],
+        "בעבר · הוא": [
+          "יצא",
+          "lui - passato: uscire"
+        ],
+        "בעבר · היא": [
+          "יצאה",
+          "lei - passato: uscire"
+        ],
+        "בעבר · אנחנו": [
+          "יצאנו",
+          "noi - passato: uscire"
+        ],
+        "בעבר · אתם": [
+          "יצאתם",
+          "voi m. - passato: uscire"
+        ],
+        "בעבר · אתן": [
+          "יצאתן",
+          "voi f. - passato: uscire"
+        ],
+        "בעבר · הם": [
+          "יצאו",
+          "loro m. - passato: uscire"
+        ],
+        "בעבר · הן": [
+          "יצאו",
+          "loro f. - passato: uscire"
+        ],
+        "בעתיד · אני": [
+          "אצא",
+          "io - futuro: uscire"
+        ],
+        "בעתיד · אתה": [
+          "תצא",
+          "tu m. - futuro: uscire"
+        ],
+        "בעתיד · את": [
+          "תצאי",
+          "tu f. - futuro: uscire"
+        ],
+        "בעתיד · הוא": [
+          "יצא",
+          "lui - futuro: uscire"
+        ],
+        "בעתיד · היא": [
+          "תצא",
+          "lei - futuro: uscire"
+        ],
+        "בעתיד · אנחנו": [
+          "נצא",
+          "noi - futuro: uscire"
+        ],
+        "בעתיד · אתם": [
+          "תצאו",
+          "voi m. - futuro: uscire"
+        ],
+        "בעתיד · אתן": [
+          "תצאנה",
+          "voi f. - futuro: uscire"
+        ],
+        "בעתיד · הם": [
+          "יצאו",
+          "loro m. - futuro: uscire"
+        ],
+        "בעתיד · הן": [
+          "תצאנה",
+          "loro f. - futuro: uscire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_027",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/48-lachazor/",
+      "source_query": "לחזור",
+      "source_expected_meaning_en": "return",
+      "accessed_at": "2026-07-15T04:02:05.912641+00:00",
+      "root": "ח-ז-ר",
+      "binyan": "PA'AL",
+      "infinitive": "לחזור",
+      "displayInfinitive": "לחזור",
+      "infinitive_key": "לחזור",
+      "italianInfinitive": "tornare",
+      "italian": "tornare",
+      "present": [
+        "חוזר",
+        "חוזרת",
+        "חוזרים",
+        "חוזרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "חזרתי",
+          "io - passato: tornare"
+        ],
+        "בעבר · אתה": [
+          "חזרת",
+          "tu m. - passato: tornare"
+        ],
+        "בעבר · את": [
+          "חזרת",
+          "tu f. - passato: tornare"
+        ],
+        "בעבר · הוא": [
+          "חזר",
+          "lui - passato: tornare"
+        ],
+        "בעבר · היא": [
+          "חזרה",
+          "lei - passato: tornare"
+        ],
+        "בעבר · אנחנו": [
+          "חזרנו",
+          "noi - passato: tornare"
+        ],
+        "בעבר · אתם": [
+          "חזרתם",
+          "voi m. - passato: tornare"
+        ],
+        "בעבר · אתן": [
+          "חזרתן",
+          "voi f. - passato: tornare"
+        ],
+        "בעבר · הם": [
+          "חזרו",
+          "loro m. - passato: tornare"
+        ],
+        "בעבר · הן": [
+          "חזרו",
+          "loro f. - passato: tornare"
+        ],
+        "בעתיד · אני": [
+          "אחזור",
+          "io - futuro: tornare"
+        ],
+        "בעתיד · אתה": [
+          "תחזור",
+          "tu m. - futuro: tornare"
+        ],
+        "בעתיד · את": [
+          "תחזרי",
+          "tu f. - futuro: tornare"
+        ],
+        "בעתיד · הוא": [
+          "יחזור",
+          "lui - futuro: tornare"
+        ],
+        "בעתיד · היא": [
+          "תחזור",
+          "lei - futuro: tornare"
+        ],
+        "בעתיד · אנחנו": [
+          "נחזור",
+          "noi - futuro: tornare"
+        ],
+        "בעתיד · אתם": [
+          "תחזרו",
+          "voi m. - futuro: tornare"
+        ],
+        "בעתיד · אתן": [
+          "תחזורנה",
+          "voi f. - futuro: tornare"
+        ],
+        "בעתיד · הם": [
+          "יחזרו",
+          "loro m. - futuro: tornare"
+        ],
+        "בעתיד · הן": [
+          "תחזורנה",
+          "loro f. - futuro: tornare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_028",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/4-lagur/",
+      "source_query": "לגור",
+      "source_expected_meaning_en": "live",
+      "accessed_at": "2026-07-15T04:02:06.554157+00:00",
+      "root": "ג-ו-ר",
+      "binyan": "PA'AL",
+      "infinitive": "לגור",
+      "displayInfinitive": "לגור",
+      "infinitive_key": "לגור",
+      "italianInfinitive": "abitare",
+      "italian": "abitare",
+      "present": [
+        "גר",
+        "גרה",
+        "גרים",
+        "גרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "גרתי",
+          "io - passato: abitare"
+        ],
+        "בעבר · אתה": [
+          "גרת",
+          "tu m. - passato: abitare"
+        ],
+        "בעבר · את": [
+          "גרת",
+          "tu f. - passato: abitare"
+        ],
+        "בעבר · הוא": [
+          "גר",
+          "lui - passato: abitare"
+        ],
+        "בעבר · היא": [
+          "גרה",
+          "lei - passato: abitare"
+        ],
+        "בעבר · אנחנו": [
+          "גרנו",
+          "noi - passato: abitare"
+        ],
+        "בעבר · אתם": [
+          "גרתם",
+          "voi m. - passato: abitare"
+        ],
+        "בעבר · אתן": [
+          "גרתן",
+          "voi f. - passato: abitare"
+        ],
+        "בעבר · הם": [
+          "גרו",
+          "loro m. - passato: abitare"
+        ],
+        "בעבר · הן": [
+          "גרו",
+          "loro f. - passato: abitare"
+        ],
+        "בעתיד · אני": [
+          "אגור",
+          "io - futuro: abitare"
+        ],
+        "בעתיד · אתה": [
+          "תגור",
+          "tu m. - futuro: abitare"
+        ],
+        "בעתיד · את": [
+          "תגורי",
+          "tu f. - futuro: abitare"
+        ],
+        "בעתיד · הוא": [
+          "יגור",
+          "lui - futuro: abitare"
+        ],
+        "בעתיד · היא": [
+          "תגור",
+          "lei - futuro: abitare"
+        ],
+        "בעתיד · אנחנו": [
+          "נגור",
+          "noi - futuro: abitare"
+        ],
+        "בעתיד · אתם": [
+          "תגורו",
+          "voi m. - futuro: abitare"
+        ],
+        "בעתיד · אתן": [
+          "תגורנה",
+          "voi f. - futuro: abitare"
+        ],
+        "בעתיד · הם": [
+          "יגורו",
+          "loro m. - futuro: abitare"
+        ],
+        "בעתיד · הן": [
+          "תגורנה",
+          "loro f. - futuro: abitare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_029",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/39-lishol/",
+      "source_query": "לשאול",
+      "source_expected_meaning_en": "ask",
+      "accessed_at": "2026-07-15T04:02:07.228479+00:00",
+      "root": "ש-א-ל",
+      "binyan": "PA'AL",
+      "infinitive": "לשאול",
+      "displayInfinitive": "לשאול",
+      "infinitive_key": "לשאול",
+      "italianInfinitive": "chiedere / domandare",
+      "italian": "chiedere / domandare",
+      "present": [
+        "שואל",
+        "שואלת",
+        "שואלים",
+        "שואלות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שאלתי",
+          "io - passato: chiedere / domandare"
+        ],
+        "בעבר · אתה": [
+          "שאלת",
+          "tu m. - passato: chiedere / domandare"
+        ],
+        "בעבר · את": [
+          "שאלת",
+          "tu f. - passato: chiedere / domandare"
+        ],
+        "בעבר · הוא": [
+          "שאל",
+          "lui - passato: chiedere / domandare"
+        ],
+        "בעבר · היא": [
+          "שאלה",
+          "lei - passato: chiedere / domandare"
+        ],
+        "בעבר · אנחנו": [
+          "שאלנו",
+          "noi - passato: chiedere / domandare"
+        ],
+        "בעבר · אתם": [
+          "שאלתם",
+          "voi m. - passato: chiedere / domandare"
+        ],
+        "בעבר · אתן": [
+          "שאלתן",
+          "voi f. - passato: chiedere / domandare"
+        ],
+        "בעבר · הם": [
+          "שאלו",
+          "loro m. - passato: chiedere / domandare"
+        ],
+        "בעבר · הן": [
+          "שאלו",
+          "loro f. - passato: chiedere / domandare"
+        ],
+        "בעתיד · אני": [
+          "אשאל",
+          "io - futuro: chiedere / domandare"
+        ],
+        "בעתיד · אתה": [
+          "תשאל",
+          "tu m. - futuro: chiedere / domandare"
+        ],
+        "בעתיד · את": [
+          "תשאלי",
+          "tu f. - futuro: chiedere / domandare"
+        ],
+        "בעתיד · הוא": [
+          "ישאל",
+          "lui - futuro: chiedere / domandare"
+        ],
+        "בעתיד · היא": [
+          "תשאל",
+          "lei - futuro: chiedere / domandare"
+        ],
+        "בעתיד · אנחנו": [
+          "נשאל",
+          "noi - futuro: chiedere / domandare"
+        ],
+        "בעתיד · אתם": [
+          "תשאלו",
+          "voi m. - futuro: chiedere / domandare"
+        ],
+        "בעתיד · אתן": [
+          "תשאלנה",
+          "voi f. - futuro: chiedere / domandare"
+        ],
+        "בעתיד · הם": [
+          "ישאלו",
+          "loro m. - futuro: chiedere / domandare"
+        ],
+        "בעתיד · הן": [
+          "תשאלנה",
+          "loro f. - futuro: chiedere / domandare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_030",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/40-laanot/",
+      "source_query": "לענות",
+      "source_expected_meaning_en": "answer",
+      "accessed_at": "2026-07-15T04:02:07.811106+00:00",
+      "root": "ע-נ-ה",
+      "binyan": "PA'AL",
+      "infinitive": "לענות",
+      "displayInfinitive": "לענות",
+      "infinitive_key": "לענות",
+      "italianInfinitive": "rispondere",
+      "italian": "rispondere",
+      "present": [
+        "עונה",
+        "עונה",
+        "עונים",
+        "עונות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "עניתי",
+          "io - passato: rispondere"
+        ],
+        "בעבר · אתה": [
+          "ענית",
+          "tu m. - passato: rispondere"
+        ],
+        "בעבר · את": [
+          "ענית",
+          "tu f. - passato: rispondere"
+        ],
+        "בעבר · הוא": [
+          "ענה",
+          "lui - passato: rispondere"
+        ],
+        "בעבר · היא": [
+          "ענתה",
+          "lei - passato: rispondere"
+        ],
+        "בעבר · אנחנו": [
+          "ענינו",
+          "noi - passato: rispondere"
+        ],
+        "בעבר · אתם": [
+          "עניתם",
+          "voi m. - passato: rispondere"
+        ],
+        "בעבר · אתן": [
+          "עניתן",
+          "voi f. - passato: rispondere"
+        ],
+        "בעבר · הם": [
+          "ענו",
+          "loro m. - passato: rispondere"
+        ],
+        "בעבר · הן": [
+          "ענו",
+          "loro f. - passato: rispondere"
+        ],
+        "בעתיד · אני": [
+          "אענה",
+          "io - futuro: rispondere"
+        ],
+        "בעתיד · אתה": [
+          "תענה",
+          "tu m. - futuro: rispondere"
+        ],
+        "בעתיד · את": [
+          "תעני",
+          "tu f. - futuro: rispondere"
+        ],
+        "בעתיד · הוא": [
+          "יענה",
+          "lui - futuro: rispondere"
+        ],
+        "בעתיד · היא": [
+          "תענה",
+          "lei - futuro: rispondere"
+        ],
+        "בעתיד · אנחנו": [
+          "נענה",
+          "noi - futuro: rispondere"
+        ],
+        "בעתיד · אתם": [
+          "תענו",
+          "voi m. - futuro: rispondere"
+        ],
+        "בעתיד · אתן": [
+          "תענינה",
+          "voi f. - futuro: rispondere"
+        ],
+        "בעתיד · הם": [
+          "יענו",
+          "loro m. - futuro: rispondere"
+        ],
+        "בעתיד · הן": [
+          "תענינה",
+          "loro f. - futuro: rispondere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_031",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1747-liftoach/",
+      "source_query": "לפתוח",
+      "source_expected_meaning_en": "open",
+      "accessed_at": "2026-07-15T04:02:08.453130+00:00",
+      "root": "פ-ת-ח",
+      "binyan": "PA'AL",
+      "infinitive": "לפתוח",
+      "displayInfinitive": "לפתוח",
+      "infinitive_key": "לפתוח",
+      "italianInfinitive": "aprire",
+      "italian": "aprire",
+      "present": [
+        "פותח",
+        "פותחת",
+        "פותחים",
+        "פותחות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "פתחתי",
+          "io - passato: aprire"
+        ],
+        "בעבר · אתה": [
+          "פתחת",
+          "tu m. - passato: aprire"
+        ],
+        "בעבר · את": [
+          "פתחת",
+          "tu f. - passato: aprire"
+        ],
+        "בעבר · הוא": [
+          "פתח",
+          "lui - passato: aprire"
+        ],
+        "בעבר · היא": [
+          "פתחה",
+          "lei - passato: aprire"
+        ],
+        "בעבר · אנחנו": [
+          "פתחנו",
+          "noi - passato: aprire"
+        ],
+        "בעבר · אתם": [
+          "פתחתם",
+          "voi m. - passato: aprire"
+        ],
+        "בעבר · אתן": [
+          "פתחתן",
+          "voi f. - passato: aprire"
+        ],
+        "בעבר · הם": [
+          "פתחו",
+          "loro m. - passato: aprire"
+        ],
+        "בעבר · הן": [
+          "פתחו",
+          "loro f. - passato: aprire"
+        ],
+        "בעתיד · אני": [
+          "אפתח",
+          "io - futuro: aprire"
+        ],
+        "בעתיד · אתה": [
+          "תפתח",
+          "tu m. - futuro: aprire"
+        ],
+        "בעתיד · את": [
+          "תפתחי",
+          "tu f. - futuro: aprire"
+        ],
+        "בעתיד · הוא": [
+          "יפתח",
+          "lui - futuro: aprire"
+        ],
+        "בעתיד · היא": [
+          "תפתח",
+          "lei - futuro: aprire"
+        ],
+        "בעתיד · אנחנו": [
+          "נפתח",
+          "noi - futuro: aprire"
+        ],
+        "בעתיד · אתם": [
+          "תפתחו",
+          "voi m. - futuro: aprire"
+        ],
+        "בעתיד · אתן": [
+          "תפתחנה",
+          "voi f. - futuro: aprire"
+        ],
+        "בעתיד · הם": [
+          "יפתחו",
+          "loro m. - futuro: aprire"
+        ],
+        "בעתיד · הן": [
+          "תפתחנה",
+          "loro f. - futuro: aprire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_032",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1314-lisgor/",
+      "source_query": "לסגור",
+      "source_expected_meaning_en": "close",
+      "accessed_at": "2026-07-15T04:02:09.067226+00:00",
+      "root": "ס-ג-ר",
+      "binyan": "PA'AL",
+      "infinitive": "לסגור",
+      "displayInfinitive": "לסגור",
+      "infinitive_key": "לסגור",
+      "italianInfinitive": "chiudere",
+      "italian": "chiudere",
+      "present": [
+        "סוגר",
+        "סוגרת",
+        "סוגרים",
+        "סוגרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "סגרתי",
+          "io - passato: chiudere"
+        ],
+        "בעבר · אתה": [
+          "סגרת",
+          "tu m. - passato: chiudere"
+        ],
+        "בעבר · את": [
+          "סגרת",
+          "tu f. - passato: chiudere"
+        ],
+        "בעבר · הוא": [
+          "סגר",
+          "lui - passato: chiudere"
+        ],
+        "בעבר · היא": [
+          "סגרה",
+          "lei - passato: chiudere"
+        ],
+        "בעבר · אנחנו": [
+          "סגרנו",
+          "noi - passato: chiudere"
+        ],
+        "בעבר · אתם": [
+          "סגרתם",
+          "voi m. - passato: chiudere"
+        ],
+        "בעבר · אתן": [
+          "סגרתן",
+          "voi f. - passato: chiudere"
+        ],
+        "בעבר · הם": [
+          "סגרו",
+          "loro m. - passato: chiudere"
+        ],
+        "בעבר · הן": [
+          "סגרו",
+          "loro f. - passato: chiudere"
+        ],
+        "בעתיד · אני": [
+          "אסגור",
+          "io - futuro: chiudere"
+        ],
+        "בעתיד · אתה": [
+          "תסגור",
+          "tu m. - futuro: chiudere"
+        ],
+        "בעתיד · את": [
+          "תסגרי",
+          "tu f. - futuro: chiudere"
+        ],
+        "בעתיד · הוא": [
+          "יסגור",
+          "lui - futuro: chiudere"
+        ],
+        "בעתיד · היא": [
+          "תסגור",
+          "lei - futuro: chiudere"
+        ],
+        "בעתיד · אנחנו": [
+          "נסגור",
+          "noi - futuro: chiudere"
+        ],
+        "בעתיד · אתם": [
+          "תסגרו",
+          "voi m. - futuro: chiudere"
+        ],
+        "בעתיד · אתן": [
+          "תסגורנה",
+          "voi f. - futuro: chiudere"
+        ],
+        "בעתיד · הם": [
+          "יסגרו",
+          "loro m. - futuro: chiudere"
+        ],
+        "בעתיד · הן": [
+          "תסגורנה",
+          "loro f. - futuro: chiudere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_033",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/217-lehavin/",
+      "source_query": "להבין",
+      "source_expected_meaning_en": "understand",
+      "accessed_at": "2026-07-15T04:02:09.726942+00:00",
+      "root": "ב-י-ן",
+      "binyan": "HIF'IL",
+      "infinitive": "להבין",
+      "displayInfinitive": "להבין",
+      "infinitive_key": "להבין",
+      "italianInfinitive": "capire",
+      "italian": "capire",
+      "present": [
+        "מבין",
+        "מבינה",
+        "מבינים",
+        "מבינות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הבנתי",
+          "io - passato: capire"
+        ],
+        "בעבר · אתה": [
+          "הבנת",
+          "tu m. - passato: capire"
+        ],
+        "בעבר · את": [
+          "הבנת",
+          "tu f. - passato: capire"
+        ],
+        "בעבר · הוא": [
+          "הבין",
+          "lui - passato: capire"
+        ],
+        "בעבר · היא": [
+          "הבינה",
+          "lei - passato: capire"
+        ],
+        "בעבר · אנחנו": [
+          "הבנו",
+          "noi - passato: capire"
+        ],
+        "בעבר · אתם": [
+          "הבנתם",
+          "voi m. - passato: capire"
+        ],
+        "בעבר · אתן": [
+          "הבנתן",
+          "voi f. - passato: capire"
+        ],
+        "בעבר · הם": [
+          "הבינו",
+          "loro m. - passato: capire"
+        ],
+        "בעבר · הן": [
+          "הבינו",
+          "loro f. - passato: capire"
+        ],
+        "בעתיד · אני": [
+          "אבין",
+          "io - futuro: capire"
+        ],
+        "בעתיד · אתה": [
+          "תבין",
+          "tu m. - futuro: capire"
+        ],
+        "בעתיד · את": [
+          "תביני",
+          "tu f. - futuro: capire"
+        ],
+        "בעתיד · הוא": [
+          "יבין",
+          "lui - futuro: capire"
+        ],
+        "בעתיד · היא": [
+          "תבין",
+          "lei - futuro: capire"
+        ],
+        "בעתיד · אנחנו": [
+          "נבין",
+          "noi - futuro: capire"
+        ],
+        "בעתיד · אתם": [
+          "תבינו",
+          "voi m. - futuro: capire"
+        ],
+        "בעתיד · אתן": [
+          "תבנה",
+          "voi f. - futuro: capire"
+        ],
+        "בעתיד · הם": [
+          "יבינו",
+          "loro m. - futuro: capire"
+        ],
+        "בעתיד · הן": [
+          "תבנה",
+          "loro f. - futuro: capire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_034",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/34-lizkor/",
+      "source_query": "לזכור",
+      "source_expected_meaning_en": "remember",
+      "accessed_at": "2026-07-15T04:02:10.381603+00:00",
+      "root": "ז-כ-ר",
+      "binyan": "PA'AL",
+      "infinitive": "לזכור",
+      "displayInfinitive": "לזכור",
+      "infinitive_key": "לזכור",
+      "italianInfinitive": "ricordare",
+      "italian": "ricordare",
+      "present": [
+        "זוכר",
+        "זוכרת",
+        "זוכרים",
+        "זוכרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "זכרתי",
+          "io - passato: ricordare"
+        ],
+        "בעבר · אתה": [
+          "זכרת",
+          "tu m. - passato: ricordare"
+        ],
+        "בעבר · את": [
+          "זכרת",
+          "tu f. - passato: ricordare"
+        ],
+        "בעבר · הוא": [
+          "זכר",
+          "lui - passato: ricordare"
+        ],
+        "בעבר · היא": [
+          "זכרה",
+          "lei - passato: ricordare"
+        ],
+        "בעבר · אנחנו": [
+          "זכרנו",
+          "noi - passato: ricordare"
+        ],
+        "בעבר · אתם": [
+          "זכרתם",
+          "voi m. - passato: ricordare"
+        ],
+        "בעבר · אתן": [
+          "זכרתן",
+          "voi f. - passato: ricordare"
+        ],
+        "בעבר · הם": [
+          "זכרו",
+          "loro m. - passato: ricordare"
+        ],
+        "בעבר · הן": [
+          "זכרו",
+          "loro f. - passato: ricordare"
+        ],
+        "בעתיד · אני": [
+          "אזכור",
+          "io - futuro: ricordare"
+        ],
+        "בעתיד · אתה": [
+          "תזכור",
+          "tu m. - futuro: ricordare"
+        ],
+        "בעתיד · את": [
+          "תזכרי",
+          "tu f. - futuro: ricordare"
+        ],
+        "בעתיד · הוא": [
+          "יזכור",
+          "lui - futuro: ricordare"
+        ],
+        "בעתיד · היא": [
+          "תזכור",
+          "lei - futuro: ricordare"
+        ],
+        "בעתיד · אנחנו": [
+          "נזכור",
+          "noi - futuro: ricordare"
+        ],
+        "בעתיד · אתם": [
+          "תזכרו",
+          "voi m. - futuro: ricordare"
+        ],
+        "בעתיד · אתן": [
+          "תזכורנה",
+          "voi f. - futuro: ricordare"
+        ],
+        "בעתיד · הם": [
+          "יזכרו",
+          "loro m. - futuro: ricordare"
+        ],
+        "בעתיד · הן": [
+          "תזכורנה",
+          "loro f. - futuro: ricordare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_035",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/36-lishkoach/",
+      "source_query": "לשכוח",
+      "source_expected_meaning_en": "forget",
+      "accessed_at": "2026-07-15T04:02:10.941575+00:00",
+      "root": "ש-כ-ח",
+      "binyan": "PA'AL",
+      "infinitive": "לשכוח",
+      "displayInfinitive": "לשכוח",
+      "infinitive_key": "לשכוח",
+      "italianInfinitive": "dimenticare",
+      "italian": "dimenticare",
+      "present": [
+        "שוכח",
+        "שוכחת",
+        "שוכחים",
+        "שוכחות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שכחתי",
+          "io - passato: dimenticare"
+        ],
+        "בעבר · אתה": [
+          "שכחת",
+          "tu m. - passato: dimenticare"
+        ],
+        "בעבר · את": [
+          "שכחת",
+          "tu f. - passato: dimenticare"
+        ],
+        "בעבר · הוא": [
+          "שכח",
+          "lui - passato: dimenticare"
+        ],
+        "בעבר · היא": [
+          "שכחה",
+          "lei - passato: dimenticare"
+        ],
+        "בעבר · אנחנו": [
+          "שכחנו",
+          "noi - passato: dimenticare"
+        ],
+        "בעבר · אתם": [
+          "שכחתם",
+          "voi m. - passato: dimenticare"
+        ],
+        "בעבר · אתן": [
+          "שכחתן",
+          "voi f. - passato: dimenticare"
+        ],
+        "בעבר · הם": [
+          "שכחו",
+          "loro m. - passato: dimenticare"
+        ],
+        "בעבר · הן": [
+          "שכחו",
+          "loro f. - passato: dimenticare"
+        ],
+        "בעתיד · אני": [
+          "אשכח",
+          "io - futuro: dimenticare"
+        ],
+        "בעתיד · אתה": [
+          "תשכח",
+          "tu m. - futuro: dimenticare"
+        ],
+        "בעתיד · את": [
+          "תשכחי",
+          "tu f. - futuro: dimenticare"
+        ],
+        "בעתיד · הוא": [
+          "ישכח",
+          "lui - futuro: dimenticare"
+        ],
+        "בעתיד · היא": [
+          "תשכח",
+          "lei - futuro: dimenticare"
+        ],
+        "בעתיד · אנחנו": [
+          "נשכח",
+          "noi - futuro: dimenticare"
+        ],
+        "בעתיד · אתם": [
+          "תשכחו",
+          "voi m. - futuro: dimenticare"
+        ],
+        "בעתיד · אתן": [
+          "תשכחנה",
+          "voi f. - futuro: dimenticare"
+        ],
+        "בעתיד · הם": [
+          "ישכחו",
+          "loro m. - futuro: dimenticare"
+        ],
+        "בעתיד · הן": [
+          "תשכחנה",
+          "loro f. - futuro: dimenticare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_036",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/46-laazor/",
+      "source_query": "לעזור",
+      "source_expected_meaning_en": "help",
+      "accessed_at": "2026-07-15T04:02:11.453070+00:00",
+      "root": "ע-ז-ר",
+      "binyan": "PA'AL",
+      "infinitive": "לעזור",
+      "displayInfinitive": "לעזור",
+      "infinitive_key": "לעזור",
+      "italianInfinitive": "aiutare",
+      "italian": "aiutare",
+      "present": [
+        "עוזר",
+        "עוזרת",
+        "עוזרים",
+        "עוזרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "עזרתי",
+          "io - passato: aiutare"
+        ],
+        "בעבר · אתה": [
+          "עזרת",
+          "tu m. - passato: aiutare"
+        ],
+        "בעבר · את": [
+          "עזרת",
+          "tu f. - passato: aiutare"
+        ],
+        "בעבר · הוא": [
+          "עזר",
+          "lui - passato: aiutare"
+        ],
+        "בעבר · היא": [
+          "עזרה",
+          "lei - passato: aiutare"
+        ],
+        "בעבר · אנחנו": [
+          "עזרנו",
+          "noi - passato: aiutare"
+        ],
+        "בעבר · אתם": [
+          "עזרתם",
+          "voi m. - passato: aiutare"
+        ],
+        "בעבר · אתן": [
+          "עזרתן",
+          "voi f. - passato: aiutare"
+        ],
+        "בעבר · הם": [
+          "עזרו",
+          "loro m. - passato: aiutare"
+        ],
+        "בעבר · הן": [
+          "עזרו",
+          "loro f. - passato: aiutare"
+        ],
+        "בעתיד · אני": [
+          "אעזור",
+          "io - futuro: aiutare"
+        ],
+        "בעתיד · אתה": [
+          "תעזור",
+          "tu m. - futuro: aiutare"
+        ],
+        "בעתיד · את": [
+          "תעזרי",
+          "tu f. - futuro: aiutare"
+        ],
+        "בעתיד · הוא": [
+          "יעזור",
+          "lui - futuro: aiutare"
+        ],
+        "בעתיד · היא": [
+          "תעזור",
+          "lei - futuro: aiutare"
+        ],
+        "בעתיד · אנחנו": [
+          "נעזור",
+          "noi - futuro: aiutare"
+        ],
+        "בעתיד · אתם": [
+          "תעזרו",
+          "voi m. - futuro: aiutare"
+        ],
+        "בעתיד · אתן": [
+          "תעזורנה",
+          "voi f. - futuro: aiutare"
+        ],
+        "בעתיד · הם": [
+          "יעזרו",
+          "loro m. - futuro: aiutare"
+        ],
+        "בעתיד · הן": [
+          "תעזורנה",
+          "loro f. - futuro: aiutare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_037",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1592-lifgosh/",
+      "source_query": "לפגוש",
+      "source_expected_meaning_en": "meet",
+      "accessed_at": "2026-07-15T04:02:11.995490+00:00",
+      "root": "פ-ג-ש",
+      "binyan": "PA'AL",
+      "infinitive": "לפגוש",
+      "displayInfinitive": "לפגוש",
+      "infinitive_key": "לפגוש",
+      "italianInfinitive": "incontrare",
+      "italian": "incontrare",
+      "present": [
+        "פוגש",
+        "פוגשת",
+        "פוגשים",
+        "פוגשות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "פגשתי",
+          "io - passato: incontrare"
+        ],
+        "בעבר · אתה": [
+          "פגשת",
+          "tu m. - passato: incontrare"
+        ],
+        "בעבר · את": [
+          "פגשת",
+          "tu f. - passato: incontrare"
+        ],
+        "בעבר · הוא": [
+          "פגש",
+          "lui - passato: incontrare"
+        ],
+        "בעבר · היא": [
+          "פגשה",
+          "lei - passato: incontrare"
+        ],
+        "בעבר · אנחנו": [
+          "פגשנו",
+          "noi - passato: incontrare"
+        ],
+        "בעבר · אתם": [
+          "פגשתם",
+          "voi m. - passato: incontrare"
+        ],
+        "בעבר · אתן": [
+          "פגשתן",
+          "voi f. - passato: incontrare"
+        ],
+        "בעבר · הם": [
+          "פגשו",
+          "loro m. - passato: incontrare"
+        ],
+        "בעבר · הן": [
+          "פגשו",
+          "loro f. - passato: incontrare"
+        ],
+        "בעתיד · אני": [
+          "אפגוש",
+          "io - futuro: incontrare"
+        ],
+        "בעתיד · אתה": [
+          "תפגוש",
+          "tu m. - futuro: incontrare"
+        ],
+        "בעתיד · את": [
+          "תפגשי",
+          "tu f. - futuro: incontrare"
+        ],
+        "בעתיד · הוא": [
+          "יפגוש",
+          "lui - futuro: incontrare"
+        ],
+        "בעתיד · היא": [
+          "תפגוש",
+          "lei - futuro: incontrare"
+        ],
+        "בעתיד · אנחנו": [
+          "נפגוש",
+          "noi - futuro: incontrare"
+        ],
+        "בעתיד · אתם": [
+          "תפגשו",
+          "voi m. - futuro: incontrare"
+        ],
+        "בעתיד · אתן": [
+          "תפגושנה",
+          "voi f. - futuro: incontrare"
+        ],
+        "בעתיד · הם": [
+          "יפגשו",
+          "loro m. - futuro: incontrare"
+        ],
+        "בעתיד · הן": [
+          "תפגושנה",
+          "loro f. - futuro: incontrare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_038",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1083-limtzo/",
+      "source_query": "למצוא",
+      "source_expected_meaning_en": "find",
+      "accessed_at": "2026-07-15T04:02:12.546734+00:00",
+      "root": "מ-צ-א",
+      "binyan": "PA'AL",
+      "infinitive": "למצוא",
+      "displayInfinitive": "למצוא",
+      "infinitive_key": "למצוא",
+      "italianInfinitive": "trovare",
+      "italian": "trovare",
+      "present": [
+        "מוצא",
+        "מוצאת",
+        "מוצאים",
+        "מוצאות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "מצאתי",
+          "io - passato: trovare"
+        ],
+        "בעבר · אתה": [
+          "מצאת",
+          "tu m. - passato: trovare"
+        ],
+        "בעבר · את": [
+          "מצאת",
+          "tu f. - passato: trovare"
+        ],
+        "בעבר · הוא": [
+          "מצא",
+          "lui - passato: trovare"
+        ],
+        "בעבר · היא": [
+          "מצאה",
+          "lei - passato: trovare"
+        ],
+        "בעבר · אנחנו": [
+          "מצאנו",
+          "noi - passato: trovare"
+        ],
+        "בעבר · אתם": [
+          "מצאתם",
+          "voi m. - passato: trovare"
+        ],
+        "בעבר · אתן": [
+          "מצאתן",
+          "voi f. - passato: trovare"
+        ],
+        "בעבר · הם": [
+          "מצאו",
+          "loro m. - passato: trovare"
+        ],
+        "בעבר · הן": [
+          "מצאו",
+          "loro f. - passato: trovare"
+        ],
+        "בעתיד · אני": [
+          "אמצא",
+          "io - futuro: trovare"
+        ],
+        "בעתיד · אתה": [
+          "תמצא",
+          "tu m. - futuro: trovare"
+        ],
+        "בעתיד · את": [
+          "תמצאי",
+          "tu f. - futuro: trovare"
+        ],
+        "בעתיד · הוא": [
+          "ימצא",
+          "lui - futuro: trovare"
+        ],
+        "בעתיד · היא": [
+          "תמצא",
+          "lei - futuro: trovare"
+        ],
+        "בעתיד · אנחנו": [
+          "נמצא",
+          "noi - futuro: trovare"
+        ],
+        "בעתיד · אתם": [
+          "תמצאו",
+          "voi m. - futuro: trovare"
+        ],
+        "בעתיד · אתן": [
+          "תמצאנה",
+          "voi f. - futuro: trovare"
+        ],
+        "בעתיד · הם": [
+          "ימצאו",
+          "loro m. - futuro: trovare"
+        ],
+        "בעתיד · הן": [
+          "תמצאנה",
+          "loro f. - futuro: trovare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_039",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/58-leabed/",
+      "source_query": "לאבד",
+      "source_expected_meaning_en": "lose",
+      "accessed_at": "2026-07-15T04:02:13.125201+00:00",
+      "root": "א-ב-ד",
+      "binyan": "PI'EL",
+      "infinitive": "לאבד",
+      "displayInfinitive": "לאבד",
+      "infinitive_key": "לאבד",
+      "italianInfinitive": "perdere",
+      "italian": "perdere",
+      "present": [
+        "מאבד",
+        "מאבדת",
+        "מאבדים",
+        "מאבדות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "איבדתי",
+          "io - passato: perdere"
+        ],
+        "בעבר · אתה": [
+          "איבדת",
+          "tu m. - passato: perdere"
+        ],
+        "בעבר · את": [
+          "איבדת",
+          "tu f. - passato: perdere"
+        ],
+        "בעבר · הוא": [
+          "איבד",
+          "lui - passato: perdere"
+        ],
+        "בעבר · היא": [
+          "איבדה",
+          "lei - passato: perdere"
+        ],
+        "בעבר · אנחנו": [
+          "איבדנו",
+          "noi - passato: perdere"
+        ],
+        "בעבר · אתם": [
+          "איבדתם",
+          "voi m. - passato: perdere"
+        ],
+        "בעבר · אתן": [
+          "איבדתן",
+          "voi f. - passato: perdere"
+        ],
+        "בעבר · הם": [
+          "איבדו",
+          "loro m. - passato: perdere"
+        ],
+        "בעבר · הן": [
+          "איבדו",
+          "loro f. - passato: perdere"
+        ],
+        "בעתיד · אני": [
+          "אאבד",
+          "io - futuro: perdere"
+        ],
+        "בעתיד · אתה": [
+          "תאבד",
+          "tu m. - futuro: perdere"
+        ],
+        "בעתיד · את": [
+          "תאבדי",
+          "tu f. - futuro: perdere"
+        ],
+        "בעתיד · הוא": [
+          "יאבד",
+          "lui - futuro: perdere"
+        ],
+        "בעתיד · היא": [
+          "תאבד",
+          "lei - futuro: perdere"
+        ],
+        "בעתיד · אנחנו": [
+          "נאבד",
+          "noi - futuro: perdere"
+        ],
+        "בעתיד · אתם": [
+          "תאבדו",
+          "voi m. - futuro: perdere"
+        ],
+        "בעתיד · אתן": [
+          "תאבדנה",
+          "voi f. - futuro: perdere"
+        ],
+        "בעתיד · הם": [
+          "יאבדו",
+          "loro m. - futuro: perdere"
+        ],
+        "בעתיד · הן": [
+          "תאבדנה",
+          "loro f. - futuro: perdere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_040",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2359-lehatchil/",
+      "source_query": "להתחיל",
+      "source_expected_meaning_en": "begin",
+      "accessed_at": "2026-07-15T04:02:13.659601+00:00",
+      "root": "ת-ח-ל",
+      "binyan": "HIF'IL",
+      "infinitive": "להתחיל",
+      "displayInfinitive": "להתחיל",
+      "infinitive_key": "להתחיל",
+      "italianInfinitive": "iniziare",
+      "italian": "iniziare",
+      "present": [
+        "מתחיל",
+        "מתחילה",
+        "מתחילים",
+        "מתחילות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "התחלתי",
+          "io - passato: iniziare"
+        ],
+        "בעבר · אתה": [
+          "התחלת",
+          "tu m. - passato: iniziare"
+        ],
+        "בעבר · את": [
+          "התחלת",
+          "tu f. - passato: iniziare"
+        ],
+        "בעבר · הוא": [
+          "התחיל",
+          "lui - passato: iniziare"
+        ],
+        "בעבר · היא": [
+          "התחילה",
+          "lei - passato: iniziare"
+        ],
+        "בעבר · אנחנו": [
+          "התחלנו",
+          "noi - passato: iniziare"
+        ],
+        "בעבר · אתם": [
+          "התחלתם",
+          "voi m. - passato: iniziare"
+        ],
+        "בעבר · אתן": [
+          "התחלתן",
+          "voi f. - passato: iniziare"
+        ],
+        "בעבר · הם": [
+          "התחילו",
+          "loro m. - passato: iniziare"
+        ],
+        "בעבר · הן": [
+          "התחילו",
+          "loro f. - passato: iniziare"
+        ],
+        "בעתיד · אני": [
+          "אתחיל",
+          "io - futuro: iniziare"
+        ],
+        "בעתיד · אתה": [
+          "תתחיל",
+          "tu m. - futuro: iniziare"
+        ],
+        "בעתיד · את": [
+          "תתחילי",
+          "tu f. - futuro: iniziare"
+        ],
+        "בעתיד · הוא": [
+          "יתחיל",
+          "lui - futuro: iniziare"
+        ],
+        "בעתיד · היא": [
+          "תתחיל",
+          "lei - futuro: iniziare"
+        ],
+        "בעתיד · אנחנו": [
+          "נתחיל",
+          "noi - futuro: iniziare"
+        ],
+        "בעתיד · אתם": [
+          "תתחילו",
+          "voi m. - futuro: iniziare"
+        ],
+        "בעתיד · אתן": [
+          "תתחלנה",
+          "voi f. - futuro: iniziare"
+        ],
+        "בעתיד · הם": [
+          "יתחילו",
+          "loro m. - futuro: iniziare"
+        ],
+        "בעתיד · הן": [
+          "תתחלנה",
+          "loro f. - futuro: iniziare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_041",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1343-lesayem/",
+      "source_query": "לסיים",
+      "source_expected_meaning_en": "finish",
+      "accessed_at": "2026-07-15T04:02:14.191474+00:00",
+      "root": "ס-י-ם",
+      "binyan": "PI'EL",
+      "infinitive": "לסיים",
+      "displayInfinitive": "לסיים",
+      "infinitive_key": "לסיים",
+      "italianInfinitive": "finire",
+      "italian": "finire",
+      "present": [
+        "מסיים",
+        "מסיימת",
+        "מסיימים",
+        "מסיימות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "סיימתי",
+          "io - passato: finire"
+        ],
+        "בעבר · אתה": [
+          "סיימת",
+          "tu m. - passato: finire"
+        ],
+        "בעבר · את": [
+          "סיימת",
+          "tu f. - passato: finire"
+        ],
+        "בעבר · הוא": [
+          "סיים",
+          "lui - passato: finire"
+        ],
+        "בעבר · היא": [
+          "סיימה",
+          "lei - passato: finire"
+        ],
+        "בעבר · אנחנו": [
+          "סיימנו",
+          "noi - passato: finire"
+        ],
+        "בעבר · אתם": [
+          "סיימתם",
+          "voi m. - passato: finire"
+        ],
+        "בעבר · אתן": [
+          "סיימתן",
+          "voi f. - passato: finire"
+        ],
+        "בעבר · הם": [
+          "סיימו",
+          "loro m. - passato: finire"
+        ],
+        "בעבר · הן": [
+          "סיימו",
+          "loro f. - passato: finire"
+        ],
+        "בעתיד · אני": [
+          "אסיים",
+          "io - futuro: finire"
+        ],
+        "בעתיד · אתה": [
+          "תסיים",
+          "tu m. - futuro: finire"
+        ],
+        "בעתיד · את": [
+          "תסיימי",
+          "tu f. - futuro: finire"
+        ],
+        "בעתיד · הוא": [
+          "יסיים",
+          "lui - futuro: finire"
+        ],
+        "בעתיד · היא": [
+          "תסיים",
+          "lei - futuro: finire"
+        ],
+        "בעתיד · אנחנו": [
+          "נסיים",
+          "noi - futuro: finire"
+        ],
+        "בעתיד · אתם": [
+          "תסיימו",
+          "voi m. - futuro: finire"
+        ],
+        "בעתיד · אתן": [
+          "תסיימנה",
+          "voi f. - futuro: finire"
+        ],
+        "בעתיד · הם": [
+          "יסיימו",
+          "loro m. - futuro: finire"
+        ],
+        "בעתיד · הן": [
+          "תסיימנה",
+          "loro f. - futuro: finire"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_042",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1110-lehamshich/",
+      "source_query": "להמשיך",
+      "source_expected_meaning_en": "continue",
+      "accessed_at": "2026-07-15T04:02:14.739284+00:00",
+      "root": "מ-ש-ך",
+      "binyan": "HIF'IL",
+      "infinitive": "להמשיך",
+      "displayInfinitive": "להמשיך",
+      "infinitive_key": "להמשיך",
+      "italianInfinitive": "continuare",
+      "italian": "continuare",
+      "present": [
+        "ממשיך",
+        "ממשיכה",
+        "ממשיכים",
+        "ממשיכות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "המשכתי",
+          "io - passato: continuare"
+        ],
+        "בעבר · אתה": [
+          "המשכת",
+          "tu m. - passato: continuare"
+        ],
+        "בעבר · את": [
+          "המשכת",
+          "tu f. - passato: continuare"
+        ],
+        "בעבר · הוא": [
+          "המשיך",
+          "lui - passato: continuare"
+        ],
+        "בעבר · היא": [
+          "המשיכה",
+          "lei - passato: continuare"
+        ],
+        "בעבר · אנחנו": [
+          "המשכנו",
+          "noi - passato: continuare"
+        ],
+        "בעבר · אתם": [
+          "המשכתם",
+          "voi m. - passato: continuare"
+        ],
+        "בעבר · אתן": [
+          "המשכתן",
+          "voi f. - passato: continuare"
+        ],
+        "בעבר · הם": [
+          "המשיכו",
+          "loro m. - passato: continuare"
+        ],
+        "בעבר · הן": [
+          "המשיכו",
+          "loro f. - passato: continuare"
+        ],
+        "בעתיד · אני": [
+          "אמשיך",
+          "io - futuro: continuare"
+        ],
+        "בעתיד · אתה": [
+          "תמשיך",
+          "tu m. - futuro: continuare"
+        ],
+        "בעתיד · את": [
+          "תמשיכי",
+          "tu f. - futuro: continuare"
+        ],
+        "בעתיד · הוא": [
+          "ימשיך",
+          "lui - futuro: continuare"
+        ],
+        "בעתיד · היא": [
+          "תמשיך",
+          "lei - futuro: continuare"
+        ],
+        "בעתיד · אנחנו": [
+          "נמשיך",
+          "noi - futuro: continuare"
+        ],
+        "בעתיד · אתם": [
+          "תמשיכו",
+          "voi m. - futuro: continuare"
+        ],
+        "בעתיד · אתן": [
+          "תמשכנה",
+          "voi f. - futuro: continuare"
+        ],
+        "בעתיד · הם": [
+          "ימשיכו",
+          "loro m. - futuro: continuare"
+        ],
+        "בעתיד · הן": [
+          "תמשכנה",
+          "loro f. - futuro: continuare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_043",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1657-lehafsik/",
+      "source_query": "להפסיק",
+      "source_expected_meaning_en": "stop",
+      "accessed_at": "2026-07-15T04:02:15.336633+00:00",
+      "root": "פ-ס-ק",
+      "binyan": "HIF'IL",
+      "infinitive": "להפסיק",
+      "displayInfinitive": "להפסיק",
+      "infinitive_key": "להפסיק",
+      "italianInfinitive": "smettere / interrompere",
+      "italian": "smettere / interrompere",
+      "present": [
+        "מפסיק",
+        "מפסיקה",
+        "מפסיקים",
+        "מפסיקות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הפסקתי",
+          "io - passato: smettere / interrompere"
+        ],
+        "בעבר · אתה": [
+          "הפסקת",
+          "tu m. - passato: smettere / interrompere"
+        ],
+        "בעבר · את": [
+          "הפסקת",
+          "tu f. - passato: smettere / interrompere"
+        ],
+        "בעבר · הוא": [
+          "הפסיק",
+          "lui - passato: smettere / interrompere"
+        ],
+        "בעבר · היא": [
+          "הפסיקה",
+          "lei - passato: smettere / interrompere"
+        ],
+        "בעבר · אנחנו": [
+          "הפסקנו",
+          "noi - passato: smettere / interrompere"
+        ],
+        "בעבר · אתם": [
+          "הפסקתם",
+          "voi m. - passato: smettere / interrompere"
+        ],
+        "בעבר · אתן": [
+          "הפסקתן",
+          "voi f. - passato: smettere / interrompere"
+        ],
+        "בעבר · הם": [
+          "הפסיקו",
+          "loro m. - passato: smettere / interrompere"
+        ],
+        "בעבר · הן": [
+          "הפסיקו",
+          "loro f. - passato: smettere / interrompere"
+        ],
+        "בעתיד · אני": [
+          "אפסיק",
+          "io - futuro: smettere / interrompere"
+        ],
+        "בעתיד · אתה": [
+          "תפסיק",
+          "tu m. - futuro: smettere / interrompere"
+        ],
+        "בעתיד · את": [
+          "תפסיקי",
+          "tu f. - futuro: smettere / interrompere"
+        ],
+        "בעתיד · הוא": [
+          "יפסיק",
+          "lui - futuro: smettere / interrompere"
+        ],
+        "בעתיד · היא": [
+          "תפסיק",
+          "lei - futuro: smettere / interrompere"
+        ],
+        "בעתיד · אנחנו": [
+          "נפסיק",
+          "noi - futuro: smettere / interrompere"
+        ],
+        "בעתיד · אתם": [
+          "תפסיקו",
+          "voi m. - futuro: smettere / interrompere"
+        ],
+        "בעתיד · אתן": [
+          "תפסקנה",
+          "voi f. - futuro: smettere / interrompere"
+        ],
+        "בעתיד · הם": [
+          "יפסיקו",
+          "loro m. - futuro: smettere / interrompere"
+        ],
+        "בעתיד · הן": [
+          "תפסקנה",
+          "loro f. - futuro: smettere / interrompere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_044",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/206-livchor/",
+      "source_query": "לבחור",
+      "source_expected_meaning_en": "choose",
+      "accessed_at": "2026-07-15T04:02:15.860827+00:00",
+      "root": "ב-ח-ר",
+      "binyan": "PA'AL",
+      "infinitive": "לבחור",
+      "displayInfinitive": "לבחור",
+      "infinitive_key": "לבחור",
+      "italianInfinitive": "scegliere",
+      "italian": "scegliere",
+      "present": [
+        "בוחר",
+        "בוחרת",
+        "בוחרים",
+        "בוחרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "בחרתי",
+          "io - passato: scegliere"
+        ],
+        "בעבר · אתה": [
+          "בחרת",
+          "tu m. - passato: scegliere"
+        ],
+        "בעבר · את": [
+          "בחרת",
+          "tu f. - passato: scegliere"
+        ],
+        "בעבר · הוא": [
+          "בחר",
+          "lui - passato: scegliere"
+        ],
+        "בעבר · היא": [
+          "בחרה",
+          "lei - passato: scegliere"
+        ],
+        "בעבר · אנחנו": [
+          "בחרנו",
+          "noi - passato: scegliere"
+        ],
+        "בעבר · אתם": [
+          "בחרתם",
+          "voi m. - passato: scegliere"
+        ],
+        "בעבר · אתן": [
+          "בחרתן",
+          "voi f. - passato: scegliere"
+        ],
+        "בעבר · הם": [
+          "בחרו",
+          "loro m. - passato: scegliere"
+        ],
+        "בעבר · הן": [
+          "בחרו",
+          "loro f. - passato: scegliere"
+        ],
+        "בעתיד · אני": [
+          "אבחר",
+          "io - futuro: scegliere"
+        ],
+        "בעתיד · אתה": [
+          "תבחר",
+          "tu m. - futuro: scegliere"
+        ],
+        "בעתיד · את": [
+          "תבחרי",
+          "tu f. - futuro: scegliere"
+        ],
+        "בעתיד · הוא": [
+          "יבחר",
+          "lui - futuro: scegliere"
+        ],
+        "בעתיד · היא": [
+          "תבחר",
+          "lei - futuro: scegliere"
+        ],
+        "בעתיד · אנחנו": [
+          "נבחר",
+          "noi - futuro: scegliere"
+        ],
+        "בעתיד · אתם": [
+          "תבחרו",
+          "voi m. - futuro: scegliere"
+        ],
+        "בעתיד · אתן": [
+          "תבחרנה",
+          "voi f. - futuro: scegliere"
+        ],
+        "בעתיד · הם": [
+          "יבחרו",
+          "loro m. - futuro: scegliere"
+        ],
+        "בעתיד · הן": [
+          "תבחרנה",
+          "loro f. - futuro: scegliere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_045",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2232-leshalem/",
+      "source_query": "לשלם",
+      "source_expected_meaning_en": "pay",
+      "accessed_at": "2026-07-15T04:02:16.435682+00:00",
+      "root": "ש-ל-ם",
+      "binyan": "PI'EL",
+      "infinitive": "לשלם",
+      "displayInfinitive": "לשלם",
+      "infinitive_key": "לשלם",
+      "italianInfinitive": "pagare",
+      "italian": "pagare",
+      "present": [
+        "משלם",
+        "משלמת",
+        "משלמים",
+        "משלמות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שילמתי",
+          "io - passato: pagare"
+        ],
+        "בעבר · אתה": [
+          "שילמת",
+          "tu m. - passato: pagare"
+        ],
+        "בעבר · את": [
+          "שילמת",
+          "tu f. - passato: pagare"
+        ],
+        "בעבר · הוא": [
+          "שילם",
+          "lui - passato: pagare"
+        ],
+        "בעבר · היא": [
+          "שילמה",
+          "lei - passato: pagare"
+        ],
+        "בעבר · אנחנו": [
+          "שילמנו",
+          "noi - passato: pagare"
+        ],
+        "בעבר · אתם": [
+          "שילמתם",
+          "voi m. - passato: pagare"
+        ],
+        "בעבר · אתן": [
+          "שילמתן",
+          "voi f. - passato: pagare"
+        ],
+        "בעבר · הם": [
+          "שילמו",
+          "loro m. - passato: pagare"
+        ],
+        "בעבר · הן": [
+          "שילמו",
+          "loro f. - passato: pagare"
+        ],
+        "בעתיד · אני": [
+          "אשלם",
+          "io - futuro: pagare"
+        ],
+        "בעתיד · אתה": [
+          "תשלם",
+          "tu m. - futuro: pagare"
+        ],
+        "בעתיד · את": [
+          "תשלמי",
+          "tu f. - futuro: pagare"
+        ],
+        "בעתיד · הוא": [
+          "ישלם",
+          "lui - futuro: pagare"
+        ],
+        "בעתיד · היא": [
+          "תשלם",
+          "lei - futuro: pagare"
+        ],
+        "בעתיד · אנחנו": [
+          "נשלם",
+          "noi - futuro: pagare"
+        ],
+        "בעתיד · אתם": [
+          "תשלמו",
+          "voi m. - futuro: pagare"
+        ],
+        "בעתיד · אתן": [
+          "תשלמנה",
+          "voi f. - futuro: pagare"
+        ],
+        "בעתיד · הם": [
+          "ישלמו",
+          "loro m. - futuro: pagare"
+        ],
+        "בעתיד · הן": [
+          "תשלמנה",
+          "loro f. - futuro: pagare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_046",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/43-limkor/",
+      "source_query": "למכור",
+      "source_expected_meaning_en": "sell",
+      "accessed_at": "2026-07-15T04:02:16.973977+00:00",
+      "root": "מ-כ-ר",
+      "binyan": "PA'AL",
+      "infinitive": "למכור",
+      "displayInfinitive": "למכור",
+      "infinitive_key": "למכור",
+      "italianInfinitive": "vendere",
+      "italian": "vendere",
+      "present": [
+        "מוכר",
+        "מוכרת",
+        "מוכרים",
+        "מוכרות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "מכרתי",
+          "io - passato: vendere"
+        ],
+        "בעבר · אתה": [
+          "מכרת",
+          "tu m. - passato: vendere"
+        ],
+        "בעבר · את": [
+          "מכרת",
+          "tu f. - passato: vendere"
+        ],
+        "בעבר · הוא": [
+          "מכר",
+          "lui - passato: vendere"
+        ],
+        "בעבר · היא": [
+          "מכרה",
+          "lei - passato: vendere"
+        ],
+        "בעבר · אנחנו": [
+          "מכרנו",
+          "noi - passato: vendere"
+        ],
+        "בעבר · אתם": [
+          "מכרתם",
+          "voi m. - passato: vendere"
+        ],
+        "בעבר · אתן": [
+          "מכרתן",
+          "voi f. - passato: vendere"
+        ],
+        "בעבר · הם": [
+          "מכרו",
+          "loro m. - passato: vendere"
+        ],
+        "בעבר · הן": [
+          "מכרו",
+          "loro f. - passato: vendere"
+        ],
+        "בעתיד · אני": [
+          "אמכור",
+          "io - futuro: vendere"
+        ],
+        "בעתיד · אתה": [
+          "תמכור",
+          "tu m. - futuro: vendere"
+        ],
+        "בעתיד · את": [
+          "תמכרי",
+          "tu f. - futuro: vendere"
+        ],
+        "בעתיד · הוא": [
+          "ימכור",
+          "lui - futuro: vendere"
+        ],
+        "בעתיד · היא": [
+          "תמכור",
+          "lei - futuro: vendere"
+        ],
+        "בעתיד · אנחנו": [
+          "נמכור",
+          "noi - futuro: vendere"
+        ],
+        "בעתיד · אתם": [
+          "תמכרו",
+          "voi m. - futuro: vendere"
+        ],
+        "בעתיד · אתן": [
+          "תמכורנה",
+          "voi f. - futuro: vendere"
+        ],
+        "בעתיד · הם": [
+          "ימכרו",
+          "loro m. - futuro: vendere"
+        ],
+        "בעתיד · הן": [
+          "תמכורנה",
+          "loro f. - futuro: vendere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_047",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/67-leehov/",
+      "source_query": "לאהוב",
+      "source_expected_meaning_en": "love",
+      "accessed_at": "2026-07-15T04:02:17.512276+00:00",
+      "root": "א-ה-ב",
+      "binyan": "PA'AL",
+      "infinitive": "לאהוב",
+      "displayInfinitive": "לאהוב",
+      "infinitive_key": "לאהוב",
+      "italianInfinitive": "amare",
+      "italian": "amare",
+      "present": [
+        "אוהב",
+        "אוהבת",
+        "אוהבים",
+        "אוהבות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "אהבתי",
+          "io - passato: amare"
+        ],
+        "בעבר · אתה": [
+          "אהבת",
+          "tu m. - passato: amare"
+        ],
+        "בעבר · את": [
+          "אהבת",
+          "tu f. - passato: amare"
+        ],
+        "בעבר · הוא": [
+          "אהב",
+          "lui - passato: amare"
+        ],
+        "בעבר · היא": [
+          "אהבה",
+          "lei - passato: amare"
+        ],
+        "בעבר · אנחנו": [
+          "אהבנו",
+          "noi - passato: amare"
+        ],
+        "בעבר · אתם": [
+          "אהבתם",
+          "voi m. - passato: amare"
+        ],
+        "בעבר · אתן": [
+          "אהבתן",
+          "voi f. - passato: amare"
+        ],
+        "בעבר · הם": [
+          "אהבו",
+          "loro m. - passato: amare"
+        ],
+        "בעבר · הן": [
+          "אהבו",
+          "loro f. - passato: amare"
+        ],
+        "בעתיד · אני": [
+          "אוהב",
+          "io - futuro: amare"
+        ],
+        "בעתיד · אתה": [
+          "תאהב",
+          "tu m. - futuro: amare"
+        ],
+        "בעתיד · את": [
+          "תאהבי",
+          "tu f. - futuro: amare"
+        ],
+        "בעתיד · הוא": [
+          "יאהב",
+          "lui - futuro: amare"
+        ],
+        "בעתיד · היא": [
+          "תאהב",
+          "lei - futuro: amare"
+        ],
+        "בעתיד · אנחנו": [
+          "נאהב",
+          "noi - futuro: amare"
+        ],
+        "בעתיד · אתם": [
+          "תאהבו",
+          "voi m. - futuro: amare"
+        ],
+        "בעתיד · אתן": [
+          "תאהבנה",
+          "voi f. - futuro: amare"
+        ],
+        "בעתיד · הם": [
+          "יאהבו",
+          "loro m. - futuro: amare"
+        ],
+        "בעתיד · הן": [
+          "תאהבנה",
+          "loro f. - futuro: amare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_048",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2261-lisno/",
+      "source_query": "לשנוא",
+      "source_expected_meaning_en": "hate",
+      "accessed_at": "2026-07-15T04:02:18.026846+00:00",
+      "root": "ש-נ-א",
+      "binyan": "PA'AL",
+      "infinitive": "לשנוא",
+      "displayInfinitive": "לשנוא",
+      "infinitive_key": "לשנוא",
+      "italianInfinitive": "odiare",
+      "italian": "odiare",
+      "present": [
+        "שונא",
+        "שונאת",
+        "שונאים",
+        "שונאות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שנאתי",
+          "io - passato: odiare"
+        ],
+        "בעבר · אתה": [
+          "שנאת",
+          "tu m. - passato: odiare"
+        ],
+        "בעבר · את": [
+          "שנאת",
+          "tu f. - passato: odiare"
+        ],
+        "בעבר · הוא": [
+          "שנא",
+          "lui - passato: odiare"
+        ],
+        "בעבר · היא": [
+          "שנאה",
+          "lei - passato: odiare"
+        ],
+        "בעבר · אנחנו": [
+          "שנאנו",
+          "noi - passato: odiare"
+        ],
+        "בעבר · אתם": [
+          "שנאתם",
+          "voi m. - passato: odiare"
+        ],
+        "בעבר · אתן": [
+          "שנאתן",
+          "voi f. - passato: odiare"
+        ],
+        "בעבר · הם": [
+          "שנאו",
+          "loro m. - passato: odiare"
+        ],
+        "בעבר · הן": [
+          "שנאו",
+          "loro f. - passato: odiare"
+        ],
+        "בעתיד · אני": [
+          "אשנא",
+          "io - futuro: odiare"
+        ],
+        "בעתיד · אתה": [
+          "תשנא",
+          "tu m. - futuro: odiare"
+        ],
+        "בעתיד · את": [
+          "תשנאי",
+          "tu f. - futuro: odiare"
+        ],
+        "בעתיד · הוא": [
+          "ישנא",
+          "lui - futuro: odiare"
+        ],
+        "בעתיד · היא": [
+          "תשנא",
+          "lei - futuro: odiare"
+        ],
+        "בעתיד · אנחנו": [
+          "נשנא",
+          "noi - futuro: odiare"
+        ],
+        "בעתיד · אתם": [
+          "תשנאו",
+          "voi m. - futuro: odiare"
+        ],
+        "בעתיד · אתן": [
+          "תשנאנה",
+          "voi f. - futuro: odiare"
+        ],
+        "בעתיד · הם": [
+          "ישנאו",
+          "loro m. - futuro: odiare"
+        ],
+        "בעתיד · הן": [
+          "תשנאנה",
+          "loro f. - futuro: odiare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_049",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/700-lachshov/",
+      "source_query": "לחשוב",
+      "source_expected_meaning_en": "think",
+      "accessed_at": "2026-07-15T04:02:18.823950+00:00",
+      "root": "ח-ש-ב",
+      "binyan": "PA'AL",
+      "infinitive": "לחשוב",
+      "displayInfinitive": "לחשוב",
+      "infinitive_key": "לחשוב",
+      "italianInfinitive": "pensare",
+      "italian": "pensare",
+      "present": [
+        "חושב",
+        "חושבת",
+        "חושבים",
+        "חושבות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "חשבתי",
+          "io - passato: pensare"
+        ],
+        "בעבר · אתה": [
+          "חשבת",
+          "tu m. - passato: pensare"
+        ],
+        "בעבר · את": [
+          "חשבת",
+          "tu f. - passato: pensare"
+        ],
+        "בעבר · הוא": [
+          "חשב",
+          "lui - passato: pensare"
+        ],
+        "בעבר · היא": [
+          "חשבה",
+          "lei - passato: pensare"
+        ],
+        "בעבר · אנחנו": [
+          "חשבנו",
+          "noi - passato: pensare"
+        ],
+        "בעבר · אתם": [
+          "חשבתם",
+          "voi m. - passato: pensare"
+        ],
+        "בעבר · אתן": [
+          "חשבתן",
+          "voi f. - passato: pensare"
+        ],
+        "בעבר · הם": [
+          "חשבו",
+          "loro m. - passato: pensare"
+        ],
+        "בעבר · הן": [
+          "חשבו",
+          "loro f. - passato: pensare"
+        ],
+        "בעתיד · אני": [
+          "אחשוב",
+          "io - futuro: pensare"
+        ],
+        "בעתיד · אתה": [
+          "תחשוב",
+          "tu m. - futuro: pensare"
+        ],
+        "בעתיד · את": [
+          "תחשבי",
+          "tu f. - futuro: pensare"
+        ],
+        "בעתיד · הוא": [
+          "יחשוב",
+          "lui - futuro: pensare"
+        ],
+        "בעתיד · היא": [
+          "תחשוב",
+          "lei - futuro: pensare"
+        ],
+        "בעתיד · אנחנו": [
+          "נחשוב",
+          "noi - futuro: pensare"
+        ],
+        "בעתיד · אתם": [
+          "תחשבו",
+          "voi m. - futuro: pensare"
+        ],
+        "בעתיד · אתן": [
+          "תחשובנה",
+          "voi f. - futuro: pensare"
+        ],
+        "בעתיד · הם": [
+          "יחשבו",
+          "loro m. - futuro: pensare"
+        ],
+        "בעתיד · הן": [
+          "תחשובנה",
+          "loro f. - futuro: pensare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_050",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/114-lehaamin/",
+      "source_query": "להאמין",
+      "source_expected_meaning_en": "believe",
+      "accessed_at": "2026-07-15T04:02:19.576564+00:00",
+      "root": "א-מ-ן",
+      "binyan": "HIF'IL",
+      "infinitive": "להאמין",
+      "displayInfinitive": "להאמין",
+      "infinitive_key": "להאמין",
+      "italianInfinitive": "credere",
+      "italian": "credere",
+      "present": [
+        "מאמין",
+        "מאמינה",
+        "מאמינים",
+        "מאמינות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "האמנתי",
+          "io - passato: credere"
+        ],
+        "בעבר · אתה": [
+          "האמנת",
+          "tu m. - passato: credere"
+        ],
+        "בעבר · את": [
+          "האמנת",
+          "tu f. - passato: credere"
+        ],
+        "בעבר · הוא": [
+          "האמין",
+          "lui - passato: credere"
+        ],
+        "בעבר · היא": [
+          "האמינה",
+          "lei - passato: credere"
+        ],
+        "בעבר · אנחנו": [
+          "האמנו",
+          "noi - passato: credere"
+        ],
+        "בעבר · אתם": [
+          "האמנתם",
+          "voi m. - passato: credere"
+        ],
+        "בעבר · אתן": [
+          "האמנתן",
+          "voi f. - passato: credere"
+        ],
+        "בעבר · הם": [
+          "האמינו",
+          "loro m. - passato: credere"
+        ],
+        "בעבר · הן": [
+          "האמינו",
+          "loro f. - passato: credere"
+        ],
+        "בעתיד · אני": [
+          "אאמין",
+          "io - futuro: credere"
+        ],
+        "בעתיד · אתה": [
+          "תאמין",
+          "tu m. - futuro: credere"
+        ],
+        "בעתיד · את": [
+          "תאמיני",
+          "tu f. - futuro: credere"
+        ],
+        "בעתיד · הוא": [
+          "יאמין",
+          "lui - futuro: credere"
+        ],
+        "בעתיד · היא": [
+          "תאמין",
+          "lei - futuro: credere"
+        ],
+        "בעתיד · אנחנו": [
+          "נאמין",
+          "noi - futuro: credere"
+        ],
+        "בעתיד · אתם": [
+          "תאמינו",
+          "voi m. - futuro: credere"
+        ],
+        "בעתיד · אתן": [
+          "תאמנה",
+          "voi f. - futuro: credere"
+        ],
+        "בעתיד · הם": [
+          "יאמינו",
+          "loro m. - futuro: credere"
+        ],
+        "בעתיד · הן": [
+          "תאמנה",
+          "loro f. - futuro: credere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_051",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1993-lehargish/",
+      "source_query": "להרגיש",
+      "source_expected_meaning_en": "feel",
+      "accessed_at": "2026-07-15T04:02:20.227735+00:00",
+      "root": "ר-ג-ש",
+      "binyan": "HIF'IL",
+      "infinitive": "להרגיש",
+      "displayInfinitive": "להרגיש",
+      "infinitive_key": "להרגיש",
+      "italianInfinitive": "sentire / provare",
+      "italian": "sentire / provare",
+      "present": [
+        "מרגיש",
+        "מרגישה",
+        "מרגישים",
+        "מרגישות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הרגשתי",
+          "io - passato: sentire / provare"
+        ],
+        "בעבר · אתה": [
+          "הרגשת",
+          "tu m. - passato: sentire / provare"
+        ],
+        "בעבר · את": [
+          "הרגשת",
+          "tu f. - passato: sentire / provare"
+        ],
+        "בעבר · הוא": [
+          "הרגיש",
+          "lui - passato: sentire / provare"
+        ],
+        "בעבר · היא": [
+          "הרגישה",
+          "lei - passato: sentire / provare"
+        ],
+        "בעבר · אנחנו": [
+          "הרגשנו",
+          "noi - passato: sentire / provare"
+        ],
+        "בעבר · אתם": [
+          "הרגשתם",
+          "voi m. - passato: sentire / provare"
+        ],
+        "בעבר · אתן": [
+          "הרגשתן",
+          "voi f. - passato: sentire / provare"
+        ],
+        "בעבר · הם": [
+          "הרגישו",
+          "loro m. - passato: sentire / provare"
+        ],
+        "בעבר · הן": [
+          "הרגישו",
+          "loro f. - passato: sentire / provare"
+        ],
+        "בעתיד · אני": [
+          "ארגיש",
+          "io - futuro: sentire / provare"
+        ],
+        "בעתיד · אתה": [
+          "תרגיש",
+          "tu m. - futuro: sentire / provare"
+        ],
+        "בעתיד · את": [
+          "תרגישי",
+          "tu f. - futuro: sentire / provare"
+        ],
+        "בעתיד · הוא": [
+          "ירגיש",
+          "lui - futuro: sentire / provare"
+        ],
+        "בעתיד · היא": [
+          "תרגיש",
+          "lei - futuro: sentire / provare"
+        ],
+        "בעתיד · אנחנו": [
+          "נרגיש",
+          "noi - futuro: sentire / provare"
+        ],
+        "בעתיד · אתם": [
+          "תרגישו",
+          "voi m. - futuro: sentire / provare"
+        ],
+        "בעתיד · אתן": [
+          "תרגשנה",
+          "voi f. - futuro: sentire / provare"
+        ],
+        "בעתיד · הם": [
+          "ירגישו",
+          "loro m. - futuro: sentire / provare"
+        ],
+        "בעתיד · הן": [
+          "תרגשנה",
+          "loro f. - futuro: sentire / provare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_052",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1841-lehitztarech/",
+      "source_query": "להצטרך",
+      "source_expected_meaning_en": "need",
+      "accessed_at": "2026-07-15T04:02:20.991467+00:00",
+      "root": "צ-ר-ך",
+      "binyan": "HITPA'EL",
+      "infinitive": "להצטרך",
+      "displayInfinitive": "להצטרך",
+      "infinitive_key": "להצטרך",
+      "italianInfinitive": "avere bisogno",
+      "italian": "avere bisogno",
+      "present": [
+        "מצטרך",
+        "מצטרכת",
+        "מצטרכים",
+        "מצטרכות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הצטרכתי",
+          "io - passato: avere bisogno"
+        ],
+        "בעבר · אתה": [
+          "הצטרכת",
+          "tu m. - passato: avere bisogno"
+        ],
+        "בעבר · את": [
+          "הצטרכת",
+          "tu f. - passato: avere bisogno"
+        ],
+        "בעבר · הוא": [
+          "הצטרך",
+          "lui - passato: avere bisogno"
+        ],
+        "בעבר · היא": [
+          "הצטרכה",
+          "lei - passato: avere bisogno"
+        ],
+        "בעבר · אנחנו": [
+          "הצטרכנו",
+          "noi - passato: avere bisogno"
+        ],
+        "בעבר · אתם": [
+          "הצטרכתם",
+          "voi m. - passato: avere bisogno"
+        ],
+        "בעבר · אתן": [
+          "הצטרכתן",
+          "voi f. - passato: avere bisogno"
+        ],
+        "בעבר · הם": [
+          "הצטרכו",
+          "loro m. - passato: avere bisogno"
+        ],
+        "בעבר · הן": [
+          "הצטרכו",
+          "loro f. - passato: avere bisogno"
+        ],
+        "בעתיד · אני": [
+          "אצטרך",
+          "io - futuro: avere bisogno"
+        ],
+        "בעתיד · אתה": [
+          "תצטרך",
+          "tu m. - futuro: avere bisogno"
+        ],
+        "בעתיד · את": [
+          "תצטרכי",
+          "tu f. - futuro: avere bisogno"
+        ],
+        "בעתיד · הוא": [
+          "יצטרך",
+          "lui - futuro: avere bisogno"
+        ],
+        "בעתיד · היא": [
+          "תצטרך",
+          "lei - futuro: avere bisogno"
+        ],
+        "בעתיד · אנחנו": [
+          "נצטרך",
+          "noi - futuro: avere bisogno"
+        ],
+        "בעתיד · אתם": [
+          "תצטרכו",
+          "voi m. - futuro: avere bisogno"
+        ],
+        "בעתיד · אתן": [
+          "תצטרכנה",
+          "voi f. - futuro: avere bisogno"
+        ],
+        "בעתיד · הם": [
+          "יצטרכו",
+          "loro m. - futuro: avere bisogno"
+        ],
+        "בעתיד · הן": [
+          "תצטרכנה",
+          "loro f. - futuro: avere bisogno"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_053",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/45-lasim/",
+      "source_query": "לשים",
+      "source_expected_meaning_en": "put",
+      "accessed_at": "2026-07-15T04:02:21.641683+00:00",
+      "root": "ש-י-ם",
+      "binyan": "PA'AL",
+      "infinitive": "לשים",
+      "displayInfinitive": "לשים",
+      "infinitive_key": "לשים",
+      "italianInfinitive": "mettere",
+      "italian": "mettere",
+      "present": [
+        "שם",
+        "שמה",
+        "שמים",
+        "שמות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שמתי",
+          "io - passato: mettere"
+        ],
+        "בעבר · אתה": [
+          "שמת",
+          "tu m. - passato: mettere"
+        ],
+        "בעבר · את": [
+          "שמת",
+          "tu f. - passato: mettere"
+        ],
+        "בעבר · הוא": [
+          "שם",
+          "lui - passato: mettere"
+        ],
+        "בעבר · היא": [
+          "שמה",
+          "lei - passato: mettere"
+        ],
+        "בעבר · אנחנו": [
+          "שמנו",
+          "noi - passato: mettere"
+        ],
+        "בעבר · אתם": [
+          "שמתם",
+          "voi m. - passato: mettere"
+        ],
+        "בעבר · אתן": [
+          "שמתן",
+          "voi f. - passato: mettere"
+        ],
+        "בעבר · הם": [
+          "שמו",
+          "loro m. - passato: mettere"
+        ],
+        "בעבר · הן": [
+          "שמו",
+          "loro f. - passato: mettere"
+        ],
+        "בעתיד · אני": [
+          "אשים",
+          "io - futuro: mettere"
+        ],
+        "בעתיד · אתה": [
+          "תשים",
+          "tu m. - futuro: mettere"
+        ],
+        "בעתיד · את": [
+          "תשימי",
+          "tu f. - futuro: mettere"
+        ],
+        "בעתיד · הוא": [
+          "ישים",
+          "lui - futuro: mettere"
+        ],
+        "בעתיד · היא": [
+          "תשים",
+          "lei - futuro: mettere"
+        ],
+        "בעתיד · אנחנו": [
+          "נשים",
+          "noi - futuro: mettere"
+        ],
+        "בעתיד · אתם": [
+          "תשימו",
+          "voi m. - futuro: mettere"
+        ],
+        "בעתיד · אתן": [
+          "תשמנה",
+          "voi f. - futuro: mettere"
+        ],
+        "בעתיד · הם": [
+          "ישימו",
+          "loro m. - futuro: mettere"
+        ],
+        "בעתיד · הן": [
+          "תשמנה",
+          "loro f. - futuro: mettere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_054",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/188-lehavi/",
+      "source_query": "להביא",
+      "source_expected_meaning_en": "bring",
+      "accessed_at": "2026-07-15T04:02:22.421832+00:00",
+      "root": "ב-ו-א",
+      "binyan": "HIF'IL",
+      "infinitive": "להביא",
+      "displayInfinitive": "להביא",
+      "infinitive_key": "להביא",
+      "italianInfinitive": "portare / portare qui",
+      "italian": "portare / portare qui",
+      "present": [
+        "מביא",
+        "מביאה",
+        "מביאים",
+        "מביאות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "הבאתי",
+          "io - passato: portare / portare qui"
+        ],
+        "בעבר · אתה": [
+          "הבאת",
+          "tu m. - passato: portare / portare qui"
+        ],
+        "בעבר · את": [
+          "הבאת",
+          "tu f. - passato: portare / portare qui"
+        ],
+        "בעבר · הוא": [
+          "הביא",
+          "lui - passato: portare / portare qui"
+        ],
+        "בעבר · היא": [
+          "הביאה",
+          "lei - passato: portare / portare qui"
+        ],
+        "בעבר · אנחנו": [
+          "הבאנו",
+          "noi - passato: portare / portare qui"
+        ],
+        "בעבר · אתם": [
+          "הבאתם",
+          "voi m. - passato: portare / portare qui"
+        ],
+        "בעבר · אתן": [
+          "הבאתן",
+          "voi f. - passato: portare / portare qui"
+        ],
+        "בעבר · הם": [
+          "הביאו",
+          "loro m. - passato: portare / portare qui"
+        ],
+        "בעבר · הן": [
+          "הביאו",
+          "loro f. - passato: portare / portare qui"
+        ],
+        "בעתיד · אני": [
+          "אביא",
+          "io - futuro: portare / portare qui"
+        ],
+        "בעתיד · אתה": [
+          "תביא",
+          "tu m. - futuro: portare / portare qui"
+        ],
+        "בעתיד · את": [
+          "תביאי",
+          "tu f. - futuro: portare / portare qui"
+        ],
+        "בעתיד · הוא": [
+          "יביא",
+          "lui - futuro: portare / portare qui"
+        ],
+        "בעתיד · היא": [
+          "תביא",
+          "lei - futuro: portare / portare qui"
+        ],
+        "בעתיד · אנחנו": [
+          "נביא",
+          "noi - futuro: portare / portare qui"
+        ],
+        "בעתיד · אתם": [
+          "תביאו",
+          "voi m. - futuro: portare / portare qui"
+        ],
+        "בעתיד · אתן": [
+          "תבאנה",
+          "voi f. - futuro: portare / portare qui"
+        ],
+        "בעתיד · הם": [
+          "יביאו",
+          "loro m. - futuro: portare / portare qui"
+        ],
+        "בעתיד · הן": [
+          "תבאנה",
+          "loro f. - futuro: portare / portare qui"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_055",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/2220-lishloach/",
+      "source_query": "לשלוח",
+      "source_expected_meaning_en": "send",
+      "accessed_at": "2026-07-15T04:02:23.135617+00:00",
+      "root": "ש-ל-ח",
+      "binyan": "PA'AL",
+      "infinitive": "לשלוח",
+      "displayInfinitive": "לשלוח",
+      "infinitive_key": "לשלוח",
+      "italianInfinitive": "mandare / inviare",
+      "italian": "mandare / inviare",
+      "present": [
+        "שולח",
+        "שולחת",
+        "שולחים",
+        "שולחות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "שלחתי",
+          "io - passato: mandare / inviare"
+        ],
+        "בעבר · אתה": [
+          "שלחת",
+          "tu m. - passato: mandare / inviare"
+        ],
+        "בעבר · את": [
+          "שלחת",
+          "tu f. - passato: mandare / inviare"
+        ],
+        "בעבר · הוא": [
+          "שלח",
+          "lui - passato: mandare / inviare"
+        ],
+        "בעבר · היא": [
+          "שלחה",
+          "lei - passato: mandare / inviare"
+        ],
+        "בעבר · אנחנו": [
+          "שלחנו",
+          "noi - passato: mandare / inviare"
+        ],
+        "בעבר · אתם": [
+          "שלחתם",
+          "voi m. - passato: mandare / inviare"
+        ],
+        "בעבר · אתן": [
+          "שלחתן",
+          "voi f. - passato: mandare / inviare"
+        ],
+        "בעבר · הם": [
+          "שלחו",
+          "loro m. - passato: mandare / inviare"
+        ],
+        "בעבר · הן": [
+          "שלחו",
+          "loro f. - passato: mandare / inviare"
+        ],
+        "בעתיד · אני": [
+          "אשלח",
+          "io - futuro: mandare / inviare"
+        ],
+        "בעתיד · אתה": [
+          "תשלח",
+          "tu m. - futuro: mandare / inviare"
+        ],
+        "בעתיד · את": [
+          "תשלחי",
+          "tu f. - futuro: mandare / inviare"
+        ],
+        "בעתיד · הוא": [
+          "ישלח",
+          "lui - futuro: mandare / inviare"
+        ],
+        "בעתיד · היא": [
+          "תשלח",
+          "lei - futuro: mandare / inviare"
+        ],
+        "בעתיד · אנחנו": [
+          "נשלח",
+          "noi - futuro: mandare / inviare"
+        ],
+        "בעתיד · אתם": [
+          "תשלחו",
+          "voi m. - futuro: mandare / inviare"
+        ],
+        "בעתיד · אתן": [
+          "תשלחנה",
+          "voi f. - futuro: mandare / inviare"
+        ],
+        "בעתיד · הם": [
+          "ישלחו",
+          "loro m. - futuro: mandare / inviare"
+        ],
+        "בעתיד · הן": [
+          "תשלחנה",
+          "loro f. - futuro: mandare / inviare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_056",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1850-lekabel/",
+      "source_query": "לקבל",
+      "source_expected_meaning_en": "receive",
+      "accessed_at": "2026-07-15T04:02:23.968692+00:00",
+      "root": "ק-ב-ל",
+      "binyan": "PI'EL",
+      "infinitive": "לקבל",
+      "displayInfinitive": "לקבל",
+      "infinitive_key": "לקבל",
+      "italianInfinitive": "ricevere",
+      "italian": "ricevere",
+      "present": [
+        "מקבל",
+        "מקבלת",
+        "מקבלים",
+        "מקבלות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "קיבלתי",
+          "io - passato: ricevere"
+        ],
+        "בעבר · אתה": [
+          "קיבלת",
+          "tu m. - passato: ricevere"
+        ],
+        "בעבר · את": [
+          "קיבלת",
+          "tu f. - passato: ricevere"
+        ],
+        "בעבר · הוא": [
+          "קיבל",
+          "lui - passato: ricevere"
+        ],
+        "בעבר · היא": [
+          "קיבלה",
+          "lei - passato: ricevere"
+        ],
+        "בעבר · אנחנו": [
+          "קיבלנו",
+          "noi - passato: ricevere"
+        ],
+        "בעבר · אתם": [
+          "קיבלתם",
+          "voi m. - passato: ricevere"
+        ],
+        "בעבר · אתן": [
+          "קיבלתן",
+          "voi f. - passato: ricevere"
+        ],
+        "בעבר · הם": [
+          "קיבלו",
+          "loro m. - passato: ricevere"
+        ],
+        "בעבר · הן": [
+          "קיבלו",
+          "loro f. - passato: ricevere"
+        ],
+        "בעתיד · אני": [
+          "אקבל",
+          "io - futuro: ricevere"
+        ],
+        "בעתיד · אתה": [
+          "תקבל",
+          "tu m. - futuro: ricevere"
+        ],
+        "בעתיד · את": [
+          "תקבלי",
+          "tu f. - futuro: ricevere"
+        ],
+        "בעתיד · הוא": [
+          "יקבל",
+          "lui - futuro: ricevere"
+        ],
+        "בעתיד · היא": [
+          "תקבל",
+          "lei - futuro: ricevere"
+        ],
+        "בעתיד · אנחנו": [
+          "נקבל",
+          "noi - futuro: ricevere"
+        ],
+        "בעתיד · אתם": [
+          "תקבלו",
+          "voi m. - futuro: ricevere"
+        ],
+        "בעתיד · אתן": [
+          "תקבלנה",
+          "voi f. - futuro: ricevere"
+        ],
+        "בעתיד · הם": [
+          "יקבלו",
+          "loro m. - futuro: ricevere"
+        ],
+        "בעתיד · הן": [
+          "תקבלנה",
+          "loro f. - futuro: ricevere"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_057",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1215-linsoa/",
+      "source_query": "לנסוע",
+      "source_expected_meaning_en": "travel",
+      "accessed_at": "2026-07-15T04:02:24.659316+00:00",
+      "root": "נ-ס-ע",
+      "binyan": "PA'AL",
+      "infinitive": "לנסוע",
+      "displayInfinitive": "לנסוע",
+      "infinitive_key": "לנסוע",
+      "italianInfinitive": "viaggiare / andare in veicolo",
+      "italian": "viaggiare / andare in veicolo",
+      "present": [
+        "נוסע",
+        "נוסעת",
+        "נוסעים",
+        "נוסעות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "נסעתי",
+          "io - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · אתה": [
+          "נסעת",
+          "tu m. - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · את": [
+          "נסעת",
+          "tu f. - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · הוא": [
+          "נסע",
+          "lui - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · היא": [
+          "נסעה",
+          "lei - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · אנחנו": [
+          "נסענו",
+          "noi - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · אתם": [
+          "נסעתם",
+          "voi m. - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · אתן": [
+          "נסעתן",
+          "voi f. - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · הם": [
+          "נסעו",
+          "loro m. - passato: viaggiare / andare in veicolo"
+        ],
+        "בעבר · הן": [
+          "נסעו",
+          "loro f. - passato: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · אני": [
+          "אסע",
+          "io - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · אתה": [
+          "תיסע",
+          "tu m. - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · את": [
+          "תיסעי",
+          "tu f. - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · הוא": [
+          "ייסע",
+          "lui - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · היא": [
+          "תיסע",
+          "lei - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · אנחנו": [
+          "ניסע",
+          "noi - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · אתם": [
+          "תיסעו",
+          "voi m. - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · אתן": [
+          "תיסענה",
+          "voi f. - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · הם": [
+          "ייסעו",
+          "loro m. - futuro: viaggiare / andare in veicolo"
+        ],
+        "בעתיד · הן": [
+          "תיסענה",
+          "loro f. - futuro: viaggiare / andare in veicolo"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_058",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/740-latus/",
+      "source_query": "לטוס",
+      "source_expected_meaning_en": "fly",
+      "accessed_at": "2026-07-15T04:02:25.451561+00:00",
+      "root": "ט-ו-ס",
+      "binyan": "PA'AL",
+      "infinitive": "לטוס",
+      "displayInfinitive": "לטוס",
+      "infinitive_key": "לטוס",
+      "italianInfinitive": "volare",
+      "italian": "volare",
+      "present": [
+        "טס",
+        "טסה",
+        "טסים",
+        "טסות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "טסתי",
+          "io - passato: volare"
+        ],
+        "בעבר · אתה": [
+          "טסת",
+          "tu m. - passato: volare"
+        ],
+        "בעבר · את": [
+          "טסת",
+          "tu f. - passato: volare"
+        ],
+        "בעבר · הוא": [
+          "טס",
+          "lui - passato: volare"
+        ],
+        "בעבר · היא": [
+          "טסה",
+          "lei - passato: volare"
+        ],
+        "בעבר · אנחנו": [
+          "טסנו",
+          "noi - passato: volare"
+        ],
+        "בעבר · אתם": [
+          "טסתם",
+          "voi m. - passato: volare"
+        ],
+        "בעבר · אתן": [
+          "טסתן",
+          "voi f. - passato: volare"
+        ],
+        "בעבר · הם": [
+          "טסו",
+          "loro m. - passato: volare"
+        ],
+        "בעבר · הן": [
+          "טסו",
+          "loro f. - passato: volare"
+        ],
+        "בעתיד · אני": [
+          "אטוס",
+          "io - futuro: volare"
+        ],
+        "בעתיד · אתה": [
+          "תטוס",
+          "tu m. - futuro: volare"
+        ],
+        "בעתיד · את": [
+          "תטוסי",
+          "tu f. - futuro: volare"
+        ],
+        "בעתיד · הוא": [
+          "יטוס",
+          "lui - futuro: volare"
+        ],
+        "בעתיד · היא": [
+          "תטוס",
+          "lei - futuro: volare"
+        ],
+        "בעתיד · אנחנו": [
+          "נטוס",
+          "noi - futuro: volare"
+        ],
+        "בעתיד · אתם": [
+          "תטוסו",
+          "voi m. - futuro: volare"
+        ],
+        "בעתיד · אתן": [
+          "תטוסנה",
+          "voi f. - futuro: volare"
+        ],
+        "בעתיד · הם": [
+          "יטוסו",
+          "loro m. - futuro: volare"
+        ],
+        "בעתיד · הן": [
+          "תטוסנה",
+          "loro f. - futuro: volare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_059",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/1153-linhog/",
+      "source_query": "לנהוג",
+      "source_expected_meaning_en": "drive",
+      "accessed_at": "2026-07-15T04:02:26.188700+00:00",
+      "root": "נ-ה-ג",
+      "binyan": "PA'AL",
+      "infinitive": "לנהוג",
+      "displayInfinitive": "לנהוג",
+      "infinitive_key": "לנהוג",
+      "italianInfinitive": "guidare",
+      "italian": "guidare",
+      "present": [
+        "נוהג",
+        "נוהגת",
+        "נוהגים",
+        "נוהגות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "נהגתי",
+          "io - passato: guidare"
+        ],
+        "בעבר · אתה": [
+          "נהגת",
+          "tu m. - passato: guidare"
+        ],
+        "בעבר · את": [
+          "נהגת",
+          "tu f. - passato: guidare"
+        ],
+        "בעבר · הוא": [
+          "נהג",
+          "lui - passato: guidare"
+        ],
+        "בעבר · היא": [
+          "נהגה",
+          "lei - passato: guidare"
+        ],
+        "בעבר · אנחנו": [
+          "נהגנו",
+          "noi - passato: guidare"
+        ],
+        "בעבר · אתם": [
+          "נהגתם",
+          "voi m. - passato: guidare"
+        ],
+        "בעבר · אתן": [
+          "נהגתן",
+          "voi f. - passato: guidare"
+        ],
+        "בעבר · הם": [
+          "נהגו",
+          "loro m. - passato: guidare"
+        ],
+        "בעבר · הן": [
+          "נהגו",
+          "loro f. - passato: guidare"
+        ],
+        "בעתיד · אני": [
+          "אנהג",
+          "io - futuro: guidare"
+        ],
+        "בעתיד · אתה": [
+          "תנהג",
+          "tu m. - futuro: guidare"
+        ],
+        "בעתיד · את": [
+          "תנהגי",
+          "tu f. - futuro: guidare"
+        ],
+        "בעתיד · הוא": [
+          "ינהג",
+          "lui - futuro: guidare"
+        ],
+        "בעתיד · היא": [
+          "תנהג",
+          "lei - futuro: guidare"
+        ],
+        "בעתיד · אנחנו": [
+          "ננהג",
+          "noi - futuro: guidare"
+        ],
+        "בעתיד · אתם": [
+          "תנהגו",
+          "voi m. - futuro: guidare"
+        ],
+        "בעתיד · אתן": [
+          "תנהגנה",
+          "voi f. - futuro: guidare"
+        ],
+        "בעתיד · הם": [
+          "ינהגו",
+          "loro m. - futuro: guidare"
+        ],
+        "בעתיד · הן": [
+          "תנהגנה",
+          "loro f. - futuro: guidare"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    },
+    {
+      "id": "pealim_060",
+      "source": "pealim",
+      "source_url": "https://www.pealim.com/dict/11-larutz/",
+      "source_query": "לרוץ",
+      "source_expected_meaning_en": "run",
+      "accessed_at": "2026-07-15T04:02:27.411452+00:00",
+      "root": "ר-ו-ץ",
+      "binyan": "PA'AL",
+      "infinitive": "לרוץ",
+      "displayInfinitive": "לרוץ",
+      "infinitive_key": "לרוץ",
+      "italianInfinitive": "correre",
+      "italian": "correre",
+      "present": [
+        "רץ",
+        "רצה",
+        "רצים",
+        "רצות"
+      ],
+      "targets": {
+        "בעבר · אני": [
+          "רצתי",
+          "io - passato: correre"
+        ],
+        "בעבר · אתה": [
+          "רצת",
+          "tu m. - passato: correre"
+        ],
+        "בעבר · את": [
+          "רצת",
+          "tu f. - passato: correre"
+        ],
+        "בעבר · הוא": [
+          "רץ",
+          "lui - passato: correre"
+        ],
+        "בעבר · היא": [
+          "רצה",
+          "lei - passato: correre"
+        ],
+        "בעבר · אנחנו": [
+          "רצנו",
+          "noi - passato: correre"
+        ],
+        "בעבר · אתם": [
+          "רצתם",
+          "voi m. - passato: correre"
+        ],
+        "בעבר · אתן": [
+          "רצתן",
+          "voi f. - passato: correre"
+        ],
+        "בעבר · הם": [
+          "רצו",
+          "loro m. - passato: correre"
+        ],
+        "בעבר · הן": [
+          "רצו",
+          "loro f. - passato: correre"
+        ],
+        "בעתיד · אני": [
+          "ארוץ",
+          "io - futuro: correre"
+        ],
+        "בעתיד · אתה": [
+          "תרוץ",
+          "tu m. - futuro: correre"
+        ],
+        "בעתיד · את": [
+          "תרוצי",
+          "tu f. - futuro: correre"
+        ],
+        "בעתיד · הוא": [
+          "ירוץ",
+          "lui - futuro: correre"
+        ],
+        "בעתיד · היא": [
+          "תרוץ",
+          "lei - futuro: correre"
+        ],
+        "בעתיד · אנחנו": [
+          "נרוץ",
+          "noi - futuro: correre"
+        ],
+        "בעתיד · אתם": [
+          "תרוצו",
+          "voi m. - futuro: correre"
+        ],
+        "בעתיד · אתן": [
+          "תרוצנה",
+          "voi f. - futuro: correre"
+        ],
+        "בעתיד · הם": [
+          "ירוצו",
+          "loro m. - futuro: correre"
+        ],
+        "בעתיד · הן": [
+          "תרוצנה",
+          "loro f. - futuro: correre"
+        ]
+      },
+      "qa_status": "PEALIM_EXTRACTED",
+      "qa_note": "Generated from Pealim page HTML; human spot-check still recommended."
+    }
+  ]
+}

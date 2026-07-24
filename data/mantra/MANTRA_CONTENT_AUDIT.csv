@@ -1,0 +1,101 @@
+order,verb,translation,binyan,root,frequency_source,pealim_url,forms_verified,pronunciation_verified,example_verified,audio_generated,human_approved,notes
+1,לִכְתֹּב,scrivere,PA'AL,כ-ת-ב,Pealim + learner core list,https://www.pealim.com/dict/1-lichtov/,yes,yes,yes,yes,no,High-frequency creative/action verb; regular Pa'al model.
+2,לְדַבֵּר,parlare,PI'EL,ד-ב-ר,Pealim + learner core list,https://www.pealim.com/dict/2-ledaber/,yes,yes,yes,yes,no,Essential communication; canonical Pi'el.
+3,לֶאֱכֹל,mangiare,PA'AL,א-כ-ל,Pealim + learner core list,https://www.pealim.com/dict/30-leechol/,yes,yes,yes,yes,no,Daily action; initial-alef irregular pattern.
+4,לָלֶכֶת,andare,PA'AL,ה-ל-ך,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Most common motion verb; weak root (ה drops).
+5,לִשְׁתּוֹת,bere,PA'AL,ש-ת-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily action; final-he pattern.
+6,לָבוֹא,venire,PA'AL,ב-ו-א,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Core motion verb; initial-alef.
+7,לַעֲשׂוֹת,fare,PA'AL,ע-ש-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Highest-frequency general verb.
+8,לִרְאוֹת,vedere,PA'AL,ר-א-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Core perception; final-he pattern.
+9,לִשְׁמוֹעַ,sentire,PA'AL,ש-מ-ע,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Core perception; final-ayin.
+10,לָדַעַת,sapere,PA'AL,י-ד-ע,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cognitive state; initial-yod drops.
+11,לְהַגִּיד,dire,HIF'IL,נ-ג-ד,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Everyday speech; Hif'il.
+12,לִתְתֵּן,dare,PA'AL,נ-ת-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Core transfer verb; initial-nun drops.
+13,לָקַחַת,prendere,PA'AL,ל-ק-ח,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Core transfer verb.
+14,לִקְנוֹת,comprare,PA'AL,ק-נ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Commerce; final-he.
+15,לָגוּר,abitare,PA'AL,ג-ו-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily life.
+16,לֶאֱהוֹב,amare,PA'AL,א-ה-ב,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Emotion; initial-alef.
+17,לְשַׂנּוֹא,odiare,PA'AL,ש-נ-א,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Emotion; final-alef.
+18,לַעֲבוֹד,lavorare,PA'AL,ע-ב-ד,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily activity.
+19,לִלְמוֹד,studiare,PA'AL,ל-מ-ד,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Learning context.
+20,לְהָבִיא,portare,HIF'IL,ב-ו-א,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Transfer; Hif'il of 'to come'.
+21,לִפְתּוֹחַ,aprire,PA'AL,פ-ת-ח,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily action.
+22,לִסְגּוֹר,chiudere,PA'AL,ס-ג-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily action.
+23,לִקְרוֹאַ,leggere / chiamare,PA'AL,ק-ר-א,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cultural/education; final-alef.
+24,לִכְנֵס,entrare,NIF'AL,כ-נ-ס,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion; Nif'al.
+25,לָצֵאת,uscire,PA'AL,י-צ-א,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion; initial-yod drops.
+26,לַחֲזוֹר,tornare,PA'AL,ח-ז-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion.
+27,לְהַבִין,capire,HIF'IL,ב-י-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cognitive; Hif'il.
+28,לִישׁוֹן,dormire,PA'AL,י-ש-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily action; initial-yod drops.
+29,לָקוּם,alzarsi,PA'AL,ק-ו-מ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily action.
+30,לָשֶׁבֶת,sedersi,PA'AL,י-ש-ב,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily action; initial-yod drops.
+31,לַעֲמוֹד,stare in piedi,PA'AL,ע-מ-ד,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Posture/motion.
+32,לְהַתְחִיל,iniziare,HITPA'EL,ת-ח-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Transition; Hitpa'el.
+33,לְסַיֵּם,finire,PI'EL,ס-י-מ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Transition; Pi'el.
+34,לְהַמְשִׁיךְ,continuare,HIF'IL,מ-ש-ך,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Transition; Hif'il.
+35,לְהַפְסִיק,smettere,HIF'IL,פ-ס-ק,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Transition; Hif'il.
+36,לִשְׁאוֹל,chiedere,PA'AL,ש-א-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Communication.
+37,לַעֲנוֹת,rispondere,PA'AL,ע-נ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Communication; final-he.
+38,לְהַאֲמִין,credere,HIF'IL,א-מ-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cognitive; Hif'il.
+39,לַחֲשׁוֹב,pensare,PA'AL,ח-ש-ב,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cognitive.
+40,לְהַרְגִישׁ,sentire,HIF'IL,ר-ג-ש,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Emotion/perception; Hif'il.
+41,לִרְצוֹת,volere,PA'AL,ר-צ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Modal; final-he.
+42,לְהִצְטָרֵךְ,avere bisogno,HIF'IL,צ-ר-כ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Modal; Hif'il.
+43,לִבְחוֹר,scegliere,PA'AL,ב-ח-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Decision.
+44,לְשַׁלֵּם,pagare,PI'EL,ש-ל-מ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Commerce; Pi'el.
+45,לִמְכּוֹר,vendere,PA'AL,מ-כ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Commerce.
+46,לְקַבֵּל,ricevere,PI'EL,ק-ב-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Transfer; Pi'el.
+47,לְשַׁלּוֹחַ,mandare,PA'AL,ש-ל-ח,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Communication/transfer.
+48,לִנְסוֹעַ,viaggiare,PA'AL,נ-ס-ע,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion.
+49,לָטוּס,volare,PA'AL,ט-ו-ס,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion.
+50,לִנְהוֹגַ,guidare,PA'AL,נ-ה-ג,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion.
+51,לָרוּץ,correre,PA'AL,ר-ו-צ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion.
+52,לְהַכִּיר,conoscere,HIF'IL,נ-כ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Social; Hif'il (root נ-כ-ר).
+53,לִמְצוֹאַ,trovare,PA'AL,מ-צ-א,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily; final-alef.
+54,לֶאֱבוֹד,perdere,PA'AL,א-ב-ד,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily; initial-alef.
+55,לִפְגוֹשׁ,incontrare,PA'AL,פ-ג-שׁ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Social.
+56,לַעֲזוֹר,aiutare,PA'AL,ע-ז-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Social.
+57,לִזְכּוֹר,ricordare,PA'AL,ז-כ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cognitive.
+58,לִשְׁכּוֹחַ,dimenticare,PA'AL,ש-כ-ח,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Cognitive.
+59,לְהַזְכִּיר,ricordare (a qlcn),HIF'IL,ז-כ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il causative.
+60,לְהַזְמִין,invitare / ordinare,HIF'IL,ז-מ-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il.
+61,לְהַגִּיעַ,arrivare,HIF'IL,נ-ג-ע,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Motion; Hif'il.
+62,לְהַסְבִּיר,spiegare,HIF'IL,ס-ב-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Communication; Hif'il.
+63,לְהַדְלִיק,accendere,HIF'IL,ד-ל-ק,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il.
+64,לְהַכְנִיס,far entrare,HIF'IL,כ-נ-ס,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il causative.
+65,לְהַחְלִיט,decidere,HIF'IL,ח-ל-ט,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il.
+66,לְבַקֵּשׁ,chiedere / pregare,PI'EL,ב-ק-שׁ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el.
+67,לְסַפֵּר,raccontare,PI'EL,ס-פ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el.
+68,לְחַכּוֹת,aspettare,PI'EL,ח-כ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el.
+69,לְתַקֵּן,sistemare / riparare,PI'EL,ת-ק-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el.
+70,לְבַדֵּק,controllare,PI'EL,ב-ד-ק,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el.
+71,לְנַסֵּה,provare,PI'EL,נ-ס-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el; final-he.
+72,לְשַׁנּוֹת,cambiare,PI'EL,ש-נ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pi'el.
+73,לְהִתְאָהֵב,innamorarsi,HITPA'EL,א-ה-ב,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+74,לְהִתְפַּלֵּל,pregare,HITPA'EL,פ-ל-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+75,לְהִתְרַחֵץ,lavarsi,HITPA'EL,ר-ח-צ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+76,לְהִתְלַבֵּשׁ,vestirsi,HITPA'EL,ל-ב-שׁ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+77,לְהִתְעוֹרֵר,svegliarsi,HITPA'EL,ע-ו-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+78,לְהִתְגַּעְגֵּעַ,sentire la mancanza,HITPA'EL,ג-ע-ג,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el emotional.
+79,לְהִתְנַצֵּל,scusarsi,HITPA'EL,נ-צ-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+80,לְהִתְפַּגֵּשׁ,incontrarsi,HITPA'EL,פ-ג-שׁ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el reciprocal.
+81,לְהִכָּתֵב,essere scritto,NIF'AL,כ-ת-ב,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Nif'al passive; irregular.
+82,לְהִשָּׁאֵל,essere chiesto,NIF'AL,ש-א-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Nif'al passive.
+83,לְהִיבָּנוֹת,essere costruito,NIF'AL,ב-נ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Nif'al passive.
+84,לְהִיכָּנֵס,essere accolto,NIF'AL,כ-נ-ס,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Nif'al passive.
+85,לְהוּכַח,essere dimostrato,HUF'AL,ו-כ-ח,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Huf'al passive; binyan coverage.
+86,לְהוּכַן,essere preparato,HUF'AL,כ-ו-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Huf'al passive; binyan coverage.
+87,לְדֻבַּר,essere parlato,PU'AL,ד-ב-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Pual passive; binyan coverage.
+88,לְהָפְקֵר,essere abbandonato,HUF'AL,פ-ק-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Huf'al passive.
+89,לָמוּת,morire,PA'AL,מ-ו-ת,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Irregular final-weak.
+90,לָחְיוֹת,vivere,PA'AL,ח-י-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Irregular middle-yod.
+91,לָדוּן,discutere / giudicare,PA'AL,ד-י-נ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Irregular middle-yod.
+92,לְהִסְתַּכֵּל,guardare,HITPA'EL,ס-כ-ל,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Visual perception; Hitpa'el.
+93,לָגַעַת,toccare,PA'AL,נ-ג-ע,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Physical action.
+94,לִשְׁמוֹר,guardare / tenere,PA'AL,ש-מ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily.
+95,לִשְׁאוֹבַ,attirare / pompare,PA'AL,ש-א-ב,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Less common; root coverage.
+96,לִגְמוֹר,finire,PA'AL,ג-מ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Daily.
+97,לְהַשְׁתִּיק,far tacere,HIF'IL,ש-ת-ק,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il causative.
+98,לְהַזְכִּיר,rammentare,HIF'IL,ז-כ-ר,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hif'il.
+99,לְהִשְׁתַּנּוֹת,cambiarsi,HITPA'EL,ש-נ-ה,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el.
+100,לְהִתְקַדֵּם,progredire,HITPA'EL,ק-ד-מ,approximate cross-reference Pealim + learner corpus,,no,no,no,no,no,Hitpa'el; learner-relevant.

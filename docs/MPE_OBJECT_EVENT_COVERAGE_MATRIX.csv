@@ -1,0 +1,30 @@
+object,creation_event,reference_events,terminal_event,event_reconstructable,replay_behavior,owning_component,unresolved_gap
+Program,none,none,none,n/a,static registry,author/registry,logical identity; no runtime event
+ProgramVersion,none,session_created; session_started,none,yes (by reference),static fixture referenced by events,author/registry,creation not recorded in runtime event stream
+Protocol,none,none,none,n/a,static registry,author/registry,logical identity; no runtime event
+ProtocolVersion,none,session_created; session_started; schedule_decision,none,yes (by reference),static fixture referenced by events,author/registry,creation not recorded in runtime event stream
+Session,session_created,session_started; session_paused; session_resumed; session_cancelled; session_completed; protocol_terminated,session_cancelled; session_completed; protocol_terminated,yes,recorded fact consumed during replay,runtime,none
+Block,block_started,block_started; block_completed; trial_created,block_completed,yes,deterministically recomputed from ProtocolVersion if not recorded,runtime,block_started acts as creation and terminal marker
+TaskDefinition,none,trial_created,none,n/a,static schema,author/registry,no runtime creation event
+Trial,trial_created,instruction_started; stimulus_requested; response_window_opened; observation_received; captured_response_created; response_interpreted; domain_response_normalized; evaluation_completed; feedback_started; schedule_decision; adaptation_proposed,evaluation_completed; feedback_completed; schedule_decision,yes,deterministically recomputed from ProtocolVersion and ScheduleDecision if observations replay,runtime,none
+ContentItem,none,stimulus_requested; feedback_started; evaluation_completed,none,yes (by reference),static content referenced by events,DomainProvider,no runtime creation event
+StimulusRequest,stimulus_requested,stimulus_ready; stimulus_started; stimulus_completed,stimulus_completed,yes,deterministically recomputed if renderer captured,runtime,none
+RenderedStimulus,stimulus_ready,stimulus_started; stimulus_completed,stimulus_completed,yes,external output requiring capture for exact replay; otherwise recomputed if renderer deterministic,Renderer,none
+Instruction,instruction_started,instruction_completed,instruction_completed,yes,deterministically recomputed from ProtocolVersion,runtime,none
+ResponseWindow,response_window_opened,response_detected; response_completed; response_timeout; observation_received; captured_response_created,response_timeout; response_completed,yes,deterministically recomputed from ProtocolVersion,runtime,none
+Observation,observation_received,response_detected; response_completed; captured_response_created,observation_received,yes,recorded fact consumed during replay,ObservationProvider,none
+CapturedResponse,captured_response_created,response_interpreted,response_interpreted,yes,deterministically recomputed from observations and response window,runtime/adapter,none
+ResponseInterpretation,response_interpreted,domain_response_normalized,domain_response_normalized,yes,deterministically recomputed if interpreter deterministic; ASR requires capture,ResponseInterpreter,none
+DomainNormalizedResponse,domain_response_normalized,evaluation_completed; evaluation_abstained; evaluation_failed,evaluation_completed; evaluation_abstained; evaluation_failed,yes,deterministically recomputed if normalizer deterministic,DomainNormalizer,none
+Evaluation,evaluation_completed; evaluation_abstained; evaluation_failed,feedback_started; schedule_decision; adaptation_proposed; evidence_record_created,evaluation_completed; evaluation_abstained; evaluation_failed,yes,recorded fact consumed during replay if evaluator deterministic,Evaluator,none
+KnowledgeFeedback,feedback_started,feedback_completed,feedback_completed,yes,represented as FeedbackEvent.feedback_category == KNOWLEDGE,runtime,not a standalone object
+PerformanceFeedback,feedback_started,feedback_completed,feedback_completed,yes,represented as FeedbackEvent.feedback_category == PERFORMANCE,runtime,not a standalone object
+MetacognitivePrompt,feedback_started,feedback_completed,feedback_completed,yes,represented as FeedbackEvent.feedback_category == METACOGNITIVE,runtime,not a standalone object
+SafetyInstruction,safety_instruction_started,safety_instruction_completed,safety_instruction_completed,yes,deterministically recomputed from safety rule trigger,runtime safety subsystem,none
+AdaptationDecision,adaptation_proposed; adaptation_abstained,adaptation_applied; adaptation_reversed; schedule_decision; evidence_record_created,adaptation_applied; adaptation_reversed,yes,deterministically recomputed if policy deterministic,AdaptationPolicy,none
+ScheduleDecision,schedule_decision,trial_created; evidence_record_created,schedule_decision,yes,deterministically recomputed if scheduler deterministic and history snapshot captured,Scheduler,none
+StateEstimate,state_estimate_produced,none,none,yes (diagnostic only),simulated input / diagnostic; does not affect Phase 4 replay,StateInferenceModel,none
+SensorObservation,observation_received (subtype),observation_received,observation_received,yes,recorded fact consumed during replay; observation_type == sensor_feature,ObservationProvider,none
+SafetyEvent,safety_rule_triggered; recovery_inserted; protocol_terminated,safety_instruction_started; protocol_terminated,protocol_terminated,yes,deterministically recomputed from deterministic safety rules and observations,runtime safety subsystem,none
+Outcome,none (computed),session_started through session_completed,none,n/a,computed from event stream; not replayed,runtime,none
+EvidenceRecord,evidence_record_created,evaluation_completed; schedule_decision; adaptation_proposed,none,yes,derived from source events; created by explicit event,runtime/provider,none

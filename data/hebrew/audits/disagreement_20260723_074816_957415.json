@@ -1,0 +1,262 @@
+{
+  "lemma": "להיות",
+  "generated_at": "2026-07-23T07:48:16.957400+00:00",
+  "report": {
+    "lemma": "להיות",
+    "approved_source": "pealim",
+    "form_reports": {
+      "infinitive": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "לִהְיוֹת",
+            "lexical_stress": 2,
+            "phonemes_corrected": "lihjˈot"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "לִהְיוֹת",
+          "lexical_stress": 2
+        }
+      },
+      "past_1_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיִיתִי",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajˈiti"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיִיתִי",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיִיתָ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajˈita"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיִיתָ",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיִית",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajˈit"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיִית",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיָה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajˈa"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיָה",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיְתָה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajtˈa"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיְתָה",
+          "lexical_stress": 2
+        }
+      },
+      "past_1_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיִינוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajˈinu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיִינוּ",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_masculine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הֱיִיתֶם",
+            "lexical_stress": 3,
+            "phonemes_corrected": "hejitˈem"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הֱיִיתֶם",
+          "lexical_stress": 3
+        }
+      },
+      "past_2_feminine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הֱיִיתֶן",
+            "lexical_stress": 3,
+            "phonemes_corrected": "hejitˈen"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הֱיִיתֶן",
+          "lexical_stress": 3
+        }
+      },
+      "past_3_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "הָיוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "hajˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "הָיוּ",
+          "lexical_stress": 2
+        }
+      },
+      "future_1_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "אֶהְיֶה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔehjˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "אֶהְיֶה",
+          "lexical_stress": 2
+        }
+      },
+      "future_2_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּהְיֶה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "tihjˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּהְיֶה",
+          "lexical_stress": 2
+        }
+      },
+      "future_2_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּהְיִי",
+            "lexical_stress": 2,
+            "phonemes_corrected": "tihjˈi"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּהְיִי",
+          "lexical_stress": 2
+        }
+      },
+      "future_3_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "יִהְיֶה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "jihjˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "יִהְיֶה",
+          "lexical_stress": 2
+        }
+      },
+      "future_3_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּהְיֶה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "tihjˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּהְיֶה",
+          "lexical_stress": 2
+        }
+      },
+      "future_1_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "נִהְיֶה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "nihjˈe"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "נִהְיֶה",
+          "lexical_stress": 2
+        }
+      },
+      "future_2_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּהְיוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "tihjˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּהְיוּ",
+          "lexical_stress": 2
+        }
+      },
+      "future_3_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "יִהְיוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "jihjˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "יִהְיוּ",
+          "lexical_stress": 2
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1888 @@
+{
+  "paradigm": {
+    "lemma": {
+      "lemma_vocalized": "לַעֲשׂוֹת",
+      "lemma_plain": "לעשות",
+      "root": "ע-ש-ה",
+      "binyan": "PA'AL",
+      "infinitive_form": null,
+      "forms": {}
+    },
+    "forms": {
+      "infinitive": {
+        "form_key": "infinitive",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "לַעֲשׂוֹת",
+        "surface_plain": "לעשות",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "infinitive",
+        "mood": "",
+        "person": "",
+        "gender": "",
+        "number": "",
+        "transliteration": "la'asot",
+        "phonemes_raw": "laʔasˈot",
+        "phonemes_corrected": "laʔasˈot",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "infinitive",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "לַעֲשׂוֹת",
+              "surface_plain": "לעשות",
+              "transliteration": "la'asot",
+              "phonemes_raw": "laʔasˈot",
+              "phonemes_corrected": "laʔasˈot",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "infinitive",
+                "mood": "",
+                "person": "",
+                "gender": "",
+                "number": "",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_masculine_singular": {
+        "form_key": "present_masculine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עוֹשֶׂה",
+        "surface_plain": "עושה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "ose",
+        "phonemes_raw": "ʔosˈe",
+        "phonemes_corrected": "ʔosˈe",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "present_masculine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עוֹשֶׂה",
+              "surface_plain": "עושה",
+              "transliteration": "ose",
+              "phonemes_raw": "ʔosˈe",
+              "phonemes_corrected": "ʔosˈe",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_feminine_singular": {
+        "form_key": "present_feminine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עוֹשָׂה",
+        "surface_plain": "עושה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "osa",
+        "phonemes_raw": "ʔosˈa",
+        "phonemes_corrected": "ʔosˈa",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "present_feminine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עוֹשָׂה",
+              "surface_plain": "עושה",
+              "transliteration": "osa",
+              "phonemes_raw": "ʔosˈa",
+              "phonemes_corrected": "ʔosˈa",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_masculine_plural": {
+        "form_key": "present_masculine_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עוֹשִׂים",
+        "surface_plain": "עושים",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "masculine",
+        "number": "plural",
+        "transliteration": "osim",
+        "phonemes_raw": "ʔosˈim",
+        "phonemes_corrected": "ʔosˈim",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "present_masculine_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עוֹשִׂים",
+              "surface_plain": "עושים",
+              "transliteration": "osim",
+              "phonemes_raw": "ʔosˈim",
+              "phonemes_corrected": "ʔosˈim",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "masculine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "present_feminine_plural": {
+        "form_key": "present_feminine_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עוֹשׂוֹת",
+        "surface_plain": "עושות",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "present",
+        "mood": "",
+        "person": "",
+        "gender": "feminine",
+        "number": "plural",
+        "transliteration": "osot",
+        "phonemes_raw": "ʔosˈot",
+        "phonemes_corrected": "ʔosˈot",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "present_feminine_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עוֹשׂוֹת",
+              "surface_plain": "עושות",
+              "transliteration": "osot",
+              "phonemes_raw": "ʔosˈot",
+              "phonemes_corrected": "ʔosˈot",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "present",
+                "mood": "",
+                "person": "",
+                "gender": "feminine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_1_singular": {
+        "form_key": "past_1_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשִׂיתִי",
+        "surface_plain": "עשיתי",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "singular",
+        "transliteration": "asiti",
+        "phonemes_raw": "ʔasitˈi",
+        "phonemes_corrected": "ʔasˈiti",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_1_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשִׂיתִי",
+              "surface_plain": "עשיתי",
+              "transliteration": "asiti",
+              "phonemes_raw": "ʔasitˈi",
+              "phonemes_corrected": "ʔasˈiti",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_masculine_singular": {
+        "form_key": "past_2_masculine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשִׂיתָ",
+        "surface_plain": "עשית",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "asita",
+        "phonemes_raw": "ʔasitˈa",
+        "phonemes_corrected": "ʔasˈita",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_2_masculine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשִׂיתָ",
+              "surface_plain": "עשית",
+              "transliteration": "asita",
+              "phonemes_raw": "ʔasitˈa",
+              "phonemes_corrected": "ʔasˈita",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_feminine_singular": {
+        "form_key": "past_2_feminine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשִׂית",
+        "surface_plain": "עשית",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "asit",
+        "phonemes_raw": "ʔasˈit",
+        "phonemes_corrected": "ʔasˈit",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_2_feminine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשִׂית",
+              "surface_plain": "עשית",
+              "transliteration": "asit",
+              "phonemes_raw": "ʔasˈit",
+              "phonemes_corrected": "ʔasˈit",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_masculine_singular": {
+        "form_key": "past_3_masculine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשָׂה",
+        "surface_plain": "עשה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "asa",
+        "phonemes_raw": "ʔasˈa",
+        "phonemes_corrected": "ʔasˈa",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_3_masculine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשָׂה",
+              "surface_plain": "עשה",
+              "transliteration": "asa",
+              "phonemes_raw": "ʔasˈa",
+              "phonemes_corrected": "ʔasˈa",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_feminine_singular": {
+        "form_key": "past_3_feminine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשְׂתָה",
+        "surface_plain": "עשתה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "asta",
+        "phonemes_raw": "ʔastˈa",
+        "phonemes_corrected": "ʔastˈa",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_3_feminine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשְׂתָה",
+              "surface_plain": "עשתה",
+              "transliteration": "asta",
+              "phonemes_raw": "ʔastˈa",
+              "phonemes_corrected": "ʔastˈa",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_1_plural": {
+        "form_key": "past_1_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשִׂינוּ",
+        "surface_plain": "עשינו",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "asinu",
+        "phonemes_raw": "ʔasinˈu",
+        "phonemes_corrected": "ʔasˈinu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_1_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשִׂינוּ",
+              "surface_plain": "עשינו",
+              "transliteration": "asinu",
+              "phonemes_raw": "ʔasinˈu",
+              "phonemes_corrected": "ʔasˈinu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_masculine_plural": {
+        "form_key": "past_2_masculine_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עֲשִׂיתֶם",
+        "surface_plain": "עשיתם",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "transliteration": "asitem",
+        "phonemes_raw": "ʔasitˈem",
+        "phonemes_corrected": "ʔasitˈem",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_2_masculine_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עֲשִׂיתֶם",
+              "surface_plain": "עשיתם",
+              "transliteration": "asitem",
+              "phonemes_raw": "ʔasitˈem",
+              "phonemes_corrected": "ʔasitˈem",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_feminine_plural": {
+        "form_key": "past_2_feminine_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עֲשִׂיתֶן",
+        "surface_plain": "עשיתן",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "plural",
+        "transliteration": "asiten",
+        "phonemes_raw": "ʔasitˈen",
+        "phonemes_corrected": "ʔasitˈen",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_2_feminine_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עֲשִׂיתֶן",
+              "surface_plain": "עשיתן",
+              "transliteration": "asiten",
+              "phonemes_raw": "ʔasitˈen",
+              "phonemes_corrected": "ʔasitˈen",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_plural": {
+        "form_key": "past_3_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "עָשׂוּ",
+        "surface_plain": "עשו",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "asu",
+        "phonemes_raw": "ʔasˈu",
+        "phonemes_corrected": "ʔasˈu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "past_3_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "עָשׂוּ",
+              "surface_plain": "עשו",
+              "transliteration": "asu",
+              "phonemes_raw": "ʔasˈu",
+              "phonemes_corrected": "ʔasˈu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_1_singular": {
+        "form_key": "future_1_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "אֶעֱשֶׂה",
+        "surface_plain": "אעשה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "singular",
+        "transliteration": "e'ese",
+        "phonemes_raw": "ʔeʔesˈe",
+        "phonemes_corrected": "ʔeʔesˈe",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_1_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "אֶעֱשֶׂה",
+              "surface_plain": "אעשה",
+              "transliteration": "e'ese",
+              "phonemes_raw": "ʔeʔesˈe",
+              "phonemes_corrected": "ʔeʔesˈe",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_masculine_singular": {
+        "form_key": "future_2_masculine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "תַּעֲשֶׂה",
+        "surface_plain": "תעשה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "ta'ase",
+        "phonemes_raw": "taʔasˈe",
+        "phonemes_corrected": "taʔasˈe",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_2_masculine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תַּעֲשֶׂה",
+              "surface_plain": "תעשה",
+              "transliteration": "ta'ase",
+              "phonemes_raw": "taʔasˈe",
+              "phonemes_corrected": "taʔasˈe",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_feminine_singular": {
+        "form_key": "future_2_feminine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "תַּעֲשִׂי",
+        "surface_plain": "תעשי",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "ta'asi",
+        "phonemes_raw": "taʔasˈi",
+        "phonemes_corrected": "taʔasˈi",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_2_feminine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תַּעֲשִׂי",
+              "surface_plain": "תעשי",
+              "transliteration": "ta'asi",
+              "phonemes_raw": "taʔasˈi",
+              "phonemes_corrected": "taʔasˈi",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_masculine_singular": {
+        "form_key": "future_3_masculine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "יַעֲשֶׂה",
+        "surface_plain": "יעשה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "ya'ase",
+        "phonemes_raw": "jaʔasˈe",
+        "phonemes_corrected": "jaʔasˈe",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_3_masculine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "יַעֲשֶׂה",
+              "surface_plain": "יעשה",
+              "transliteration": "ya'ase",
+              "phonemes_raw": "jaʔasˈe",
+              "phonemes_corrected": "jaʔasˈe",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_feminine_singular": {
+        "form_key": "future_3_feminine_singular",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "תַּעֲשֶׂה",
+        "surface_plain": "תעשה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "ta'ase",
+        "phonemes_raw": "taʔasˈe",
+        "phonemes_corrected": "taʔasˈe",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_3_feminine_singular",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תַּעֲשֶׂה",
+              "surface_plain": "תעשה",
+              "transliteration": "ta'ase",
+              "phonemes_raw": "taʔasˈe",
+              "phonemes_corrected": "taʔasˈe",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_1_plural": {
+        "form_key": "future_1_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "נַעֲשֶׂה",
+        "surface_plain": "נעשה",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "na'ase",
+        "phonemes_raw": "naʔasˈe",
+        "phonemes_corrected": "naʔasˈe",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_1_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "נַעֲשֶׂה",
+              "surface_plain": "נעשה",
+              "transliteration": "na'ase",
+              "phonemes_raw": "naʔasˈe",
+              "phonemes_corrected": "naʔasˈe",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_plural": {
+        "form_key": "future_2_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "תַּעֲשׂוּ",
+        "surface_plain": "תעשו",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "ta'asu",
+        "phonemes_raw": "taʔasˈu",
+        "phonemes_corrected": "taʔasˈu",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_2_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תַּעֲשׂוּ",
+              "surface_plain": "תעשו",
+              "transliteration": "ta'asu",
+              "phonemes_raw": "taʔasˈu",
+              "phonemes_corrected": "taʔasˈu",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_plural": {
+        "form_key": "future_3_plural",
+        "lemma_vocalized": "לַעֲשׂוֹת",
+        "lemma_plain": "לעשות",
+        "surface_vocalized": "יַעֲשׂוּ",
+        "surface_plain": "יעשו",
+        "root": "ע-שׂ-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "ya'asu",
+        "phonemes_raw": "jaʔasˈu",
+        "phonemes_corrected": "jaʔasˈu",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "לעשות",
+              "form_key": "future_3_plural",
+              "root": "ע-שׂ-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "יַעֲשׂוּ",
+              "surface_plain": "יעשו",
+              "transliteration": "ya'asu",
+              "phonemes_raw": "jaʔasˈu",
+              "phonemes_corrected": "jaʔasˈu",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/3-laasot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      }
+    }
+  },
+  "inflector_forms": [
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשִׂיתִי",
+      "surface_plain": "עשיתי",
+      "morphology": "PAST+FIRST+MF+SINGULAR+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "masculine+feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשִׂיתָ",
+      "surface_plain": "עשית",
+      "morphology": "PAST+SECOND+M+SINGULAR+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשִׂית",
+      "surface_plain": "עשית",
+      "morphology": "PAST+SECOND+F+SINGULAR+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשָׂה",
+      "surface_plain": "עשה",
+      "morphology": "PAST+THIRD+M+SINGULAR+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשְׂתָה",
+      "surface_plain": "עשתה",
+      "morphology": "PAST+THIRD+F+SINGULAR+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשִׂינוּ",
+      "surface_plain": "עשינו",
+      "morphology": "PAST+FIRST+MF+PLURAL+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "masculine+feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עֲשִׂיתֶם",
+      "surface_plain": "עשיתם",
+      "morphology": "PAST+SECOND+M+PLURAL+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עֲשִׂיתֶן",
+      "surface_plain": "עשיתן",
+      "morphology": "PAST+SECOND+F+PLURAL+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשׂוּ",
+      "surface_plain": "עשו",
+      "morphology": "PAST+THIRD+M+PLURAL+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 50,
+      "surface_vocalized": "עָשׂוּ",
+      "surface_plain": "עשו",
+      "morphology": "PAST+THIRD+F+PLURAL+COMPLETE",
+      "base_form_vocalized": "עָשָׂה",
+      "base_form_plain": "עשה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 50
+      }
+    }
+  ],
+  "report": {
+    "lemma_vocalized": "לַעֲשׂוֹת",
+    "lemma_plain": "לעשות",
+    "root": "ע-ש-ה",
+    "binyan": "PA'AL",
+    "paradigm_form_count": 22,
+    "inflector_form_count": 53,
+    "sentence_candidates": [
+      {
+        "sentence_id": "svlm-0000034",
+        "original_hebrew": "בפעם הבאה מומלץ לעשות מאמץ מינימלי למציאת תמונות חופשיות בויקישיתוף",
+        "normalized_hebrew": "בפעם הבאה מומלץ לעשות מאמץ מינימלי למציאת תמונות חופשיות בויקישיתוף",
+        "token_count": 10,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "vˈfʔm hˈv mˈmlts lˈʔʃt mˈmts mˈnmlj lˈmtst tˈmnt χˈfʃt vˈkʃtf",
+        "phoneme_inventory": [
+          "f",
+          "h",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t",
+          "v",
+          "ʃ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 14,
+        "complexity_score": 10.0,
+        "approved": false,
+        "source": "svlm"
+      },
+      {
+        "sentence_id": "svlm-0000817",
+        "original_hebrew": "טוב שחזרת צריך לכנס את הכוחות בדחיפות ולהתחיל לעשות רעש",
+        "normalized_hebrew": "טוב שחזרת צריך לכנס את הכוחות בדחיפות ולהתחיל לעשות רעש",
+        "token_count": 10,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "tˈv ʃˈχzʁt tsˈʁχ lˈχns ʔˈt hˈχχt vˈdχft ˈlhtχl lˈʔʃt ʁˈʔʃ",
+        "phoneme_inventory": [
+          "d",
+          "f",
+          "h",
+          "l",
+          "n",
+          "s",
+          "t",
+          "v",
+          "z",
+          "ʁ",
+          "ʃ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 14,
+        "complexity_score": 10.0,
+        "approved": false,
+        "source": "svlm"
+      },
+      {
+        "sentence_id": "svlm-0001459",
+        "original_hebrew": "ההצעה תעזור לעשות את ויקיפדיה יותר אנציקלופדית מדויקת ויפה",
+        "normalized_hebrew": "ההצעה תעזור לעשות את ויקיפדיה יותר אנציקלופדית מדויקת ויפה",
+        "token_count": 9,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "hˈhtsʔ tˈʔzʁ lˈʔʃt ʔˈt ˈkfd jˈtʁ ʔˈntsklfdt mˈdkt ˈf",
+        "phoneme_inventory": [
+          "d",
+          "f",
+          "h",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t",
+          "z",
+          "ʁ",
+          "ʃ",
+          "ʔ",
+          "ˈ"
+        ],
+        "coverage_score": 15,
+        "complexity_score": 9.0,
+        "approved": false,
+        "source": "svlm"
+      }
+    ],
+    "infinitive_pronunciation": {
+      "phonemes_raw": "laʔasˈot",
+      "phonemes_corrected": "laʔasˈot",
+      "transliteration": "",
+      "lexical_stress": 3,
+      "vocal_shva": false,
+      "source": "phonikud+overrides"
+    },
+    "source_comparison": {
+      "lemma": "לעשות",
+      "approved_source": "pealim",
+      "form_reports": {
+        "infinitive": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "לַעֲשׂוֹת",
+              "lexical_stress": 3,
+              "phonemes_corrected": "laʔasˈot"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "לַעֲשׂוֹת",
+            "lexical_stress": 3
+          }
+        },
+        "present_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עוֹשֶׂה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔosˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עוֹשֶׂה",
+            "lexical_stress": 2
+          }
+        },
+        "present_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עוֹשָׂה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔosˈa"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עוֹשָׂה",
+            "lexical_stress": 2
+          }
+        },
+        "present_masculine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עוֹשִׂים",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔosˈim"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עוֹשִׂים",
+            "lexical_stress": 2
+          }
+        },
+        "present_feminine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עוֹשׂוֹת",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔosˈot"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עוֹשׂוֹת",
+            "lexical_stress": 2
+          }
+        },
+        "past_1_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשִׂיתִי",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔasˈiti"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשִׂיתִי",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשִׂיתָ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔasˈita"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשִׂיתָ",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשִׂית",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔasˈit"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשִׂית",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשָׂה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔasˈa"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשָׂה",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשְׂתָה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔastˈa"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשְׂתָה",
+            "lexical_stress": 2
+          }
+        },
+        "past_1_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשִׂינוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔasˈinu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשִׂינוּ",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_masculine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עֲשִׂיתֶם",
+              "lexical_stress": 3,
+              "phonemes_corrected": "ʔasitˈem"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עֲשִׂיתֶם",
+            "lexical_stress": 3
+          }
+        },
+        "past_2_feminine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עֲשִׂיתֶן",
+              "lexical_stress": 3,
+              "phonemes_corrected": "ʔasitˈen"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עֲשִׂיתֶן",
+            "lexical_stress": 3
+          }
+        },
+        "past_3_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "עָשׂוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔasˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "עָשׂוּ",
+            "lexical_stress": 2
+          }
+        },
+        "future_1_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "אֶעֱשֶׂה",
+              "lexical_stress": 3,
+              "phonemes_corrected": "ʔeʔesˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "אֶעֱשֶׂה",
+            "lexical_stress": 3
+          }
+        },
+        "future_2_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תַּעֲשֶׂה",
+              "lexical_stress": 3,
+              "phonemes_corrected": "taʔasˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תַּעֲשֶׂה",
+            "lexical_stress": 3
+          }
+        },
+        "future_2_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תַּעֲשִׂי",
+              "lexical_stress": 3,
+              "phonemes_corrected": "taʔasˈi"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תַּעֲשִׂי",
+            "lexical_stress": 3
+          }
+        },
+        "future_3_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "יַעֲשֶׂה",
+              "lexical_stress": 3,
+              "phonemes_corrected": "jaʔasˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "יַעֲשֶׂה",
+            "lexical_stress": 3
+          }
+        },
+        "future_3_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תַּעֲשֶׂה",
+              "lexical_stress": 3,
+              "phonemes_corrected": "taʔasˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תַּעֲשֶׂה",
+            "lexical_stress": 3
+          }
+        },
+        "future_1_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "נַעֲשֶׂה",
+              "lexical_stress": 3,
+              "phonemes_corrected": "naʔasˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "נַעֲשֶׂה",
+            "lexical_stress": 3
+          }
+        },
+        "future_2_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תַּעֲשׂוּ",
+              "lexical_stress": 3,
+              "phonemes_corrected": "taʔasˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תַּעֲשׂוּ",
+            "lexical_stress": 3
+          }
+        },
+        "future_3_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "יַעֲשׂוּ",
+              "lexical_stress": 3,
+              "phonemes_corrected": "jaʔasˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "יַעֲשׂוּ",
+            "lexical_stress": 3
+          }
+        }
+      }
+    }
+  }
+}

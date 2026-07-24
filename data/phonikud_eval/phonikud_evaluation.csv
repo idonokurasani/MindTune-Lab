@@ -1,0 +1,63 @@
+verb,form_key,hebrew_with_niqqud,hebrew_without_niqqud,transliteration,expected_stress,phonikud_phonemes,phonikud_stress,renikud_phonemes,renikud_stress,manual_override,override_stress,vocal_shva_phonikud,vocal_shva_renikud,vocal_shva_override,azure_status,phonikud_tts_status,mic_tts_status,linguistic_status
+לכתוב,infinitive,לִכְתֹּב,לכתב,lichtov,2,liχtˈov,2,lektˈav,2,liχtˈov,2,False,True,False,plain=generated: azure_plain_לכתוב.mp3; vocalized=generated: azure_vocalized_לכתוב.mp3,generated: phonikud_tts_לכתוב.mp3,generated: mic_hebrew_tts_לכתוב.mp3,verified
+לכתוב,present_masculine_singular,כּוֹתֵב,כותב,kotev,2,kotˈev,2,kotˈev,2,kotˈev,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,present_feminine_singular,כּוֹתֶבֶת,כותבת,kotevet,2,kotevˈet,3,kotˈevet,2,kotˈevet,2,True,True,True,not generated,not generated,not generated,corrected by manual override
+לכתוב,present_masculine_plural,כּוֹתְבִים,כותבים,kotvim,2,kotvˈim,2,kotvˈim,2,kotvˈim,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,present_feminine_plural,כּוֹתְבוֹת,כותבות,kotvot,2,kotvˈot,2,kotvˈot,2,kotvˈot,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,past_1_singular,כָּתַבְתִּי,כתבתי,katavti,2,katavtˈi,3,katˈavti,2,katˈavti,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+לכתוב,past_2_masculine_singular,כָּתַבְתָּ,כתבת,katavta,2,katavtˈa,3,katˈeveta,2,katˈavta,2,False,True,False,not generated,not generated,not generated,corrected by manual override
+לכתוב,past_2_feminine_singular,כָּתַבְתְּ,כתבת,katavt,2,katˈavt,2,katˈeveta,2,katˈavt,2,False,True,False,not generated,not generated,not generated,verified
+לכתוב,past_3_masculine_singular,כָּתַב,כתב,katav,2,katˈav,2,katˈav,2,katˈav,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,past_3_feminine_singular,כָּתְבָה,כתבה,katva,2,katvˈa,2,katvˈa,2,katvˈa,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,past_1_plural,כָּתַבְנוּ,כתבנו,katavnu,2,katavnˈu,3,katˈavnu,2,katˈavnu,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+לכתוב,past_2_masculine_plural,כְּתַבְתֶּם,כתבתם,ktavtem,2,ktavtˈem,2,katˈavtem,2,ktavtˈem,2,False,True,False,not generated,not generated,not generated,verified
+לכתוב,past_2_feminine_plural,כְּתַבְתֶּן,כתבתן,ktavten,2,ktavtˈen,2,katˈavten,2,ktavtˈen,2,False,True,False,not generated,not generated,not generated,verified
+לכתוב,past_3_plural,כָּתְבוּ,כתבו,katvu,2,katvˈu,2,katvˈu,2,katvˈu,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,future_1_singular,אֶכְתֹּב,אכתב,echtov,2,ʔeχtˈov,2,ʔaχtˈav,2,ʔeχtˈov,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,future_2_masculine_singular,תִּכְתֹּב,תכתב,tichtov,2,tiχtˈov,2,tiχtˈav,2,tiχtˈov,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,future_2_feminine_singular,תִּכְתְּבִי,תכתבי,tichtevi,3,tiχtvˈi,2,tiχtevˈi,3,tiχtevˈi,3,False,True,True,not generated,not generated,not generated,corrected by manual override
+לכתוב,future_3_masculine_singular,יִכְתֹּב,יכתב,yichtov,2,jiχtˈov,2,jiχtˈav,2,jiχtˈov,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,future_3_feminine_singular,תִּכְתֹּב,תכתב,tichtov,2,tiχtˈov,2,tiχtˈav,2,tiχtˈov,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,future_1_plural,נִכְתֹּב,נכתב,nichtov,2,niχtˈov,2,niχtˈav,2,niχtˈov,2,False,False,False,not generated,not generated,not generated,verified
+לכתוב,future_2_plural,תִּכְתְּבוּ,תכתבו,tichtevu,3,tiχtvˈu,2,tiχtevˈu,3,tiχtevˈu,3,False,True,True,not generated,not generated,not generated,corrected by manual override
+לכתוב,future_3_plural,יִכְתְּבוּ,יכתבו,yichtevu,3,jiχtvˈu,2,jiχtevˈu,3,jiχtevˈu,3,False,True,True,not generated,not generated,not generated,corrected by manual override
+להיות,infinitive,לִהְיוֹת,להיות,lihyot,2,lihjˈot,2,lihjˈot,2,lihjˈot,2,False,False,False,plain=generated: azure_plain_להיות.mp3; vocalized=generated: azure_vocalized_להיות.mp3,generated: phonikud_tts_להיות.mp3,generated: mic_hebrew_tts_להיות.mp3,verified
+להיות,past_1_singular,הָיִיתִי,הייתי,hayiti,2,hajitˈi,3,hajˈiti,2,hajˈiti,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+להיות,past_2_masculine_singular,הָיִיתָ,היית,hayita,2,hajitˈa,3,hajˈita,2,hajˈita,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+להיות,past_2_feminine_singular,הָיִית,היית,hayit,2,hajˈit,2,hajˈita,2,hajˈit,2,False,False,False,not generated,not generated,not generated,verified
+להיות,past_3_masculine_singular,הָיָה,היה,haya,2,hajˈa,2,hajˈa,2,hajˈa,2,False,False,False,not generated,not generated,not generated,verified
+להיות,past_3_feminine_singular,הָיְתָה,היתה,hayta,2,hajtˈa,2,hajtˈa,2,hajtˈa,2,False,False,False,not generated,not generated,not generated,verified
+להיות,past_1_plural,הָיִינוּ,היינו,hayinu,2,hajinˈu,3,hajˈinu,2,hajˈinu,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+להיות,past_2_masculine_plural,הֱיִיתֶם,הייתם,heyitem,3,hejitˈem,3,hajˈitem,2,hejitˈem,3,False,True,False,not generated,not generated,not generated,verified
+להיות,past_2_feminine_plural,הֱיִיתֶן,הייתן,heyiten,3,hejitˈen,3,hajˈiten,2,hejitˈen,3,False,True,False,not generated,not generated,not generated,verified
+להיות,past_3_plural,הָיוּ,היו,hayu,2,hajˈu,2,hajˈu,2,hajˈu,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_1_singular,אֶהְיֶה,אהיה,ehye,2,ʔehjˈe,2,ʔehjˈe,2,ʔehjˈe,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_2_masculine_singular,תִּהְיֶה,תהיה,tihye,2,tihjˈe,2,tihjˈe,2,tihjˈe,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_2_feminine_singular,תִּהְיִי,תהיי,tihyi,2,tihjˈi,2,tihjˈi,2,tihjˈi,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_3_masculine_singular,יִהְיֶה,יהיה,yihye,2,jihjˈe,2,jihjˈe,2,jihjˈe,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_3_feminine_singular,תִּהְיֶה,תהיה,tihye,2,tihjˈe,2,tihjˈe,2,tihjˈe,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_1_plural,נִהְיֶה,נהיה,nihye,2,nihjˈe,2,nihjˈe,2,nihjˈe,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_2_plural,תִּהְיוּ,תהיו,tihyu,2,tihjˈu,2,tihjˈu,2,tihjˈu,2,False,False,False,not generated,not generated,not generated,verified
+להיות,future_3_plural,יִהְיוּ,יהיו,yihyu,2,jihjˈu,2,jihjˈu,2,jihjˈu,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,infinitive,לַעֲשׂוֹת,לעשות,la'asot,3,laʔasˈot,3,laʔasˈot,3,laʔasˈot,3,False,False,False,plain=generated: azure_plain_לעשות.mp3; vocalized=generated: azure_vocalized_לעשות.mp3,generated: phonikud_tts_לעשות.mp3,generated: mic_hebrew_tts_לעשות.mp3,verified
+לעשות,present_masculine_singular,עוֹשֶׂה,עושה,ose,2,ʔosˈe,2,ʔosˈa,2,ʔosˈe,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,present_feminine_singular,עוֹשָׂה,עושה,osa,2,ʔosˈa,2,ʔosˈa,2,ʔosˈa,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,present_masculine_plural,עוֹשִׂים,עושים,osim,2,ʔosˈim,2,ʔosˈim,2,ʔosˈim,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,present_feminine_plural,עוֹשׂוֹת,עושות,osot,2,ʔosˈot,2,ʔosˈot,2,ʔosˈot,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,past_1_singular,עָשִׂיתִי,עשיתי,asiti,2,ʔasitˈi,3,ʔasˈiti,2,ʔasˈiti,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+לעשות,past_2_masculine_singular,עָשִׂיתָ,עשית,asita,2,ʔasitˈa,3,ʔasˈita,2,ʔasˈita,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+לעשות,past_2_feminine_singular,עָשִׂית,עשית,asit,2,ʔasˈit,2,ʔasˈita,2,ʔasˈit,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,past_3_masculine_singular,עָשָׂה,עשה,asa,2,ʔasˈa,2,ʔasˈa,2,ʔasˈa,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,past_3_feminine_singular,עָשְׂתָה,עשתה,asta,2,ʔastˈa,2,ʔastˈa,2,ʔastˈa,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,past_1_plural,עָשִׂינוּ,עשינו,asinu,2,ʔasinˈu,3,ʔasˈinu,2,ʔasˈinu,2,False,False,False,not generated,not generated,not generated,corrected by manual override
+לעשות,past_2_masculine_plural,עֲשִׂיתֶם,עשיתם,asitem,3,ʔasitˈem,3,ʔasˈitem,2,ʔasitˈem,3,False,True,False,not generated,not generated,not generated,verified
+לעשות,past_2_feminine_plural,עֲשִׂיתֶן,עשיתן,asiten,3,ʔasitˈen,3,ʔasˈiten,2,ʔasitˈen,3,False,True,False,not generated,not generated,not generated,verified
+לעשות,past_3_plural,עָשׂוּ,עשו,asu,2,ʔasˈu,2,ʔasˈu,2,ʔasˈu,2,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_1_singular,אֶעֱשֶׂה,אעשה,e'ese,3,ʔeʔesˈe,3,ʔeʔeʃˈe,3,ʔeʔesˈe,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_2_masculine_singular,תַּעֲשֶׂה,תעשה,ta'ase,3,taʔasˈe,3,taʔasˈe,3,taʔasˈe,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_2_feminine_singular,תַּעֲשִׂי,תעשי,ta'asi,3,taʔasˈi,3,taʔasˈi,3,taʔasˈi,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_3_masculine_singular,יַעֲשֶׂה,יעשה,ya'ase,3,jaʔasˈe,3,jaʔasˈe,3,jaʔasˈe,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_3_feminine_singular,תַּעֲשֶׂה,תעשה,ta'ase,3,taʔasˈe,3,taʔasˈe,3,taʔasˈe,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_1_plural,נַעֲשֶׂה,נעשה,na'ase,3,naʔasˈe,3,naʔasˈe,3,naʔasˈe,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_2_plural,תַּעֲשׂוּ,תעשו,ta'asu,3,taʔasˈu,3,taʔasˈu,3,taʔasˈu,3,False,False,False,not generated,not generated,not generated,verified
+לעשות,future_3_plural,יַעֲשׂוּ,יעשו,ya'asu,3,jaʔasˈu,3,jaʔasˈu,3,jaʔasˈu,3,False,False,False,not generated,not generated,not generated,verified

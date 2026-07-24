@@ -1,0 +1,252 @@
+=== docker build -t mpe:phase4b1 . ===
+(build succeeded, image mpe:phase4b1)
+
+=== docker run --rm mpe:phase4b1 python -m unittest discover -s packages/mpe/tests -p 'test_*.py' -v ===
+test_enum_values_list (test_enums.EnumTests.test_enum_values_list) ... ok
+test_invalid_values_rejected (test_enums.EnumTests.test_invalid_values_rejected) ... ok
+test_optional_enum_allows_none (test_enums.EnumTests.test_optional_enum_allows_none) ... ok
+test_required_enum_cannot_be_none (test_enums.EnumTests.test_required_enum_cannot_be_none) ... ok
+test_valid_canonical_values_accepted (test_enums.EnumTests.test_valid_canonical_values_accepted) ... ok
+test_append_and_read (test_event_store.InMemoryEventStoreTests.test_append_and_read) ... ok
+test_expected_version_success (test_event_store.InMemoryEventStoreTests.test_expected_version_success) ... ok
+test_optimistic_concurrency_failure (test_event_store.InMemoryEventStoreTests.test_optimistic_concurrency_failure) ... ok
+test_payload_validation (test_event_store.InMemoryEventStoreTests.test_payload_validation) ... ok
+test_provenance_must_exist (test_event_store.InMemoryEventStoreTests.test_provenance_must_exist) ... ok
+test_sequence_number_monotonicity (test_event_store.InMemoryEventStoreTests.test_sequence_number_monotonicity) ... ok
+test_session_isolation (test_event_store.InMemoryEventStoreTests.test_session_isolation) ... ok
+test_stored_events_are_immutable (test_event_store.InMemoryEventStoreTests.test_stored_events_are_immutable) ... ok
+test_timestamp_must_be_non_decreasing (test_event_store.InMemoryEventStoreTests.test_timestamp_must_be_non_decreasing) ... ok
+test_empty_identifier_rejected (test_identifiers.IdentifierTests.test_empty_identifier_rejected) ... ok
+test_identifier_type_safety (test_identifiers.IdentifierTests.test_identifier_type_safety) ... ok
+test_identifiers_are_hashable (test_identifiers.IdentifierTests.test_identifiers_are_hashable) ... ok
+test_make_id_creates_typed_uuids (test_identifiers.IdentifierTests.test_make_id_creates_typed_uuids) ... ok
+test_valid_identifier (test_identifiers.IdentifierTests.test_valid_identifier) ... ok
+test_captured_response_follows_observation (test_invariants.InvariantTests.test_captured_response_follows_observation) ... ok
+test_completed_session_cannot_emit_normal_flow_events (test_invariants.InvariantTests.test_completed_session_cannot_emit_normal_flow_events) ... ok
+test_evaluation_follows_domain_normalization (test_invariants.InvariantTests.test_evaluation_follows_domain_normalization) ... ok
+test_sequence_numbers_never_decrease (test_invariants.InvariantTests.test_sequence_numbers_never_decrease) ... ok
+test_evaluator_abstention (test_providers.ProviderTests.test_evaluator_abstention) ... ok
+test_evaluator_correct_when_matching (test_providers.ProviderTests.test_evaluator_correct_when_matching) ... ok
+test_evaluator_incorrect_when_mismatch (test_providers.ProviderTests.test_evaluator_incorrect_when_mismatch) ... ok
+test_interpreter_typed_output (test_providers.ProviderTests.test_interpreter_typed_output) ... ok
+test_keyboard_observation_deterministic (test_providers.ProviderTests.test_keyboard_observation_deterministic) ... ok
+test_keyboard_timeout (test_providers.ProviderTests.test_keyboard_timeout) ... ok
+test_normalizer_passes_through (test_providers.ProviderTests.test_normalizer_passes_through) ... ok
+test_renderer_deterministic_output (test_providers.ProviderTests.test_renderer_deterministic_output) ... ok
+test_renderer_failure (test_providers.ProviderTests.test_renderer_failure) ... ok
+test_scheduler_failure (test_providers.ProviderTests.test_scheduler_failure) ... ok
+test_scheduler_single_item_then_end (test_providers.ProviderTests.test_scheduler_single_item_then_end) ... ok
+test_complete_mock_session (test_reference_flow.ReferenceFlowTests.test_complete_mock_session) ... ok
+test_full_replay_matches_live_state (test_replay.ReplayTests.test_full_replay_matches_live_state) ... ok
+test_partial_replay_of_first_events (test_replay.ReplayTests.test_partial_replay_of_first_events) ... ok
+test_repeated_replay_is_equal (test_replay.ReplayTests.test_repeated_replay_is_equal) ... ok
+test_captured_response_without_window_is_illegal (test_state_machines.StateMachineTests.test_captured_response_without_window_is_illegal) ... ok
+test_evaluation_without_response_window_is_illegal (test_state_machines.StateMachineTests.test_evaluation_without_response_window_is_illegal) ... ok
+test_session_completed_from_created_is_illegal (test_state_machines.StateMachineTests.test_session_completed_from_created_is_illegal) ... ok
+test_session_lifecycle_valid (test_state_machines.StateMachineTests.test_session_lifecycle_valid) ... ok
+
+----------------------------------------------------------------------
+Ran 42 tests in 0.007s
+
+OK
+
+=== docker run --rm mpe:phase4b1 python -m mpe.demo ===
+======================================================================
+MindTune MPE Phase 4B.1 — Mock Session Demonstration
+======================================================================
+Events emitted: 22
+Session status (live):    SessionStatus.COMPLETED
+Session status (replay):  SessionStatus.COMPLETED
+Trial count (live):       1
+Trial count (replay):     1
+Terminal (live):          True
+Terminal (replay):        True
+Live/Replay state match:  True
+
+Canonical event sequence:
+   1  session_created
+   2  session_started
+   3  schedule_decision
+   4  block_started
+   5  trial_created
+   6  instruction_started
+   7  instruction_completed
+   8  stimulus_requested
+   9  stimulus_ready
+  10  instruction_started
+  11  instruction_completed
+  12  response_window_opened
+  13  observation_received
+  14  captured_response_created
+  15  response_interpreted
+  16  domain_response_normalized
+  17  evaluation_completed
+  18  feedback_started
+  19  feedback_completed
+  20  schedule_decision
+  21  block_completed
+  22  session_completed
+
+Live execution and deterministic replay produced the same terminal
+MPE state without requiring changes to the approved MPE v1.1 architecture.
+
+=== docker run --rm mpe:phase4b1 python -m mypy packages/mpe/src/mpe ===
+Success: no issues found in 13 source files
+
+=== docker run --rm mpe:phase4b1 python -m ruff check packages/mpe/src/mpe ===
+All checks passed!
+
+=== docker compose -f compose/testing.yaml up --build (exit code check) ===
+ Image compose-mpe-test Building 
+#1 [internal] load local bake definitions
+#1 reading from stdin 592B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 1.16kB done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim
+#3 ...
+
+#4 [auth] library/python:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.11-slim
+#3 DONE 1.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 187B done
+#5 DONE 0.0s
+
+#6 [1/7] FROM docker.io/library/python:3.11-slim@sha256:db3ff2e1800a8581e2c48a27c3995339d47bdf046da21c7627accd3d51053a93
+#6 resolve docker.io/library/python:3.11-slim@sha256:db3ff2e1800a8581e2c48a27c3995339d47bdf046da21c7627accd3d51053a93 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 3.21kB done
+#7 DONE 0.0s
+
+#8 [6/7] COPY packages/mpe /app/packages/mpe
+#8 CACHED
+
+#9 [4/7] COPY requirements.txt .
+#9 CACHED
+
+#10 [2/7] WORKDIR /app
+#10 CACHED
+
+#11 [5/7] RUN pip install --no-cache-dir -r requirements.txt
+#11 CACHED
+
+#12 [3/7] RUN apt-get update     && apt-get install -y --no-install-recommends gcc libc6-dev     && rm -rf /var/lib/apt/lists/*     && useradd -m -u 1000 mpe     && mkdir -p /tmp/ruff_cache /tmp/mypy_cache     && chown -R mpe:mpe /tmp/ruff_cache /tmp/mypy_cache
+#12 CACHED
+
+#13 [7/7] RUN pip install --no-cache-dir -e ./packages/mpe
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:99f83ab31100e5d7eee09b53ccb6b9ba6e2428effc15127d2fa51c8e007a0b8c done
+#14 exporting config sha256:53666a8f77e378e81a2271d205120b1f0e269717e8b56d753204fdeb7a58f507 done
+#14 exporting attestation manifest sha256:40d17dcd56fbb1d67813f115dc4fe88f7bf0903435c694db1a01588224e99146 0.0s done
+#14 exporting manifest list sha256:b965d015882a24c18289cde31aa1211ab49cc403e433e604f1a88ec051e699d1 done
+#14 naming to docker.io/library/compose-mpe-test:latest done
+#14 unpacking to docker.io/library/compose-mpe-test:latest 0.0s done
+#14 DONE 0.1s
+
+#15 resolving provenance for metadata file
+#15 DONE 0.0s
+ Image compose-mpe-test Built 
+ Container compose-mpe-test-1 Recreate 
+ Container compose-mpe-test-1 Recreated 
+Attaching to mpe-test-1
+ Container compose-mpe-test-1 Starting 
+ Container compose-mpe-test-1 Started 
+mpe-test-1  | test_enum_values_list (test_enums.EnumTests.test_enum_values_list) ... ok
+mpe-test-1  | test_invalid_values_rejected (test_enums.EnumTests.test_invalid_values_rejected) ... ok
+mpe-test-1  | test_optional_enum_allows_none (test_enums.EnumTests.test_optional_enum_allows_none) ... ok
+mpe-test-1  | test_required_enum_cannot_be_none (test_enums.EnumTests.test_required_enum_cannot_be_none) ... ok
+mpe-test-1  | test_valid_canonical_values_accepted (test_enums.EnumTests.test_valid_canonical_values_accepted) ... ok
+mpe-test-1  | test_append_and_read (test_event_store.InMemoryEventStoreTests.test_append_and_read) ... ok
+mpe-test-1  | test_expected_version_success (test_event_store.InMemoryEventStoreTests.test_expected_version_success) ... ok
+mpe-test-1  | test_optimistic_concurrency_failure (test_event_store.InMemoryEventStoreTests.test_optimistic_concurrency_failure) ... ok
+mpe-test-1  | test_payload_validation (test_event_store.InMemoryEventStoreTests.test_payload_validation) ... ok
+mpe-test-1  | test_provenance_must_exist (test_event_store.InMemoryEventStoreTests.test_provenance_must_exist) ... ok
+mpe-test-1  | test_sequence_number_monotonicity (test_event_store.InMemoryEventStoreTests.test_sequence_number_monotonicity) ... ok
+mpe-test-1  | test_session_isolation (test_event_store.InMemoryEventStoreTests.test_session_isolation) ... ok
+mpe-test-1  | test_stored_events_are_immutable (test_event_store.InMemoryEventStoreTests.test_stored_events_are_immutable) ... ok
+mpe-test-1  | test_timestamp_must_be_non_decreasing (test_event_store.InMemoryEventStoreTests.test_timestamp_must_be_non_decreasing) ... ok
+mpe-test-1  | test_empty_identifier_rejected (test_identifiers.IdentifierTests.test_empty_identifier_rejected) ... ok
+mpe-test-1  | test_identifier_type_safety (test_identifiers.IdentifierTests.test_identifier_type_safety) ... ok
+mpe-test-1  | test_identifiers_are_hashable (test_identifiers.IdentifierTests.test_identifiers_are_hashable) ... ok
+mpe-test-1  | test_make_id_creates_typed_uuids (test_identifiers.IdentifierTests.test_make_id_creates_typed_uuids) ... ok
+mpe-test-1  | test_valid_identifier (test_identifiers.IdentifierTests.test_valid_identifier) ... ok
+mpe-test-1  | test_captured_response_follows_observation (test_invariants.InvariantTests.test_captured_response_follows_observation) ... ok
+mpe-test-1  | test_completed_session_cannot_emit_normal_flow_events (test_invariants.InvariantTests.test_completed_session_cannot_emit_normal_flow_events) ... ok
+mpe-test-1  | test_evaluation_follows_domain_normalization (test_invariants.InvariantTests.test_evaluation_follows_domain_normalization) ... ok
+mpe-test-1  | test_sequence_numbers_never_decrease (test_invariants.InvariantTests.test_sequence_numbers_never_decrease) ... ok
+mpe-test-1  | test_evaluator_abstention (test_providers.ProviderTests.test_evaluator_abstention) ... ok
+mpe-test-1  | test_evaluator_correct_when_matching (test_providers.ProviderTests.test_evaluator_correct_when_matching) ... ok
+mpe-test-1  | test_evaluator_incorrect_when_mismatch (test_providers.ProviderTests.test_evaluator_incorrect_when_mismatch) ... ok
+mpe-test-1  | test_interpreter_typed_output (test_providers.ProviderTests.test_interpreter_typed_output) ... ok
+mpe-test-1  | test_keyboard_observation_deterministic (test_providers.ProviderTests.test_keyboard_observation_deterministic) ... ok
+mpe-test-1  | test_keyboard_timeout (test_providers.ProviderTests.test_keyboard_timeout) ... ok
+mpe-test-1  | test_normalizer_passes_through (test_providers.ProviderTests.test_normalizer_passes_through) ... ok
+mpe-test-1  | test_renderer_deterministic_output (test_providers.ProviderTests.test_renderer_deterministic_output) ... ok
+mpe-test-1  | test_renderer_failure (test_providers.ProviderTests.test_renderer_failure) ... ok
+mpe-test-1  | test_scheduler_failure (test_providers.ProviderTests.test_scheduler_failure) ... ok
+mpe-test-1  | test_scheduler_single_item_then_end (test_providers.ProviderTests.test_scheduler_single_item_then_end) ... ok
+mpe-test-1  | test_complete_mock_session (test_reference_flow.ReferenceFlowTests.test_complete_mock_session) ... ok
+mpe-test-1  | test_full_replay_matches_live_state (test_replay.ReplayTests.test_full_replay_matches_live_state) ... ok
+mpe-test-1  | test_partial_replay_of_first_events (test_replay.ReplayTests.test_partial_replay_of_first_events) ... ok
+mpe-test-1  | test_repeated_replay_is_equal (test_replay.ReplayTests.test_repeated_replay_is_equal) ... ok
+mpe-test-1  | test_captured_response_without_window_is_illegal (test_state_machines.StateMachineTests.test_captured_response_without_window_is_illegal) ... ok
+mpe-test-1  | test_evaluation_without_response_window_is_illegal (test_state_machines.StateMachineTests.test_evaluation_without_response_window_is_illegal) ... ok
+mpe-test-1  | test_session_completed_from_created_is_illegal (test_state_machines.StateMachineTests.test_session_completed_from_created_is_illegal) ... ok
+mpe-test-1  | test_session_lifecycle_valid (test_state_machines.StateMachineTests.test_session_lifecycle_valid) ... ok
+mpe-test-1  | 
+mpe-test-1  | ----------------------------------------------------------------------
+mpe-test-1  | Ran 42 tests in 0.011s
+mpe-test-1  | 
+mpe-test-1  | OK
+mpe-test-1  | ======================================================================
+mpe-test-1  | MindTune MPE Phase 4B.1 — Mock Session Demonstration
+mpe-test-1  | ======================================================================
+mpe-test-1  | Events emitted: 22
+mpe-test-1  | Session status (live):    SessionStatus.COMPLETED
+mpe-test-1  | Session status (replay):  SessionStatus.COMPLETED
+mpe-test-1  | Trial count (live):       1
+mpe-test-1  | Trial count (replay):     1
+mpe-test-1  | Terminal (live):          True
+mpe-test-1  | Terminal (replay):        True
+mpe-test-1  | Live/Replay state match:  True
+mpe-test-1  | 
+mpe-test-1  | Canonical event sequence:
+mpe-test-1  |    1  session_created
+mpe-test-1  |    2  session_started
+mpe-test-1  |    3  schedule_decision
+mpe-test-1  |    4  block_started
+mpe-test-1  |    5  trial_created
+mpe-test-1  |    6  instruction_started
+mpe-test-1  |    7  instruction_completed
+mpe-test-1  |    8  stimulus_requested
+mpe-test-1  |    9  stimulus_ready
+mpe-test-1  |   10  instruction_started
+mpe-test-1  |   11  instruction_completed
+mpe-test-1  |   12  response_window_opened
+mpe-test-1  |   13  observation_received
+mpe-test-1  |   14  captured_response_created
+mpe-test-1  |   15  response_interpreted
+mpe-test-1  |   16  domain_response_normalized
+mpe-test-1  |   17  evaluation_completed
+mpe-test-1  |   18  feedback_started
+mpe-test-1  |   19  feedback_completed
+mpe-test-1  |   20  schedule_decision
+mpe-test-1  |   21  block_completed
+mpe-test-1  |   22  session_completed
+mpe-test-1  | 
+mpe-test-1  | Live execution and deterministic replay produced the same terminal
+mpe-test-1  | MPE state without requiring changes to the approved MPE v1.1 architecture.
+[Kmpe-test-1 exited with code 0
+exit code: 0

@@ -1,0 +1,1613 @@
+{
+  "paradigm": {
+    "lemma": {
+      "lemma_vocalized": "לִהְיוֹת",
+      "lemma_plain": "להיות",
+      "root": "ה-י-ה",
+      "binyan": "PA'AL",
+      "infinitive_form": null,
+      "forms": {}
+    },
+    "forms": {
+      "infinitive": {
+        "form_key": "infinitive",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "לִהְיוֹת",
+        "surface_plain": "להיות",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "infinitive",
+        "mood": "",
+        "person": "",
+        "gender": "",
+        "number": "",
+        "transliteration": "lihyot",
+        "phonemes_raw": "lihjˈot",
+        "phonemes_corrected": "lihjˈot",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "infinitive",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "לִהְיוֹת",
+              "surface_plain": "להיות",
+              "transliteration": "lihyot",
+              "phonemes_raw": "lihjˈot",
+              "phonemes_corrected": "lihjˈot",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "infinitive",
+                "mood": "",
+                "person": "",
+                "gender": "",
+                "number": "",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_1_singular": {
+        "form_key": "past_1_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיִיתִי",
+        "surface_plain": "הייתי",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "singular",
+        "transliteration": "hayiti",
+        "phonemes_raw": "hajitˈi",
+        "phonemes_corrected": "hajˈiti",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_1_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיִיתִי",
+              "surface_plain": "הייתי",
+              "transliteration": "hayiti",
+              "phonemes_raw": "hajitˈi",
+              "phonemes_corrected": "hajˈiti",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_masculine_singular": {
+        "form_key": "past_2_masculine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיִיתָ",
+        "surface_plain": "היית",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "hayita",
+        "phonemes_raw": "hajitˈa",
+        "phonemes_corrected": "hajˈita",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_2_masculine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיִיתָ",
+              "surface_plain": "היית",
+              "transliteration": "hayita",
+              "phonemes_raw": "hajitˈa",
+              "phonemes_corrected": "hajˈita",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_feminine_singular": {
+        "form_key": "past_2_feminine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיִית",
+        "surface_plain": "היית",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "hayit",
+        "phonemes_raw": "hajˈit",
+        "phonemes_corrected": "hajˈit",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_2_feminine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיִית",
+              "surface_plain": "היית",
+              "transliteration": "hayit",
+              "phonemes_raw": "hajˈit",
+              "phonemes_corrected": "hajˈit",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_masculine_singular": {
+        "form_key": "past_3_masculine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיָה",
+        "surface_plain": "היה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "haya",
+        "phonemes_raw": "hajˈa",
+        "phonemes_corrected": "hajˈa",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_3_masculine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיָה",
+              "surface_plain": "היה",
+              "transliteration": "haya",
+              "phonemes_raw": "hajˈa",
+              "phonemes_corrected": "hajˈa",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_feminine_singular": {
+        "form_key": "past_3_feminine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיְתָה",
+        "surface_plain": "היתה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "hayta",
+        "phonemes_raw": "hajtˈa",
+        "phonemes_corrected": "hajtˈa",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_3_feminine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיְתָה",
+              "surface_plain": "היתה",
+              "transliteration": "hayta",
+              "phonemes_raw": "hajtˈa",
+              "phonemes_corrected": "hajtˈa",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_1_plural": {
+        "form_key": "past_1_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיִינוּ",
+        "surface_plain": "היינו",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "hayinu",
+        "phonemes_raw": "hajinˈu",
+        "phonemes_corrected": "hajˈinu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_1_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיִינוּ",
+              "surface_plain": "היינו",
+              "transliteration": "hayinu",
+              "phonemes_raw": "hajinˈu",
+              "phonemes_corrected": "hajˈinu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_masculine_plural": {
+        "form_key": "past_2_masculine_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הֱיִיתֶם",
+        "surface_plain": "הייתם",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "transliteration": "heyitem",
+        "phonemes_raw": "hejitˈem",
+        "phonemes_corrected": "hejitˈem",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_2_masculine_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הֱיִיתֶם",
+              "surface_plain": "הייתם",
+              "transliteration": "heyitem",
+              "phonemes_raw": "hejitˈem",
+              "phonemes_corrected": "hejitˈem",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_2_feminine_plural": {
+        "form_key": "past_2_feminine_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הֱיִיתֶן",
+        "surface_plain": "הייתן",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "plural",
+        "transliteration": "heyiten",
+        "phonemes_raw": "hejitˈen",
+        "phonemes_corrected": "hejitˈen",
+        "lexical_stress": 3,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_2_feminine_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הֱיִיתֶן",
+              "surface_plain": "הייתן",
+              "transliteration": "heyiten",
+              "phonemes_raw": "hejitˈen",
+              "phonemes_corrected": "hejitˈen",
+              "lexical_stress": 3,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "past_3_plural": {
+        "form_key": "past_3_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "הָיוּ",
+        "surface_plain": "היו",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "hayu",
+        "phonemes_raw": "hajˈu",
+        "phonemes_corrected": "hajˈu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "past_3_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "הָיוּ",
+              "surface_plain": "היו",
+              "transliteration": "hayu",
+              "phonemes_raw": "hajˈu",
+              "phonemes_corrected": "hajˈu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "past",
+                "mood": "",
+                "person": "third",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_1_singular": {
+        "form_key": "future_1_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "אֶהְיֶה",
+        "surface_plain": "אהיה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "singular",
+        "transliteration": "ehye",
+        "phonemes_raw": "ʔehjˈe",
+        "phonemes_corrected": "ʔehjˈe",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_1_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "אֶהְיֶה",
+              "surface_plain": "אהיה",
+              "transliteration": "ehye",
+              "phonemes_raw": "ʔehjˈe",
+              "phonemes_corrected": "ʔehjˈe",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_masculine_singular": {
+        "form_key": "future_2_masculine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "תִּהְיֶה",
+        "surface_plain": "תהיה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "tihye",
+        "phonemes_raw": "tihjˈe",
+        "phonemes_corrected": "tihjˈe",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_2_masculine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּהְיֶה",
+              "surface_plain": "תהיה",
+              "transliteration": "tihye",
+              "phonemes_raw": "tihjˈe",
+              "phonemes_corrected": "tihjˈe",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_feminine_singular": {
+        "form_key": "future_2_feminine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "תִּהְיִי",
+        "surface_plain": "תהיי",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "tihyi",
+        "phonemes_raw": "tihjˈi",
+        "phonemes_corrected": "tihjˈi",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_2_feminine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּהְיִי",
+              "surface_plain": "תהיי",
+              "transliteration": "tihyi",
+              "phonemes_raw": "tihjˈi",
+              "phonemes_corrected": "tihjˈi",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_masculine_singular": {
+        "form_key": "future_3_masculine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "יִהְיֶה",
+        "surface_plain": "יהיה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "transliteration": "yihye",
+        "phonemes_raw": "jihjˈe",
+        "phonemes_corrected": "jihjˈe",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_3_masculine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "יִהְיֶה",
+              "surface_plain": "יהיה",
+              "transliteration": "yihye",
+              "phonemes_raw": "jihjˈe",
+              "phonemes_corrected": "jihjˈe",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "masculine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_feminine_singular": {
+        "form_key": "future_3_feminine_singular",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "תִּהְיֶה",
+        "surface_plain": "תהיה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "transliteration": "tihye",
+        "phonemes_raw": "tihjˈe",
+        "phonemes_corrected": "tihjˈe",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_3_feminine_singular",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּהְיֶה",
+              "surface_plain": "תהיה",
+              "transliteration": "tihye",
+              "phonemes_raw": "tihjˈe",
+              "phonemes_corrected": "tihjˈe",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "feminine",
+                "number": "singular",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_1_plural": {
+        "form_key": "future_1_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "נִהְיֶה",
+        "surface_plain": "נהיה",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "first",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "nihye",
+        "phonemes_raw": "nihjˈe",
+        "phonemes_corrected": "nihjˈe",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_1_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "נִהְיֶה",
+              "surface_plain": "נהיה",
+              "transliteration": "nihye",
+              "phonemes_raw": "nihjˈe",
+              "phonemes_corrected": "nihjˈe",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "first",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_2_plural": {
+        "form_key": "future_2_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "תִּהְיוּ",
+        "surface_plain": "תהיו",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "second",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "tihyu",
+        "phonemes_raw": "tihjˈu",
+        "phonemes_corrected": "tihjˈu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_2_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "תִּהְיוּ",
+              "surface_plain": "תהיו",
+              "transliteration": "tihyu",
+              "phonemes_raw": "tihjˈu",
+              "phonemes_corrected": "tihjˈu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "second",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      },
+      "future_3_plural": {
+        "form_key": "future_3_plural",
+        "lemma_vocalized": "לִהְיוֹת",
+        "lemma_plain": "להיות",
+        "surface_vocalized": "יִהְיוּ",
+        "surface_plain": "יהיו",
+        "root": "ה-י-ה",
+        "binyan": "PA'AL",
+        "tense": "future",
+        "mood": "",
+        "person": "third",
+        "gender": "",
+        "number": "plural",
+        "transliteration": "yihyu",
+        "phonemes_raw": "jihjˈu",
+        "phonemes_corrected": "jihjˈu",
+        "lexical_stress": 2,
+        "vocal_shva": false,
+        "source_evidence": [
+          {
+            "source": "pealim",
+            "record": {
+              "verb_query": "להיות",
+              "form_key": "future_3_plural",
+              "root": "ה-י-ה",
+              "binyan": "PA'AL",
+              "surface_vocalized": "יִהְיוּ",
+              "surface_plain": "יהיו",
+              "transliteration": "yihyu",
+              "phonemes_raw": "jihjˈu",
+              "phonemes_corrected": "jihjˈu",
+              "lexical_stress": 2,
+              "vocal_shva": false,
+              "morphology": {
+                "root": "",
+                "binyan": "",
+                "tense": "future",
+                "mood": "",
+                "person": "third",
+                "gender": "",
+                "number": "plural",
+                "completeness": "",
+                "pattern": "",
+                "table_number": 0
+              },
+              "source_url": "https://www.pealim.com/dict/454-lihyot/",
+              "approval_status": "approved"
+            },
+            "confidence": 1.0,
+            "trust_tier": 3
+          }
+        ],
+        "applied_overrides": [],
+        "approval_status": "approved",
+        "unresolved_conflicts": []
+      }
+    }
+  },
+  "inflector_forms": [
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיִיתִי",
+      "surface_plain": "הייתי",
+      "morphology": "PAST+FIRST+MF+SINGULAR+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "masculine+feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיִיתָ",
+      "surface_plain": "היית",
+      "morphology": "PAST+SECOND+M+SINGULAR+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיִית",
+      "surface_plain": "היית",
+      "morphology": "PAST+SECOND+F+SINGULAR+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיָה",
+      "surface_plain": "היה",
+      "morphology": "PAST+THIRD+M+SINGULAR+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "masculine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיְיתָה",
+      "surface_plain": "הייתה",
+      "morphology": "PAST+THIRD+F+SINGULAR+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיְתָה",
+      "surface_plain": "היתה",
+      "morphology": "PAST+THIRD+F+SINGULAR+MISSING",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "third",
+        "gender": "feminine",
+        "number": "singular",
+        "completeness": "missing",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הָיִינוּ",
+      "surface_plain": "היינו",
+      "morphology": "PAST+FIRST+MF+PLURAL+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "first",
+        "gender": "masculine+feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הֲיִיתֶם",
+      "surface_plain": "הייתם",
+      "morphology": "PAST+SECOND+M+PLURAL+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הֱיִיתֶם",
+      "surface_plain": "הייתם",
+      "morphology": "PAST+SECOND+M+PLURAL+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "masculine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    },
+    {
+      "pattern": "A",
+      "table_number": 56,
+      "surface_vocalized": "הֲיִיתֶן",
+      "surface_plain": "הייתן",
+      "morphology": "PAST+SECOND+F+PLURAL+COMPLETE",
+      "base_form_vocalized": "הָיָה",
+      "base_form_plain": "היה",
+      "binyan": "PA'AL",
+      "features": {
+        "root": "",
+        "binyan": "",
+        "tense": "past",
+        "mood": "",
+        "person": "second",
+        "gender": "feminine",
+        "number": "plural",
+        "completeness": "complete",
+        "pattern": "A",
+        "table_number": 56
+      }
+    }
+  ],
+  "report": {
+    "lemma_vocalized": "לִהְיוֹת",
+    "lemma_plain": "להיות",
+    "root": "ה-י-ה",
+    "binyan": "PA'AL",
+    "paradigm_form_count": 18,
+    "inflector_form_count": 44,
+    "sentence_candidates": [
+      {
+        "sentence_id": "svlm-0000074",
+        "original_hebrew": "ההגדרה האפשרית היחידה של קיצוניות חייבת להיות יחסית למרכז מסוים",
+        "normalized_hebrew": "ההגדרה האפשרית היחידה של קיצוניות חייבת להיות יחסית למרכז מסוים",
+        "token_count": 10,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "hˈhɡdʁ hˈfʃʁt hˈχd ʃˈl kˈtsnt χˈvt lˈht jˈχst lˈmʁχz mˈsm",
+        "phoneme_inventory": [
+          "d",
+          "f",
+          "h",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t",
+          "v",
+          "z",
+          "ɡ",
+          "ʁ",
+          "ʃ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 17,
+        "complexity_score": 10.0,
+        "approved": false,
+        "source": "svlm"
+      },
+      {
+        "sentence_id": "svlm-0000142",
+        "original_hebrew": "משם המשיך ללמוד בקולג' המלכותי לאומנות שבלונדון במטרה להיות צייר",
+        "normalized_hebrew": "משם המשיך ללמוד בקולג' המלכותי לאומנות שבלונדון במטרה להיות צייר",
+        "token_count": 10,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "mˈʃm hˈmʃχ lˈlmd vˈkldʒ hˈmlχtj lˈʔmnt ʃˈvlndn vˈmtʁ lˈht tsˈʁ",
+        "phoneme_inventory": [
+          "d",
+          "h",
+          "j",
+          "k",
+          "l",
+          "m",
+          "n",
+          "s",
+          "t",
+          "v",
+          "ʁ",
+          "ʃ",
+          "ʒ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 16,
+        "complexity_score": 10.0,
+        "approved": false,
+        "source": "svlm"
+      },
+      {
+        "sentence_id": "svlm-0000167",
+        "original_hebrew": "השאלה צריכה להיות כיצד מתייחסים לאירוע בספרות המקצועית לדעתי",
+        "normalized_hebrew": "השאלה צריכה להיות כיצד מתייחסים לאירוע בספרות המקצועית לדעתי",
+        "token_count": 9,
+        "detected_lemmas": [],
+        "detected_roots": [],
+        "phonemes": "hˈʃl tsˈʁχ lˈht χˈtsd mˈtχsm lˈʁ vˈsfʁt hˈmktsʔt lˈdʔtj",
+        "phoneme_inventory": [
+          "d",
+          "f",
+          "h",
+          "j",
+          "k",
+          "l",
+          "m",
+          "s",
+          "t",
+          "v",
+          "ʁ",
+          "ʃ",
+          "ʔ",
+          "ˈ",
+          "χ"
+        ],
+        "coverage_score": 15,
+        "complexity_score": 9.0,
+        "approved": false,
+        "source": "svlm"
+      }
+    ],
+    "infinitive_pronunciation": {
+      "phonemes_raw": "lihjˈot",
+      "phonemes_corrected": "lihjˈot",
+      "transliteration": "",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "source": "phonikud+overrides"
+    },
+    "source_comparison": {
+      "lemma": "להיות",
+      "approved_source": "pealim",
+      "form_reports": {
+        "infinitive": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "לִהְיוֹת",
+              "lexical_stress": 2,
+              "phonemes_corrected": "lihjˈot"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "לִהְיוֹת",
+            "lexical_stress": 2
+          }
+        },
+        "past_1_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיִיתִי",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajˈiti"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיִיתִי",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיִיתָ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajˈita"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיִיתָ",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיִית",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajˈit"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיִית",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיָה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajˈa"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיָה",
+            "lexical_stress": 2
+          }
+        },
+        "past_3_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיְתָה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajtˈa"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיְתָה",
+            "lexical_stress": 2
+          }
+        },
+        "past_1_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיִינוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajˈinu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיִינוּ",
+            "lexical_stress": 2
+          }
+        },
+        "past_2_masculine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הֱיִיתֶם",
+              "lexical_stress": 3,
+              "phonemes_corrected": "hejitˈem"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הֱיִיתֶם",
+            "lexical_stress": 3
+          }
+        },
+        "past_2_feminine_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הֱיִיתֶן",
+              "lexical_stress": 3,
+              "phonemes_corrected": "hejitˈen"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הֱיִיתֶן",
+            "lexical_stress": 3
+          }
+        },
+        "past_3_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "הָיוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "hajˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "הָיוּ",
+            "lexical_stress": 2
+          }
+        },
+        "future_1_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "אֶהְיֶה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "ʔehjˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "אֶהְיֶה",
+            "lexical_stress": 2
+          }
+        },
+        "future_2_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּהְיֶה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "tihjˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּהְיֶה",
+            "lexical_stress": 2
+          }
+        },
+        "future_2_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּהְיִי",
+              "lexical_stress": 2,
+              "phonemes_corrected": "tihjˈi"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּהְיִי",
+            "lexical_stress": 2
+          }
+        },
+        "future_3_masculine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "יִהְיֶה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "jihjˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "יִהְיֶה",
+            "lexical_stress": 2
+          }
+        },
+        "future_3_feminine_singular": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּהְיֶה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "tihjˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּהְיֶה",
+            "lexical_stress": 2
+          }
+        },
+        "future_1_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "נִהְיֶה",
+              "lexical_stress": 2,
+              "phonemes_corrected": "nihjˈe"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "נִהְיֶה",
+            "lexical_stress": 2
+          }
+        },
+        "future_2_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "תִּהְיוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "tihjˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "תִּהְיוּ",
+            "lexical_stress": 2
+          }
+        },
+        "future_3_plural": {
+          "sources": {
+            "pealim": {
+              "surface_vocalized": "יִהְיוּ",
+              "lexical_stress": 2,
+              "phonemes_corrected": "jihjˈu"
+            }
+          },
+          "disagreements": [],
+          "resolved": {
+            "surface_vocalized": "יִהְיוּ",
+            "lexical_stress": 2
+          }
+        }
+      }
+    }
+  }
+}

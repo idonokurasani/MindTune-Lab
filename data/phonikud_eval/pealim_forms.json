@@ -1,0 +1,460 @@
+[
+  {
+    "query": "לכתוב",
+    "source_url": "https://www.pealim.com/dict/1-lichtov/",
+    "root": "כ-ת-ב",
+    "binyan": "PA'AL",
+    "forms": {
+      "infinitive": {
+        "hebrew_with_niqqud": "לִכְתֹּב",
+        "hebrew_without_niqqud": "לכתב",
+        "chaser": " ~ לכתוב",
+        "transcription_html": "licht<b>o</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "present_masculine_singular": {
+        "hebrew_with_niqqud": "כּוֹתֵב",
+        "hebrew_without_niqqud": "כותב",
+        "chaser": "",
+        "transcription_html": "kot<b>e</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "present_feminine_singular": {
+        "hebrew_with_niqqud": "כּוֹתֶבֶת",
+        "hebrew_without_niqqud": "כותבת",
+        "chaser": "",
+        "transcription_html": "kot<b>e</b>vet",
+        "pealim_stress_syllable": 2
+      },
+      "present_masculine_plural": {
+        "hebrew_with_niqqud": "כּוֹתְבִים",
+        "hebrew_without_niqqud": "כותבים",
+        "chaser": "",
+        "transcription_html": "kotv<b>i</b>m",
+        "pealim_stress_syllable": 2
+      },
+      "present_feminine_plural": {
+        "hebrew_with_niqqud": "כּוֹתְבוֹת",
+        "hebrew_without_niqqud": "כותבות",
+        "chaser": "",
+        "transcription_html": "kotv<b>o</b>t",
+        "pealim_stress_syllable": 2
+      },
+      "past_1_singular": {
+        "hebrew_with_niqqud": "כָּתַבְתִּי",
+        "hebrew_without_niqqud": "כתבתי",
+        "chaser": "",
+        "transcription_html": "kat<b>a</b>vti",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_masculine_singular": {
+        "hebrew_with_niqqud": "כָּתַבְתָּ",
+        "hebrew_without_niqqud": "כתבת",
+        "chaser": "",
+        "transcription_html": "kat<b>a</b>vta",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_feminine_singular": {
+        "hebrew_with_niqqud": "כָּתַבְתְּ",
+        "hebrew_without_niqqud": "כתבת",
+        "chaser": "",
+        "transcription_html": "kat<b>a</b>vt",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_masculine_singular": {
+        "hebrew_with_niqqud": "כָּתַב",
+        "hebrew_without_niqqud": "כתב",
+        "chaser": "",
+        "transcription_html": "kat<b>a</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_feminine_singular": {
+        "hebrew_with_niqqud": "כָּתְבָה",
+        "hebrew_without_niqqud": "כתבה",
+        "chaser": "",
+        "transcription_html": "katv<b>a</b>",
+        "pealim_stress_syllable": 2
+      },
+      "past_1_plural": {
+        "hebrew_with_niqqud": "כָּתַבְנוּ",
+        "hebrew_without_niqqud": "כתבנו",
+        "chaser": "",
+        "transcription_html": "kat<b>a</b>vnu",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_masculine_plural": {
+        "hebrew_with_niqqud": "כְּתַבְתֶּם",
+        "hebrew_without_niqqud": "כתבתם",
+        "chaser": "",
+        "transcription_html": "ktavt<b>e</b>m",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_feminine_plural": {
+        "hebrew_with_niqqud": "כְּתַבְתֶּן",
+        "hebrew_without_niqqud": "כתבתן",
+        "chaser": "",
+        "transcription_html": "ktavt<b>e</b>n",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_plural": {
+        "hebrew_with_niqqud": "כָּתְבוּ",
+        "hebrew_without_niqqud": "כתבו",
+        "chaser": " ~ אכתוב",
+        "transcription_html": "katv<b>u</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_1_singular": {
+        "hebrew_with_niqqud": "אֶכְתֹּב",
+        "hebrew_without_niqqud": "אכתב",
+        "chaser": " ~ אכתוב",
+        "transcription_html": "echt<b>o</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "future_2_masculine_singular": {
+        "hebrew_with_niqqud": "תִּכְתֹּב",
+        "hebrew_without_niqqud": "תכתב",
+        "chaser": " ~ תכתוב",
+        "transcription_html": "ticht<b>o</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "future_2_feminine_singular": {
+        "hebrew_with_niqqud": "תִּכְתְּבִי",
+        "hebrew_without_niqqud": "תכתבי",
+        "chaser": "",
+        "transcription_html": "tichtev<b>i</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_3_masculine_singular": {
+        "hebrew_with_niqqud": "יִכְתֹּב",
+        "hebrew_without_niqqud": "יכתב",
+        "chaser": " ~ יכתוב",
+        "transcription_html": "yicht<b>o</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "future_3_feminine_singular": {
+        "hebrew_with_niqqud": "תִּכְתֹּב",
+        "hebrew_without_niqqud": "תכתב",
+        "chaser": " ~ תכתוב",
+        "transcription_html": "ticht<b>o</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "future_1_plural": {
+        "hebrew_with_niqqud": "נִכְתֹּב",
+        "hebrew_without_niqqud": "נכתב",
+        "chaser": " ~ נכתוב",
+        "transcription_html": "nicht<b>o</b>v",
+        "pealim_stress_syllable": 2
+      },
+      "future_2_plural": {
+        "hebrew_with_niqqud": "תִּכְתְּבוּ",
+        "hebrew_without_niqqud": "תכתבו",
+        "chaser": " ~ תכתובנה",
+        "transcription_html": "tichtev<b>u</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_3_plural": {
+        "hebrew_with_niqqud": "יִכְתְּבוּ",
+        "hebrew_without_niqqud": "יכתבו",
+        "chaser": " ~ תכתובנה",
+        "transcription_html": "yichtev<b>u</b>",
+        "pealim_stress_syllable": 3
+      }
+    }
+  },
+  {
+    "query": "להיות",
+    "source_url": "https://www.pealim.com/dict/454-lihyot/",
+    "root": "ה-י-ה",
+    "binyan": "PA'AL",
+    "forms": {
+      "infinitive": {
+        "hebrew_with_niqqud": "לִהְיוֹת",
+        "hebrew_without_niqqud": "להיות",
+        "chaser": "",
+        "transcription_html": "lihy<b>o</b>t",
+        "pealim_stress_syllable": 2
+      },
+      "past_1_singular": {
+        "hebrew_with_niqqud": "הָיִיתִי",
+        "hebrew_without_niqqud": "הייתי",
+        "chaser": "",
+        "transcription_html": "hay<b>i</b>ti",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_masculine_singular": {
+        "hebrew_with_niqqud": "הָיִיתָ",
+        "hebrew_without_niqqud": "היית",
+        "chaser": "",
+        "transcription_html": "hay<b>i</b>ta",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_feminine_singular": {
+        "hebrew_with_niqqud": "הָיִית",
+        "hebrew_without_niqqud": "היית",
+        "chaser": "",
+        "transcription_html": "hay<b>i</b>t",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_masculine_singular": {
+        "hebrew_with_niqqud": "הָיָה",
+        "hebrew_without_niqqud": "היה",
+        "chaser": " ~ הייתה",
+        "transcription_html": "hay<b>a</b>",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_feminine_singular": {
+        "hebrew_with_niqqud": "הָיְתָה",
+        "hebrew_without_niqqud": "היתה",
+        "chaser": " ~ הייתה",
+        "transcription_html": "hayt<b>a</b>",
+        "pealim_stress_syllable": 2
+      },
+      "past_1_plural": {
+        "hebrew_with_niqqud": "הָיִינוּ",
+        "hebrew_without_niqqud": "היינו",
+        "chaser": "",
+        "transcription_html": "hay<b>i</b>nu",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_masculine_plural": {
+        "hebrew_with_niqqud": "הֱיִיתֶם",
+        "hebrew_without_niqqud": "הייתם",
+        "chaser": "",
+        "transcription_html": "heyit<b>e</b>m",
+        "pealim_stress_syllable": 3
+      },
+      "past_2_feminine_plural": {
+        "hebrew_with_niqqud": "הֱיִיתֶן",
+        "hebrew_without_niqqud": "הייתן",
+        "chaser": "",
+        "transcription_html": "heyit<b>e</b>n",
+        "pealim_stress_syllable": 3
+      },
+      "past_3_plural": {
+        "hebrew_with_niqqud": "הָיוּ",
+        "hebrew_without_niqqud": "היו",
+        "chaser": "",
+        "transcription_html": "hay<b>u</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_1_singular": {
+        "hebrew_with_niqqud": "אֶהְיֶה",
+        "hebrew_without_niqqud": "אהיה",
+        "chaser": "",
+        "transcription_html": "ehy<b>e</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_2_masculine_singular": {
+        "hebrew_with_niqqud": "תִּהְיֶה",
+        "hebrew_without_niqqud": "תהיה",
+        "chaser": "",
+        "transcription_html": "tihy<b>e</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_2_feminine_singular": {
+        "hebrew_with_niqqud": "תִּהְיִי",
+        "hebrew_without_niqqud": "תהיי",
+        "chaser": "",
+        "transcription_html": "tihy<b>i</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_3_masculine_singular": {
+        "hebrew_with_niqqud": "יִהְיֶה",
+        "hebrew_without_niqqud": "יהיה",
+        "chaser": "",
+        "transcription_html": "yihy<b>e</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_3_feminine_singular": {
+        "hebrew_with_niqqud": "תִּהְיֶה",
+        "hebrew_without_niqqud": "תהיה",
+        "chaser": "",
+        "transcription_html": "tihy<b>e</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_1_plural": {
+        "hebrew_with_niqqud": "נִהְיֶה",
+        "hebrew_without_niqqud": "נהיה",
+        "chaser": "",
+        "transcription_html": "nihy<b>e</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_2_plural": {
+        "hebrew_with_niqqud": "תִּהְיוּ",
+        "hebrew_without_niqqud": "תהיו",
+        "chaser": "",
+        "transcription_html": "tihy<b>u</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_3_plural": {
+        "hebrew_with_niqqud": "יִהְיוּ",
+        "hebrew_without_niqqud": "יהיו",
+        "chaser": "",
+        "transcription_html": "yihy<b>u</b>",
+        "pealim_stress_syllable": 2
+      }
+    }
+  },
+  {
+    "query": "לעשות",
+    "source_url": "https://www.pealim.com/dict/3-laasot/",
+    "root": "ע-שׂ-ה",
+    "binyan": "PA'AL",
+    "forms": {
+      "infinitive": {
+        "hebrew_with_niqqud": "לַעֲשׂוֹת",
+        "hebrew_without_niqqud": "לעשות",
+        "chaser": "",
+        "transcription_html": "la'as<b>o</b>t",
+        "pealim_stress_syllable": 3
+      },
+      "present_masculine_singular": {
+        "hebrew_with_niqqud": "עוֹשֶׂה",
+        "hebrew_without_niqqud": "עושה",
+        "chaser": "",
+        "transcription_html": "os<b>e</b>",
+        "pealim_stress_syllable": 2
+      },
+      "present_feminine_singular": {
+        "hebrew_with_niqqud": "עוֹשָׂה",
+        "hebrew_without_niqqud": "עושה",
+        "chaser": "",
+        "transcription_html": "os<b>a</b>",
+        "pealim_stress_syllable": 2
+      },
+      "present_masculine_plural": {
+        "hebrew_with_niqqud": "עוֹשִׂים",
+        "hebrew_without_niqqud": "עושים",
+        "chaser": "",
+        "transcription_html": "os<b>i</b>m",
+        "pealim_stress_syllable": 2
+      },
+      "present_feminine_plural": {
+        "hebrew_with_niqqud": "עוֹשׂוֹת",
+        "hebrew_without_niqqud": "עושות",
+        "chaser": "",
+        "transcription_html": "os<b>o</b>t",
+        "pealim_stress_syllable": 2
+      },
+      "past_1_singular": {
+        "hebrew_with_niqqud": "עָשִׂיתִי",
+        "hebrew_without_niqqud": "עשיתי",
+        "chaser": "",
+        "transcription_html": "as<b>i</b>ti",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_masculine_singular": {
+        "hebrew_with_niqqud": "עָשִׂיתָ",
+        "hebrew_without_niqqud": "עשית",
+        "chaser": "",
+        "transcription_html": "as<b>i</b>ta",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_feminine_singular": {
+        "hebrew_with_niqqud": "עָשִׂית",
+        "hebrew_without_niqqud": "עשית",
+        "chaser": "",
+        "transcription_html": "as<b>i</b>t",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_masculine_singular": {
+        "hebrew_with_niqqud": "עָשָׂה",
+        "hebrew_without_niqqud": "עשה",
+        "chaser": "",
+        "transcription_html": "as<b>a</b>",
+        "pealim_stress_syllable": 2
+      },
+      "past_3_feminine_singular": {
+        "hebrew_with_niqqud": "עָשְׂתָה",
+        "hebrew_without_niqqud": "עשתה",
+        "chaser": "",
+        "transcription_html": "ast<b>a</b>",
+        "pealim_stress_syllable": 2
+      },
+      "past_1_plural": {
+        "hebrew_with_niqqud": "עָשִׂינוּ",
+        "hebrew_without_niqqud": "עשינו",
+        "chaser": "",
+        "transcription_html": "as<b>i</b>nu",
+        "pealim_stress_syllable": 2
+      },
+      "past_2_masculine_plural": {
+        "hebrew_with_niqqud": "עֲשִׂיתֶם",
+        "hebrew_without_niqqud": "עשיתם",
+        "chaser": "",
+        "transcription_html": "asit<b>e</b>m",
+        "pealim_stress_syllable": 3
+      },
+      "past_2_feminine_plural": {
+        "hebrew_with_niqqud": "עֲשִׂיתֶן",
+        "hebrew_without_niqqud": "עשיתן",
+        "chaser": "",
+        "transcription_html": "asit<b>e</b>n",
+        "pealim_stress_syllable": 3
+      },
+      "past_3_plural": {
+        "hebrew_with_niqqud": "עָשׂוּ",
+        "hebrew_without_niqqud": "עשו",
+        "chaser": "",
+        "transcription_html": "as<b>u</b>",
+        "pealim_stress_syllable": 2
+      },
+      "future_1_singular": {
+        "hebrew_with_niqqud": "אֶעֱשֶׂה",
+        "hebrew_without_niqqud": "אעשה",
+        "chaser": "",
+        "transcription_html": "e'es<b>e</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_2_masculine_singular": {
+        "hebrew_with_niqqud": "תַּעֲשֶׂה",
+        "hebrew_without_niqqud": "תעשה",
+        "chaser": "",
+        "transcription_html": "ta'as<b>e</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_2_feminine_singular": {
+        "hebrew_with_niqqud": "תַּעֲשִׂי",
+        "hebrew_without_niqqud": "תעשי",
+        "chaser": "",
+        "transcription_html": "ta'as<b>i</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_3_masculine_singular": {
+        "hebrew_with_niqqud": "יַעֲשֶׂה",
+        "hebrew_without_niqqud": "יעשה",
+        "chaser": "",
+        "transcription_html": "ya'as<b>e</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_3_feminine_singular": {
+        "hebrew_with_niqqud": "תַּעֲשֶׂה",
+        "hebrew_without_niqqud": "תעשה",
+        "chaser": "",
+        "transcription_html": "ta'as<b>e</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_1_plural": {
+        "hebrew_with_niqqud": "נַעֲשֶׂה",
+        "hebrew_without_niqqud": "נעשה",
+        "chaser": "",
+        "transcription_html": "na'as<b>e</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_2_plural": {
+        "hebrew_with_niqqud": "תַּעֲשׂוּ",
+        "hebrew_without_niqqud": "תעשו",
+        "chaser": "",
+        "transcription_html": "ta'as<b>u</b>",
+        "pealim_stress_syllable": 3
+      },
+      "future_3_plural": {
+        "hebrew_with_niqqud": "יַעֲשׂוּ",
+        "hebrew_without_niqqud": "יעשו",
+        "chaser": "",
+        "transcription_html": "ya'as<b>u</b>",
+        "pealim_stress_syllable": 3
+      }
+    }
+  }
+]

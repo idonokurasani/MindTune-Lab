@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:lang="he-IL">
+  <voice name="he-IL-AvriNeural">
+    <prosody rate="-15%">לִכְתֹּב</prosody>
+    <break time="500ms"/>
+    <lang xml:lang="it-IT">scrivere.</lang>
+    <break time="700ms"/>
+    <prosody rate="-15%">אֲנִי כּוֹתֵב מִכְתָּב</prosody>
+    <break time="700ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">כּוֹתֵב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כּוֹתֶבֶת</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כּוֹתְבִים</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כּוֹתְבוֹת</prosody>
+    <break time="500ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">כָּתַבְתִּי</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כָּתַבְתָּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כָּתַבְתְּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כָּתַב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כָּתְבָה</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כָּתַבְנוּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כְּתַבְתֶּם</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כְּתַבְתֶּן</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">כָּתְבוּ</prosody>
+    <break time="500ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">אֶכְתֹּב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תִּכְתֹּב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תִּכְתְּבִי</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">יִכְתֹּב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תִּכְתֹּב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">נִכְתֹּב</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תִּכְתְּבוּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">יִכְתְּבוּ</prosody>
+    <break time="500ms"/>
+  </voice>
+</speak>

@@ -1,0 +1,43 @@
+{
+  "resources": [
+    {
+      "resource_name": "eran_tomer_vocalized_verbs",
+      "upstream_url": "https://github.com/NLPH/NLPH_Resources/tree/master/linguistic_resources/word_lists/hebrew_verbs_eran_tomer",
+      "version_or_commit": "unknown",
+      "license": "CC BY 4.0",
+      "import_date": "2026-07-23T07:41:33.559421+00:00",
+      "file_hashes": {
+        "InflectedVerbsExtended.csv": "818793894a360243d471e0f302494b245736189465c8e0258e5665335052a456",
+        "TheVerbIndex.csv": "beb9371962870b9918a16323c66f0c91e4e1e6bd7271014bd862b1ab3cad52cc"
+      },
+      "total_records": 241798,
+      "accepted_records": 241798,
+      "rejected_records": 0,
+      "normalization_rules": [
+        "NFC Unicode normalization",
+        "strip maqaf",
+        "collapse whitespace"
+      ],
+      "parser_version": "hebrew.resources.eran_tomer.v1"
+    },
+    {
+      "resource_name": "svlm_hebrew_wikipedia_corpus",
+      "upstream_url": "https://github.com/NLPH/SVLM-Hebrew-Wikipedia-Corpus",
+      "version_or_commit": "unknown",
+      "license": "CC-BY-SA 3.0",
+      "import_date": "2026-07-23T07:42:15.560458+00:00",
+      "file_hashes": {
+        "SVLM_Hebrew_Wikipedia_Corpus.txt": "860b2cf2efa84b0ed92a2f346a2d941c88510c0db13ac16fd73a8b4cb17d0baa"
+      },
+      "total_records": 50000,
+      "accepted_records": 50000,
+      "rejected_records": 0,
+      "normalization_rules": [
+        "NFC normalization",
+        "maqaf replacement",
+        "whitespace collapse"
+      ],
+      "parser_version": "hebrew.resources.svlm.v1"
+    }
+  ]
+}

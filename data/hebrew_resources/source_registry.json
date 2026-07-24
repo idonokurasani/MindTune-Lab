@@ -1,0 +1,95 @@
+{
+  "schema_version": "mindtune.hebrew_source_registry/1.0.0",
+  "domain": "hebrew_modern",
+  "policy": "A source may inform only the role declared here. Missing local data must never be fabricated or silently replaced.",
+  "sources": [
+    {
+      "source_id": "academy_hebrew_language",
+      "label": "Academy of the Hebrew Language",
+      "role": "normative_reference",
+      "authority": "primary_normative",
+      "location": "https://eng.hebrew-academy.org.il/our-work/online-resources/",
+      "local_status": "external_reference",
+      "allowed_uses": ["orthography_review", "normative_grammar_review", "terminology_review"],
+      "forbidden_uses": ["automatic_personal_scoring", "automatic_curriculum_activation"]
+    },
+    {
+      "source_id": "pealim",
+      "label": "Pealim",
+      "role": "verb_paradigms",
+      "authority": "curated_reference",
+      "local_status": "bundled_cache",
+      "local_ref": "data/pealim_hebrew_verbs.json",
+      "allowed_uses": ["conjugation_prompts", "answer_normalization", "domino_generation"],
+      "forbidden_uses": ["semantic_truth_beyond_source", "silent_analogy_generation"]
+    },
+    {
+      "source_id": "help_lexicon",
+      "label": "HeLP Lexicon Project",
+      "role": "psycholinguistic_norms",
+      "authority": "peer_reviewed_empirical",
+      "citation": "Stein, Frost & Siegelman (2024), Behavior Research Methods, DOI 10.3758/s13428-024-02502-4",
+      "local_status": "bundled_processed_tables",
+      "local_ref": "mindtune_lab/tasks/shoresh_lab/data/help_processed",
+      "allowed_uses": ["stimulus_characterization", "difficulty_prior", "read_only_personal_profiler"],
+      "forbidden_uses": ["linguistic_truth", "direct_competence_score", "automatic_curriculum_mutation"]
+    },
+    {
+      "source_id": "streetwise_hebrew",
+      "label": "Streetwise Hebrew",
+      "role": "spoken_usage_enrichment",
+      "authority": "curated_authentic_usage",
+      "local_status": "bundled_reviewed_metadata",
+      "local_ref": "data/hebrew_enrichment/streetwise_hebrew",
+      "allowed_uses": ["listening_context", "usage_examples", "register_enrichment", "episode_reference"],
+      "forbidden_uses": ["canonical_lexicon_overwrite", "unreviewed_answer_key"]
+    },
+    {
+      "source_id": "hebrew_wordnet_shuly",
+      "label": "Hebrew WordNet (Ordan and Wintner)",
+      "role": "semantic_relations",
+      "authority": "research_lexical_resource",
+      "citation": "Ordan & Wintner (2007), Hebrew WordNet: a test case of aligning lexical databases across languages",
+      "license": "University of Haifa Hebrew WordNet license",
+      "location": "https://github.com/NLPH/HebrewWordnetShuly",
+      "local_status": "installed_validated_local_index",
+      "local_ref": "data/hebrew_resources/derived/hebrew_wordnet_compact.json",
+      "raw_ref": "data/hebrew_resources/vendor/HebrewWordnetShuly",
+      "source_commit": "55a814bad768206ca2679f10337fe63a7f8540f9",
+      "allowed_uses": ["semantic_neighborhoods", "sense_contrast_candidates", "cross_lingual_review_support"],
+      "forbidden_uses": ["automatic_translation_truth", "automatic_answer_rejection"]
+    },
+    {
+      "source_id": "nnlp_hebrew_resources",
+      "label": "NNLP-IL Hebrew Resources",
+      "role": "tool_and_resource_catalog",
+      "authority": "curated_resource_index",
+      "location": "https://github.com/NNLP-IL/Hebrew-Resources",
+      "local_status": "installed_validated_catalog_and_verb_index",
+      "local_ref": "data/hebrew_resources/derived/nnlp_verb_index.json",
+      "raw_ref": "data/hebrew_resources/vendor/Hebrew-Resources",
+      "source_commit": "84d5db034fba56c27786b7c645d77370223263c3",
+      "allowed_uses": ["tool_selection", "license_discovery", "morphology_pipeline_research", "independent_verb_morphology_cross_check"],
+      "forbidden_uses": ["linguistic_truth", "bulk_dependency_import"]
+    },
+    {
+      "source_id": "azure_speech",
+      "label": "Azure Speech",
+      "role": "speech_recognition_and_pronunciation_observation",
+      "authority": "measurement_service",
+      "local_status": "runtime_configuration",
+      "allowed_uses": ["speech_to_text", "transcription_confidence", "future_pronunciation_observation"],
+      "forbidden_uses": ["pronunciation_quality_from_stt_confidence", "credential_persistence_in_corpus"]
+    },
+    {
+      "source_id": "citizen_cafe_archive",
+      "label": "Citizen Cafe personal archive",
+      "role": "prior_exposure_provenance",
+      "authority": "legacy_personal_source",
+      "local_status": "archived_not_active",
+      "local_ref": "data/citizen_cafe_all_courses",
+      "allowed_uses": ["reentry_history", "source_audit", "human_review_queue"],
+      "forbidden_uses": ["active_flashcard_course", "linguistic_truth", "automatic_curriculum_activation"]
+    }
+  ]
+}

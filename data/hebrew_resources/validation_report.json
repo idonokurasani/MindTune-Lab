@@ -1,0 +1,34 @@
+{
+  "schema_version": "mindtune.hebrew_vendor_validation/1.0.0",
+  "generated_at": "2026-07-21T18:12:37.774815+00:00",
+  "overall_status": "validated_with_declared_scope_limits",
+  "hebrew_wordnet": {
+    "status": "validated_with_scope_limits",
+    "commit": "55a814bad768206ca2679f10337fe63a7f8540f9",
+    "index_rows": 15041,
+    "normalized_lemma_keys": 5944,
+    "synset_rows": 5922,
+    "lexical_gap_rows": 329,
+    "relation_rows": 27426,
+    "hebrew_key_ratio": 1.0,
+    "limitations": [
+      "Historical 2007 lexical resource; not a current spoken-usage authority.",
+      "Source XML declares ISO-8859-1 while containing Hebrew UTF-8; the validated index is built from UTF-8 SQL exports.",
+      "Leading exclamation marks are preserved as review_marker and removed only from normalized lookup keys."
+    ]
+  },
+  "nnlp_hebrew_resources": {
+    "status": "validated_subresources_only",
+    "commit": "84d5db034fba56c27786b7c645d77370223263c3",
+    "catalog_role": "resource discovery; not linguistic truth",
+    "verb_index_rows": 4247,
+    "inflected_form_rows": 241798,
+    "distinct_inflected_base_forms": 3520,
+    "invalid_hebrew_forms": 0,
+    "limitations": [
+      "The repository is a mixed-license resource catalog; only individually licensed subresources may be used.",
+      "The Eran Tomer verb lists are licensed CC BY 4.0 and report an estimated accuracy above 99.4%, not perfect truth.",
+      "Generated forms are suitable for independent cross-checks, not silent replacement of reviewed Pealim paradigms."
+    ]
+  }
+}

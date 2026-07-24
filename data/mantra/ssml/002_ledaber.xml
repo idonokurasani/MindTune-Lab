@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xml:lang="he-IL">
+  <voice name="he-IL-AvriNeural">
+    <prosody rate="-15%">לְדַבֵּר</prosody>
+    <break time="500ms"/>
+    <lang xml:lang="it-IT">parlare.</lang>
+    <break time="700ms"/>
+    <prosody rate="-15%">אֲנִי מְדַבֵּר עִבְרִית קְצָת</prosody>
+    <break time="700ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">מְדַבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">מְדַבֶּרֶת</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">מְדַבְּרִים</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">מְדַבְּרוֹת</prosody>
+    <break time="500ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">דִּבַּרְתִּי</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבַּרְתָּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבַּרְתְּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבְּרָה</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבַּרְנוּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבַּרְתֶּם</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבַּרְתֶּן</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">דִּבְּרוּ</prosody>
+    <break time="500ms"/>
+    <break time="900ms"/>
+    <prosody rate="-15%">אֲדַבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תְּדַבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תְּדַבְּרִי</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">יְדַבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תְּדַבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">נְדַבֵּר</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">תְּדַבְּרוּ</prosody>
+    <break time="500ms"/>
+    <prosody rate="-15%">יְדַבְּרוּ</prosody>
+    <break time="500ms"/>
+  </voice>
+</speak>

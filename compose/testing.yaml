@@ -1,0 +1,10 @@
+services:
+  mpe-test:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    environment:
+      PYTHONDONTWRITEBYTECODE: 1
+      PYTHONUNBUFFERED: 1
+    command: >
+      sh -c "python -m unittest discover -s packages/mpe/tests -p 'test_*.py' -v && python -m mpe.demo"

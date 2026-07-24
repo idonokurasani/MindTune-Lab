@@ -1,0 +1,257 @@
+{
+  "order": 1,
+  "verb_key": "lichtov",
+  "hebrew_infinitive": "לִכְתֹּב",
+  "hebrew_infinitive_without_niqqud": "לכתוב",
+  "italian_infinitive": "scrivere",
+  "root": "כ-ת-ב",
+  "binyan": "PA'AL",
+  "source_url": "https://www.pealim.com/dict/1-lichtov/",
+  "sections": [
+    {
+      "section": "infinitive",
+      "label_he": "שֵׁם הַפֹּעַל",
+      "label_it": "infinito",
+      "lines": [
+        {
+          "form_key": "infinitive",
+          "hebrew_with_niqqud": "לִכְתֹּב",
+          "hebrew_without_niqqud": "לכתוב",
+          "transliteration": "lichtov",
+          "tts_input": "לִכְתֹּב",
+          "italian_gloss": "scrivere"
+        },
+        {
+          "form_key": "example",
+          "hebrew_with_niqqud": "אֲנִי כּוֹתֵב מִכְתָּב",
+          "hebrew_without_niqqud": "אני כותב מכתב",
+          "transliteration": "ani kotev mikhtav",
+          "tts_input": "אֲנִי כּוֹתֵב מִכְתָּב",
+          "italian_gloss": "Scrivo una lettera."
+        }
+      ]
+    },
+    {
+      "section": "present",
+      "label_he": "בַּהוֹוֶה",
+      "label_it": "presente",
+      "lines": [
+        {
+          "form_key": "masculine_singular",
+          "hebrew_with_niqqud": "כּוֹתֵב",
+          "hebrew_without_niqqud": "כותב",
+          "transliteration": "kotev",
+          "tts_input": "כּוֹתֵב",
+          "italian_gloss": "io scrivo",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "feminine_singular",
+          "hebrew_with_niqqud": "כּוֹתֶבֶת",
+          "hebrew_without_niqqud": "כותבת",
+          "transliteration": "kotevet",
+          "tts_input": "כּוֹתֶבֶת",
+          "italian_gloss": "io scrivo (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "masculine_plural",
+          "hebrew_with_niqqud": "כּוֹתְבִים",
+          "hebrew_without_niqqud": "כותבים",
+          "transliteration": "kotvim",
+          "tts_input": "כּוֹתְבִים",
+          "italian_gloss": "noi/voi/loro scrivono",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "feminine_plural",
+          "hebrew_with_niqqud": "כּוֹתְבוֹת",
+          "hebrew_without_niqqud": "כותבות",
+          "transliteration": "kotvot",
+          "tts_input": "כּוֹתְבוֹת",
+          "italian_gloss": "noi/voi/loro scrivono (f.)",
+          "stress_syllable_index": 2
+        }
+      ]
+    },
+    {
+      "section": "past",
+      "label_he": "בָּעָבָר",
+      "label_it": "passato",
+      "lines": [
+        {
+          "form_key": "1_singular",
+          "hebrew_with_niqqud": "כָּתַבְתִּי",
+          "hebrew_without_niqqud": "כתבתי",
+          "transliteration": "katavti",
+          "tts_input": "כָּתַבְתִּי",
+          "italian_gloss": "io scrissi",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_singular",
+          "hebrew_with_niqqud": "כָּתַבְתָּ",
+          "hebrew_without_niqqud": "כתבת",
+          "transliteration": "katavta",
+          "tts_input": "כָּתַבְתָּ",
+          "italian_gloss": "tu scrivesti",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_feminine_singular",
+          "hebrew_with_niqqud": "כָּתַבְתְּ",
+          "hebrew_without_niqqud": "כתבת",
+          "transliteration": "katavt",
+          "tts_input": "כָּתַבְתְּ",
+          "italian_gloss": "tu scrivesti (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_masculine_singular",
+          "hebrew_with_niqqud": "כָּתַב",
+          "hebrew_without_niqqud": "כתב",
+          "transliteration": "katav",
+          "tts_input": "כָּתַב",
+          "italian_gloss": "lui scrisse",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_feminine_singular",
+          "hebrew_with_niqqud": "כָּתְבָה",
+          "hebrew_without_niqqud": "כתבה",
+          "transliteration": "katva",
+          "tts_input": "כָּתְבָה",
+          "italian_gloss": "lei scrisse",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "1_plural",
+          "hebrew_with_niqqud": "כָּתַבְנוּ",
+          "hebrew_without_niqqud": "כתבנו",
+          "transliteration": "katavnu",
+          "tts_input": "כָּתַבְנוּ",
+          "italian_gloss": "noi scrivemmo",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_plural",
+          "hebrew_with_niqqud": "כְּתַבְתֶּם",
+          "hebrew_without_niqqud": "כתבתם",
+          "transliteration": "ktavtem",
+          "tts_input": "כְּתַבְתֶּם",
+          "italian_gloss": "voi scriveste",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_feminine_plural",
+          "hebrew_with_niqqud": "כְּתַבְתֶּן",
+          "hebrew_without_niqqud": "כתבתן",
+          "transliteration": "ktavten",
+          "tts_input": "כְּתַבְתֶּן",
+          "italian_gloss": "voi scriveste (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_plural",
+          "hebrew_with_niqqud": "כָּתְבוּ",
+          "hebrew_without_niqqud": "כתבו",
+          "transliteration": "katvu",
+          "tts_input": "כָּתְבוּ",
+          "italian_gloss": "loro scrissero",
+          "stress_syllable_index": 2
+        }
+      ]
+    },
+    {
+      "section": "future",
+      "label_he": "בָּעָתִיד",
+      "label_it": "futuro",
+      "lines": [
+        {
+          "form_key": "1_singular",
+          "hebrew_with_niqqud": "אֶכְתֹּב",
+          "hebrew_without_niqqud": "אכתוב",
+          "transliteration": "echtov",
+          "tts_input": "אֶכְתֹּב",
+          "italian_gloss": "io scriverò",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_singular",
+          "hebrew_with_niqqud": "תִּכְתֹּב",
+          "hebrew_without_niqqud": "תכתוב",
+          "transliteration": "tichtov",
+          "tts_input": "תִּכְתֹּב",
+          "italian_gloss": "tu scriverai",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_feminine_singular",
+          "hebrew_with_niqqud": "תִּכְתְּבִי",
+          "hebrew_without_niqqud": "תכתבי",
+          "transliteration": "tichte'vi",
+          "tts_input": "תִּכְתְּבִי",
+          "italian_gloss": "tu scriverai (f.)",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_masculine_singular",
+          "hebrew_with_niqqud": "יִכְתֹּב",
+          "hebrew_without_niqqud": "יכתוב",
+          "transliteration": "yichtov",
+          "tts_input": "יִכְתֹּב",
+          "italian_gloss": "lui scriverà",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_feminine_singular",
+          "hebrew_with_niqqud": "תִּכְתֹּב",
+          "hebrew_without_niqqud": "תכתוב",
+          "transliteration": "tichtov",
+          "tts_input": "תִּכְתֹּב",
+          "italian_gloss": "lei scriverà",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "1_plural",
+          "hebrew_with_niqqud": "נִכְתֹּב",
+          "hebrew_without_niqqud": "נכתוב",
+          "transliteration": "nichtov",
+          "tts_input": "נִכְתֹּב",
+          "italian_gloss": "noi scriveremo",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_plural",
+          "hebrew_with_niqqud": "תִּכְתְּבוּ",
+          "hebrew_without_niqqud": "תכתבו",
+          "transliteration": "tichte'vu",
+          "tts_input": "תִּכְתְּבוּ",
+          "italian_gloss": "voi scriverete",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_plural",
+          "hebrew_with_niqqud": "יִכְתְּבוּ",
+          "hebrew_without_niqqud": "יכתבו",
+          "transliteration": "yichte'vu",
+          "tts_input": "יִכְתְּבוּ",
+          "italian_gloss": "loro scriveranno",
+          "stress_syllable_index": 3
+        }
+      ]
+    }
+  ],
+  "spoken_script": "LICHTOV.\nSCRIVERE.\nANI KOTEV MIKHTAV.\n\nBA-HOVE:\nKOTEV.\nKOTEVET.\nKOTVIM.\nKOTVOT.\n\nBE-AVAR:\nKATAVTI.\nKATAVTA.\nKATAVT.\nKATAV.\nKATVA.\nKATAVNU.\nKTAVTEM.\nKTAVTEN.\nKATVU.\n\nBE-ATID:\nECHTOV.\nTICHTOV.\nTICHTE'VI.\nYICHTOV.\nTICHTOV.\nNICHTOV.\nTICHTE'VU.\nYICHTE'VU.",
+  "display_script": "LICHTOV.\nSCRIVERE.\nANI KOTEV MIKHTAV.\n\nBA-HOVE:\nKOTEV.\nKOTEVET.\nKOTVIM.\nKOTVOT.\n\nBE-AVAR:\nKATAVTI.\nKATAVTA.\nKATAVT.\nKATAV.\nKATVA.\nKATAVNU.\nKTAVTEM.\nKTAVTEN.\nKATVU.\n\nBE-ATID:\nECHTOV.\nTICHTOV.\nTICHTE'VI.\nYICHTOV.\nTICHTOV.\nNICHTOV.\nTICHTE'VU.\nYICHTE'VU.",
+  "hebrew_script": "לִכְתֹּב.\nאֲנִי כּוֹתֵב מִכְתָּב.\n\nבַּהוֹוֶה:\nכּוֹתֵב.\nכּוֹתֶבֶת.\nכּוֹתְבִים.\nכּוֹתְבוֹת.\n\nבָּעָבָר:\nכָּתַבְתִּי.\nכָּתַבְתָּ.\nכָּתַבְתְּ.\nכָּתַב.\nכָּתְבָה.\nכָּתַבְנוּ.\nכְּתַבְתֶּם.\nכְּתַבְתֶּן.\nכָּתְבוּ.\n\nבָּעָתִיד:\nאֶכְתֹּב.\nתִּכְתֹּב.\nתִּכְתְּבִי.\nיִכְתֹּב.\nתִּכְתֹּב.\nנִכְתֹּב.\nתִּכְתְּבוּ.\nיִכְתְּבוּ.",
+  "italian_script": "Scrivere.\nScrivo una lettera.\n\nPresente:\nio scrivo.\nio scrivo (f.).\nnoi/voi/loro scrivono.\nnoi/voi/loro scrivono (f.).\n\nPassato:\nio scrissi.\ntu scrivesti.\ntu scrivesti (f.).\nlui scrisse.\nlei scrisse.\nnoi scrivemmo.\nvoi scriveste.\nvoi scriveste (f.).\nloro scrissero.\n\nFuturo:\nio scriverò.\ntu scriverai.\ntu scriverai (f.).\nlui scriverà.\nlei scriverà.\nnoi scriveremo.\nvoi scriverete.\nloro scriveranno.",
+  "transliteration": "LICHTOV.\nSCRIVERE.\nANI KOTEV MIKHTAV.\n\nBA-HOVE:\nKOTEV.\nKOTEVET.\nKOTVIM.\nKOTVOT.\n\nBE-AVAR:\nKATAVTI.\nKATAVTA.\nKATAVT.\nKATAV.\nKATVA.\nKATAVNU.\nKTAVTEM.\nKTAVTEN.\nKATVU.\n\nBE-ATID:\nECHTOV.\nTICHTOV.\nTICHTE'VI.\nYICHTOV.\nTICHTOV.\nNICHTOV.\nTICHTE'VU.\nYICHTE'VU.",
+  "pauses_ms": {
+    "between_forms": 500,
+    "between_sections": 900,
+    "after_example": 700
+  },
+  "speaking_rate": "-15%",
+  "ssml_path": "ssml/001_lichtov.xml"
+}

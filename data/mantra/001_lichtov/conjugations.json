@@ -1,0 +1,260 @@
+{
+  "present": {
+    "masculine_singular": {
+      "form_key": "masculine_singular",
+      "hebrew_with_niqqud": "כּוֹתֵב",
+      "hebrew_plain": "כותב",
+      "transliteration": "kotev",
+      "ipa_phonemes": "kotˈev",
+      "corrected_phonemes": "kotˈev",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "io scrivo",
+      "tts_input": "kotˈev"
+    },
+    "feminine_singular": {
+      "form_key": "feminine_singular",
+      "hebrew_with_niqqud": "כּוֹתֶבֶת",
+      "hebrew_plain": "כותבת",
+      "transliteration": "kotevet",
+      "ipa_phonemes": "kotevˈet",
+      "corrected_phonemes": "kotˈevet",
+      "lexical_stress": 2,
+      "vocal_shva": true,
+      "italian_gloss": "io scrivo (f.)",
+      "tts_input": "kotˈevet"
+    },
+    "masculine_plural": {
+      "form_key": "masculine_plural",
+      "hebrew_with_niqqud": "כּוֹתְבִים",
+      "hebrew_plain": "כותבים",
+      "transliteration": "kotvim",
+      "ipa_phonemes": "kotvˈim",
+      "corrected_phonemes": "kotvˈim",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "noi/voi/loro scrivono",
+      "tts_input": "kotvˈim"
+    },
+    "feminine_plural": {
+      "form_key": "feminine_plural",
+      "hebrew_with_niqqud": "כּוֹתְבוֹת",
+      "hebrew_plain": "כותבות",
+      "transliteration": "kotvot",
+      "ipa_phonemes": "kotvˈot",
+      "corrected_phonemes": "kotvˈot",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "noi/voi/loro scrivono (f.)",
+      "tts_input": "kotvˈot"
+    }
+  },
+  "past": {
+    "אני": {
+      "form_key": "אני",
+      "hebrew_with_niqqud": "כָּתַבְתִּי",
+      "hebrew_plain": "כתבתי",
+      "transliteration": "katavti",
+      "ipa_phonemes": "katavtˈi",
+      "corrected_phonemes": "katˈavti",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "io scrissi",
+      "tts_input": "katˈavti"
+    },
+    "אתה": {
+      "form_key": "אתה",
+      "hebrew_with_niqqud": "כָּתַבְתָּ",
+      "hebrew_plain": "כתבת",
+      "transliteration": "katavta",
+      "ipa_phonemes": "katavtˈa",
+      "corrected_phonemes": "katˈavta",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "tu scrivesti",
+      "tts_input": "katˈavta"
+    },
+    "את": {
+      "form_key": "את",
+      "hebrew_with_niqqud": "כָּתַבְתְּ",
+      "hebrew_plain": "כתבת",
+      "transliteration": "katavt",
+      "ipa_phonemes": "katˈavt",
+      "corrected_phonemes": "katˈavt",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "tu scrivesti (f.)",
+      "tts_input": "katˈavt"
+    },
+    "הוא": {
+      "form_key": "הוא",
+      "hebrew_with_niqqud": "כָּתַב",
+      "hebrew_plain": "כתב",
+      "transliteration": "katav",
+      "ipa_phonemes": "katˈav",
+      "corrected_phonemes": "katˈav",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "lui scrisse",
+      "tts_input": "katˈav"
+    },
+    "היא": {
+      "form_key": "היא",
+      "hebrew_with_niqqud": "כָּתְבָה",
+      "hebrew_plain": "כתבה",
+      "transliteration": "katva",
+      "ipa_phonemes": "katvˈa",
+      "corrected_phonemes": "katvˈa",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "lei scrisse",
+      "tts_input": "katvˈa"
+    },
+    "אנחנו": {
+      "form_key": "אנחנו",
+      "hebrew_with_niqqud": "כָּתַבְנוּ",
+      "hebrew_plain": "כתבנו",
+      "transliteration": "katavnu",
+      "ipa_phonemes": "katavnˈu",
+      "corrected_phonemes": "katˈavnu",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "noi scrivemmo",
+      "tts_input": "katˈavnu"
+    },
+    "אתם": {
+      "form_key": "אתם",
+      "hebrew_with_niqqud": "כְּתַבְתֶּם",
+      "hebrew_plain": "כתבתם",
+      "transliteration": "ktavtem",
+      "ipa_phonemes": "ktavtˈem",
+      "corrected_phonemes": "ktavtˈem",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "voi scriveste",
+      "tts_input": "ktavtˈem"
+    },
+    "אתן": {
+      "form_key": "אתן",
+      "hebrew_with_niqqud": "כְּתַבְתֶּן",
+      "hebrew_plain": "כתבתן",
+      "transliteration": "ktavten",
+      "ipa_phonemes": "ktavtˈen",
+      "corrected_phonemes": "ktavtˈen",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "voi scriveste (f.)",
+      "tts_input": "ktavtˈen"
+    },
+    "הם/הן": {
+      "form_key": "הם/הן",
+      "hebrew_with_niqqud": "כָּתְבוּ",
+      "hebrew_plain": "כתבו",
+      "transliteration": "katvu",
+      "ipa_phonemes": "katvˈu",
+      "corrected_phonemes": "katvˈu",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "loro scrissero",
+      "tts_input": "katvˈu"
+    }
+  },
+  "future": {
+    "אני": {
+      "form_key": "אני",
+      "hebrew_with_niqqud": "אֶכְתֹּב",
+      "hebrew_plain": "אכתוב",
+      "transliteration": "echtov",
+      "ipa_phonemes": "ʔeχtˈov",
+      "corrected_phonemes": "ʔeχtˈov",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "io scriverò",
+      "tts_input": "ʔeχtˈov"
+    },
+    "אתה": {
+      "form_key": "אתה",
+      "hebrew_with_niqqud": "תִּכְתֹּב",
+      "hebrew_plain": "תכתוב",
+      "transliteration": "tichtov",
+      "ipa_phonemes": "tiχtˈov",
+      "corrected_phonemes": "tiχtˈov",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "tu scriverai",
+      "tts_input": "tiχtˈov"
+    },
+    "את": {
+      "form_key": "את",
+      "hebrew_with_niqqud": "תִּכְתְּבִי",
+      "hebrew_plain": "תכתבי",
+      "transliteration": "tichtevi",
+      "ipa_phonemes": "tiχtvˈi",
+      "corrected_phonemes": "tiχtevˈi",
+      "lexical_stress": 3,
+      "vocal_shva": true,
+      "italian_gloss": "tu scriverai (f.)",
+      "tts_input": "tiχtevˈi"
+    },
+    "הוא": {
+      "form_key": "הוא",
+      "hebrew_with_niqqud": "יִכְתֹּב",
+      "hebrew_plain": "יכתוב",
+      "transliteration": "yichtov",
+      "ipa_phonemes": "jiχtˈov",
+      "corrected_phonemes": "jiχtˈov",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "lui scriverà",
+      "tts_input": "jiχtˈov"
+    },
+    "היא": {
+      "form_key": "היא",
+      "hebrew_with_niqqud": "תִּכְתֹּב",
+      "hebrew_plain": "תכתוב",
+      "transliteration": "tichtov",
+      "ipa_phonemes": "tiχtˈov",
+      "corrected_phonemes": "tiχtˈov",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "lei scriverà",
+      "tts_input": "tiχtˈov"
+    },
+    "אנחנו": {
+      "form_key": "אנחנו",
+      "hebrew_with_niqqud": "נִכְתֹּב",
+      "hebrew_plain": "נכתוב",
+      "transliteration": "nichtov",
+      "ipa_phonemes": "niχtˈov",
+      "corrected_phonemes": "niχtˈov",
+      "lexical_stress": 2,
+      "vocal_shva": false,
+      "italian_gloss": "noi scriveremo",
+      "tts_input": "niχtˈov"
+    },
+    "אתם/אתן": {
+      "form_key": "אתם/אתן",
+      "hebrew_with_niqqud": "תִּכְתְּבוּ",
+      "hebrew_plain": "תכתבו",
+      "transliteration": "tichtevu",
+      "ipa_phonemes": "tiχtvˈu",
+      "corrected_phonemes": "tiχtevˈu",
+      "lexical_stress": 3,
+      "vocal_shva": true,
+      "italian_gloss": "voi scriverete",
+      "tts_input": "tiχtevˈu"
+    },
+    "הם/הן": {
+      "form_key": "הם/הן",
+      "hebrew_with_niqqud": "יִכְתְּבוּ",
+      "hebrew_plain": "יכתבו",
+      "transliteration": "yichtevu",
+      "ipa_phonemes": "jiχtvˈu",
+      "corrected_phonemes": "jiχtevˈu",
+      "lexical_stress": 3,
+      "vocal_shva": true,
+      "italian_gloss": "loro scriveranno",
+      "tts_input": "jiχtevˈu"
+    }
+  }
+}

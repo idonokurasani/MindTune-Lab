@@ -1,0 +1,590 @@
+[
+  {
+    "order": 1,
+    "infinitive_hebrew_with_niqqud": "לִכְתֹּב",
+    "infinitive_hebrew_without_niqqud": "לכתוב",
+    "infinitive_transliteration": "lichtov",
+    "italian_translation": "scrivere",
+    "root": "כ-ת-ב",
+    "binyan": "PA'AL",
+    "source_url": "https://www.pealim.com/dict/1-lichtov/",
+    "source_checked_date": "2026-07-22",
+    "source_notes": "Verified from Pealim conjugation table. Stress on final syllable. Feminine plural future uses the common masculine plural form in ordinary modern speech.",
+    "example_hebrew_with_niqqud": "אֲנִי כּוֹתֵב מִכְתָּב",
+    "example_hebrew_without_niqqud": "אני כותב מכתב",
+    "example_transliteration": "ani kotev mikhtav",
+    "example_italian": "Scrivo una lettera.",
+    "present": {
+      "masculine_singular": {
+        "hebrew_with_niqqud": "כּוֹתֵב",
+        "hebrew_without_niqqud": "כותב",
+        "display_transliteration": "kotev",
+        "tts_input": "כּוֹתֵב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io scrivo"
+      },
+      "feminine_singular": {
+        "hebrew_with_niqqud": "כּוֹתֶבֶת",
+        "hebrew_without_niqqud": "כותבת",
+        "display_transliteration": "kotevet",
+        "tts_input": "כּוֹתֶבֶת",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io scrivo (f.)"
+      },
+      "masculine_plural": {
+        "hebrew_with_niqqud": "כּוֹתְבִים",
+        "hebrew_without_niqqud": "כותבים",
+        "display_transliteration": "kotvim",
+        "tts_input": "כּוֹתְבִים",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi/voi/loro scrivono"
+      },
+      "feminine_plural": {
+        "hebrew_with_niqqud": "כּוֹתְבוֹת",
+        "hebrew_without_niqqud": "כותבות",
+        "display_transliteration": "kotvot",
+        "tts_input": "כּוֹתְבוֹת",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi/voi/loro scrivono (f.)"
+      }
+    },
+    "past": {
+      "1_singular": {
+        "hebrew_with_niqqud": "כָּתַבְתִּי",
+        "hebrew_without_niqqud": "כתבתי",
+        "display_transliteration": "katavti",
+        "tts_input": "כָּתַבְתִּי",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io scrissi"
+      },
+      "2_masculine_singular": {
+        "hebrew_with_niqqud": "כָּתַבְתָּ",
+        "hebrew_without_niqqud": "כתבת",
+        "display_transliteration": "katavta",
+        "tts_input": "כָּתַבְתָּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu scrivesti"
+      },
+      "2_feminine_singular": {
+        "hebrew_with_niqqud": "כָּתַבְתְּ",
+        "hebrew_without_niqqud": "כתבת",
+        "display_transliteration": "katavt",
+        "tts_input": "כָּתַבְתְּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu scrivesti (f.)"
+      },
+      "3_masculine_singular": {
+        "hebrew_with_niqqud": "כָּתַב",
+        "hebrew_without_niqqud": "כתב",
+        "display_transliteration": "katav",
+        "tts_input": "כָּתַב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lui scrisse"
+      },
+      "3_feminine_singular": {
+        "hebrew_with_niqqud": "כָּתְבָה",
+        "hebrew_without_niqqud": "כתבה",
+        "display_transliteration": "katva",
+        "tts_input": "כָּתְבָה",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lei scrisse"
+      },
+      "1_plural": {
+        "hebrew_with_niqqud": "כָּתַבְנוּ",
+        "hebrew_without_niqqud": "כתבנו",
+        "display_transliteration": "katavnu",
+        "tts_input": "כָּתַבְנוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi scrivemmo"
+      },
+      "2_masculine_plural": {
+        "hebrew_with_niqqud": "כְּתַבְתֶּם",
+        "hebrew_without_niqqud": "כתבתם",
+        "display_transliteration": "ktavtem",
+        "tts_input": "כְּתַבְתֶּם",
+        "stress_syllable_index": 2,
+        "italian_gloss": "voi scriveste"
+      },
+      "2_feminine_plural": {
+        "hebrew_with_niqqud": "כְּתַבְתֶּן",
+        "hebrew_without_niqqud": "כתבתן",
+        "display_transliteration": "ktavten",
+        "tts_input": "כְּתַבְתֶּן",
+        "stress_syllable_index": 2,
+        "italian_gloss": "voi scriveste (f.)"
+      },
+      "3_plural": {
+        "hebrew_with_niqqud": "כָּתְבוּ",
+        "hebrew_without_niqqud": "כתבו",
+        "display_transliteration": "katvu",
+        "tts_input": "כָּתְבוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "loro scrissero"
+      }
+    },
+    "future": {
+      "1_singular": {
+        "hebrew_with_niqqud": "אֶכְתֹּב",
+        "hebrew_without_niqqud": "אכתוב",
+        "display_transliteration": "echtov",
+        "tts_input": "אֶכְתֹּב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io scriverò"
+      },
+      "2_masculine_singular": {
+        "hebrew_with_niqqud": "תִּכְתֹּב",
+        "hebrew_without_niqqud": "תכתוב",
+        "display_transliteration": "tichtov",
+        "tts_input": "תִּכְתֹּב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu scriverai"
+      },
+      "2_feminine_singular": {
+        "hebrew_with_niqqud": "תִּכְתְּבִי",
+        "hebrew_without_niqqud": "תכתבי",
+        "display_transliteration": "tichte'vi",
+        "tts_input": "תִּכְתְּבִי",
+        "stress_syllable_index": 3,
+        "italian_gloss": "tu scriverai (f.)"
+      },
+      "3_masculine_singular": {
+        "hebrew_with_niqqud": "יִכְתֹּב",
+        "hebrew_without_niqqud": "יכתוב",
+        "display_transliteration": "yichtov",
+        "tts_input": "יִכְתֹּב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lui scriverà"
+      },
+      "3_feminine_singular": {
+        "hebrew_with_niqqud": "תִּכְתֹּב",
+        "hebrew_without_niqqud": "תכתוב",
+        "display_transliteration": "tichtov",
+        "tts_input": "תִּכְתֹּב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lei scriverà"
+      },
+      "1_plural": {
+        "hebrew_with_niqqud": "נִכְתֹּב",
+        "hebrew_without_niqqud": "נכתוב",
+        "display_transliteration": "nichtov",
+        "tts_input": "נִכְתֹּב",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi scriveremo"
+      },
+      "2_plural": {
+        "hebrew_with_niqqud": "תִּכְתְּבוּ",
+        "hebrew_without_niqqud": "תכתבו",
+        "display_transliteration": "tichte'vu",
+        "tts_input": "תִּכְתְּבוּ",
+        "stress_syllable_index": 3,
+        "italian_gloss": "voi scriverete"
+      },
+      "3_plural": {
+        "hebrew_with_niqqud": "יִכְתְּבוּ",
+        "hebrew_without_niqqud": "יכתבו",
+        "display_transliteration": "yichte'vu",
+        "tts_input": "יִכְתְּבוּ",
+        "stress_syllable_index": 3,
+        "italian_gloss": "loro scriveranno"
+      }
+    },
+    "stress_metadata": {
+      "primary_stress_pattern": "variable_by_form",
+      "notes": "Infinitive stress on last syllable. Present tense stress on the penultimate or ultimate suffix as marked per form."
+    },
+    "pronunciation_verification_status": "verified_from_pealim",
+    "content_verification_status": "verified"
+  },
+  {
+    "order": 2,
+    "infinitive_hebrew_with_niqqud": "לְדַבֵּר",
+    "infinitive_hebrew_without_niqqud": "לדבר",
+    "infinitive_transliteration": "ledaber",
+    "italian_translation": "parlare",
+    "root": "ד-ב-ר",
+    "binyan": "PI'EL",
+    "source_url": "https://www.pealim.com/dict/2-ledaber/",
+    "source_checked_date": "2026-07-22",
+    "source_notes": "Verified from Pealim conjugation table. Pi'el with characteristic dagesh. Feminine plural future uses common masculine plural form.",
+    "example_hebrew_with_niqqud": "אֲנִי מְדַבֵּר עִבְרִית קְצָת",
+    "example_hebrew_without_niqqud": "אני מדבר עברית קצת",
+    "example_transliteration": "ani medaber ivrit ktsat",
+    "example_italian": "Parlo un po' di ebraico.",
+    "present": {
+      "masculine_singular": {
+        "hebrew_with_niqqud": "מְדַבֵּר",
+        "hebrew_without_niqqud": "מדבר",
+        "display_transliteration": "medaber",
+        "tts_input": "מְדַבֵּר",
+        "stress_syllable_index": 3,
+        "italian_gloss": "io parlo"
+      },
+      "feminine_singular": {
+        "hebrew_with_niqqud": "מְדַבֶּרֶת",
+        "hebrew_without_niqqud": "מדברת",
+        "display_transliteration": "medaberet",
+        "tts_input": "מְדַבֶּרֶת",
+        "stress_syllable_index": 3,
+        "italian_gloss": "io parlo (f.)"
+      },
+      "masculine_plural": {
+        "hebrew_with_niqqud": "מְדַבְּרִים",
+        "hebrew_without_niqqud": "מדברים",
+        "display_transliteration": "medabrim",
+        "tts_input": "מְדַבְּרִים",
+        "stress_syllable_index": 3,
+        "italian_gloss": "noi/voi/loro parlano"
+      },
+      "feminine_plural": {
+        "hebrew_with_niqqud": "מְדַבְּרוֹת",
+        "hebrew_without_niqqud": "מדברות",
+        "display_transliteration": "medabrot",
+        "tts_input": "מְדַבְּרוֹת",
+        "stress_syllable_index": 3,
+        "italian_gloss": "noi/voi/loro parlano (f.)"
+      }
+    },
+    "past": {
+      "1_singular": {
+        "hebrew_with_niqqud": "דִּבַּרְתִּי",
+        "hebrew_without_niqqud": "דיברתי",
+        "display_transliteration": "dibarti",
+        "tts_input": "דִּבַּרְתִּי",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io parlai"
+      },
+      "2_masculine_singular": {
+        "hebrew_with_niqqud": "דִּבַּרְתָּ",
+        "hebrew_without_niqqud": "דיברת",
+        "display_transliteration": "dibarta",
+        "tts_input": "דִּבַּרְתָּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu parlasti"
+      },
+      "2_feminine_singular": {
+        "hebrew_with_niqqud": "דִּבַּרְתְּ",
+        "hebrew_without_niqqud": "דיברת",
+        "display_transliteration": "dibart",
+        "tts_input": "דִּבַּרְתְּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu parlasti (f.)"
+      },
+      "3_masculine_singular": {
+        "hebrew_with_niqqud": "דִּבֵּר",
+        "hebrew_without_niqqud": "דיבר",
+        "display_transliteration": "diber",
+        "tts_input": "דִּבֵּר",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lui parlò"
+      },
+      "3_feminine_singular": {
+        "hebrew_with_niqqud": "דִּבְּרָה",
+        "hebrew_without_niqqud": "דיברה",
+        "display_transliteration": "dibra",
+        "tts_input": "דִּבְּרָה",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lei parlò"
+      },
+      "1_plural": {
+        "hebrew_with_niqqud": "דִּבַּרְנוּ",
+        "hebrew_without_niqqud": "דיברנו",
+        "display_transliteration": "dibarnu",
+        "tts_input": "דִּבַּרְנוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi parlammo"
+      },
+      "2_masculine_plural": {
+        "hebrew_with_niqqud": "דִּבַּרְתֶּם",
+        "hebrew_without_niqqud": "דיברתם",
+        "display_transliteration": "dibartem",
+        "tts_input": "דִּבַּרְתֶּם",
+        "stress_syllable_index": 3,
+        "italian_gloss": "voi parlaste"
+      },
+      "2_feminine_plural": {
+        "hebrew_with_niqqud": "דִּבַּרְתֶּן",
+        "hebrew_without_niqqud": "דיברתן",
+        "display_transliteration": "dibarten",
+        "tts_input": "דִּבַּרְתֶּן",
+        "stress_syllable_index": 3,
+        "italian_gloss": "voi parlaste (f.)"
+      },
+      "3_plural": {
+        "hebrew_with_niqqud": "דִּבְּרוּ",
+        "hebrew_without_niqqud": "דיברו",
+        "display_transliteration": "dibru",
+        "tts_input": "דִּבְּרוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "loro parlarono"
+      }
+    },
+    "future": {
+      "1_singular": {
+        "hebrew_with_niqqud": "אֲדַבֵּר",
+        "hebrew_without_niqqud": "אדבר",
+        "display_transliteration": "adaber",
+        "tts_input": "אֲדַבֵּר",
+        "stress_syllable_index": 3,
+        "italian_gloss": "io parlerò"
+      },
+      "2_masculine_singular": {
+        "hebrew_with_niqqud": "תְּדַבֵּר",
+        "hebrew_without_niqqud": "תדבר",
+        "display_transliteration": "tedaber",
+        "tts_input": "תְּדַבֵּר",
+        "stress_syllable_index": 3,
+        "italian_gloss": "tu parlerai"
+      },
+      "2_feminine_singular": {
+        "hebrew_with_niqqud": "תְּדַבְּרִי",
+        "hebrew_without_niqqud": "תדברי",
+        "display_transliteration": "tedabri",
+        "tts_input": "תְּדַבְּרִי",
+        "stress_syllable_index": 3,
+        "italian_gloss": "tu parlerai (f.)"
+      },
+      "3_masculine_singular": {
+        "hebrew_with_niqqud": "יְדַבֵּר",
+        "hebrew_without_niqqud": "ידבר",
+        "display_transliteration": "yedaber",
+        "tts_input": "יְדַבֵּר",
+        "stress_syllable_index": 3,
+        "italian_gloss": "lui parlerà"
+      },
+      "3_feminine_singular": {
+        "hebrew_with_niqqud": "תְּדַבֵּר",
+        "hebrew_without_niqqud": "תדבר",
+        "display_transliteration": "tedaber",
+        "tts_input": "תְּדַבֵּר",
+        "stress_syllable_index": 3,
+        "italian_gloss": "lei parlerà"
+      },
+      "1_plural": {
+        "hebrew_with_niqqud": "נְדַבֵּר",
+        "hebrew_without_niqqud": "נדבר",
+        "display_transliteration": "nedaber",
+        "tts_input": "נְדַבֵּר",
+        "stress_syllable_index": 3,
+        "italian_gloss": "noi parleremo"
+      },
+      "2_plural": {
+        "hebrew_with_niqqud": "תְּדַבְּרוּ",
+        "hebrew_without_niqqud": "תדברו",
+        "display_transliteration": "tedabru",
+        "tts_input": "תְּדַבְּרוּ",
+        "stress_syllable_index": 3,
+        "italian_gloss": "voi parlerete"
+      },
+      "3_plural": {
+        "hebrew_with_niqqud": "יְדַבְּרוּ",
+        "hebrew_without_niqqud": "ידברו",
+        "display_transliteration": "yedabru",
+        "tts_input": "יְדַבְּרוּ",
+        "stress_syllable_index": 3,
+        "italian_gloss": "loro parleranno"
+      }
+    },
+    "stress_metadata": {
+      "primary_stress_pattern": "penultimate_stem",
+      "notes": "Pi'el stress generally on the penultimate stem syllable; feminine singular present and future 2fs shift stress to the final suffix."
+    },
+    "pronunciation_verification_status": "verified_from_pealim",
+    "content_verification_status": "verified"
+  },
+  {
+    "order": 3,
+    "infinitive_hebrew_with_niqqud": "לֶאֱכֹל",
+    "infinitive_hebrew_without_niqqud": "לאכול",
+    "infinitive_transliteration": "le'echol",
+    "italian_translation": "mangiare",
+    "root": "א-כ-ל",
+    "binyan": "PA'AL",
+    "source_url": "https://www.pealim.com/dict/30-leechol/",
+    "source_checked_date": "2026-07-22",
+    "source_notes": "Verified from Pealim conjugation table. Initial alef is silent/drops in inflected forms. Feminine plural future uses common masculine plural form.",
+    "example_hebrew_with_niqqud": "אֲנִי אוֹכֵל תַּפּוּחַ",
+    "example_hebrew_without_niqqud": "אני אוכל תפוח",
+    "example_transliteration": "ani ochel tapuach",
+    "example_italian": "Mangio una mela.",
+    "present": {
+      "masculine_singular": {
+        "hebrew_with_niqqud": "אוֹכֵל",
+        "hebrew_without_niqqud": "אוכל",
+        "display_transliteration": "ochel",
+        "tts_input": "אוֹכֵל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io mangio"
+      },
+      "feminine_singular": {
+        "hebrew_with_niqqud": "אוֹכֶלֶת",
+        "hebrew_without_niqqud": "אוכלת",
+        "display_transliteration": "ochelet",
+        "tts_input": "אוֹכֶלֶת",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io mangio (f.)"
+      },
+      "masculine_plural": {
+        "hebrew_with_niqqud": "אוֹכְלִים",
+        "hebrew_without_niqqud": "אוכלים",
+        "display_transliteration": "ochlim",
+        "tts_input": "אוֹכְלִים",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi/voi/loro mangiano"
+      },
+      "feminine_plural": {
+        "hebrew_with_niqqud": "אוֹכְלוֹת",
+        "hebrew_without_niqqud": "אוכלות",
+        "display_transliteration": "ochlot",
+        "tts_input": "אוֹכְלוֹת",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi/voi/loro mangiano (f.)"
+      }
+    },
+    "past": {
+      "1_singular": {
+        "hebrew_with_niqqud": "אָכַלְתִּי",
+        "hebrew_without_niqqud": "אכלתי",
+        "display_transliteration": "achalti",
+        "tts_input": "אָכַלְתִּי",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io mangiai"
+      },
+      "2_masculine_singular": {
+        "hebrew_with_niqqud": "אָכַלְתָּ",
+        "hebrew_without_niqqud": "אכלת",
+        "display_transliteration": "achalta",
+        "tts_input": "אָכַלְתָּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu mangiasti"
+      },
+      "2_feminine_singular": {
+        "hebrew_with_niqqud": "אָכַלְתְּ",
+        "hebrew_without_niqqud": "אכלת",
+        "display_transliteration": "achalt",
+        "tts_input": "אָכַלְתְּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu mangiasti (f.)"
+      },
+      "3_masculine_singular": {
+        "hebrew_with_niqqud": "אָכַל",
+        "hebrew_without_niqqud": "אכל",
+        "display_transliteration": "achal",
+        "tts_input": "אָכַל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lui mangiò"
+      },
+      "3_feminine_singular": {
+        "hebrew_with_niqqud": "אָכְלָה",
+        "hebrew_without_niqqud": "אכלה",
+        "display_transliteration": "achla",
+        "tts_input": "אָכְלָה",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lei mangiò"
+      },
+      "1_plural": {
+        "hebrew_with_niqqud": "אָכַלְנוּ",
+        "hebrew_without_niqqud": "אכלנו",
+        "display_transliteration": "achalnu",
+        "tts_input": "אָכַלְנוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi mangiammo"
+      },
+      "2_masculine_plural": {
+        "hebrew_with_niqqud": "אֲכַלְתֶּם",
+        "hebrew_without_niqqud": "אכלתם",
+        "display_transliteration": "achaltem",
+        "tts_input": "אֲכַלְתֶּם",
+        "stress_syllable_index": 3,
+        "italian_gloss": "voi mangiaste"
+      },
+      "2_feminine_plural": {
+        "hebrew_with_niqqud": "אֲכַלְתֶּן",
+        "hebrew_without_niqqud": "אכלתן",
+        "display_transliteration": "achalten",
+        "tts_input": "אֲכַלְתֶּן",
+        "stress_syllable_index": 3,
+        "italian_gloss": "voi mangiaste (f.)"
+      },
+      "3_plural": {
+        "hebrew_with_niqqud": "אָכְלוּ",
+        "hebrew_without_niqqud": "אכלו",
+        "display_transliteration": "achlu",
+        "tts_input": "אָכְלוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "loro mangiarono"
+      }
+    },
+    "future": {
+      "1_singular": {
+        "hebrew_with_niqqud": "אֹכַל",
+        "hebrew_without_niqqud": "אוכל",
+        "display_transliteration": "ochal",
+        "tts_input": "אֹכַל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "io mangerò"
+      },
+      "2_masculine_singular": {
+        "hebrew_with_niqqud": "תֹּאכַל",
+        "hebrew_without_niqqud": "תאכול",
+        "display_transliteration": "tochal",
+        "tts_input": "תֹּאכַל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu mangerai"
+      },
+      "2_feminine_singular": {
+        "hebrew_with_niqqud": "תֹּאכְלִי",
+        "hebrew_without_niqqud": "תאכלי",
+        "display_transliteration": "tochli",
+        "tts_input": "תֹּאכְלִי",
+        "stress_syllable_index": 2,
+        "italian_gloss": "tu mangerai (f.)"
+      },
+      "3_masculine_singular": {
+        "hebrew_with_niqqud": "יֹאכַל",
+        "hebrew_without_niqqud": "יאכול",
+        "display_transliteration": "yochal",
+        "tts_input": "יֹאכַל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lui mangerà"
+      },
+      "3_feminine_singular": {
+        "hebrew_with_niqqud": "תֹּאכַל",
+        "hebrew_without_niqqud": "תאכול",
+        "display_transliteration": "tochal",
+        "tts_input": "תֹּאכַל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "lei mangerà"
+      },
+      "1_plural": {
+        "hebrew_with_niqqud": "נֹאכַל",
+        "hebrew_without_niqqud": "נאכול",
+        "display_transliteration": "nochal",
+        "tts_input": "נֹאכַל",
+        "stress_syllable_index": 2,
+        "italian_gloss": "noi mangeremo"
+      },
+      "2_plural": {
+        "hebrew_with_niqqud": "תֹּאכְלוּ",
+        "hebrew_without_niqqud": "תאכלו",
+        "display_transliteration": "tochlu",
+        "tts_input": "תֹּאכְלוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "voi mangerete"
+      },
+      "3_plural": {
+        "hebrew_with_niqqud": "יֹאכְלוּ",
+        "hebrew_without_niqqud": "יאכלו",
+        "display_transliteration": "yochlu",
+        "tts_input": "יֹאכְלוּ",
+        "stress_syllable_index": 2,
+        "italian_gloss": "loro mangeranno"
+      }
+    },
+    "stress_metadata": {
+      "primary_stress_pattern": "variable_by_form",
+      "notes": "Initial alef is silent or glottal. Infinitive stress on the final /o/. Future forms stress on the stem a in the penultimate syllable."
+    },
+    "pronunciation_verification_status": "verified_from_pealim",
+    "content_verification_status": "verified"
+  }
+]

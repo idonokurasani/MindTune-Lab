@@ -1,0 +1,318 @@
+{
+  "lemma": "לכתוב",
+  "generated_at": "2026-07-23T07:48:16.714748+00:00",
+  "report": {
+    "lemma": "לכתוב",
+    "approved_source": "pealim",
+    "form_reports": {
+      "infinitive": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "לִכְתֹּב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "liχtˈov"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "לִכְתֹּב",
+          "lexical_stress": 2
+        }
+      },
+      "present_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כּוֹתֵב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "kotˈev"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כּוֹתֵב",
+          "lexical_stress": 2
+        }
+      },
+      "present_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כּוֹתֶבֶת",
+            "lexical_stress": 2,
+            "phonemes_corrected": "kotˈevet"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כּוֹתֶבֶת",
+          "lexical_stress": 2
+        }
+      },
+      "present_masculine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כּוֹתְבִים",
+            "lexical_stress": 2,
+            "phonemes_corrected": "kotvˈim"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כּוֹתְבִים",
+          "lexical_stress": 2
+        }
+      },
+      "present_feminine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כּוֹתְבוֹת",
+            "lexical_stress": 2,
+            "phonemes_corrected": "kotvˈot"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כּוֹתְבוֹת",
+          "lexical_stress": 2
+        }
+      },
+      "past_1_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתַבְתִּי",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katˈavti"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתַבְתִּי",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתַבְתָּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katˈavta"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתַבְתָּ",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתַבְתְּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katˈavt"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתַבְתְּ",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתַב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katˈav"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתַב",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתְבָה",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katvˈa"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתְבָה",
+          "lexical_stress": 2
+        }
+      },
+      "past_1_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתַבְנוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katˈavnu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתַבְנוּ",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_masculine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כְּתַבְתֶּם",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ktavtˈem"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כְּתַבְתֶּם",
+          "lexical_stress": 2
+        }
+      },
+      "past_2_feminine_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כְּתַבְתֶּן",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ktavtˈen"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כְּתַבְתֶּן",
+          "lexical_stress": 2
+        }
+      },
+      "past_3_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "כָּתְבוּ",
+            "lexical_stress": 2,
+            "phonemes_corrected": "katvˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "כָּתְבוּ",
+          "lexical_stress": 2
+        }
+      },
+      "future_1_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "אֶכְתֹּב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "ʔeχtˈov"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "אֶכְתֹּב",
+          "lexical_stress": 2
+        }
+      },
+      "future_2_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּכְתֹּב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "tiχtˈov"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּכְתֹּב",
+          "lexical_stress": 2
+        }
+      },
+      "future_2_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּכְתְּבִי",
+            "lexical_stress": 3,
+            "phonemes_corrected": "tiχtevˈi"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּכְתְּבִי",
+          "lexical_stress": 3
+        }
+      },
+      "future_3_masculine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "יִכְתֹּב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "jiχtˈov"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "יִכְתֹּב",
+          "lexical_stress": 2
+        }
+      },
+      "future_3_feminine_singular": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּכְתֹּב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "tiχtˈov"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּכְתֹּב",
+          "lexical_stress": 2
+        }
+      },
+      "future_1_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "נִכְתֹּב",
+            "lexical_stress": 2,
+            "phonemes_corrected": "niχtˈov"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "נִכְתֹּב",
+          "lexical_stress": 2
+        }
+      },
+      "future_2_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "תִּכְתְּבוּ",
+            "lexical_stress": 3,
+            "phonemes_corrected": "tiχtevˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "תִּכְתְּבוּ",
+          "lexical_stress": 3
+        }
+      },
+      "future_3_plural": {
+        "sources": {
+          "pealim": {
+            "surface_vocalized": "יִכְתְּבוּ",
+            "lexical_stress": 3,
+            "phonemes_corrected": "jiχtevˈu"
+          }
+        },
+        "disagreements": [],
+        "resolved": {
+          "surface_vocalized": "יִכְתְּבוּ",
+          "lexical_stress": 3
+        }
+      }
+    }
+  }
+}

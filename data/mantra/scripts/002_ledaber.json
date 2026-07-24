@@ -1,0 +1,257 @@
+{
+  "order": 2,
+  "verb_key": "ledaber",
+  "hebrew_infinitive": "לְדַבֵּר",
+  "hebrew_infinitive_without_niqqud": "לדבר",
+  "italian_infinitive": "parlare",
+  "root": "ד-ב-ר",
+  "binyan": "PI'EL",
+  "source_url": "https://www.pealim.com/dict/2-ledaber/",
+  "sections": [
+    {
+      "section": "infinitive",
+      "label_he": "שֵׁם הַפֹּעַל",
+      "label_it": "infinito",
+      "lines": [
+        {
+          "form_key": "infinitive",
+          "hebrew_with_niqqud": "לְדַבֵּר",
+          "hebrew_without_niqqud": "לדבר",
+          "transliteration": "ledaber",
+          "tts_input": "לְדַבֵּר",
+          "italian_gloss": "parlare"
+        },
+        {
+          "form_key": "example",
+          "hebrew_with_niqqud": "אֲנִי מְדַבֵּר עִבְרִית קְצָת",
+          "hebrew_without_niqqud": "אני מדבר עברית קצת",
+          "transliteration": "ani medaber ivrit ktsat",
+          "tts_input": "אֲנִי מְדַבֵּר עִבְרִית קְצָת",
+          "italian_gloss": "Parlo un po' di ebraico."
+        }
+      ]
+    },
+    {
+      "section": "present",
+      "label_he": "בַּהוֹוֶה",
+      "label_it": "presente",
+      "lines": [
+        {
+          "form_key": "masculine_singular",
+          "hebrew_with_niqqud": "מְדַבֵּר",
+          "hebrew_without_niqqud": "מדבר",
+          "transliteration": "medaber",
+          "tts_input": "מְדַבֵּר",
+          "italian_gloss": "io parlo",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "feminine_singular",
+          "hebrew_with_niqqud": "מְדַבֶּרֶת",
+          "hebrew_without_niqqud": "מדברת",
+          "transliteration": "medaberet",
+          "tts_input": "מְדַבֶּרֶת",
+          "italian_gloss": "io parlo (f.)",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "masculine_plural",
+          "hebrew_with_niqqud": "מְדַבְּרִים",
+          "hebrew_without_niqqud": "מדברים",
+          "transliteration": "medabrim",
+          "tts_input": "מְדַבְּרִים",
+          "italian_gloss": "noi/voi/loro parlano",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "feminine_plural",
+          "hebrew_with_niqqud": "מְדַבְּרוֹת",
+          "hebrew_without_niqqud": "מדברות",
+          "transliteration": "medabrot",
+          "tts_input": "מְדַבְּרוֹת",
+          "italian_gloss": "noi/voi/loro parlano (f.)",
+          "stress_syllable_index": 3
+        }
+      ]
+    },
+    {
+      "section": "past",
+      "label_he": "בָּעָבָר",
+      "label_it": "passato",
+      "lines": [
+        {
+          "form_key": "1_singular",
+          "hebrew_with_niqqud": "דִּבַּרְתִּי",
+          "hebrew_without_niqqud": "דיברתי",
+          "transliteration": "dibarti",
+          "tts_input": "דִּבַּרְתִּי",
+          "italian_gloss": "io parlai",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_singular",
+          "hebrew_with_niqqud": "דִּבַּרְתָּ",
+          "hebrew_without_niqqud": "דיברת",
+          "transliteration": "dibarta",
+          "tts_input": "דִּבַּרְתָּ",
+          "italian_gloss": "tu parlasti",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_feminine_singular",
+          "hebrew_with_niqqud": "דִּבַּרְתְּ",
+          "hebrew_without_niqqud": "דיברת",
+          "transliteration": "dibart",
+          "tts_input": "דִּבַּרְתְּ",
+          "italian_gloss": "tu parlasti (f.)",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_masculine_singular",
+          "hebrew_with_niqqud": "דִּבֵּר",
+          "hebrew_without_niqqud": "דיבר",
+          "transliteration": "diber",
+          "tts_input": "דִּבֵּר",
+          "italian_gloss": "lui parlò",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "3_feminine_singular",
+          "hebrew_with_niqqud": "דִּבְּרָה",
+          "hebrew_without_niqqud": "דיברה",
+          "transliteration": "dibra",
+          "tts_input": "דִּבְּרָה",
+          "italian_gloss": "lei parlò",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "1_plural",
+          "hebrew_with_niqqud": "דִּבַּרְנוּ",
+          "hebrew_without_niqqud": "דיברנו",
+          "transliteration": "dibarnu",
+          "tts_input": "דִּבַּרְנוּ",
+          "italian_gloss": "noi parlammo",
+          "stress_syllable_index": 2
+        },
+        {
+          "form_key": "2_masculine_plural",
+          "hebrew_with_niqqud": "דִּבַּרְתֶּם",
+          "hebrew_without_niqqud": "דיברתם",
+          "transliteration": "dibartem",
+          "tts_input": "דִּבַּרְתֶּם",
+          "italian_gloss": "voi parlaste",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "2_feminine_plural",
+          "hebrew_with_niqqud": "דִּבַּרְתֶּן",
+          "hebrew_without_niqqud": "דיברתן",
+          "transliteration": "dibarten",
+          "tts_input": "דִּבַּרְתֶּן",
+          "italian_gloss": "voi parlaste (f.)",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_plural",
+          "hebrew_with_niqqud": "דִּבְּרוּ",
+          "hebrew_without_niqqud": "דיברו",
+          "transliteration": "dibru",
+          "tts_input": "דִּבְּרוּ",
+          "italian_gloss": "loro parlarono",
+          "stress_syllable_index": 2
+        }
+      ]
+    },
+    {
+      "section": "future",
+      "label_he": "בָּעָתִיד",
+      "label_it": "futuro",
+      "lines": [
+        {
+          "form_key": "1_singular",
+          "hebrew_with_niqqud": "אֲדַבֵּר",
+          "hebrew_without_niqqud": "אדבר",
+          "transliteration": "adaber",
+          "tts_input": "אֲדַבֵּר",
+          "italian_gloss": "io parlerò",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "2_masculine_singular",
+          "hebrew_with_niqqud": "תְּדַבֵּר",
+          "hebrew_without_niqqud": "תדבר",
+          "transliteration": "tedaber",
+          "tts_input": "תְּדַבֵּר",
+          "italian_gloss": "tu parlerai",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "2_feminine_singular",
+          "hebrew_with_niqqud": "תְּדַבְּרִי",
+          "hebrew_without_niqqud": "תדברי",
+          "transliteration": "tedabri",
+          "tts_input": "תְּדַבְּרִי",
+          "italian_gloss": "tu parlerai (f.)",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_masculine_singular",
+          "hebrew_with_niqqud": "יְדַבֵּר",
+          "hebrew_without_niqqud": "ידבר",
+          "transliteration": "yedaber",
+          "tts_input": "יְדַבֵּר",
+          "italian_gloss": "lui parlerà",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_feminine_singular",
+          "hebrew_with_niqqud": "תְּדַבֵּר",
+          "hebrew_without_niqqud": "תדבר",
+          "transliteration": "tedaber",
+          "tts_input": "תְּדַבֵּר",
+          "italian_gloss": "lei parlerà",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "1_plural",
+          "hebrew_with_niqqud": "נְדַבֵּר",
+          "hebrew_without_niqqud": "נדבר",
+          "transliteration": "nedaber",
+          "tts_input": "נְדַבֵּר",
+          "italian_gloss": "noi parleremo",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "2_plural",
+          "hebrew_with_niqqud": "תְּדַבְּרוּ",
+          "hebrew_without_niqqud": "תדברו",
+          "transliteration": "tedabru",
+          "tts_input": "תְּדַבְּרוּ",
+          "italian_gloss": "voi parlerete",
+          "stress_syllable_index": 3
+        },
+        {
+          "form_key": "3_plural",
+          "hebrew_with_niqqud": "יְדַבְּרוּ",
+          "hebrew_without_niqqud": "ידברו",
+          "transliteration": "yedabru",
+          "tts_input": "יְדַבְּרוּ",
+          "italian_gloss": "loro parleranno",
+          "stress_syllable_index": 3
+        }
+      ]
+    }
+  ],
+  "spoken_script": "LEDABER.\nPARLARE.\nANI MEDABER IVRIT KTSAT.\n\nBA-HOVE:\nMEDABER.\nMEDABERET.\nMEDABRIM.\nMEDABROT.\n\nBE-AVAR:\nDIBARTI.\nDIBARTA.\nDIBART.\nDIBER.\nDIBRA.\nDIBARNU.\nDIBARTEM.\nDIBARTEN.\nDIBRU.\n\nBE-ATID:\nADABER.\nTEDABER.\nTEDABRI.\nYEDABER.\nTEDABER.\nNEDABER.\nTEDABRU.\nYEDABRU.",
+  "display_script": "LEDABER.\nPARLARE.\nANI MEDABER IVRIT KTSAT.\n\nBA-HOVE:\nMEDABER.\nMEDABERET.\nMEDABRIM.\nMEDABROT.\n\nBE-AVAR:\nDIBARTI.\nDIBARTA.\nDIBART.\nDIBER.\nDIBRA.\nDIBARNU.\nDIBARTEM.\nDIBARTEN.\nDIBRU.\n\nBE-ATID:\nADABER.\nTEDABER.\nTEDABRI.\nYEDABER.\nTEDABER.\nNEDABER.\nTEDABRU.\nYEDABRU.",
+  "hebrew_script": "לְדַבֵּר.\nאֲנִי מְדַבֵּר עִבְרִית קְצָת.\n\nבַּהוֹוֶה:\nמְדַבֵּר.\nמְדַבֶּרֶת.\nמְדַבְּרִים.\nמְדַבְּרוֹת.\n\nבָּעָבָר:\nדִּבַּרְתִּי.\nדִּבַּרְתָּ.\nדִּבַּרְתְּ.\nדִּבֵּר.\nדִּבְּרָה.\nדִּבַּרְנוּ.\nדִּבַּרְתֶּם.\nדִּבַּרְתֶּן.\nדִּבְּרוּ.\n\nבָּעָתִיד:\nאֲדַבֵּר.\nתְּדַבֵּר.\nתְּדַבְּרִי.\nיְדַבֵּר.\nתְּדַבֵּר.\nנְדַבֵּר.\nתְּדַבְּרוּ.\nיְדַבְּרוּ.",
+  "italian_script": "Parlare.\nParlo un po' di ebraico.\n\nPresente:\nio parlo.\nio parlo (f.).\nnoi/voi/loro parlano.\nnoi/voi/loro parlano (f.).\n\nPassato:\nio parlai.\ntu parlasti.\ntu parlasti (f.).\nlui parlò.\nlei parlò.\nnoi parlammo.\nvoi parlaste.\nvoi parlaste (f.).\nloro parlarono.\n\nFuturo:\nio parlerò.\ntu parlerai.\ntu parlerai (f.).\nlui parlerà.\nlei parlerà.\nnoi parleremo.\nvoi parlerete.\nloro parleranno.",
+  "transliteration": "LEDABER.\nPARLARE.\nANI MEDABER IVRIT KTSAT.\n\nBA-HOVE:\nMEDABER.\nMEDABERET.\nMEDABRIM.\nMEDABROT.\n\nBE-AVAR:\nDIBARTI.\nDIBARTA.\nDIBART.\nDIBER.\nDIBRA.\nDIBARNU.\nDIBARTEM.\nDIBARTEN.\nDIBRU.\n\nBE-ATID:\nADABER.\nTEDABER.\nTEDABRI.\nYEDABER.\nTEDABER.\nNEDABER.\nTEDABRU.\nYEDABRU.",
+  "pauses_ms": {
+    "between_forms": 500,
+    "between_sections": 900,
+    "after_example": 700
+  },
+  "speaking_rate": "-15%",
+  "ssml_path": "ssml/002_ledaber.xml"
+}

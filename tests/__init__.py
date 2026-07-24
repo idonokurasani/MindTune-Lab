@@ -1,0 +1,1 @@
+"""MindTune console tests."""

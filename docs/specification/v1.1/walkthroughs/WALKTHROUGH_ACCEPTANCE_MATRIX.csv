@@ -1,0 +1,21 @@
+requirement_id,requirement,hebrew_vocabulary_recall,hebrew_morphology_recognition,exposure_only,evidence,issues,blocking
+AC-01,All objects required by the slice are instantiated,Pass,Pass,Pass,Object instantiation ledger in each walkthrough; no missing objects identified,None,No
+AC-02,All identifiers use canonical registry names,Pass,Pass,Pass,All `*_id` fields reference canonical names from `MPE_CANONICAL_IDENTIFIER_REGISTRY.md`,None,No
+AC-03,All enums use canonical values,Pass,Pass,Pass,`answer_status`, `evaluation_status`, `feedback_category`, `feedback_type`, `instruction_type`, `task_family`, `response_requirement`, `block_type`, `decision_type`, `decision_status` all validated,Exposure used `acquisition` as block_type in first draft; corrected to `practice`,No
+AC-04,Event payloads contain all required fields,Pass,Pass,Pass,Required fields for `Instruction`, `StimulusRequest`, `RenderedStimulus`, `ResponseWindow`, `Observation`, `CapturedResponse`, `ResponseInterpretation`, `DomainNormalizedResponse`, `Evaluation`, and `ScheduleDecision` are present in event rows,Initial drafts omitted some required payload fields; corrected in final walkthroughs,No
+AC-05,Foreign references are valid,Pass,Pass,Pass,`evaluation_completed` references `domain_normalized_response_id` and `expected_content_item_id`; `feedback_started` references `evaluation_id`; `schedule_decision` references source events,None,No
+AC-06,State-machine transitions are legal,Pass,Pass,Pass,Session/block/trial/response/safety/adaptation transitions follow `RUNTIME_STATE_MACHINE.md`,None,No
+AC-07,Response pipeline is correctly activated or omitted,Pass,Pass,Pass,Full pipeline in recall/morphology; omitted in exposure due to `response_requirement: none`,None,No
+AC-08,No observable response is fabricated when response_requirement is none,Not applicable,Not applicable,Pass,Exposure success path contains no `ResponseWindow`, `CapturedResponse`, `ResponseInterpretation`, `DomainNormalizedResponse`, or `Evaluation`,None,No
+AC-09,Provider boundaries are respected,Pass,Pass,Pass,Renderer does not evaluate; normalizer does not compare; evaluator does not render,None,No
+AC-10,Hebrew correctness decisions remain inside the Hebrew engine,Pass,Pass,Not applicable,`HebrewEvaluator` returns `answer_status` and `correctness_credit`; MPE core does not interpret Hebrew,None,No
+AC-11,Alternative branches are documented,Pass,Pass,Pass,Failure/recovery branches include correct/incorrect/variant/timeout/low confidence/abstention/provider failure/pause/resume/cancel/safety,None,No
+AC-12,Replay can reconstruct terminal state,Pass,Pass,Pass,Persistence and reconstruction trace in each walkthrough; `Outcome` derived from event stream,None,No
+AC-13,Data classification is correct,Pass,Pass,Pass,Observation/input events are `consent_gated`; schedule/evaluation/feedback events are `public`; exposure has no consent-gated events,None,No
+AC-14,Version compatibility is maintained,Pass,Pass,Pass,Provider/renderer/evaluator versions assumed to match `ProtocolVersion.dependency_versions`,No runtime versions checked because this is documentation-only,No
+AC-15,Outcome computation is well-defined,Pass,Pass,Pass,`Outcome` aggregates include accuracy/omission where evaluation exists and coverage/adherence where it does not,None,No
+AC-16,Evidence records capture provenance,Pass,Pass,Not applicable,`evidence_record_created` references `evaluation_completed` and `domain_response_normalized`,None,No
+AC-17,No hidden architectural decisions,Pass,Pass,Pass,All decisions (e.g., whether to open response window) are explicit in `Trial` and `Instruction` fields,None,No
+AC-18,Partial correctness and acceptable variants are supported,Pass,Pass,Not applicable,Recall demonstrates `acceptable_variant` with full credit; morphology demonstrates `partially_correct` with partial credit,None,No
+AC-19,Exposure protocols can deliver knowledge feedback without evaluation,Not applicable,Not applicable,Pass,`FeedbackEvent` `feedback_type: elaboration` and `feedback_category: KNOWLEDGE` used with no `Evaluation` link,None,No
+AC-20,Session pause/resume/cancel/safety paths are defined,Not applicable,Not applicable,Pass,Exposure includes `session_paused`, `session_resumed`, `session_cancelled`, safety interruption, and renderer timeout branches,None,No
