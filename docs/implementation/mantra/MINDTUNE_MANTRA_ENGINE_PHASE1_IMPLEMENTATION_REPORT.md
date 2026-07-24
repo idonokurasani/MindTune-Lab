@@ -210,8 +210,9 @@ Output:
 
 - `output/mantra_phase1_fake/mantra.wav` (mono, 22050 Hz, 16-bit, 58.75 s)
 - `output/mantra_phase1_fake/manifest.json`
-- `output/mantra_phase1_fake/events.json`
+- `output/mantra_phase1_fake/events.jsonl`
 - `output/mantra_phase1_fake/segments/*.wav`
+- Live SpeechGen artifact: `output/mantra_phase1_speechgen/mantra.wav` (mono, 22050 Hz, 16-bit, 87.84 s)
 
 Manifest validation: `status: completed`.
 
