@@ -5,6 +5,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
+from .sheva import ShevaAnnotation, classify_shevas
 from .utils import normalize_unicode
 
 
@@ -34,6 +35,8 @@ class MantraForm:
     person: str | None = None
     number: str | None = None
     gender: str | None = None
+    normalized_text: str = ""
+    sheva_annotations: list[ShevaAnnotation] = field(default_factory=list)
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
@@ -66,6 +69,21 @@ class MantraForm:
             object.__setattr__(self, "vocalized", self.hebrew_with_niqqud)
         else:
             object.__setattr__(self, "vocalized", normalize_unicode(self.vocalized))
+        if not self.normalized_text:
+            object.__setattr__(self, "normalized_text", normalize_unicode(self.hebrew_with_niqqud))
+        else:
+            object.__setattr__(self, "normalized_text", normalize_unicode(self.normalized_text))
+        # Convert raw dicts from JSON reconstruction into ShevaAnnotation objects.
+        raw_annotations: list[Any] = list(self.sheva_annotations)
+        parsed_annotations: list[ShevaAnnotation] = []
+        for a in raw_annotations:
+            if isinstance(a, dict):
+                parsed_annotations.append(ShevaAnnotation.from_dict(a))
+            elif isinstance(a, ShevaAnnotation):
+                parsed_annotations.append(a)
+        if not parsed_annotations:
+            parsed_annotations = classify_shevas(self.hebrew_with_niqqud)
+        object.__setattr__(self, "sheva_annotations", parsed_annotations)
         if self.stress_override is not None and self.stress_override < 0:
             raise ValueError("stress_override must be non-negative")
 
@@ -93,6 +111,8 @@ class MantraForm:
             "person": self.person,
             "number": self.number,
             "gender": self.gender,
+            "normalized_text": self.normalized_text,
+            "sheva_annotations": [a.to_dict() for a in self.sheva_annotations],
             "metadata": self.metadata,
         }
 

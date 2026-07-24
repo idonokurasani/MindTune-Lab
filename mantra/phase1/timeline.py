@@ -7,6 +7,7 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Any
 
+from .sheva import tts_variant
 from .spec import MantraForm, MantraSpecification
 from .utils import canonical_json, normalize_unicode, sha256_hex
 
@@ -170,6 +171,8 @@ def _speech_segment(
             "gender": form.gender,
             "stress_syllable_index": form.effective_stress(),
             "pronunciation_override": form.pronunciation_override,
+            "sheva_annotations": [a.to_dict() for a in form.sheva_annotations],
+            "tts_omit_silent": tts_variant(form.hebrew_with_niqqud, form.sheva_annotations, "omit_silent"),
         }
     is_italian = segment_type in {SegmentType.ITALIAN_CUE, SegmentType.GRAMMATICAL_LABEL}
     speech_cfg = spec.italian_speech if is_italian else spec.speech
