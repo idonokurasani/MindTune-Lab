@@ -13,12 +13,13 @@
 | Phase 4B.1 — Core MPE runtime skeleton | Completed | `packages/mpe/`, `docs/implementation/phase4b1/*.md` |
 | Phase 4B.2 — Persistence foundation | Completed | `packages/mpe/src/mpe/persistence/`, shared `EventStore` protocol, SQLite store, restart/replay verification, `docs/implementation/phase4b2/*.md` |
 | Phase 4B.3 — Minimal CLI | Completed | `packages/mpe/src/mpe/cli.py`, `mpe` console script, `EventStore.list_sessions()`, `docs/implementation/phase4b3/*.md` |
+| Phase 4C.1 — Minimal Protocol Vertical Slice (Immediate Recall) | Completed / Approved | `packages/mpe/src/mpe/protocol/`, `packages/mpe/tests/test_protocol_immediate_recall.py`, `docs/implementation/phase4c1/*.md` |
 
 ## 2. Current phase
 
-**Phase 4B.3 complete.**
+**Phase 4C.1 complete and approved.**
 
-Objective achieved: the smallest executable MPE core capable of creating a session, executing a deterministic mock protocol, producing 22 canonical events, storing them in memory, enforcing lifecycle transitions, reconstructing state via replay, and verifying consistency between live execution and replay. Legacy root-level files were not modified.
+The Immediate Recall minimal protocol vertical slice executes end-to-end through the existing MPE v1.1 Runtime, EventStore, persistence, replay, derived summary, and CLI. The next phase is Phase 4C.2 — Protocol Execution Generalization, which is a planning and design-reconciliation phase before additional protocols are implemented.
 
 ## 3. Approved documents
 
@@ -89,6 +90,26 @@ The following documents are approved and binding for Phase 4B:
 | 6 | Build Piano Engine, additional language engines, UI, and dashboard. |
 | 7+ | Production orchestration, scalable event-store backend, cloud deployment. |
 
-## 9. Last updated
+## 9. Phase 4C.1 completion status
 
-2026-07-24 — Phase 4B.3 completed; 89 tests passing, CLI (`mpe` / `python -m mpe`), SQLite persistence, and cross-process replay verification.
+- **Phase name:** MPE Phase 4C.1 — Minimal Protocol Vertical Slice
+- **Status:** COMPLETE / APPROVED
+- **Implemented capability:** domain-neutral Immediate Recall protocol executing end-to-end through the existing Runtime, EventStore, persistence, event replay, derived summary, and CLI.
+- **Key implementation elements:**
+  - deterministic `minimal` fixture (`item.alpha`, `item.beta`);
+  - typed runtime execution through `ImmediateRecallRunner`;
+  - bounded repeat rule with `repeat_cap=1` and `latency_bound=2.0`;
+  - behavior-authoritative correctness (`self_confirmation`);
+  - latency used only as an adaptation proxy;
+  - version-pinned fixture assets on `stimulus_requested`/`stimulus_ready`;
+  - `ProtocolSummary` derived exclusively from persisted events;
+  - CLI commands `run-immediate-recall` and `show-protocol-summary`;
+  - `NoOpScheduler` provider-set placeholder required by the existing `ProviderSet` interface.
+- **Verification:** 111 tests, 0 failures, 1 skipped; `ruff` passed; `mypy` passed.
+- **Explicit exclusions preserved:** no second DSL, no SpeechGen, no `mpe_audio`, no live TTS, no ASR, no EEG, no spaced repetition, no domain-specific adapter, no protocol composition.
+- **Final recommendation:** `APPROVE_MINIMAL_PROTOCOL_VERTICAL_SLICE`
+- **Git milestone:** repository initialized and baseline commit `dc26bada Baseline after MPE Phase 4C.1` created.
+
+## 10. Last updated
+
+2026-07-24 — Phase 4C.1 completed and approved; 111 tests passing, Immediate Recall protocol end-to-end, CLI, persistence, replay, and derived summary verified. Git repository initialized with baseline commit.

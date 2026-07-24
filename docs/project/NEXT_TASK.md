@@ -4,66 +4,96 @@
 
 ## 1. Current objective
 
-**Phase 4B.3 is complete.** The minimal MPE CLI is implemented, tested, and verified. It exposes `run-mock-session`, `replay`, `list-sessions`, and `validate-store` commands through both `python -m mpe` and the installed `mpe` console script.
+**Phase 4C.1 is complete and approved.**
 
-The next phase is **Phase 4B.4 — Hebrew provider integration**, but it **must not begin until the user explicitly approves it**.
+The next task is **Phase 4C.2 — Protocol Execution Generalization**. This is a **planning and design-reconciliation phase** before any additional protocol is implemented.
+
+The purpose is to determine which parts of `ImmediateRecallRunner` are:
+
+- protocol-specific;
+- reusable protocol execution infrastructure;
+- existing Runtime responsibilities;
+- candidates for a minimal shared protocol runner.
+
+This phase must avoid premature abstraction.
 
 ## 2. Allowed scope
 
-In Phase 4B.4, you may (after user approval):
+In Phase 4C.2, you may:
 
-- Implement Hebrew provider integration under `packages/mpe-hebrew/`.
-- Connect Hebrew Engine to the MPE runtime through the approved provider boundary.
-- Add integration tests that exercise the Hebrew provider with the MPE CLI and persistence.
-
-Phase 4B.3 already added the CLI and `EventStore.list_sessions()`, so provider integration remains open.
+- Analyze the `packages/mpe/src/mpe/protocol/` implementation produced in Phase 4C.1.
+- Compare Immediate Recall execution flow against the existing `Runtime` contracts.
+- Identify which trial lifecycle steps are generic and which are Immediate-Recall-specific.
+- Propose a minimal shared protocol runner design, if justified.
+- Define the interface between a shared runner and protocol-specific callbacks.
+- Document the analysis and design in `docs/implementation/phase4c2/MPE_PHASE_4C2_PROTOCOL_EXECUTION_GENERALIZATION_PLAN.md`.
 
 ## 3. Forbidden scope
 
-In Phase 4B.4, you must **not**:
+In Phase 4C.2, you must **not**:
 
-- Modify `docs/MPE_*.md` or `docs/specification/v1.1/*.md` without an approved ADR.
-- Modify `data/hebrew/phase3/` dataset files.
-- Delete legacy root-level files without explicit user confirmation.
-- Introduce network services, production databases, UI, or CI/CD without explicit approval.
-- Change MPE v1.1 event envelopes, payload schemas, or runtime state-machine rules without an approved ADR.
+- Implement Phase 4C.2 code.
+- Create a second protocol implementation.
+- Choose Delayed Recall as the second protocol.
+- Introduce a scheduler component or spaced-repetition logic.
+- Add a Hebrew or Piano adapter.
+- Integrate an audio provider, live TTS, or `mpe_audio`.
+- Add EEG, ASR, or physiological-signal dependencies.
+- Build a broad protocol framework, taxonomy, or composition system.
+- Introduce a textual DSL for protocol definition.
+- Modify `docs/MPE_*.md`, `docs/specification/v1.1/*.md`, or canonical registries without an approved ADR.
+- Modify `PROJECT_STATE.md` or `NEXT_TASK.md` except to record phase completion and next task.
 
-## 4. Completed Phase 4B.3 deliverables
+## 4. Required analysis
 
-- `packages/mpe/src/mpe/cli.py` — `argparse` CLI for the four approved commands.
-- `packages/mpe/src/mpe/cli_helpers.py` — shared CLI utilities.
-- `packages/mpe/src/mpe/__main__.py` — enables `python -m mpe`.
-- `packages/mpe/pyproject.toml` — `[project.scripts]` `mpe = "mpe.cli:main"`.
-- `packages/mpe/src/mpe/event_store.py` — `SessionSummary` and `EventStore.list_sessions()`.
-- `packages/mpe/src/mpe/persistence/store.py` — `SQLiteEventStore.list_sessions()`.
-- `packages/mpe/tests/test_cli.py` — parser/unit and process-level CLI tests.
-- `packages/mpe/tests/test_event_store.py` — `test_list_sessions` contract test.
-- `requirements.txt` — unused `click` entry removed.
-- `docs/implementation/phase4b3/CLI_DESIGN.md` and `PHASE_4B_3_COMPLETION_REPORT.md`.
-- 89 total tests passing; `ruff`, `mypy`, Docker build, compose, and two-container CLI demo verified.
+The Phase 4C.2 plan must explicitly examine:
 
-## 5. Current implementation priorities
+1. Whether a shared protocol runner is actually justified by the Phase 4C.1 implementation.
+2. Which components may safely be generalized:
+   - fixture/item iteration;
+   - trial creation;
+   - stimulus request/render flow;
+   - observation collection;
+   - bounded adaptation;
+   - item completion;
+   - event-derived summaries.
+3. Which components must remain protocol-specific:
+   - cognitive semantics;
+   - step ordering;
+   - adaptation policy;
+   - completion criteria;
+   - summary interpretation.
+4. Whether a second protocol should be implemented as evidence before extracting a shared abstraction.
+5. Candidate second protocol:
+   - **Recognition** is preferred over Delayed Recall because it does not require spaced repetition, future scheduling, or new temporal infrastructure.
+6. How the shared runner would interact with the existing `Runtime` without duplicating its responsibilities.
 
-Priority 1: Await user approval and any additional direction for Phase 4B.4.  
-Priority 2: When approved, design Hebrew provider integration before writing code.  
-Priority 3: Keep `packages/mpe/`, the CLI, and the persistence layer stable and deterministic.
+## 5. Required deliverable
+
+`docs/implementation/phase4c2/MPE_PHASE_4C2_PROTOCOL_EXECUTION_GENERALIZATION_PLAN.md`
+
+The plan must end with exactly one of the following recommendation tokens:
+
+- `APPROVE_PHASE_4C2_IMPLEMENTATION`
+- `APPROVE_PHASE_4C2_IMPLEMENTATION_WITH_CONDITIONS`
+- `REVISE_PHASE_4C2_PLAN`
+- `BLOCK_PHASE_4C2_IMPLEMENTATION`
 
 ## 6. How to proceed after this phase
 
-1. Confirm Phase 4B.3 acceptance with the user.
-2. Update `PROJECT_STATE.md` to reflect Phase 4B.4 start.
-3. Begin Phase 4B.4 design and implementation only after explicit user approval.
+1. Present the Phase 4C.2 plan to the user.
+2. Obtain the selected recommendation token before writing implementation code.
+3. If approved, begin implementation only with explicit user direction.
 
 ## 7. Quick reference
 
-- Architecture: `SYSTEM_ARCHITECTURE.md`
-- Directory map: `REPOSITORY_STRUCTURE.md`
-- Agent rules: `AGENTS.md`
-- Workflow: `DEVELOPER_WORKFLOW.md`
-- Testing: `TESTING_STRATEGY.md`
-- Project state: `PROJECT_STATE.md`
-- Phase 4B.1 deliverables: `docs/implementation/phase4b1/`
-- Phase 4B.2 deliverables: `docs/implementation/phase4b2/`
-- Phase 4B.3 deliverables: `docs/implementation/phase4b3/`
-- MPE docs: `docs/MPE_*.md`
-- MPE spec: `docs/specification/v1.1/*.md`
+- Phase 4C.1 implementation report: `docs/implementation/phase4c1/MPE_PHASE_4C1_IMPLEMENTATION_REPORT.md`
+- Phase 4C.1 closure record: `docs/implementation/phase4c1/MPE_PHASE_4C1_CLOSURE_RECORD.md`
+- MPE source: `packages/mpe/src/mpe/`
+- Immediate Recall tests: `packages/mpe/tests/test_protocol_immediate_recall.py`
+- Architecture: `docs/MPE_ARCHITECTURE_V1_1.md`
+- Directory map: `docs/project/REPOSITORY_STRUCTURE.md`
+- Agent rules: `docs/project/AGENTS.md`
+- Workflow: `docs/project/DEVELOPER_WORKFLOW.md`
+- Testing: `docs/project/TESTING_STRATEGY.md`
+- Project state: `docs/project/PROJECT_STATE.md`
