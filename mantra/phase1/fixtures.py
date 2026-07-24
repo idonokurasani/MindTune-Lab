@@ -4,6 +4,7 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any
 
+from .sheva import DIACRITICS
 from .spec import GrammaticalGroup, MantraForm, MantraSpecification, PauseConfig, SpeechConfig
 from .utils import load_json, normalize_unicode
 
@@ -37,16 +38,18 @@ def load_fixture_001_lichtov() -> MantraSpecification:
         forms = []
         for line in group_data["lines"]:
             morph = _morphology_from_form_key(line.get("form_key", ""))
+            hebrew_pointed = normalize_unicode(line["hebrew_with_niqqud"])
+            hebrew_unpointed = "".join(c for c in hebrew_pointed if c not in DIACRITICS)
             forms.append(
                 MantraForm(
                     form_key=line["form_key"],
-                    hebrew_with_niqqud=normalize_unicode(line["hebrew_with_niqqud"]),
-                    hebrew_plain=line.get("hebrew_without_niqqud", ""),
-                    vocalized=normalize_unicode(line.get("tts_input", line["hebrew_with_niqqud"])),
+                    hebrew_with_niqqud=hebrew_pointed,
+                    hebrew_plain=hebrew_unpointed,
+                    vocalized=hebrew_pointed,
                     transliteration=line.get("transliteration", ""),
                     stress_syllable_index=line.get("stress_syllable_index", 0) or 0,
                     italian_gloss=line.get("italian_gloss", ""),
-                    tts_input=line.get("tts_input", line["hebrew_with_niqqud"]),
+                    tts_input=hebrew_unpointed,
                     person=morph.get("person"),
                     number=morph.get("number"),
                     gender=morph.get("gender"),
@@ -77,8 +80,8 @@ def load_fixture_001_lichtov() -> MantraSpecification:
         speech=SpeechConfig(
             provider="speechgen",
             locale="he-IL",
-            voice="Avri",
-            rate=0.85,
+            voice="Aaron",
+            rate=1.0,
             pitch=0.0,
             format="wav",
         ),

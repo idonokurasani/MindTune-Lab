@@ -112,6 +112,26 @@ class MantraSpecTests(unittest.TestCase):
         self.assertEqual(form.effective_tts_input(), "ʃaˈlom")
         self.assertEqual(form.effective_stress(), 2)
 
+    def test_fixture_routes_hebrew_to_aaron_and_italian_to_giuseppe(self) -> None:
+        spec = load_fixture_001_lichtov()
+        self.assertEqual(spec.speech.voice, "Aaron")
+        self.assertEqual(spec.speech.locale, "he-IL")
+        self.assertEqual(spec.italian_speech.voice, "Giuseppe")
+        self.assertEqual(spec.italian_speech.locale, "it-IT")
+
+    def test_source_text_and_tts_text_separated(self) -> None:
+        spec = load_fixture_001_lichtov()
+        timeline = compile_timeline(spec)
+        for seg in timeline:
+            if seg.segment_type == SegmentType.HEBREW_FORM:
+                # source_text keeps niqqud; tts_text is the unpointed synthesis input.
+                self.assertTrue(any("\u0591" <= c <= "\u05c7" for c in seg.source_text))
+                self.assertFalse(any("\u0591" <= c <= "\u05c7" for c in seg.tts_text))
+
+    def test_no_hila_in_fixture(self) -> None:
+        spec = load_fixture_001_lichtov()
+        self.assertNotEqual(spec.speech.voice, "Hila")
+
     @staticmethod
     def _group(text: str = "לִכְתֹּב") -> GrammaticalGroup:
         return GrammaticalGroup(
@@ -195,6 +215,15 @@ class TTSTests(unittest.TestCase):
         k1 = _cache_key("שָׁלוֹם", "speechgen", "Avri", 0.85, 0.0, "wav", None, locale="he-IL")
         k2 = _cache_key("שָׁלוֹם", "speechgen", "Avri", 0.85, 0.0, "wav", None, locale="he-IL")
         self.assertEqual(k1, k2)
+
+    def test_cache_key_includes_voice_locale_and_text(self) -> None:
+        base = _cache_key("לִכְתֹּב", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="he-IL")
+        different_voice = _cache_key("לִכְתֹּב", "speechgen", "Hila", 1.0, 0.0, "wav", None, locale="he-IL")
+        different_locale = _cache_key("לִכְתֹּב", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="it-IT")
+        different_text = _cache_key("שָׁלוֹם", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="he-IL")
+        self.assertNotEqual(base, different_voice)
+        self.assertNotEqual(base, different_locale)
+        self.assertNotEqual(base, different_text)
 
     def test_cache_reuse(self) -> None:
         spec = MantraSpecification(
