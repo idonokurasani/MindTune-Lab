@@ -246,7 +246,7 @@ def assemble_audio(
     return AssemblyResult(
         output_path=output_wav,
         manifest_path=output_dir / "manifest.json",
-        events_path=output_dir / "events.json",
+        events_path=output_dir / "events.jsonl",
         segments_dir=segments_dir,
         total_duration=actual_duration,
         sample_rate=actual_rate,

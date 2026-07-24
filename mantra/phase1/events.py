@@ -1,8 +1,10 @@
 """Typed event stream for mantra generation and playback."""
 from __future__ import annotations
 
+import json
 import time
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any
 
 
@@ -65,9 +67,17 @@ class EventEmitter:
     def to_dicts(self) -> list[dict[str, Any]]:
         return [e.to_dict() for e in self.events]
 
-    def save(self, path: Any) -> None:
-        from pathlib import Path
-
-        from .utils import save_json
-
-        save_json(Path(path), self.to_dicts())
+    def save(self, path: Path | str) -> None:
+        """Write events as JSON Lines (.jsonl) or JSON array (.json)."""
+        out = Path(path)
+        out.parent.mkdir(parents=True, exist_ok=True)
+        tmp = out.with_suffix(out.suffix + ".tmp")
+        if out.suffix == ".jsonl":
+            with tmp.open("w", encoding="utf-8") as f:
+                for event in self.events:
+                    f.write(json.dumps(event.to_dict(), ensure_ascii=False) + "\n")
+        else:
+            with tmp.open("w", encoding="utf-8") as f:
+                json.dump(self.to_dicts(), f, ensure_ascii=False, indent=2)
+                f.write("\n")
+        tmp.replace(out)

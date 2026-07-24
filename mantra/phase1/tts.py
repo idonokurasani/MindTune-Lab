@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import io
+import json
 import os
 import struct
 import urllib.error
@@ -10,7 +11,7 @@ import urllib.request
 import wave
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Protocol, runtime_checkable
+from typing import Any, Protocol, runtime_checkable
 
 from .timeline import TimelineSegment
 from .utils import canonical_json, normalize_unicode, sha256_hex
@@ -91,7 +92,7 @@ class TTSCache:
         if not wav_path.exists() or not meta_path.exists():
             return None
         audio = wav_path.read_bytes()
-        meta = __import__("json").loads(meta_path.read_text(encoding="utf-8"))
+        meta = json.loads(meta_path.read_text(encoding="utf-8"))
         return TTSResult(
             audio_bytes=audio,
             sample_rate=meta["sample_rate"],
@@ -121,7 +122,7 @@ class TTSCache:
             "pitch": result.pitch,
             "checksum": result.checksum,
         }
-        tmp_meta.write_text(__import__("json").dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+        tmp_meta.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
         tmp_wav.replace(wav_path)
         tmp_meta.replace(meta_path)
         return wav_path
@@ -139,10 +140,12 @@ class SpeechGenTTSProvider:
       - SPEECHGEN_EMAIL (the account email)
       - SPEECHGEN_VOICE (optional; default "Avri")
       - SPEECHGEN_API_URL (optional; default "https://speechgen.io/index.php?r=api/text")
+      - SPEECHGEN_SAMPLE_RATE (optional; default 22050)
+      - SPEECHGEN_CHANNELS (optional; default 1)
 
-    The provider sends a single HTTP POST and expects the audio file in the
-    response body. It validates the response, parses the WAV header for
-    duration, and returns a TTSResult.
+    The /text endpoint returns a JSON job descriptor containing a `file`
+    URL; this provider downloads the audio file from that URL, validates it
+    as WAV, and returns a TTSResult.
     """
 
     name = "speechgen"
@@ -155,6 +158,8 @@ class SpeechGenTTSProvider:
         rate: float = 1.0,
         pitch: float = 0.0,
         fmt: str = "wav",
+        sample_rate: int | None = None,
+        channels: int | None = None,
         api_url: str | None = None,
     ):
         self.api_key = api_key or os.environ.get("SPEECHGEN_API_KEY") or os.environ.get("SPEECHGEN_TOKEN")
@@ -163,6 +168,8 @@ class SpeechGenTTSProvider:
         self.rate = rate
         self.pitch = pitch
         self.format = fmt
+        self.sample_rate = sample_rate or int(os.environ.get("SPEECHGEN_SAMPLE_RATE", "22050"))
+        self.channels = channels or int(os.environ.get("SPEECHGEN_CHANNELS", "1"))
         self.api_url = api_url or os.environ.get(
             "SPEECHGEN_API_URL",
             "https://speechgen.io/index.php?r=api/text",
@@ -180,58 +187,123 @@ class SpeechGenTTSProvider:
                 "Set them as environment variables."
             )
 
+    def _request(
+        self,
+        url: str,
+        data: bytes | None = None,
+        headers: dict[str, str] | None = None,
+        timeout: int = 120,
+    ) -> tuple[int, str, bytes]:
+        """Execute a single HTTP request and return (status, content_type, body)."""
+        req = urllib.request.Request(url, data=data, headers=headers or {}, method="POST" if data else "GET")
+        try:
+            with urllib.request.urlopen(req, timeout=timeout) as response:
+                return response.status, response.headers.get("Content-Type", ""), response.read()
+        except urllib.error.HTTPError as exc:
+            body = exc.read().decode("utf-8", errors="ignore")[:2000]
+            raise TTSRuntimeError(
+                f"SpeechGen HTTP {exc.code} at {url}: {body}"
+            ) from exc
+        except urllib.error.URLError as exc:
+            raise TTSRuntimeError(f"SpeechGen request to {url} failed: {exc.reason}") from exc
+
+    def _safe_public_payload(self, payload: dict[str, Any]) -> dict[str, Any]:
+        """Return a copy of the payload with credentials redacted."""
+        return {k: v for k, v in payload.items() if k not in {"token", "email"}}
+
     def synthesize(self, segment: TimelineSegment) -> TTSResult:
         self._require_credentials()
         text = normalize_unicode(segment.source_text)
+        voice = segment.voice or self.voice
         payload = {
             "token": self.api_key,
             "email": self.email,
-            "voice": segment.voice or self.voice,
+            "voice": voice,
             "text": text,
             "format": self.format,
             "speed": self.rate,
             "pitch": self.pitch,
             "emotion": "good",
+            "sample_rate": self.sample_rate,
+            "channels": self.channels,
         }
         data = urllib.parse.urlencode(payload).encode("utf-8")
-        request = urllib.request.Request(
-            self.api_url,
-            data=data,
-            headers={"Content-Type": "application/x-www-form-urlencoded"},
-            method="POST",
-        )
-        try:
-            with urllib.request.urlopen(request, timeout=120) as response:
-                content_type = response.headers.get("Content-Type", "")
-                body = response.read()
-        except urllib.error.HTTPError as exc:
-            raise TTSRuntimeError(
-                f"SpeechGen HTTP {exc.code} for voice {self.voice!r}: {exc.read().decode('utf-8', errors='ignore')[:500]}"
-            ) from exc
-        except urllib.error.URLError as exc:
-            raise TTSRuntimeError(f"SpeechGen request failed: {exc.reason}") from exc
+        headers = {"Content-Type": "application/x-www-form-urlencoded"}
+
+        status, content_type, body = self._request(self.api_url, data, headers)
 
         if not body:
-            raise TTSRuntimeError("SpeechGen returned an empty audio payload")
-
-        if "audio" not in content_type and not body.startswith(b"RIFF"):
             raise TTSRuntimeError(
-                f"SpeechGen returned non-audio content-type {content_type!r}: {body[:200]!r}"
+                f"SpeechGen returned an empty response at {self.api_url} "
+                f"for segment {segment.segment_id}. "
+                f"Parameters: {self._safe_public_payload(payload)}. "
+                f"Retry may be safe for transient network errors."
+            )
+
+        if "application/json" not in content_type:
+            raise TTSRuntimeError(
+                f"SpeechGen returned unexpected content-type {content_type!r} "
+                f"at {self.api_url} for segment {segment.segment_id}. "
+                f"Retry is not safe unless the error is transient."
+            )
+
+        try:
+            meta = json.loads(body)
+        except json.JSONDecodeError as exc:
+            raise TTSRuntimeError(
+                f"SpeechGen returned non-JSON body at {self.api_url} for segment {segment.segment_id}: {exc}. "
+                f"Body preview: {body[:500]!r}."
+            ) from exc
+
+        error_field = meta.get("error")
+        if error_field:
+            raise TTSRuntimeError(
+                f"SpeechGen synthesis error for segment {segment.segment_id}: {error_field}. "
+                f"Endpoint: {self.api_url}. "
+                f"Parameters: {self._safe_public_payload(payload)}. "
+                f"Retry is not safe for provider-reported errors."
+            )
+
+        file_url = meta.get("file") or meta.get("file_cors")
+        if not file_url:
+            raise TTSRuntimeError(
+                f"SpeechGen response did not contain a download URL for segment {segment.segment_id}. "
+                f"Response: {self._safe_public_payload(meta)}. "
+                f"Endpoint: {self.api_url}."
+            )
+
+        audio_status, audio_content_type, audio_body = self._request(file_url, timeout=60)
+
+        if not audio_body:
+            raise TTSRuntimeError(
+                f"SpeechGen audio download was empty for segment {segment.segment_id}. "
+                f"Download URL: {file_url}. "
+                f"Retry may be safe."
+            )
+
+        if "audio" not in audio_content_type and not audio_body.startswith(b"RIFF"):
+            raise TTSRuntimeError(
+                f"SpeechGen download for segment {segment.segment_id} is not audio "
+                f"(content-type {audio_content_type!r}, body preview {audio_body[:200]!r}). "
+                f"Retry may be safe for transient provider issues."
             )
 
         # Validate as WAV and compute duration/sample rate.
         try:
-            sample_rate, duration = _wav_info_from_bytes(body)
+            sample_rate, duration = _wav_info_from_bytes(audio_body)
         except Exception as exc:
-            raise TTSRuntimeError(f"SpeechGen response is not a valid WAV file: {exc}") from exc
+            raise TTSRuntimeError(
+                f"SpeechGen response for segment {segment.segment_id} is not a valid WAV file: {exc}. "
+                f"Download URL: {file_url}."
+            ) from exc
 
-        checksum = sha256_hex(body)
+        checksum = sha256_hex(audio_body)
         return TTSResult(
-            audio_bytes=body,
+            audio_bytes=audio_body,
             sample_rate=sample_rate,
             duration=duration,
             provider=self.name,
-            voice=segment.voice or self.voice,
+            voice=voice,
             text=text,
             format=self.format,
             checksum=checksum,
