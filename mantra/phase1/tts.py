@@ -221,7 +221,7 @@ class SpeechGenTTSProvider:
 
     def synthesize(self, segment: TimelineSegment) -> TTSResult:
         self._require_credentials()
-        text = normalize_unicode(segment.source_text)
+        text = normalize_unicode(segment.tts_text or segment.source_text)
         voice = segment.voice or self.voice
         payload = {
             "token": self.api_key,
@@ -348,7 +348,7 @@ class FakeTTSProvider:
         self.base_duration = base_duration
 
     def synthesize(self, segment: TimelineSegment) -> TTSResult:
-        text = normalize_unicode(segment.source_text)
+        text = normalize_unicode(segment.tts_text or segment.source_text)
         duration = max(0.05, len(text) * self.base_duration)
         n_samples = int(round(self.sample_rate * duration))
         # Deterministic pseudo-sine at 440 Hz to keep audio content non-empty.

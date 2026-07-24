@@ -43,6 +43,7 @@ class TimelineSegment:
     form_index: int
     planned_start_time: float
     planned_duration: float
+    tts_text: str = ""
     provider: str = ""
     language: str = ""
     locale: str = ""
@@ -59,6 +60,7 @@ class TimelineSegment:
             "segment_type": self.segment_type.value,
             "source_text": self.source_text,
             "vocalized_text": self.vocalized_text,
+            "tts_text": self.tts_text,
             "grammatical_metadata": self.grammatical_metadata,
             "repetition_index": self.repetition_index,
             "cycle_index": self.cycle_index,
@@ -155,6 +157,7 @@ def _speech_segment(
     source_text: str,
     vocalized_text: str,
     form: MantraForm | None,
+    group: Any | None,
     cycle_index: int,
     group_index: int,
     form_index: int,
@@ -163,9 +166,10 @@ def _speech_segment(
 ) -> TimelineSegment:
     text = source_text or ""
     meta: dict[str, Any] = {}
-    if form is not None:
+    if form is not None and group is not None:
         meta = {
             "form_key": form.form_key,
+            "tense": group.tense,
             "person": form.person,
             "number": form.number,
             "gender": form.gender,
@@ -176,6 +180,7 @@ def _speech_segment(
         }
     is_italian = segment_type in {SegmentType.ITALIAN_CUE, SegmentType.GRAMMATICAL_LABEL}
     speech_cfg = spec.italian_speech if is_italian else spec.speech
+    tts_text = form.effective_tts_input() if form is not None else text
     seg = TimelineSegment(
         segment_id=_stable_segment_id(
             segment_type,
@@ -189,6 +194,7 @@ def _speech_segment(
         segment_type=segment_type,
         source_text=text,
         vocalized_text=normalize_unicode(vocalized_text or text),
+        tts_text=normalize_unicode(tts_text),
         grammatical_metadata=meta,
         repetition_index=repetition_index,
         cycle_index=cycle_index,
@@ -237,6 +243,7 @@ def compile_timeline(spec: MantraSpecification) -> list[TimelineSegment]:  # noq
                             group.label_he,
                             group.label_he,
                             None,
+                            group,
                             cycle_index,
                             group_index,
                             -1,
@@ -269,6 +276,7 @@ def compile_timeline(spec: MantraSpecification) -> list[TimelineSegment]:  # noq
                                     form.italian_gloss,
                                     form.italian_gloss,
                                     form,
+                                    group,
                                     cycle_index,
                                     group_index,
                                     form_index,
@@ -295,9 +303,10 @@ def compile_timeline(spec: MantraSpecification) -> list[TimelineSegment]:  # noq
                             _speech_segment(
                                 spec,
                                 SegmentType.HEBREW_FORM,
-                                form.effective_tts_input(),
+                                form.hebrew_with_niqqud,
                                 form.vocalized,
                                 form,
+                                group,
                                 cycle_index,
                                 group_index,
                                 form_index,

@@ -30,7 +30,9 @@ class PronunciationEntry:
     expected_pronunciation: str = ""
     sheva_decisions: list[dict[str, Any]] = field(default_factory=list)
     selected_audio_checksum: str = ""
+    human_review_status: str = "pending"
     reviewer_decision: str = "pending"
+    diagnostic_source_variant: str = ""
     review_notes: str = ""
 
     def key(self) -> str:
@@ -54,7 +56,9 @@ class PronunciationEntry:
             expected_pronunciation=data.get("expected_pronunciation", ""),
             sheva_decisions=data.get("sheva_decisions", []),
             selected_audio_checksum=data.get("selected_audio_checksum", ""),
+            human_review_status=data.get("human_review_status", "pending"),
             reviewer_decision=data.get("reviewer_decision", "pending"),
+            diagnostic_source_variant=data.get("diagnostic_source_variant", ""),
             review_notes=data.get("review_notes", ""),
         )
 

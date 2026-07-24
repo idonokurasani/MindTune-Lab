@@ -1,0 +1,21 @@
+{
+  "entries": {
+    "lichtov|future/1_plural|speechgen|Hila|": {
+      "lexical_item": "lichtov",
+      "conjugated_form": "future/1_plural",
+      "provider": "speechgen",
+      "voice": "Hila",
+      "provider_model": "",
+      "display_text": "נִכְתּוֹב",
+      "normalized_text": "נכתוב",
+      "tts_text": "נכתוב",
+      "expected_pronunciation": "nikhtov",
+      "sheva_decisions": [],
+      "selected_audio_checksum": "",
+      "human_review_status": "approved",
+      "reviewer_decision": "use_unpointed",
+      "diagnostic_source_variant": "E",
+      "review_notes": "Human review: fully pointed and mixed pointed sentence produced incorrect vowel realizations. Unpointed variant E (isolated verb) and variant B (sentence) pronounced correctly. For SpeechGen/Hila, use unpointed Hebrew as tts_text while keeping display_text pointed."
+    }
+  }
+}

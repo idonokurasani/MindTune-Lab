@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import io
 import wave
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 from typing import cast
 
@@ -11,6 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 
 from .events import EventEmitter, MantraEventType
+from .pronunciation import PronunciationLexicon
 from .spec import MantraSpecification, SpeechConfig
 from .timeline import SegmentType, TimelineSegment
 from .tts import TTSCache, TTSProvider, TTSRuntimeError, _cache_key
@@ -102,6 +103,7 @@ def assemble_audio(
     target_sample_rate: int = 22050,
     *,
     providers: dict[str, TTSProvider] | None = None,
+    pronunciation_lexicon: PronunciationLexicon | None = None,
 ) -> AssemblyResult:
     """Synthesize or cache all speech segments and assemble a single WAV file."""
     emitter = events or EventEmitter()
@@ -141,7 +143,7 @@ def assemble_audio(
             segment.artifact_reference = None
             samples = _silence_int16(duration, target_sample_rate)
         else:
-            text = normalize_unicode(segment.source_text) if segment.source_text else ""
+            text = normalize_unicode(segment.tts_text or segment.source_text) if (segment.tts_text or segment.source_text) else ""
             if not text:
                 warnings.append(f"Segment {segment.segment_id} has empty source text; using silence")
                 duration = 0.0
@@ -154,6 +156,23 @@ def assemble_audio(
             segment_provider = provider
             if providers and segment.language:
                 segment_provider = providers.get(segment.language, provider)
+
+            if (
+                pronunciation_lexicon is not None
+                and segment.segment_type in {SegmentType.HEBREW_FORM, SegmentType.HEBREW_INFINITIVE}
+            ):
+                meta = segment.grammatical_metadata
+                conjugated = f"{meta.get('tense', '')}/{meta.get('form_key', '')}"
+                entry = pronunciation_lexicon.get(
+                    lexical_item=spec.verb_id,
+                    conjugated_form=conjugated,
+                    provider=segment.provider,
+                    voice=segment.voice,
+                    provider_model="",
+                )
+                if entry is not None and entry.human_review_status == "approved":
+                    segment = replace(segment, tts_text=normalize_unicode(entry.tts_text))
+                    timeline[idx] = segment
 
             key = _cache_key(
                 text,

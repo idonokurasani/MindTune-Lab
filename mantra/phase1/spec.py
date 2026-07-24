@@ -237,6 +237,7 @@ class MantraSpecification:
     build_seed: str = ""
     include_italian_cue: bool = True
     include_grammatical_labels: bool = False
+    pronunciation_lexicon_path: str = ""
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:  # noqa: C901
@@ -291,6 +292,7 @@ class MantraSpecification:
             "build_seed": self.build_seed,
             "include_italian_cue": self.include_italian_cue,
             "include_grammatical_labels": self.include_grammatical_labels,
+            "pronunciation_lexicon_path": self.pronunciation_lexicon_path,
             "metadata": self.metadata,
         }
 

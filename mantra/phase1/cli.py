@@ -12,6 +12,7 @@ from .events import EventEmitter, MantraEventType
 from .fixtures import load_fixture_001_lichtov
 from .manifest import write_manifest
 from .playback import NullAudioPlayer, PlaybackController, SubprocessAudioPlayer
+from .pronunciation import PronunciationLexicon
 from .spec import MantraSpecification
 from .timeline import compile_timeline
 from .tts import FakeTTSProvider, SpeechGenTTSProvider, TTSProvider
@@ -123,6 +124,12 @@ def cmd_build(args: argparse.Namespace) -> int:
     providers = _resolve_providers(spec, args)
     # Provide the Hebrew provider as the default for segments without language.
     hebrew_provider = providers.get(spec.speech.language, providers["he"])
+    pronunciation_lexicon = None
+    if spec.pronunciation_lexicon_path:
+        lexicon_path = Path(spec.pronunciation_lexicon_path)
+        if not lexicon_path.is_absolute():
+            lexicon_path = Path(__file__).resolve().parents[2] / lexicon_path
+        pronunciation_lexicon = PronunciationLexicon(lexicon_path)
     try:
         assembly = assemble_audio(
             spec,
@@ -133,6 +140,7 @@ def cmd_build(args: argparse.Namespace) -> int:
             events=events,
             target_sample_rate=args.sample_rate,
             providers=providers,
+            pronunciation_lexicon=pronunciation_lexicon,
         )
     except Exception as exc:
         print(f"Error: audio assembly failed: {exc}", file=sys.stderr)

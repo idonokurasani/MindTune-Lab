@@ -93,6 +93,7 @@ def load_fixture_001_lichtov() -> MantraSpecification:
         ),
         output_format="wav",
         build_seed="seed-001-lichtov",
+        pronunciation_lexicon_path="data/mantra/pronunciation_lexicon_001_lichtov.json",
         metadata={
             "source_url": data.get("source_url", ""),
             "script_path": str(MANTRA_SCRIPTS_DIR / "001_lichtov.json"),
