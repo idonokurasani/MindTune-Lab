@@ -12,7 +12,8 @@
 |------|---------|
 | Affected file | `.oura_credentials` (committed) |
 | First introducing commit | `dc26badabdaf492d03a13ecb7765ab948a86e468` (`Baseline after MPE Phase 4C.1`) |
-| Latest affected commit | `e1cec11cdc565917e27379d735bec8882463c0f3` (current `HEAD`) |
+| Latest commit containing the file in its tree | `e1cec11cdc565917e27379d735bec8882463c0f3` |
+| Current `HEAD` | `8c79cab300f090fa238a53c5d68feff12875ce93` (tree no longer contains `.oura_credentials`, but object-store history still does) |
 | Reachable local branches | `refs/heads/main`, `refs/heads/feat/mantra-engine-phase1` |
 | Reachable remote branches | none — `git ls-remote` shows only `refs/heads/main` at `866a5279` (`Initial commit`), which does not contain the secret commit |
 | Reachable tags | none |
