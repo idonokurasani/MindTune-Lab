@@ -1,0 +1,15 @@
+recovered/docs/focuscalm/AUDIT_MINDTUNE_BRAINLAB_2026-06-29.md
+recovered/docs/focuscalm/BRAINLAB_MINDTUNE_LEGACY_HANDOVER_2026-06-28.md
+recovered/docs/focuscalm/BRAINLAB_REFACTOR_HANDOVER_2026-06-28.md
+recovered/docs/focuscalm/EEG_PIPELINE.md
+recovered/docs/focuscalm/FOCUSCALM_COMPLETE_NATIVE_PARITY_REPORT_v2.md
+recovered/docs/focuscalm/FOCUSCALM_NATIVE_PARITY_REPORT_v1.md
+recovered/docs/focuscalm/MINDTUNE_LEGACY_MAC_BLE_CAPTURE_2026-06-29.md
+recovered/eeg/brainlab/brainlab.py
+recovered/eeg/fc11_capture/fc11_capture_pipeline.py
+recovered/eeg/fc11_capture/fc11_mac_capture.py
+recovered/mantra/packages/mpe/src/mpe/protocol/adaptation_policy.py
+recovered/mantra/packages/mpe/src/mpe/protocol/cognitive_state.py
+recovered/mantra/packages/mpe/src/mpe/protocol/eeg_provider.py
+recovered/tests/test_brainlab.py
+recovered/tests/test_fc11_capture_pipeline.py
