@@ -46,3 +46,18 @@ PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .v
 - Merge identical masculine/feminine plural forms with `וְ`.
 - Domino tense markers are global reusable assets (`he.tense.past`, `he.tense.present`, `he.tense.future`).
 - No narrative temporal expressions in Domino prompts.
+
+## Curriculum and selection
+
+- Generate/regenerate the 320-verb canonical curriculum:
+
+  ```bash
+  PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python scripts/generate_curriculum_320.py
+  ```
+
+- Curriculum JSON: `data/hebrew/curriculum_v1_320.json`
+- Selection policy: `mantra/phase1/curriculum.py` (`MantraSelectionPolicy`)
+- Policy tests: `tests/test_curriculum_policy.py`
+
+The policy is deterministic, never calls TTS, never reads EEG, and filters to
+verbs whose required audio assets exist unless `asset_preparation_mode=True`.

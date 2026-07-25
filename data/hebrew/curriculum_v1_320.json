@@ -1,0 +1,5140 @@
+{
+  "version": "1.0.0",
+  "generated_at": "2026-07-25T09:09:08.896015+00:00",
+  "source": "hebrew.phase3.eran_tomer",
+  "verbs": [
+    {
+      "verb_id": "להעביר",
+      "asset_id_prefix": "lehaavir",
+      "infinitive_pointed": "לְהַעֲבִיר",
+      "infinitive_plain": "להעביר",
+      "italian_infinitive": "",
+      "root": "העביר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 5,
+      "frequency": 27505,
+      "priority": 1,
+      "selection_reason": [
+        "binyan_HIF'IL",
+        "root_class_guttural",
+        "root_class_contains_yod_vav",
+        "root_class_quadriliteral"
+      ]
+    },
+    {
+      "verb_id": "להתמודד",
+      "asset_id_prefix": "lehitmoded",
+      "infinitive_pointed": "לְהִתְמוֹדֵד",
+      "infinitive_plain": "להתמודד",
+      "italian_infinitive": "",
+      "root": "התמודד",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 24,
+      "frequency": 9529,
+      "priority": 2,
+      "selection_reason": [
+        "binyan_HITPA'EL",
+        "root_class_guttural",
+        "root_class_contains_yod_vav",
+        "root_class_quadriliteral"
+      ]
+    },
+    {
+      "verb_id": "להיכנס",
+      "asset_id_prefix": "lehikanes",
+      "infinitive_pointed": "לְהִיכָּנֵס",
+      "infinitive_plain": "להיכנס",
+      "italian_infinitive": "",
+      "root": "נכנס",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 1,
+      "frequency": 21030,
+      "priority": 3,
+      "selection_reason": [
+        "binyan_NIF'AL",
+        "root_class_initial_nun",
+        "root_class_quadriliteral"
+      ]
+    },
+    {
+      "verb_id": "לעשות",
+      "asset_id_prefix": "lasot",
+      "infinitive_pointed": "לַעְשׂוֹת",
+      "infinitive_plain": "לעשות",
+      "italian_infinitive": "",
+      "root": "עש'ה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 50,
+      "frequency": 130571,
+      "priority": 4,
+      "selection_reason": [
+        "binyan_PA'AL",
+        "root_class_guttural",
+        "root_class_final_he",
+        "root_class_irregular"
+      ]
+    },
+    {
+      "verb_id": "לבצע",
+      "asset_id_prefix": "levatzea",
+      "infinitive_pointed": "לְבַצֵּעַ",
+      "infinitive_plain": "לבצע",
+      "italian_infinitive": "",
+      "root": "בצע",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 9,
+      "frequency": 33060,
+      "priority": 5,
+      "selection_reason": [
+        "binyan_PI'EL",
+        "root_class_guttural"
+      ]
+    },
+    {
+      "verb_id": "לכלול",
+      "asset_id_prefix": "lichlol",
+      "infinitive_pointed": "לִכְלוֹל",
+      "infinitive_plain": "לכלול",
+      "italian_infinitive": "",
+      "root": "כלל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 36367,
+      "priority": 6,
+      "selection_reason": [
+        "root_class_geminate"
+      ]
+    },
+    {
+      "verb_id": "לבוא",
+      "asset_id_prefix": "lavo",
+      "infinitive_pointed": "לָבוֹא",
+      "infinitive_plain": "לבוא",
+      "italian_infinitive": "",
+      "root": "בא",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 47,
+      "frequency": 46306,
+      "priority": 7,
+      "selection_reason": [
+        "root_class_guttural",
+        "root_class_hollow"
+      ]
+    },
+    {
+      "verb_id": "לקבול",
+      "asset_id_prefix": "likbol",
+      "infinitive_pointed": "לִקְבּוֹל",
+      "infinitive_plain": "לקבול",
+      "italian_infinitive": "",
+      "root": "קבל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 21966,
+      "priority": 8,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקבל",
+      "asset_id_prefix": "lekabel",
+      "infinitive_pointed": "לְקַבֵּל",
+      "infinitive_plain": "לקבל",
+      "italian_infinitive": "",
+      "root": "קבל",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 71382,
+      "priority": 9,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתת",
+      "asset_id_prefix": "latet",
+      "infinitive_pointed": "לָתֵת",
+      "infinitive_plain": "לתת",
+      "italian_infinitive": "",
+      "root": "נתן",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 28,
+      "frequency": 51410,
+      "priority": 10,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגיע",
+      "asset_id_prefix": "lehagia",
+      "infinitive_pointed": "לְהַגִּיעַ",
+      "infinitive_plain": "להגיע",
+      "italian_infinitive": "",
+      "root": "הגיע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 11,
+      "frequency": 75272,
+      "priority": 11,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להביא",
+      "asset_id_prefix": "lehavi",
+      "infinitive_pointed": "לְהָבִיא",
+      "infinitive_plain": "להביא",
+      "italian_infinitive": "",
+      "root": "הביא",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 31,
+      "frequency": 40895,
+      "priority": 12,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למנוע",
+      "asset_id_prefix": "limnoa",
+      "infinitive_pointed": "לִמְנוֹעַ",
+      "infinitive_plain": "למנוע",
+      "italian_infinitive": "",
+      "root": "מנע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 21825,
+      "priority": 13,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לדבר",
+      "asset_id_prefix": "ledaber",
+      "infinitive_pointed": "לְדַבֵּר",
+      "infinitive_plain": "לדבר",
+      "italian_infinitive": "",
+      "root": "דבר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 66457,
+      "priority": 14,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחבור",
+      "asset_id_prefix": "lachbor",
+      "infinitive_pointed": "לַחְבּוֹר",
+      "infinitive_plain": "לחבור",
+      "italian_infinitive": "",
+      "root": "חבר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 98023,
+      "priority": 15,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבצוע",
+      "asset_id_prefix": "livtzoa",
+      "infinitive_pointed": "לִבְצוֹעַ",
+      "infinitive_plain": "לבצוע",
+      "italian_infinitive": "",
+      "root": "בצע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 9895,
+      "priority": 16,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחבר",
+      "asset_id_prefix": "lechaber",
+      "infinitive_pointed": "לְחַבֵּר",
+      "infinitive_plain": "לחבר",
+      "italian_infinitive": "",
+      "root": "חבר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 99418,
+      "priority": 17,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לראות",
+      "asset_id_prefix": "lirot",
+      "infinitive_pointed": "לִרְאוֹת",
+      "infinitive_plain": "לראות",
+      "italian_infinitive": "",
+      "root": "ראה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 53,
+      "frequency": 71679,
+      "priority": 18,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להמשיך",
+      "asset_id_prefix": "lehamshiche",
+      "infinitive_pointed": "לְהַמְשִׁיךְ",
+      "infinitive_plain": "להמשיך",
+      "italian_infinitive": "",
+      "root": "המשיך",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 42816,
+      "priority": 19,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להעלות",
+      "asset_id_prefix": "lehaalot",
+      "infinitive_pointed": "לְהַעֲלוֹת",
+      "infinitive_plain": "להעלות",
+      "italian_infinitive": "",
+      "root": "העלה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 33,
+      "frequency": 44294,
+      "priority": 20,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "ליצור",
+      "asset_id_prefix": "litzor",
+      "infinitive_pointed": "לִיְצוֹר",
+      "infinitive_plain": "ליצור",
+      "italian_infinitive": "",
+      "root": "יצר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 25,
+      "frequency": 17283,
+      "priority": 21,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפעול",
+      "asset_id_prefix": "lifol",
+      "infinitive_pointed": "לִפְעוֹל",
+      "infinitive_plain": "לפעול",
+      "italian_infinitive": "",
+      "root": "פעל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 17,
+      "frequency": 41943,
+      "priority": 22,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להצביע",
+      "asset_id_prefix": "lehatzbia",
+      "infinitive_pointed": "לְהַצְבִּיעַ",
+      "infinitive_plain": "להצביע",
+      "italian_infinitive": "",
+      "root": "הצביע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 7,
+      "frequency": 31061,
+      "priority": 23,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאפשר",
+      "asset_id_prefix": "leafsher",
+      "infinitive_pointed": "לְאַפְשֵׁר",
+      "infinitive_plain": "לאפשר",
+      "italian_infinitive": "",
+      "root": "אפשר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 20,
+      "frequency": 33736,
+      "priority": 24,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעלות",
+      "asset_id_prefix": "lalot",
+      "infinitive_pointed": "לַעְלוֹת",
+      "infinitive_plain": "לעלות",
+      "italian_infinitive": "",
+      "root": "עלה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 50,
+      "frequency": 63507,
+      "priority": 25,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לצאת",
+      "asset_id_prefix": "latzet",
+      "infinitive_pointed": "לָצֵאת",
+      "infinitive_plain": "לצאת",
+      "italian_infinitive": "",
+      "root": "יצא",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 45,
+      "frequency": 44523,
+      "priority": 26,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפנות",
+      "asset_id_prefix": "lifnot",
+      "infinitive_pointed": "לִפְנוֹת",
+      "infinitive_plain": "לפנות",
+      "italian_infinitive": "",
+      "root": "פנה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 27319,
+      "priority": 27,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפנות",
+      "asset_id_prefix": "lefanot",
+      "infinitive_pointed": "לְפַנּוֹת",
+      "infinitive_plain": "לפנות",
+      "italian_infinitive": "",
+      "root": "פנה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 20141,
+      "priority": 28,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגיד",
+      "asset_id_prefix": "lehagid",
+      "infinitive_pointed": "לְהַגִּיד",
+      "infinitive_plain": "להגיד",
+      "italian_infinitive": "",
+      "root": "הגיד",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 11527,
+      "priority": 29,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשאול",
+      "asset_id_prefix": "lishol",
+      "infinitive_pointed": "לִשְׁאוֹל",
+      "infinitive_plain": "לשאול",
+      "italian_infinitive": "",
+      "root": "שאל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 17,
+      "frequency": 29531,
+      "priority": 30,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשמור",
+      "asset_id_prefix": "lishmor",
+      "infinitive_pointed": "לִשְׁמוֹר",
+      "infinitive_plain": "לשמור",
+      "italian_infinitive": "",
+      "root": "שמר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 13239,
+      "priority": 31,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפגוע",
+      "asset_id_prefix": "lifgoa",
+      "infinitive_pointed": "לִפְגּוֹעַ",
+      "infinitive_plain": "לפגוע",
+      "italian_infinitive": "",
+      "root": "פגע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 25398,
+      "priority": 32,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להקים",
+      "asset_id_prefix": "lehakim",
+      "infinitive_pointed": "לְהָקִים",
+      "infinitive_plain": "להקים",
+      "italian_infinitive": "",
+      "root": "הקים",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 12743,
+      "priority": 33,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפתוח",
+      "asset_id_prefix": "liftocha",
+      "infinitive_pointed": "לִפְתּוֹחַ",
+      "infinitive_plain": "לפתוח",
+      "italian_infinitive": "",
+      "root": "פתח",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 15568,
+      "priority": 34,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעמוד",
+      "asset_id_prefix": "lamod",
+      "infinitive_pointed": "לַעְמוֹד",
+      "infinitive_plain": "לעמוד",
+      "italian_infinitive": "",
+      "root": "עמד",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 80613,
+      "priority": 35,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למצוא",
+      "asset_id_prefix": "limtzo",
+      "infinitive_pointed": "לִמְצוֹא",
+      "infinitive_plain": "למצוא",
+      "italian_infinitive": "",
+      "root": "מצא",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 41,
+      "frequency": 19555,
+      "priority": 36,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשלם",
+      "asset_id_prefix": "leshalem",
+      "infinitive_pointed": "לְשַׁלֵּם",
+      "infinitive_plain": "לשלם",
+      "italian_infinitive": "",
+      "root": "שלם",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 21244,
+      "priority": 37,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לדעת",
+      "asset_id_prefix": "ladaat",
+      "infinitive_pointed": "לָדַעַת",
+      "infinitive_plain": "לדעת",
+      "italian_infinitive": "",
+      "root": "ידע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 33,
+      "frequency": 109401,
+      "priority": 38,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להוציא",
+      "asset_id_prefix": "lehotzi",
+      "infinitive_pointed": "לְהוֹצִיא",
+      "infinitive_plain": "להוציא",
+      "italian_infinitive": "",
+      "root": "הוציא",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 30,
+      "frequency": 14896,
+      "priority": 39,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להבין",
+      "asset_id_prefix": "lehavin",
+      "infinitive_pointed": "לְהָבִין",
+      "infinitive_plain": "להבין",
+      "italian_infinitive": "",
+      "root": "הבין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 18,
+      "frequency": 37346,
+      "priority": 40,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשכנע",
+      "asset_id_prefix": "leshachnea",
+      "infinitive_pointed": "לְשַׁכְנֵעַ",
+      "infinitive_plain": "לשכנע",
+      "italian_infinitive": "",
+      "root": "שכנע",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 26,
+      "frequency": 8038,
+      "priority": 41,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחזור",
+      "asset_id_prefix": "lachzor",
+      "infinitive_pointed": "לַחְזוֹר",
+      "infinitive_plain": "לחזור",
+      "italian_infinitive": "",
+      "root": "חזר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 27037,
+      "priority": 42,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לענות",
+      "asset_id_prefix": "lanot",
+      "infinitive_pointed": "לַעְנוֹת",
+      "infinitive_plain": "לענות",
+      "italian_infinitive": "",
+      "root": "ענה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 50,
+      "frequency": 15603,
+      "priority": 43,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעבור",
+      "asset_id_prefix": "laavor",
+      "infinitive_pointed": "לַעֲבוֹר",
+      "infinitive_plain": "לעבור",
+      "italian_infinitive": "",
+      "root": "עבר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 8,
+      "frequency": 61399,
+      "priority": 44,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשנות",
+      "asset_id_prefix": "leshanot",
+      "infinitive_pointed": "לְשַׁנּוֹת",
+      "infinitive_plain": "לשנות",
+      "italian_infinitive": "",
+      "root": "שנה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 17168,
+      "priority": 45,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשנות",
+      "asset_id_prefix": "lishnot",
+      "infinitive_pointed": "לִשְׁנוֹת",
+      "infinitive_plain": "לשנות",
+      "italian_infinitive": "",
+      "root": "שנה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 6010,
+      "priority": 46,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להימנע",
+      "asset_id_prefix": "lehimana",
+      "infinitive_pointed": "לְהִימָּנַע",
+      "infinitive_plain": "להימנע",
+      "italian_infinitive": "",
+      "root": "נמנע",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 9,
+      "frequency": 45760,
+      "priority": 47,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקבוע",
+      "asset_id_prefix": "likboa",
+      "infinitive_pointed": "לִקְבּוֹעַ",
+      "infinitive_plain": "לקבוע",
+      "italian_infinitive": "",
+      "root": "קבע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 44652,
+      "priority": 48,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "ללכת",
+      "asset_id_prefix": "lalechet",
+      "infinitive_pointed": "לָלֶכֶת",
+      "infinitive_plain": "ללכת",
+      "italian_infinitive": "",
+      "root": "הלך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 29,
+      "frequency": 76318,
+      "priority": 49,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבדוק",
+      "asset_id_prefix": "livdok",
+      "infinitive_pointed": "לִבְדּוֹק",
+      "infinitive_plain": "לבדוק",
+      "italian_infinitive": "",
+      "root": "בדק",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 14974,
+      "priority": 50,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "ללמוד",
+      "asset_id_prefix": "lilmod",
+      "infinitive_pointed": "לִלְמוֹד",
+      "infinitive_plain": "ללמוד",
+      "italian_infinitive": "",
+      "root": "למד",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 4,
+      "frequency": 16901,
+      "priority": 51,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעבוד",
+      "asset_id_prefix": "laavod",
+      "infinitive_pointed": "לַעֲבוֹד",
+      "infinitive_plain": "לעבוד",
+      "italian_infinitive": "",
+      "root": "עבד",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 8,
+      "frequency": 17392,
+      "priority": 52,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לדון",
+      "asset_id_prefix": "ladun",
+      "infinitive_pointed": "לָדוּן",
+      "infinitive_plain": "לדון",
+      "italian_infinitive": "",
+      "root": "דן",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 35,
+      "frequency": 11874,
+      "priority": 53,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפסיק",
+      "asset_id_prefix": "lehafsik",
+      "infinitive_pointed": "לְהַפְסִיק",
+      "infinitive_plain": "להפסיק",
+      "italian_infinitive": "",
+      "root": "הפסיק",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 8727,
+      "priority": 54,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיעלות",
+      "asset_id_prefix": "lehealot",
+      "infinitive_pointed": "לְהֵיעָלוֹת",
+      "infinitive_plain": "להיעלות",
+      "italian_infinitive": "",
+      "root": "נעלה",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 31,
+      "frequency": 7574,
+      "priority": 55,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגן",
+      "asset_id_prefix": "lehagen",
+      "infinitive_pointed": "לְהָגֵן",
+      "infinitive_plain": "להגן",
+      "italian_infinitive": "",
+      "root": "הגן",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 22,
+      "frequency": 7555,
+      "priority": 56,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבטל",
+      "asset_id_prefix": "levatel",
+      "infinitive_pointed": "לְבַטֵּל",
+      "infinitive_plain": "לבטל",
+      "italian_infinitive": "",
+      "root": "בטל",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 8212,
+      "priority": 57,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשמוע",
+      "asset_id_prefix": "lishmoa",
+      "infinitive_pointed": "לִשְׁמוֹעַ",
+      "infinitive_plain": "לשמוע",
+      "italian_infinitive": "",
+      "root": "שמע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 27737,
+      "priority": 58,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לטפול",
+      "asset_id_prefix": "litpol",
+      "infinitive_pointed": "לִטְפּוֹל",
+      "infinitive_plain": "לטפול",
+      "italian_infinitive": "",
+      "root": "טפל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 4882,
+      "priority": 59,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לטפל",
+      "asset_id_prefix": "letapel",
+      "infinitive_pointed": "לְטַפֵּל",
+      "infinitive_plain": "לטפל",
+      "italian_infinitive": "",
+      "root": "טפל",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 12389,
+      "priority": 60,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשיב",
+      "asset_id_prefix": "lehashiv",
+      "infinitive_pointed": "לְהָשִׁיב",
+      "infinitive_plain": "להשיב",
+      "italian_infinitive": "",
+      "root": "השיב",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 14704,
+      "priority": 61,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשיג",
+      "asset_id_prefix": "lehashig",
+      "infinitive_pointed": "לְהַשִּׁיג",
+      "infinitive_plain": "להשיג",
+      "italian_infinitive": "",
+      "root": "השיג",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 7074,
+      "priority": 62,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקרוא",
+      "asset_id_prefix": "likro",
+      "infinitive_pointed": "לִקְרוֹא",
+      "infinitive_plain": "לקרוא",
+      "italian_infinitive": "",
+      "root": "קרא",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 41,
+      "frequency": 49064,
+      "priority": 63,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשתמש",
+      "asset_id_prefix": "lehishtamesh",
+      "infinitive_pointed": "לְהִשְׁתַּמֵּשׁ",
+      "infinitive_plain": "להשתמש",
+      "italian_infinitive": "",
+      "root": "השתמש",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 4,
+      "frequency": 13787,
+      "priority": 64,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעצור",
+      "asset_id_prefix": "latzor",
+      "infinitive_pointed": "לַעְצוֹר",
+      "infinitive_plain": "לעצור",
+      "italian_infinitive": "",
+      "root": "עצר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 10087,
+      "priority": 65,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגיש",
+      "asset_id_prefix": "lehagish",
+      "infinitive_pointed": "לְהַגִּישׁ",
+      "infinitive_plain": "להגיש",
+      "italian_infinitive": "",
+      "root": "הגיש",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 14330,
+      "priority": 66,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להחזיר",
+      "asset_id_prefix": "lehachezir",
+      "infinitive_pointed": "לְהַחֱזִיר",
+      "infinitive_plain": "להחזיר",
+      "italian_infinitive": "",
+      "root": "החזיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 7980,
+      "priority": 67,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להסיר",
+      "asset_id_prefix": "lehasir",
+      "infinitive_pointed": "לְהָסִיר",
+      "infinitive_plain": "להסיר",
+      "italian_infinitive": "",
+      "root": "הסיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 7605,
+      "priority": 68,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחיות",
+      "asset_id_prefix": "lichyot",
+      "infinitive_pointed": "לִחְיוֹת",
+      "infinitive_plain": "לחיות",
+      "italian_infinitive": "",
+      "root": "חי",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 57,
+      "frequency": 15391,
+      "priority": 69,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנהל",
+      "asset_id_prefix": "lenahel",
+      "infinitive_pointed": "לְנַהֵל",
+      "infinitive_plain": "לנהל",
+      "italian_infinitive": "",
+      "root": "נהל",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 4,
+      "frequency": 15440,
+      "priority": 70,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתמוך",
+      "asset_id_prefix": "litmoche",
+      "infinitive_pointed": "לִתְמוֹךְ",
+      "infinitive_plain": "לתמוך",
+      "italian_infinitive": "",
+      "root": "תמך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 24828,
+      "priority": 71,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבנות",
+      "asset_id_prefix": "livnot",
+      "infinitive_pointed": "לִבְנוֹת",
+      "infinitive_plain": "לבנות",
+      "italian_infinitive": "",
+      "root": "בנה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 10394,
+      "priority": 72,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשתתף",
+      "asset_id_prefix": "lehishtatef",
+      "infinitive_pointed": "לְהִשְׁתַּתֵּף",
+      "infinitive_plain": "להשתתף",
+      "italian_infinitive": "",
+      "root": "השתתף",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 4,
+      "frequency": 12677,
+      "priority": 73,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להציג",
+      "asset_id_prefix": "lehatzig",
+      "infinitive_pointed": "לְהַצִּיג",
+      "infinitive_plain": "להציג",
+      "italian_infinitive": "",
+      "root": "הציג",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 15409,
+      "priority": 74,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשבות",
+      "asset_id_prefix": "lishbot",
+      "infinitive_pointed": "לִשְׁבּוֹת",
+      "infinitive_plain": "לשבות",
+      "italian_infinitive": "",
+      "root": "שבת",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 2,
+      "frequency": 6161,
+      "priority": 75,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להבטיח",
+      "asset_id_prefix": "lehavticha",
+      "infinitive_pointed": "לְהַבְטִיחַ",
+      "infinitive_plain": "להבטיח",
+      "italian_infinitive": "",
+      "root": "הבטיח",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 7,
+      "frequency": 15419,
+      "priority": 76,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפוך",
+      "asset_id_prefix": "lahafoche",
+      "infinitive_pointed": "לַהֲפוֹךְ",
+      "infinitive_plain": "להפוך",
+      "italian_infinitive": "",
+      "root": "הפך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 8,
+      "frequency": 22637,
+      "priority": 77,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להוסיף",
+      "asset_id_prefix": "lehosif",
+      "infinitive_pointed": "לְהוֹסִיף",
+      "infinitive_plain": "להוסיף",
+      "italian_infinitive": "",
+      "root": "הוסיף",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 13,
+      "frequency": 37597,
+      "priority": 78,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגרום",
+      "asset_id_prefix": "ligrom",
+      "infinitive_pointed": "לִגְרוֹם",
+      "infinitive_plain": "לגרום",
+      "italian_infinitive": "",
+      "root": "גרם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 22818,
+      "priority": 79,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לרכוש",
+      "asset_id_prefix": "lirkosh",
+      "infinitive_pointed": "לִרְכּוֹשׁ",
+      "infinitive_plain": "לרכוש",
+      "italian_infinitive": "",
+      "root": "רכש",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 7288,
+      "priority": 80,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתחיל",
+      "asset_id_prefix": "lehatchil",
+      "infinitive_pointed": "לְהַתְחִיל",
+      "infinitive_plain": "להתחיל",
+      "italian_infinitive": "",
+      "root": "התחיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 25033,
+      "priority": 81,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתחיל",
+      "asset_id_prefix": "lehitchael",
+      "infinitive_pointed": "לְהִתְחַיֵּל",
+      "infinitive_plain": "להתחיל",
+      "italian_infinitive": "",
+      "root": "התחיל",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 1,
+      "frequency": 20438,
+      "priority": 82,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשבת",
+      "asset_id_prefix": "lashevet",
+      "infinitive_pointed": "לָשֶׁבֶת",
+      "infinitive_plain": "לשבת",
+      "italian_infinitive": "",
+      "root": "ישב",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 29,
+      "frequency": 136512,
+      "priority": 83,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנצח",
+      "asset_id_prefix": "lenatzecha",
+      "infinitive_pointed": "לְנַצֵּחַ",
+      "infinitive_plain": "לנצח",
+      "italian_infinitive": "",
+      "root": "נצח",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 9,
+      "frequency": 11512,
+      "priority": 84,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנסות",
+      "asset_id_prefix": "lenasot",
+      "infinitive_pointed": "לְנַסּוֹת",
+      "infinitive_plain": "לנסות",
+      "italian_infinitive": "",
+      "root": "נסה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 36588,
+      "priority": 85,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להעמיד",
+      "asset_id_prefix": "lehamid",
+      "infinitive_pointed": "לְהַעְמִיד",
+      "infinitive_plain": "להעמיד",
+      "italian_infinitive": "",
+      "root": "העמיד",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 7820,
+      "priority": 86,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאשר",
+      "asset_id_prefix": "leasher",
+      "infinitive_pointed": "לְאַשֵּׁר",
+      "infinitive_plain": "לאשר",
+      "italian_infinitive": "",
+      "root": "אשר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 20564,
+      "priority": 87,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להסביר",
+      "asset_id_prefix": "lehasbir",
+      "infinitive_pointed": "לְהַסְבִּיר",
+      "infinitive_plain": "להסביר",
+      "italian_infinitive": "",
+      "root": "הסביר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 16825,
+      "priority": 88,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לדחות",
+      "asset_id_prefix": "lidchot",
+      "infinitive_pointed": "לִדְחוֹת",
+      "infinitive_plain": "לדחות",
+      "italian_infinitive": "",
+      "root": "דחה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 53,
+      "frequency": 10802,
+      "priority": 89,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתקן",
+      "asset_id_prefix": "letaken",
+      "infinitive_pointed": "לְתַקֵּן",
+      "infinitive_plain": "לתקן",
+      "italian_infinitive": "",
+      "root": "תקן",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 3,
+      "frequency": 5448,
+      "priority": 90,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפרוש",
+      "asset_id_prefix": "lifrosh",
+      "infinitive_pointed": "לִפְרוֹשׁ",
+      "infinitive_plain": "לפרוש",
+      "italian_infinitive": "",
+      "root": "פרש'",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 18032,
+      "priority": 91,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להילחם",
+      "asset_id_prefix": "lehilachem",
+      "infinitive_pointed": "לְהִילָּחֵם",
+      "infinitive_plain": "להילחם",
+      "italian_infinitive": "",
+      "root": "נלחם",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 7,
+      "frequency": 8244,
+      "priority": 92,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפעיל",
+      "asset_id_prefix": "lehafil",
+      "infinitive_pointed": "לְהַפְעִיל",
+      "infinitive_plain": "להפעיל",
+      "italian_infinitive": "",
+      "root": "הפעיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 10325,
+      "priority": 93,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחשוב",
+      "asset_id_prefix": "lachshov",
+      "infinitive_pointed": "לַחְשׁוֹב",
+      "infinitive_plain": "לחשוב",
+      "italian_infinitive": "",
+      "root": "חשב",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 83054,
+      "priority": 94,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקדום",
+      "asset_id_prefix": "likdom",
+      "infinitive_pointed": "לִקְדּוֹם",
+      "infinitive_plain": "לקדום",
+      "italian_infinitive": "",
+      "root": "קדם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 3906,
+      "priority": 95,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקדם",
+      "asset_id_prefix": "lekadem",
+      "infinitive_pointed": "לְקַדֵּם",
+      "infinitive_plain": "לקדם",
+      "italian_infinitive": "",
+      "root": "קדם",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 6566,
+      "priority": 96,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להזכיר",
+      "asset_id_prefix": "lehazkir",
+      "infinitive_pointed": "לְהַזְכִּיר",
+      "infinitive_plain": "להזכיר",
+      "italian_infinitive": "",
+      "root": "הזכיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 14669,
+      "priority": 97,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפתח",
+      "asset_id_prefix": "lefatecha",
+      "infinitive_pointed": "לְפַתֵּחַ",
+      "infinitive_plain": "לפתח",
+      "italian_infinitive": "",
+      "root": "פתח",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 9,
+      "frequency": 13981,
+      "priority": 98,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעזור",
+      "asset_id_prefix": "lazor",
+      "infinitive_pointed": "לַעְזוֹר",
+      "infinitive_plain": "לעזור",
+      "italian_infinitive": "",
+      "root": "עזר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 8612,
+      "priority": 99,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להניח",
+      "asset_id_prefix": "lehanicha",
+      "infinitive_pointed": "לְהָנִיחַ",
+      "infinitive_plain": "להניח",
+      "italian_infinitive": "",
+      "root": "הניח",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 20,
+      "frequency": 14124,
+      "priority": 100,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להישאר",
+      "asset_id_prefix": "lehishaer",
+      "infinitive_pointed": "לְהִישָּׁאֵר",
+      "infinitive_plain": "להישאר",
+      "italian_infinitive": "",
+      "root": "נשאר",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 7,
+      "frequency": 12130,
+      "priority": 101,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להביע",
+      "asset_id_prefix": "lehabia",
+      "infinitive_pointed": "לְהַבִּיעַ",
+      "infinitive_plain": "להביע",
+      "italian_infinitive": "",
+      "root": "הביע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 11,
+      "frequency": 12729,
+      "priority": 102,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשחרר",
+      "asset_id_prefix": "leshachrer",
+      "infinitive_pointed": "לְשַׁחְרֵר",
+      "infinitive_plain": "לשחרר",
+      "italian_infinitive": "",
+      "root": "שחרר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 20,
+      "frequency": 5492,
+      "priority": 103,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבחון",
+      "asset_id_prefix": "livchon",
+      "infinitive_pointed": "לִבְחוֹן",
+      "infinitive_plain": "לבחון",
+      "italian_infinitive": "",
+      "root": "בחן",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 19,
+      "frequency": 7230,
+      "priority": 104,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנקוט",
+      "asset_id_prefix": "linkot",
+      "infinitive_pointed": "לִנְקוֹט",
+      "infinitive_plain": "לנקוט",
+      "italian_infinitive": "",
+      "root": "נקט",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 9083,
+      "priority": 105,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשים",
+      "asset_id_prefix": "lasim",
+      "infinitive_pointed": "לָשִׂים",
+      "infinitive_plain": "לשים",
+      "italian_infinitive": "",
+      "root": "ש'ם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 37,
+      "frequency": 6267,
+      "priority": 106,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להצטרף",
+      "asset_id_prefix": "lehitztaref",
+      "infinitive_pointed": "לְהִצְטָרֵף",
+      "infinitive_plain": "להצטרף",
+      "italian_infinitive": "",
+      "root": "הצטרף",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 15,
+      "frequency": 10903,
+      "priority": 107,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לענות",
+      "asset_id_prefix": "leanot",
+      "infinitive_pointed": "לְעַנּוֹת",
+      "infinitive_plain": "לענות",
+      "italian_infinitive": "",
+      "root": "ענה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 7397,
+      "priority": 108,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפתור",
+      "asset_id_prefix": "liftor",
+      "infinitive_pointed": "לִפְתּוֹר",
+      "infinitive_plain": "לפתור",
+      "italian_infinitive": "",
+      "root": "פתר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 5295,
+      "priority": 109,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להוריד",
+      "asset_id_prefix": "lehorid",
+      "infinitive_pointed": "לְהוֹרִיד",
+      "infinitive_plain": "להוריד",
+      "italian_infinitive": "",
+      "root": "הוריד",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 13,
+      "frequency": 7409,
+      "priority": 110,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להעניק",
+      "asset_id_prefix": "lehanik",
+      "infinitive_pointed": "לְהַעְנִיק",
+      "infinitive_plain": "להעניק",
+      "italian_infinitive": "",
+      "root": "העניק",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 11204,
+      "priority": 111,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבקש",
+      "asset_id_prefix": "levakesh",
+      "infinitive_pointed": "לְבַקֵּשׁ",
+      "infinitive_plain": "לבקש",
+      "italian_infinitive": "",
+      "root": "בקש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 76312,
+      "priority": 112,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשחוק",
+      "asset_id_prefix": "lishchok",
+      "infinitive_pointed": "לִשְׁחוֹק",
+      "infinitive_plain": "לשחוק",
+      "italian_infinitive": "",
+      "root": "ש'חק",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 17,
+      "frequency": 4732,
+      "priority": 113,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להודות",
+      "asset_id_prefix": "lehodot",
+      "infinitive_pointed": "לְהוֹדוֹת",
+      "infinitive_plain": "להודות",
+      "italian_infinitive": "",
+      "root": "הודה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 37,
+      "frequency": 22166,
+      "priority": 114,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להחליט",
+      "asset_id_prefix": "lehachelit",
+      "infinitive_pointed": "לְהַחֱלִיט",
+      "infinitive_plain": "להחליט",
+      "italian_infinitive": "",
+      "root": "החליט",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 22872,
+      "priority": 115,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לספק",
+      "asset_id_prefix": "lesapek",
+      "infinitive_pointed": "לְסַפֵּק",
+      "infinitive_plain": "לספק",
+      "italian_infinitive": "",
+      "root": "ספק",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 12327,
+      "priority": 116,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשלוח",
+      "asset_id_prefix": "lishlocha",
+      "infinitive_pointed": "לִשְׁלוֹחַ",
+      "infinitive_plain": "לשלוח",
+      "italian_infinitive": "",
+      "root": "שלח",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 10573,
+      "priority": 117,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לסגור",
+      "asset_id_prefix": "lisgor",
+      "infinitive_pointed": "לִסְגּוֹר",
+      "infinitive_plain": "לסגור",
+      "italian_infinitive": "",
+      "root": "סגר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 5968,
+      "priority": 118,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לדאוג",
+      "asset_id_prefix": "lidog",
+      "infinitive_pointed": "לִדְאוֹג",
+      "infinitive_plain": "לדאוג",
+      "italian_infinitive": "",
+      "root": "דאג",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 17,
+      "frequency": 9454,
+      "priority": 119,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להטיל",
+      "asset_id_prefix": "lehatil",
+      "infinitive_pointed": "לְהָטִיל",
+      "infinitive_plain": "להטיל",
+      "italian_infinitive": "",
+      "root": "הטיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 8613,
+      "priority": 120,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להודיע",
+      "asset_id_prefix": "lehodia",
+      "infinitive_pointed": "לְהוֹדִיעַ",
+      "infinitive_plain": "להודיע",
+      "italian_infinitive": "",
+      "root": "הודיע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 14,
+      "frequency": 22708,
+      "priority": 121,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבחור",
+      "asset_id_prefix": "livchor",
+      "infinitive_pointed": "לִבְחוֹר",
+      "infinitive_plain": "לבחור",
+      "italian_infinitive": "",
+      "root": "בחר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 9047,
+      "priority": 122,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנצל",
+      "asset_id_prefix": "lenatzel",
+      "infinitive_pointed": "לְנַצֵּל",
+      "infinitive_plain": "לנצל",
+      "italian_infinitive": "",
+      "root": "נצל",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 7870,
+      "priority": 123,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחזק",
+      "asset_id_prefix": "lechazek",
+      "infinitive_pointed": "לְחַזֵּק",
+      "infinitive_plain": "לחזק",
+      "italian_infinitive": "",
+      "root": "חזק",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 6550,
+      "priority": 124,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לזכור",
+      "asset_id_prefix": "lizkor",
+      "infinitive_pointed": "לִזְכּוֹר",
+      "infinitive_plain": "לזכור",
+      "italian_infinitive": "",
+      "root": "זכר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 13135,
+      "priority": 125,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגלות",
+      "asset_id_prefix": "legalot",
+      "infinitive_pointed": "לְגַלּוֹת",
+      "infinitive_plain": "לגלות",
+      "italian_infinitive": "",
+      "root": "גלה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 14458,
+      "priority": 126,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגלות",
+      "asset_id_prefix": "liglot",
+      "infinitive_pointed": "לִגְלוֹת",
+      "infinitive_plain": "לגלות",
+      "italian_infinitive": "",
+      "root": "גלה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 2990,
+      "priority": 127,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להכניס",
+      "asset_id_prefix": "lehachnis",
+      "infinitive_pointed": "לְהַכְנִיס",
+      "infinitive_plain": "להכניס",
+      "italian_infinitive": "",
+      "root": "הכניס",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 6106,
+      "priority": 128,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשאת",
+      "asset_id_prefix": "laset",
+      "infinitive_pointed": "לָשֵׂאת",
+      "infinitive_plain": "לשאת",
+      "italian_infinitive": "",
+      "root": "נש'א",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 44,
+      "frequency": 11912,
+      "priority": 129,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגדיל",
+      "asset_id_prefix": "lehagdil",
+      "infinitive_pointed": "לְהַגְדִּיל",
+      "infinitive_plain": "להגדיל",
+      "italian_infinitive": "",
+      "root": "הגדיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 4772,
+      "priority": 130,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למכור",
+      "asset_id_prefix": "limkor",
+      "infinitive_pointed": "לִמְכּוֹר",
+      "infinitive_plain": "למכור",
+      "italian_infinitive": "",
+      "root": "מכר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 10807,
+      "priority": 131,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למלוא",
+      "asset_id_prefix": "limlo",
+      "infinitive_pointed": "לִמְלוֹא",
+      "infinitive_plain": "למלוא",
+      "italian_infinitive": "",
+      "root": "מלא",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 42,
+      "frequency": 2686,
+      "priority": 132,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למלא",
+      "asset_id_prefix": "lemale",
+      "infinitive_pointed": "לְמַלֵּא",
+      "infinitive_plain": "למלא",
+      "italian_infinitive": "",
+      "root": "מלא",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 16,
+      "frequency": 11952,
+      "priority": 133,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להציע",
+      "asset_id_prefix": "lehatzia",
+      "infinitive_pointed": "לְהַצִּיעַ",
+      "infinitive_plain": "להציע",
+      "italian_infinitive": "",
+      "root": "הציע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 11,
+      "frequency": 48668,
+      "priority": 134,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיפגש",
+      "asset_id_prefix": "lehipagesh",
+      "infinitive_pointed": "לְהִיפָּגֵשׁ",
+      "infinitive_plain": "להיפגש",
+      "italian_infinitive": "",
+      "root": "נפגש",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 1,
+      "frequency": 8022,
+      "priority": 135,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למסור",
+      "asset_id_prefix": "limsor",
+      "infinitive_pointed": "לִמְסוֹר",
+      "infinitive_plain": "למסור",
+      "italian_infinitive": "",
+      "root": "מסר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 36290,
+      "priority": 136,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לצמצם",
+      "asset_id_prefix": "letzamtzem",
+      "infinitive_pointed": "לְצַמְצֵם",
+      "infinitive_plain": "לצמצם",
+      "italian_infinitive": "",
+      "root": "צמצם",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 20,
+      "frequency": 3569,
+      "priority": 137,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעודד",
+      "asset_id_prefix": "leoded",
+      "infinitive_pointed": "לְעוֹדֵד",
+      "infinitive_plain": "לעודד",
+      "italian_infinitive": "",
+      "root": "עודד",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 12,
+      "frequency": 7712,
+      "priority": 138,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לערוך",
+      "asset_id_prefix": "laroche",
+      "infinitive_pointed": "לַעְרוֹךְ",
+      "infinitive_plain": "לערוך",
+      "italian_infinitive": "",
+      "root": "ערך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 8202,
+      "priority": 139,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשמש",
+      "asset_id_prefix": "leshamesh",
+      "infinitive_pointed": "לְשַׁמֵּשׁ",
+      "infinitive_plain": "לשמש",
+      "italian_infinitive": "",
+      "root": "שמש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 15382,
+      "priority": 140,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להציל",
+      "asset_id_prefix": "lehatzil",
+      "infinitive_pointed": "לְהַצִּיל",
+      "infinitive_plain": "להציל",
+      "italian_infinitive": "",
+      "root": "הציל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 4086,
+      "priority": 141,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבקר",
+      "asset_id_prefix": "levaker",
+      "infinitive_pointed": "לְבַקֵּר",
+      "infinitive_plain": "לבקר",
+      "italian_infinitive": "",
+      "root": "בקר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 7311,
+      "priority": 142,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לברך",
+      "asset_id_prefix": "levareche",
+      "infinitive_pointed": "לְבָרֵךְ",
+      "infinitive_plain": "לברך",
+      "italian_infinitive": "",
+      "root": "ברך",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 5,
+      "frequency": 9129,
+      "priority": 143,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשוב",
+      "asset_id_prefix": "lashuv",
+      "infinitive_pointed": "לָשׁוּב",
+      "infinitive_plain": "לשוב",
+      "italian_infinitive": "",
+      "root": "שב",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 35,
+      "frequency": 16150,
+      "priority": 144,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקנות",
+      "asset_id_prefix": "liknot",
+      "infinitive_pointed": "לִקְנוֹת",
+      "infinitive_plain": "לקנות",
+      "italian_infinitive": "",
+      "root": "קנה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 6125,
+      "priority": 145,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להרוס",
+      "asset_id_prefix": "lahros",
+      "infinitive_pointed": "לַהְרוֹס",
+      "infinitive_plain": "להרוס",
+      "italian_infinitive": "",
+      "root": "הרס",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 5727,
+      "priority": 146,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעזוב",
+      "asset_id_prefix": "lazov",
+      "infinitive_pointed": "לַעְזוֹב",
+      "infinitive_plain": "לעזוב",
+      "italian_infinitive": "",
+      "root": "עזב",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 6733,
+      "priority": 147,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשקיע",
+      "asset_id_prefix": "lehashkia",
+      "infinitive_pointed": "לְהַשְׁקִיעַ",
+      "infinitive_plain": "להשקיע",
+      "italian_infinitive": "",
+      "root": "השקיע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 7,
+      "frequency": 6472,
+      "priority": 148,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למנות",
+      "asset_id_prefix": "lemanot",
+      "infinitive_pointed": "לְמַנּוֹת",
+      "infinitive_plain": "למנות",
+      "italian_infinitive": "",
+      "root": "מנה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 5788,
+      "priority": 149,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למנות",
+      "asset_id_prefix": "limnot",
+      "infinitive_pointed": "לִמְנוֹת",
+      "infinitive_plain": "למנות",
+      "italian_infinitive": "",
+      "root": "מנה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 5209,
+      "priority": 150,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להרחיב",
+      "asset_id_prefix": "leharchiv",
+      "infinitive_pointed": "לְהַרְחִיב",
+      "infinitive_plain": "להרחיב",
+      "italian_infinitive": "",
+      "root": "הרחיב",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 3751,
+      "priority": 151,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לסדר",
+      "asset_id_prefix": "lesader",
+      "infinitive_pointed": "לְסַדֵּר",
+      "infinitive_plain": "לסדר",
+      "italian_infinitive": "",
+      "root": "סדר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2824,
+      "priority": 152,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשאיר",
+      "asset_id_prefix": "lehashir",
+      "infinitive_pointed": "לְהַשְׁאִיר",
+      "infinitive_plain": "להשאיר",
+      "italian_infinitive": "",
+      "root": "השאיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 5948,
+      "priority": 153,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשפר",
+      "asset_id_prefix": "leshaper",
+      "infinitive_pointed": "לְשַׁפֵּר",
+      "infinitive_plain": "לשפר",
+      "italian_infinitive": "",
+      "root": "שפר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 3505,
+      "priority": 154,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לצפות",
+      "asset_id_prefix": "letzapot",
+      "infinitive_pointed": "לְצַפּוֹת",
+      "infinitive_plain": "לצפות",
+      "italian_infinitive": "",
+      "root": "צפה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 14351,
+      "priority": 155,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לצפות",
+      "asset_id_prefix": "litzpot",
+      "infinitive_pointed": "לִצְפּוֹת",
+      "infinitive_plain": "לצפות",
+      "italian_infinitive": "",
+      "root": "צפה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 7855,
+      "priority": 156,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להחליף",
+      "asset_id_prefix": "lehachlif",
+      "infinitive_pointed": "לְהַחְלִיף",
+      "infinitive_plain": "להחליף",
+      "italian_infinitive": "",
+      "root": "החליף",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 5049,
+      "priority": 157,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להוכיח",
+      "asset_id_prefix": "lehochicha",
+      "infinitive_pointed": "לְהוֹכִיחַ",
+      "infinitive_plain": "להוכיח",
+      "italian_infinitive": "",
+      "root": "הוכיח",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 14,
+      "frequency": 9707,
+      "priority": 158,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחפש",
+      "asset_id_prefix": "lechapesh",
+      "infinitive_pointed": "לְחַפֵּשׁ",
+      "infinitive_plain": "לחפש",
+      "italian_infinitive": "",
+      "root": "חפש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 11028,
+      "priority": 159,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעסוק",
+      "asset_id_prefix": "lasok",
+      "infinitive_pointed": "לַעְסוֹק",
+      "infinitive_plain": "לעסוק",
+      "italian_infinitive": "",
+      "root": "עסק",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 27301,
+      "priority": 160,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להאמין",
+      "asset_id_prefix": "lehaamin",
+      "infinitive_pointed": "לְהַאֲמִין",
+      "infinitive_plain": "להאמין",
+      "italian_infinitive": "",
+      "root": "האמין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 6,
+      "frequency": 24879,
+      "priority": 161,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקצוץ",
+      "asset_id_prefix": "liktzotz",
+      "infinitive_pointed": "לִקְצוֹץ",
+      "infinitive_plain": "לקצוץ",
+      "italian_infinitive": "",
+      "root": "קצץ",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 2088,
+      "priority": 162,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגיב",
+      "asset_id_prefix": "lehagiv",
+      "infinitive_pointed": "לְהָגִיב",
+      "infinitive_plain": "להגיב",
+      "italian_infinitive": "",
+      "root": "הגיב",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 6577,
+      "priority": 163,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקצץ",
+      "asset_id_prefix": "lekatzetz",
+      "infinitive_pointed": "לְקַצֵּץ",
+      "infinitive_plain": "לקצץ",
+      "italian_infinitive": "",
+      "root": "קצץ",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 4957,
+      "priority": 164,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנהוג",
+      "asset_id_prefix": "linhog",
+      "infinitive_pointed": "לִנְהוֹג",
+      "infinitive_plain": "לנהוג",
+      "italian_infinitive": "",
+      "root": "נהג",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 17,
+      "frequency": 13461,
+      "priority": 165,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להקל",
+      "asset_id_prefix": "lehakel",
+      "infinitive_pointed": "לְהָקֵל",
+      "infinitive_plain": "להקל",
+      "italian_infinitive": "",
+      "root": "הקל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 21,
+      "frequency": 3394,
+      "priority": 166,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לדרוש",
+      "asset_id_prefix": "lidrosh",
+      "infinitive_pointed": "לִדְרוֹשׁ",
+      "infinitive_plain": "לדרוש",
+      "italian_infinitive": "",
+      "root": "דרש",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 23180,
+      "priority": 167,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשלים",
+      "asset_id_prefix": "lehashlim",
+      "infinitive_pointed": "לְהַשְׁלִים",
+      "infinitive_plain": "להשלים",
+      "italian_infinitive": "",
+      "root": "השלים",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 5335,
+      "priority": 168,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפרסם",
+      "asset_id_prefix": "lefarsem",
+      "infinitive_pointed": "לְפַרְסֵם",
+      "infinitive_plain": "לפרסם",
+      "italian_infinitive": "",
+      "root": "פרסם",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 20,
+      "frequency": 9425,
+      "priority": 169,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להכיר",
+      "asset_id_prefix": "lehakir",
+      "infinitive_pointed": "לְהַכִּיר",
+      "infinitive_plain": "להכיר",
+      "italian_infinitive": "",
+      "root": "הכיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 22804,
+      "priority": 170,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחסל",
+      "asset_id_prefix": "lechasel",
+      "infinitive_pointed": "לְחַסֵּל",
+      "infinitive_plain": "לחסל",
+      "italian_infinitive": "",
+      "root": "חסל",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 3182,
+      "priority": 171,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להכין",
+      "asset_id_prefix": "lehachin",
+      "infinitive_pointed": "לְהָכִין",
+      "infinitive_plain": "להכין",
+      "italian_infinitive": "",
+      "root": "הכין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 18,
+      "frequency": 6220,
+      "priority": 172,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתרום",
+      "asset_id_prefix": "litrom",
+      "infinitive_pointed": "לִתְרוֹם",
+      "infinitive_plain": "לתרום",
+      "italian_infinitive": "",
+      "root": "תרם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 7296,
+      "priority": 173,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיראות",
+      "asset_id_prefix": "leheraot",
+      "infinitive_pointed": "לְהֵירָאוֹת",
+      "infinitive_plain": "להיראות",
+      "italian_infinitive": "",
+      "root": "נראה",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 28,
+      "frequency": 41821,
+      "priority": 174,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להוביל",
+      "asset_id_prefix": "lehovil",
+      "infinitive_pointed": "לְהוֹבִיל",
+      "infinitive_plain": "להוביל",
+      "italian_infinitive": "",
+      "root": "הוביל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 13,
+      "frequency": 19121,
+      "priority": 175,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחקור",
+      "asset_id_prefix": "lachkor",
+      "infinitive_pointed": "לַחְקוֹר",
+      "infinitive_plain": "לחקור",
+      "italian_infinitive": "",
+      "root": "חקר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 5611,
+      "priority": 176,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפטור",
+      "asset_id_prefix": "liftor_2",
+      "infinitive_pointed": "לִפְטוֹר",
+      "infinitive_plain": "לפטור",
+      "italian_infinitive": "",
+      "root": "פטר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 2695,
+      "priority": 177,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפרוק",
+      "asset_id_prefix": "lifrok",
+      "infinitive_pointed": "לִפְרוֹק",
+      "infinitive_plain": "לפרוק",
+      "italian_infinitive": "",
+      "root": "פרק",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 1988,
+      "priority": 178,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להחזיק",
+      "asset_id_prefix": "lehachzik",
+      "infinitive_pointed": "לְהַחְזִיק",
+      "infinitive_plain": "להחזיק",
+      "italian_infinitive": "",
+      "root": "החזיק",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 13491,
+      "priority": 179,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשרת",
+      "asset_id_prefix": "lesharet",
+      "infinitive_pointed": "לְשָׁרֵת",
+      "infinitive_plain": "לשרת",
+      "italian_infinitive": "",
+      "root": "שרת",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 6,
+      "frequency": 10763,
+      "priority": 180,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לרדת",
+      "asset_id_prefix": "laredet",
+      "infinitive_pointed": "לָרֶדֶת",
+      "infinitive_plain": "לרדת",
+      "italian_infinitive": "",
+      "root": "ירד",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 29,
+      "frequency": 12058,
+      "priority": 181,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשפיע",
+      "asset_id_prefix": "lehashpia",
+      "infinitive_pointed": "לְהַשְׁפִּיעַ",
+      "infinitive_plain": "להשפיע",
+      "italian_infinitive": "",
+      "root": "השפיע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 7,
+      "frequency": 6688,
+      "priority": 182,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתערב",
+      "asset_id_prefix": "lehitarev",
+      "infinitive_pointed": "לְהִתְעָרֵב",
+      "infinitive_plain": "להתערב",
+      "italian_infinitive": "",
+      "root": "התערב",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 13,
+      "frequency": 4000,
+      "priority": 183,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגביר",
+      "asset_id_prefix": "lehagbir",
+      "infinitive_pointed": "לְהַגְבִּיר",
+      "infinitive_plain": "להגביר",
+      "italian_infinitive": "",
+      "root": "הגביר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 3995,
+      "priority": 184,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתעלם",
+      "asset_id_prefix": "lehitalem",
+      "infinitive_pointed": "לְהִתְעַלֵּם",
+      "infinitive_plain": "להתעלם",
+      "italian_infinitive": "",
+      "root": "התעלם",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 1,
+      "frequency": 5169,
+      "priority": 185,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחלוק",
+      "asset_id_prefix": "lachlok",
+      "infinitive_pointed": "לַחְלוֹק",
+      "infinitive_plain": "לחלוק",
+      "italian_infinitive": "",
+      "root": "חלק",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 4416,
+      "priority": 186,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתקוף",
+      "asset_id_prefix": "litkof",
+      "infinitive_pointed": "לִתְקוֹף",
+      "infinitive_plain": "לתקוף",
+      "italian_infinitive": "",
+      "root": "תקף",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 7340,
+      "priority": 187,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעקור",
+      "asset_id_prefix": "lakor",
+      "infinitive_pointed": "לַעְקוֹר",
+      "infinitive_plain": "לעקור",
+      "italian_infinitive": "",
+      "root": "עקר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 2731,
+      "priority": 188,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לנסוע",
+      "asset_id_prefix": "linsoa",
+      "infinitive_pointed": "לִנְסוֹעַ",
+      "infinitive_plain": "לנסוע",
+      "italian_infinitive": "",
+      "root": "נסע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 27,
+      "frequency": 8003,
+      "priority": 189,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להסתפק",
+      "asset_id_prefix": "lehistapek",
+      "infinitive_pointed": "לְהִסְתַּפֵּק",
+      "infinitive_plain": "להסתפק",
+      "italian_infinitive": "",
+      "root": "הסתפק",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 4,
+      "frequency": 5265,
+      "priority": 190,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לזכות",
+      "asset_id_prefix": "lizkot",
+      "infinitive_pointed": "לִזְכּוֹת",
+      "infinitive_plain": "לזכות",
+      "italian_infinitive": "",
+      "root": "זכה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 15750,
+      "priority": 191,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לזכות",
+      "asset_id_prefix": "lezakot",
+      "infinitive_pointed": "לְזַכּוֹת",
+      "infinitive_plain": "לזכות",
+      "italian_infinitive": "",
+      "root": "זכה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 10375,
+      "priority": 192,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשקול",
+      "asset_id_prefix": "lishkol",
+      "infinitive_pointed": "לִשְׁקוֹל",
+      "infinitive_plain": "לשקול",
+      "italian_infinitive": "",
+      "root": "שקל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 6391,
+      "priority": 193,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחתום",
+      "asset_id_prefix": "lachtom",
+      "infinitive_pointed": "לַחְתּוֹם",
+      "infinitive_plain": "לחתום",
+      "italian_infinitive": "",
+      "root": "חתם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 6398,
+      "priority": 194,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להאריך",
+      "asset_id_prefix": "lehaariche",
+      "infinitive_pointed": "לְהַאֲרִיךְ",
+      "infinitive_plain": "להאריך",
+      "italian_infinitive": "",
+      "root": "האריך",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 5,
+      "frequency": 2867,
+      "priority": 195,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפרק",
+      "asset_id_prefix": "lefarek",
+      "infinitive_pointed": "לְפָרֵק",
+      "infinitive_plain": "לפרק",
+      "italian_infinitive": "",
+      "root": "פרק",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 5,
+      "frequency": 2411,
+      "priority": 196,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפריע",
+      "asset_id_prefix": "lehafria",
+      "infinitive_pointed": "לְהַפְרִיעַ",
+      "infinitive_plain": "להפריע",
+      "italian_infinitive": "",
+      "root": "הפריע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 7,
+      "frequency": 9268,
+      "priority": 197,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להסכים",
+      "asset_id_prefix": "lehaskim",
+      "infinitive_pointed": "לְהַסְכִּים",
+      "infinitive_plain": "להסכים",
+      "italian_infinitive": "",
+      "root": "הסכים",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 26157,
+      "priority": 198,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להבהיר",
+      "asset_id_prefix": "lehavhir",
+      "infinitive_pointed": "לְהַבְהִיר",
+      "infinitive_plain": "להבהיר",
+      "italian_infinitive": "",
+      "root": "הבהיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 7316,
+      "priority": 199,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפקח",
+      "asset_id_prefix": "lefakecha",
+      "infinitive_pointed": "לְפַקֵּחַ",
+      "infinitive_plain": "לפקח",
+      "italian_infinitive": "",
+      "root": "פקח",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 9,
+      "frequency": 4009,
+      "priority": 200,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לממן",
+      "asset_id_prefix": "lemamen",
+      "infinitive_pointed": "לְמַמֵּן",
+      "infinitive_plain": "לממן",
+      "italian_infinitive": "",
+      "root": "ממן",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 3,
+      "frequency": 4558,
+      "priority": 201,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתבצע",
+      "asset_id_prefix": "lehitbatzea",
+      "infinitive_pointed": "לְהִתְבַּצֵּעַ",
+      "infinitive_plain": "להתבצע",
+      "italian_infinitive": "",
+      "root": "התבצע",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 19,
+      "frequency": 9238,
+      "priority": 202,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לממש",
+      "asset_id_prefix": "lemamesh",
+      "infinitive_pointed": "לְמַמֵּשׁ",
+      "infinitive_plain": "לממש",
+      "italian_infinitive": "",
+      "root": "ממש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2039,
+      "priority": 203,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשתף",
+      "asset_id_prefix": "leshatef",
+      "infinitive_pointed": "לְשַׁתֵּף",
+      "infinitive_plain": "לשתף",
+      "italian_infinitive": "",
+      "root": "שתף",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 4353,
+      "priority": 204,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לספור",
+      "asset_id_prefix": "lispor",
+      "infinitive_pointed": "לִסְפּוֹר",
+      "infinitive_plain": "לספור",
+      "italian_infinitive": "",
+      "root": "ספר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 3596,
+      "priority": 205,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להדגיש",
+      "asset_id_prefix": "lehadgish",
+      "infinitive_pointed": "לְהַדְגִּישׁ",
+      "infinitive_plain": "להדגיש",
+      "italian_infinitive": "",
+      "root": "הדגיש",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 13009,
+      "priority": 206,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאכול",
+      "asset_id_prefix": "leechol",
+      "infinitive_pointed": "לֶאֱכוֹל",
+      "infinitive_plain": "לאכול",
+      "italian_infinitive": "",
+      "root": "אכל",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 16,
+      "frequency": 7386,
+      "priority": 207,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחדש",
+      "asset_id_prefix": "lechadesh",
+      "infinitive_pointed": "לְחַדֵּשׁ",
+      "infinitive_plain": "לחדש",
+      "italian_infinitive": "",
+      "root": "חדש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2321,
+      "priority": 208,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להראות",
+      "asset_id_prefix": "leharot",
+      "infinitive_pointed": "לְהַרְאוֹת",
+      "infinitive_plain": "להראות",
+      "italian_infinitive": "",
+      "root": "הראה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 35,
+      "frequency": 11516,
+      "priority": 209,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגרש",
+      "asset_id_prefix": "legaresh",
+      "infinitive_pointed": "לְגָרֵשׁ",
+      "infinitive_plain": "לגרש",
+      "italian_infinitive": "",
+      "root": "גרש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 5,
+      "frequency": 2651,
+      "priority": 210,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיאבק",
+      "asset_id_prefix": "leheavek",
+      "infinitive_pointed": "לְהֵיאָבֵק",
+      "infinitive_plain": "להיאבק",
+      "italian_infinitive": "",
+      "root": "נאבק",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 6,
+      "frequency": 4688,
+      "priority": 211,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשבח",
+      "asset_id_prefix": "leshabecha",
+      "infinitive_pointed": "לְשַׁבֵּחַ",
+      "infinitive_plain": "לשבח",
+      "italian_infinitive": "",
+      "root": "שבח",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 9,
+      "frequency": 3546,
+      "priority": 212,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להרוג",
+      "asset_id_prefix": "lahrog",
+      "infinitive_pointed": "לַהְרוֹג",
+      "infinitive_plain": "להרוג",
+      "italian_infinitive": "",
+      "root": "הרג",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 6213,
+      "priority": 213,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להמתין",
+      "asset_id_prefix": "lehamtin",
+      "infinitive_pointed": "לְהַמְתִּין",
+      "infinitive_plain": "להמתין",
+      "italian_infinitive": "",
+      "root": "המתין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 3,
+      "frequency": 7620,
+      "priority": 214,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להורות",
+      "asset_id_prefix": "lehorot",
+      "infinitive_pointed": "לְהוֹרוֹת",
+      "infinitive_plain": "להורות",
+      "italian_infinitive": "",
+      "root": "הורה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 37,
+      "frequency": 8209,
+      "priority": 215,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגבש",
+      "asset_id_prefix": "legabesh",
+      "infinitive_pointed": "לְגַבֵּשׁ",
+      "infinitive_plain": "לגבש",
+      "italian_infinitive": "",
+      "root": "גבש",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2789,
+      "priority": 216,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להכריז",
+      "asset_id_prefix": "lehachriz",
+      "infinitive_pointed": "לְהַכְרִיז",
+      "infinitive_plain": "להכריז",
+      "italian_infinitive": "",
+      "root": "הכריז",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 6605,
+      "priority": 217,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשחק",
+      "asset_id_prefix": "lesachek",
+      "infinitive_pointed": "לְשַׂחֵק",
+      "infinitive_plain": "לשחק",
+      "italian_infinitive": "",
+      "root": "ש'חק",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 4,
+      "frequency": 5607,
+      "priority": 218,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשתלט",
+      "asset_id_prefix": "lehishtalet",
+      "infinitive_pointed": "לְהִשְׁתַּלֵּט",
+      "infinitive_plain": "להשתלט",
+      "italian_infinitive": "",
+      "root": "השתלט",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 4,
+      "frequency": 2725,
+      "priority": 219,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקלוט",
+      "asset_id_prefix": "liklot",
+      "infinitive_pointed": "לִקְלוֹט",
+      "infinitive_plain": "לקלוט",
+      "italian_infinitive": "",
+      "root": "קלט",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 9521,
+      "priority": 220,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לברור",
+      "asset_id_prefix": "livror",
+      "infinitive_pointed": "לִבְרוֹר",
+      "infinitive_plain": "לברור",
+      "italian_infinitive": "",
+      "root": "ברר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 1484,
+      "priority": 221,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאתר",
+      "asset_id_prefix": "leater",
+      "infinitive_pointed": "לְאַתֵּר",
+      "infinitive_plain": "לאתר",
+      "italian_infinitive": "",
+      "root": "אתר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 1705,
+      "priority": 222,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפטר",
+      "asset_id_prefix": "lefater",
+      "infinitive_pointed": "לְפַטֵּר",
+      "infinitive_plain": "לפטר",
+      "italian_infinitive": "",
+      "root": "פטר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 3506,
+      "priority": 223,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיפנות",
+      "asset_id_prefix": "lehipanot",
+      "infinitive_pointed": "לְהִיפָּנוֹת",
+      "infinitive_plain": "להיפנות",
+      "italian_infinitive": "",
+      "root": "נפנה",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 27,
+      "frequency": 2884,
+      "priority": 224,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפנות",
+      "asset_id_prefix": "lehafnot",
+      "infinitive_pointed": "לְהַפְנוֹת",
+      "infinitive_plain": "להפנות",
+      "italian_infinitive": "",
+      "root": "הפנה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 32,
+      "frequency": 7053,
+      "priority": 225,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתפוס",
+      "asset_id_prefix": "litpos",
+      "infinitive_pointed": "לִתְפּוֹס",
+      "infinitive_plain": "לתפוס",
+      "italian_infinitive": "",
+      "root": "תפס",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 5531,
+      "priority": 226,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לברר",
+      "asset_id_prefix": "levarer",
+      "infinitive_pointed": "לְבָרֵר",
+      "infinitive_plain": "לברר",
+      "italian_infinitive": "",
+      "root": "ברר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 5,
+      "frequency": 1716,
+      "priority": 227,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחלק",
+      "asset_id_prefix": "lechalek",
+      "infinitive_pointed": "לְחַלֵּק",
+      "infinitive_plain": "לחלק",
+      "italian_infinitive": "",
+      "root": "חלק",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 4366,
+      "priority": 228,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפגין",
+      "asset_id_prefix": "lehafgin",
+      "infinitive_pointed": "לְהַפְגִּין",
+      "infinitive_plain": "להפגין",
+      "italian_infinitive": "",
+      "root": "הפגין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 3,
+      "frequency": 3681,
+      "priority": 229,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לכתוב",
+      "asset_id_prefix": "lichtov",
+      "infinitive_pointed": "לִכְתּוֹב",
+      "infinitive_plain": "לכתוב",
+      "italian_infinitive": "",
+      "root": "כתב",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 28579,
+      "priority": 230,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לספר",
+      "asset_id_prefix": "lesaper",
+      "infinitive_pointed": "לְסַפֵּר",
+      "infinitive_plain": "לספר",
+      "italian_infinitive": "",
+      "root": "ספר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 11900,
+      "priority": 231,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לכבד",
+      "asset_id_prefix": "lechabed",
+      "infinitive_pointed": "לְכַבֵּד",
+      "infinitive_plain": "לכבד",
+      "italian_infinitive": "",
+      "root": "כבד",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 5618,
+      "priority": 232,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיערך",
+      "asset_id_prefix": "leheareche",
+      "infinitive_pointed": "לְהֵיעָרֵךְ",
+      "infinitive_plain": "להיערך",
+      "italian_infinitive": "",
+      "root": "נערך",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 5,
+      "frequency": 17054,
+      "priority": 233,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאמץ",
+      "asset_id_prefix": "leametz",
+      "infinitive_pointed": "לְאַמֵּץ",
+      "infinitive_plain": "לאמץ",
+      "italian_infinitive": "",
+      "root": "אמץ",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 3993,
+      "priority": 234,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לירות",
+      "asset_id_prefix": "lirot_2",
+      "infinitive_pointed": "לִירוֹת",
+      "infinitive_plain": "לירות",
+      "italian_infinitive": "",
+      "root": "ירה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 55,
+      "frequency": 6934,
+      "priority": 235,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחצות",
+      "asset_id_prefix": "lachtzot",
+      "infinitive_pointed": "לַחְצוֹת",
+      "infinitive_plain": "לחצות",
+      "italian_infinitive": "",
+      "root": "חצה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 51,
+      "frequency": 2821,
+      "priority": 236,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להימלט",
+      "asset_id_prefix": "lehimalet",
+      "infinitive_pointed": "לְהִימָּלֵט",
+      "infinitive_plain": "להימלט",
+      "italian_infinitive": "",
+      "root": "נמלט",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 1,
+      "frequency": 3014,
+      "priority": 237,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להופיע",
+      "asset_id_prefix": "lehofia",
+      "infinitive_pointed": "לְהוֹפִיעַ",
+      "infinitive_plain": "להופיע",
+      "italian_infinitive": "",
+      "root": "הופיע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 14,
+      "frequency": 14432,
+      "priority": 238,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להציב",
+      "asset_id_prefix": "lehatziv",
+      "infinitive_pointed": "לְהַצִּיב",
+      "infinitive_plain": "להציב",
+      "italian_infinitive": "",
+      "root": "הציב",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 4575,
+      "priority": 239,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לטעון",
+      "asset_id_prefix": "liton",
+      "infinitive_pointed": "לִטְעוֹן",
+      "infinitive_plain": "לטעון",
+      "italian_infinitive": "",
+      "root": "טען",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 19,
+      "frequency": 39537,
+      "priority": 240,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "ללמד",
+      "asset_id_prefix": "lelamed",
+      "infinitive_pointed": "לְלַמֵּד",
+      "infinitive_plain": "ללמד",
+      "italian_infinitive": "",
+      "root": "למד",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 12267,
+      "priority": 241,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשלוט",
+      "asset_id_prefix": "lishlot",
+      "infinitive_pointed": "לִשְׁלוֹט",
+      "infinitive_plain": "לשלוט",
+      "italian_infinitive": "",
+      "root": "שלט",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 5668,
+      "priority": 242,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתבוע",
+      "asset_id_prefix": "litboa",
+      "infinitive_pointed": "לִתְבּוֹעַ",
+      "infinitive_plain": "לתבוע",
+      "italian_infinitive": "",
+      "root": "תבע",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 7673,
+      "priority": 243,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגור",
+      "asset_id_prefix": "lagur",
+      "infinitive_pointed": "לָגוּר",
+      "infinitive_plain": "לגור",
+      "italian_infinitive": "",
+      "root": "גר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 35,
+      "frequency": 6702,
+      "priority": 244,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיכנע",
+      "asset_id_prefix": "lehikana",
+      "infinitive_pointed": "לְהִיכָּנַע",
+      "infinitive_plain": "להיכנע",
+      "italian_infinitive": "",
+      "root": "נכנע",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 9,
+      "frequency": 2497,
+      "priority": 245,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למשוך",
+      "asset_id_prefix": "limshoche",
+      "infinitive_pointed": "לִמְשׁוֹךְ",
+      "infinitive_plain": "למשוך",
+      "italian_infinitive": "",
+      "root": "משך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 3981,
+      "priority": 246,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתקדם",
+      "asset_id_prefix": "lehitkadem",
+      "infinitive_pointed": "לְהִתְקַדֵּם",
+      "infinitive_plain": "להתקדם",
+      "italian_infinitive": "",
+      "root": "התקדם",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 1,
+      "frequency": 2127,
+      "priority": 247,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגבות",
+      "asset_id_prefix": "ligbot",
+      "infinitive_pointed": "לִגְבּוֹת",
+      "infinitive_plain": "לגבות",
+      "italian_infinitive": "",
+      "root": "גבה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 3062,
+      "priority": 248,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לגבות",
+      "asset_id_prefix": "legabot",
+      "infinitive_pointed": "לְגַבּוֹת",
+      "infinitive_plain": "לגבות",
+      "italian_infinitive": "",
+      "root": "גבה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 1951,
+      "priority": 249,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחסוך",
+      "asset_id_prefix": "lachsoche",
+      "infinitive_pointed": "לַחְסוֹךְ",
+      "infinitive_plain": "לחסוך",
+      "italian_infinitive": "",
+      "root": "חסך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 3675,
+      "priority": 250,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשוחח",
+      "asset_id_prefix": "lesochecha",
+      "infinitive_pointed": "לְשׂוֹחֵחַ",
+      "infinitive_plain": "לשוחח",
+      "italian_infinitive": "",
+      "root": "ש'וחח",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 15,
+      "frequency": 4034,
+      "priority": 251,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחשוף",
+      "asset_id_prefix": "lachsof",
+      "infinitive_pointed": "לַחְשׂוֹף",
+      "infinitive_plain": "לחשוף",
+      "italian_infinitive": "",
+      "root": "חש'ף",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 5196,
+      "priority": 252,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחשוף",
+      "asset_id_prefix": "lachasof",
+      "infinitive_pointed": "לַחֲשׂוֹף",
+      "infinitive_plain": "לחשוף",
+      "italian_infinitive": "",
+      "root": "חשף",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 8,
+      "frequency": 5184,
+      "priority": 253,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתפוטר",
+      "asset_id_prefix": "lehiteputar",
+      "infinitive_pointed": "לְהִתְפּוּטַּר",
+      "infinitive_plain": "להתפוטר",
+      "italian_infinitive": "",
+      "root": "התפטר",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 60,
+      "frequency": 2970,
+      "priority": 254,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעורר",
+      "asset_id_prefix": "leorer",
+      "infinitive_pointed": "לְעוֹרֵר",
+      "infinitive_plain": "לעורר",
+      "italian_infinitive": "",
+      "root": "עורר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 12,
+      "frequency": 9647,
+      "priority": 255,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפחית",
+      "asset_id_prefix": "lehafchit",
+      "infinitive_pointed": "לְהַפְחִית",
+      "infinitive_plain": "להפחית",
+      "italian_infinitive": "",
+      "root": "הפחית",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 2,
+      "frequency": 2301,
+      "priority": 256,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתגבר",
+      "asset_id_prefix": "lehitgaber",
+      "infinitive_pointed": "לְהִתְגַּבֵּר",
+      "infinitive_plain": "להתגבר",
+      "italian_infinitive": "",
+      "root": "התגבר",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 1,
+      "frequency": 2698,
+      "priority": 257,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לרצוח",
+      "asset_id_prefix": "lirtzocha",
+      "infinitive_pointed": "לִרְצוֹחַ",
+      "infinitive_plain": "לרצוח",
+      "italian_infinitive": "",
+      "root": "רצח",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 3084,
+      "priority": 258,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לכפות",
+      "asset_id_prefix": "lichpot",
+      "infinitive_pointed": "לִכְפּוֹת",
+      "infinitive_plain": "לכפות",
+      "italian_infinitive": "",
+      "root": "כפה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 2395,
+      "priority": 259,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להכריע",
+      "asset_id_prefix": "lehachria",
+      "infinitive_pointed": "לְהַכְרִיעַ",
+      "infinitive_plain": "להכריע",
+      "italian_infinitive": "",
+      "root": "הכריע",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 7,
+      "frequency": 1849,
+      "priority": 260,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתפלל",
+      "asset_id_prefix": "lehitpalel",
+      "infinitive_pointed": "לְהִתְפַּלֵּל",
+      "infinitive_plain": "להתפלל",
+      "italian_infinitive": "",
+      "root": "התפלל",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 1,
+      "frequency": 2885,
+      "priority": 261,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאחד",
+      "asset_id_prefix": "leached",
+      "infinitive_pointed": "לְאַחֵד",
+      "infinitive_plain": "לאחד",
+      "italian_infinitive": "",
+      "root": "אחד",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 4,
+      "frequency": 11592,
+      "priority": 262,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקום",
+      "asset_id_prefix": "lakum",
+      "infinitive_pointed": "לָקוּם",
+      "infinitive_plain": "לקום",
+      "italian_infinitive": "",
+      "root": "קם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 35,
+      "frequency": 7173,
+      "priority": 263,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקרות",
+      "asset_id_prefix": "likrot",
+      "infinitive_pointed": "לִקְרוֹת",
+      "infinitive_plain": "לקרות",
+      "italian_infinitive": "",
+      "root": "קרה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 48,
+      "frequency": 30785,
+      "priority": 264,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לקרות",
+      "asset_id_prefix": "lekarot",
+      "infinitive_pointed": "לְקָרוֹת",
+      "infinitive_plain": "לקרות",
+      "italian_infinitive": "",
+      "root": "קרה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 19,
+      "frequency": 10812,
+      "priority": 265,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "ליהנות",
+      "asset_id_prefix": "lehanot",
+      "infinitive_pointed": "לֵיהָנוֹת",
+      "infinitive_plain": "ליהנות",
+      "italian_infinitive": "",
+      "root": "נהנה",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 30,
+      "frequency": 6886,
+      "priority": 266,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשוות",
+      "asset_id_prefix": "lehashvot",
+      "infinitive_pointed": "לְהַשְׁווֹת",
+      "infinitive_plain": "להשוות",
+      "italian_infinitive": "",
+      "root": "השוה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 32,
+      "frequency": 991,
+      "priority": 267,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאסור",
+      "asset_id_prefix": "leesor",
+      "infinitive_pointed": "לֶאֱסוֹר",
+      "infinitive_plain": "לאסור",
+      "italian_infinitive": "",
+      "root": "אסר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 14,
+      "frequency": 6727,
+      "priority": 268,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגדיר",
+      "asset_id_prefix": "lehagdir",
+      "infinitive_pointed": "לְהַגְדִּיר",
+      "infinitive_plain": "להגדיר",
+      "italian_infinitive": "",
+      "root": "הגדיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 6169,
+      "priority": 269,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשתחרר",
+      "asset_id_prefix": "lehishtachrer",
+      "infinitive_pointed": "לְהִשְׁתַּחְרֵר",
+      "infinitive_plain": "להשתחרר",
+      "italian_infinitive": "",
+      "root": "השתחרר",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 45,
+      "frequency": 2190,
+      "priority": 270,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להזמין",
+      "asset_id_prefix": "lehazmin",
+      "infinitive_pointed": "לְהַזְמִין",
+      "infinitive_plain": "להזמין",
+      "italian_infinitive": "",
+      "root": "הזמין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 3,
+      "frequency": 9808,
+      "priority": 271,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לאסוף",
+      "asset_id_prefix": "leesof",
+      "infinitive_pointed": "לֶאֱסוֹף",
+      "infinitive_plain": "לאסוף",
+      "italian_infinitive": "",
+      "root": "אסף",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 14,
+      "frequency": 2277,
+      "priority": 272,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להבחין",
+      "asset_id_prefix": "lehavchin",
+      "infinitive_pointed": "לְהַבְחִין",
+      "infinitive_plain": "להבחין",
+      "italian_infinitive": "",
+      "root": "הבחין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 3,
+      "frequency": 3397,
+      "priority": 273,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להעריך",
+      "asset_id_prefix": "lehariche",
+      "infinitive_pointed": "לְהַעְרִיךְ",
+      "infinitive_plain": "להעריך",
+      "italian_infinitive": "",
+      "root": "העריך",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 4,
+      "frequency": 13767,
+      "priority": 274,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחכות",
+      "asset_id_prefix": "lechakot",
+      "infinitive_pointed": "לְחַכּוֹת",
+      "infinitive_plain": "לחכות",
+      "italian_infinitive": "",
+      "root": "חכה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 7339,
+      "priority": 275,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפיל",
+      "asset_id_prefix": "lehapil",
+      "infinitive_pointed": "לְהַפִּיל",
+      "infinitive_plain": "להפיל",
+      "italian_infinitive": "",
+      "root": "הפיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 1830,
+      "priority": 276,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשדר",
+      "asset_id_prefix": "leshader",
+      "infinitive_pointed": "לְשַׁדֵּר",
+      "infinitive_plain": "לשדר",
+      "italian_infinitive": "",
+      "root": "שדר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 3953,
+      "priority": 277,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגביל",
+      "asset_id_prefix": "lehagbil",
+      "infinitive_pointed": "לְהַגְבִּיל",
+      "infinitive_plain": "להגביל",
+      "italian_infinitive": "",
+      "root": "הגביל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 3536,
+      "priority": 278,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להסדיר",
+      "asset_id_prefix": "lehasdir",
+      "infinitive_pointed": "לְהַסְדִּיר",
+      "infinitive_plain": "להסדיר",
+      "italian_infinitive": "",
+      "root": "הסדיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 2213,
+      "priority": 279,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לערער",
+      "asset_id_prefix": "learer",
+      "infinitive_pointed": "לְעַרְעֵר",
+      "infinitive_plain": "לערער",
+      "italian_infinitive": "",
+      "root": "ערער",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 24,
+      "frequency": 2162,
+      "priority": 280,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להישמע",
+      "asset_id_prefix": "lehishama",
+      "infinitive_pointed": "לְהִישָּׁמַע",
+      "infinitive_plain": "להישמע",
+      "italian_infinitive": "",
+      "root": "נשמע",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 9,
+      "frequency": 10772,
+      "priority": 281,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לתאר",
+      "asset_id_prefix": "letaer",
+      "infinitive_pointed": "לְתָאֵר",
+      "infinitive_plain": "לתאר",
+      "italian_infinitive": "",
+      "root": "תאר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 7,
+      "frequency": 7480,
+      "priority": 282,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתיר",
+      "asset_id_prefix": "lehatir",
+      "infinitive_pointed": "לְהַתִּיר",
+      "infinitive_plain": "להתיר",
+      "italian_infinitive": "",
+      "root": "התיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 9,
+      "frequency": 3884,
+      "priority": 283,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לסמוך",
+      "asset_id_prefix": "lismoche",
+      "infinitive_pointed": "לִסְמוֹךְ",
+      "infinitive_plain": "לסמוך",
+      "italian_infinitive": "",
+      "root": "סמך",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 3217,
+      "priority": 284,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשבור",
+      "asset_id_prefix": "lishbor",
+      "infinitive_pointed": "לִשְׁבּוֹר",
+      "infinitive_plain": "לשבור",
+      "italian_infinitive": "",
+      "root": "שבר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 2363,
+      "priority": 285,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להעיר",
+      "asset_id_prefix": "lehair",
+      "infinitive_pointed": "לְהָעִיר",
+      "infinitive_plain": "להעיר",
+      "italian_infinitive": "",
+      "root": "העיר",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 2434,
+      "priority": 286,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להכות",
+      "asset_id_prefix": "lehakot",
+      "infinitive_pointed": "לְהַכּוֹת",
+      "infinitive_plain": "להכות",
+      "italian_infinitive": "",
+      "root": "הכה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 36,
+      "frequency": 2946,
+      "priority": 287,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפרוץ",
+      "asset_id_prefix": "lifrotz",
+      "infinitive_pointed": "לִפְרוֹץ",
+      "infinitive_plain": "לפרוץ",
+      "italian_infinitive": "",
+      "root": "פרץ",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 5764,
+      "priority": 288,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשגר",
+      "asset_id_prefix": "leshager",
+      "infinitive_pointed": "לְשַׁגֵּר",
+      "infinitive_plain": "לשגר",
+      "italian_infinitive": "",
+      "root": "שגר",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 3114,
+      "priority": 289,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לצרוף",
+      "asset_id_prefix": "litzrof",
+      "infinitive_pointed": "לִצְרוֹף",
+      "infinitive_plain": "לצרוף",
+      "italian_infinitive": "",
+      "root": "צרף",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 1055,
+      "priority": 290,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להקטין",
+      "asset_id_prefix": "lehaktin",
+      "infinitive_pointed": "לְהַקְטִין",
+      "infinitive_plain": "להקטין",
+      "italian_infinitive": "",
+      "root": "הקטין",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 3,
+      "frequency": 1942,
+      "priority": 291,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לכהן",
+      "asset_id_prefix": "lechahen",
+      "infinitive_pointed": "לְכַהֵן",
+      "infinitive_plain": "לכהן",
+      "italian_infinitive": "",
+      "root": "כהן",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 4,
+      "frequency": 6448,
+      "priority": 292,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לצרף",
+      "asset_id_prefix": "letzaref",
+      "infinitive_pointed": "לְצָרֵף",
+      "infinitive_plain": "לצרף",
+      "italian_infinitive": "",
+      "root": "צרף",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 5,
+      "frequency": 2043,
+      "priority": 293,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לברוח",
+      "asset_id_prefix": "livrocha",
+      "infinitive_pointed": "לִבְרוֹחַ",
+      "infinitive_plain": "לברוח",
+      "italian_infinitive": "",
+      "root": "ברח",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 3510,
+      "priority": 294,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להרשות",
+      "asset_id_prefix": "leharshot",
+      "infinitive_pointed": "לְהַרְשׁוֹת",
+      "infinitive_plain": "להרשות",
+      "italian_infinitive": "",
+      "root": "הרשה",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 32,
+      "frequency": 3912,
+      "priority": 295,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיענות",
+      "asset_id_prefix": "leheanot",
+      "infinitive_pointed": "לְהֵיעָנוֹת",
+      "infinitive_plain": "להיענות",
+      "italian_infinitive": "",
+      "root": "נענה",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 31,
+      "frequency": 5501,
+      "priority": 296,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לעכב",
+      "asset_id_prefix": "leakev",
+      "infinitive_pointed": "לְעַכֵּב",
+      "infinitive_plain": "לעכב",
+      "italian_infinitive": "",
+      "root": "עכב",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2885,
+      "priority": 297,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להרים",
+      "asset_id_prefix": "leharim",
+      "infinitive_pointed": "לְהָרִים",
+      "infinitive_plain": "להרים",
+      "italian_infinitive": "",
+      "root": "הרים",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 3426,
+      "priority": 298,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתפתח",
+      "asset_id_prefix": "lehitpatecha",
+      "infinitive_pointed": "לְהִתְפַּתֵּחַ",
+      "infinitive_plain": "להתפתח",
+      "italian_infinitive": "",
+      "root": "התפתח",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 19,
+      "frequency": 5285,
+      "priority": 299,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לחדור",
+      "asset_id_prefix": "lachdor",
+      "infinitive_pointed": "לַחְדּוֹר",
+      "infinitive_plain": "לחדור",
+      "italian_infinitive": "",
+      "root": "חדר",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 10,
+      "frequency": 2773,
+      "priority": 300,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להשתלב",
+      "asset_id_prefix": "lehishtalev",
+      "infinitive_pointed": "לְהִשְׁתַּלֵּב",
+      "infinitive_plain": "להשתלב",
+      "italian_infinitive": "",
+      "root": "השתלב",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 4,
+      "frequency": 2016,
+      "priority": 301,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפקוח",
+      "asset_id_prefix": "lifkocha",
+      "infinitive_pointed": "לִפְקוֹחַ",
+      "infinitive_plain": "לפקוח",
+      "italian_infinitive": "",
+      "root": "פקח",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 1227,
+      "priority": 302,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להבדיל",
+      "asset_id_prefix": "lehavdil",
+      "infinitive_pointed": "לְהַבְדִּיל",
+      "infinitive_plain": "להבדיל",
+      "italian_infinitive": "",
+      "root": "הבדיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 1556,
+      "priority": 303,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "ללחוץ",
+      "asset_id_prefix": "lilchotz",
+      "infinitive_pointed": "לִלְחוֹץ",
+      "infinitive_plain": "ללחוץ",
+      "italian_infinitive": "",
+      "root": "לחץ",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 17,
+      "frequency": 3158,
+      "priority": 304,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשכוח",
+      "asset_id_prefix": "lishkocha",
+      "infinitive_pointed": "לִשְׁכּוֹחַ",
+      "infinitive_plain": "לשכוח",
+      "italian_infinitive": "",
+      "root": "שכח",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 22,
+      "frequency": 4042,
+      "priority": 305,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לשלב",
+      "asset_id_prefix": "leshalev",
+      "infinitive_pointed": "לְשַׁלֵּב",
+      "infinitive_plain": "לשלב",
+      "italian_infinitive": "",
+      "root": "שלב",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2301,
+      "priority": 306,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לזהות",
+      "asset_id_prefix": "lezahot",
+      "infinitive_pointed": "לְזַהוֹת",
+      "infinitive_plain": "לזהות",
+      "italian_infinitive": "",
+      "root": "זהה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 18,
+      "frequency": 3503,
+      "priority": 307,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להקפיא",
+      "asset_id_prefix": "lehakpi",
+      "infinitive_pointed": "לְהַקְפִּיא",
+      "infinitive_plain": "להקפיא",
+      "italian_infinitive": "",
+      "root": "הקפיא",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 26,
+      "frequency": 1445,
+      "priority": 308,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להיפגע",
+      "asset_id_prefix": "lehipaga",
+      "infinitive_pointed": "לְהִיפָּגַע",
+      "infinitive_plain": "להיפגע",
+      "italian_infinitive": "",
+      "root": "נפגע",
+      "binyan": "NIF'AL",
+      "pattern": "B",
+      "table_number": 9,
+      "frequency": 12059,
+      "priority": 309,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להפיק",
+      "asset_id_prefix": "lehafik",
+      "infinitive_pointed": "לְהָפִיק",
+      "infinitive_plain": "להפיק",
+      "italian_infinitive": "",
+      "root": "הפיק",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 2349,
+      "priority": 310,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לבלום",
+      "asset_id_prefix": "livlom",
+      "infinitive_pointed": "לִבְלוֹם",
+      "infinitive_plain": "לבלום",
+      "italian_infinitive": "",
+      "root": "בלם",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 1555,
+      "priority": 311,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להתחבר",
+      "asset_id_prefix": "lehitchaber",
+      "infinitive_pointed": "לְהִתְחַבֵּר",
+      "infinitive_plain": "להתחבר",
+      "italian_infinitive": "",
+      "root": "התחבר",
+      "binyan": "HITPA'EL",
+      "pattern": "E",
+      "table_number": 1,
+      "frequency": 3378,
+      "priority": 312,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "למחות",
+      "asset_id_prefix": "limchot",
+      "infinitive_pointed": "לִמְחוֹת",
+      "infinitive_plain": "למחות",
+      "italian_infinitive": "",
+      "root": "מחה",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 53,
+      "frequency": 3646,
+      "priority": 313,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לסרב",
+      "asset_id_prefix": "lesarev",
+      "infinitive_pointed": "לְסָרֵב",
+      "infinitive_plain": "לסרב",
+      "italian_infinitive": "",
+      "root": "סרב",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 5,
+      "frequency": 10224,
+      "priority": 314,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לסלק",
+      "asset_id_prefix": "lesalek",
+      "infinitive_pointed": "לְסַלֵּק",
+      "infinitive_plain": "לסלק",
+      "italian_infinitive": "",
+      "root": "סלק",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 1231,
+      "priority": 315,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לכנוס",
+      "asset_id_prefix": "lichnos",
+      "infinitive_pointed": "לִכְנוֹס",
+      "infinitive_plain": "לכנוס",
+      "italian_infinitive": "",
+      "root": "כנס",
+      "binyan": "PA'AL",
+      "pattern": "A",
+      "table_number": 1,
+      "frequency": 1497,
+      "priority": 316,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לכנס",
+      "asset_id_prefix": "lechanes",
+      "infinitive_pointed": "לְכַנֵּס",
+      "infinitive_plain": "לכנס",
+      "italian_infinitive": "",
+      "root": "כנס",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 1,
+      "frequency": 2614,
+      "priority": 317,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להחיל",
+      "asset_id_prefix": "lehachil",
+      "infinitive_pointed": "לְהָחִיל",
+      "infinitive_plain": "להחיל",
+      "italian_infinitive": "",
+      "root": "החיל",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 16,
+      "frequency": 1076,
+      "priority": 318,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "להגשים",
+      "asset_id_prefix": "lehagshim",
+      "infinitive_pointed": "לְהַגְשִׁים",
+      "infinitive_plain": "להגשים",
+      "italian_infinitive": "",
+      "root": "הגשים",
+      "binyan": "HIF'IL",
+      "pattern": "F",
+      "table_number": 1,
+      "frequency": 1393,
+      "priority": 319,
+      "selection_reason": [
+        "frequency"
+      ]
+    },
+    {
+      "verb_id": "לפצות",
+      "asset_id_prefix": "lefatzot",
+      "infinitive_pointed": "לְפַצּוֹת",
+      "infinitive_plain": "לפצות",
+      "italian_infinitive": "",
+      "root": "פצה",
+      "binyan": "PI'EL",
+      "pattern": "C",
+      "table_number": 17,
+      "frequency": 1363,
+      "priority": 320,
+      "selection_reason": [
+        "frequency"
+      ]
+    }
+  ]
+}
