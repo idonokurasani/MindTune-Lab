@@ -6,7 +6,10 @@ import unittest
 from pathlib import Path
 
 from mantra.domain.audio_profile import AudioProfile
-from mantra.domain.hebrew.specification_repository import HebrewSpecificationRepository
+from mantra.domain.hebrew.specification_repository import (
+    HebrewSpecificationError,
+    HebrewSpecificationRepository,
+)
 from mantra.phase1.asset_contract import (
     AssetAvailabilityClass,
     AudioAssetInventory,
@@ -251,19 +254,13 @@ class RuntimeTests(_Phase4DTestBase):
 
 
 class VerticalSliceReconciliationTests(_Phase4DTestBase):
-    """Tests reconciling the `lehavot` planning-document alias with `lihyot`."""
+    """Tests reconciling the reviewed vertical-slice specifications.
 
-    def _lehavot_verb(self) -> CurriculumVerb:
-        return CurriculumVerb(
-            verb_id="lehavot",
-            asset_id_prefix="lehavot",
-            infinitive_pointed="לִהְיוֹת",
-            infinitive_plain="להיות",
-            italian_infinitive="essere",
-            root="ה-י-ה",
-            binyan="PA'AL",
-            pattern="",
-        )
+    `lehavot` was an invalid planning-document alias for `lihyot` and has
+    been removed from the approved specification directory. These tests
+    ensure `lichtov` and `lihyot` remain authoritative and `lehavot` cannot
+    be silently loaded as `lihyot`.
+    """
 
     def _lihyot_verb(self) -> CurriculumVerb:
         return CurriculumVerb(
@@ -277,13 +274,13 @@ class VerticalSliceReconciliationTests(_Phase4DTestBase):
             pattern="",
         )
 
-    def test_lehavot_spec_loads_and_validates(self) -> None:
+    def test_lichtov_retained_and_valid(self) -> None:
         repo = HebrewSpecificationRepository()
-        spec = repo.get("lehavot")
-        self.assertEqual(spec.verb_id, "lehavot")
-        self.assertEqual(spec.approved_lemma.source_text, "לִהְיוֹת")
-        self.assertEqual(spec.approved_lemma.tts_text, "להיות")
-        result = repo.validate("lehavot")
+        spec = repo.get("lichtov")
+        self.assertEqual(spec.verb_id, "lichtov")
+        self.assertEqual(spec.approved_lemma.source_text, "לִכְתֹּב")
+        self.assertEqual(spec.approved_lemma.tts_text, "לכתוב")
+        result = repo.validate("lichtov")
         self.assertTrue(result.valid)
         self.assertTrue(result.checksum_match)
 
@@ -291,77 +288,56 @@ class VerticalSliceReconciliationTests(_Phase4DTestBase):
         repo = HebrewSpecificationRepository()
         spec = repo.get("lihyot")
         self.assertEqual(spec.verb_id, "lihyot")
+        self.assertEqual(spec.approved_lemma.source_text, "לִהְיוֹת")
+        self.assertEqual(spec.approved_lemma.tts_text, "להיות")
         result = repo.validate("lihyot")
         self.assertTrue(result.valid)
         self.assertTrue(result.checksum_match)
 
-    def test_lehavot_asset_requirements_use_lehavot_prefix(self) -> None:
+    def test_lehavot_is_not_found_and_not_lihyot(self) -> None:
+        """Regression: lehavot must not be an approved lihyot alias."""
         repo = HebrewSpecificationRepository()
-        spec = repo.get("lehavot")
+        self.assertFalse(repo.has("lehavot"))
+        result = repo.validate("lehavot")
+        self.assertFalse(result.valid)
+        self.assertIn("no specification for verb 'lehavot'", result.errors)
+        with self.assertRaises(HebrewSpecificationError):
+            repo.get("lehavot")
+
+    def test_lihyot_and_lichtov_specs_are_distinct(self) -> None:
+        repo = HebrewSpecificationRepository()
+        lichtov = repo.get("lichtov")
+        lihyot = repo.get("lihyot")
+        self.assertNotEqual(lichtov.verb_id, lihyot.verb_id)
+        self.assertNotEqual(lichtov.approved_lemma.source_text, lihyot.approved_lemma.source_text)
+        self.assertNotEqual(lichtov.root, lihyot.root)
+
+    def test_lihyot_asset_requirements_use_lihyot_prefix(self) -> None:
+        repo = HebrewSpecificationRepository()
+        spec = repo.get("lihyot")
         reqs = build_asset_requirements(spec, self.TEST_PROFILE)
         self.assertTrue(reqs)
         for req in reqs:
-            self.assertTrue(req.asset_id.startswith("he.lehavot.") or req.asset_id.startswith("it.lehavot."))
-            self.assertEqual(req.section, req.section)  # section is populated
+            self.assertTrue(
+                req.asset_id.startswith("he.lihyot.") or req.asset_id.startswith("it.lihyot.")
+            )
+            self.assertIsNotNone(req.section)
 
-    def test_lehavot_readiness_and_preparation_eligibility(self) -> None:
-        readiness = self.make_readiness()
-        report = readiness.evaluate(self._lehavot_verb())
-        # No prepared assets yet: learner blocked, preparation eligible.
-        self.assertEqual(report.learner_execution_eligibility.value, "ineligible_missing_assets")
-        self.assertEqual(report.asset_preparation_eligibility.value, "eligible")
-        self.assertTrue(report.asset_report)
-
-    def test_lehavot_execution_plan_deterministic(self) -> None:
-        verb = self._lehavot_verb()
-        curriculum = Curriculum(
-            version="test",
-            generated_at="",
-            source="",
-            verbs=[verb],
-        )
-        readiness = self.make_readiness()
-        output_dir = Path(self.tmpdir.name) / "out"
-        prep_plan = build_execution_plan(
-            curriculum,
-            LearnerState(),
-            output_dir,
-            readiness_source=readiness,
-            audio_profile=self.TEST_PROFILE,
-            asset_preparation_mode=True,
-        )
-        self.assertEqual(prep_plan.verb_id, "lehavot")
-        self.assertTrue(prep_plan.requirements)
-        assert prep_plan.requirements
-        seq1 = [r.asset_id for r in prep_plan.requirements]
-        # Deterministic: same verb, same profile, same sequence.
-        prep_plan2 = build_execution_plan(
-            curriculum,
-            LearnerState(),
-            output_dir,
-            readiness_source=readiness,
-            audio_profile=self.TEST_PROFILE,
-            asset_preparation_mode=True,
-        )
-        assert prep_plan2.requirements
-        seq2 = [r.asset_id for r in prep_plan2.requirements]
-        self.assertEqual(seq1, seq2)
-
-    def test_lehavot_end_to_end_prepare_and_execute(self) -> None:
+    def test_lihyot_end_to_end_prepare_and_execute(self) -> None:
         repo = HebrewSpecificationRepository()
-        spec = repo.get("lehavot")
+        spec = repo.get("lihyot")
         reqs = build_compact_mantra_requirements(spec, self.TEST_PROFILE)
         registry = self.make_registry()
         provider = FakeTTSProvider(sample_rate=22050)
         execute_asset_preparation_plan(list(reqs), registry, provider=provider)
 
         plan = MantraExecutionPlan(
-            verb_id="lehavot",
-            asset_id_prefix="lehavot",
+            verb_id="lihyot",
+            asset_id_prefix="lihyot",
             asset_sequence=[r.asset_id for r in reqs],
             reason_code="test",
             policy_version="test",
-            output_path=Path(self.tmpdir.name) / "lehavot.wav",
+            output_path=Path(self.tmpdir.name) / "lihyot.wav",
             requirements=list(reqs),
         )
         manifest = execute_mantra_plan(plan, registry)
