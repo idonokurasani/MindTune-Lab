@@ -9,3 +9,5 @@ __pycache__/
 *.sqlite
 *.sqlite3
 /output/
+.oura_credentials
+.oura_token

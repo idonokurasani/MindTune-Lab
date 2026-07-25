@@ -249,7 +249,7 @@ The following files and directories currently exist at the repository root and a
 | `styles.css` | Legacy prototype UI styling; candidate for `packages/mpe-ui/` or removal. |
 | `mindtune_app.py` | Legacy entry point; migrate to `bin/` or `packages/mpe-cli/`. |
 | `azure_speech.py` | Speech provider prototype; migrate to `packages/mpe-providers/` or `packages/mpe-hebrew/`. |
-| `oura_api.py` / `.oura_credentials` | Sensor/third-party API prototypes; migrate to `packages/brainlab/` or `research/`. |
+| `oura_api.py` | Sensor/third-party API prototype; loads credentials from a local `.oura_credentials` file (gitignored). Use `.oura_credentials.example` as a template. Migrate to `packages/brainlab/` or `research/` in future phases. |
 | `help_profiler.py` | Diagnostic script; migrate to `tools/` or `research/`. |
 | `hebrew/` (top-level) | Approved Hebrew Engine workspace; target `packages/mpe-hebrew/` or `data/hebrew/` depending on contents. |
 | `mantra/` | Existing content; evaluate for `data/` or `packages/content-mantra/`. |
