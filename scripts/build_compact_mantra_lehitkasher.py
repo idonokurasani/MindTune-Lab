@@ -9,9 +9,11 @@ from __future__ import annotations
 
 import json
 import os
+from functools import partial
 from pathlib import Path
 from typing import Any
 
+from mantra.domain.audio_profile import AudioProfile
 from mantra.phase1.assets import (
     ASSET_REGISTRY_PATH,
     AudioAssetRegistry,
@@ -39,31 +41,41 @@ def main() -> None:
     if not api_key or not email:
         raise SystemExit("SPEECHGEN_API_KEY and SPEECHGEN_EMAIL are required")
 
+    profile = AudioProfile.load("hannah")
+    he_voice, he_locale = profile.voice_for("he")
+    it_voice, it_locale = profile.voice_for("it")
+
     registry = AudioAssetRegistry()
+    ensure = partial(
+        registry.ensure,
+        voice=he_voice,
+        locale=he_locale,
+        api_key=api_key,
+        email=email,
+    )
+    ensure_it = partial(
+        registry.ensure,
+        voice=it_voice,
+        locale=it_locale,
+        api_key=api_key,
+        email=email,
+    )
 
     # Migrate the lehitkasher package cache into the global shared cache.
     migrated = registry.migrate_package_cache(OUTPUT_DIR / "cache")
     print(f"Migrated {migrated} cache entries from lehitkasher package cache")
 
     # Italian infinitive translation (Giuseppe).
-    registry.ensure(
+    ensure_it(
         asset_id="it.lehitkasher.infinitive",
         text=ITALIAN_INFINITIVE,
-        voice="Giuseppe",
-        locale="it-IT",
-        api_key=api_key,
-        email=email,
         **_metadata("infinitive", "infinitive"),
     )
 
     # Hebrew infinitive.
-    registry.ensure(
+    ensure(
         asset_id="he.lehitkasher.infinitive",
         text="לְהִתְקַשֵּׁר",
-        voice="Hannah",
-        locale="he-IL",
-        api_key=api_key,
-        email=email,
         **_metadata("infinitive", "infinitive"),
     )
 
@@ -75,13 +87,9 @@ def main() -> None:
         ("fp", "מִתְקַשְּׁרוֹת"),
     ]
     for key, text in present_forms:
-        registry.ensure(
+        ensure(
             asset_id=f"he.lehitkasher.present.{key}",
             text=text,
-            voice="Hannah",
-            locale="he-IL",
-            api_key=api_key,
-            email=email,
             **_metadata("present", "participial", person="", number=key[1], gender="masculine" if key[0] == "m" else "feminine"),
         )
 
@@ -98,13 +106,9 @@ def main() -> None:
         ("3pl", "הֵם וְהֵן הִתְקַשְּׁרוּ", "3", "plural", ""),
     ]
     for key, text, person, number, gender in past_entries:
-        registry.ensure(
+        ensure(
             asset_id=f"he.lehitkasher.past.{key}",
             text=text,
-            voice="Hannah",
-            locale="he-IL",
-            api_key=api_key,
-            email=email,
             **_metadata("past", "indicative", person=person, number=number, gender=gender),
         )
 
@@ -120,13 +124,9 @@ def main() -> None:
         ("3pl", "הֵם וְהֵן יִתְקַשְּׁרוּ", "3", "plural", ""),
     ]
     for key, text, person, number, gender in future_entries:
-        registry.ensure(
+        ensure(
             asset_id=f"he.lehitkasher.future.{key}",
             text=text,
-            voice="Hannah",
-            locale="he-IL",
-            api_key=api_key,
-            email=email,
             **_metadata("future", "indicative", person=person, number=number, gender=gender),
         )
 
@@ -137,18 +137,19 @@ def main() -> None:
         ("pl", "הִתְקַשְּׁרוּ", "", "plural"),
     ]
     for key, text, gender, number in imperative_entries:
-        registry.ensure(
+        ensure(
             asset_id=f"he.lehitkasher.imperative.{key}",
             text=text,
-            voice="Hannah",
-            locale="he-IL",
-            api_key=api_key,
-            email=email,
             **_metadata("imperative", "imperative", person="2", number=number, gender=gender),
         )
 
-    # Global tense markers (Hannah).
-    ensure_tense_markers(registry, api_key=api_key, email=email)
+    # Global tense markers.
+    ensure_tense_markers(
+        registry,
+        api_key=api_key,
+        email=email,
+        audio_profile=profile,
+    )
 
     # Compact mantra sequence: Italian intro, then Hebrew only.
     sequence = [
@@ -185,8 +186,8 @@ def main() -> None:
     ]
 
     compact_manifest = build_compact_mantra(registry, sequence, COMPACT_WAV, default_pause=0.3)
-    compact_manifest["voice"] = "Hannah"
-    compact_manifest["intro_voice"] = "Giuseppe"
+    compact_manifest["voice"] = he_voice
+    compact_manifest["intro_voice"] = it_voice
     compact_manifest["asset_registry"] = str(ASSET_REGISTRY_PATH)
     COMPACT_MANIFEST.write_text(json.dumps(compact_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
 
@@ -242,8 +243,8 @@ def main() -> None:
         "td,th{border:1px solid #ddd;padding:.4rem .6rem;text-align:left;}",
         "</style></head><body>",
         "<h1>Compact Mantra — לְהִתְקַשֵּׁר</h1>",
-        f"<p>Italian intro: <strong>Giuseppe</strong> — '{ITALIAN_INFINITIVE}'</p>",
-        "<p>Hebrew voice: <strong>Hannah</strong></p>",
+        f"<p>Italian intro: <strong>{it_voice}</strong> — '{ITALIAN_INFINITIVE}'</p>",
+        f"<p>Hebrew voice: <strong>{he_voice}</strong></p>",
         "<p><audio controls src='compact_mantra.wav'></audio> (compact mantra)</p>",
         "<h2>Sequence</h2>",
         "<table><tr><th>#</th><th>asset_id</th><th>text</th><th>voice</th></tr>",

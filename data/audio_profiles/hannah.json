@@ -1,0 +1,22 @@
+{
+  "cache_key_version": "1",
+  "channel_count": 1,
+  "hebrew_locale": "he-IL",
+  "hebrew_text_policy": "source_niqqud_preserved_tts_same",
+  "hebrew_voice_id": "Hannah",
+  "italian_locale": "it-IT",
+  "italian_voice_id": "Giuseppe",
+  "output_format": "wav",
+  "profile_id": "hannah",
+  "profile_version": "1.0.0",
+  "provider": "speechgen",
+  "sample_rate": 22050,
+  "silence_durations": {
+    "inter_item_default": 0.3,
+    "section_boundary": 0.0
+  },
+  "synthesis_parameters": {
+    "pitch": 0.0,
+    "rate": 1.0
+  }
+}

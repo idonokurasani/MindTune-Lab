@@ -1,0 +1,940 @@
+{
+  "לאחד": [
+    "leached"
+  ],
+  "לאכול": [
+    "leechol"
+  ],
+  "לאמץ": [
+    "leametz"
+  ],
+  "לאסוף": [
+    "leesof"
+  ],
+  "לאסור": [
+    "leesor"
+  ],
+  "לאפשר": [
+    "leafsher"
+  ],
+  "לאשר": [
+    "leasher"
+  ],
+  "לאתר": [
+    "leater"
+  ],
+  "לבדוק": [
+    "livdok"
+  ],
+  "לבוא": [
+    "lavo"
+  ],
+  "לבחון": [
+    "livchon"
+  ],
+  "לבחור": [
+    "livchor"
+  ],
+  "לבטל": [
+    "levatel"
+  ],
+  "לבלום": [
+    "livlom"
+  ],
+  "לבנות": [
+    "livnot"
+  ],
+  "לבצוע": [
+    "livtzoa"
+  ],
+  "לבצע": [
+    "levatzea"
+  ],
+  "לבקר": [
+    "levaker"
+  ],
+  "לבקש": [
+    "levakesh"
+  ],
+  "לברוח": [
+    "livrocha"
+  ],
+  "לברור": [
+    "livror"
+  ],
+  "לברך": [
+    "levareche"
+  ],
+  "לברר": [
+    "levarer"
+  ],
+  "לגבות": [
+    "ligbot",
+    "legabot"
+  ],
+  "לגבש": [
+    "legabesh"
+  ],
+  "לגור": [
+    "lagur"
+  ],
+  "לגלות": [
+    "legalot",
+    "liglot"
+  ],
+  "לגרום": [
+    "ligrom"
+  ],
+  "לגרש": [
+    "legaresh"
+  ],
+  "לדאוג": [
+    "lidog"
+  ],
+  "לדבר": [
+    "ledaber"
+  ],
+  "לדון": [
+    "ladun"
+  ],
+  "לדחות": [
+    "lidchot"
+  ],
+  "לדעת": [
+    "ladaat"
+  ],
+  "לדרוש": [
+    "lidrosh"
+  ],
+  "להאמין": [
+    "lehaamin"
+  ],
+  "להאריך": [
+    "lehaariche"
+  ],
+  "להבדיל": [
+    "lehavdil"
+  ],
+  "להבהיר": [
+    "lehavhir"
+  ],
+  "להבחין": [
+    "lehavchin"
+  ],
+  "להבטיח": [
+    "lehavticha"
+  ],
+  "להביא": [
+    "lehavi"
+  ],
+  "להבין": [
+    "lehavin"
+  ],
+  "להביע": [
+    "lehabia"
+  ],
+  "להגביל": [
+    "lehagbil"
+  ],
+  "להגביר": [
+    "lehagbir"
+  ],
+  "להגדיל": [
+    "lehagdil"
+  ],
+  "להגדיר": [
+    "lehagdir"
+  ],
+  "להגיב": [
+    "lehagiv"
+  ],
+  "להגיד": [
+    "lehagid"
+  ],
+  "להגיע": [
+    "lehagia"
+  ],
+  "להגיש": [
+    "lehagish"
+  ],
+  "להגן": [
+    "lehagen"
+  ],
+  "להגשים": [
+    "lehagshim"
+  ],
+  "להדגיש": [
+    "lehadgish"
+  ],
+  "להוביל": [
+    "lehovil"
+  ],
+  "להודות": [
+    "lehodot"
+  ],
+  "להודיע": [
+    "lehodia"
+  ],
+  "להוכיח": [
+    "lehochicha"
+  ],
+  "להוסיף": [
+    "lehosif"
+  ],
+  "להופיע": [
+    "lehofia"
+  ],
+  "להוציא": [
+    "lehotzi"
+  ],
+  "להורות": [
+    "lehorot"
+  ],
+  "להוריד": [
+    "lehorid"
+  ],
+  "להזכיר": [
+    "lehazkir"
+  ],
+  "להזמין": [
+    "lehazmin"
+  ],
+  "להחזיק": [
+    "lehachzik"
+  ],
+  "להחזיר": [
+    "lehachezir"
+  ],
+  "להחיל": [
+    "lehachil"
+  ],
+  "להחליט": [
+    "lehachelit"
+  ],
+  "להחליף": [
+    "lehachlif"
+  ],
+  "להטיל": [
+    "lehatil"
+  ],
+  "להיאבק": [
+    "leheavek"
+  ],
+  "להיכנס": [
+    "lehikanes"
+  ],
+  "להיכנע": [
+    "lehikana"
+  ],
+  "להילחם": [
+    "lehilachem"
+  ],
+  "להימלט": [
+    "lehimalet"
+  ],
+  "להימנע": [
+    "lehimana"
+  ],
+  "להיעלות": [
+    "lehealot"
+  ],
+  "להיענות": [
+    "leheanot"
+  ],
+  "להיערך": [
+    "leheareche"
+  ],
+  "להיפגע": [
+    "lehipaga"
+  ],
+  "להיפגש": [
+    "lehipagesh"
+  ],
+  "להיפנות": [
+    "lehipanot"
+  ],
+  "להיראות": [
+    "leheraot"
+  ],
+  "להישאר": [
+    "lehishaer"
+  ],
+  "להישמע": [
+    "lehishama"
+  ],
+  "להכות": [
+    "lehakot"
+  ],
+  "להכין": [
+    "lehachin"
+  ],
+  "להכיר": [
+    "lehakir"
+  ],
+  "להכניס": [
+    "lehachnis"
+  ],
+  "להכריז": [
+    "lehachriz"
+  ],
+  "להכריע": [
+    "lehachria"
+  ],
+  "להמשיך": [
+    "lehamshiche"
+  ],
+  "להמתין": [
+    "lehamtin"
+  ],
+  "להניח": [
+    "lehanicha"
+  ],
+  "להסביר": [
+    "lehasbir"
+  ],
+  "להסדיר": [
+    "lehasdir"
+  ],
+  "להסיר": [
+    "lehasir"
+  ],
+  "להסכים": [
+    "lehaskim"
+  ],
+  "להסתפק": [
+    "lehistapek"
+  ],
+  "להעביר": [
+    "lehaavir"
+  ],
+  "להעיר": [
+    "lehair"
+  ],
+  "להעלות": [
+    "lehaalot"
+  ],
+  "להעמיד": [
+    "lehamid"
+  ],
+  "להעניק": [
+    "lehanik"
+  ],
+  "להעריך": [
+    "lehariche"
+  ],
+  "להפגין": [
+    "lehafgin"
+  ],
+  "להפוך": [
+    "lahafoche"
+  ],
+  "להפחית": [
+    "lehafchit"
+  ],
+  "להפיל": [
+    "lehapil"
+  ],
+  "להפיק": [
+    "lehafik"
+  ],
+  "להפנות": [
+    "lehafnot"
+  ],
+  "להפסיק": [
+    "lehafsik"
+  ],
+  "להפעיל": [
+    "lehafil"
+  ],
+  "להפריע": [
+    "lehafria"
+  ],
+  "להצביע": [
+    "lehatzbia"
+  ],
+  "להצטרף": [
+    "lehitztaref"
+  ],
+  "להציב": [
+    "lehatziv"
+  ],
+  "להציג": [
+    "lehatzig"
+  ],
+  "להציל": [
+    "lehatzil"
+  ],
+  "להציע": [
+    "lehatzia"
+  ],
+  "להקטין": [
+    "lehaktin"
+  ],
+  "להקים": [
+    "lehakim"
+  ],
+  "להקל": [
+    "lehakel"
+  ],
+  "להקפיא": [
+    "lehakpi"
+  ],
+  "להראות": [
+    "leharot"
+  ],
+  "להרוג": [
+    "lahrog"
+  ],
+  "להרוס": [
+    "lahros"
+  ],
+  "להרחיב": [
+    "leharchiv"
+  ],
+  "להרים": [
+    "leharim"
+  ],
+  "להרשות": [
+    "leharshot"
+  ],
+  "להשאיר": [
+    "lehashir"
+  ],
+  "להשוות": [
+    "lehashvot"
+  ],
+  "להשיב": [
+    "lehashiv"
+  ],
+  "להשיג": [
+    "lehashig"
+  ],
+  "להשלים": [
+    "lehashlim"
+  ],
+  "להשפיע": [
+    "lehashpia"
+  ],
+  "להשקיע": [
+    "lehashkia"
+  ],
+  "להשתחרר": [
+    "lehishtachrer"
+  ],
+  "להשתלב": [
+    "lehishtalev"
+  ],
+  "להשתלט": [
+    "lehishtalet"
+  ],
+  "להשתמש": [
+    "lehishtamesh"
+  ],
+  "להשתתף": [
+    "lehishtatef"
+  ],
+  "להתבצע": [
+    "lehitbatzea"
+  ],
+  "להתגבר": [
+    "lehitgaber"
+  ],
+  "להתחבר": [
+    "lehitchaber"
+  ],
+  "להתחיל": [
+    "lehatchil",
+    "lehitchael"
+  ],
+  "להתיר": [
+    "lehatir"
+  ],
+  "להתמודד": [
+    "lehitmoded"
+  ],
+  "להתעלם": [
+    "lehitalem"
+  ],
+  "להתערב": [
+    "lehitarev"
+  ],
+  "להתפוטר": [
+    "lehiteputar"
+  ],
+  "להתפלל": [
+    "lehitpalel"
+  ],
+  "להתפתח": [
+    "lehitpatecha"
+  ],
+  "להתקדם": [
+    "lehitkadem"
+  ],
+  "לזהות": [
+    "lezahot"
+  ],
+  "לזכור": [
+    "lizkor"
+  ],
+  "לזכות": [
+    "lizkot",
+    "lezakot"
+  ],
+  "לחבור": [
+    "lachbor"
+  ],
+  "לחבר": [
+    "lechaber"
+  ],
+  "לחדור": [
+    "lachdor"
+  ],
+  "לחדש": [
+    "lechadesh"
+  ],
+  "לחזור": [
+    "lachzor"
+  ],
+  "לחזק": [
+    "lechazek"
+  ],
+  "לחיות": [
+    "lichyot"
+  ],
+  "לחכות": [
+    "lechakot"
+  ],
+  "לחלוק": [
+    "lachlok"
+  ],
+  "לחלק": [
+    "lechalek"
+  ],
+  "לחסוך": [
+    "lachsoche"
+  ],
+  "לחסל": [
+    "lechasel"
+  ],
+  "לחפש": [
+    "lechapesh"
+  ],
+  "לחצות": [
+    "lachtzot"
+  ],
+  "לחקור": [
+    "lachkor"
+  ],
+  "לחשוב": [
+    "lachshov"
+  ],
+  "לחשוף": [
+    "lachsof",
+    "lachasof"
+  ],
+  "לחתום": [
+    "lachtom"
+  ],
+  "לטעון": [
+    "liton"
+  ],
+  "לטפול": [
+    "litpol"
+  ],
+  "לטפל": [
+    "letapel"
+  ],
+  "ליהנות": [
+    "lehanot"
+  ],
+  "ליצור": [
+    "litzor"
+  ],
+  "לירות": [
+    "lirot_2"
+  ],
+  "לכבד": [
+    "lechabed"
+  ],
+  "לכהן": [
+    "lechahen"
+  ],
+  "לכלול": [
+    "lichlol"
+  ],
+  "לכנוס": [
+    "lichnos"
+  ],
+  "לכנס": [
+    "lechanes"
+  ],
+  "לכפות": [
+    "lichpot"
+  ],
+  "לכתוב": [
+    "lichtov"
+  ],
+  "ללחוץ": [
+    "lilchotz"
+  ],
+  "ללכת": [
+    "lalechet"
+  ],
+  "ללמד": [
+    "lelamed"
+  ],
+  "ללמוד": [
+    "lilmod"
+  ],
+  "למחות": [
+    "limchot"
+  ],
+  "למכור": [
+    "limkor"
+  ],
+  "למלא": [
+    "lemale"
+  ],
+  "למלוא": [
+    "limlo"
+  ],
+  "לממן": [
+    "lemamen"
+  ],
+  "לממש": [
+    "lemamesh"
+  ],
+  "למנוע": [
+    "limnoa"
+  ],
+  "למנות": [
+    "lemanot",
+    "limnot"
+  ],
+  "למסור": [
+    "limsor"
+  ],
+  "למצוא": [
+    "limtzo"
+  ],
+  "למשוך": [
+    "limshoche"
+  ],
+  "לנהוג": [
+    "linhog"
+  ],
+  "לנהל": [
+    "lenahel"
+  ],
+  "לנסוע": [
+    "linsoa"
+  ],
+  "לנסות": [
+    "lenasot"
+  ],
+  "לנצח": [
+    "lenatzecha"
+  ],
+  "לנצל": [
+    "lenatzel"
+  ],
+  "לנקוט": [
+    "linkot"
+  ],
+  "לסגור": [
+    "lisgor"
+  ],
+  "לסדר": [
+    "lesader"
+  ],
+  "לסלק": [
+    "lesalek"
+  ],
+  "לסמוך": [
+    "lismoche"
+  ],
+  "לספור": [
+    "lispor"
+  ],
+  "לספק": [
+    "lesapek"
+  ],
+  "לספר": [
+    "lesaper"
+  ],
+  "לסרב": [
+    "lesarev"
+  ],
+  "לעבוד": [
+    "laavod"
+  ],
+  "לעבור": [
+    "laavor"
+  ],
+  "לעודד": [
+    "leoded"
+  ],
+  "לעורר": [
+    "leorer"
+  ],
+  "לעזוב": [
+    "lazov"
+  ],
+  "לעזור": [
+    "lazor"
+  ],
+  "לעכב": [
+    "leakev"
+  ],
+  "לעלות": [
+    "lalot"
+  ],
+  "לעמוד": [
+    "lamod"
+  ],
+  "לענות": [
+    "lanot",
+    "leanot"
+  ],
+  "לעסוק": [
+    "lasok"
+  ],
+  "לעצור": [
+    "latzor"
+  ],
+  "לעקור": [
+    "lakor"
+  ],
+  "לערוך": [
+    "laroche"
+  ],
+  "לערער": [
+    "learer"
+  ],
+  "לעשות": [
+    "lasot"
+  ],
+  "לפגוע": [
+    "lifgoa"
+  ],
+  "לפטור": [
+    "liftor_2"
+  ],
+  "לפטר": [
+    "lefater"
+  ],
+  "לפנות": [
+    "lifnot",
+    "lefanot"
+  ],
+  "לפעול": [
+    "lifol"
+  ],
+  "לפצות": [
+    "lefatzot"
+  ],
+  "לפקוח": [
+    "lifkocha"
+  ],
+  "לפקח": [
+    "lefakecha"
+  ],
+  "לפרוץ": [
+    "lifrotz"
+  ],
+  "לפרוק": [
+    "lifrok"
+  ],
+  "לפרוש": [
+    "lifrosh"
+  ],
+  "לפרסם": [
+    "lefarsem"
+  ],
+  "לפרק": [
+    "lefarek"
+  ],
+  "לפתוח": [
+    "liftocha"
+  ],
+  "לפתור": [
+    "liftor"
+  ],
+  "לפתח": [
+    "lefatecha"
+  ],
+  "לצאת": [
+    "latzet"
+  ],
+  "לצמצם": [
+    "letzamtzem"
+  ],
+  "לצפות": [
+    "letzapot",
+    "litzpot"
+  ],
+  "לצרוף": [
+    "litzrof"
+  ],
+  "לצרף": [
+    "letzaref"
+  ],
+  "לקבול": [
+    "likbol"
+  ],
+  "לקבוע": [
+    "likboa"
+  ],
+  "לקבל": [
+    "lekabel"
+  ],
+  "לקדום": [
+    "likdom"
+  ],
+  "לקדם": [
+    "lekadem"
+  ],
+  "לקום": [
+    "lakum"
+  ],
+  "לקלוט": [
+    "liklot"
+  ],
+  "לקנות": [
+    "liknot"
+  ],
+  "לקצוץ": [
+    "liktzotz"
+  ],
+  "לקצץ": [
+    "lekatzetz"
+  ],
+  "לקרוא": [
+    "likro"
+  ],
+  "לקרות": [
+    "likrot",
+    "lekarot"
+  ],
+  "לראות": [
+    "lirot"
+  ],
+  "לרדת": [
+    "laredet"
+  ],
+  "לרכוש": [
+    "lirkosh"
+  ],
+  "לרצוח": [
+    "lirtzocha"
+  ],
+  "לשאול": [
+    "lishol"
+  ],
+  "לשאת": [
+    "laset"
+  ],
+  "לשבור": [
+    "lishbor"
+  ],
+  "לשבות": [
+    "lishbot"
+  ],
+  "לשבח": [
+    "leshabecha"
+  ],
+  "לשבת": [
+    "lashevet"
+  ],
+  "לשגר": [
+    "leshager"
+  ],
+  "לשדר": [
+    "leshader"
+  ],
+  "לשוב": [
+    "lashuv"
+  ],
+  "לשוחח": [
+    "lesochecha"
+  ],
+  "לשחוק": [
+    "lishchok"
+  ],
+  "לשחק": [
+    "lesachek"
+  ],
+  "לשחרר": [
+    "leshachrer"
+  ],
+  "לשים": [
+    "lasim"
+  ],
+  "לשכוח": [
+    "lishkocha"
+  ],
+  "לשכנע": [
+    "leshachnea"
+  ],
+  "לשלב": [
+    "leshalev"
+  ],
+  "לשלוח": [
+    "lishlocha"
+  ],
+  "לשלוט": [
+    "lishlot"
+  ],
+  "לשלם": [
+    "leshalem"
+  ],
+  "לשמוע": [
+    "lishmoa"
+  ],
+  "לשמור": [
+    "lishmor"
+  ],
+  "לשמש": [
+    "leshamesh"
+  ],
+  "לשנות": [
+    "leshanot",
+    "lishnot"
+  ],
+  "לשפר": [
+    "leshaper"
+  ],
+  "לשקול": [
+    "lishkol"
+  ],
+  "לשרת": [
+    "lesharet"
+  ],
+  "לשתף": [
+    "leshatef"
+  ],
+  "לתאר": [
+    "letaer"
+  ],
+  "לתבוע": [
+    "litboa"
+  ],
+  "לתמוך": [
+    "litmoche"
+  ],
+  "לתפוס": [
+    "litpos"
+  ],
+  "לתקוף": [
+    "litkof"
+  ],
+  "לתקן": [
+    "letaken"
+  ],
+  "לתרום": [
+    "litrom"
+  ],
+  "לתת": [
+    "latet"
+  ]
+}

@@ -6,7 +6,7 @@ Usage:
 """
 from __future__ import annotations
 
-from datetime import datetime, timezone
+import unicodedata
 
 from hebrew.morphology import morphology_features_to_form_key, parse_morphology_tag
 from hebrew.phase3.data_loader import Phase3DataLoader
@@ -28,6 +28,10 @@ def _vocalized_infinitive(
         if form_key == "infinitive":
             return row["vocalized_inflection"]
     return None
+
+
+def _source_group_key(pattern: str, table_number: int, base_form: str) -> str:
+    return f"{pattern}_{table_number}_{base_form}"
 
 
 def main() -> None:
@@ -54,6 +58,10 @@ def main() -> None:
         if inf_vocalized is None:
             inf_vocalized = inf_plain
 
+        # Canonical Hebrew text must be Unicode NFC at the generation boundary.
+        inf_vocalized = unicodedata.normalize("NFC", inf_vocalized)
+        inf_plain = unicodedata.normalize("NFC", inf_plain)
+
         asset_prefix = hebrew_infinitive_to_latin_slug(inf_vocalized)
         # Ensure uniqueness by appending a counter if necessary.
         existing_prefixes = {v.asset_id_prefix for v in verbs}
@@ -63,12 +71,14 @@ def main() -> None:
             unique_prefix = f"{asset_prefix}_{counter}"
             counter += 1
 
+        source_group_key = _source_group_key(pattern, table_number, base_form)
+
         verb = CurriculumVerb(
-            verb_id=inf_plain,
+            verb_id=unique_prefix,
             asset_id_prefix=unique_prefix,
             infinitive_pointed=inf_vocalized,
             infinitive_plain=inf_plain,
-            italian_infinitive="",
+            italian_infinitive=None,
             root=candidate["root"],
             binyan=candidate["binyan"],
             pattern=pattern,
@@ -76,12 +86,14 @@ def main() -> None:
             frequency=int(candidate["frequency"]),
             priority=idx,
             selection_reason=list(candidate.get("selection_reason", [])),
+            source_group_key=source_group_key,
         )
         verbs.append(verb)
 
+    # generated_at is intentionally absent from canonical content.
     curriculum = Curriculum(
         version="1.0.0",
-        generated_at=datetime.now(timezone.utc).isoformat(),
+        generated_at=None,
         source="hebrew.phase3.eran_tomer",
         verbs=verbs,
     )

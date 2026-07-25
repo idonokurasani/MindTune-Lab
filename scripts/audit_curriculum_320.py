@@ -7,7 +7,6 @@ import re
 import unicodedata
 from collections import Counter
 from dataclasses import asdict, dataclass
-from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -22,9 +21,13 @@ AUDIT_MD_PATH = Path("docs/audits/curriculum_v1_320_audit.md")
 
 @dataclass(frozen=True)
 class CurriculumAuditEntry:
+    """One audited curriculum verb with full source provenance."""
+
     verb_id: str
+    infinitive_plain: str
+    infinitive_pointed: str
     source_identifier: str
-    source_infinitive: str
+    source_records: list[dict[str, Any]]
     normalized_infinitive: str
     unicode_normalization: str
     binyan: str
@@ -39,6 +42,7 @@ class CurriculumAuditEntry:
     possible_full_spelling_variant: bool
     possible_tokenization_problem: bool
     possible_lexical_ambiguity: bool
+    italian_infinitive_status: str
     pedagogical_suitability: str
     is_infinitive: bool
     lemma_sufficiently_specified: bool
@@ -62,8 +66,6 @@ def _has_vowel_letters(text: str) -> bool:
 
 def _looks_defective(text: str) -> bool:
     """Heuristic: a spelling without expected vav/yod maters may be defective."""
-    # Very conservative: if the vocalized form contains holam/qubuts but the
-    # plain form lacks vav/yod, flag for review.
     plain = strip_niqqud(text)
     if "\u05b9" in text or "\u05bb" in text:
         return "ו" not in plain and "י" not in plain
@@ -72,24 +74,30 @@ def _looks_defective(text: str) -> bool:
 
 def _is_infinitive(text: str) -> bool:
     plain = strip_niqqud(text)
-    # Infinitives in Hebrew begin with ל (lamed prefix).
     return plain.startswith("ל")
 
 
-def _load_source_lookup() -> dict[str, dict[str, Any]]:
+def _load_sources() -> tuple[dict[str, dict[str, Any]], dict[str, list[dict[str, Any]]]]:
+    """Load source records keyed by group_key and by plain infinitive."""
     loader = Phase3DataLoader()
     loader.load_all()
     candidates = select_100_verbs(loader, target_size=400)
-    lookup: dict[str, dict[str, Any]] = {}
+
+    by_group_key: dict[str, dict[str, Any]] = {}
+    by_infinitive: dict[str, list[dict[str, Any]]] = {}
     for c in candidates:
-        key = c["infinitive_plain"]
-        if key:
-            lookup[key] = c
-    return lookup
+        group_key = c["group_key"]
+        by_group_key[group_key] = c
+        inf = c["infinitive_plain"]
+        if inf:
+            by_infinitive.setdefault(inf, []).append(c)
+    return by_group_key, by_infinitive
 
 
 def _audit(  # noqa: C901
-    curriculum: dict[str, Any], source_lookup: dict[str, dict[str, Any]]
+    curriculum: dict[str, Any],
+    by_group_key: dict[str, dict[str, Any]],
+    by_infinitive: dict[str, list[dict[str, Any]]],
 ) -> list[CurriculumAuditEntry]:
     verbs = curriculum["verbs"]
     seen_ids: Counter[str] = Counter(v["verb_id"] for v in verbs)
@@ -101,7 +109,10 @@ def _audit(  # noqa: C901
         verb_id = verb["verb_id"]
         inf_plain = verb["infinitive_plain"]
         inf_pointed = verb["infinitive_pointed"]
-        source = source_lookup.get(inf_plain, {})
+        source_group_key = verb.get("source_group_key", "")
+
+        primary_source = by_group_key.get(source_group_key, {})
+        source_records = list(by_infinitive.get(inf_plain, []))
 
         issues: list[str] = []
         action = "keep"
@@ -116,19 +127,19 @@ def _audit(  # noqa: C901
             action = "exclude_in_next_curriculum_version"
             confidence = "high"
             blocks = True
-        if dup_inf:
-            issues.append("duplicate_infinitive")
-            action = "exclude_in_next_curriculum_version"
-            confidence = "high"
-            blocks = True
         if dup_prefix:
             issues.append("duplicate_asset_id_prefix")
             action = "exclude_in_next_curriculum_version"
             confidence = "high"
             blocks = True
 
+        # Multiple curriculum records may share the same plain infinitive
+        # across binyanim or source tables. This is not a block if each has a
+        # unique verb_id and asset_id_prefix.
+        if dup_inf:
+            issues.append("homographic_infinitive")
+
         suspicious = False
-        # Infinitive should be pointed and start with lamed.
         if not _is_infinitive(inf_pointed):
             issues.append("not_an_infinitive")
             suspicious = True
@@ -148,7 +159,6 @@ def _audit(  # noqa: C901
             action = "keep_with_note"
 
         possible_full = _has_vowel_letters(inf_plain) and not possible_defective
-        # Full spelling is only a note, not an issue.
 
         tokenization_problem = False
         if re.search(r"[a-zA-Z0-9]", inf_plain):
@@ -157,9 +167,7 @@ def _audit(  # noqa: C901
             action = "manual_review_required"
             blocks = True
 
-        # Lexical ambiguity: if multiple source groups share the same plain
-        # infinitive, the lemma may be ambiguous.
-        lexical_ambiguity = seen_infs[inf_plain] > 1
+        lexical_ambiguity = seen_infs[inf_plain] > 1 or len(source_records) > 1
 
         lemma_specified = bool(verb.get("root") and verb.get("binyan"))
         if not lemma_specified:
@@ -167,10 +175,24 @@ def _audit(  # noqa: C901
             action = "manual_review_required"
             blocks = True
 
-        if not source:
+        if not source_records:
             issues.append("not_found_in_source_lookup")
             action = "keep_with_note"
             confidence = "medium"
+
+        italian = verb.get("italian_infinitive")
+        if italian is None:
+            italian_status = "absent_authoritative_source"
+            issues.append("missing_italian_infinitive")
+            if action == "keep":
+                action = "keep_with_note"
+        elif italian == "":
+            italian_status = "empty_unexplained"
+            issues.append("empty_italian_infinitive")
+            if action == "keep":
+                action = "keep_with_note"
+        else:
+            italian_status = "present"
 
         pedagogical = (
             "high-frequency core verb"
@@ -185,8 +207,10 @@ def _audit(  # noqa: C901
 
         entry = CurriculumAuditEntry(
             verb_id=verb_id,
-            source_identifier=source.get("group_key", ""),
-            source_infinitive=inf_plain,
+            infinitive_plain=inf_plain,
+            infinitive_pointed=inf_pointed,
+            source_identifier=primary_source.get("group_key", ""),
+            source_records=source_records,
             normalized_infinitive=_normalize(inf_plain),
             unicode_normalization="NFC" if inf_pointed == _normalize(inf_pointed) else "other",
             binyan=verb.get("binyan", ""),
@@ -201,6 +225,7 @@ def _audit(  # noqa: C901
             possible_full_spelling_variant=possible_full,
             possible_tokenization_problem=tokenization_problem,
             possible_lexical_ambiguity=lexical_ambiguity,
+            italian_infinitive_status=italian_status,
             pedagogical_suitability=pedagogical,
             is_infinitive=_is_infinitive(inf_pointed),
             lemma_sufficiently_specified=lemma_specified,
@@ -208,7 +233,9 @@ def _audit(  # noqa: C901
             confidence=confidence,
             recommended_action=action,
             evidence=(
-                f"source={source.get('group_key','')}; frequency={verb.get('frequency',0)}; "
+                f"source={primary_source.get('group_key','')}; "
+                f"source_record_count={len(source_records)}; "
+                f"frequency={verb.get('frequency',0)}; "
                 f"selection_reason={verb.get('selection_reason',[])}"
             ),
             blocks_asset_generation=blocks,
@@ -217,9 +244,11 @@ def _audit(  # noqa: C901
     return entries
 
 
+_INVESTIGATED = {"לעשות", "לחבר", "לבצוע", "לחבור", "לתת"}
+
+
 def _investigated(entries: list[CurriculumAuditEntry]) -> list[CurriculumAuditEntry]:
-    targets = {"לעשות", "לחבר", "לבצוע", "לחבור", "לתת"}
-    return [e for e in entries if e.verb_id in targets]
+    return [e for e in entries if e.infinitive_plain in _INVESTIGATED]
 
 
 def _write_json(entries: list[CurriculumAuditEntry], curriculum: dict[str, Any]) -> None:
@@ -227,7 +256,6 @@ def _write_json(entries: list[CurriculumAuditEntry], curriculum: dict[str, Any])
     payload = {
         "audit_version": "1.0.0",
         "curriculum_version": curriculum["version"],
-        "generated_at": datetime.now(timezone.utc).isoformat(),
         "summary": {
             "total_verbs": len(entries),
             "duplicate_verb_ids": sum(1 for e in entries if e.duplicate_verb_id),
@@ -238,12 +266,16 @@ def _write_json(entries: list[CurriculumAuditEntry], curriculum: dict[str, Any])
             "tokenization_problems": sum(1 for e in entries if e.possible_tokenization_problem),
             "lexical_ambiguities": sum(1 for e in entries if e.possible_lexical_ambiguity),
             "blocking_issues": sum(1 for e in entries if e.blocks_asset_generation),
+            "missing_italian_infinitives": sum(
+                1 for e in entries if e.italian_infinitive_status != "present"
+            ),
         },
         "investigated_verbs": [e.to_dict() for e in _investigated(entries)],
         "entries": [e.to_dict() for e in entries],
     }
     AUDIT_JSON_PATH.write_text(
-        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=False), encoding="utf-8"
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=False),
+        encoding="utf-8",
     )
 
 
@@ -259,12 +291,15 @@ def _write_md(entries: list[CurriculumAuditEntry], curriculum: dict[str, Any]) -
         "tokenization_problems": sum(1 for e in entries if e.possible_tokenization_problem),
         "lexical_ambiguities": sum(1 for e in entries if e.possible_lexical_ambiguity),
         "blocking_issues": sum(1 for e in entries if e.blocks_asset_generation),
+        "missing_italian_infinitives": sum(
+            1 for e in entries if e.italian_infinitive_status != "present"
+        ),
     }
     lines = [
         "# Curriculum v1.0.0 Audit Report",
         "",
         f"- Curriculum version: {curriculum['version']}",
-        f"- Generated at: {datetime.now(timezone.utc).isoformat()}",
+        "- Generated at: deterministic (no timestamp)",
         f"- Source: {curriculum.get('source', 'unknown')}",
         "",
         "## Summary",
@@ -274,7 +309,7 @@ def _write_md(entries: list[CurriculumAuditEntry], curriculum: dict[str, Any]) -
         lines.append(f"- {key}: {value}")
     lines.extend(["", "## Investigated verbs", ""])
     for e in _investigated(entries):
-        lines.append(f"### {e.verb_id}")
+        lines.append(f"### {e.infinitive_plain} ({e.verb_id})")
         lines.append(f"- asset_id_prefix: {e.asset_id_prefix}")
         lines.append(f"- binyan: {e.binyan}")
         lines.append(f"- frequency: {e.corpus_frequency}")
@@ -288,17 +323,19 @@ def _write_md(entries: list[CurriculumAuditEntry], curriculum: dict[str, Any]) -
     lines.extend(["", "## Methodology", ""])
     lines.append(
         "The audit compares the curriculum JSON against the Eran Tomer source "
-        "lookup, detects duplicates, checks Unicode normalization (NFC), "
-        "flags non-infinitive lemmas, and records pedagogical notes. "
-        "Corpus frequency alone does not determine pedagogical priority."
+        "records keyed by source group, preserves all source records for "
+        "homographic infinitives, detects duplicate verb_ids / asset prefixes, "
+        "checks Unicode normalization (NFC), flags non-infinitive lemmas, "
+        "and records pedagogical notes. Corpus frequency alone does not "
+        "determine pedagogical priority."
     )
     AUDIT_MD_PATH.write_text("\n".join(lines), encoding="utf-8")
 
 
 def main() -> None:
     curriculum = json.loads(CURRICULUM_PATH.read_text(encoding="utf-8"))
-    source_lookup = _load_source_lookup()
-    entries = _audit(curriculum, source_lookup)
+    by_group_key, by_infinitive = _load_sources()
+    entries = _audit(curriculum, by_group_key, by_infinitive)
     _write_json(entries, curriculum)
     _write_md(entries, curriculum)
     print(f"Wrote {AUDIT_JSON_PATH} and {AUDIT_MD_PATH}")

@@ -22,6 +22,7 @@ from typing import Any, cast
 
 import numpy as np
 
+from mantra.domain.audio_profile import AudioProfile
 from mantra.phase1.assembly import _decode_wav_to_int16, _encode_int16_to_wav, _resample_mono_int16
 from mantra.phase1.sheva import DIACRITICS
 from mantra.phase1.timeline import TimelineSegment
@@ -502,6 +503,23 @@ def main() -> None:
     email = os.environ.get("SPEECHGEN_EMAIL")
     if not api_key or not email:
         raise SystemExit("SPEECHGEN_API_KEY and SPEECHGEN_EMAIL are required")
+
+    profile = AudioProfile.load("hannah")
+    he_voice, he_locale = profile.voice_for("he")
+    it_voice, it_locale = profile.voice_for("it")
+
+    global HEBREW_VOICE, HEBREW_LOCALE, ITALIAN_VOICE, ITALIAN_LOCALE
+    global HEBREW_RATE, HEBREW_PITCH, ITALIAN_RATE, ITALIAN_PITCH, FORMAT, TARGET_SR
+    HEBREW_VOICE = he_voice
+    HEBREW_LOCALE = he_locale
+    ITALIAN_VOICE = it_voice
+    ITALIAN_LOCALE = it_locale
+    HEBREW_RATE = profile.synthesis_parameters.get("rate", 1.0)
+    HEBREW_PITCH = profile.synthesis_parameters.get("pitch", 0.0)
+    ITALIAN_RATE = HEBREW_RATE
+    ITALIAN_PITCH = HEBREW_PITCH
+    FORMAT = profile.output_format
+    TARGET_SR = profile.sample_rate
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)

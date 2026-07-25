@@ -72,7 +72,7 @@ class CurriculumVerb:
     asset_id_prefix: str
     infinitive_pointed: str
     infinitive_plain: str
-    italian_infinitive: str = ""
+    italian_infinitive: str | None = None
     root: str = ""
     binyan: str = ""
     pattern: str = ""
@@ -80,12 +80,22 @@ class CurriculumVerb:
     frequency: int = 0
     priority: int = 0
     selection_reason: list[str] = field(default_factory=list)
+    source_group_key: str = ""
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "CurriculumVerb":
+        data = dict(data)
+        if data.get("italian_infinitive") == "":
+            data["italian_infinitive"] = None
+        data["infinitive_pointed"] = unicodedata.normalize(
+            "NFC", data.get("infinitive_pointed", "")
+        )
+        data["infinitive_plain"] = unicodedata.normalize(
+            "NFC", data.get("infinitive_plain", "")
+        )
         return cls(**data)
 
     def required_asset_ids(self) -> list[str]:
@@ -120,23 +130,25 @@ class Curriculum:
     """Versioned canonical curriculum."""
 
     version: str
-    generated_at: str
+    generated_at: str | None
     source: str
     verbs: list[CurriculumVerb]
 
     def to_dict(self) -> dict[str, Any]:
-        return {
+        result: dict[str, Any] = {
             "version": self.version,
-            "generated_at": self.generated_at,
             "source": self.source,
             "verbs": [v.to_dict() for v in self.verbs],
         }
+        if self.generated_at is not None:
+            result["generated_at"] = self.generated_at
+        return result
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "Curriculum":
         return cls(
             version=data["version"],
-            generated_at=data["generated_at"],
+            generated_at=data.get("generated_at"),
             source=data["source"],
             verbs=[CurriculumVerb.from_dict(v) for v in data["verbs"]],
         )

@@ -17,6 +17,8 @@ from typing import Any, cast
 import numpy as np
 from numpy.typing import NDArray
 
+from mantra.domain.audio_profile import AudioProfile
+
 from .assembly import _decode_wav_to_int16, _encode_int16_to_wav, _silence_int16
 from .tts import SpeechGenTTSProvider, TTSCache, TTSRuntimeError, _cache_key, sha256_hex
 from .utils import normalize_unicode
@@ -296,15 +298,20 @@ def ensure_tense_markers(
     api_key: str | None = None,
     email: str | None = None,
     provider: Any = None,
+    audio_profile: AudioProfile | None = None,
 ) -> dict[str, Path]:
     """Generate or reuse the three global Hebrew tense markers."""
+    if audio_profile is not None:
+        voice, locale = audio_profile.voice_for("he")
+    else:
+        voice, locale = "Hannah", "he-IL"
     paths: dict[str, Path] = {}
     for asset_id, text in TENSE_MARKER_ASSETS.items():
         paths[asset_id] = registry.ensure(
             asset_id=asset_id,
             text=text,
-            voice="Hannah",
-            locale="he-IL",
+            voice=voice,
+            locale=locale,
             source_text=text,
             api_key=api_key,
             email=email,
