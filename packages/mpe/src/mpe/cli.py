@@ -5,8 +5,9 @@ from __future__ import annotations
 import argparse
 import sys
 import traceback
+from collections.abc import Callable, Sequence
 from pathlib import Path
-from typing import Any, Sequence
+from typing import Any
 
 from mpe.aggregates import RuntimeState
 from mpe.cli_helpers import (
@@ -14,12 +15,14 @@ from mpe.cli_helpers import (
     ENV_STORE_PATH,
     format_json,
     load_protocol_summary,
+    load_recognition_summary,
     log_verbose,
     open_store,
     replay_session,
     resolve_store_path,
     run_immediate_recall,
     run_mock_session,
+    run_recognition,
 )
 from mpe.errors import (
     ConcurrencyError,
@@ -367,7 +370,33 @@ def _format_protocol_summary(summary: Any) -> str:
     return "\n".join(lines)
 
 
-def cmd_run_immediate_recall(args: argparse.Namespace) -> int:
+def _format_recognition_summary(summary: Any) -> str:
+    """Human-readable rendering of a Recognition protocol summary."""
+    lines = [
+        f"Session: {summary.session_id}",
+        f"Protocol: {summary.protocol_id}",
+        f"Fixture: {summary.fixture_id}",
+        f"Status: {summary.status}",
+        f"Items: {summary.item_count} ({summary.completed_item_count} completed, {summary.correct_count} correct)",
+        f"Total repeats: {summary.total_repeats}",
+        f"Events: {summary.event_count}",
+    ]
+    for item in summary.items:
+        correct_marker = "correct" if item.correct else item.outcome
+        lines.append(
+            f"  {item.content_item_id}: {correct_marker} "
+            f"(selected={item.selected_choice_index}, correct={item.correct_choice_index}, "
+            f"repeats={item.repeats_used}, latency={item.latency})"
+        )
+    return "\n".join(lines)
+
+
+def _run_protocol_session(
+    args: argparse.Namespace,
+    runner: Callable[..., tuple[Any, Any]],
+    formatter: Callable[[Any], str],
+) -> int:
+    """Shared mechanics for the explicit protocol run commands."""
     path = _store_path_from(args)
     bad = _ensure_path_is_not_directory(path)
     if bad is not None:
@@ -391,7 +420,7 @@ def cmd_run_immediate_recall(args: argparse.Namespace) -> int:
             elif args.verbose:
                 log_verbose(f"Opened existing event store at {path}")
 
-            _state, summary = run_immediate_recall(
+            _state, summary = runner(
                 store,
                 session_id=session_id,
                 learner_id=args.learner_id,
@@ -406,12 +435,17 @@ def cmd_run_immediate_recall(args: argparse.Namespace) -> int:
     if args.format == "json":
         print(format_json(summary.as_dict()))
     else:
-        print(_format_protocol_summary(summary))
+        print(formatter(summary))
 
     return EXIT_OK
 
 
-def cmd_show_protocol_summary(args: argparse.Namespace) -> int:
+def _show_protocol_session_summary(
+    args: argparse.Namespace,
+    loader: Callable[[Any, SessionID], Any],
+    formatter: Callable[[Any], str],
+) -> int:
+    """Shared mechanics for the explicit summary commands."""
     path = _store_path_from(args)
     parsed = _safe_session_id(args.session_id)
     if isinstance(parsed, int):
@@ -432,7 +466,7 @@ def cmd_show_protocol_summary(args: argparse.Namespace) -> int:
             if store.get_last_sequence(session_id) == 0:
                 print(f"error: no events found for session {session_id}", file=sys.stderr)
                 return EXIT_NOT_FOUND
-            summary = load_protocol_summary(store, session_id)
+            summary = loader(store, session_id)
     except Exception as exc:
         print(f"error: {exc}", file=sys.stderr)
         if args.verbose:
@@ -442,9 +476,29 @@ def cmd_show_protocol_summary(args: argparse.Namespace) -> int:
     if args.format == "json":
         print(format_json(summary.as_dict()))
     else:
-        print(_format_protocol_summary(summary))
+        print(formatter(summary))
 
     return EXIT_OK
+
+
+def cmd_run_immediate_recall(args: argparse.Namespace) -> int:
+    return _run_protocol_session(args, run_immediate_recall, _format_protocol_summary)
+
+
+def cmd_show_protocol_summary(args: argparse.Namespace) -> int:
+    return _show_protocol_session_summary(
+        args, load_protocol_summary, _format_protocol_summary
+    )
+
+
+def cmd_run_recognition(args: argparse.Namespace) -> int:
+    return _run_protocol_session(args, run_recognition, _format_recognition_summary)
+
+
+def cmd_show_recognition_summary(args: argparse.Namespace) -> int:
+    return _show_protocol_session_summary(
+        args, load_recognition_summary, _format_recognition_summary
+    )
 
 
 def _build_parser() -> argparse.ArgumentParser:
@@ -496,6 +550,24 @@ def _build_parser() -> argparse.ArgumentParser:
         "--format", choices=["human", "json"], default="human", help="Output format"
     )
 
+    recognition_parser = subparsers.add_parser(
+        "run-recognition", help="Execute and persist a Recognition session"
+    )
+    recognition_parser.add_argument("--session-id", default=None, help="Fixed session identifier")
+    recognition_parser.add_argument("--learner-id", default="learner_001", help="Learner identifier")
+    recognition_parser.add_argument("--random-seed", default="seed_0", help="Random seed")
+    recognition_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
+
+    show_recognition_parser = subparsers.add_parser(
+        "show-recognition-summary", help="Show the Recognition protocol summary for a session"
+    )
+    show_recognition_parser.add_argument("session_id", help="Session identifier")
+    show_recognition_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
+
     return parser
 
 
@@ -507,6 +579,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         "run-mock-session": cmd_run_mock_session,
         "run-immediate-recall": cmd_run_immediate_recall,
         "show-protocol-summary": cmd_show_protocol_summary,
+        "run-recognition": cmd_run_recognition,
+        "show-recognition-summary": cmd_show_recognition_summary,
         "replay": cmd_replay,
         "list-sessions": cmd_list_sessions,
         "validate-store": cmd_validate_store,

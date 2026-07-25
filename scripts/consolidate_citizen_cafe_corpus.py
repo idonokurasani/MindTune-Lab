@@ -9,7 +9,6 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data"
 CITIZEN_DIR = DATA / "citizen_cafe_all_courses"

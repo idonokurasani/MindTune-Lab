@@ -18,7 +18,6 @@ from pathlib import Path
 from typing import Any
 from urllib.parse import urlparse
 
-
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "mindtune_console" / "data"
 CITIZEN = DATA / "citizen_cafe_all_courses" / "CITIZEN_CAFE_ALL_COURSES_CANONICAL_MODEL_DRAFT_v1.1.json"

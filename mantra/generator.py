@@ -1,8 +1,6 @@
 """Production pipeline for a single Hebrew mantra package."""
 from __future__ import annotations
 
-import re
-import tempfile
 from collections import OrderedDict
 from pathlib import Path
 from typing import Any
@@ -17,7 +15,6 @@ from .utils import (
     load_json,
     save_json,
     standard_unvocalized,
-    stress_from_phonemes,
     transliteration_from_html,
 )
 

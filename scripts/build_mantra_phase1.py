@@ -322,7 +322,6 @@ VERBS_3: list[dict[str, Any]] = [
 # ---------------------------------------------------------------------------
 
 def strip_niqqud(text: str) -> str:
-    import unicodedata
     return "".join(c for c in text if not ("\u0591" <= c <= "\u05c7"))
 
 

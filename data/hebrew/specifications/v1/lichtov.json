@@ -1,0 +1,1191 @@
+{
+  "approved_lemma": {
+    "script": "he",
+    "source_text": "לִכְתֹּב",
+    "tts_text": "לכתוב"
+  },
+  "binyan": "paal",
+  "content_checksum": "f83326b258a523b009cd31a2edcc63252d1980db3b92155bb9a51d46b1f6e670",
+  "curriculum_version": "1.0.0",
+  "entries": [
+    {
+      "entry_id": "lichtov-future_first_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "נִכְתֹּב",
+        "tts_text": "נכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi scriveremo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_first_mf_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "niχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_first_mf_plural-alternate-807d3e",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "נִכְתּוֹב",
+        "tts_text": "נכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi scriveremo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "surface_vocalized"
+        ],
+        "gold_form_key": "future_first_mf_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "niχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_first_mf_singular",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "אֶכְתֹּב",
+        "tts_text": "אכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io scriverò"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_first_mf_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "ʔeχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_first_mf_singular-alternate-5cfa2b",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "אֶכְתּוֹב",
+        "tts_text": "אכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io scriverò"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "surface_vocalized"
+        ],
+        "gold_form_key": "future_first_mf_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "ʔeχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_second_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּכְתְּבִי",
+        "tts_text": "תכתבי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu scriverai"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_f_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "tiχtevˈi",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-future_second_f_singular-alternate-82d8b1",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּכְתְּבִי",
+        "tts_text": "תכתבי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu scriverai"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "future_second_f_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "tiχtvˈi",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_second_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּכְתֹּב",
+        "tts_text": "תכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu scriverai"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_m_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "tiχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_second_m_singular-alternate-1b4499",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּכְתּוֹב",
+        "tts_text": "תכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu scriverai"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "surface_vocalized"
+        ],
+        "gold_form_key": "future_second_m_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "tiχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_second_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּכְתְּבוּ",
+        "tts_text": "תכתבו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi scriverete"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_mf_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "tiχtevˈu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-future_second_mf_plural-alternate-e17683",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּכְתְּבוּ",
+        "tts_text": "תכתבו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi scriverete"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "future_second_mf_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "tiχtvˈu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_third_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "יִכְתֹּב",
+        "tts_text": "יכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli scriverà"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_third_m_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "jiχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_third_m_singular-alternate-c995c0",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "יִכְתּוֹב",
+        "tts_text": "יכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli scriverà"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "surface_vocalized"
+        ],
+        "gold_form_key": "future_third_m_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "jiχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-future_third_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "יִכְתְּבוּ",
+        "tts_text": "יכתבו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro scriveranno"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_third_mf_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "third",
+      "phonemes": "jiχtevˈu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "future",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-future_third_mf_plural-alternate-7aab50",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "יִכְתְּבוּ",
+        "tts_text": "יכתבו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro scriveranno"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "future_third_mf_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "third",
+      "phonemes": "jiχtvˈu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-imperative_second_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כִּתְבִי",
+        "tts_text": "כתבי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scrivi!"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "imperative_second_f_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "kitvˈi",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "imperative",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-infinitive",
+      "gender": "not_applicable",
+      "hebrew": {
+        "script": "he",
+        "source_text": "לִכְתֹּב",
+        "tts_text": "לכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scrivere"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "infinitive",
+        "source_agreement": "partial"
+      },
+      "number": "not_applicable",
+      "person": "not_applicable",
+      "phonemes": "liχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "infinitive",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-infinitive-alternate-6895c8",
+      "gender": "not_applicable",
+      "hebrew": {
+        "script": "he",
+        "source_text": "לִכְתֹּב",
+        "tts_text": "לכתב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scrivere"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "manual_override",
+        "alternate_sources": [
+          "manual_override"
+        ],
+        "conflict_fields": [
+          "surface_vocalized"
+        ],
+        "gold_form_key": "infinitive",
+        "source_eligibility": "production_approved"
+      },
+      "number": "not_applicable",
+      "person": "not_applicable",
+      "phonemes": "liχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "infinitive",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-infinitive-alternate-cd702c",
+      "gender": "not_applicable",
+      "hebrew": {
+        "script": "he",
+        "source_text": "לִכְתּוֹב",
+        "tts_text": "לכתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scrivere"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "surface_vocalized"
+        ],
+        "gold_form_key": "infinitive",
+        "source_eligibility": "production_approved"
+      },
+      "number": "not_applicable",
+      "person": "not_applicable",
+      "phonemes": "liχtˈov",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "infinitive",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_first_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַבְנוּ",
+        "tts_text": "כתבנו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi scrivemmo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_first_mf_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "katˈavnu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_first_mf_plural-alternate-965b75",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַבְנוּ",
+        "tts_text": "כתבנו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi scrivemmo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "past_first_mf_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "katavnˈu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-past_first_mf_singular",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַבְתִּי",
+        "tts_text": "כתבתי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io scrissi"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_first_mf_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "katˈavti",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_first_mf_singular-alternate-cca0c5",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַבְתִּי",
+        "tts_text": "כתבתי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io scrissi"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "past_first_mf_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "katavtˈi",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-past_participle_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כְּתוּבוֹת",
+        "tts_text": "כתובות"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scritte"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_participle_f_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "not_applicable",
+      "phonemes": "ktuvˈot",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past_participle",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_participle_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כְּתוּבָה",
+        "tts_text": "כתובה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scritta"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_participle_f_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "not_applicable",
+      "phonemes": "ktuvˈa",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past_participle",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_participle_m_plural",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כְּתוּבִים",
+        "tts_text": "כתובים"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scritti"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_participle_m_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "not_applicable",
+      "phonemes": "ktuvˈim",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past_participle",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_participle_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתוּב",
+        "tts_text": "כתוב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "scritto"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_participle_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "not_applicable",
+      "phonemes": "katˈuv",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past_participle",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_second_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כְּתַבְתֶּן",
+        "tts_text": "כתבתן"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi scriveste"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_second_f_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "ktavtˈen",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_second_m_plural",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כְּתַבְתֶּם",
+        "tts_text": "כתבתם"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi scriveste"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_second_m_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "ktavtˈem",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_second_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַבְתָּ",
+        "tts_text": "כתבת"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu scrivesti"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_second_m_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "katˈavta",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_second_m_singular-alternate-96fc0e",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַבְתְּ",
+        "tts_text": "כתבת"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu scrivesti"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "past_second_m_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "katavtˈa",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-past_third_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתְבָה",
+        "tts_text": "כתבה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "ella scrisse"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_third_f_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "katvˈa",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_third_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתַב",
+        "tts_text": "כתב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli scrisse"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_third_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "katˈav",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-past_third_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כָּתְבוּ",
+        "tts_text": "כתבו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro scrissero"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_third_mf_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "third",
+      "phonemes": "katvˈu",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-present_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כּוֹתְבוֹת",
+        "tts_text": "כותבות"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro scrivono"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_f_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "not_applicable",
+      "phonemes": "kotvˈot",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "present",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-present_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כּוֹתֶבֶת",
+        "tts_text": "כותבת"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "ella scrive"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_f_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "not_applicable",
+      "phonemes": "kotˈevet",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "present",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-present_f_singular-alternate-91be1d",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כּוֹתֶבֶת",
+        "tts_text": "כותבת"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "ella scrive"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "present_f_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "not_applicable",
+      "phonemes": "kotevˈet",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "present",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lichtov-present_m_plural",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כּוֹתְבִים",
+        "tts_text": "כותבים"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro scrivono"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_m_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "not_applicable",
+      "phonemes": "kotvˈim",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "present",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lichtov-present_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "כּוֹתֵב",
+        "tts_text": "כותב"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli scrive"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "not_applicable",
+      "phonemes": "kotˈev",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "present",
+      "stress_index": 2
+    }
+  ],
+  "expected_transliteration": "",
+  "notes": "",
+  "pedagogical_register": "core_modern",
+  "primary_italian_gloss": "scrivere",
+  "provenance": {
+    "license": "project-internal",
+    "retrieved_date": "2026-07-25",
+    "source_eligibility": "reference_only",
+    "source_id": "gold_fixture_v1",
+    "source_url": "data/hebrew/gold_verbs/lichtov.json",
+    "trust_tier": 1
+  },
+  "root": "כ-ת-ב",
+  "schema_version": "1.0.0",
+  "secondary_italian_glosses": [],
+  "spec_id": "hebrew-spec-lichtov-v1",
+  "specification_version": "1.0.0",
+  "verb_id": "lichtov"
+}

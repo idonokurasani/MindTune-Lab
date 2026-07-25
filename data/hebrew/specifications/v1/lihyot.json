@@ -1,0 +1,862 @@
+{
+  "approved_lemma": {
+    "script": "he",
+    "source_text": "לִהְיוֹת",
+    "tts_text": "להיות"
+  },
+  "binyan": "paal",
+  "content_checksum": "f5377d09ef9c333a52917115d073b4e16c8d27cde187e44dca9d79919f0d7196",
+  "curriculum_version": "1.0.0",
+  "entries": [
+    {
+      "entry_id": "lihyot-future_first_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "נִהְיֶה",
+        "tts_text": "נהיה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi saremo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_first_mf_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "nihjˈe",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-future_first_mf_singular",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "אֶהְיֶה",
+        "tts_text": "אהיה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io sarò"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_first_mf_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "ʔehjˈe",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-future_second_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּהְיֶינָה",
+        "tts_text": "תהיינה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi sarete"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_f_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "tihjenˈa",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-future_second_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּהְיִי",
+        "tts_text": "תהיי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu sarai"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_f_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "tihjˈi",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-future_second_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּהְיֶה",
+        "tts_text": "תהיה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu sarai"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "tihjˈe",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-future_second_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "תִּהְיוּ",
+        "tts_text": "תהיו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi sarete"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_second_mf_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "tihjˈu",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-future_third_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "יִהְיֶה",
+        "tts_text": "יהיה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli sarà"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_third_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "jihjˈe",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-future_third_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "יִהְיוּ",
+        "tts_text": "יהיו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro saranno"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "future_third_mf_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "third",
+      "phonemes": "jihjˈu",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "future",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-imperative_second_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הֱיֶינָה",
+        "tts_text": "היינה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "siate!"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "imperative_second_f_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "hejenˈa",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "imperative",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-imperative_second_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הֱיִי",
+        "tts_text": "היי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "sii!"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "imperative_second_f_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "hejˈi",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "imperative",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-infinitive",
+      "gender": "not_applicable",
+      "hebrew": {
+        "script": "he",
+        "source_text": "לִהְיוֹת",
+        "tts_text": "להיות"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "essere"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "infinitive",
+        "source_agreement": "full"
+      },
+      "number": "not_applicable",
+      "person": "not_applicable",
+      "phonemes": "lihjˈot",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "infinitive",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_first_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיִינוּ",
+        "tts_text": "היינו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi fummo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_first_mf_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "hajˈinu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_first_mf_plural-alternate-b6e0b3",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיִינוּ",
+        "tts_text": "היינו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "noi fummo"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "past_first_mf_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "first",
+      "phonemes": "hajinˈu",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_first_mf_singular",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיִיתִי",
+        "tts_text": "הייתי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io fui"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_first_mf_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "hajˈiti",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_first_mf_singular-alternate-6c0a4b",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיִיתִי",
+        "tts_text": "הייתי"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "io fui"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "past_first_mf_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "first",
+      "phonemes": "hajitˈi",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_second_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הֱיִיתֶן",
+        "tts_text": "הייתן"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi foste"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_second_f_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "hejitˈen",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_second_f_plural-alternate-953388",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הֲיִיתֶן",
+        "tts_text": "הייתן"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi foste"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "phonemes_corrected",
+          "surface_vocalized"
+        ],
+        "gold_form_key": "past_second_f_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "hajitˈen",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_second_m_plural",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הֱיִיתֶם",
+        "tts_text": "הייתם"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi foste"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_second_m_plural",
+        "source_agreement": "partial"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "hejitˈem",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_second_m_plural-alternate-391851",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הֲיִיתֶם",
+        "tts_text": "הייתם"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "voi foste"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "phonemes_corrected",
+          "surface_vocalized"
+        ],
+        "gold_form_key": "past_second_m_plural",
+        "source_eligibility": "production_approved"
+      },
+      "number": "plural",
+      "person": "second",
+      "phonemes": "hajitˈem",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_second_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיִיתָ",
+        "tts_text": "היית"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu fosti"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_second_m_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "hajˈita",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_second_m_singular-alternate-2bc7f2",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיִית",
+        "tts_text": "היית"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "tu fosti"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "lexical_stress",
+          "phonemes_corrected"
+        ],
+        "gold_form_key": "past_second_m_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "second",
+      "phonemes": "hajitˈa",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 3
+    },
+    {
+      "entry_id": "lihyot-past_third_f_singular",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיְתָה",
+        "tts_text": "היתה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "ella fu"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_third_f_singular",
+        "source_agreement": "partial"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "hajtˈa",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_third_f_singular-alternate-1386f1",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיְיתָה",
+        "tts_text": "הייתה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "ella fu"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "alternate_source": "eran_tomer",
+        "alternate_sources": [
+          "eran_tomer",
+          "verb_inflector"
+        ],
+        "conflict_fields": [
+          "surface_plain",
+          "surface_vocalized"
+        ],
+        "gold_form_key": "past_third_f_singular",
+        "source_eligibility": "production_approved"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "hajtˈa",
+      "register": "core_modern",
+      "rejection_reason": "source_conflict",
+      "role": "alternate",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_third_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיָה",
+        "tts_text": "היה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli fu"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_third_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "third",
+      "phonemes": "hajˈa",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-past_third_mf_plural",
+      "gender": "common",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הָיוּ",
+        "tts_text": "היו"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro furono"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "past_third_mf_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "third",
+      "phonemes": "hajˈu",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "past",
+      "stress_index": 2
+    },
+    {
+      "entry_id": "lihyot-present_f_plural",
+      "gender": "feminine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הוֹווֹת",
+        "tts_text": "הווות"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro sono"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_f_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "not_applicable",
+      "phonemes": "hvoot",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "present",
+      "stress_index": 0
+    },
+    {
+      "entry_id": "lihyot-present_m_plural",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הוֹוִים",
+        "tts_text": "הווים"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "loro sono"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_m_plural",
+        "source_agreement": "full"
+      },
+      "number": "plural",
+      "person": "not_applicable",
+      "phonemes": "hvom",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "present",
+      "stress_index": 0
+    },
+    {
+      "entry_id": "lihyot-present_m_singular",
+      "gender": "masculine",
+      "hebrew": {
+        "script": "he",
+        "source_text": "הוֹוֶה",
+        "tts_text": "הווה"
+      },
+      "human_audio_review_status": "approved",
+      "italian": {
+        "language": "it",
+        "text": "egli è"
+      },
+      "linguistic_review_status": "verified_consensus",
+      "metadata": {
+        "curriculum_status": "approved",
+        "gold_form_key": "present_m_singular",
+        "source_agreement": "full"
+      },
+      "number": "singular",
+      "person": "not_applicable",
+      "phonemes": "hvo",
+      "register": "core_modern",
+      "rejection_reason": "not_applicable",
+      "role": "core",
+      "section": "present",
+      "stress_index": 0
+    }
+  ],
+  "expected_transliteration": "",
+  "notes": "",
+  "pedagogical_register": "core_modern",
+  "primary_italian_gloss": "essere",
+  "provenance": {
+    "license": "project-internal",
+    "retrieved_date": "2026-07-25",
+    "source_eligibility": "reference_only",
+    "source_id": "gold_fixture_v1",
+    "source_url": "data/hebrew/gold_verbs/lihyot.json",
+    "trust_tier": 1
+  },
+  "root": "ה-י-ה",
+  "schema_version": "1.0.0",
+  "secondary_italian_glosses": [],
+  "spec_id": "hebrew-spec-lihyot-v1",
+  "specification_version": "1.0.0",
+  "verb_id": "lihyot"
+}

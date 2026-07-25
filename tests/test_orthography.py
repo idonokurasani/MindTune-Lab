@@ -3,7 +3,10 @@ from __future__ import annotations
 
 import unittest
 
-from hebrew.orthography import canonical_unvocalized, classify_root_orthographic_class, spelling_variants
+from hebrew.orthography import (
+    canonical_unvocalized,
+    classify_root_orthographic_class,
+)
 
 
 class TestRootOrthographicClass(unittest.TestCase):

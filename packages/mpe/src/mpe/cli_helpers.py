@@ -14,7 +14,10 @@ from mpe.fixtures import make_mock_fixtures
 from mpe.persistence.store import SQLiteEventStore
 from mpe.protocol.fixture_minimal import make_minimal_fixture
 from mpe.protocol.immediate_recall import run_immediate_recall_session
+from mpe.protocol.recognition import run_recognition_session
 from mpe.protocol.summary import ProtocolSummary, derive_protocol_summary, summarize_session
+from mpe.protocol.summary_recognition import RecognitionSummary, derive_recognition_summary
+from mpe.protocol.summary_recognition import summarize_session as summarize_recognition_session
 from mpe.providers import (
     MockDomainNormalizer,
     MockEvaluator,
@@ -194,3 +197,33 @@ def load_protocol_summary(
 ) -> ProtocolSummary:
     """Derive an Immediate Recall protocol summary from persisted events."""
     return summarize_session(session_id, store)
+
+
+def run_recognition(
+    store: EventStore,
+    *,
+    session_id: SessionID | None,
+    learner_id: str,
+    random_seed: str,
+) -> tuple[RuntimeState, RecognitionSummary]:
+    """Execute a Recognition session and derive its summary from events."""
+    result = run_recognition_session(
+        store,
+        learner_id=learner_id,
+        random_seed=random_seed,
+        session_id=session_id,
+    )
+    summary = derive_recognition_summary(
+        result.events,
+        repeat_cap=result.rule.repeat_cap,
+        latency_bound=result.rule.latency_bound,
+    )
+    return result.state, summary
+
+
+def load_recognition_summary(
+    store: EventStore,
+    session_id: SessionID,
+) -> RecognitionSummary:
+    """Derive a Recognition protocol summary from persisted events."""
+    return summarize_recognition_session(session_id, store)

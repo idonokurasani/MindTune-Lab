@@ -10,35 +10,73 @@ from pathlib import Path
 CONSOLE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(CONSOLE_DIR))
 
-from hebrew import normalization
-from hebrew.adapters.java_inflector_adapter import VerbInflectorAdapter
-from hebrew.adapters.phonikud_adapter import phonemize, stress_from_phonemes
-from hebrew.approval import ApprovalPipeline
-from hebrew.conjugation_engine import ConjugationEngine
-from hebrew.consensus import build_consensus
-from hebrew.diagnosis import diagnose_answer
-from hebrew.models import MorphologicalFeatures, SourceEvidence, VerbForm
-from hebrew.morphology import binyan_from_pattern, morphology_features_to_form_key, parse_morphology_tag
-from hebrew.normalization import (
-    consonantal_skeleton,
-    normalize_hebrew,
-    standard_unvocalized,
-    strip_niqqud,
-)
-from hebrew.resources.source_registry import SourceRegistry as RegistryLoader
-from hebrew.services.diagnosis_service import DiagnosisService
-from hebrew.services.pronunciation_service import PronunciationService
-from hebrew.services.sentence_service import SentenceService
-from hebrew.services.verb_service import VerbService
-from hebrew.shva import classify_shva, find_ambiguous_shva_forms
-from hebrew.usage import classify_form
-from hebrew.validation import validate_user_answer
+try:
+    from hebrew import normalization
+    from hebrew.adapters.java_inflector_adapter import VerbInflectorAdapter
+    from hebrew.adapters.phonikud_adapter import phonemize, stress_from_phonemes
+    from hebrew.approval import ApprovalPipeline
+    from hebrew.conjugation_engine import ConjugationEngine
+    from hebrew.consensus import build_consensus
+    from hebrew.diagnosis import diagnose_answer
+    from hebrew.models import MorphologicalFeatures, SourceEvidence, VerbForm
+    from hebrew.morphology import (
+        binyan_from_pattern,
+        morphology_features_to_form_key,
+        parse_morphology_tag,
+    )
+    from hebrew.normalization import (
+        consonantal_skeleton,
+        normalize_hebrew,
+        standard_unvocalized,
+        strip_niqqud,
+    )
+    from hebrew.resources.source_registry import SourceRegistry as RegistryLoader
+    from hebrew.services.diagnosis_service import DiagnosisService
+    from hebrew.services.pronunciation_service import PronunciationService
+    from hebrew.services.sentence_service import SentenceService
+    from hebrew.services.verb_service import VerbService
+    from hebrew.shva import classify_shva, find_ambiguous_shva_forms
+    from hebrew.usage import classify_form
+    from hebrew.validation import validate_user_answer
+    _PHONIKUD_AVAILABLE = True
+except ImportError as exc:
+    if "phonikud" not in str(exc):
+        raise
+    normalization = None  # type: ignore[assignment]
+    VerbInflectorAdapter = None  # type: ignore[assignment,misc]
+    phonemize = None  # type: ignore[assignment]
+    stress_from_phonemes = None  # type: ignore[assignment]
+    ApprovalPipeline = None  # type: ignore[assignment,misc]
+    ConjugationEngine = None  # type: ignore[assignment,misc]
+    build_consensus = None  # type: ignore[assignment]
+    diagnose_answer = None  # type: ignore[assignment]
+    MorphologicalFeatures = None  # type: ignore[assignment,misc]
+    SourceEvidence = None  # type: ignore[assignment,misc]
+    VerbForm = None  # type: ignore[assignment,misc]
+    binyan_from_pattern = None  # type: ignore[assignment]
+    morphology_features_to_form_key = None  # type: ignore[assignment]
+    parse_morphology_tag = None  # type: ignore[assignment]
+    consonantal_skeleton = None  # type: ignore[assignment]
+    normalize_hebrew = None  # type: ignore[assignment]
+    standard_unvocalized = None  # type: ignore[assignment]
+    strip_niqqud = None  # type: ignore[assignment]
+    RegistryLoader = None  # type: ignore[assignment,misc]
+    DiagnosisService = None  # type: ignore[assignment,misc]
+    PronunciationService = None  # type: ignore[assignment,misc]
+    SentenceService = None  # type: ignore[assignment,misc]
+    VerbService = None  # type: ignore[assignment,misc]
+    classify_shva = None  # type: ignore[assignment]
+    find_ambiguous_shva_forms = None  # type: ignore[assignment]
+    classify_form = None  # type: ignore[assignment]
+    validate_user_answer = None  # type: ignore[assignment]
+    _PHONIKUD_AVAILABLE = False
 
 
 DATA_DIR = CONSOLE_DIR / "data" / "hebrew"
 GOLD_DIR = DATA_DIR / "gold_verbs"
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestSourceRegistry(unittest.TestCase):
     def setUp(self):
         self.registry = RegistryLoader()
@@ -58,6 +96,7 @@ class TestSourceRegistry(unittest.TestCase):
         self.assertFalse(self.registry.is_eligible("nonexistent_source", mode="strict"))
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestApprovalLayers(unittest.TestCase):
     def setUp(self):
         self.pipeline = ApprovalPipeline()
@@ -98,6 +137,7 @@ class TestApprovalLayers(unittest.TestCase):
         self.assertEqual(form.curriculum_status, "approved")
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestNormalization(unittest.TestCase):
     def test_strip_niqqud(self):
         self.assertEqual(strip_niqqud("לִכְתֹּב"), "לכתב")
@@ -110,6 +150,7 @@ class TestNormalization(unittest.TestCase):
         self.assertEqual(consonantal_skeleton("לכתוב"), "לכתב")
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestMorphology(unittest.TestCase):
     def test_binyan_from_pattern(self):
         from hebrew.morphology import pattern_from_binyan
@@ -139,6 +180,7 @@ class TestMorphology(unittest.TestCase):
         self.assertEqual(f.person, "")
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestPhonikudAdapter(unittest.TestCase):
     def test_phonemize_lichtov(self):
         ph = phonemize("לִכְתֹּב")
@@ -146,6 +188,7 @@ class TestPhonikudAdapter(unittest.TestCase):
         self.assertEqual(stress_from_phonemes(ph), 2)
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestVerbInflectorAdapter(unittest.TestCase):
     def test_generate_lichtov(self):
         inf = VerbInflectorAdapter()
@@ -155,6 +198,7 @@ class TestVerbInflectorAdapter(unittest.TestCase):
         self.assertTrue({"PAST", "PRESENT", "FUTURE"}.issubset(tenses))
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestConsensus(unittest.TestCase):
     def test_surface_agreement(self):
         f1 = VerbForm(surface_vocalized="כָּתַב", surface_plain="כתב", lexical_stress=1, phonemes_corrected="kaˈtav")
@@ -171,6 +215,7 @@ class TestConsensus(unittest.TestCase):
         self.assertEqual(len(stress_disagreement), 1)
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestShva(unittest.TestCase):
     def test_no_shva_not_applicable(self):
         s = classify_shva("כָּתַב")
@@ -193,6 +238,7 @@ class TestShva(unittest.TestCase):
         ])
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestUsage(unittest.TestCase):
     def test_core_form_no_corpus(self):
         form = VerbForm(form_key="infinitive")
@@ -207,6 +253,7 @@ class TestUsage(unittest.TestCase):
         self.assertEqual(classify_form(form, 0), "unattested")
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestVerbService(unittest.TestCase):
     def setUp(self):
         self.service = VerbService()
@@ -226,6 +273,7 @@ class TestVerbService(unittest.TestCase):
         self.assertEqual(len(forms), 1)
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestSentenceService(unittest.TestCase):
     def setUp(self):
         self.service = SentenceService()
@@ -243,6 +291,7 @@ class TestSentenceService(unittest.TestCase):
             self.assertFalse(sentences[0].approved)
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestValidationAndDiagnosis(unittest.TestCase):
     def test_exact_match(self):
         r = validate_user_answer("כּוֹתֵב", "כּוֹתֵב")
@@ -260,6 +309,7 @@ class TestValidationAndDiagnosis(unittest.TestCase):
         self.assertEqual(result.diagnosis_type, "person")
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestGoldFixtures(unittest.TestCase):
     def _load_fixture(self, name: str) -> dict:
         path = GOLD_DIR / f"{name}.json"
@@ -312,6 +362,7 @@ class TestGoldFixtures(unittest.TestCase):
             self.assertGreater(len(fixture["full_approved_paradigm"]), 5)
 
 
+@unittest.skipUnless(_PHONIKUD_AVAILABLE, "phonikud not installed; run Hebrew tests in .venv_phonikud or install [hebrew] extra on Python <3.13")
 class TestSourceFiltering(unittest.TestCase):
     def test_source_registry_filter(self):
         registry = RegistryLoader()

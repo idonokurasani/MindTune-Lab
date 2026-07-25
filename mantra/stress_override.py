@@ -6,12 +6,11 @@ override file with the same schema.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
-from typing import Any
 
 from .models import CorrectionEntry
-from .utils import load_json, stress_from_phonemes
+from .utils import load_json
 
 
 @dataclass

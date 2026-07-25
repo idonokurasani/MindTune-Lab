@@ -1,7 +1,6 @@
 import unittest
 from pathlib import Path
 
-
 APP_JS = Path(__file__).resolve().parents[1] / "app.js"
 
 

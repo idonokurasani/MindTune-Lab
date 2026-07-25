@@ -5,7 +5,13 @@
 ```bash
 .venv/bin/ruff check <path>
 .venv/bin/mypy --exclude 'hebrew/' <path>
-PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python -m unittest tests.test_shared_assets tests.test_mantra_engine tests.test_frontend_contracts
+PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python -m unittest tests.test_shared_assets tests.test_mantra_engine tests.test_frontend_contracts tests.test_phase4d tests.test_curriculum_policy
+
+Full suite (requires `phonikud`, use `.venv_phonikud` on Python 3.12 or install `pip install -e ".[hebrew]"`):
+
+```bash
+PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv_phonikud/bin/python -m unittest discover -s tests -p 'test_*.py'
+```
 ```
 
 ## SpeechGen credentials
@@ -40,7 +46,7 @@ PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .v
 
 ## Audio design rules
 
-- Hebrew voice: Hannah, fully vocalized (niqqud); `source_text == tts_text`.
+- Hebrew voice resolved by `AudioProfile` (production profile: Aaron, `he-IL`); linguistic specifications store pointed `source_text` and explicit unpointed `tts_text`.
 - Italian infinitive introduction only, once per compact mantra.
 - No Italian grammatical labels inside the mantra.
 - Merge identical masculine/feminine plural forms with `וְ`.

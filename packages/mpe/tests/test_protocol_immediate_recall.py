@@ -366,7 +366,8 @@ class ImmediateRecallProcessTests(unittest.TestCase):
         cmd = [sys.executable, "-m", "mpe", "--store-path", str(self.store_path)] + argv
         env = dict(os.environ)
         env["PYTHONPATH"] = "packages/mpe/src"
-        return subprocess.run(cmd, capture_output=True, text=True, cwd="/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console", env=env)
+        repo_root = Path(__file__).resolve().parents[3]
+        return subprocess.run(cmd, capture_output=True, text=True, cwd=str(repo_root), env=env)
 
     def test_python_mpe_invocation(self) -> None:
         run = self._run_process(["run-immediate-recall", "--format", "json"])

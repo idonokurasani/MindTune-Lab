@@ -3,11 +3,10 @@ from __future__ import annotations
 import csv
 import json
 import sqlite3
+import sys
 import tempfile
 import unittest
 from pathlib import Path
-
-import sys
 
 CONSOLE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(CONSOLE_DIR))

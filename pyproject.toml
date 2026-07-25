@@ -20,6 +20,9 @@ dev = [
     "ruff>=0.4.0,<0.5",
     "mypy>=1.10,<1.11",
 ]
+hebrew = [
+    "phonikud>=0.4.1,<0.5; python_version<'3.13'",
+]
 
 [tool.setuptools.packages.find]
 where = ["packages/mpe/src"]
@@ -41,6 +44,14 @@ ignore = ["E501"]
 "mantra/phase1/playback.py" = ["C901"]
 "mantra/phase1/spec.py" = ["C901"]
 "mantra/phase1/assembly.py" = ["C901"]
+"mantra/generator.py" = ["C901"]
+"scripts/build_citizen_cafe_all_courses.py" = ["C901", "B905"]
+"scripts/consolidate_citizen_cafe_corpus.py" = ["C901"]
+"scripts/evaluate_phonikud.py" = ["F841"]
+"tests/test_azure_speech.py" = ["E402"]
+"tests/test_behavioral_event_store.py" = ["E402"]
+"tests/test_hebrew_recovery.py" = ["E402"]
+"tests/test_help_profiler.py" = ["E402"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["mpe", "mantra"]

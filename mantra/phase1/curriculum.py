@@ -14,6 +14,7 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
+from .asset_contract import AudioAssetRequirement, build_compact_mantra_requirements
 from .utils import normalize_unicode
 
 CURRICULUM_PATH = Path("data/hebrew/curriculum_v1_320.json")
@@ -369,14 +370,47 @@ class MantraSelectionPolicy:
 
     POLICY_VERSION = "1.0.0"
 
-    def __init__(self, curriculum: Curriculum, available_assets: set[str] | None = None):
+    def __init__(
+        self,
+        curriculum: Curriculum,
+        available_assets: set[str] | None = None,
+        readiness_source: Any | None = None,
+    ):
         self.curriculum = curriculum
         self._verb_map = curriculum.by_verb_id()
         self.available_assets = available_assets or set()
+        self.readiness_source = readiness_source
 
-    def _assets_ready(self, verb: CurriculumVerb) -> bool:
+    def _assets_ready(
+        self,
+        verb: CurriculumVerb,
+        *,
+        asset_preparation_mode: bool = False,
+    ) -> bool:
+        if self.readiness_source is not None:
+            report = self.readiness_source.evaluate(
+                verb, asset_preparation_mode=asset_preparation_mode
+            )
+            if asset_preparation_mode:
+                return bool(report.asset_preparation_eligibility.value == "eligible")
+            return bool(report.learner_execution_eligibility.value == "eligible")
         required = set(verb.required_asset_ids())
         return required.issubset(self.available_assets)
+
+    def _missing_assets(
+        self,
+        verb: CurriculumVerb,
+        *,
+        asset_preparation_mode: bool = False,
+    ) -> set[str]:
+        if self.readiness_source is not None:
+            report = self.readiness_source.evaluate(
+                verb, asset_preparation_mode=asset_preparation_mode
+            )
+            if report.asset_report is not None:
+                return {str(x) for x in report.asset_report.missing}
+            return set()
+        return set(verb.required_asset_ids()) - self.available_assets
 
     def _eligible_verbs(
         self,
@@ -387,7 +421,7 @@ class MantraSelectionPolicy:
         """Return verbs that are candidates for selection."""
         eligible: list[CurriculumVerb] = []
         for verb in self.curriculum.verbs:
-            if not asset_preparation_mode and not self._assets_ready(verb):
+            if not asset_preparation_mode and not self._assets_ready(verb, asset_preparation_mode=asset_preparation_mode):
                 continue
             # Respect recent exposure limits.
             hours_since = state.last_exposure_hours.get(verb.verb_id, float("inf"))
@@ -416,7 +450,7 @@ class MantraSelectionPolicy:
                 candidates = list(self.curriculum.verbs)
                 candidates.sort(key=lambda v: (-self._priority(v, state), -v.frequency))
                 for verb in candidates:
-                    missing = set(verb.required_asset_ids()) - self.available_assets
+                    missing = self._missing_assets(verb, asset_preparation_mode=True)
                     if missing:
                         return MantraSelectionResult(
                             verb_id=verb.verb_id,
@@ -496,7 +530,7 @@ class MantraSelectionPolicy:
             if asset_preparation_mode:
                 # In preparation mode, prefer verbs that are missing assets.
                 for verb in eligible:
-                    if not self._assets_ready(verb):
+                    if not self._assets_ready(verb, asset_preparation_mode=True):
                         return self._result(verb, "asset_preparation", eligible_ids)
                 return self._result(eligible[0], "curriculum_priority", eligible_ids)
             return self._result(eligible[0], "curriculum_priority", eligible_ids)
@@ -515,7 +549,7 @@ class MantraSelectionPolicy:
         reason_code: str,
         eligible_verbs: tuple[str, ...],
     ) -> MantraSelectionResult:
-        missing = set(verb.required_asset_ids()) - self.available_assets
+        missing = self._missing_assets(verb)
         return MantraSelectionResult(
             verb_id=verb.verb_id,
             asset_id_prefix=verb.asset_id_prefix,
@@ -569,6 +603,7 @@ class MantraExecutionPlan:
     reason_code: str
     policy_version: str
     output_path: Path | None = None
+    requirements: list[AudioAssetRequirement] | None = None
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -578,6 +613,7 @@ class MantraExecutionPlan:
             "reason_code": self.reason_code,
             "policy_version": self.policy_version,
             "output_path": str(self.output_path) if self.output_path else None,
+            "requirements": [r.to_dict() for r in self.requirements] if self.requirements else None,
         }
 
 
@@ -586,10 +622,18 @@ def build_execution_plan(
     state: LearnerState,
     output_dir: Path,
     available_assets: set[str] | None = None,
+    readiness_source: Any | None = None,
+    audio_profile: Any | None = None,
+    *,
+    asset_preparation_mode: bool = False,
 ) -> MantraExecutionPlan:
     """Protocol-layer helper: select a verb and build an audio execution plan."""
-    policy = MantraSelectionPolicy(curriculum, available_assets=available_assets)
-    result = policy.select(state)
+    policy = MantraSelectionPolicy(
+        curriculum,
+        available_assets=available_assets,
+        readiness_source=readiness_source,
+    )
+    result = policy.select(state, asset_preparation_mode=asset_preparation_mode)
     if result.selected_verb is None:
         return MantraExecutionPlan(
             verb_id="",
@@ -598,7 +642,18 @@ def build_execution_plan(
             reason_code=result.reason_code,
             policy_version=result.policy_version,
         )
-    sequence = plan_compact_mantra(result.selected_verb)
+    requirements: list[AudioAssetRequirement] | None = None
+    if readiness_source is not None and audio_profile is not None:
+        report = readiness_source.evaluate(result.selected_verb)
+        if report.specification is not None:
+            requirements = build_compact_mantra_requirements(
+                report.specification, audio_profile
+            )
+            sequence = [r.asset_id for r in requirements]
+        else:
+            sequence = plan_compact_mantra(result.selected_verb)
+    else:
+        sequence = plan_compact_mantra(result.selected_verb)
     safe_prefix = re.sub(r"[^a-z0-9_\-]", "_", result.selected_verb.asset_id_prefix)
     output_path = output_dir / f"mantra_{safe_prefix}.wav"
     return MantraExecutionPlan(
@@ -608,4 +663,5 @@ def build_execution_plan(
         reason_code=result.reason_code,
         policy_version=result.policy_version,
         output_path=output_path,
+        requirements=requirements,
     )

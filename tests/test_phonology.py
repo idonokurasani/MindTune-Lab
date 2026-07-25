@@ -10,13 +10,24 @@ from pathlib import Path
 CONSOLE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(CONSOLE_DIR))
 
-from hebrew.normalization import decompose
-from hebrew.phonology import (
-    PronunciationValidator,
-    begadkefat_realization,
-    extract_syllables,
-)
-from hebrew.shva import classify_shva
+try:
+    from hebrew.normalization import decompose
+    from hebrew.phonology import (
+        PronunciationValidator,
+        begadkefat_realization,
+        extract_syllables,
+    )
+    from hebrew.shva import classify_shva
+    _PHONIKUD_AVAILABLE = True
+except ImportError as exc:
+    if "phonikud" not in str(exc):
+        raise
+    decompose = None  # type: ignore[assignment,misc]
+    PronunciationValidator = None  # type: ignore[assignment,misc]
+    begadkefat_realization = None  # type: ignore[assignment,misc]
+    extract_syllables = None  # type: ignore[assignment,misc]
+    classify_shva = None  # type: ignore[assignment,misc]
+    _PHONIKUD_AVAILABLE = False
 
 
 DATA_DIR = CONSOLE_DIR / "data"
@@ -48,6 +59,11 @@ def _has_sheva(text: str) -> bool:
 class TestPhonologicalValidator(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
+        if not _PHONIKUD_AVAILABLE:
+            raise unittest.SkipTest(
+                "phonikud not installed; run Hebrew tests in .venv_phonikud "
+                "or install the [hebrew] extra on Python <3.13"
+            )
         cls.validator = PronunciationValidator()
         with EVAL_PATH.open(encoding="utf-8") as f:
             cls.eval_data = json.load(f)
@@ -179,7 +195,7 @@ class TestPhonologicalValidator(unittest.TestCase):
         """CSV inflected forms produce valid phonological records."""
         with CSV_PATH.open(encoding="utf-8-sig") as f:
             reader = csv.DictReader(f)
-            rows = [row for row in reader]
+            rows = list(reader)
         self.assertGreaterEqual(len(rows), 30, "CSV should have at least 30 rows")
         for row in rows[:35]:
             with self.subTest(vocalized=row["vocalized_inflection"]):
