@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from typing import Any
 
 from mpe.aggregates import RuntimeState
 from mpe.enums import (
@@ -16,6 +17,7 @@ from mpe.enums import (
 )
 from mpe.event_store import EventStore
 from mpe.events import Event
+from mpe.protocol.adaptation_policy import AdaptationPolicy
 from mpe.protocol.bounded_repeat import (
     SOURCE_BEHAVIOR,
     SOURCE_LATENCY,
@@ -23,6 +25,7 @@ from mpe.protocol.bounded_repeat import (
     RepeatDecision,
     RepeatMetadata,
 )
+from mpe.protocol.cognitive_state import CognitiveStateEstimator
 from mpe.protocol.fixture_minimal import AdaptationRule, default_adaptation_rule
 from mpe.protocol.fixture_recognition import (
     RecognitionFixture,
@@ -43,6 +46,7 @@ from mpe.providers import ContentItem
 from mpe.runtime import Clock, Runtime
 from mpe.types import (
     BlockID,
+    EventID,
     ProtocolVersionID,
     SessionID,
     TrialID,
@@ -92,6 +96,16 @@ class RecognitionRunner:
         self.pipeline = TrialPipeline(self.runtime, self.providers)
         self.item_outcomes: list[RecognitionItemOutcome] = []
         self._trial_index = 0
+
+        self.estimator = CognitiveStateEstimator()
+        self.adaptation_policy = AdaptationPolicy(
+            baseline_deadline=self.rule.response_deadline,
+            max_response_deadline=self.rule.max_response_deadline,
+            deadline_step=self.rule.deadline_step,
+            latency_bound=self.rule.latency_bound,
+            repeat_cap=self.rule.repeat_cap,
+        )
+        self.response_deadline = self.rule.response_deadline
 
     def run_session(
         self,
@@ -198,6 +212,13 @@ class RecognitionRunner:
             },
         )
 
+        # 0. EEG observation precedes the behavioral response so the summary
+        # walk retains the response payload as the authoritative observation.
+        eeg_obs = self._poll_eeg(item.content_item_id)
+        eeg_event_id: EventID | None = None
+        if eeg_obs is not None:
+            eeg_event_id = self._emit_eeg_observation(trial_id, eeg_obs)
+
         # 1. Present the prompt/instruction.
         pipeline.emit_instruction(
             trial_id,
@@ -236,7 +257,10 @@ class RecognitionRunner:
         )
         response_window_id = pipeline.open_response_window(
             trial_id,
-            ResponseWindowSpec(response_modes=(ResponseMode.TOUCH.value,)),
+            ResponseWindowSpec(
+                response_modes=(ResponseMode.TOUCH.value,),
+                duration=self.response_deadline,
+            ),
         )
 
         # 4. Collect deterministic discrete-choice observation.
@@ -248,7 +272,7 @@ class RecognitionRunner:
         selected_choice_index = int(observation.raw_payload)
         latency = observation.latency
         received_at = self.runtime.clock.now()
-        pipeline.emit_observation_received(
+        behavioral_obs_event_id = pipeline.emit_observation_received(
             trial_id,
             response_window_id,
             observation_spec,
@@ -267,7 +291,7 @@ class RecognitionRunner:
             captured_at=received_at,
             device_provenance=["fixture_button_0"],
         )
-        pipeline.emit_evaluation(
+        evaluation_event_id = pipeline.emit_evaluation(
             trial_id,
             normalized,
             content_item,
@@ -295,13 +319,88 @@ class RecognitionRunner:
             ),
         )
 
-        return RecognitionItemOutcome(
+        outcome = RecognitionItemOutcome(
             content_item_id=item.content_item_id,
             selected_choice_index=selected_choice_index,
             correct_choice_index=item.correct_choice_index,
             latency=latency,
             repeats_used=repeats_used,
             answer_status=answer_status,
+        )
+
+        # 7. Cognitive-state update and typed adaptation decision for the next trial.
+        self._apply_adaptation(
+            outcome=outcome,
+            eeg_obs=eeg_obs,
+            source_event_ids=[
+                str(eid)
+                for eid in [behavioral_obs_event_id, evaluation_event_id]
+                if eid is not None
+            ] + ([str(eeg_event_id)] if eeg_event_id is not None else []),
+        )
+
+        return outcome
+
+    def _poll_eeg(self, content_item_id: str) -> dict[str, Any] | None:
+        if self.providers.eeg is None:
+            return None
+        return self.providers.eeg.poll(content_item_id)
+
+    def _emit_eeg_observation(
+        self,
+        trial_id: TrialID,
+        eeg_obs: dict[str, Any],
+    ) -> EventID:
+        event = self.runtime.emit(
+            "observation_received",
+            {
+                "observation_id": str(eeg_obs["observation_id"]),
+                "provider_id": str(eeg_obs["provider_id"]),
+                "provider_version": str(eeg_obs["provider_version"]),
+                "observation_type": str(eeg_obs["observation_type"]),
+                "received_at": self.runtime.clock.now(),
+                "payload": eeg_obs["payload"],
+                "quality_dimensions": eeg_obs["quality_dimensions"],
+                "quality_flags": eeg_obs["quality_flags"],
+                "quality_model_id": str(eeg_obs["quality_model_id"]),
+                "quality_model_version": str(eeg_obs["quality_model_version"]),
+            },
+            trial_id=trial_id,
+            component="eeg_provider",
+            component_version=str(eeg_obs["provider_version"]),
+            provenance=[self.pipeline.source_event_id],
+        )
+        return event.event_id
+
+    def _apply_adaptation(
+        self,
+        outcome: RecognitionItemOutcome,
+        eeg_obs: dict[str, Any] | None,
+        source_event_ids: list[str],
+    ) -> None:
+        session_id = self.runtime.state.session_id
+        assert session_id is not None
+
+        update = self.estimator.update(
+            correct=outcome.answer_status == AnswerStatus.CORRECT.value,
+            latency=outcome.latency,
+            latency_bound=self.rule.latency_bound,
+            eeg_features=eeg_obs,
+        )
+        decision, self.response_deadline = self.adaptation_policy.decide(
+            estimator=self.estimator,
+            update=update,
+            current_deadline=self.response_deadline,
+            source_event_ids=source_event_ids,
+            clock_now=self.runtime.clock.now(),
+            session_id=str(session_id),
+        )
+        self.runtime.emit(
+            "adaptation_decision",
+            decision.as_payload(),
+            component="adaptation_policy",
+            component_version=self.adaptation_policy.policy_version,
+            provenance=[self.pipeline.source_event_id],
         )
 
 

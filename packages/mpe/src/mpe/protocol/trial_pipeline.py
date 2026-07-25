@@ -14,6 +14,7 @@ payload-extension mapping.
 
 from __future__ import annotations
 
+import copy
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass, field
 from typing import Any
@@ -346,8 +347,8 @@ class TrialPipeline:
             observation_id=ObservationID(obs["observation_id"]),
             raw_payload=str(obs["payload"]),
             latency=float(obs.get("latency", 0.0)),
-            quality_dimensions=obs.get("quality_dimensions", {}),
-            quality_flags=obs.get("quality_flags", []),
+            quality_dimensions=copy.deepcopy(obs.get("quality_dimensions", {})),
+            quality_flags=copy.deepcopy(obs.get("quality_flags", [])),
             quality_model_id=obs["quality_model_id"],
             quality_model_version=obs["quality_model_version"],
         )
@@ -362,22 +363,24 @@ class TrialPipeline:
         received_at: float,
     ) -> EventID:
         """Emit `observation_received`; the payload value stays protocol-owned."""
+        payload: dict[str, Any] = {
+            "observation_id": str(observation.observation_id),
+            "provider_id": spec.provider_id,
+            "provider_version": spec.provider_version,
+            "observation_type": spec.observation_type,
+            "received_at": received_at,
+            "payload": copy.deepcopy(payload_value),
+            "latency": observation.latency,
+            "quality_dimensions": copy.deepcopy(observation.quality_dimensions),
+            "quality_flags": copy.deepcopy(observation.quality_flags),
+            "quality_model_id": observation.quality_model_id,
+            "quality_model_version": observation.quality_model_version,
+        }
+        if response_window_id is not None:
+            payload["response_window_id"] = str(response_window_id)
         self.runtime.emit(
             "observation_received",
-            {
-                "observation_id": str(observation.observation_id),
-                "response_window_id": str(response_window_id),
-                "provider_id": spec.provider_id,
-                "provider_version": spec.provider_version,
-                "observation_type": spec.observation_type,
-                "received_at": received_at,
-                "payload": payload_value,
-                "latency": observation.latency,
-                "quality_dimensions": observation.quality_dimensions,
-                "quality_flags": observation.quality_flags,
-                "quality_model_id": observation.quality_model_id,
-                "quality_model_version": observation.quality_model_version,
-            },
+            payload,
             trial_id=trial_id,
             component="observation_provider",
             component_version=spec.provider_version,

@@ -20,13 +20,15 @@ from mpe.protocol.bounded_repeat import (
     SOURCE_LATENCY,
     BoundedRepeatPlan,
     RepeatDecision,
+    RepeatMetadata,
 )
-from mpe.protocol.fixture_minimal import AdaptationRule
+from mpe.protocol.fixture_minimal import AdaptationRule, make_minimal_fixture
 from mpe.protocol.fixture_recognition import (
     RecognitionFixtureItem,
     make_minimal_recognition_fixture,
 )
 from mpe.protocol.immediate_recall import ImmediateRecallRunner, ItemOutcome
+from mpe.protocol.providers import FixtureProviderSet
 from mpe.protocol.recognition import (
     RecognitionItemOutcome,
     RecognitionRunner,
@@ -34,7 +36,9 @@ from mpe.protocol.recognition import (
 )
 from mpe.protocol.summary_recognition import derive_recognition_summary
 from mpe.protocol.summary_walk import walk_session
-from mpe.protocol.trial_pipeline import TrialPipeline, canonical_trial_fields
+from mpe.protocol.trial_pipeline import TrialIdentity, TrialPipeline
+from mpe.runtime import Clock, Runtime
+from mpe.types import BlockID, ProtocolVersionID
 from mpe.validation import validate_event
 
 SRC_ROOT = Path(__file__).resolve().parents[1] / "src" / "mpe"
@@ -112,8 +116,34 @@ class SharedTrialPipelineTests(unittest.TestCase):
             self.assertEqual(event.payload["choice_count"], 2)
 
     def test_extensions_may_not_override_canonical_fields(self) -> None:
-        self.assertIn("repeat_count", canonical_trial_fields())
-        self.assertIn("trial_id", canonical_trial_fields())
+        fixture = make_minimal_fixture()
+        providers = FixtureProviderSet(fixture).set
+        store = InMemoryEventStore()
+        clock = Clock()
+        runtime = Runtime(store, providers, clock)
+        pipeline = TrialPipeline(runtime, providers)
+        runtime.create_session(
+            program_version_id=fixture.program_version_id,
+            protocol_version_id=ProtocolVersionID(fixture.protocol_version_id),
+            learner_id="learner_test",
+        )
+        runtime.start_session(random_seed="seed_0")
+
+        with self.assertRaises(ValueError) as ctx:
+            pipeline.emit_trial_created(
+                TrialIdentity(
+                    trial_id=runtime.state.session_id,
+                    block_id=BlockID(fixture.block_id),
+                    trial_index=1,
+                    task_definition_id=fixture.task_definition_id,
+                    content_item_ids=(fixture.items[0].content_item_id,),
+                ),
+                repeat=RepeatMetadata(repeat_count=0, adaptation_source=None, cap=1),
+                response_requirement="required",
+                accepted_response_modes=["touch"],
+                extensions={"trial_id": "override"},
+            )
+        self.assertIn("canonical field", str(ctx.exception).lower())
 
     def test_pipeline_does_not_know_protocol_identity(self) -> None:
         source = (SRC_ROOT / "protocol" / "trial_pipeline.py").read_text()
@@ -205,6 +235,16 @@ class BoundedRepeatTests(unittest.TestCase):
             steps += 1
             step.record(RepeatDecision(True, SOURCE_BEHAVIOR, "always"))
         self.assertEqual(steps, 1)
+
+    def test_repeat_plan_modifies_next_executable_item(self) -> None:
+        # A repeat decision for the first item inserts it at the next plan position.
+        plan: BoundedRepeatPlan[str] = BoundedRepeatPlan(["a", "b"], cap=1, key=lambda i: i)
+        executed: list[str] = []
+        for step in plan:
+            executed.append(step.item)
+            # Repeat the first step only; the second step recovers and proceeds.
+            step.record(RepeatDecision(step.item == "a", SOURCE_BEHAVIOR, "test"))
+        self.assertEqual(executed, ["a", "a", "b"])
 
     def test_repeat_count_is_propagated_to_trial_payload(self) -> None:
         events = _run_recognition()
@@ -306,6 +346,9 @@ class TemporalDeterminismTests(unittest.TestCase):
             "domain_normalized_response_id",
             "evaluation_id",
             "feedback_event_id",
+            "adaptation_decision_id",
+            "applied_at",
+            "source_event_ids",
         }
     )
 

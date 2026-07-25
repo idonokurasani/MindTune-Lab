@@ -137,21 +137,87 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
             self.assertTrue(event.payload["media_handle"].startswith("fixture://"))
             self.assertIn("asset_role", event.payload)
 
-    def test_no_provider_access(self) -> None:
+    def test_eeg_observation_is_emitted(self) -> None:
         result = self._run(InMemoryEventStore())
-        for event in result.events:
-            if event.component == "renderer":
-                self.assertEqual(event.payload.get("renderer_id"), "fixture_renderer")
-            if event.event_type == "observation_received":
-                self.assertEqual(event.payload.get("provider_id"), "fixture_self_confirmation")
-                self.assertEqual(event.payload.get("observation_type"), "touch_input")
+        eeg_events = [
+            e
+            for e in result.events
+            if e.event_type == "observation_received"
+            and e.payload.get("observation_type") == "eeg_burst"
+        ]
+        self.assertTrue(eeg_events, "EEG observations must be emitted during the trial")
+        for event in eeg_events:
+            self.assertEqual(event.payload.get("provider_id"), "mock_eeg")
+            self.assertIn("cognitive_load_index", event.payload.get("payload", {}))
 
-    def test_no_eeg_influence(self) -> None:
-        result = self._run(InMemoryEventStore())
-        for event in result.events:
-            self.assertNotEqual(event.payload.get("observation_type"), "eeg_burst")
-            payload_str = json.dumps(event.as_dict())
-            self.assertNotIn("eeg", payload_str.lower())
+    def test_low_quality_eeg_is_ignored(self) -> None:
+        positive = self.fixture.items[0]
+        bad_eeg_item = FixtureItem(
+            content_item_id="item.bad_eeg",
+            expected_relation=positive.expected_relation,
+            self_confirmation="negative",
+            latency=5.0,
+            assets=positive.assets,
+            eeg_load=0.9,
+            eeg_quality_flags=["artifact"],
+        )
+        fixture = ImmediateRecallFixture(
+            fixture_id="minimal",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[bad_eeg_item],
+        )
+        result = run_immediate_recall_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        decisions = [e for e in result.events if e.event_type == "adaptation_decision"]
+        # A single incorrect sample with poor-signal EEG: behavioral load is 1.0,
+        # but hysteresis requires two consecutive high samples to leave baseline.
+        # The discarded EEG must not be the sole cause of any intervention.
+        self.assertTrue(decisions)
+        self.assertEqual(decisions[-1].payload["proposed_value"], 10.0)
+
+    def test_eeg_does_not_override_behavior(self) -> None:
+        positive = self.fixture.items[0]
+        good_behavior_high_eeg = FixtureItem(
+            content_item_id="item.good_behavior_high_eeg",
+            expected_relation=positive.expected_relation,
+            self_confirmation="positive",
+            latency=0.5,
+            assets=positive.assets,
+            eeg_load=0.9,
+            eeg_quality_flags=[],
+        )
+        fixture = ImmediateRecallFixture(
+            fixture_id="minimal",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[good_behavior_high_eeg, good_behavior_high_eeg],
+        )
+        result = run_immediate_recall_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        decisions = [e for e in result.events if e.event_type == "adaptation_decision"]
+        self.assertTrue(decisions)
+        # Behavioral correctness must keep the deadline at baseline even when EEG
+        # reports high cognitive load.
+        for decision in decisions:
+            self.assertEqual(decision.payload["proposed_value"], 10.0)
+            self.assertEqual(decision.payload["decision"], "NO_CHANGE_INSUFFICIENT_EVIDENCE")
 
     def test_adaptation_source_recorded(self) -> None:
         result = self._run(InMemoryEventStore())
@@ -263,6 +329,170 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
         self.assertEqual(len(beta_outcomes), 2)
         self.assertEqual(beta_outcomes[0].self_confirmation, "positive")
         self.assertEqual(beta_outcomes[1].self_confirmation, "positive")
+
+    def test_adaptation_changes_next_executable_trial(self) -> None:
+        # A negative behavioral observation re-queues the same item as the next trial.
+        result = self._run(InMemoryEventStore())
+        trials = [e for e in result.events if e.event_type == "trial_created"]
+        self.assertEqual(
+            [e.payload["content_item_ids"] for e in trials],
+            [["item.alpha"], ["item.beta"], ["item.beta"]],
+        )
+        initial_beta, repeat_beta = [
+            e for e in trials if e.payload["content_item_ids"] == ["item.beta"]
+        ]
+        self.assertNotIn("adaptation_source", initial_beta.payload)
+        self.assertEqual(repeat_beta.payload["repeat_count"], 1)
+        self.assertEqual(repeat_beta.payload["cap"], 1)
+        self.assertEqual(repeat_beta.payload["adaptation_source"], "behavior")
+
+    def test_adapted_session_is_replayable(self) -> None:
+        # Adaptation decisions are persisted and reproducible by replay.
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "events.db"
+            store1 = SQLiteEventStore(path)
+            result1 = self._run(store1)
+            session_id = result1.runtime.state.session_id
+            assert session_id is not None
+
+            store2 = SQLiteEventStore(path)
+            replayed = Replay(store2).replay(session_id)
+            events2 = store2.read(session_id)
+            self.assertEqual(replayed.session_status, SessionStatus.COMPLETED)
+            beta_trials = [
+                e for e in events2
+                if e.event_type == "trial_created"
+                and e.payload.get("content_item_ids") == ["item.beta"]
+            ]
+            self.assertEqual(len(beta_trials), 2)
+            self.assertEqual(beta_trials[1].payload["adaptation_source"], "behavior")
+
+    def _make_adaptation_item(
+        self,
+        item_id: str,
+        self_confirmation: str,
+        latency: float,
+        eeg_load: float = 0.0,
+        eeg_quality_flags: list[str] | None = None,
+    ) -> FixtureItem:
+        if eeg_quality_flags is None:
+            eeg_quality_flags = []
+        return FixtureItem(
+            content_item_id=item_id,
+            expected_relation=f"associate({item_id}.prompt, {item_id}.target)",
+            self_confirmation=self_confirmation,
+            latency=latency,
+            assets={
+                "prompt": FixtureAsset(
+                    f"{item_id}.prompt",
+                    "prompt",
+                    f"fixture://{item_id}/prompt",
+                    "v1.0.0",
+                ),
+                "confirmation": FixtureAsset(
+                    f"{item_id}.confirmation",
+                    "confirmation",
+                    f"fixture://{item_id}/confirmation",
+                    "v1.0.0",
+                ),
+            },
+            eeg_load=eeg_load,
+            eeg_quality_flags=eeg_quality_flags,
+        )
+
+    def test_response_deadline_escalates_and_recovers(self) -> None:
+        """Sustained deterioration extends the next response window; sustained recovery
+        restores it to baseline in gradual steps.
+        """
+        fixture = ImmediateRecallFixture(
+            fixture_id="adaptation-fixture",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[
+                self._make_adaptation_item("item.1", "positive", 0.5),
+                self._make_adaptation_item("item.2", "negative", 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.3", "negative", 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.4", "negative", 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.5", "positive", 0.5),
+                self._make_adaptation_item("item.6", "positive", 0.5),
+                self._make_adaptation_item("item.7", "positive", 0.5),
+                self._make_adaptation_item("item.8", "positive", 0.5),
+                self._make_adaptation_item("item.9", "positive", 0.5),
+            ],
+        )
+        result = run_immediate_recall_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        durations = [
+            e.payload["deadline_at"] - e.payload["opened_at"]
+            for e in result.events
+            if e.event_type == "response_window_opened"
+        ]
+        # Baseline -> no change for the first two trials, then assistance grows.
+        self.assertEqual(durations[0], 10.0)
+        self.assertEqual(durations[1], 10.0)
+        self.assertGreater(durations[3], durations[2])
+        self.assertGreaterEqual(durations[4], durations[3])
+        # One good response is not enough to reverse assistance (hysteresis).
+        self.assertGreaterEqual(durations[5], durations[4])
+        # Sustained recovery gradually restores baseline.
+        self.assertLess(durations[6], durations[5])
+        self.assertEqual(durations[-1], 10.0)
+
+        decisions = [e for e in result.events if e.event_type == "adaptation_decision"]
+        apply_decisions = [d for d in decisions if d.payload["decision"] == "APPLY"]
+        no_change_decisions = [
+            d for d in decisions if d.payload["decision"] == "NO_CHANGE_INSUFFICIENT_EVIDENCE"
+        ]
+        self.assertTrue(apply_decisions)
+        self.assertTrue(no_change_decisions)
+        # The final baseline restoration is explicit.
+        self.assertEqual(decisions[-1].payload["proposed_value"], 10.0)
+
+    def test_interrupted_recovery_returns_to_assistance(self) -> None:
+        """A good response during recovery is not enough; a new deterioration
+        re-enters the elevated assistance regime.
+        """
+        fixture = ImmediateRecallFixture(
+            fixture_id="adaptation-fixture",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[
+                self._make_adaptation_item("item.1", "negative", 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.2", "negative", 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.3", "positive", 0.5),
+                self._make_adaptation_item("item.4", "negative", 5.0, eeg_load=0.8),
+            ],
+        )
+        result = run_immediate_recall_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        durations = [
+            e.payload["deadline_at"] - e.payload["opened_at"]
+            for e in result.events
+            if e.event_type == "response_window_opened"
+        ]
+        # Trial 1 baseline, trial 2 still baseline (one sample), trial 3 assistance.
+        self.assertEqual(durations[0], 10.0)
+        self.assertEqual(durations[1], 10.0)
+        self.assertGreater(durations[2], durations[1])
+        # The brief good response on item.3 should not drop the deadline yet;
+        # the renewed deterioration on item.4 keeps assistance elevated.
+        self.assertGreaterEqual(durations[3], durations[2])
 
 
 class ImmediateRecallCLITests(unittest.TestCase):

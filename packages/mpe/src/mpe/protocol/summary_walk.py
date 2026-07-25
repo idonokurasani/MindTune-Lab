@@ -51,14 +51,15 @@ def first_content_item_id(payload: dict[str, Any]) -> str | None:
     return None
 
 
-def _content_item_id_for_trial(trial_id: Any, events: list[Event]) -> str | None:
-    if trial_id is None:
-        return None
-    trial_id_str = str(trial_id)
+def _build_trial_to_item_index(events: list[Event]) -> dict[str, str | None]:
+    """One-pass index from trial_id to the first content item id."""
+    index: dict[str, str | None] = {}
     for event in events:
-        if event.event_type == "trial_created" and event.payload.get("trial_id") == trial_id_str:
-            return first_content_item_id(event.payload)
-    return None
+        if event.event_type == "trial_created":
+            trial_id = str(event.payload.get("trial_id"))
+            if trial_id and trial_id not in index:
+                index[trial_id] = first_content_item_id(event.payload)
+    return index
 
 
 def _float_or_none(value: Any) -> float | None:
@@ -80,6 +81,7 @@ def walk_session(events: list[Event]) -> SessionWalk:  # noqa: C901
 
     records: dict[str, TrialItemRecord] = {}
     order: list[str] = []
+    trial_to_item = _build_trial_to_item_index(events)
 
     for event in events:
         payload = dict(event.payload)
@@ -107,7 +109,7 @@ def walk_session(events: list[Event]) -> SessionWalk:  # noqa: C901
                 }
 
         elif event_type == "observation_received":
-            item_id = _content_item_id_for_trial(event.trial_id, events)
+            item_id = trial_to_item.get(str(event.trial_id)) if event.trial_id is not None else None
             record = records.get(item_id) if item_id else None
             if record is not None:
                 raw_payload = payload.get("payload")
@@ -127,7 +129,7 @@ def walk_session(events: list[Event]) -> SessionWalk:  # noqa: C901
                 record.answer_status = str(answer_status) if answer_status is not None else None
 
         elif event_type == "feedback_completed":
-            item_id = _content_item_id_for_trial(event.trial_id, events)
+            item_id = trial_to_item.get(str(event.trial_id)) if event.trial_id is not None else None
             record = records.get(item_id) if item_id else None
             if record is not None:
                 record.completed = True

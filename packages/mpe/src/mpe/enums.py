@@ -93,6 +93,15 @@ class ScopeStatus(CanonicalEnum):
     OUT_OF_SCOPE = "out_of_scope"
 
 
+class CognitiveState(CanonicalEnum):
+    """Cognitive load state for closed-loop adaptation."""
+
+    STABLE = "stable"
+    POSSIBLE_DRIFT = "possible_drift"
+    RECOVERY_REQUIRED = "recovery_required"
+    RECOVERING = "recovering"
+
+
 class DecisionType(CanonicalEnum):
     """Scheduler decision type."""
 

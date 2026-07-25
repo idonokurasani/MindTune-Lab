@@ -8,11 +8,13 @@ from types import MappingProxyType
 from typing import Any
 
 from mpe.enums import (
+    AdaptationDecision,
     AnswerStatus,
     BlockType,
     DataClassification,
     DecisionStatus,
     DecisionType,
+    DeploymentStatus,
     ErrorCategory,
     EvaluationStatus,
     FeedbackCategory,
@@ -51,6 +53,7 @@ SUPPORTED_EVENT_TYPES = frozenset(
         "feedback_started",
         "feedback_completed",
         "schedule_decision",
+        "adaptation_decision",
         "protocol_terminated",
     }
 )
@@ -326,5 +329,31 @@ PAYLOAD_SCHEMAS: dict[str, list[_FieldRule]] = {
         _FieldRule("reason", True, "str"),
         _FieldRule("terminated_at", True, "number"),
         _FieldRule("final_event_id", False, "id"),
+    ],
+    "adaptation_decision": [
+        _FieldRule("adaptation_decision_id", True, "id"),
+        _FieldRule("session_id", True, "id"),
+        _FieldRule("policy_id", True, "str"),
+        _FieldRule("policy_version", True, "str"),
+        _FieldRule("deployment_status", True, "enum", DeploymentStatus),
+        _FieldRule("target_dimension", True, "str"),
+        _FieldRule("current_value", True, "number"),
+        _FieldRule("proposed_value", True, "number"),
+        _FieldRule("source_event_ids", True, "list", item_kind="id"),
+        _FieldRule("aggregation_window", True, "int"),
+        _FieldRule("minimum_evidence", True, "bool"),
+        _FieldRule("uncertainty_threshold", True, "bool"),
+        _FieldRule("confidence", True, "number"),
+        _FieldRule("cooldown", True, "int"),
+        _FieldRule("hysteresis", True, "number"),
+        _FieldRule("maximum_step_size", True, "number"),
+        _FieldRule("rollback_rule", False, "str"),
+        _FieldRule("abstention_rule", False, "str"),
+        _FieldRule("decision", True, "enum", AdaptationDecision),
+        _FieldRule("reason", True, "str"),
+        _FieldRule("prior_state", True, "str"),
+        _FieldRule("resulting_state", True, "str"),
+        _FieldRule("eeg_ignored", True, "bool"),
+        _FieldRule("applied_at", False, "number"),
     ],
 }

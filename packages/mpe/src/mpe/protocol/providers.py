@@ -10,6 +10,7 @@ from typing import Any
 
 from mpe.enums import AnswerStatus, EvaluationStatus, InterpretationType, ResponseMode, ScopeStatus
 from mpe.errors import ProviderFailureError, ProviderTimeoutError
+from mpe.protocol.eeg_provider import MockEEGProvider
 from mpe.protocol.fixture_minimal import ImmediateRecallFixture
 from mpe.providers import (
     ContentItem,
@@ -287,6 +288,7 @@ class FixtureProviderSet:
         self.normalizer = FixtureResponseNormalizer()
         self.evaluator = SelfConfirmationEvaluator()
         self.scheduler = NoOpScheduler()
+        self.eeg = MockEEGProvider(fixture)
         self.set = ProviderSet(
             renderer=self.renderer,
             observation=self.observation,
@@ -294,4 +296,5 @@ class FixtureProviderSet:
             normalizer=self.normalizer,
             evaluator=self.evaluator,
             scheduler=self.scheduler,
+            eeg=self.eeg,
         )

@@ -24,6 +24,8 @@ class FixtureItem:
     self_confirmation: str
     latency: float
     assets: dict[str, FixtureAsset] = field(default_factory=dict)
+    eeg_load: float = 0.0
+    eeg_quality_flags: list[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True)
@@ -121,8 +123,11 @@ class AdaptationRule:
 
     repeat_cap: int
     latency_bound: float
+    response_deadline: float = 10.0
+    max_response_deadline: float = 20.0
+    deadline_step: float = 0.5
 
 
 def default_adaptation_rule() -> AdaptationRule:
-    """Return the default bounded adaptation rule: cap=1, latency bound=2.0s."""
+    """Return the default bounded adaptation rule."""
     return AdaptationRule(repeat_cap=1, latency_bound=2.0)

@@ -17,6 +17,7 @@ from mpe.enums import (
     ScopeStatus,
 )
 from mpe.errors import ProviderFailureError, ProviderTimeoutError
+from mpe.protocol.eeg_provider import MockEEGProvider
 from mpe.protocol.fixture_recognition import RecognitionFixture
 from mpe.protocol.providers import NoOpScheduler
 from mpe.providers import (
@@ -275,6 +276,7 @@ class RecognitionProviderSet:
         self.normalizer = RecognitionNormalizer()
         self.evaluator = RecognitionEvaluator()
         self.scheduler: Scheduler = NoOpScheduler()
+        self.eeg = MockEEGProvider(fixture)
         self.set = ProviderSet(
             renderer=self.renderer,
             observation=self.observation,
@@ -282,4 +284,5 @@ class RecognitionProviderSet:
             normalizer=self.normalizer,
             evaluator=self.evaluator,
             scheduler=self.scheduler,
+            eeg=self.eeg,
         )

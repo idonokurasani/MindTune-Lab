@@ -7,7 +7,7 @@ name = "mpe"
 version = "0.1.0"
 description = "MindTune Protocol Engine v1.1 - Core runtime"
 readme = "README.md"
-requires-python = ">=3.11"
+requires-python = ">=3.10"
 authors = [
     {name = "MindTune Lab", email = "lab@mindtune.local"}
 ]

@@ -95,6 +95,11 @@ class Scheduler(Protocol):
     def select_next(self, scheduling_context: "SchedulingContext") -> dict[str, Any]: ...
 
 
+class EEGProvider(Protocol):
+    def capabilities(self) -> dict[str, Any]: ...
+    def poll(self, content_item_id: str) -> dict[str, Any]: ...
+
+
 # --------------------------------------------------------------------------- #
 # Scheduling context
 # --------------------------------------------------------------------------- #
@@ -399,6 +404,7 @@ class ProviderSet:
     normalizer: DomainNormalizer
     evaluator: Evaluator
     scheduler: Scheduler
+    eeg: EEGProvider | None = None
 
     def check_versions(self, dependency_versions: dict[str, str]) -> None:
         """Verify that each provider version matches the protocol dependencies."""

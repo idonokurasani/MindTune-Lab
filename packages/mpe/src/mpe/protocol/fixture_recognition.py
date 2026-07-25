@@ -16,6 +16,8 @@ class RecognitionFixtureItem:
     selected_choice_index: int
     latency: float
     assets: dict[str, FixtureAsset] = field(default_factory=dict)
+    eeg_load: float = 0.0
+    eeg_quality_flags: list[str] = field(default_factory=list)
 
 
 @dataclass(frozen=True)

@@ -157,21 +157,83 @@ class RecognitionRunnerTests(unittest.TestCase):
             role = event.payload["asset_role"]
             self.assertTrue(role.startswith("choice_"))
 
-    def test_no_provider_access(self) -> None:
+    def test_eeg_observation_is_emitted(self) -> None:
         result = self._run(InMemoryEventStore())
-        for event in result.events:
-            if event.component == "renderer":
-                self.assertEqual(event.payload.get("renderer_id"), "fixture_recognition_renderer")
-            if event.event_type == "observation_received":
-                self.assertEqual(event.payload.get("provider_id"), "fixture_recognition_choice")
-                self.assertEqual(event.payload.get("observation_type"), "touch_input")
+        eeg_events = [
+            e
+            for e in result.events
+            if e.event_type == "observation_received"
+            and e.payload.get("observation_type") == "eeg_burst"
+        ]
+        self.assertTrue(eeg_events, "EEG observations must be emitted during the trial")
+        for event in eeg_events:
+            self.assertEqual(event.payload.get("provider_id"), "mock_eeg")
+            self.assertIn("cognitive_load_index", event.payload.get("payload", {}))
 
-    def test_no_eeg_influence(self) -> None:
-        result = self._run(InMemoryEventStore())
-        for event in result.events:
-            self.assertNotEqual(event.payload.get("observation_type"), "eeg_burst")
-            payload_str = json.dumps(event.as_dict())
-            self.assertNotIn("eeg", payload_str.lower())
+    def test_low_quality_eeg_is_ignored(self) -> None:
+        alpha = self.fixture.items[0]
+        bad_eeg_item = RecognitionFixtureItem(
+            content_item_id="item.bad_eeg",
+            correct_choice_index=0,
+            selected_choice_index=1,
+            latency=5.0,
+            assets=alpha.assets,
+            eeg_load=0.9,
+            eeg_quality_flags=["artifact"],
+        )
+        fixture = RecognitionFixture(
+            fixture_id="minimal-recognition",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[bad_eeg_item],
+        )
+        result = run_recognition_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        decisions = [e for e in result.events if e.event_type == "adaptation_decision"]
+        # One incorrect sample with discarded EEG stays at baseline due to hysteresis.
+        self.assertTrue(decisions)
+        self.assertEqual(decisions[-1].payload["proposed_value"], 10.0)
+
+    def test_eeg_does_not_override_behavior(self) -> None:
+        alpha = self.fixture.items[0]
+        good_behavior_high_eeg = RecognitionFixtureItem(
+            content_item_id="item.good_behavior_high_eeg",
+            correct_choice_index=0,
+            selected_choice_index=0,
+            latency=0.5,
+            assets=alpha.assets,
+            eeg_load=0.9,
+            eeg_quality_flags=[],
+        )
+        fixture = RecognitionFixture(
+            fixture_id="minimal-recognition",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[good_behavior_high_eeg, good_behavior_high_eeg],
+        )
+        result = run_recognition_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        decisions = [e for e in result.events if e.event_type == "adaptation_decision"]
+        self.assertTrue(decisions)
+        for decision in decisions:
+            self.assertEqual(decision.payload["proposed_value"], 10.0)
+            self.assertEqual(decision.payload["decision"], "NO_CHANGE_INSUFFICIENT_EVIDENCE")
 
     def test_adaptation_source_recorded(self) -> None:
         result = self._run(InMemoryEventStore())
@@ -263,6 +325,153 @@ class RecognitionRunnerTests(unittest.TestCase):
         self.assertEqual(beta_summary.outcome, "correct")
         self.assertEqual(beta_summary.correct, True)
         self.assertEqual(beta_summary.repeats_used, 1)
+
+    def test_adaptation_changes_next_executable_trial(self) -> None:
+        # An incorrect behavioral observation re-queues the same item as the next trial.
+        result = self._run(InMemoryEventStore())
+        trials = [e for e in result.events if e.event_type == "trial_created"]
+        self.assertEqual(
+            [e.payload["content_item_ids"] for e in trials],
+            [["item.alpha"], ["item.beta"], ["item.beta"]],
+        )
+        initial_beta, repeat_beta = [
+            e for e in trials if e.payload["content_item_ids"] == ["item.beta"]
+        ]
+        self.assertNotIn("adaptation_source", initial_beta.payload)
+        self.assertEqual(repeat_beta.payload["repeat_count"], 1)
+        self.assertEqual(repeat_beta.payload["cap"], 1)
+        self.assertEqual(repeat_beta.payload["adaptation_source"], "behavior")
+
+    def test_adapted_session_is_replayable(self) -> None:
+        # Adaptation decisions are persisted and reproducible by replay.
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / "events.db"
+            store1 = SQLiteEventStore(path)
+            result1 = self._run(store1)
+            session_id = result1.runtime.state.session_id
+            assert session_id is not None
+
+            store2 = SQLiteEventStore(path)
+            replayed = Replay(store2).replay(session_id)
+            events2 = store2.read(session_id)
+            self.assertEqual(replayed.session_status, SessionStatus.COMPLETED)
+            beta_trials = [
+                e for e in events2
+                if e.event_type == "trial_created"
+                and e.payload.get("content_item_ids") == ["item.beta"]
+            ]
+            self.assertEqual(len(beta_trials), 2)
+            self.assertEqual(beta_trials[1].payload["adaptation_source"], "behavior")
+
+    def _make_adaptation_item(
+        self,
+        item_id: str,
+        selected: int,
+        correct: int,
+        latency: float,
+        eeg_load: float = 0.0,
+        eeg_quality_flags: list[str] | None = None,
+    ) -> RecognitionFixtureItem:
+        if eeg_quality_flags is None:
+            eeg_quality_flags = []
+        alpha = self.fixture.items[0]
+        return RecognitionFixtureItem(
+            content_item_id=item_id,
+            correct_choice_index=correct,
+            selected_choice_index=selected,
+            latency=latency,
+            assets={
+                "choice_0": alpha.assets["choice_0"],
+                "choice_1": alpha.assets["choice_1"],
+            },
+            eeg_load=eeg_load,
+            eeg_quality_flags=eeg_quality_flags,
+        )
+
+    def test_response_deadline_escalates_and_recovers(self) -> None:
+        """Sustained deterioration extends the next response window; sustained recovery
+        restores it to baseline in gradual steps.
+        """
+        fixture = RecognitionFixture(
+            fixture_id="adaptation-recognition",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[
+                self._make_adaptation_item("item.1", 0, 0, 0.5),
+                self._make_adaptation_item("item.2", 0, 1, 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.3", 0, 1, 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.4", 0, 1, 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.5", 0, 0, 0.5),
+                self._make_adaptation_item("item.6", 0, 0, 0.5),
+                self._make_adaptation_item("item.7", 0, 0, 0.5),
+                self._make_adaptation_item("item.8", 0, 0, 0.5),
+                self._make_adaptation_item("item.9", 0, 0, 0.5),
+            ],
+        )
+        result = run_recognition_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        durations = [
+            e.payload["deadline_at"] - e.payload["opened_at"]
+            for e in result.events
+            if e.event_type == "response_window_opened"
+        ]
+        self.assertEqual(durations[0], 10.0)
+        self.assertEqual(durations[1], 10.0)
+        self.assertGreater(durations[3], durations[2])
+        self.assertGreaterEqual(durations[4], durations[3])
+        # Hysteresis: one good response does not immediately restore baseline.
+        self.assertGreaterEqual(durations[5], durations[4])
+        # Sustained recovery gradually restores baseline.
+        self.assertLess(durations[6], durations[5])
+        self.assertEqual(durations[-1], 10.0)
+
+        decisions = [e for e in result.events if e.event_type == "adaptation_decision"]
+        apply_decisions = [d for d in decisions if d.payload["decision"] == "APPLY"]
+        no_change_decisions = [
+            d for d in decisions if d.payload["decision"] == "NO_CHANGE_INSUFFICIENT_EVIDENCE"
+        ]
+        self.assertTrue(apply_decisions)
+        self.assertTrue(no_change_decisions)
+        self.assertEqual(decisions[-1].payload["proposed_value"], 10.0)
+
+    def test_hysteresis_requires_sustained_deterioration(self) -> None:
+        """A single adverse latency sample must not trigger recovery assistance."""
+        fixture = RecognitionFixture(
+            fixture_id="adaptation-recognition",
+            protocol_id=self.fixture.protocol_id,
+            protocol_version_id=self.fixture.protocol_version_id,
+            program_id=self.fixture.program_id,
+            program_version_id=self.fixture.program_version_id,
+            task_definition_id=self.fixture.task_definition_id,
+            block_id=self.fixture.block_id,
+            block_type=self.fixture.block_type,
+            items=[
+                self._make_adaptation_item("item.1", 0, 0, 0.5),
+                self._make_adaptation_item("item.2", 0, 1, 5.0, eeg_load=0.8),
+                self._make_adaptation_item("item.3", 0, 0, 0.5),
+            ],
+        )
+        result = run_recognition_session(
+            InMemoryEventStore(),
+            fixture=fixture,
+            rule=AdaptationRule(repeat_cap=0, latency_bound=2.0),
+        )
+        durations = [
+            e.payload["deadline_at"] - e.payload["opened_at"]
+            for e in result.events
+            if e.event_type == "response_window_opened"
+        ]
+        self.assertEqual(durations[0], 10.0)
+        self.assertEqual(durations[1], 10.0)
+        self.assertEqual(durations[2], 10.0)
 
 
 class RecognitionCLITests(unittest.TestCase):
@@ -366,7 +575,8 @@ class RecognitionProcessTests(unittest.TestCase):
         cmd = [sys.executable, "-m", "mpe", "--store-path", str(self.store_path)] + argv
         env = dict(os.environ)
         env["PYTHONPATH"] = "packages/mpe/src"
-        return subprocess.run(cmd, capture_output=True, text=True, cwd="/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console", env=env)
+        repo_root = Path(__file__).resolve().parents[3]
+        return subprocess.run(cmd, capture_output=True, text=True, cwd=str(repo_root), env=env)
 
     def test_python_mpe_invocation(self) -> None:
         run = self._run_process(["run-recognition", "--format", "json"])

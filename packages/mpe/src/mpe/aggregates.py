@@ -352,6 +352,12 @@ def _on_schedule_decision(state: RuntimeState, event: Event) -> None:
     pass
 
 
+def _on_adaptation_decision(state: RuntimeState, event: Event) -> None:
+    # Adaptation decisions are stored as audit events; the policy is replayed
+    # by re-applying the same source events, not by reconstructing policy state.
+    pass
+
+
 def _on_session_cancelled_or_terminated(state: RuntimeState, event: Event) -> None:
     state.session_status = SessionStatus.TERMINATED
     state.terminal = True
@@ -389,5 +395,6 @@ _EVENT_HANDLERS: dict[str, Any] = {
     "feedback_started": _on_feedback_started,
     "feedback_completed": _on_feedback_completed,
     "schedule_decision": _on_schedule_decision,
+    "adaptation_decision": _on_adaptation_decision,
     "protocol_terminated": _on_session_cancelled_or_terminated,
 }

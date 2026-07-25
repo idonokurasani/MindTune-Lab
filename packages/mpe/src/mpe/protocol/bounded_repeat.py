@@ -66,6 +66,7 @@ class BoundedRepeatPlan(Generic[T]):
         self._cap = cap
         self._key = key
         self._executed: dict[str, int] = {}
+        self._consumed = False
 
     @property
     def planned_items(self) -> list[T]:
@@ -73,6 +74,9 @@ class BoundedRepeatPlan(Generic[T]):
         return list(self._plan)
 
     def __iter__(self) -> Iterator[BoundedRepeatStep[T]]:
+        if self._consumed:
+            raise RuntimeError("BoundedRepeatPlan is single-use and has already been iterated")
+        self._consumed = True
         index = 0
         pending: RepeatDecision | None = None
         while index < len(self._plan):
