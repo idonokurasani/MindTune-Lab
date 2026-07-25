@@ -11,3 +11,26 @@ __pycache__/
 /output/
 .oura_credentials
 .oura_token
+
+# Local Python environments
+.venv/
+.venv_*/
+venv/
+env/
+
+# Downloaded ML models
+data/phonikud_models/
+
+# Generated Hebrew indexes and benchmark artifacts
+data/hebrew/indexes/
+data/hebrew/phase3/benchmark_partitions.json
+
+# Runtime and generated data
+runtime/
+audio_cache/
+*.db
+*.sqlite
+*.sqlite3
+
+# macOS
+.DS_Store
