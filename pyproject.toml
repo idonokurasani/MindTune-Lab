@@ -25,7 +25,7 @@ hebrew = [
 ]
 
 [tool.setuptools.packages.find]
-where = ["packages/mpe/src"]
+where = ["packages/mpe/src", "packages/clm/src"]
 
 [tool.black]
 line-length = 100
@@ -50,7 +50,7 @@ ignore = ["E501"]
 "tests/test_help_profiler.py" = ["E402"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["mpe", "mantra"]
+known-first-party = ["mpe", "mantra", "mindtune_clm"]
 
 [tool.mypy]
 python_version = "3.12"
