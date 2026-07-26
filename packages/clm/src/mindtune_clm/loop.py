@@ -84,12 +84,13 @@ class ControlLoop:
     program_version_id: ProgramVersionID = field(default_factory=lambda: ProgramVersionID("clm-01-program-v1.0.0"))
     learner_id: str = "learner_clm01"
 
+    session_id: SessionID | None = None
     runtime: Runtime = field(init=False)
-    session_id: SessionID = field(init=False)
 
     def __post_init__(self) -> None:
+        if self.session_id is None:
+            self.session_id = SessionID(str(make_id(SessionID)))
         self.runtime = Runtime(self.store, self._providers(), self.clock)
-        self.session_id = SessionID(str(make_id(SessionID)))
 
     def _providers(self) -> ProviderSet:
         return ProviderSet(

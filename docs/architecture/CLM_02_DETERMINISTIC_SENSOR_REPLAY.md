@@ -91,7 +91,7 @@ flowchart TD
 
 1. **Source immutability.** The fixture text is checksummed before replay; the on-disk file is not modified.
 2. **Stable IDs.** Sample, window, and observation-frame IDs are derived from `source_id` + index + `replay_id`.
-3. **No wall clock.** `ReplayClock` advances only by configured `sample_interval` and replay event count.
+3. **No wall clock / speed-independent semantics.** `ReplayClock` advances only by configured `sample_interval` and replay event count.  `scale` is an external execution-speed hint for a playback scheduler and never affects `now()` or the canonical digest.
 4. **Canonical digest.** `ReplayDigest` is computed from a stable JSON serialization that excludes UUIDs, absolute paths, and wall-clock timestamps.
 5. **Duplicate/regression rules.** Duplicate timestamps keep the first occurrence; regressions are rejected and logged.
 

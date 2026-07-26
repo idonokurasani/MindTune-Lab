@@ -26,7 +26,7 @@ from mindtune_clm.replay.source import RecordedSensorSource
 from mindtune_clm.replay.windows import WindowPolicy, make_windows
 from mpe.enums import DataClassification
 from mpe.event_store import InMemoryEventStore
-from mpe.types import ProgramVersionID, ProtocolVersionID
+from mpe.types import ProgramVersionID, ProtocolVersionID, SessionID
 
 
 def _canonical_json(obj: Any) -> str:
@@ -171,19 +171,21 @@ class ReplayRunner:
         clm_policy: Any,
         deterministic_seed: str = "clm02_seed_0",
         requested_time_interval: tuple[float, float] | None = None,
+        clock_scale: float = 1.0,
     ) -> ReplayResult:
         """Execute the full replay pipeline deterministically."""
         sample_interval = 1.0 / max(1.0, source.source_sampling_rate_hz)
         clock = ReplayClock(
             source_start_timestamp=source.source_start_timestamp,
             sample_interval=sample_interval,
-            scale=1.0,
+            scale=clock_scale,
         )
 
+        # ``clock_scale`` is not part of the manifest because it is an external
+        # execution-speed knob and must not change the canonical replay digest.
         clock_config = {
             "source_start_timestamp": source.source_start_timestamp,
             "sample_interval": sample_interval,
-            "scale": 1.0,
         }
 
         manifest = make_manifest(
@@ -206,7 +208,12 @@ class ReplayRunner:
         )
 
         store = InMemoryEventStore()
-        loop = ControlLoop(store=store, clock=clock, policy=clm_policy)
+        loop = ControlLoop(
+            store=store,
+            clock=clock,
+            policy=clm_policy,
+            session_id=SessionID(f"replay-{replay_id}"),
+        )
         loop.runtime.create_session(
             program_version_id=self.program_version_id,
             protocol_version_id=self.protocol_version_id,

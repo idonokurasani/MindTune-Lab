@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import hashlib
+import json
+import re
 import unittest
 from pathlib import Path
 from typing import Any
@@ -60,7 +62,7 @@ def _default_policies() -> tuple[CSVParser, NormalizationPolicy, QualityPolicy, 
     return parser, normalization, quality, window, clm
 
 
-def _run_fixture(name: str, replay_id: str = "test-replay"):
+def _run_fixture(name: str, replay_id: str = "test-replay", clock_scale: float = 1.0):
     text = _fixture_text(name)
     source, content = load_source_from_text(
         source_id=f"fixture_{name.replace('.', '_')}",
@@ -81,6 +83,7 @@ def _run_fixture(name: str, replay_id: str = "test-replay"):
         quality_policy=quality,
         window_policy=window,
         clm_policy=clm,
+        clock_scale=clock_scale,
     )
 
 
@@ -380,6 +383,58 @@ class CLM02ReplayTests(unittest.TestCase):
         event_types = [e.event_type for e in result.clm_session_result.events]
         self.assertIn(CLM02EventType.SENSOR_REPLAY_FAILED.value, event_types)
         self.assertNotIn(CLM02EventType.SENSOR_REPLAY_COMPLETED.value, event_types)
+
+    def test_clock_scale_does_not_change_semantic_time(self) -> None:
+        from mindtune_clm.replay.clock import ReplayClock
+
+        c1 = ReplayClock(source_start_timestamp=0.0, sample_interval=0.1, scale=1.0)
+        c2 = ReplayClock(source_start_timestamp=0.0, sample_interval=0.1, scale=10.0)
+        for _ in range(10):
+            c1.advance()
+            c2.advance()
+        self.assertEqual(c1.now(), c2.now())
+
+    def test_clock_advances_only_by_source_or_manifest_time(self) -> None:
+        from mindtune_clm.replay.clock import ReplayClock
+
+        clock = ReplayClock(source_start_timestamp=0.0, sample_interval=0.1)
+        self.assertEqual(clock.now(), 0.0)
+        clock.advance()
+        self.assertEqual(clock.now(), 0.1)
+        clock.set_time(5.0)
+        self.assertEqual(clock.now(), 5.0)
+
+    def test_execution_speed_does_not_change_digest(self) -> None:
+        r1 = _run_fixture("deterioration_recovery.replay.csv", clock_scale=1.0)
+        r2 = _run_fixture("deterioration_recovery.replay.csv", clock_scale=5.0)
+        self.assertEqual(r1.canonical_replay_digest.digest_hex, r2.canonical_replay_digest.digest_hex)
+        self.assertEqual(r1.canonical_replay_digest.canonical_json, r2.canonical_replay_digest.canonical_json)
+
+    def test_execution_speed_does_not_change_event_payloads(self) -> None:
+        r1 = _run_fixture("clean_stable.replay.csv", clock_scale=1.0)
+        r2 = _run_fixture("clean_stable.replay.csv", clock_scale=3.0)
+        p1 = [e.as_dict() for e in r1.clm_session_result.events]
+        p2 = [e.as_dict() for e in r2.clm_session_result.events]
+        self.assertEqual(
+            [e["event_type"] for e in p1],
+            [e["event_type"] for e in p2],
+        )
+        # Runtime UUIDs are allowed to differ; the semantic payload content must not.
+        uuid_re = re.compile(r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}")
+        n1 = [uuid_re.sub("<uuid>", json.dumps(e["payload"], sort_keys=True)) for e in p1]
+        n2 = [uuid_re.sub("<uuid>", json.dumps(e["payload"], sort_keys=True)) for e in p2]
+        self.assertEqual(n1, n2)
+
+    def test_no_wall_clock_or_sleep_in_replay_payloads(self) -> None:
+        result = _run_fixture("clean_stable.replay.csv")
+        for event in result.clm_session_result.events:
+            self.assertIsNone(event.wallclock_at)
+            payload = event.payload
+            for key in payload:
+                lower = key.lower()
+                self.assertNotIn("sleep", lower)
+                self.assertNotIn("delay", lower)
+                self.assertNotIn("wait", lower)
 
 
 def _cycle_key(c: Any) -> dict[str, Any]:

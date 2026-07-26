@@ -9,11 +9,12 @@ from mpe.runtime import Clock
 
 @dataclass
 class ReplayClock(Clock):
-    """A deterministic clock that advances only from manifest/source timestamps.
+    """A deterministic clock that advances only by source/manifest time.
 
-    No wall-clock call is made.  The clock starts at ``source_start_timestamp``
-    and advances by ``sample_interval`` on each ``advance()`` call.  ``scale``
-    supports accelerated replay without changing semantic event times.
+    ``now()`` returns the semantic replay time.  It starts at
+    ``source_start_timestamp`` and advances by ``sample_interval`` on each
+    ``advance()`` call.  ``scale`` is an execution-speed hint for an external
+    playback scheduler and never affects values returned by ``now()``.
     """
 
     source_start_timestamp: float = 0.0
@@ -22,15 +23,19 @@ class ReplayClock(Clock):
 
     def __post_init__(self) -> None:
         self._time = self.source_start_timestamp
-        self._step = self.sample_interval * self.scale
+        self._step = self.sample_interval
 
     def set_time(self, t: float) -> None:
         """Set the replay time deterministically; never uses wall-clock time."""
         self._time = t
 
     def advance(self, steps: float = 1.0) -> None:
-        """Advance by ``sample_interval * scale * steps``."""
-        self._time += self._step * steps
+        """Advance the semantic time by ``sample_interval * steps``.
+
+        ``scale`` is intentionally not used here; it belongs to an external
+        execution scheduler, not the semantic replay clock.
+        """
+        self._time += self.sample_interval * steps
 
     def now(self) -> float:
         return self._time
