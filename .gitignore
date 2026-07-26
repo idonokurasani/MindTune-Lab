@@ -34,3 +34,8 @@ audio_cache/
 
 # macOS
 .DS_Store
+
+# Audit output and editable install metadata
+audit/
+*.egg-info/
+
