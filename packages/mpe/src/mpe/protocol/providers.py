@@ -151,12 +151,19 @@ class FixtureResponseInterpreter(ResponseInterpreter):
         return {
             "interpreter_id": "fixture_interpreter",
             "interpreter_version": self.version,
-            "response_modes_supported": ["touch"],
+            "response_modes_supported": ["touch", "typed"],
             "output_schema": "selected_option",
         }
 
     def interpret(self, captured_response: dict[str, Any]) -> dict[str, Any]:
         payload = captured_response.get("captured_payload", "")
+        mode = captured_response.get("response_mode", "touch")
+        if mode == "typed":
+            interpretation_type = InterpretationType.TYPED_TEXT.value
+        elif mode == "button":
+            interpretation_type = InterpretationType.BUTTON_LABEL.value
+        else:
+            interpretation_type = InterpretationType.SELECTED_OPTION.value
         return {
             "response_interpretation_id": str(make_id(ResponseInterpretationID)),
             "response_window_id": captured_response.get("response_window_id", ""),
@@ -165,7 +172,7 @@ class FixtureResponseInterpreter(ResponseInterpreter):
             "interpreter_version": self.version,
             "interpreted_payload": payload,
             "interpretation_confidence": 1.0,
-            "interpretation_type": InterpretationType.SELECTED_OPTION.value,
+            "interpretation_type": interpretation_type,
             "component_timestamp": captured_response.get("captured_at", 0.0),
         }
 
@@ -181,17 +188,22 @@ class FixtureResponseNormalizer(DomainNormalizer):
             "normalizer_id": "fixture_normalizer",
             "normalizer_version": self.version,
             "normalization_rules_version": "1.0.0",
-            "content_types_supported": ["fixture_self_confirmation"],
+            "content_types_supported": ["fixture_self_confirmation", "typed_text"],
         }
 
     def normalize(self, response_interpretation: dict[str, Any]) -> dict[str, Any]:
+        mode = response_interpretation.get("interpretation_type", ResponseMode.TOUCH.value)
+        if mode == InterpretationType.TYPED_TEXT.value:
+            response_mode = ResponseMode.TYPED.value
+        else:
+            response_mode = ResponseMode.TOUCH.value
         return {
             "domain_normalized_response_id": str(make_id(DomainNormalizedResponseID)),
             "response_window_id": response_interpretation.get("response_window_id", ""),
             "response_interpretation_id": response_interpretation.get(
                 "response_interpretation_id", ""
             ),
-            "response_mode": ResponseMode.TOUCH.value,
+            "response_mode": response_mode,
             "normalizer_id": "fixture_normalizer",
             "normalizer_version": self.version,
             "normalized_payload": response_interpretation.get("interpreted_payload", ""),

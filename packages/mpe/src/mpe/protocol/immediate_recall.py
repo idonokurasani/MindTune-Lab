@@ -43,7 +43,7 @@ from mpe.protocol.trial_pipeline import (
     TrialIdentity,
     TrialPipeline,
 )
-from mpe.providers import ContentItem
+from mpe.providers import ContentItem, ProviderSet, SchedulingContext, TrialContext
 from mpe.runtime import Clock, Runtime
 from mpe.types import (
     BlockID,
@@ -87,11 +87,12 @@ class ImmediateRecallRunner:
         fixture: ImmediateRecallFixture | None = None,
         rule: AdaptationRule | None = None,
         clock: Clock | None = None,
+        provider_set: ProviderSet | None = None,
     ) -> None:
         self.fixture = fixture or make_minimal_fixture()
         self.rule = rule or default_adaptation_rule()
         self.clock = clock or Clock()
-        self.providers = FixtureProviderSet(self.fixture).set
+        self.providers = provider_set if provider_set is not None else FixtureProviderSet(self.fixture).set
         self.runtime = Runtime(store, self.providers, self.clock)
         self.pipeline = TrialPipeline(self.runtime, self.providers)
         self.item_outcomes: list[ItemOutcome] = []
@@ -183,15 +184,18 @@ class ImmediateRecallRunner:
         trial_id = TrialID(str(make_id(TrialID)))
         trial_index = self._trial_index
 
+        response_mode = ResponseMode(item.response_mode.lower()) if item.response_mode else ResponseMode.TOUCH
+        is_typed = response_mode is ResponseMode.TYPED
+
         content_item = ContentItem(
             content_item_id=item.content_item_id,
             provider_id="fixture",
             provider_version="1.0.0",
             content_type="fixture_item",
             checksum="fixture_checksum",
-            surface_form=item.content_item_id,
+            surface_form=item.typed_response if is_typed else item.content_item_id,
             normalized_form=item.content_item_id,
-            metadata={"expected_relation": item.expected_relation},
+            metadata={"expected_relation": item.expected_relation, "response_mode": response_mode.value},
         )
 
         pipeline = self.pipeline
@@ -205,7 +209,7 @@ class ImmediateRecallRunner:
             ),
             repeat=repeat,
             response_requirement=ResponseRequirement.REQUIRED.value,
-            accepted_response_modes=[ResponseMode.TOUCH.value],
+            accepted_response_modes=[response_mode.value],
         )
 
         # 0. Collect EEG observation before the overt response so it can inform the
@@ -217,11 +221,16 @@ class ImmediateRecallRunner:
             eeg_event_id = self._emit_eeg_observation(trial_id, eeg_obs)
 
         # 1. Present cue (prompt).
+        prompt_payload = (
+            f"Type the target word for: {item.content_item_id}"
+            if is_typed
+            else f"Recall the target for {item.content_item_id}"
+        )
         pipeline.emit_instruction(
             trial_id,
             InstructionSpec(
                 instruction_type=InstructionType.PRESENT_STIMULUS,
-                payload=f"Recall the target for {item.content_item_id}",
+                payload=prompt_payload,
                 target_operation="covert_recall",
                 duration=1.0,
                 observable_response_expected=False,
@@ -237,12 +246,18 @@ class ImmediateRecallRunner:
         )
 
         # 2. Open anticipation/self-confirmation window.
+        if is_typed:
+            request_payload = "Type the target word for the given cue."
+            request_operation = "type_target_response"
+        else:
+            request_payload = "Indicate whether you recalled the target: positive or negative"
+            request_operation = "self_confirm"
         pipeline.emit_instruction(
             trial_id,
             InstructionSpec(
                 instruction_type=InstructionType.REQUEST_OVERT_RESPONSE,
-                payload="Indicate whether you recalled the target: positive or negative",
-                target_operation="self_confirm",
+                payload=request_payload,
+                target_operation=request_operation,
                 duration=3.0,
                 observable_response_expected=True,
             ),
@@ -250,15 +265,17 @@ class ImmediateRecallRunner:
         response_window_id = pipeline.open_response_window(
             trial_id,
             ResponseWindowSpec(
-                response_modes=(ResponseMode.TOUCH.value,),
+                response_modes=(response_mode.value,),
                 duration=self.response_deadline,
             ),
         )
 
         # 3. Collect deterministic self-confirmation observation.
+        response_value = item.typed_response if is_typed else item.self_confirmation
         observation_spec = ObservationSpec(
-            injection=f"{item.latency}:{item.self_confirmation}",
+            injection=f"{item.latency}:{response_value}",
             provider_id="fixture_self_confirmation",
+            observation_type="typed_input" if is_typed else "touch_input",
         )
         observation = pipeline.poll_observation(observation_spec)
         self_confirmation = observation.raw_payload
@@ -274,20 +291,21 @@ class ImmediateRecallRunner:
         )
 
         # 4. Response pipeline (captured -> interpreted -> normalized -> evaluated).
+        device_provenance = ["fixture_keyboard_0"] if is_typed else ["fixture_button_0"]
         normalized = pipeline.run_response_pipeline(
             trial_id,
             response_window_id,
             observation,
             captured_payload=self_confirmation,
-            response_mode=ResponseMode.TOUCH.value,
+            response_mode=response_mode.value,
             captured_at=received_at,
-            device_provenance=["fixture_button_0"],
+            device_provenance=device_provenance,
         )
         evaluation_event_id = pipeline.emit_evaluation(
             trial_id,
             normalized,
             content_item,
-            response_mode=ResponseMode.TOUCH.value,
+            response_mode=response_mode.value,
             protocol_version_id=self.fixture.protocol_version_id,
         )
 
@@ -421,9 +439,16 @@ def run_immediate_recall_session(
     fixture: ImmediateRecallFixture | None = None,
     rule: AdaptationRule | None = None,
     clock: Clock | None = None,
+    provider_set: ProviderSet | None = None,
 ) -> ImmediateRecallResult:
     """High-level entry point for running an Immediate Recall session."""
-    runner = ImmediateRecallRunner(store, fixture=fixture, rule=rule, clock=clock)
+    runner = ImmediateRecallRunner(
+        store,
+        fixture=fixture,
+        rule=rule,
+        clock=clock,
+        provider_set=provider_set,
+    )
     return runner.run_session(
         learner_id=learner_id,
         random_seed=random_seed,

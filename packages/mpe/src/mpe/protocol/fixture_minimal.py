@@ -26,6 +26,10 @@ class FixtureItem:
     assets: dict[str, FixtureAsset] = field(default_factory=dict)
     eeg_load: float = 0.0
     eeg_quality_flags: list[str] = field(default_factory=list)
+    # Optional typed-response value.  When provided, the runner treats the item
+    # as a typed recall trial; otherwise it falls back to self-confirmation.
+    typed_response: str | None = None
+    response_mode: str = "touch"
 
 
 @dataclass(frozen=True)
