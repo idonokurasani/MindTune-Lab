@@ -63,6 +63,19 @@ SUPPORTED_EVENT_TYPES = frozenset(
         "actuation_applied",
         "adapted_stimulus_rendered",
         "intervention_outcome_evaluated",
+        # CLM-02 deterministic sensor replay events
+        "sensor_source_registered",
+        "replay_manifest_created",
+        "sensor_sample_parsed",
+        "sensor_sample_normalized",
+        "sensor_quality_assessed",
+        "replay_window_created",
+        "replay_window_rejected",
+        "observation_frame_generated_from_replay",
+        "sensor_replay_started",
+        "sensor_replay_completed",
+        "sensor_replay_failed",
+        "replay_digest_computed",
     }
 )
 

@@ -388,6 +388,55 @@ def _on_intervention_outcome_evaluated(state: RuntimeState, event: Event) -> Non
     pass
 
 
+# CLM-02 replay events are audit events; state is reconstructed by replaying source events.
+def _on_sensor_source_registered(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_replay_manifest_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_sensor_sample_parsed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_sensor_sample_normalized(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_sensor_quality_assessed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_replay_window_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_replay_window_rejected(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_observation_frame_generated_from_replay(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_sensor_replay_started(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_sensor_replay_completed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_sensor_replay_failed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_replay_digest_computed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
 def _on_session_cancelled_or_terminated(state: RuntimeState, event: Event) -> None:
     state.session_status = SessionStatus.TERMINATED
     state.terminal = True
@@ -434,4 +483,16 @@ _EVENT_HANDLERS: dict[str, Any] = {
     "actuation_applied": _on_actuation_applied,
     "adapted_stimulus_rendered": _on_adapted_stimulus_rendered,
     "intervention_outcome_evaluated": _on_intervention_outcome_evaluated,
+    "sensor_source_registered": _on_sensor_source_registered,
+    "replay_manifest_created": _on_replay_manifest_created,
+    "sensor_sample_parsed": _on_sensor_sample_parsed,
+    "sensor_sample_normalized": _on_sensor_sample_normalized,
+    "sensor_quality_assessed": _on_sensor_quality_assessed,
+    "replay_window_created": _on_replay_window_created,
+    "replay_window_rejected": _on_replay_window_rejected,
+    "observation_frame_generated_from_replay": _on_observation_frame_generated_from_replay,
+    "sensor_replay_started": _on_sensor_replay_started,
+    "sensor_replay_completed": _on_sensor_replay_completed,
+    "sensor_replay_failed": _on_sensor_replay_failed,
+    "replay_digest_computed": _on_replay_digest_computed,
 }

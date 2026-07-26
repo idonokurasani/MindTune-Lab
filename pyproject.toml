@@ -72,3 +72,7 @@ follow_imports = "skip"
 [[tool.mypy.overrides]]
 module = "numpy"
 follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = "mpe.*"
+ignore_missing_imports = true
