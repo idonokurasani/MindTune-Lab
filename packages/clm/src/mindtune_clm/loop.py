@@ -6,6 +6,8 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from mindtune_clm.actuator import ActuationReceipt, MantraActuator
+from mindtune_clm.audio.playback import PlaybackScheduler
+from mindtune_clm.audio.renderer import AudioRenderer
 from mindtune_clm.decision import ControlDecision
 from mindtune_clm.events import CLM01EventType
 from mindtune_clm.observations import ObservationFrame
@@ -80,6 +82,8 @@ class ControlLoop:
     estimator: StateEstimator = field(default_factory=StateEstimator)
     policy: ControlPolicy = field(default_factory=ControlPolicy)
     actuator: MantraActuator = field(default_factory=MantraActuator)
+    audio_renderer: AudioRenderer | None = None
+    playback_scheduler: PlaybackScheduler | None = None
     protocol_version_id: ProtocolVersionID = field(default_factory=lambda: ProtocolVersionID("clm-01-v1.0.0"))
     program_version_id: ProgramVersionID = field(default_factory=lambda: ProgramVersionID("clm-01-program-v1.0.0"))
     learner_id: str = "learner_clm01"
@@ -297,6 +301,45 @@ class ControlLoop:
         }
         if receipt is not None:
             payload["actuation_receipt_id"] = receipt.command_id
+
+        if self.audio_renderer is not None:
+            decision_id = receipt.decision_id if receipt is not None else f"decision-{render_cycle_id}-baseline"
+            actuation_receipt_id = receipt.command_id if receipt is not None else f"receipt-{render_cycle_id}-baseline"
+            artifact = self.audio_renderer.render(
+                control_state,
+                actuation_receipt_id,
+                decision_id,
+                render_cycle_id,
+                self.runtime,
+            )
+            payload.update({
+                "audio_generated": True,
+                "audio_artifact_id": artifact.artifact_id,
+                "audio_checksum": artifact.audio_checksum,
+                "render_digest": artifact.render_digest,
+                "audio_duration": artifact.duration,
+                "audio_frame_count": artifact.frame_count,
+                "peak_amplitude": round(artifact.peak_amplitude, 6),
+                "rms_amplitude": round(artifact.rms_amplitude, 6),
+                "clipping_count": artifact.clipping_count,
+                "fallback_used": artifact.fallback_used,
+                "fallback_reason": artifact.fallback_reason,
+            })
+            if self.playback_scheduler is not None:
+                safe_boundary = receipt.safe_boundary if receipt is not None else self.playback_scheduler.safe_boundary
+                playback_receipt = self.playback_scheduler.schedule(
+                    artifact,
+                    render_cycle_id,
+                    semantic_start_timestamp=self.runtime.clock.now(),
+                    safe_boundary=safe_boundary,
+                    control_state_id=control_state.control_state_id,
+                    source_receipt_id=actuation_receipt_id,
+                    runtime=self.runtime,
+                )
+                payload["playback_receipt_id"] = playback_receipt.playback_receipt_id
+                payload["playback_accepted"] = playback_receipt.accepted
+                payload["playback_observed_duration"] = playback_receipt.observed_duration
+
         return self.runtime.emit(
             CLM01EventType.ADAPTED_STIMULUS_RENDERED,
             payload,

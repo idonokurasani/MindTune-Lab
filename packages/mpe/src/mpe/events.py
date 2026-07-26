@@ -90,6 +90,20 @@ SUPPORTED_EVENT_TYPES = frozenset(
         "fc11_sensor_replay_completed",
         "fc11_sensor_replay_failed",
         "fc11_replay_digest_computed",
+        "audio_asset_registered",
+        "utterance_plan_created",
+        "audio_render_started",
+        "audio_segment_transformed",
+        "audio_artifact_rendered",
+        "audio_artifact_validated",
+        "audio_render_failed",
+        "playback_command_created",
+        "playback_scheduled",
+        "playback_started",
+        "playback_completed",
+        "playback_rejected",
+        "audio_fallback_applied",
+        "audio_digest_computed",
     }
 )
 

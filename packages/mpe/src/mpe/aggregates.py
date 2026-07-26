@@ -489,6 +489,62 @@ def _on_fc11_replay_digest_computed(state: RuntimeState, event: Event) -> None:
     pass
 
 
+def _on_audio_asset_registered(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_utterance_plan_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_render_started(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_segment_transformed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_artifact_rendered(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_artifact_validated(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_render_failed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_playback_command_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_playback_scheduled(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_playback_started(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_playback_completed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_playback_rejected(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_fallback_applied(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_audio_digest_computed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
 def _on_session_cancelled_or_terminated(state: RuntimeState, event: Event) -> None:
     state.session_status = SessionStatus.TERMINATED
     state.terminal = True
@@ -560,4 +616,18 @@ _EVENT_HANDLERS: dict[str, Any] = {
     "fc11_sensor_replay_completed": _on_fc11_sensor_replay_completed,
     "fc11_sensor_replay_failed": _on_fc11_sensor_replay_failed,
     "fc11_replay_digest_computed": _on_fc11_replay_digest_computed,
+    "audio_asset_registered": _on_audio_asset_registered,
+    "utterance_plan_created": _on_utterance_plan_created,
+    "audio_render_started": _on_audio_render_started,
+    "audio_segment_transformed": _on_audio_segment_transformed,
+    "audio_artifact_rendered": _on_audio_artifact_rendered,
+    "audio_artifact_validated": _on_audio_artifact_validated,
+    "audio_render_failed": _on_audio_render_failed,
+    "playback_command_created": _on_playback_command_created,
+    "playback_scheduled": _on_playback_scheduled,
+    "playback_started": _on_playback_started,
+    "playback_completed": _on_playback_completed,
+    "playback_rejected": _on_playback_rejected,
+    "audio_fallback_applied": _on_audio_fallback_applied,
+    "audio_digest_computed": _on_audio_digest_computed,
 }
