@@ -121,13 +121,37 @@ class SpeechGenClient:
         runtime: Any | None = None,
         parameters: SynthesisParameters | None = None,
     ) -> VoiceAsset:
-        """Return a VoiceAsset for request, using cache when valid."""
-        selected_route: VoiceRoute = route(request)  # noqa: F821
+        """Return a VoiceAsset for request, using cache when valid.
+
+        Accepts either a raw ``PedagogicalVoiceRequest`` or a validated Hebrew
+        item.  Validated items are routed through ``validated_hebrew`` and
+        carry their morphology/HeLP provenance into the produced asset.
+        """
+        if isinstance(request, PedagogicalVoiceRequest):
+            validated_item: Any | None = None
+        else:
+            validated_item = request
+            voice_request = validated_item.to_voice_request()
+            request = voice_request
+        selected_route: VoiceRoute = route(request)  # noqa: F841
         params = parameters or default_synthesis_parameters()
         tts_text = build_speechgen_request_text(request, selected_route)
 
-        key = cache_key(selected_route, tts_text, params)
-        checksum = request_checksum(selected_route, tts_text, params)
+        linguistic_identity_checksum = (
+            validated_item.validation_checksum if validated_item else None
+        )
+        key = cache_key(
+            selected_route,
+            tts_text,
+            params,
+            linguistic_identity_checksum=linguistic_identity_checksum,
+        )
+        checksum = request_checksum(
+            selected_route,
+            tts_text,
+            params,
+            linguistic_identity_checksum=linguistic_identity_checksum,
+        )
 
         sg_request = SpeechGenRequest(
             provider=selected_route.provider,
@@ -263,14 +287,49 @@ class SpeechGenClient:
             frame_count=frame_count,
             duration=duration,
             provider_receipt_id=receipt.receipt_id,
-            grammatical_entry_ids=(),
-            human_review_status="pending",
+            grammatical_entry_ids=(
+                validated_item.source_entry_ids if validated_item else ()
+            ),
+            human_review_status=(
+                validated_item.human_review_status if validated_item else "pending"
+            ),
             reviewer_notes="",
             provenance={
                 "request_id": request.request_id,
                 "source_render_cycle_id": request.source_render_cycle_id,
                 "source_actuation_receipt_id": request.source_actuation_receipt_id,
                 "source_curriculum_item_id": request.source_curriculum_item_id,
+                "curriculum_item_ids": (
+                    list(validated_item.source_entry_ids)
+                    if validated_item
+                    else []
+                ),
+                "morphology_source_ids": (
+                    list(validated_item.morphology_source_ids)
+                    if validated_item
+                    else []
+                ),
+                "pointing_source": (
+                    list(validated_item.pointing_provenance)
+                    if validated_item
+                    else []
+                ),
+                "help_references": (
+                    list(validated_item.help_references)
+                    if validated_item
+                    else []
+                ),
+                "linguistic_validation_status": (
+                    validated_item.linguistic_validation_status
+                    if validated_item
+                    else ""
+                ),
+                "curriculum_status": (
+                    validated_item.curriculum_status if validated_item else ""
+                ),
+                "validation_checksum": (
+                    validated_item.validation_checksum if validated_item else ""
+                ),
                 "route": {
                     "provider": selected_route.provider,
                     "provider_voice_id": selected_route.provider_voice_id,

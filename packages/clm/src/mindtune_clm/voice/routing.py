@@ -130,9 +130,15 @@ def _canonical_json(payload: dict[str, Any]) -> str:
     return json.dumps(payload, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
 
 
-def request_checksum(route: VoiceRoute, tts_text: str, params: SynthesisParameters) -> str:
+def request_checksum(
+    route: VoiceRoute,
+    tts_text: str,
+    params: SynthesisParameters,
+    *,
+    linguistic_identity_checksum: str | None = None,
+) -> str:
     """Compute a checksum over the normalized SpeechGen request inputs."""
-    payload = {
+    payload: dict[str, Any] = {
         "provider": route.provider,
         "voice": route.provider_voice_id,
         "locale": route.locale,
@@ -146,9 +152,17 @@ def request_checksum(route: VoiceRoute, tts_text: str, params: SynthesisParamete
         "normalization_policy_version": route.normalization_policy_version,
         "synthesis_parameter_version": route.synthesis_parameter_version,
     }
+    if linguistic_identity_checksum:
+        payload["linguistic_identity_checksum"] = linguistic_identity_checksum
     return hashlib.sha256(_canonical_json(payload).encode("utf-8")).hexdigest()
 
 
-def cache_key(route: VoiceRoute, tts_text: str, params: SynthesisParameters) -> str:
+def cache_key(
+    route: VoiceRoute,
+    tts_text: str,
+    params: SynthesisParameters,
+    *,
+    linguistic_identity_checksum: str | None = None,
+) -> str:
     """Return the content-addressed voice-aware cache key."""
-    return request_checksum(route, tts_text, params)
+    return request_checksum(route, tts_text, params, linguistic_identity_checksum=linguistic_identity_checksum)

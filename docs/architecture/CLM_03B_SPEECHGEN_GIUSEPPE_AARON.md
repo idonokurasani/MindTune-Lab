@@ -261,3 +261,63 @@ No credential is emitted.
 ## Migration path to CLM-04
 
 Replace `SpeechGenClient` with a live audio-device callback while keeping `VoiceAsset`, `AudioAsset`, `PlaybackCommand`, and `PlaybackReceipt` contracts unchanged.
+
+## Relationship to the Existing Hebrew Language Engine
+
+CLM-03B does not replace or move the existing engine in `hebrew/`; it consumes its already-approved, consensus-backed outputs.  The adapter layer `mindtune_clm.voice.validated_hebrew` is the only new integration surface.
+
+### Reconciliation table
+
+| Component | Repository path | Role | Inputs | Outputs | Authority level | CLM-03B integration point |
+|---|---|---|---|---|---|---|
+| Pealim reference | `data/hebrew/resources/pealim/pealim_forms.json` | scraped conjugation tables | lemma query | surface forms, transliteration | `reference_only` (per `source_registry.json`) | appears in `source_evidence` of approved forms; never called at runtime |
+| Hebrew Verb Inflector | `data/hebrew/resources/verb_inflector/VerbInflector.jar`, `hebrew/adapters/java_inflector_adapter.py` | rule-based inflection generator | base form, pattern, table number | candidate forms | `production_approved` | appears in `source_evidence` of approved forms; never called at runtime |
+| Phonikud | `hebrew/adapters/phonikud_adapter.py` | phonemization / stress prediction | vocalized or unvocalized Hebrew | IPA-style phonemes | `private_research_only` | transliteration stored in approved forms; never invoked by CLM-03B |
+| SVLM corpus | `data/hebrew/resources/svlm/SVLM_Hebrew_Wikipedia_Corpus.txt` | example-sentence source | raw Wikipedia sentences | ranked candidates | `private_research_only` | not used for production audio until approved |
+| Eran Tomer dataset | `data/hebrew/resources/eran_tomer/InflectedVerbsExtended.csv` | gold vocalized inflections | lemma | verified forms | `production_approved` | appears in `source_evidence` of approved forms; never called at runtime |
+| HeLP | `packages/mpe/src/mpe/domains/hebrew/help/` (loader, models, repository, schemas, provenance) | psycholinguistic and normative evidence | verb/root/slot | RT/accuracy metrics and references | research support | `help_references` may be attached to a `ValidatedHebrewPedagogicalItem`; raw rows are never embedded or transmitted |
+| Curriculum source | `data/hebrew/curriculum_v1_320.json` | canonical scope of the 320-verb course | selected verb list | curriculum records | production scope | `curriculum_version` and `source_curriculum_item_id` in the validated item |
+| Approved forms | `data/hebrew/approved/*.json` (e.g. `לכתוב.json`, `לעשות.json`, `להיות.json`) | production truth for morphology | consensus candidate forms | `approval_status=approved` form dicts | `production_approved` | `ValidatedHebrewPedagogicalItem.from_approved_json` consumes these exclusively |
+| Source registry | `data/hebrew/source_registry.json`, `hebrew/resources/source_registry.py` | license and eligibility authority | `source_id` | `SourceRecord` with `production_eligibility` | authority | drives `morphology_source_ids` and `pointing_provenance` filtering |
+
+### No arbitrary free-text production Hebrew
+
+```mermaid
+flowchart TD
+    A[Incoming Hebrew text] --> B{Validated approved form?}
+    B -->|yes| C[ValidatedHebrewPedagogicalItem]
+    B -->|no| D[Reject or route to human/approval pipeline]
+    C --> E[to_voice_request]
+    E --> F[Aaron receives fully pointed tts_text]
+```
+
+CLM-03B now enforces the rule that only `curriculum_status=approved` forms with resolved conflicts, valid Unicode, and explicit pointing provenance become audio.  The `SpeechGenClient.synthesize` method accepts a `ValidatedHebrewPedagogicalItem` and routes it through `validated_hebrew.to_voice_request()`; any unvalidated object is rejected by typed `HebrewValidationError` subclasses before a provider call.
+
+### Integration flow
+
+```mermaid
+graph TD
+    A[Pealim reference] -->|source_evidence| C(Approved Form in data/hebrew/approved/*.json)
+    B[Verb Inflector] -->|source_evidence| C
+    D[Phonikud] -->|transliteration| C
+    E[SVLM corpus] -->|sentence candidates| C
+    F[Eran Tomer] -->|source_evidence| C
+    G[HeLP] -->|enrichment references| C
+    H[source_registry.json] -->|eligibility| C
+    C -->|from_approved_json| I[mindtune_clm.voice.validated_hebrew.ValidatedHebrewPedagogicalItem]
+    I -->|to_voice_request| J[PedagogicalVoiceRequest]
+    J -->|synthesize| K[mindtune_clm.voice.models.VoiceAsset]
+    K -->|to_audio_asset| L[mindtune_clm.audio.assets.AudioAsset]
+```
+
+### Cache identity with validation checksum
+
+```mermaid
+flowchart LR
+    A[tts_text + voice + params] --> B{linguistic_identity_checksum?}
+    B -->|provided| C[cache_key = sha256(payload + checksum)]
+    B -->|not provided| D[cache_key = sha256(payload)]
+    C --> E[prevents incompatible validated items from colliding]
+```
+
+`routing.cache_key` and `routing.request_checksum` now accept an optional `linguistic_identity_checksum` from the validated item.  Pointed/unpointed, dagesh, shin/sin dot, and niqqud pattern differences continue to produce distinct keys; when a validated item is supplied, the stable checksum is also mixed into the key so that two forms with the same surface string but different morphology provenance cannot accidentally share a cache entry.
