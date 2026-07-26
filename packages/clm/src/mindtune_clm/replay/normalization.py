@@ -23,6 +23,14 @@ class NormalizationPolicy:
     interpolation: str | None = None
     missing_channel_rule: str = "mark_missing"
 
+    def normalize(
+        self,
+        raw_samples: list[SensorSample],
+        source: RecordedSensorSource,
+    ) -> list[NormalizedSensorSample]:
+        """Normalize raw samples according to this policy."""
+        return normalize_samples(raw_samples, source, self)
+
 
 def _is_missing_value(cell: Any) -> bool:
     if cell is None:
@@ -114,6 +122,7 @@ def normalize_samples(  # noqa: C901
                 source_timestamp=sample.source_timestamp,
                 replay_relative_timestamp=replay_ts,
                 channel_values=channel_values,
+                raw_quality=sample.raw_quality,
                 units="normalized",
                 missing_channel_indicators=missing_indicators,
                 normalization_operations=ops,

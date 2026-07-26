@@ -16,6 +16,7 @@ class FeaturePolicy:
     version: str
     primary_channel: str | None = None
     amplitude_range: float = 1.0
+    normalization_mode: str = "range"  # "range" or "coefficient_of_variation"
 
 
 def _mean(values: list[float]) -> float:
@@ -96,11 +97,17 @@ def compute_features(  # noqa: C901
     trend = 0.0
     if primary_values:
         std = _std(primary_values)
-        signal_stability = max(0.0, 1.0 - (std / max(1e-9, policy.amplitude_range)))
         rmin = min(primary_values)
         rmax = max(primary_values)
-        normalized_variability = (rmax - rmin) / max(1e-9, policy.amplitude_range)
-        trend = (primary_values[-1] - primary_values[0]) / max(1e-9, policy.amplitude_range)
+        if policy.normalization_mode == "coefficient_of_variation":
+            mean_abs = max(1e-9, abs(_mean(primary_values)))
+            signal_stability = max(0.0, 1.0 - (std / mean_abs))
+            normalized_variability = (rmax - rmin) / mean_abs
+            trend = (primary_values[-1] - primary_values[0]) / mean_abs
+        else:
+            signal_stability = max(0.0, 1.0 - (std / max(1e-9, policy.amplitude_range)))
+            normalized_variability = (rmax - rmin) / max(1e-9, policy.amplitude_range)
+            trend = (primary_values[-1] - primary_values[0]) / max(1e-9, policy.amplitude_range)
         trend = max(-1.0, min(1.0, trend))
 
     accepted_sample_ratio = accepted_total / total

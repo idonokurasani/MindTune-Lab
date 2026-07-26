@@ -9,9 +9,9 @@ from pathlib import Path
 from typing import Any
 
 from mindtune_clm.loop import ControlLoop, ControlLoopResult
+from mindtune_clm.policy import ControlPolicy
 from mindtune_clm.replay.adapter import to_observation_frame
 from mindtune_clm.replay.clock import ReplayClock
-from mindtune_clm.replay.events import CLM02EventType
 from mindtune_clm.replay.manifest import make_manifest
 from mindtune_clm.replay.models import (
     NormalizedSensorSample,
@@ -19,9 +19,9 @@ from mindtune_clm.replay.models import (
     ReplayDigest,
     ReplayResult,
 )
-from mindtune_clm.replay.normalization import NormalizationPolicy, normalize_samples
+from mindtune_clm.replay.normalization import NormalizationPolicy
 from mindtune_clm.replay.parser import SensorSourceParser
-from mindtune_clm.replay.quality import QualityPolicy, assess_sample
+from mindtune_clm.replay.quality import QualityPolicy
 from mindtune_clm.replay.source import RecordedSensorSource
 from mindtune_clm.replay.windows import WindowPolicy, make_windows
 from mpe.enums import DataClassification
@@ -150,14 +150,50 @@ def compute_replay_digest(result: ReplayResult) -> ReplayDigest:
     )
 
 
+EVENT_NAMESPACES: dict[str, dict[str, str]] = {
+    "clm02": {
+        "source_registered": "sensor_source_registered",
+        "manifest_created": "replay_manifest_created",
+        "samples_parsed": "sensor_sample_parsed",
+        "samples_normalized": "sensor_sample_normalized",
+        "quality_assessed": "sensor_quality_assessed",
+        "window_created": "replay_window_created",
+        "window_rejected": "replay_window_rejected",
+        "observation_frame_generated": "observation_frame_generated_from_replay",
+        "replay_completed": "sensor_replay_completed",
+        "replay_failed": "sensor_replay_failed",
+        "digest_computed": "replay_digest_computed",
+    },
+    "fc11": {
+        "source_registered": "fc11_source_registered",
+        "manifest_created": "fc11_metadata_parsed",
+        "samples_parsed": "fc11_record_parsed",
+        "samples_normalized": "fc11_sample_normalized",
+        "quality_assessed": "fc11_quality_assessed",
+        "window_created": "fc11_window_created",
+        "window_rejected": "fc11_window_rejected",
+        "observation_frame_generated": "fc11_observation_frame_generated",
+        "replay_completed": "fc11_sensor_replay_completed",
+        "replay_failed": "fc11_sensor_replay_failed",
+        "digest_computed": "fc11_replay_digest_computed",
+    },
+}
+
+
 @dataclass
 class ReplayRunner:
     """Replay a recorded sensor source through the CLM-01 closed-loop kernel."""
 
     fixture_root: Path | None = None
+    event_namespace: str = "clm02"
     program_version_id: ProgramVersionID = field(default_factory=lambda: ProgramVersionID("clm-02-program-v1.0.0"))
     protocol_version_id: ProtocolVersionID = field(default_factory=lambda: ProtocolVersionID("clm-02-protocol-v1.0.0"))
     learner_id: str = "learner_clm02_replay"
+
+    def _event(self, key: str) -> str:
+        if self.event_namespace not in EVENT_NAMESPACES:
+            return self.event_namespace + "_" + key
+        return EVENT_NAMESPACES[self.event_namespace][key]
 
     def run(  # noqa: C901
         self,
@@ -174,6 +210,10 @@ class ReplayRunner:
         clock_scale: float = 1.0,
     ) -> ReplayResult:
         """Execute the full replay pipeline deterministically."""
+        if source.source_format.startswith("fc11"):
+            self.event_namespace = "fc11"
+        if clm_policy is None:
+            clm_policy = ControlPolicy()
         sample_interval = 1.0 / max(1.0, source.source_sampling_rate_hz)
         clock = ReplayClock(
             source_start_timestamp=source.source_start_timestamp,
@@ -227,7 +267,7 @@ class ReplayRunner:
 
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.SENSOR_SOURCE_REGISTERED,
+            self._event("source_registered"),
             {
                 "source_id": source.source_id,
                 "source_format": source.source_format,
@@ -244,7 +284,7 @@ class ReplayRunner:
         )
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.REPLAY_MANIFEST_CREATED,
+            self._event("manifest_created"),
             {
                 "replay_id": manifest.replay_id,
                 "manifest_checksum": manifest.manifest_checksum,
@@ -265,7 +305,7 @@ class ReplayRunner:
         raw_samples = parser.parse(source, content)
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.SENSOR_SAMPLE_PARSED,
+            self._event("samples_parsed"),
             {
                 "source_id": source.source_id,
                 "sample_count": len(raw_samples),
@@ -278,7 +318,7 @@ class ReplayRunner:
 
         if not raw_samples:
             fail_event = loop.runtime.emit(
-                CLM02EventType.SENSOR_REPLAY_FAILED,
+                self._event("replay_failed"),
                 {
                     "replay_id": replay_id,
                     "reason": "no_samples_parsed",
@@ -311,7 +351,7 @@ class ReplayRunner:
             digest = compute_replay_digest(empty_result)
             empty_result.canonical_replay_digest = digest
             loop.runtime.emit(
-                CLM02EventType.REPLAY_DIGEST_COMPUTED,
+                self._event("digest_computed"),
                 {
                     "replay_id": replay_id,
                     "digest_hex": digest.digest_hex,
@@ -324,10 +364,10 @@ class ReplayRunner:
             )
             return empty_result
 
-        normalized = normalize_samples(raw_samples, source, normalization_policy)
+        normalized = normalization_policy.normalize(raw_samples, source)
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.SENSOR_SAMPLE_NORMALIZED,
+            self._event("samples_normalized"),
             {
                 "source_id": source.source_id,
                 "normalized_sample_count": len(normalized),
@@ -341,13 +381,13 @@ class ReplayRunner:
         sample_assessments: list[QualityAssessment] = []
         previous: NormalizedSensorSample | None = None
         for s in normalized:
-            assessment = assess_sample(s, previous, quality_policy)
+            assessment = quality_policy.assess(s, previous)
             sample_assessments.append(assessment)
             previous = s
         accepted_count = sum(1 for a in sample_assessments if a.accepted)
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.SENSOR_QUALITY_ASSESSED,
+            self._event("quality_assessed"),
             {
                 "source_id": source.source_id,
                 "sample_count": len(sample_assessments),
@@ -366,9 +406,9 @@ class ReplayRunner:
         for window in windows:
             last_event = loop.runtime.state.events[-1]
             event_type = (
-                CLM02EventType.REPLAY_WINDOW_CREATED
+                self._event("window_created")
                 if window.accepted
-                else CLM02EventType.REPLAY_WINDOW_REJECTED
+                else self._event("window_rejected")
             )
             loop.runtime.emit(
                 event_type,
@@ -391,17 +431,27 @@ class ReplayRunner:
         for idx, window in enumerate(windows, start=1):
             if not window.accepted:
                 continue
-            frame = to_observation_frame(
-                window,
-                sample_by_id,
-                replay_id=replay_id,
-                sequence_number=idx,
-            )
+            if source.source_format.startswith("fc11"):
+                frame = to_observation_frame(
+                    window,
+                    sample_by_id,
+                    replay_id=replay_id,
+                    sequence_number=idx,
+                    eeg_channel="eeg_scaled",
+                    eeg_stability_feature="signal_stability",
+                )
+            else:
+                frame = to_observation_frame(
+                    window,
+                    sample_by_id,
+                    replay_id=replay_id,
+                    sequence_number=idx,
+                )
             observation_frames.append(frame)
 
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.SENSOR_REPLAY_COMPLETED,
+            self._event("replay_completed"),
             {
                 "replay_id": replay_id,
                 "window_count": len(windows),
@@ -425,7 +475,7 @@ class ReplayRunner:
             for cycle_index, frame in enumerate(observation_frames, start=1):
                 last_event = loop.runtime.state.events[-1]
                 loop.runtime.emit(
-                    CLM02EventType.OBSERVATION_FRAME_GENERATED_FROM_REPLAY,
+                    self._event("observation_frame_generated"),
                     {
                         "observation_frame_id": frame.observation_frame_id,
                         "control_cycle_id": frame.control_cycle_id,
@@ -479,7 +529,7 @@ class ReplayRunner:
 
         last_event = loop.runtime.state.events[-1]
         loop.runtime.emit(
-            CLM02EventType.REPLAY_DIGEST_COMPUTED,
+            self._event("digest_computed"),
             {
                 "replay_id": replay_id,
                 "digest_hex": digest.digest_hex,

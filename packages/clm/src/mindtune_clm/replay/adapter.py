@@ -15,9 +15,11 @@ def _mean(values: list[float]) -> float:
 def _channel_values_for_eeg(
     window: ReplayWindow,
     samples: dict[str, NormalizedSensorSample],
-    channel_name: str,
+    channel_name: str | None,
 ) -> list[float]:
     values: list[float] = []
+    if channel_name is None:
+        return values
     for sid in window.ordered_sample_ids:
         sample = samples.get(sid)
         if sample is None:
@@ -35,6 +37,7 @@ def to_observation_frame(
     sequence_number: int,
     eeg_channel: str | None = "eeg_stability",
     behavioral_channel: str | None = None,
+    eeg_stability_feature: str | None = None,
 ) -> ObservationFrame:
     """Convert one accepted replay window into one CLM ObservationFrame.
 
@@ -42,27 +45,36 @@ def to_observation_frame(
     available modalities, and provenance.  If the window has no usable EEG
     evidence, ``eeg_stability`` and ``eeg_quality`` are ``None`` so CLM-01
     continues with missing EEG rather than crashing.
+
+    ``eeg_stability_feature`` overrides the value source: when supplied,
+    the stability value is taken from ``window.deterministic_feature_values``
+    rather than computed as the mean of the EEG channel.
     """
     available_modalities: list[str] = []
     eeg_stability: float | None = None
     eeg_quality: str | None = None
 
-    if eeg_channel and window.accepted and eeg_channel in window.channel_coverage:
-        values = _channel_values_for_eeg(window, samples, eeg_channel)
-        if values:
-            eeg_stability = round(_mean(values), 5)
-            eeg_quality = "good"
-            available_modalities.append("eeg")
-    elif not window.accepted:
-        # Explicit rejection: keep the sensor modality listed but mark quality poor.
-        if eeg_channel and eeg_channel in window.channel_coverage:
+    has_eeg = eeg_channel is not None and eeg_channel in window.channel_coverage
+
+    if has_eeg and window.accepted:
+        if eeg_stability_feature and eeg_stability_feature in window.deterministic_feature_values:
+            eeg_stability = round(window.deterministic_feature_values[eeg_stability_feature], 5)
+        else:
             values = _channel_values_for_eeg(window, samples, eeg_channel)
             if values:
                 eeg_stability = round(_mean(values), 5)
-            else:
-                eeg_stability = None
-            eeg_quality = "poor_signal"
-            available_modalities.append("eeg")
+        eeg_quality = "good"
+        available_modalities.append("eeg")
+    elif has_eeg and not window.accepted:
+        # Explicit rejection: keep the sensor modality listed but mark quality poor.
+        if eeg_stability_feature and eeg_stability_feature in window.deterministic_feature_values:
+            eeg_stability = round(window.deterministic_feature_values[eeg_stability_feature], 5)
+        else:
+            values = _channel_values_for_eeg(window, samples, eeg_channel)
+            if values:
+                eeg_stability = round(_mean(values), 5)
+        eeg_quality = "poor_signal"
+        available_modalities.append("eeg")
 
     behavioral_latency_ms: float | None = None
     hesitation_score: float | None = None

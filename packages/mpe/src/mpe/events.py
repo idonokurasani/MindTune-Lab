@@ -76,6 +76,20 @@ SUPPORTED_EVENT_TYPES = frozenset(
         "sensor_replay_completed",
         "sensor_replay_failed",
         "replay_digest_computed",
+        # CLM-02B FC11 recorded data adapter events
+        "fc11_source_registered",
+        "fc11_metadata_parsed",
+        "fc11_record_parsed",
+        "fc11_record_rejected",
+        "fc11_timestamp_policy_applied",
+        "fc11_sample_normalized",
+        "fc11_quality_assessed",
+        "fc11_window_created",
+        "fc11_window_rejected",
+        "fc11_observation_frame_generated",
+        "fc11_sensor_replay_completed",
+        "fc11_sensor_replay_failed",
+        "fc11_replay_digest_computed",
     }
 )
 

@@ -437,6 +437,58 @@ def _on_replay_digest_computed(state: RuntimeState, event: Event) -> None:
     pass
 
 
+def _on_fc11_source_registered(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_metadata_parsed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_record_parsed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_record_rejected(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_timestamp_policy_applied(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_sample_normalized(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_quality_assessed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_window_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_window_rejected(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_observation_frame_generated(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_sensor_replay_completed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_sensor_replay_failed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_fc11_replay_digest_computed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
 def _on_session_cancelled_or_terminated(state: RuntimeState, event: Event) -> None:
     state.session_status = SessionStatus.TERMINATED
     state.terminal = True
@@ -495,4 +547,17 @@ _EVENT_HANDLERS: dict[str, Any] = {
     "sensor_replay_completed": _on_sensor_replay_completed,
     "sensor_replay_failed": _on_sensor_replay_failed,
     "replay_digest_computed": _on_replay_digest_computed,
+    "fc11_source_registered": _on_fc11_source_registered,
+    "fc11_metadata_parsed": _on_fc11_metadata_parsed,
+    "fc11_record_parsed": _on_fc11_record_parsed,
+    "fc11_record_rejected": _on_fc11_record_rejected,
+    "fc11_timestamp_policy_applied": _on_fc11_timestamp_policy_applied,
+    "fc11_sample_normalized": _on_fc11_sample_normalized,
+    "fc11_quality_assessed": _on_fc11_quality_assessed,
+    "fc11_window_created": _on_fc11_window_created,
+    "fc11_window_rejected": _on_fc11_window_rejected,
+    "fc11_observation_frame_generated": _on_fc11_observation_frame_generated,
+    "fc11_sensor_replay_completed": _on_fc11_sensor_replay_completed,
+    "fc11_sensor_replay_failed": _on_fc11_sensor_replay_failed,
+    "fc11_replay_digest_computed": _on_fc11_replay_digest_computed,
 }

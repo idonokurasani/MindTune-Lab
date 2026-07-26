@@ -6,7 +6,7 @@ from dataclasses import dataclass
 
 from mindtune_clm.replay.features import FeaturePolicy, compute_features
 from mindtune_clm.replay.models import NormalizedSensorSample, QualityAssessment, ReplayWindow
-from mindtune_clm.replay.quality import QualityPolicy, assess_window
+from mindtune_clm.replay.quality import QualityPolicy
 
 
 @dataclass(frozen=True)
@@ -125,7 +125,7 @@ def make_windows(
             provenance=[replay_id] + in_window,
         )
 
-        window_assessment = assess_window(window, assessment_by_id, quality_policy)
+        window_assessment = quality_policy.assess_window(window, assessment_by_id)
         # Re-apply window assessment to adjust acceptance based on window-level rules.
         accepted = window_assessment.accepted
         reason_codes = list(window_assessment.reason_codes)

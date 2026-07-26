@@ -30,6 +30,7 @@ class NormalizedSensorSample:
     source_timestamp: float | None
     replay_relative_timestamp: float | None
     channel_values: dict[str, float | None]
+    raw_quality: str | None
     units: str
     missing_channel_indicators: dict[str, bool]
     normalization_operations: list[str]

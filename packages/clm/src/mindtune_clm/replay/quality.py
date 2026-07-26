@@ -24,6 +24,14 @@ class QualityPolicy:
     min_accepted_sample_count: int = 1
     min_channel_coverage: int = 1
 
+    def assess(self, sample: NormalizedSensorSample, previous: NormalizedSensorSample | None = None) -> QualityAssessment:
+        """Assess one normalized sample."""
+        return assess_sample(sample, previous, self)
+
+    def assess_window(self, window: ReplayWindow, sample_assessments: dict[str, QualityAssessment]) -> QualityAssessment:
+        """Assess one replay window."""
+        return assess_window(window, sample_assessments, self)
+
 
 def assess_sample(  # noqa: C901
     sample: NormalizedSensorSample,
