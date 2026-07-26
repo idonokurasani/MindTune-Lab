@@ -358,6 +358,36 @@ def _on_adaptation_decision(state: RuntimeState, event: Event) -> None:
     pass
 
 
+def _on_observation_frame_created(state: RuntimeState, event: Event) -> None:
+    # CLM-01 observation frames are audit events; control-loop state is replayed
+    # by re-applying the same source events, not reconstructed from this handler.
+    pass
+
+
+def _on_cognitive_state_estimated(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_control_decision_made(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_actuation_requested(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_actuation_applied(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_adapted_stimulus_rendered(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_intervention_outcome_evaluated(state: RuntimeState, event: Event) -> None:
+    pass
+
+
 def _on_session_cancelled_or_terminated(state: RuntimeState, event: Event) -> None:
     state.session_status = SessionStatus.TERMINATED
     state.terminal = True
@@ -397,4 +427,11 @@ _EVENT_HANDLERS: dict[str, Any] = {
     "schedule_decision": _on_schedule_decision,
     "adaptation_decision": _on_adaptation_decision,
     "protocol_terminated": _on_session_cancelled_or_terminated,
+    "observation_frame_created": _on_observation_frame_created,
+    "cognitive_state_estimated": _on_cognitive_state_estimated,
+    "control_decision_made": _on_control_decision_made,
+    "actuation_requested": _on_actuation_requested,
+    "actuation_applied": _on_actuation_applied,
+    "adapted_stimulus_rendered": _on_adapted_stimulus_rendered,
+    "intervention_outcome_evaluated": _on_intervention_outcome_evaluated,
 }

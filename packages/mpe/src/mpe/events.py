@@ -55,6 +55,14 @@ SUPPORTED_EVENT_TYPES = frozenset(
         "schedule_decision",
         "adaptation_decision",
         "protocol_terminated",
+        # CLM-01 closed-loop mantra control events
+        "observation_frame_created",
+        "cognitive_state_estimated",
+        "control_decision_made",
+        "actuation_requested",
+        "actuation_applied",
+        "adapted_stimulus_rendered",
+        "intervention_outcome_evaluated",
     }
 )
 
