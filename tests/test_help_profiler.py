@@ -172,7 +172,7 @@ class HeLPProfilerTests(unittest.TestCase):
             "binyan": "paal",
             "input_mode": "speech_to_text",
             "speech_recognition": {
-                "provider": "azure_speech",
+                "provider": "speechgen",
                 "recognition_confidence": 0.91,
                 "duration_ms": 820,
             },
@@ -197,7 +197,7 @@ class HeLPProfilerTests(unittest.TestCase):
         self.assertEqual(observations[0]["outcome"], "correct")
         self.assertEqual(observations[0]["latency_ms"], 1250.0)
         self.assertEqual(observations[0]["input_mode"], "speech_to_text")
-        self.assertEqual(observations[0]["transcription_provider"], "azure_speech")
+        self.assertEqual(observations[0]["transcription_provider"], "speechgen")
         self.assertEqual(observations[0]["transcription_confidence"], 0.91)
 
         profile = help_profiler.build_profile(

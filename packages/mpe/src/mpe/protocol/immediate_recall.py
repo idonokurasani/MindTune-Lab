@@ -43,7 +43,7 @@ from mpe.protocol.trial_pipeline import (
     TrialIdentity,
     TrialPipeline,
 )
-from mpe.providers import ContentItem, ProviderSet, SchedulingContext, TrialContext
+from mpe.providers import ContentItem, ProviderSet
 from mpe.runtime import Clock, Runtime
 from mpe.types import (
     BlockID,
@@ -193,7 +193,7 @@ class ImmediateRecallRunner:
             provider_version="1.0.0",
             content_type="fixture_item",
             checksum="fixture_checksum",
-            surface_form=item.typed_response if is_typed else item.content_item_id,
+            surface_form=(item.typed_response or "") if is_typed else item.content_item_id,
             normalized_form=item.content_item_id,
             metadata={"expected_relation": item.expected_relation, "response_mode": response_mode.value},
         )
@@ -301,13 +301,14 @@ class ImmediateRecallRunner:
             captured_at=received_at,
             device_provenance=device_provenance,
         )
-        evaluation_event_id = pipeline.emit_evaluation(
+        eval_result = pipeline.emit_evaluation(
             trial_id,
             normalized,
             content_item,
             response_mode=response_mode.value,
             protocol_version_id=self.fixture.protocol_version_id,
         )
+        evaluation_event_id = eval_result.get("evaluation_id")
 
         # 5. Present confirmation (correct target).
         pipeline.emit_instruction(
@@ -339,11 +340,14 @@ class ImmediateRecallRunner:
             ),
         )
 
-        answer_status = (
-            AnswerStatus.CORRECT.value
-            if self_confirmation == "positive"
-            else AnswerStatus.INCORRECT.value
-        )
+        if is_typed:
+            answer_status = eval_result.get("answer_status", AnswerStatus.INCORRECT.value)
+        else:
+            answer_status = (
+                AnswerStatus.CORRECT.value
+                if self_confirmation == "positive"
+                else AnswerStatus.INCORRECT.value
+            )
         outcome = ItemOutcome(
             content_item_id=item.content_item_id,
             self_confirmation=self_confirmation,

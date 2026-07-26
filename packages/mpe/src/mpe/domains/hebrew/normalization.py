@@ -10,7 +10,6 @@ from __future__ import annotations
 import re
 import unicodedata
 
-
 # Hebrew punctuation marks that do not change lexical identity for recall.
 _HEBREW_PUNCTUATION = frozenset({
     "\u05be",  # maqqaf (Hebrew hyphen)

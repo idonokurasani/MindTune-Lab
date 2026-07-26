@@ -11,7 +11,6 @@ from typing import Any
 
 from mpe.domains.hebrew.models import HebrewContentItem
 
-
 FIXTURE_VERSION: str = "1.0.0"
 FIXTURE_ID: str = "hebrew-immediate-recall-v1"
 

@@ -132,9 +132,6 @@ const els = {
   flashcardMeta: document.querySelector("#flashcardMeta"),
   flashcardScore: document.querySelector("#flashcardScore"),
   flashcardTimer: document.querySelector("#flashcardTimer"),
-  streetwisePanel: document.querySelector("#streetwisePanel"),
-  streetwiseStatus: document.querySelector("#streetwiseStatus"),
-  streetwiseList: document.querySelector("#streetwiseList"),
   helpItemPanel: document.querySelector("#helpItemPanel"),
   helpItemStatus: document.querySelector("#helpItemStatus"),
   helpItemMetrics: document.querySelector("#helpItemMetrics"),
@@ -196,9 +193,6 @@ let flashcardSessionReviewedIds = [];
 let reviewedFlashcardIds = [];
 let reviewedFlashcards = new Map();
 let flashcardEditTimers = new WeakMap();
-let currentStreetwise = { cardId: "", canonicalItemId: "", loading: false, items: [], totalMatches: 0, resolution: "none" };
-let streetwiseRequestToken = 0;
-let streetwiseExposureKey = "";
 let currentHelpItem = { cardId: "", loading: false, data: null };
 let helpItemRequestToken = 0;
 let currentHelpProfile = null;
@@ -2902,86 +2896,13 @@ function encodeMonoWav(samples, sampleRate = 16000) {
 }
 
 async function startConjugationSpeechCapture() {
-  if (conjugationSpeechCapture) {
-    await stopConjugationSpeechCapture();
-    return;
-  }
-  try {
-    const statusResponse = await fetch("/api/azure_speech/status", { cache: "no-store" });
-    const status = await statusResponse.json();
-    if (!status.configured) {
-      setConjugationSpeechStatus("Azure Speech non configurato. Usa Dati > Configura trascrizione ebraica.", { error: true });
-      return;
-    }
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: { channelCount: 1, echoCancellation: false, noiseSuppression: false, autoGainControl: false },
-    });
-    const AudioContextClass = window.AudioContext || window.webkitAudioContext;
-    const context = new AudioContextClass();
-    const source = context.createMediaStreamSource(stream);
-    const processor = context.createScriptProcessor(4096, 1, 1);
-    const chunks = [];
-    processor.onaudioprocess = (event) => {
-      chunks.push(new Float32Array(event.inputBuffer.getChannelData(0)));
-      event.outputBuffer.getChannelData(0).fill(0);
-    };
-    source.connect(processor);
-    processor.connect(context.destination);
-    const timeoutId = window.setTimeout(() => stopConjugationSpeechCapture(), 8000);
-    conjugationSpeechCapture = { stream, context, source, processor, chunks, sampleRate: context.sampleRate, timeoutId };
-    lastConjugationSpeech = null;
-    els.conjugationSpeakBtn.classList.add("is-recording");
-    els.conjugationSpeakBtn.textContent = "Ferma";
-    setConjugationSpeechStatus("Sto ascoltando... parla in ebraico, poi premi Ferma.");
-  } catch (error) {
-    setConjugationSpeechStatus(`Microfono non disponibile: ${error.message || error}`, { error: true });
-  }
+  // Speech-to-text transcription is no longer available in this build.
+  setConjugationSpeechStatus("Speech capture is not available.", { error: true });
 }
 
 async function stopConjugationSpeechCapture({ discard = false } = {}) {
-  const capture = conjugationSpeechCapture;
-  if (!capture) return;
-  conjugationSpeechCapture = null;
-  window.clearTimeout(capture.timeoutId);
-  capture.processor.disconnect();
-  capture.source.disconnect();
-  capture.stream.getTracks().forEach((track) => track.stop());
-  await capture.context.close();
-  els.conjugationSpeakBtn?.classList.remove("is-recording");
-  if (els.conjugationSpeakBtn) els.conjugationSpeakBtn.textContent = "Parla";
+  // No-op stub retained for call-site compatibility.
   if (discard) return;
-  try {
-    setConjugationSpeechStatus("Trascrizione in corso...");
-    const raw = mergeAudioChunks(capture.chunks);
-    if (raw.length < capture.sampleRate * 0.25) throw new Error("registrazione troppo breve");
-    const wav = encodeMonoWav(resampleAudio(raw, capture.sampleRate));
-    const response = await fetch("/api/azure_speech/transcribe", {
-      method: "POST",
-      headers: { "Content-Type": "audio/wav" },
-      body: wav,
-    });
-    const result = await response.json();
-    if (!response.ok || !result.ok) throw new Error(result.error || "trascrizione non riuscita");
-    els.conjugationAnswer.value = result.display_text;
-    activeHebrewInput = els.conjugationAnswer;
-    lastConjugationSpeech = {
-      provider: result.provider,
-      locale: result.locale,
-      recognized_text: result.display_text,
-      recognition_confidence: result.recognition_confidence,
-      duration_ms: result.duration_ms,
-      request_id: result.request_id,
-      audio_retained: false,
-    };
-    const confidence = Number.isFinite(result.recognition_confidence)
-      ? ` · confidenza trascrizione ${Math.round(result.recognition_confidence * 100)}%`
-      : "";
-    setConjugationSpeechStatus(`Trascritto${confidence}. Correggi se serve, poi premi Invio.`);
-    els.conjugationAnswer.focus();
-  } catch (error) {
-    lastConjugationSpeech = null;
-    setConjugationSpeechStatus(`Trascrizione non riuscita: ${error.message || error}`, { error: true });
-  }
 }
 
 function italianPresentQuestion(entry, verb) {
@@ -3558,15 +3479,6 @@ function selectedFlashcardDeckList() {
 }
 
 function flashcardSessionContext() {
-  const streetwise = currentStreetwise.cardId === currentFlashcard?.id && currentStreetwise.items.length
-    ? {
-        available: true,
-        resolution: currentStreetwise.resolution,
-        total_matches: currentStreetwise.totalMatches,
-        enrichment_ids: currentStreetwise.items.map((item) => item.enrichment_id).filter(Boolean),
-        source_ids: currentStreetwise.items.map((item) => item.source_id).filter(Boolean),
-      }
-    : { available: false };
   const helpEvidence = helpEvidenceSummary();
   return {
     family: "ebraico_moderno",
@@ -3580,7 +3492,6 @@ function flashcardSessionContext() {
     session_seen_count: flashcardSessionSeen.size,
     random_unique_session: true,
     score: { ...flashcardStats },
-    streetwise_enrichment: streetwise,
     help_profiler: helpEvidence,
   };
 }
@@ -5308,25 +5219,6 @@ function safeExternalUrl(value) {
   }
 }
 
-function streetwiseDateLabel(value) {
-  if (!value) return "";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "";
-  return new Intl.DateTimeFormat("it-IT", { year: "numeric", month: "short" }).format(date);
-}
-
-function streetwiseEvidenceSummary() {
-  if (currentStreetwise.cardId !== currentFlashcard?.id) return null;
-  return {
-    canonical_item_id: currentStreetwise.canonicalItemId,
-    resolution: currentStreetwise.resolution,
-    total_matches: currentStreetwise.totalMatches,
-    enrichment_ids: currentStreetwise.items.map((item) => item.enrichment_id).filter(Boolean),
-    source_ids: currentStreetwise.items.map((item) => item.source_id).filter(Boolean),
-    match_types: [...new Set(currentStreetwise.items.map((item) => item.match_type).filter(Boolean))],
-  };
-}
-
 function helpEvidenceSummary() {
   const itemData = currentHelpItem.cardId === currentFlashcard?.id ? currentHelpItem.data : null;
   const profile = currentHelpProfile;
@@ -5341,127 +5233,6 @@ function helpEvidenceSummary() {
     adaptive_priority: Number(helpAdaptivePriorities.get(String(currentFlashcard?.id || "")) || 0),
     policy: "read_only_projection",
   };
-}
-
-function logStreetwiseEvent(eventType, item = null) {
-  const evidence = streetwiseEvidenceSummary();
-  if (!evidence || !evidence.enrichment_ids.length) return;
-  postEegTaskEvent({
-    annotation_type: "streetwise_enrichment_event",
-    event: {
-      event_type: eventType,
-      card_id: currentFlashcard?.id || "",
-      ...evidence,
-      source_id: item?.source_id || "",
-      enrichment_id: item?.enrichment_id || "",
-    },
-    study_context: flashcardSessionContext(),
-  });
-}
-
-function logStreetwiseExposureIfReady() {
-  if (!flashcardAnswerVisible || !currentFlashcard || !currentStreetwise.items.length) return;
-  const exposureKey = `${currentFlashcard.id}:${currentStreetwise.items.map((item) => item.enrichment_id).join(",")}`;
-  if (streetwiseExposureKey === exposureKey) return;
-  streetwiseExposureKey = exposureKey;
-  logStreetwiseEvent("evidence_revealed");
-}
-
-function bindStreetwiseMediaEvents() {
-  els.streetwiseList?.querySelectorAll("[data-streetwise-audio]").forEach((audio) => {
-    audio.addEventListener("play", () => {
-      const item = currentStreetwise.items.find((candidate) => candidate.enrichment_id === audio.dataset.streetwiseAudio);
-      logStreetwiseEvent("audio_play", item || null);
-    }, { once: true });
-  });
-  els.streetwiseList?.querySelectorAll("[data-streetwise-episode]").forEach((link) => {
-    link.addEventListener("click", () => {
-      const item = currentStreetwise.items.find((candidate) => candidate.enrichment_id === link.dataset.streetwiseEpisode);
-      logStreetwiseEvent("episode_open", item || null);
-    });
-  });
-}
-
-function renderStreetwiseEnrichment() {
-  if (!els.streetwisePanel || !els.streetwiseList || !els.streetwiseStatus) return;
-  const belongsToCard = currentFlashcard && currentStreetwise.cardId === currentFlashcard.id;
-  const shouldReveal = Boolean(belongsToCard && flashcardAnswerVisible);
-  els.streetwisePanel.hidden = !shouldReveal;
-  if (!shouldReveal) return;
-  if (currentStreetwise.loading) {
-    els.streetwiseStatus.textContent = "ricerca...";
-    els.streetwiseList.innerHTML = `<div class="streetwise-empty">Cerco esempi pertinenti nel catalogo locale.</div>`;
-    return;
-  }
-  if (!currentStreetwise.items.length) {
-    els.streetwisePanel.hidden = true;
-    return;
-  }
-  els.streetwiseStatus.textContent = `${currentStreetwise.totalMatches} ${currentStreetwise.totalMatches === 1 ? "episodio" : "episodi"}`;
-  els.streetwiseList.innerHTML = currentStreetwise.items.map((item) => {
-    const episodeUrl = safeExternalUrl(item.episode_url);
-    const audioUrl = safeExternalUrl(item.audio_url);
-    const excerpt = item.context_excerpt || item.usage_examples?.[0]?.hebrew_excerpt || "";
-    const confidence = item.match_confidence === "high" ? "corrispondenza esatta" : "corrispondenza contestuale";
-    const date = streetwiseDateLabel(item.published_at);
-    return `
-      <article class="streetwise-item">
-        <div class="streetwise-item-copy">
-          <div class="streetwise-item-title">
-            ${episodeUrl
-              ? `<a href="${escapeHtml(episodeUrl)}" target="_blank" rel="noopener noreferrer" data-streetwise-episode="${escapeHtml(item.enrichment_id)}">${escapeHtml(item.episode_title)}</a>`
-              : `<span>${escapeHtml(item.episode_title)}</span>`}
-          </div>
-          ${excerpt ? `<blockquote dir="auto">${escapeHtml(excerpt)}</blockquote>` : ""}
-          <small>${escapeHtml([date, confidence].filter(Boolean).join(" · "))} · enrichment non canonico</small>
-        </div>
-        ${audioUrl
-          ? `<audio controls preload="none" src="${escapeHtml(audioUrl)}" data-streetwise-audio="${escapeHtml(item.enrichment_id)}" aria-label="Audio ${escapeHtml(item.episode_title)}"></audio>`
-          : ""}
-      </article>
-    `;
-  }).join("");
-  bindStreetwiseMediaEvents();
-}
-
-async function loadStreetwiseEnrichment(item) {
-  const requestToken = ++streetwiseRequestToken;
-  const cardId = item?.id || "";
-  const canonicalItemId = item?.canonical_item_id || "";
-  currentStreetwise = {
-    cardId,
-    canonicalItemId,
-    loading: Boolean(cardId),
-    items: [],
-    totalMatches: 0,
-    resolution: "none",
-  };
-  renderStreetwiseEnrichment();
-  if (!cardId) return;
-  const query = new URLSearchParams({
-    canonical_item_id: canonicalItemId,
-    hebrew: cardFront(item),
-    limit: "3",
-  });
-  try {
-    const response = await fetch(`/api/streetwise_enrichment?${query.toString()}`, { cache: "no-store" });
-    if (!response.ok) throw new Error(`Streetwise HTTP ${response.status}`);
-    const data = await response.json();
-    if (requestToken !== streetwiseRequestToken || currentFlashcard?.id !== cardId) return;
-    currentStreetwise = {
-      cardId,
-      canonicalItemId: data.canonical_item_id || canonicalItemId,
-      loading: false,
-      items: Array.isArray(data.items) ? data.items : [],
-      totalMatches: Number(data.total_matches || 0),
-      resolution: data.resolution || "none",
-    };
-  } catch {
-    if (requestToken !== streetwiseRequestToken || currentFlashcard?.id !== cardId) return;
-    currentStreetwise = { cardId, canonicalItemId, loading: false, items: [], totalMatches: 0, resolution: "error" };
-  }
-  renderStreetwiseEnrichment();
-  logStreetwiseExposureIfReady();
 }
 
 function helpMetricValue(value, suffix = "") {
@@ -6068,7 +5839,6 @@ function selectFlashcard(item) {
   flashcardAnswerShownAt = 0;
   flashcardRecallElapsedMs = 0;
   flashcardAnswerVisible = false;
-  streetwiseExposureKey = "";
   els.flashcardCard.classList.remove("is-answer-visible");
   if (els.flashcardShowBtn) els.flashcardShowBtn.textContent = "Mostra risposta";
   if (!item) {
@@ -6079,7 +5849,6 @@ function selectFlashcard(item) {
     els.flashcardCard.style.removeProperty("--deck-color");
     renderFlashcardTimer();
     updateFlashcardSessionFields();
-    loadStreetwiseEnrichment(null);
     loadHelpItem(null);
     return;
   }
@@ -6092,7 +5861,6 @@ function selectFlashcard(item) {
   els.pieceId.value = item.id || "";
   renderFlashcardTimer();
   updateFlashcardSessionFields();
-  loadStreetwiseEnrichment(item);
   loadHelpItem(item);
 }
 
@@ -6110,9 +5878,7 @@ function showFlashcardAnswer() {
   els.flashcardCard.classList.add("is-answer-visible");
   if (els.flashcardShowBtn) els.flashcardShowBtn.textContent = "Risposta visibile";
   renderFlashcardTimer();
-  renderStreetwiseEnrichment();
   renderHelpItem();
-  logStreetwiseExposureIfReady();
 }
 
 function setFlashcardTimerActive(active) {
@@ -6469,7 +6235,6 @@ async function gradeFlashcard(result) {
       selected_decks: selectedFlashcardDeckList(),
       front: cardFront(currentFlashcard),
       back: cardBack(currentFlashcard),
-      streetwise_evidence: streetwiseEvidenceSummary(),
       help_evidence: helpEvidenceSummary(),
       study_context: flashcardSessionContext(),
       ...profile,

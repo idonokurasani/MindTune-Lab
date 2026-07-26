@@ -59,7 +59,7 @@ class DomainEvaluationResult:
     latency: float = 0.0
 
 
-class DomainAdapter(Protocol, Generic[ContentItemT, PromptInstanceT, RawResponseT]):
+class DomainAdapter(Protocol, Generic[ContentItemT, PromptInstanceT, RawResponseT]):  # type: ignore[misc]
     """Typed boundary between domain-specific content and the generic runtime.
 
     Implementations are conceptually equivalent to:

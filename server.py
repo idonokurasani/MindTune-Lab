@@ -24,7 +24,6 @@ from uuid import UUID, NAMESPACE_DNS, uuid5
 
 import oura_api
 import help_profiler
-import azure_speech
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
@@ -59,8 +58,6 @@ MAC_START_SIGNAL = MAC_RUNTIME / "start_recording.signal"
 MAC_STOP_SIGNAL = MAC_RUNTIME / "stop_recording.signal"
 MAC_COMMAND_SIGNAL = MAC_RUNTIME / "command.signal"
 MEMORY_FILE = MAC_CAPTURE / "memory_protocol.json"
-CANONICAL_FLASHCARD_SEED_FILE = APP / "data" / "citizen_cafe_all_courses" / "quizlet_hebrew_seed.canonical.json"
-FLASHCARD_SEED_FILE = CANONICAL_FLASHCARD_SEED_FILE if CANONICAL_FLASHCARD_SEED_FILE.exists() else APP / "data" / "quizlet_hebrew_seed.json"
 HEBREW_VERB_CATALOG_FILE = APP / "data" / "hebrew_verbs_conjugated.json"
 PEALIM_VERB_CATALOG_FILE = APP / "data" / "pealim_hebrew_verbs.json"
 HELP_PROCESSED_DIR = Path(
@@ -73,10 +70,6 @@ HELP_LEXICAL_METRICS_FILE = HELP_PROCESSED_DIR / "help_lexical_metrics.csv"
 HELP_LD_SUMMARY_FILE = HELP_PROCESSED_DIR / "help_ld_summary.csv"
 HELP_NAMING_SUMMARY_FILE = HELP_PROCESSED_DIR / "help_naming_summary.csv"
 FLASHCARD_CATALOG_PATCH_FILE = MAC_CAPTURE / "flashcard_catalog_patches.json"
-STREETWISE_ENRICHMENT_DIR = APP / "data" / "hebrew_enrichment" / "streetwise_hebrew"
-STREETWISE_CANDIDATES_FILE = STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_ENRICHMENT_CANDIDATES_v0.1.json"
-STREETWISE_SOURCES_FILE = STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_RAW_SOURCES_v0.1.json"
-STREETWISE_MATCHES_FILE = STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_MATCHES_v0.1.jsonl"
 HEBREW_SOURCE_REGISTRY_FILE = APP / "data" / "hebrew_resources" / "source_registry.json"
 HEBREW_WORDNET_DIR = APP / "data" / "hebrew_resources" / "vendor" / "HebrewWordnetShuly"
 HEBREW_WORDNET_INDEX_FILE = APP / "data" / "hebrew_resources" / "derived" / "hebrew_wordnet_compact.json"
@@ -100,38 +93,9 @@ MAX_LOG_BYTES = 80_000
 CONDITION_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$")
 PIECE_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,79}$")
 HEBREW_MARKS_RE = re.compile(r"[\u0591-\u05bd\u05bf-\u05c7]")
-COLOR_LEVELS = [
-    ("red", 1),
-    ("orange", 2),
-    ("pink", 3),
-    ("yellow", 4),
-    ("light blue", 5),
-    ("blue", 6),
-    ("lime", 7),
-    ("green", 8),
-    ("dark green", 9),
-    ("turquoise", 10),
-    ("indigo", 11),
-    ("purple", 12),
-]
-COLOR_DECK_NAMES = {
-    "Red",
-    "Orange",
-    "Pink",
-    "Yellow",
-    "Light Blue",
-    "Blue",
-    "Lime",
-    "Green",
-    "Dark Green",
-    "Turquoise",
-    "Indigo",
-    "Purple",
-}
 FLASHCARD_SOURCES = {
     "verified_tabular",
     "pdf_extracted_raw",
-    "citizen_cafe_review_zip",
     "quizlet_export_raw",
 }
 
@@ -168,9 +132,6 @@ _HEBREW_MLF_LOCK = threading.Lock()
 _HEBREW_MLF_WORK_QUEUE: "queue.Queue[tuple[Any, threading.Event, dict]]" = queue.Queue()
 _HEBREW_MLF_WORKER_STARTED = False
 _HEBREW_MLF_WORKER_THREAD_ID: int | None = None
-_STREETWISE_INDEX_LOCK = threading.Lock()
-_STREETWISE_INDEX: dict[str, Any] = {}
-_STREETWISE_INDEX_SIGNATURE: tuple[tuple[str, int, int], ...] = ()
 _HELP_NORMS_LOCK = threading.Lock()
 _HELP_NORMS: help_profiler.HeLPNorms | None = None
 _HELP_NORMS_SIGNATURE: tuple[tuple[str, int, int], ...] = ()
@@ -703,178 +664,6 @@ def write_catalog_patch_db(payload: dict) -> None:
     tmp.replace(FLASHCARD_CATALOG_PATCH_FILE)
 
 
-def normalize_hebrew_key(value: str) -> str:
-    return "".join(strip_hebrew_niqqud(value).split())
-
-
-def _streetwise_file_signature() -> tuple[tuple[str, int, int], ...]:
-    signature = []
-    for path in (STREETWISE_CANDIDATES_FILE, STREETWISE_SOURCES_FILE, STREETWISE_MATCHES_FILE):
-        try:
-            stat = path.stat()
-            signature.append((path.name, stat.st_mtime_ns, stat.st_size))
-        except OSError:
-            signature.append((path.name, 0, 0))
-    return tuple(signature)
-
-
-def _streetwise_json_items(path: Path) -> list[dict]:
-    if not path.exists():
-        return []
-    try:
-        payload = json.loads(path.read_text(encoding="utf-8"))
-    except (OSError, json.JSONDecodeError):
-        return []
-    items = payload.get("items", []) if isinstance(payload, dict) else payload
-    return [item for item in items if isinstance(item, dict)] if isinstance(items, list) else []
-
-
-def _streetwise_jsonl_items(path: Path) -> list[dict]:
-    if not path.exists():
-        return []
-    items = []
-    try:
-        for line in path.read_text(encoding="utf-8").splitlines():
-            if not line.strip():
-                continue
-            item = json.loads(line)
-            if isinstance(item, dict):
-                items.append(item)
-    except (OSError, json.JSONDecodeError):
-        return []
-    return items
-
-
-def streetwise_enrichment_index() -> dict[str, Any]:
-    global _STREETWISE_INDEX, _STREETWISE_INDEX_SIGNATURE
-    signature = _streetwise_file_signature()
-    if _STREETWISE_INDEX and signature == _STREETWISE_INDEX_SIGNATURE:
-        return _STREETWISE_INDEX
-    with _STREETWISE_INDEX_LOCK:
-        signature = _streetwise_file_signature()
-        if _STREETWISE_INDEX and signature == _STREETWISE_INDEX_SIGNATURE:
-            return _STREETWISE_INDEX
-        candidates = _streetwise_json_items(STREETWISE_CANDIDATES_FILE)
-        sources = {
-            str(item.get("source_id") or ""): item
-            for item in _streetwise_json_items(STREETWISE_SOURCES_FILE)
-            if str(item.get("source_id") or "")
-        }
-        matches = _streetwise_jsonl_items(STREETWISE_MATCHES_FILE)
-        candidates_by_canonical: dict[str, list[dict]] = {}
-        matches_by_canonical: dict[str, list[dict]] = {}
-        canonical_by_hebrew: dict[str, list[str]] = {}
-        for candidate in candidates:
-            canonical_id = str(candidate.get("canonical_item_id") or "")
-            if canonical_id:
-                candidates_by_canonical.setdefault(canonical_id, []).append(candidate)
-        for match in matches:
-            canonical_id = str(match.get("canonical_item_id") or "")
-            if canonical_id:
-                matches_by_canonical.setdefault(canonical_id, []).append(match)
-            hebrew_key = normalize_hebrew_key(str(match.get("hebrew") or ""))
-            if canonical_id and hebrew_key:
-                ids = canonical_by_hebrew.setdefault(hebrew_key, [])
-                if canonical_id not in ids:
-                    ids.append(canonical_id)
-        _STREETWISE_INDEX = {
-            "candidates_by_canonical": candidates_by_canonical,
-            "matches_by_canonical": matches_by_canonical,
-            "canonical_by_hebrew": canonical_by_hebrew,
-            "sources": sources,
-            "candidate_count": len(candidates),
-            "source_count": len(sources),
-            "matched_canonical_count": len(candidates_by_canonical),
-        }
-        _STREETWISE_INDEX_SIGNATURE = signature
-        return _STREETWISE_INDEX
-
-
-def streetwise_enrichment_state(params: dict | None = None) -> dict:
-    params = params or {}
-    canonical_id = safe_memory_text(str(params.get("canonical_item_id") or ""), 120)
-    hebrew = raw_flashcard_text(strip_hebrew_niqqud(str(params.get("hebrew") or "")), 500)
-    try:
-        limit = max(1, min(8, int(params.get("limit") or 3)))
-    except (TypeError, ValueError):
-        limit = 3
-    index = streetwise_enrichment_index()
-    resolution = "canonical_item_id" if canonical_id else "none"
-    if not canonical_id and hebrew:
-        canonical_ids = index["canonical_by_hebrew"].get(normalize_hebrew_key(hebrew), [])
-        if len(canonical_ids) == 1:
-            canonical_id = canonical_ids[0]
-            resolution = "exact_hebrew_fallback"
-        elif len(canonical_ids) > 1:
-            return {
-                "ok": True,
-                "canonical_item_id": "",
-                "hebrew": hebrew,
-                "resolution": "ambiguous_hebrew_fallback",
-                "items": [],
-                "available": False,
-            }
-    candidates = index["candidates_by_canonical"].get(canonical_id, [])
-    matches = index["matches_by_canonical"].get(canonical_id, [])
-    matches_by_source = {
-        str(match.get("source_id") or ""): match
-        for match in matches
-        if str(match.get("source_id") or "")
-    }
-    items = []
-    seen_sources: set[str] = set()
-    for candidate in candidates:
-        source_ref = candidate.get("source_ref") if isinstance(candidate.get("source_ref"), dict) else {}
-        source_id = str(source_ref.get("source_id") or "")
-        if not source_id or source_id in seen_sources:
-            continue
-        seen_sources.add(source_id)
-        source = index["sources"].get(source_id, {})
-        match = matches_by_source.get(source_id, {})
-        audio_refs = candidate.get("audio_refs") if isinstance(candidate.get("audio_refs"), list) else []
-        audio_urls = source.get("audio_urls") if isinstance(source.get("audio_urls"), list) else []
-        usage_examples = candidate.get("usage_examples") if isinstance(candidate.get("usage_examples"), list) else []
-        items.append(
-            {
-                "enrichment_id": str(candidate.get("enrichment_id") or ""),
-                "canonical_item_id": canonical_id,
-                "source_id": source_id,
-                "episode_title": str(source.get("title") or source_ref.get("title") or source_ref.get("source_label") or "Streetwise Hebrew"),
-                "published_at": str(source.get("published_at") or ""),
-                "episode_url": str(source.get("url") or source_ref.get("url") or ""),
-                "audio_url": str((audio_urls or audio_refs or [""])[0]),
-                "match_type": str(match.get("match_type") or ""),
-                "match_confidence": str(match.get("match_confidence") or ""),
-                "context_excerpt": str(match.get("context_excerpt") or ""),
-                "usage_examples": [
-                    {
-                        "hebrew_excerpt": str(example.get("hebrew_excerpt") or ""),
-                        "italian_gloss": str(example.get("italian_gloss") or ""),
-                        "confidence": str(example.get("confidence") or ""),
-                    }
-                    for example in usage_examples[:3]
-                    if isinstance(example, dict)
-                ],
-                "review_status": str(candidate.get("review_status") or "draft_unverified"),
-            }
-        )
-    items.sort(key=lambda item: (item.get("published_at", ""), item.get("source_id", "")), reverse=True)
-    return {
-        "ok": True,
-        "canonical_item_id": canonical_id,
-        "hebrew": hebrew,
-        "resolution": resolution,
-        "available": bool(items),
-        "items": items[:limit],
-        "total_matches": len(items),
-        "index": {
-            "sources": index["source_count"],
-            "candidates": index["candidate_count"],
-            "matched_canonical_items": index["matched_canonical_count"],
-        },
-    }
-
-
 def _help_norms_signature() -> tuple[tuple[str, int, int], ...]:
     signature = []
     for path in (HELP_LEXICAL_METRICS_FILE, HELP_LD_SUMMARY_FILE, HELP_NAMING_SUMMARY_FILE):
@@ -995,20 +784,15 @@ def hebrew_source_registry_state() -> dict:
         "academy_hebrew_language",
         "pealim",
         "help_lexicon",
-        "streetwise_hebrew",
         "hebrew_wordnet_shuly",
     }
-    support_source_ids = {"citizen_cafe_archive", "nnlp_hebrew_resources"}
-    optional_runtime_source_ids = {"azure_speech"}
+    support_source_ids = {"nnlp_hebrew_resources"}
     checks = {
         "academy_hebrew_language": lambda: True,
         "pealim": lambda: PEALIM_VERB_CATALOG_FILE.exists(),
         "help_lexicon": lambda: all(path.exists() for path in (HELP_LEXICAL_METRICS_FILE, HELP_LD_SUMMARY_FILE, HELP_NAMING_SUMMARY_FILE)),
-        "streetwise_hebrew": lambda: STREETWISE_CANDIDATES_FILE.exists() and STREETWISE_SOURCES_FILE.exists(),
         "hebrew_wordnet_shuly": lambda: HEBREW_WORDNET_INDEX_FILE.exists(),
         "nnlp_hebrew_resources": lambda: NNLP_VERB_INDEX_FILE.exists(),
-        "azure_speech": lambda: bool(azure_speech.status().get("configured")),
-        "citizen_cafe_archive": lambda: CANONICAL_FLASHCARD_SEED_FILE.exists(),
     }
     sources = []
     for raw in registry.get("sources", []):
@@ -1016,31 +800,27 @@ def hebrew_source_registry_state() -> dict:
             continue
         source = dict(raw)
         source_id = str(source.get("source_id") or "")
-        available = bool(checks.get(source_id, lambda: False)())
         if source_id in operational_source_ids:
             source_category = "operational"
         elif source_id in support_source_ids:
             source_category = "support"
-        elif source_id in optional_runtime_source_ids:
-            source_category = "optional_runtime"
-        else:
+        elif source_id in checks:
             source_category = "external_reference"
+        else:
+            # Unknown or legacy sources are silently dropped.
+            continue
+        available = bool(checks.get(source_id, lambda: False)())
         source["available"] = available
         source["source_category"] = source_category
         source["active_for_recovery"] = available and source_category == "operational"
         sources.append(source)
     operational_sources = [source for source in sources if source.get("source_category") == "operational"]
     support_sources = [source for source in sources if source.get("source_category") == "support"]
-    optional_runtime_sources = [source for source in sources if source.get("source_category") == "optional_runtime"]
     operational_ready = sum(bool(source.get("available")) for source in operational_sources)
     support_ready = sum(bool(source.get("available")) for source in support_sources)
-    optional_ready = sum(bool(source.get("available")) for source in optional_runtime_sources)
-    azure = next((source for source in optional_runtime_sources if source.get("source_id") == "azure_speech"), None)
-    azure_label = "Azure pronta" if azure and azure.get("available") else "Azure non configurata"
     source_summary_label = (
         f"{operational_ready}/{len(operational_sources)} fonti operative"
         f" · {support_ready}/{len(support_sources)} supporto locale"
-        f" · {azure_label}"
     )
     return {
         "ok": True,
@@ -1053,8 +833,6 @@ def hebrew_source_registry_state() -> dict:
         "operational_total_count": len(operational_sources),
         "support_ready_count": support_ready,
         "support_total_count": len(support_sources),
-        "optional_runtime_ready_count": optional_ready,
-        "optional_runtime_total_count": len(optional_runtime_sources),
         "source_summary_label": source_summary_label,
     }
 
@@ -1083,7 +861,7 @@ def hebrew_recovery_plan_state(minutes: int = 30, readiness: float | None = None
         {"id": "activation", "label": "Prima · controllo", "purpose": "controllo attentivo breve, senza allenare uno score", "minutes": phase_minutes[0], "source": "behavioral_warmup"},
         {"id": "lexical_access", "label": "Prima · lessico", "purpose": "accesso lessicale caratterizzato con le norme HeLP quando disponibili", "minutes": phase_minutes[1], "source": "help_norms"},
         {"id": "morphological_production", "label": "Domino produttivo", "purpose": "persona, tempo e recupero generativo su verbi Pealim", "minutes": phase_minutes[2], "source": "pealim"},
-        {"id": "live_comprehension", "label": "Comprensione", "purpose": "riconoscimento di forme flesse; Streetwise arricchisce solo elementi verificati", "minutes": phase_minutes[3], "source": "pealim_context+streetwise_enrichment"},
+        {"id": "live_comprehension", "label": "Comprensione", "purpose": "riconoscimento di forme flesse arricchite dalle norme HeLP", "minutes": phase_minutes[3], "source": "pealim_context+help_norms"},
         {"id": "reentry", "label": "Dopo · re-entry", "purpose": "nuova prova sugli elementi fragili o più lenti osservati oggi", "minutes": phase_minutes[4], "source": "personal_event_stream"},
     ]
     resource_state = hebrew_source_registry_state()
@@ -1116,8 +894,6 @@ def hebrew_recovery_plan_state(minutes: int = 30, readiness: float | None = None
             "source_policy": {
                 "help": "stimulus_norms_and_read_only_profiler",
                 "pealim": "verb_paradigm_source",
-                "streetwise": "spoken_usage_enrichment_only",
-                "citizen_cafe": "legacy_personal_archive_only",
             },
         },
     }
@@ -1482,96 +1258,6 @@ def record_catalog_delete(item: dict) -> dict | None:
     return event
 
 
-def cleanup_legacy_flashcard_memory() -> dict:
-    if not MEMORY_FILE.exists():
-        return {"changed": False, "reason": "memory_missing"}
-    try:
-        payload = json.loads(MEMORY_FILE.read_text(encoding="utf-8"))
-    except Exception:
-        return {"changed": False, "reason": "memory_unreadable"}
-    items = payload.get("items", [])
-    if not items or payload.get("version") == 2:
-        return {"changed": False, "reason": "already_clean"}
-    legacy_items = [
-        item
-        for item in items
-        if str(item.get("source", "")) in FLASHCARD_SOURCES
-        and (str(item.get("deck", "")) not in COLOR_DECK_NAMES or not item.get("citizen_color"))
-    ]
-    if not legacy_items:
-        return {"changed": False, "reason": "no_legacy_flashcards"}
-    backup = MEMORY_FILE.with_name(f"memory_protocol_legacy_backup_{time.strftime('%Y%m%d_%H%M%S')}.json")
-    backup.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-    clean = {
-        "items": [],
-        "events": [],
-        "created_at": time.time(),
-        "version": 2,
-        "reset_reason": "legacy flashcard seed archived before color-only decks",
-        "legacy_backup": str(backup),
-        "legacy_items": len(items),
-    }
-    write_memory_db(clean)
-    return {"changed": True, "backup": str(backup), "legacy_items": len(items)}
-
-
-def migrate_blue_purple_docker_safe_memory() -> dict:
-    """Align already-imported Blue/Purple cards with approved bundled translations."""
-    marker = MAC_RUNTIME / "blue_purple_docker_safe_memory_20260703.marker"
-    if marker.exists():
-        return {"changed": False, "reason": "already_migrated"}
-    if not MEMORY_FILE.exists() or not FLASHCARD_SEED_FILE.exists():
-        marker.write_text(json.dumps({"changed": False, "reason": "missing_files"}, indent=2), encoding="utf-8")
-        return {"changed": False, "reason": "missing_files"}
-    try:
-        payload = json.loads(MEMORY_FILE.read_text(encoding="utf-8"))
-        seed = json.loads(FLASHCARD_SEED_FILE.read_text(encoding="utf-8"))
-    except Exception as exc:
-        marker.write_text(json.dumps({"changed": False, "reason": repr(exc)}, indent=2), encoding="utf-8")
-        return {"changed": False, "reason": "unreadable"}
-
-    approved: dict[str, dict] = {}
-    for seed_item in seed.get("items", []):
-        if (
-            seed_item.get("source") == "citizen_cafe_text_export_import"
-            and seed_item.get("deck") in {"Blue", "Purple"}
-        ):
-            seed_id = str(seed_item.get("id") or "")
-            if seed_id and seed_item.get("raw_back"):
-                approved[seed_id] = seed_item
-
-    original_payload = json.loads(json.dumps(payload, ensure_ascii=False))
-    changed = 0
-    for item in payload.get("items", []):
-        seed_id = str(item.get("seed_id") or "")
-        seed_item = approved.get(seed_id)
-        if not seed_item:
-            continue
-        new_back = raw_flashcard_text(str(seed_item.get("raw_back", "")), 5000)
-        if not new_back:
-            continue
-        if item.get("meaning") == new_back and item.get("raw_back") == new_back:
-            continue
-        item.setdefault("raw_back_original", item.get("raw_back", item.get("meaning", "")))
-        item["meaning"] = new_back
-        item["raw_back"] = new_back
-        item["italian_review_status"] = "docker_safe_approved"
-        item["semantic_method"] = "docker_safe_italian_review"
-        item["semantic_note"] = "Traduzione italiana approvata da revisione Docker safe; originale preservato in raw_back_original."
-        item["updated_at"] = time.time()
-        item["updated_label"] = time.strftime("%Y-%m-%d %H:%M")
-        changed += 1
-
-    result = {"changed": bool(changed), "updated_items": changed, "approved_seed_items": len(approved)}
-    if changed:
-        backup = MEMORY_FILE.with_name(f"memory_protocol_before_blue_purple_docker_safe_{time.strftime('%Y%m%d_%H%M%S')}.json")
-        backup.write_text(json.dumps(original_payload, indent=2, ensure_ascii=False), encoding="utf-8")
-        write_memory_db(payload)
-        result["backup"] = str(backup)
-    marker.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
-    return result
-
-
 def memory_slug(term: str) -> str:
     base = re.sub(r"[^a-z0-9]+", "_", term.lower()).strip("_")[:36]
     return base or "item"
@@ -1597,19 +1283,8 @@ def strip_hebrew_niqqud(value: str) -> str:
     return unicodedata.normalize("NFC", without_combining)
 
 
-def infer_citizen_color_level(deck: str) -> tuple[str, int]:
-    key = (deck or "").lower().replace("_", " ")
-    if "dark green" in key or "d.g" in key or re.search(r"\bdark\s*g\b", key) or re.search(r"\bdk\b", key):
-        return "dark green", 9
-    for color, level in COLOR_LEVELS:
-        if color in key:
-            return color, level
-    return "", 99
-
-
 def memory_sort_key(item: dict) -> tuple[float, int, str, int, str]:
     deck = str(item.get("deck") or item.get("context") or "")
-    _, level = infer_citizen_color_level(deck)
     try:
         source_row = int(item.get("source_row") or 0)
     except (TypeError, ValueError):
@@ -1617,7 +1292,6 @@ def memory_sort_key(item: dict) -> tuple[float, int, str, int, str]:
     return (
         float(item.get("next_due_at") or 0),
         int(item.get("study_position") or 999999),
-        int(item.get("citizen_level") or level or 99),
         deck.lower(),
         source_row,
         str(item.get("term") or item.get("raw_front") or ""),
@@ -1733,7 +1407,7 @@ def memory_state() -> dict:
     due = [item for item in items if float(item.get("next_due_at") or 0) <= now]
     decks = sorted(
         {str(item.get("deck") or item.get("context") or "").strip() for item in items if str(item.get("deck") or item.get("context") or "").strip()},
-        key=lambda deck: (infer_citizen_color_level(deck)[1], deck.lower()),
+        key=lambda deck: deck.lower(),
     )
     return {
         "total": len(items),
@@ -1876,7 +1550,6 @@ def memory_add_flashcard(params: dict) -> dict:
     )
     if duplicate is not None:
         raise ValueError("questa carta esiste gia nel mazzo")
-    color, level = infer_citizen_color_level(deck)
     max_position = max(
         [int(item.get("study_position") or 0) for item in items if str(item.get("deck") or item.get("context") or "") == deck] or [0]
     )
@@ -1892,8 +1565,6 @@ def memory_add_flashcard(params: dict) -> dict:
         "raw_front_original": raw_front,
         "raw_back_original": raw_back,
         "source": "manual_flashcard",
-        "citizen_color": color,
-        "citizen_level": level,
         "study_position": max_position + 1,
         "manual_review": True,
         "semantic_review": "manual",
@@ -1985,234 +1656,16 @@ def memory_import_flashcards(params: dict) -> dict:
 
 
 def seed_catalog() -> dict:
-    if not FLASHCARD_SEED_FILE.exists():
-        return {"colors": [], "decks": [], "total_cards": 0}
-    seed = json.loads(FLASHCARD_SEED_FILE.read_text(encoding="utf-8"))
-    by_color = {}
-    for color, level in COLOR_LEVELS:
-        by_color[color] = {"color": color, "level": level, "cards": 0, "decks": []}
-    unclassified = {"color": "non classificati", "level": 99, "cards": 0, "decks": []}
-    deck_counts: dict[str, dict] = {}
-    for raw_item in seed.get("items", []):
-        item = patched_seed_item(raw_item)
-        if item is None:
-            continue
-        if not is_study_ready_flashcard(item):
-            continue
-        deck_name = str(item.get("deck") or "Ebraico moderno")
-        color = item.get("citizen_color") or ""
-        _, inferred_level = infer_citizen_color_level(deck_name)
-        entry = deck_counts.setdefault(
-            deck_name,
-            {
-                "deck": deck_name,
-                "cards": 0,
-                "citizen_color": color,
-                "citizen_level": item.get("citizen_level") or inferred_level,
-            },
-        )
-        entry["cards"] += 1
-    decks = sorted(deck_counts.values(), key=lambda item: (int(item.get("citizen_level") or 99), str(item.get("deck", "")).lower()))
-    for deck in decks:
-        color = deck.get("citizen_color") or ""
-        target = by_color.get(color) if color else unclassified
-        target["cards"] += int(deck.get("cards") or 0)
-        target["decks"].append(deck)
-    colors = [value for _, value in sorted(by_color.items(), key=lambda pair: pair[1]["level"])]
-    if unclassified["decks"]:
-        colors.append(unclassified)
-    return {
-        "colors": colors,
-        "decks": decks,
-        "total_cards": seed.get("total_cards", 0),
-        "duplicate_cards_skipped": seed.get("duplicate_cards_skipped", 0),
-        "empty_back_cards_skipped": seed.get("empty_back_cards_skipped", 0),
-        "source_counts": seed.get("source_counts", {}),
-    }
-
-
-def round_robin_seed_items(seed_items: list[dict]) -> list[tuple[int, dict]]:
-    buckets: dict[str, list[tuple[int, dict]]] = {}
-    for index, item in seed_items:
-        deck = str(item.get("deck", ""))
-        buckets.setdefault(deck, []).append((index, item))
-    deck_order = sorted(
-        buckets,
-        key=lambda deck: (
-            int((buckets[deck][0][1]).get("citizen_level") or 99),
-            deck.lower(),
-        ),
-    )
-    mixed: list[tuple[int, dict]] = []
-    while any(buckets.values()):
-        for deck in deck_order:
-            if buckets[deck]:
-                mixed.append(buckets[deck].pop(0))
-    return mixed
+    """Return an empty catalog: bundled commercial-course seed files have been removed."""
+    return {"colors": [], "decks": [], "total_cards": 0, "source_counts": {}}
 
 
 def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = None) -> dict:
-    ensure_mac_dirs()
+    """Bundled seed import is disabled; only manual flashcards and imports are supported."""
     payload = memory_db()
     if only_if_empty and payload.get("items"):
         return {"imported": 0, "skipped": len(payload.get("items", [])), "reason": "memory_not_empty"}
-    if not FLASHCARD_SEED_FILE.exists():
-        return {"imported": 0, "skipped": 0, "reason": "seed_missing"}
-    seed = json.loads(FLASHCARD_SEED_FILE.read_text(encoding="utf-8"))
-    now = time.time()
-    existing_keys = {
-        (
-            str(item.get("deck", "")),
-            str(item.get("raw_front", item.get("term", ""))),
-            str(item.get("raw_back", item.get("meaning", ""))),
-        )
-        for item in payload.get("items", [])
-    }
-    existing_ids = {str(item.get("id", "")) for item in payload.get("items", [])}
-    existing_by_seed_id = {
-        str(item.get("seed_id")): item
-        for item in payload.get("items", [])
-        if str(item.get("seed_id") or "").strip()
-    }
-    imported = []
-    updated = 0
-    skipped = 0
-    params = params or {}
-    colors = {str(value).strip().lower() for value in params.get("colors", []) if str(value).strip()}
-    decks = {str(value).strip() for value in params.get("decks", []) if str(value).strip()}
-    if not only_if_empty and not colors and not decks:
-        return {"imported": 0, "skipped": 0, "reason": "no_color_selected"}
-    selected_seed_items = []
-    for index, raw_seed_item in enumerate(seed.get("items", []), start=1):
-        seed_item = patched_seed_item(raw_seed_item)
-        if seed_item is None:
-            continue
-        if not is_study_ready_flashcard(seed_item):
-            skipped += 1
-            continue
-        deck = raw_flashcard_text(str(seed_item.get("deck", "Ebraico moderno")), 220)
-        item_color = str(seed_item.get("citizen_color") or "").strip().lower()
-        if colors and item_color not in colors:
-            continue
-        if decks and deck not in decks:
-            continue
-        selected_seed_items.append((index, seed_item))
-    for study_position, (index, seed_item) in enumerate(round_robin_seed_items(selected_seed_items), start=1):
-        raw_front = raw_flashcard_text(strip_hebrew_niqqud(str(seed_item.get("raw_front", ""))), 2000)
-        raw_back = raw_flashcard_text(strip_hebrew_niqqud(str(seed_item.get("raw_back", ""))), 5000)
-        deck = raw_flashcard_text(str(seed_item.get("deck", "Ebraico moderno")), 220)
-        if not raw_front or not raw_back:
-            continue
-        seed_source_id = str(seed_item.get("id") or seed_item.get("seed_id") or "").strip()
-        existing_seed_item = existing_by_seed_id.get(seed_source_id) if seed_source_id else None
-        if existing_seed_item is not None:
-            before_front = str(existing_seed_item.get("raw_front", existing_seed_item.get("term", "")))
-            before_back = str(existing_seed_item.get("raw_back", existing_seed_item.get("meaning", "")))
-            existing_seed_item["deck"] = deck
-            existing_seed_item["term"] = raw_front
-            existing_seed_item["meaning"] = raw_back
-            existing_seed_item["context"] = deck
-            existing_seed_item["raw_front"] = raw_front
-            existing_seed_item["raw_back"] = raw_back
-            existing_seed_item["raw_front_original"] = raw_flashcard_text(str(seed_item.get("raw_front_original", raw_front)), 2000)
-            existing_seed_item["raw_back_original"] = raw_flashcard_text(str(seed_item.get("raw_back_original", raw_back)), 5000)
-            existing_seed_item["raw_back_before_patch"] = seed_item.get("raw_back_before_patch", existing_seed_item.get("raw_back_before_patch", ""))
-            existing_seed_item["source"] = seed_item.get("source", existing_seed_item.get("source", "quizlet_seed"))
-            existing_seed_item["source_file"] = seed_item.get("source_file", existing_seed_item.get("source_file", ""))
-            existing_seed_item["source_row"] = seed_item.get("source_row", existing_seed_item.get("source_row", ""))
-            existing_seed_item["citizen_color"] = seed_item.get("citizen_color", existing_seed_item.get("citizen_color", ""))
-            existing_seed_item["citizen_level"] = seed_item.get("citizen_level", existing_seed_item.get("citizen_level", ""))
-            existing_seed_item["canonical_item_id"] = seed_item.get("canonical_item_id", existing_seed_item.get("canonical_item_id", ""))
-            existing_seed_item["canonical_item_version"] = seed_item.get("canonical_item_version", existing_seed_item.get("canonical_item_version", ""))
-            existing_seed_item["source_map_ref"] = seed_item.get("source_map_ref", existing_seed_item.get("source_map_ref", ""))
-            existing_seed_item["quality_flags"] = seed_item.get("quality_flags", existing_seed_item.get("quality_flags", []))
-            existing_seed_item["study_ready"] = seed_item.get("study_ready", existing_seed_item.get("study_ready", True))
-            existing_seed_item["semantic_method"] = seed_item.get("semantic_method", existing_seed_item.get("semantic_method", ""))
-            existing_seed_item["semantic_note"] = seed_item.get("semantic_note", existing_seed_item.get("semantic_note", ""))
-            if before_front != raw_front or before_back != raw_back:
-                updated += 1
-            skipped += 1
-            continue
-        key = (deck, raw_front, raw_back)
-        if key in existing_keys:
-            skipped += 1
-            continue
-        item_id = f"seed_{index:05d}"
-        if item_id in existing_ids:
-            item_id = f"seed_{index:05d}_{len(existing_ids) + 1}"
-        item = {
-            "id": item_id,
-            "deck": deck,
-            "term": raw_front,
-            "meaning": raw_back,
-            "context": deck,
-            "raw_front": raw_front,
-            "raw_back": raw_back,
-            "raw_front_original": raw_flashcard_text(str(seed_item.get("raw_front_original", raw_front)), 2000),
-            "raw_back_original": raw_flashcard_text(str(seed_item.get("raw_back_original", raw_back)), 5000),
-            "raw_line": raw_flashcard_text(str(seed_item.get("raw_line", "")), 10000),
-            "raw_delimiter": seed_item.get("raw_delimiter", ""),
-            "source": seed_item.get("source", "quizlet_seed"),
-            "source_file": seed_item.get("source_file", ""),
-            "source_row": seed_item.get("source_row", ""),
-            "seed_id": seed_item.get("id") or seed_item.get("seed_id", ""),
-            "tags": seed_item.get("tags", ""),
-            "extraction_confidence": seed_item.get("extraction_confidence", "verified" if seed_item.get("source") == "verified_tabular" else ""),
-            "created_at": now,
-            "created_label": time.strftime("%Y-%m-%d %H:%M"),
-            "next_due_at": now,
-            "study_position": study_position,
-            "interval_days": 0.0,
-            "recall_count": 0,
-            "events": [],
-        }
-        for key in (
-            "tipo",
-            "tema",
-            "priorita",
-            "quizlet_id",
-            "originale_inglese",
-            "originale_estratto",
-            "duplicate_within_seed",
-            "citizen_color",
-            "citizen_level",
-            "seed_index",
-            "source_deck",
-            "semantic_method",
-            "semantic_note",
-            "semantic_review",
-            "semantic_reference_source",
-            "semantic_reference_deck",
-            "canonical_item_id",
-            "canonical_item_version",
-            "source_map_ref",
-            "study_ready",
-            "quality_flags",
-        ):
-            if key in seed_item:
-                item[key] = seed_item.get(key)
-        existing_ids.add(item_id)
-        imported.append(item)
-    payload["items"] = list(payload.get("items", [])) + imported
-    payload.setdefault("imports", []).append(
-        {
-            "at": now,
-            "label": time.strftime("%Y-%m-%d %H:%M"),
-            "source": "bundled_quizlet_hebrew_seed",
-            "seed_file": str(FLASHCARD_SEED_FILE),
-            "seed_schema": seed.get("schema"),
-            "imported": len(imported),
-            "skipped": skipped,
-            "seed_total_cards": seed.get("total_cards"),
-            "seed_source_counts": seed.get("source_counts"),
-            "seed_decks": seed.get("decks", []),
-            "selected_colors": sorted(colors),
-            "selected_decks": sorted(decks),
-            "updated_existing_seed_items": updated,
-        }
-    )
-    write_memory_db(payload)
-    return {"imported": len(imported), "updated": updated, "skipped": skipped, "reason": "imported_seed"}
+    return {"imported": 0, "skipped": 0, "reason": "bundled_seed_removed"}
 
 
 def append_flashcard_eeg_event(event: dict) -> dict | None:
@@ -2570,7 +2023,6 @@ def memory_log_recall(params: dict) -> dict:
         if raw_flashcard_text(str(value), 220)
     ][:24]
     study_context = params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
-    streetwise_evidence = params.get("streetwise_evidence") if isinstance(params.get("streetwise_evidence"), dict) else None
     help_evidence = params.get("help_evidence") if isinstance(params.get("help_evidence"), dict) else None
     now = time.time()
     previous_interval = float(item.get("interval_days") or 1.0)
@@ -2591,12 +2043,10 @@ def memory_log_recall(params: dict) -> dict:
         "latency_s": latency_s,
         "review_s": review_s,
         "deck": item.get("deck") or item.get("context") or raw_flashcard_text(str(params.get("deck", "")), 220),
-        "citizen_color": item.get("citizen_color") or raw_flashcard_text(str(params.get("citizen_color", "")), 80),
         "selected_decks": selected_decks,
         "front": raw_flashcard_text(str(params.get("front") or item.get("raw_front") or item.get("term") or ""), 2000),
         "back": raw_flashcard_text(str(params.get("back") or item.get("raw_back") or item.get("meaning") or ""), 5000),
         "study_context": study_context,
-        "streetwise_evidence": streetwise_evidence,
         "help_evidence": help_evidence,
         "interval_before_days": previous_interval,
         "interval_after_days": round(interval, 2),
@@ -4191,18 +3641,6 @@ class Handler(BaseHTTPRequestHandler):
             return json_response(self, {**result, "auth_url": auth_url})
         if parsed.path == "/api/flashcard_catalog":
             return json_response(self, seed_catalog())
-        if parsed.path == "/api/streetwise_enrichment":
-            query = parse_qs(parsed.query)
-            return json_response(
-                self,
-                streetwise_enrichment_state(
-                    {
-                        "canonical_item_id": (query.get("canonical_item_id") or [""])[0],
-                        "hebrew": (query.get("hebrew") or [""])[0],
-                        "limit": (query.get("limit") or ["3"])[0],
-                    }
-                ),
-            )
         if parsed.path == "/api/help/item":
             query = parse_qs(parsed.query)
             return json_response(
@@ -4230,8 +3668,6 @@ class Handler(BaseHTTPRequestHandler):
             )
         if parsed.path == "/api/hebrew/sources":
             return json_response(self, hebrew_source_registry_state())
-        if parsed.path == "/api/azure_speech/status":
-            return json_response(self, azure_speech.status())
         if parsed.path == "/api/conjugation_catalog":
             return json_response(self, conjugation_catalog_state())
         if parsed.path == "/api/shoresh_catalog":
@@ -4246,15 +3682,6 @@ class Handler(BaseHTTPRequestHandler):
 
     def do_POST(self) -> None:
         parsed = urlparse(self.path)
-        if parsed.path == "/api/azure_speech/transcribe":
-            try:
-                length = int(self.headers.get("Content-Length", "0"))
-                if length <= 0 or length > azure_speech.MAX_AUDIO_BYTES:
-                    raise ValueError("audio assente o troppo grande")
-                result = azure_speech.transcribe_wav(self.rfile.read(length))
-                return json_response(self, result, status=200 if result.get("ok") else 422)
-            except Exception as exc:
-                return json_response(self, {"ok": False, "error": str(exc)}, status=400)
         if parsed.path == "/api/oura_token":
             try:
                 payload = read_json(self)
@@ -4355,8 +3782,6 @@ def main() -> None:
     port = int(os.environ.get("MINDTUNE_CONSOLE_PORT", "8787"))
     startup_housekeeping()
     one_shot_minisession_cleanup()
-    cleanup_legacy_flashcard_memory()
-    migrate_blue_purple_docker_safe_memory()
     httpd = ThreadingHTTPServer((host, port), Handler)
     url = f"http://{host}:{port}"
     print(f"MindTune console: {url}")

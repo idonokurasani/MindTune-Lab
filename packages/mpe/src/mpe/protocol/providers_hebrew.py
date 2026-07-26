@@ -11,6 +11,7 @@ from typing import Any
 
 from mpe.domain.base import BehavioralEvidence
 from mpe.domains.hebrew.adapter import HebrewDomainAdapter
+from mpe.domains.hebrew.models import HebrewContentItem
 from mpe.enums import AnswerStatus, EvaluationStatus, ResponseMode, ScopeStatus
 from mpe.protocol.eeg_provider import MockEEGProvider
 from mpe.protocol.fixture_minimal import ImmediateRecallFixture
@@ -19,7 +20,14 @@ from mpe.protocol.providers import (
     FixtureResponseInterpreter,
     NoOpScheduler,
 )
-from mpe.providers import ContentItem, DomainNormalizer, Evaluator, ProviderSet, Renderer, TrialContext
+from mpe.providers import (
+    ContentItem,
+    DomainNormalizer,
+    Evaluator,
+    ProviderSet,
+    Renderer,
+    TrialContext,
+)
 from mpe.types import DomainNormalizedResponseID, EvaluationID, RenderedStimulusID, make_id
 
 

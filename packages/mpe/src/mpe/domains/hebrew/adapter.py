@@ -71,6 +71,7 @@ class HebrewDomainAdapter:
         latency = float(timing.get("latency", 0.0) if timing else 0.0)
         normalized = normalize_hebrew_response(raw_response)
         omitted = is_empty_response(raw_response)
+        error_category: str | None
 
         if omitted:
             is_correct = False

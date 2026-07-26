@@ -7,9 +7,9 @@ and a Hebrew-aware provider set, then invokes the existing
 
 from __future__ import annotations
 
-from mpe.domains.hebrew.adapter import HebrewDomainAdapter
+from typing import Any, cast
+
 from mpe.domains.hebrew.fixtures import HebrewFixture
-from mpe.domains.hebrew.models import HebrewContentItem
 from mpe.event_store import EventStore
 from mpe.protocol.fixture_minimal import FixtureAsset, FixtureItem, ImmediateRecallFixture
 from mpe.protocol.immediate_recall import run_immediate_recall_session
@@ -43,6 +43,9 @@ def hebrew_fixture_to_immediate_recall_fixture(
         item_id = item.content_item_id
         typed = typed_responses.get(item_id, item.hebrew_target) if typed_responses else item.hebrew_target
         overrides = eeg_overrides.get(item_id, {}) if eeg_overrides else {}
+        latency: float = float(cast(Any, overrides.get("latency", 1.0)) or 1.0)
+        eeg_load: float = float(cast(Any, overrides.get("eeg_load", 0.0)) or 0.0)
+        eeg_quality_flags: list[str] = list(cast(Any, overrides.get("eeg_quality_flags", [])) or [])
         items.append(
             FixtureItem(
                 content_item_id=item_id,
@@ -50,9 +53,9 @@ def hebrew_fixture_to_immediate_recall_fixture(
                 self_confirmation="positive",
                 typed_response=typed,
                 response_mode="typed",
-                latency=float(overrides.get("latency", 1.0)),
-                eeg_load=float(overrides.get("eeg_load", 0.0)),
-                eeg_quality_flags=list(overrides.get("eeg_quality_flags", [])),
+                latency=latency,
+                eeg_load=eeg_load,
+                eeg_quality_flags=eeg_quality_flags,
                 assets={
                     "prompt": _make_fixture_asset(item_id, "prompt"),
                     "confirmation": _make_fixture_asset(item_id, "confirmation"),
