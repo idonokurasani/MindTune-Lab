@@ -545,6 +545,60 @@ def _on_audio_digest_computed(state: RuntimeState, event: Event) -> None:
     pass
 
 
+# CLM-03B SpeechGen Giuseppe/Aaron voice pipeline events are audit events;
+# voice asset and cache state is reconstructed by replaying source events.
+def _on_pedagogical_voice_request_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_voice_route_selected(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_request_created(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_cache_hit(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_cache_miss(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_synthesis_started(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_synthesis_completed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_synthesis_failed(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_speechgen_audio_validated(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_voice_asset_canonicalized(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_voice_asset_registered_with_clm03(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_voice_cache_corruption_detected(state: RuntimeState, event: Event) -> None:
+    pass
+
+
+def _on_human_pronunciation_review_recorded(state: RuntimeState, event: Event) -> None:
+    pass
+
+
 def _on_session_cancelled_or_terminated(state: RuntimeState, event: Event) -> None:
     state.session_status = SessionStatus.TERMINATED
     state.terminal = True
@@ -630,4 +684,17 @@ _EVENT_HANDLERS: dict[str, Any] = {
     "playback_rejected": _on_playback_rejected,
     "audio_fallback_applied": _on_audio_fallback_applied,
     "audio_digest_computed": _on_audio_digest_computed,
+    "pedagogical_voice_request_created": _on_pedagogical_voice_request_created,
+    "voice_route_selected": _on_voice_route_selected,
+    "speechgen_request_created": _on_speechgen_request_created,
+    "speechgen_cache_hit": _on_speechgen_cache_hit,
+    "speechgen_cache_miss": _on_speechgen_cache_miss,
+    "speechgen_synthesis_started": _on_speechgen_synthesis_started,
+    "speechgen_synthesis_completed": _on_speechgen_synthesis_completed,
+    "speechgen_synthesis_failed": _on_speechgen_synthesis_failed,
+    "speechgen_audio_validated": _on_speechgen_audio_validated,
+    "voice_asset_canonicalized": _on_voice_asset_canonicalized,
+    "voice_asset_registered_with_clm03": _on_voice_asset_registered_with_clm03,
+    "voice_cache_corruption_detected": _on_voice_cache_corruption_detected,
+    "human_pronunciation_review_recorded": _on_human_pronunciation_review_recorded,
 }
