@@ -1,0 +1,32 @@
+{
+  "source_format": "fc11_eeg_csv_v1",
+  "source_format_version": "1.0.0",
+  "sample_rate_hz": 10.0,
+  "samples_per_packet": 10,
+  "gain": null,
+  "scale_factor": null,
+  "session_id": "anonymous",
+  "recording_id": "fixture-C-movement-artifact",
+  "start_timestamp": 0.0,
+  "time_unit": "seconds",
+  "channel_names": [
+    "eeg_scaled",
+    "attention_score_smoothed",
+    "meditation_score_smoothed",
+    "packet_index",
+    "signal_quality",
+    "artifact_flag",
+    "movement_flag",
+    "packet_loss"
+  ],
+  "quality_field_names": [
+    "signal_quality"
+  ],
+  "artifact_field_names": [
+    "artifact_flag",
+    "movement_flag",
+    "packet_loss"
+  ],
+  "parser_id": "mindtune_clm.replay.fc11_csv.v1",
+  "parser_version": "1.0.0"
+}
