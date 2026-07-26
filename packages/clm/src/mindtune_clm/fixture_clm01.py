@@ -2,13 +2,16 @@
 
 from __future__ import annotations
 
-from mpe.control.observations import ObservationFrame
+from mindtune_clm.observations import ObservationFrame
 
 
 def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[ObservationFrame]:
-    """Return the six deterministic observation frames for CLM-01.
+    """Return the six deterministic control-cycle observation frames for CLM-01.
 
-    Cycles:
+    The execution model produces six control cycles and seven rendered mantra
+    cycles (one initial baseline render plus one render after each control cycle).
+
+    Control cycles:
       1. stable
       2. possible deterioration (one rejected EEG artifact)
       3. sustained deterioration
@@ -19,6 +22,7 @@ def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[Observatio
     frames = [
         ObservationFrame(
             observation_frame_id=f"{session_id}-obs-1",
+            control_cycle_id=f"{session_id}-cc-1",
             session_id=session_id,
             sequence_number=1,
             observation_timestamp=1.0,
@@ -34,6 +38,7 @@ def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[Observatio
         ),
         ObservationFrame(
             observation_frame_id=f"{session_id}-obs-2",
+            control_cycle_id=f"{session_id}-cc-2",
             session_id=session_id,
             sequence_number=2,
             observation_timestamp=2.0,
@@ -49,6 +54,7 @@ def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[Observatio
         ),
         ObservationFrame(
             observation_frame_id=f"{session_id}-obs-3",
+            control_cycle_id=f"{session_id}-cc-3",
             session_id=session_id,
             sequence_number=3,
             observation_timestamp=3.0,
@@ -64,6 +70,7 @@ def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[Observatio
         ),
         ObservationFrame(
             observation_frame_id=f"{session_id}-obs-4",
+            control_cycle_id=f"{session_id}-cc-4",
             session_id=session_id,
             sequence_number=4,
             observation_timestamp=4.0,
@@ -79,6 +86,7 @@ def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[Observatio
         ),
         ObservationFrame(
             observation_frame_id=f"{session_id}-obs-5",
+            control_cycle_id=f"{session_id}-cc-5",
             session_id=session_id,
             sequence_number=5,
             observation_timestamp=5.0,
@@ -94,6 +102,7 @@ def make_clm01_fixture(session_id: str = "clm01-session-001") -> list[Observatio
         ),
         ObservationFrame(
             observation_frame_id=f"{session_id}-obs-6",
+            control_cycle_id=f"{session_id}-cc-6",
             session_id=session_id,
             sequence_number=6,
             observation_timestamp=6.0,

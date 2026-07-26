@@ -2,10 +2,11 @@
 
 from __future__ import annotations
 
+import uuid
 from dataclasses import dataclass, field
 from typing import Any
 
-from mpe.control.observations import ObservationFrame, fuse_observation
+from mindtune_clm.observations import ObservationFrame, fuse_observation
 from mpe.enums import CognitiveState
 
 
@@ -14,6 +15,8 @@ class CognitiveStateEstimate:
     """A typed, immutable cognitive-state estimate for the control loop."""
 
     estimate_id: str
+    source_observation_frame_id: str
+    source_control_cycle_id: str
     cognitive_state: CognitiveState
     attention_stability: float
     cognitive_load: float
@@ -31,8 +34,9 @@ class CognitiveStateEstimate:
 class MantraControlState:
     """Immutable control parameters for the mantra actuator.
 
-    Baseline values represent the default presentation. Safety bounds are
-    enforced by the actuator; any proposed state is clamped into these ranges.
+    Baseline values represent the default presentation with *no added
+    assistance* (assistance_level == 0.0). Safety bounds are enforced by the
+    actuator; any proposed state is clamped into these ranges.
     """
 
     tempo_ratio: float = 1.0
@@ -40,9 +44,10 @@ class MantraControlState:
     post_stimulus_pause_ms: int = 0
     repetition_count: int = 1
     prosodic_emphasis: float = 0.0
-    vocal_energy: float = 0.5
+    vocal_energy: float = 0.0
     breathing_cue: bool = False
-    assistance_level: int = 1
+    assistance_level: float = 0.0
+    control_state_id: str = ""
 
     BOUNDS: dict[str, Any] = field(
         default_factory=lambda: {
@@ -53,23 +58,28 @@ class MantraControlState:
             "prosodic_emphasis": (0.0, 1.0),
             "vocal_energy": (0.0, 1.0),
             "breathing_cue": (False, True),  # range is conceptual for bool
-            "assistance_level": (0, 5),
+            "assistance_level": (0.0, 1.0),
         },
         repr=False,
     )
 
+    def __post_init__(self) -> None:
+        if not self.control_state_id:
+            object.__setattr__(self, "control_state_id", f"cs-{uuid.uuid4()}")
+
     @classmethod
     def baseline(cls) -> "MantraControlState":
-        """Return the canonical baseline control state."""
+        """Return the canonical baseline control state (no added assistance)."""
         return cls(
             tempo_ratio=1.0,
             pre_stimulus_pause_ms=0,
             post_stimulus_pause_ms=0,
             repetition_count=1,
             prosodic_emphasis=0.0,
-            vocal_energy=0.5,
+            vocal_energy=0.0,
             breathing_cue=False,
-            assistance_level=1,
+            assistance_level=0.0,
+            control_state_id="baseline",
         )
 
     def clamped(self) -> "MantraControlState":
@@ -102,7 +112,7 @@ class MantraControlState:
         )
 
     def as_dict(self) -> dict[str, Any]:
-        """Return a serializable dictionary representation."""
+        """Return a serializable dictionary representation (without the id)."""
         return {
             "tempo_ratio": self.tempo_ratio,
             "pre_stimulus_pause_ms": self.pre_stimulus_pause_ms,
@@ -160,6 +170,8 @@ class StateEstimator:
 
         return CognitiveStateEstimate(
             estimate_id=f"estimate-{frame.session_id}-{self.estimate_counter}",
+            source_observation_frame_id=fused.source_observation_frame_id,
+            source_control_cycle_id=frame.control_cycle_id,
             cognitive_state=self.state,
             attention_stability=max(0.0, 1.0 - load),
             cognitive_load=load,

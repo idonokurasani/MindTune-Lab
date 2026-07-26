@@ -1,0 +1,7 @@
+repository,path,current_branch,head,dirty,has_git,stashes,worktrees,recent_commits_summary,disposition
+mindtune_console,/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console,feat/mindtune-lab-foundation,23ef2bb,?? audit/,true,none,"self; mindtune_eeg_github_recovery f7c8784; mindtune_rescue 8af3b95","23ef2bb Remove Citizen Cafe; 9ceb7b1 Hebrew immediate-recall; cbc8989 cognitive closed loop",KEEP
+mindtune_console_BACKUP_BEFORE_GITHUB_CLEANUP,/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console_BACKUP_BEFORE_GITHUB_CLEANUP,feat/mantra-engine-phase1,a6701d97,clean,true,none,self,"a6701d97 lehavot alias; 6aff9f07 doc/ruff cleanup; 8c79cab3 curriculum provenance",ARCHIVE
+mindtune_eeg_github_recovery,/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_eeg_github_recovery,n/a,f7c8784,—,false,—,worktree of mindtune_console,f7c8784 Recover Golden EEG Engine,ARCHIVE
+mindtune_rescue,/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_rescue,n/a,8af3b95,—,false,—,worktree of mindtune_console,8af3b95 pre closed-loop patch,ARCHIVE
+mindtune-learning-framework,/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune-learning-framework,n/a,n/a,—,false,—,none,n/a,KEEP
+mindtune_capture,/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_capture,n/a,n/a,—,false,—,none,n/a,KEEP

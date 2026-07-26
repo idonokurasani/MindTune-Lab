@@ -5,8 +5,8 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from mpe.control.decision import ControlDecision
-from mpe.control.state import MantraControlState
+from mindtune_clm.decision import ControlDecision
+from mindtune_clm.state import MantraControlState
 
 
 @dataclass(frozen=True)
@@ -15,6 +15,7 @@ class ActuationReceipt:
 
     command_id: str
     decision_id: str
+    applied_control_state_id: str
     requested_state: MantraControlState
     applied_state: MantraControlState
     timestamp: float
@@ -27,6 +28,7 @@ class ActuationReceipt:
         return {
             "command_id": self.command_id,
             "decision_id": self.decision_id,
+            "applied_control_state_id": self.applied_control_state_id,
             "requested_state": self.requested_state.as_dict(),
             "applied_state": self.applied_state.as_dict(),
             "timestamp": self.timestamp,
@@ -60,6 +62,7 @@ class MantraActuator:
             return ActuationReceipt(
                 command_id=command_id,
                 decision_id=decision.decision_id,
+                applied_control_state_id=self.current_state.control_state_id,
                 requested_state=decision.proposed_control_state,
                 applied_state=self.current_state,
                 timestamp=timestamp,
@@ -77,6 +80,7 @@ class MantraActuator:
         return ActuationReceipt(
             command_id=command_id,
             decision_id=decision.decision_id,
+            applied_control_state_id=clamped.control_state_id,
             requested_state=decision.proposed_control_state,
             applied_state=clamped,
             timestamp=timestamp,

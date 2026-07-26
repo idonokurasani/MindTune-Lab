@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from mpe.control.actuator import ActuationReceipt, MantraActuator
-from mpe.control.decision import ControlDecision, ControlDecisionKind
-from mpe.control.events import CLM01EventType
-from mpe.control.fixture_clm01 import make_clm01_fixture
-from mpe.control.loop import ControlCycleResult, ControlLoop, ControlLoopResult
-from mpe.control.observations import ObservationFrame, fuse_observation
-from mpe.control.policy import ControlPolicy
-from mpe.control.state import CognitiveStateEstimate, MantraControlState, StateEstimator
+from mindtune_clm.actuator import ActuationReceipt, MantraActuator
+from mindtune_clm.decision import ControlDecision, ControlDecisionKind
+from mindtune_clm.events import CLM01EventType
+from mindtune_clm.fixture_clm01 import make_clm01_fixture
+from mindtune_clm.loop import ControlCycleResult, ControlLoop, ControlLoopResult
+from mindtune_clm.observations import ObservationFrame, fuse_observation
+from mindtune_clm.policy import ControlPolicy
+from mindtune_clm.state import CognitiveStateEstimate, MantraControlState, StateEstimator
 
 __all__ = [
     "ActuationReceipt",

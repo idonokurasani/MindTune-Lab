@@ -11,6 +11,7 @@ class ObservationFrame:
     """A domain-neutral, immutable observation frame for the mantra control loop."""
 
     observation_frame_id: str
+    control_cycle_id: str
     session_id: str
     sequence_number: int
     observation_timestamp: float
@@ -42,6 +43,7 @@ class FusedEvidence:
     """Result of fusing the observation frame into a single load sample."""
 
     load: float
+    source_observation_frame_id: str = ""
     used: list[str] = field(default_factory=list)
     rejected: list[dict[str, Any]] = field(default_factory=list)
     reason_codes: list[str] = field(default_factory=list)
@@ -89,6 +91,7 @@ def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) 
     if frame.eeg_stability is not None or frame.eeg_quality is not None:
         if _bad_quality(frame.eeg_quality, bad_eeg_flags):
             rejected.append({
+                "observation_frame_id": frame.observation_frame_id,
                 "modality": "eeg",
                 "reason": "low_quality",
                 "quality": frame.eeg_quality,
@@ -102,6 +105,7 @@ def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) 
             reason_codes.append(f"eeg_load={eeg_load:.2f}")
         else:
             rejected.append({
+                "observation_frame_id": frame.observation_frame_id,
                 "modality": "eeg",
                 "reason": "missing_stability",
                 "quality": frame.eeg_quality,
@@ -118,7 +122,19 @@ def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) 
 
     if not loads:
         # No usable modalities: the loop continues with a neutral load.
-        return FusedEvidence(load=0.0, used=used, rejected=rejected, reason_codes=reason_codes + ["no_usable_evidence"])
+        return FusedEvidence(
+            load=0.0,
+            source_observation_frame_id=frame.observation_frame_id,
+            used=used,
+            rejected=rejected,
+            reason_codes=reason_codes + ["no_usable_evidence"],
+        )
 
     combined = max(loads)
-    return FusedEvidence(load=combined, used=used, rejected=rejected, reason_codes=reason_codes)
+    return FusedEvidence(
+        load=combined,
+        source_observation_frame_id=frame.observation_frame_id,
+        used=used,
+        rejected=rejected,
+        reason_codes=reason_codes,
+    )

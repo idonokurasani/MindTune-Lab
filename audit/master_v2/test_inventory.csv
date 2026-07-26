@@ -1,0 +1,11 @@
+test_suite,path,count,status,coverage,notes
+forbidden_legacy_sources,mindtune_console/tests/test_forbidden_legacy_sources.py,4,PASS,Regression,Guards against Citizen Cafe/Streetwise/Azure
+selected_policy_audio_contracts,mindtune_console/tests/,75,PASS,Policy/audio/contracts,Selected suites
+mpe_tests,packages/mpe/tests/,224,PASS,Core MPE,Full discovery
+hebrew_recovery_and_help,mindtune_console/tests/test_hebrew_recovery.py + test_help_profiler.py,10,PASS,Hebrew/HeLP,Combined
+mantra_engine,mindtune_console/tests/test_mantra_engine.py,Unknown,PASS,Mantra,Requires assets
+fc11_capture,mindtune_capture/tests/test_fc11_capture_pipeline.py,Unknown,PASS,EEG pipeline,Async pipeline
+lsl_bridge,mindtune_capture/tests/test_lsl_bridge.py,Unknown,PASS,LSL,Cross-process test
+scientific_qc,mindtune_capture/tests/test_scientific_qc.py,Unknown,PASS,EEG QC,
+scientific_spectral,mindtune_capture/tests/test_scientific_spectral.py,Unknown,PASS,Spectral,
+scientific_longitudinal,mindtune_capture/tests/test_scientific_longitudinal.py,Unknown,PASS,Longitudinal,

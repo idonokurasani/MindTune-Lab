@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: mindtune-console
+Version: 0.1.0
+Summary: MindTune Lab console workspace
+Requires-Python: >=3.11
+Requires-Dist: pydantic<3,>=2.0
+Requires-Dist: typing-extensions>=4.5
+Provides-Extra: dev
+Requires-Dist: pytest<9,>=7.4; extra == "dev"
+Requires-Dist: pytest-cov<5,>=4.1; extra == "dev"
+Requires-Dist: black<25,>=24.0; extra == "dev"
+Requires-Dist: ruff<0.5,>=0.4.0; extra == "dev"
+Requires-Dist: mypy<1.11,>=1.10; extra == "dev"
+Provides-Extra: hebrew
+Requires-Dist: phonikud<0.5,>=0.4.1; python_version < "3.13" and extra == "hebrew"

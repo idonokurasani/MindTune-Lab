@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 from enum import Enum
 from typing import Any
 
-from mpe.control.state import MantraControlState
+from mindtune_clm.state import MantraControlState
 
 
 class ControlDecisionKind(str, Enum):
@@ -24,6 +24,9 @@ class ControlDecision:
     """A typed, immutable decision produced by the control policy."""
 
     decision_id: str
+    estimate_id: str
+    source_observation_frame_id: str
+    source_control_cycle_id: str
     decision_kind: ControlDecisionKind
     previous_control_state: MantraControlState
     proposed_control_state: MantraControlState
@@ -37,6 +40,9 @@ class ControlDecision:
         """Return a serializable dictionary for event payloads."""
         return {
             "decision_id": self.decision_id,
+            "estimate_id": self.estimate_id,
+            "source_observation_frame_id": self.source_observation_frame_id,
+            "source_control_cycle_id": self.source_control_cycle_id,
             "decision_kind": self.decision_kind.value,
             "previous_control_state": self.previous_control_state.as_dict(),
             "proposed_control_state": self.proposed_control_state.as_dict(),
