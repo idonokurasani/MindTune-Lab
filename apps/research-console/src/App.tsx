@@ -7,6 +7,9 @@ import { SessionCreatePage } from './pages/SessionCreatePage';
 import { SessionLivePage } from './pages/SessionLivePage';
 import { SessionReviewPage } from './pages/SessionReviewPage';
 import HebrewSessionPage from './pages/HebrewSessionPage';
+import CurriculumPage from './pages/CurriculumPage';
+import LearnerProgressionPage from './pages/LearnerProgressionPage';
+import ItemInspectionPage from './pages/ItemInspectionPage';
 import { SystemPage } from './pages/SystemPage';
 import { api } from './api/client';
 import { toApiMode } from './api/models';
@@ -121,6 +124,12 @@ const App: React.FC = () => {
         return <SessionReviewPage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
       case 'hebrew':
         return <HebrewSessionPage />;
+      case 'curriculum':
+        return <CurriculumPage />;
+      case 'learner-progression':
+        return <LearnerProgressionPage />;
+      case 'item-inspection':
+        return <ItemInspectionPage />;
       case 'system':
         return <SystemPage health={health} protocols={protocols} sensors={sensors} />;
       default:

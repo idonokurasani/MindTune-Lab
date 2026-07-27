@@ -147,6 +147,29 @@ export const api = {
     ),
   getHebrewLearningSummary: (sessionId: string) =>
     request<Record<string, unknown>>('GET', `/sessions/${encodeURIComponent(sessionId)}/learning-summary`),
+
+  // CLM-06B curriculum endpoints
+  listHebrewCurricula: () => request<{ curricula: import('./models').HebrewCurriculumSummary[] }>('GET', '/hebrew/curricula'),
+  getHebrewCurriculum: (id: string) =>
+    request<import('./models').HebrewCurriculum>('GET', `/hebrew/curricula/${encodeURIComponent(id)}`),
+  getHebrewCurriculumVersions: (id: string) =>
+    request<Array<Record<string, unknown>>>('GET', `/hebrew/curricula/${encodeURIComponent(id)}/versions`),
+  getHebrewCurriculumReadiness: (id: string) =>
+    request<import('./models').HebrewCurriculumReadiness>('GET', `/hebrew/curricula/${encodeURIComponent(id)}/readiness`),
+  listHebrewUnits: () => request<{ units: import('./models').HebrewCurriculumUnit[] }>('GET', '/hebrew/units'),
+  getHebrewUnit: (id: string) =>
+    request<import('./models').HebrewCurriculumUnit>('GET', `/hebrew/units/${encodeURIComponent(id)}`),
+  listHebrewSkills: () => request<{ skills: import('./models').HebrewCurriculumSkill[] }>('GET', '/hebrew/skills'),
+  getHebrewLearnerState: (sessionId: string) =>
+    request<import('./models').HebrewLearnerState>('GET', `/hebrew/learner-state/${encodeURIComponent(sessionId)}`),
+  getHebrewProgression: (sessionId: string) =>
+    request<import('./models').HebrewProgressionResponse>('GET', `/hebrew/progression/${encodeURIComponent(sessionId)}`),
+  postHebrewNextProgression: (sessionId: string, data?: Record<string, unknown>) =>
+    request<import('./models').HebrewProgressionResponse>(
+      'POST',
+      `/hebrew/progression/${encodeURIComponent(sessionId)}/next`,
+      data,
+    ),
 };
 
 export const isApiError = (error: unknown): error is ApiError =>

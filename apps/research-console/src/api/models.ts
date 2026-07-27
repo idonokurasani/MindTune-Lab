@@ -296,6 +296,157 @@ export interface HebrewStimulusMetadata {
   asset_checksum: string | null;
 }
 
+export interface HebrewCurriculumSummary {
+  curriculum_id: string;
+  version: string;
+  base_version: string;
+}
+
+export interface HebrewCurriculum {
+  curriculum_id: string;
+  version: string;
+  base_version: string;
+  source_provenance: string;
+  metadata: Record<string, unknown>;
+  units: HebrewCurriculumUnit[];
+  lessons: HebrewCurriculumLesson[];
+  skills: HebrewCurriculumSkill[];
+  items: HebrewCurriculumItem[];
+  prereq_graph: HebrewPrerequisiteEdge[];
+  contrast_sets: HebrewContrastSet[];
+}
+
+export interface HebrewCurriculumUnit {
+  unit_id: string;
+  title: string;
+  lesson_ids: string[];
+  skill_ids: string[];
+}
+
+export interface HebrewCurriculumLesson {
+  lesson_id: string;
+  unit_id: string;
+  title: string;
+  item_ids: string[];
+  skill_target_ids: string[];
+}
+
+export interface HebrewCurriculumSkill {
+  skill_id: string;
+  label: string;
+  parent_skill_ids: string[];
+  description: string;
+}
+
+export interface HebrewCurriculumItem {
+  item_id: string;
+  curriculum_version: string;
+  unit_id: string;
+  lesson_id: string;
+  item_version: string;
+  domain: string;
+  skill_target_ids: string[];
+  prerequisite_item_ids: string[];
+  prerequisite_skill_ids: string[];
+  difficulty_estimate: number;
+  help_references: string[];
+  morphology_validation_status: string;
+  pointing_validation_status: string;
+  pronunciation_review_status: string;
+  active_learning_eligible: boolean;
+  reference_only: boolean;
+  accepted_alternatives: string[];
+  confusion_set_ids: string[];
+  source_provenance: string;
+  deprecated: boolean;
+  replacement_item_id: string | null;
+  change_reason: string;
+  canonical_pointed: string;
+  canonical_unpointed: string;
+  italian_gloss: string;
+  natural_italian: string;
+}
+
+export interface HebrewPrerequisiteEdge {
+  source_item_id: string;
+  target_item_id: string;
+  kind: string;
+  edge_version: string;
+}
+
+export interface HebrewContrastSet {
+  contrast_set_id: string;
+  member_item_ids: string[];
+  dimensions: string[];
+  expected_confusion_types: string[];
+  eligibility: string;
+  progression_rule: string;
+  review_rule: string;
+  active: boolean;
+}
+
+export interface HebrewCurriculumReadiness {
+  ready: boolean;
+  approved_count: number;
+  ready_count: number;
+  blocked_items: string[];
+  blockers: HebrewReadinessBlocker[];
+  asset_report: HebrewAssetReadinessEntry[];
+}
+
+export interface HebrewReadinessBlocker {
+  item_id: string | null;
+  blocker_type: string;
+  detail: string;
+}
+
+export interface HebrewAssetReadinessEntry {
+  required_asset: string;
+  present: boolean;
+  voice: string;
+  locale: string;
+  pointed_request_checksum: string;
+  pronunciation_review_status: string;
+  cache_compatibility: string;
+  historical_incompatibility_reason: string | null;
+}
+
+export interface HebrewLearnerState {
+  learner_id: string;
+  session_id: string;
+  pinned_curriculum_version: string;
+  item_states: Record<string, unknown>;
+  skill_states: Record<string, unknown>;
+  exposure_count: number;
+  completed_item_ids: string[];
+  deferred_item_ids: string[];
+  blocked_item_ids: string[];
+  active_difficulty: number;
+  semantic_time: number;
+}
+
+export interface HebrewProgressionDecision {
+  action: string;
+  next_item_id: string | null;
+  next_trial_type: string | null;
+  assistance_delta: number;
+  reason_codes: string[];
+  repeat_same_item: boolean;
+  interleave_item_id: string | null;
+  review_scheduled: Record<string, unknown>;
+  contrast_set_id: string | null;
+  blocked: boolean;
+}
+
+export interface HebrewProgressionResponse {
+  session_id: string;
+  curriculum_version: string;
+  current_item_id: string;
+  decision: HebrewProgressionDecision;
+  score?: Record<string, unknown>;
+  idempotent?: boolean;
+}
+
 export const toApiMode = (runtime: RuntimeMode): ApiMode => {
   switch (runtime) {
     case 'fc11_live':

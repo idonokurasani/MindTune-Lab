@@ -10,7 +10,10 @@ export type Tab =
   | 'session-live'
   | 'session-review'
   | 'system'
-  | 'hebrew';
+  | 'hebrew'
+  | 'curriculum'
+  | 'learner-progression'
+  | 'item-inspection';
 
 export interface AppState {
   activeTab: Tab;

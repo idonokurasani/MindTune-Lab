@@ -19,6 +19,7 @@ from mindtune_clm.api import (
     exports,
     health,
     hebrew,
+    hebrew_clm06b,
     protocols,
     sensors,
     sessions,
@@ -52,6 +53,7 @@ def _setup_routers(app: FastAPI) -> None:
     app.include_router(events.router, prefix="/api/v1")
     app.include_router(exports.router, prefix="/api/v1")
     app.include_router(hebrew.router, prefix="/api/v1")
+    app.include_router(hebrew_clm06b.router, prefix="/api/v1")
 
 
 def _setup_exception_handlers(app: FastAPI) -> None:
@@ -82,7 +84,9 @@ def create_app(config: CLM05APIConfig | None = None) -> FastAPI:
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
         hebrew_service = hebrew.HebrewAPIService()
+        hebrew_clm06b_service = hebrew_clm06b.HebrewCurriculumAPIService()
         app.state.hebrew_service = hebrew_service
+        app.state.hebrew_clm06b_service = hebrew_clm06b_service
         service.accepting_mutations = True
         try:
             yield
