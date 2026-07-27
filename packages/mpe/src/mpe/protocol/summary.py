@@ -6,7 +6,13 @@ from dataclasses import dataclass, field
 from typing import Any
 
 from mpe.events import Event
-from mpe.protocol.summary_walk import TrialItemRecord, walk_session
+from mpe.protocol.summary_walk import (
+    SessionWalk,
+    TrialItemRecord,
+    walk_session,
+    walk_session_legacy,
+)
+from mpe.provenance import ProvenanceReference
 from mpe.types import SessionID
 
 
@@ -45,6 +51,7 @@ class ProtocolSummary:
     completed_item_count: int
     unresolved_count: int
     total_repeats: int
+    provenance: ProvenanceReference | None = None
     items: list[ItemSummary] = field(default_factory=list)
     latency_bound: float | None = None
 
@@ -61,6 +68,7 @@ class ProtocolSummary:
             "total_repeats": self.total_repeats,
             "items": [item.as_dict() for item in self.items],
             "latency_bound": self.latency_bound,
+            **(self.provenance.as_dict() if self.provenance else {}),
         }
 
 
@@ -94,16 +102,39 @@ def derive_protocol_summary(
     latency_bound: float | None = None,
     repeat_cap: int = 1,
 ) -> ProtocolSummary:
-    """Derive an Immediate Recall protocol summary from a persisted event stream.
+    """Derive an Immediate Recall summary from a schema-1.2 event stream.
 
     The summary is computed entirely from events; no live state or side channel is
     consulted.  Deterministic event ordering is preserved by reading the stream
-    in sequence order.
+    in sequence order. The result is bound to the session's provenance event and
+    cannot be produced without one.
     """
     if not events:
         raise ValueError("Cannot derive summary from empty event stream")
+    return _derive(events, walk_session(events), latency_bound, repeat_cap)
 
-    walk = walk_session(events)
+
+def derive_protocol_summary_legacy(
+    events: list[Event],
+    latency_bound: float | None = None,
+    repeat_cap: int = 1,
+) -> ProtocolSummary:
+    """Legacy API for historical schema-1.1 streams.
+
+    Produces a result marked `provenance_status: "unavailable_legacy"`. Not
+    reachable from the normal path, and refuses schema-1.2 streams.
+    """
+    if not events:
+        raise ValueError("Cannot derive summary from empty event stream")
+    return _derive(events, walk_session_legacy(events), latency_bound, repeat_cap)
+
+
+def _derive(
+    events: list[Event],
+    walk: SessionWalk,
+    latency_bound: float | None,
+    repeat_cap: int,
+) -> ProtocolSummary:
 
     items: list[ItemSummary] = []
     completed_count = 0
@@ -142,6 +173,7 @@ def derive_protocol_summary(
         total_repeats=total_repeats,
         items=items,
         latency_bound=latency_bound,
+        provenance=walk.provenance,
     )
 
 
@@ -153,3 +185,13 @@ def summarize_session(
     """Read a session from an event store and derive its Immediate Recall summary."""
     events = store.read(session_id)
     return derive_protocol_summary(events, latency_bound=latency_bound)
+
+
+def summarize_session_legacy(
+    session_id: SessionID,
+    store: Any,
+    latency_bound: float | None = None,
+) -> ProtocolSummary:
+    """Legacy entry point for historical schema-1.1 sessions."""
+    events = store.read(session_id)
+    return derive_protocol_summary_legacy(events, latency_bound=latency_bound)

@@ -13,7 +13,7 @@ class ReplayTests(unittest.TestCase):
     def test_full_replay_matches_live_state(self) -> None:
         live_state, events, replayed_state, _store = run_demo()
         self.assertEqual(live_state.as_dict(), replayed_state.as_dict())
-        self.assertEqual(len(events), 22)
+        self.assertEqual(len(events), 23)
 
     def test_repeated_replay_is_equal(self) -> None:
         live_state, _events, _replayed, store = run_demo()

@@ -34,13 +34,13 @@ class CLITests(unittest.TestCase):
             code = main(argv)
         return code, out.getvalue().strip(), err.getvalue().strip()
 
-    def test_run_mock_session_persists_22_events(self) -> None:
+    def test_run_mock_session_persists_23_events(self) -> None:
         code, out, err = self._run(
             ["--store-path", str(self.store_path), "run-mock-session", "--format", "json"]
         )
         self.assertEqual(code, 0)
         result = json.loads(out)
-        self.assertEqual(result["event_count"], 22)
+        self.assertEqual(result["event_count"], 23)
         self.assertEqual(result["status"], "completed")
         self.assertTrue(result["terminal"])
         self.assertIn("session_id", result)
@@ -109,8 +109,8 @@ class CLITests(unittest.TestCase):
         ids = [s["session_id"] for s in sessions]
         self.assertEqual(ids, sorted(ids))
         for s in sessions:
-            self.assertEqual(s["event_count"], 22)
-            self.assertEqual(s["last_sequence"], 22)
+            self.assertEqual(s["event_count"], 23)
+            self.assertEqual(s["last_sequence"], 23)
 
     def test_validate_store_passes(self) -> None:
         self._run(
@@ -122,7 +122,7 @@ class CLITests(unittest.TestCase):
         self.assertEqual(code, 0)
         result = json.loads(out)
         self.assertTrue(result["valid"])
-        self.assertEqual(result["event_count"], 22)
+        self.assertEqual(result["event_count"], 23)
         self.assertEqual(result["session_count"], 1)
         self.assertIsNone(result["error"])
 
@@ -152,7 +152,7 @@ class CLITests(unittest.TestCase):
             code, out, _err = self._run(["run-mock-session", "--format", "json"])
             self.assertEqual(code, 0)
             result = json.loads(out)
-            self.assertEqual(result["event_count"], 22)
+            self.assertEqual(result["event_count"], 23)
             self.assertTrue(env_path.exists())
         finally:
             if old is None:
@@ -182,7 +182,7 @@ class CLITests(unittest.TestCase):
         )
         self.assertEqual(code, 0)
         result = json.loads(out)
-        self.assertEqual(result["event_count"], 22)
+        self.assertEqual(result["event_count"], 23)
         # Diagnostic lines belong on stderr.
         self.assertIn("Resolved store path", err)
         self.assertIn("Created new event store", err)
@@ -210,8 +210,8 @@ class CLITests(unittest.TestCase):
         )
         self.assertEqual(code, 0)
         parts = out.split()
-        self.assertEqual(parts[1], "22")
-        self.assertEqual(parts[2], "22")
+        self.assertEqual(parts[1], "23")
+        self.assertEqual(parts[2], "23")
 
     def test_invalid_session_id_exits_usage(self) -> None:
         # Create a store so missing store does not mask the usage error.
@@ -301,7 +301,7 @@ class CLIProcessTests(unittest.TestCase):
         run = self._run_process(["run-mock-session", "--format", "json"])
         self.assertEqual(run.returncode, 0)
         result = json.loads(run.stdout)
-        self.assertEqual(result["event_count"], 22)
+        self.assertEqual(result["event_count"], 23)
 
         replay = self._run_process(["replay", result["session_id"], "--format", "json"])
         self.assertEqual(replay.returncode, 0)

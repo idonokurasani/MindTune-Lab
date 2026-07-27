@@ -23,7 +23,7 @@ from mpe.types import (
 class SerializationTests(unittest.TestCase):
     def test_demo_events_round_trip(self) -> None:
         _live_state, events, _replayed, _store = run_demo()
-        self.assertEqual(len(events), 22)
+        self.assertEqual(len(events), 23)
         for original in events:
             row = to_row(original)
             reconstructed = from_row(row)

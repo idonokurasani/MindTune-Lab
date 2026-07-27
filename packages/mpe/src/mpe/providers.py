@@ -400,17 +400,24 @@ class ProviderSet:
     evaluator: Evaluator
     scheduler: Scheduler
 
+    def version_map(self) -> dict[str, str | None]:
+        """Return the provider versions, keyed exactly as the dependency map is.
+
+        The provenance record persists this map, so what is recorded is the same
+        thing `check_versions` verifies.
+        """
+        return {
+            "mock_renderer": self.renderer.capabilities().get("renderer_version"),
+            "mock_keyboard": self.observation.capabilities().get("provider_version"),
+            "mock_interpreter": self.interpreter.capabilities().get("interpreter_version"),
+            "mock_normalizer": self.normalizer.capabilities().get("normalizer_version"),
+            "mock_evaluator": self.evaluator.capabilities().get("evaluator_version"),
+            "mock_scheduler": self.scheduler.capabilities().get("scheduler_version"),
+        }
+
     def check_versions(self, dependency_versions: dict[str, str]) -> None:
         """Verify that each provider version matches the protocol dependencies."""
-        pairs = [
-            (self.renderer.capabilities().get("renderer_version"), "mock_renderer"),
-            (self.observation.capabilities().get("provider_version"), "mock_keyboard"),
-            (self.interpreter.capabilities().get("interpreter_version"), "mock_interpreter"),
-            (self.normalizer.capabilities().get("normalizer_version"), "mock_normalizer"),
-            (self.evaluator.capabilities().get("evaluator_version"), "mock_evaluator"),
-            (self.scheduler.capabilities().get("scheduler_version"), "mock_scheduler"),
-        ]
-        for actual, key in pairs:
+        for key, actual in self.version_map().items():
             expected = dependency_versions.get(key)
             if expected and actual != expected:
                 raise UnsupportedProviderVersionError(

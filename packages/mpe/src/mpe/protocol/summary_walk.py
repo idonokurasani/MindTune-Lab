@@ -11,8 +11,11 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Any
 
-from mpe.events import Event
+from mpe.errors import ValidationError
+from mpe.events import CURRENT_EVENT_SCHEMA_VERSION, Event
+from mpe.integrity import is_chained_schema
 from mpe.protocol.trial_pipeline import canonical_trial_fields
+from mpe.provenance import ProvenanceReference
 
 
 @dataclass
@@ -38,6 +41,7 @@ class SessionWalk:
     last_event_type: str | None
     session_completed: bool
     event_count: int
+    provenance: ProvenanceReference
     items: list[TrialItemRecord] = field(default_factory=list)
 
 
@@ -70,7 +74,54 @@ def _float_or_none(value: Any) -> float | None:
         return None
 
 
-def walk_session(events: list[Event]) -> SessionWalk:  # noqa: C901
+def _stream_schema_version(events: list[Event]) -> str:
+    return events[0].schema_version if events else CURRENT_EVENT_SCHEMA_VERSION
+
+
+def _recorded_provenance(events: list[Event]) -> ProvenanceReference:
+    """Bind the walk to `session_provenance_recorded`, or refuse to produce one."""
+    schema_version = _stream_schema_version(events)
+    if not is_chained_schema(schema_version):
+        raise ValidationError(
+            f"Schema-{schema_version} stream cannot be analysed through the normal "
+            "API; use walk_session_legacy"
+        )
+    for event in events:
+        if event.event_type == "session_provenance_recorded":
+            return ProvenanceReference.recorded(event.event_id, schema_version)
+    raise ValidationError(
+        "Schema-1.2 stream has no session_provenance_recorded event; no derived "
+        "result can be produced from it"
+    )
+
+
+def walk_session(events: list[Event]) -> SessionWalk:
+    """Correlate a schema-1.2 session, bound to its provenance event.
+
+    Raises if the stream is schema 1.1 or carries no provenance event: a
+    schema-1.2 derived result cannot exist without a provenance reference
+    (ADR-0001 sec. 2.8.1).
+    """
+    return _walk(events, _recorded_provenance(events))
+
+
+def walk_session_legacy(events: list[Event]) -> SessionWalk:
+    """Correlate a historical schema-1.1 session, explicitly unprovenanced.
+
+    The deliberately separate entry point for streams that predate provenance.
+    Every result it produces declares `unavailable_legacy`; it refuses schema
+    1.2, which must go through `walk_session`.
+    """
+    schema_version = _stream_schema_version(events)
+    if is_chained_schema(schema_version):
+        raise ValidationError(
+            f"The legacy API does not accept schema-{schema_version} streams; use "
+            "walk_session"
+        )
+    return _walk(events, ProvenanceReference.unavailable_legacy(schema_version))
+
+
+def _walk(events: list[Event], provenance: ProvenanceReference) -> SessionWalk:  # noqa: C901
     """Correlate the canonical trial events of a session, in event order."""
     session_id = str(events[0].session_id) if events else "unknown"
     protocol_id: str | None = None
@@ -139,5 +190,6 @@ def walk_session(events: list[Event]) -> SessionWalk:  # noqa: C901
         last_event_type=events[-1].event_type if events else None,
         session_completed=session_completed,
         event_count=len(events),
+        provenance=provenance,
         items=[records[item_id] for item_id in order],
     )

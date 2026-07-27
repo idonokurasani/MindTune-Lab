@@ -21,6 +21,7 @@ from mpe.enums import (
 from mpe.errors import IllegalStateTransitionError, ProviderFailureError
 from mpe.event_store import EventStore
 from mpe.events import CURRENT_EVENT_SCHEMA_VERSION, Event
+from mpe.provenance import resolve_software_revision
 from mpe.providers import ContentItem, ProviderSet, SchedulingContext, TrialContext
 from mpe.replay import Replay
 from mpe.types import (
@@ -105,6 +106,11 @@ class FixedWallClock:
         return value
 
 
+_PRE_PROVENANCE_EVENT_TYPES = frozenset(
+    {"session_created", "session_provenance_recorded"}
+)
+
+
 class Runtime:
     """MPE runtime: emits canonical events and reconstructs state via replay."""
 
@@ -125,6 +131,8 @@ class Runtime:
         self._protocol_version_id: ProtocolVersionID | None = None
         self._program_version_id: Any = None
         self._learner_id: str | None = None
+        self._resolved_revision = resolve_software_revision()
+        self._writer_revision = self._resolved_revision.revision
 
     # --------------------------------------------------------------------- #
     # Event emission
@@ -149,6 +157,21 @@ class Runtime:
             raise IllegalStateTransitionError("Cannot emit event before session is created")
         if self._protocol_version_id is None:
             raise IllegalStateTransitionError("Cannot emit event before session is created")
+        if (
+            event_type not in _PRE_PROVENANCE_EVENT_TYPES
+            and self.state.provenance_event_id is None
+        ):
+            raise IllegalStateTransitionError(
+                f"Cannot emit {event_type} before session_provenance_recorded"
+            )
+
+        provenance = list(provenance or [])
+        if (
+            event_type == "trial_created"
+            and not self.state.trials
+            and self.state.provenance_event_id is not None
+        ):
+            provenance.append(EventID(self.state.provenance_event_id))
 
         last_seq = self.store.get_last_sequence(self._session_id)
         expected_version = last_seq
@@ -169,12 +192,13 @@ class Runtime:
             component=component,
             component_version=component_version,
             correlation_id=correlation_id,
-            provenance=provenance or [],
+            provenance=provenance,
             payload=payload,
             sensitive=sensitive,
             data_classification=data_classification,
             trial_id=trial_id,
             block_id=block_id,
+            writer_revision=self._writer_revision,
         )
         stored = self.store.append(event, expected_version=expected_version)
         self.state.apply(stored)
@@ -190,7 +214,15 @@ class Runtime:
         protocol_version_id: ProtocolVersionID,
         learner_id: str,
         session_id: SessionID | None = None,
+        *,
+        provenance: dict[str, Any] | None = None,
+        record_provenance: bool = True,
     ) -> Event:
+        """Create the session and, by default, record its provenance at once.
+
+        `record_provenance=False` exists only so a test can observe that the
+        runtime refuses every later event until provenance is recorded.
+        """
         if session_id is None:
             session_id = SessionID(str(make_id(SessionID)))
         self._session_id = session_id
@@ -207,7 +239,52 @@ class Runtime:
                 "learner_id": learner_id,
             },
         )
+        if record_provenance:
+            self.record_provenance(**(provenance or {}))
         return event
+
+    def record_provenance(
+        self,
+        *,
+        protocol_id: str | None = None,
+        curriculum_id: str | None = None,
+        curriculum_version: str | None = None,
+        experimental_condition: str | None = None,
+        randomization_seed: str = "seed_0",
+        stimulus_set_id: str | None = None,
+        stimulus_set_version: str | None = None,
+        scoring_policy_version: str | None = None,
+        rt_policy_version: str | None = None,
+        signal_processing_policy_version: str | None = None,
+    ) -> Event:
+        """Emit `session_provenance_recorded`, always at sequence 2.
+
+        Fields with no source yet are recorded as explicit `null`, never as an
+        invented default. The software revision is recorded together with the
+        source it came from, so a reader can judge its strength; `source:
+        "unknown"` is a valid but weak record that downstream reports must flag.
+        """
+        return self.emit(
+            "session_provenance_recorded",
+            {
+                "session_id": str(self._session_id),
+                "protocol_id": protocol_id or str(self._protocol_version_id),
+                "protocol_version_id": str(self._protocol_version_id),
+                "curriculum_id": curriculum_id,
+                "curriculum_version": curriculum_version,
+                "experimental_condition": experimental_condition,
+                "randomization_seed": randomization_seed,
+                "stimulus_set_id": stimulus_set_id,
+                "stimulus_set_version": stimulus_set_version,
+                "scoring_policy_version": scoring_policy_version,
+                "rt_policy_version": rt_policy_version,
+                "signal_processing_policy_version": signal_processing_policy_version,
+                "software_revision": self._resolved_revision.as_dict(),
+                "provider_versions": self.providers.version_map(),
+                "writer_component": "runtime",
+                "writer_version": "1.0.0",
+            },
+        )
 
     def start_session(
         self, random_seed: str = "seed_0", start_parameters: dict[str, Any] | None = None
