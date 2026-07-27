@@ -84,9 +84,7 @@ def _from_package_metadata() -> ResolvedRevision | None:
         except metadata.PackageNotFoundError:
             continue
         if version:
-            return ResolvedRevision(
-                f"{distribution}-{version}", REVISION_SOURCE_PACKAGE_METADATA
-            )
+            return ResolvedRevision(f"{distribution}-{version}", REVISION_SOURCE_PACKAGE_METADATA)
     return None
 
 
@@ -160,9 +158,7 @@ class ProvenanceReference:
         chained = is_chained_schema(self.schema_version)
         if self.status == PROVENANCE_RECORDED:
             if self.event_id is None:
-                raise ValidationError(
-                    "provenance_status 'recorded' requires a provenance_event_id"
-                )
+                raise ValidationError("provenance_status 'recorded' requires a provenance_event_id")
             if not chained:
                 raise ValidationError(
                     f"provenance_status 'recorded' is not permitted for schema "
@@ -171,8 +167,7 @@ class ProvenanceReference:
         elif self.status == PROVENANCE_UNAVAILABLE_LEGACY:
             if self.event_id is not None:
                 raise ValidationError(
-                    "provenance_status 'unavailable_legacy' requires no "
-                    "provenance_event_id"
+                    "provenance_status 'unavailable_legacy' requires no " "provenance_event_id"
                 )
             if chained:
                 raise ValidationError(

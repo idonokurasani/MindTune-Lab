@@ -1,4 +1,5 @@
 """Ingest and index the Eran Tomer Vocalized Verb Dataset."""
+
 from __future__ import annotations
 
 import csv

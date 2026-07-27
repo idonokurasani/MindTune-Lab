@@ -54,13 +54,15 @@ class ProviderTests(unittest.TestCase):
 
     def test_interpreter_typed_output(self) -> None:
         interpreter = MockResponseInterpreter()
-        result = interpreter.interpret({
-            "captured_response_id": "cr",
-            "response_window_id": "rw",
-            "response_mode": "typed",
-            "captured_payload": "hello",
-            "captured_at": 1.0,
-        })
+        result = interpreter.interpret(
+            {
+                "captured_response_id": "cr",
+                "response_window_id": "rw",
+                "response_mode": "typed",
+                "captured_payload": "hello",
+                "captured_at": 1.0,
+            }
+        )
         self.assertEqual(result["interpreted_payload"], "hello")
         self.assertEqual(result["interpretation_type"], "typed_text")
 
@@ -134,21 +136,25 @@ class ProviderTests(unittest.TestCase):
 
     def test_scheduler_single_item_then_end(self) -> None:
         scheduler = MockScheduler()
-        first = scheduler.select_next(SchedulingContext(
-            protocol_version_id="pv",
-            session_id="s",
-            trial_index=1,
-            protocol_policy={"item_sequence": ["i1"]},
-        ))
+        first = scheduler.select_next(
+            SchedulingContext(
+                protocol_version_id="pv",
+                session_id="s",
+                trial_index=1,
+                protocol_policy={"item_sequence": ["i1"]},
+            )
+        )
         self.assertEqual(first["decision_type"], "next_trial")
         self.assertEqual(first["selected_item_ids"], ["i1"])
 
-        second = scheduler.select_next(SchedulingContext(
-            protocol_version_id="pv",
-            session_id="s",
-            trial_index=2,
-            protocol_policy={"item_sequence": ["i1"]},
-        ))
+        second = scheduler.select_next(
+            SchedulingContext(
+                protocol_version_id="pv",
+                session_id="s",
+                trial_index=2,
+                protocol_policy={"item_sequence": ["i1"]},
+            )
+        )
         self.assertEqual(second["decision_type"], "session_end")
         self.assertEqual(second["selected_item_ids"], [])
 
@@ -156,9 +162,11 @@ class ProviderTests(unittest.TestCase):
         scheduler = MockScheduler()
         scheduler.fail = True
         with self.assertRaises(ProviderFailureError):
-            scheduler.select_next(SchedulingContext(
-                protocol_version_id="pv",
-                session_id="s",
-                trial_index=1,
-                protocol_policy={"item_sequence": ["i1"]},
-            ))
+            scheduler.select_next(
+                SchedulingContext(
+                    protocol_version_id="pv",
+                    session_id="s",
+                    trial_index=1,
+                    protocol_policy={"item_sequence": ["i1"]},
+                )
+            )

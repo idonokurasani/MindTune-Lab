@@ -1,4 +1,5 @@
 """Shared pronunciation service wrapper."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -12,12 +13,16 @@ class PronunciationService:
     """Phonemization and correction service for the entire Hebrew Lab."""
 
     def __override_path(self) -> Path:
-        return Path(__file__).resolve().parents[2] / "data" / "hebrew" / "overrides" / "pronunciation.json"
+        return (
+            Path(__file__).resolve().parents[2]
+            / "data"
+            / "hebrew"
+            / "overrides"
+            / "pronunciation.json"
+        )
 
     def __init__(self, override_path: Path | None = None):
-        self.engine = PronunciationEngine(
-            override_path=override_path or self.__override_path()
-        )
+        self.engine = PronunciationEngine(override_path=override_path or self.__override_path())
         self.engine.load_overrides(self.engine.override_path or self.__override_path())
 
     def get_pronunciation(self, text: str, context: dict | None = None) -> PronunciationRecord:

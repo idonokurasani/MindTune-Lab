@@ -4,6 +4,7 @@ Do not treat this as a general automatic vocal-shva detector.  It records
 explicit decisions, manual overrides, and confidence levels, and defaults to
 'ambiguous' whenever the evidence is unclear.
 """
+
 from __future__ import annotations
 
 import re
@@ -69,5 +70,7 @@ def find_ambiguous_shva_forms(forms: list) -> list[tuple[str, str]]:
     ambiguous: list[tuple[str, str]] = []
     for form in forms:
         if hasattr(form, "shva") and form.shva.shva_status == "ambiguous":
-            ambiguous.append((getattr(form, "form_key", ""), getattr(form, "surface_vocalized", str(form))))
+            ambiguous.append(
+                (getattr(form, "form_key", ""), getattr(form, "surface_vocalized", str(form)))
+            )
     return ambiguous

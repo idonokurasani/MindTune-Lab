@@ -1,4 +1,5 @@
 """Form consensus across source evidence and overrides."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -56,11 +57,17 @@ def build_consensus(
     canonical_phonemes = _resolve_value(phoneme_values, override_source)
     if len(set(phoneme_values.values())) > 1:
         disagreements.append(
-            SourceDisagreement(field_name="phonemes_corrected", values=phoneme_values, severity="major")
+            SourceDisagreement(
+                field_name="phonemes_corrected", values=phoneme_values, severity="major"
+            )
         )
 
     # Shva consensus
-    shva_values = {sid: f.shva.shva_status for sid, f in forms.items() if f.shva.shva_status not in ("", "not_applicable")}
+    shva_values = {
+        sid: f.shva.shva_status
+        for sid, f in forms.items()
+        if f.shva.shva_status not in ("", "not_applicable")
+    }
     canonical_shva = _resolve_value(shva_values, override_source) if shva_values else "ambiguous"
     if len(set(shva_values.values())) > 1:
         disagreements.append(
@@ -80,6 +87,7 @@ def build_consensus(
     shva = base_form.shva
     if len(set(shva_values.values())) > 1:
         from .models import ShvaDiagnosis
+
         shva = ShvaDiagnosis(
             shva_status="ambiguous",
             shva_source="consensus",

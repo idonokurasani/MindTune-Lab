@@ -86,9 +86,7 @@ class SQLiteEventStore:
         self._lock = threading.Lock()
         self._migrate = migrate
         self._conn: sqlite3.Connection = self._connect()
-        self.database_version: int = int(
-            self._conn.execute("PRAGMA user_version").fetchone()[0]
-        )
+        self.database_version: int = int(self._conn.execute("PRAGMA user_version").fetchone()[0])
 
     def _connect(self) -> sqlite3.Connection:
         self.path.parent.mkdir(parents=True, exist_ok=True)
@@ -113,9 +111,7 @@ class SQLiteEventStore:
             if self._migrate:
                 migrate_v1_to_v2(conn)
         elif version != CURRENT_DATABASE_VERSION:
-            raise ValidationError(
-                f"Unsupported database schema version: {version}"
-            )
+            raise ValidationError(f"Unsupported database schema version: {version}")
 
     def _begin_immediate(self) -> sqlite3.Connection:
         self._conn.execute("BEGIN IMMEDIATE")
@@ -192,26 +188,19 @@ class SQLiteEventStore:
                     raise
                 raise mapped from exc
 
-    def _append_in_transaction(
-        self, event: Event, expected_version: int | None = None
-    ) -> Event:
+    def _append_in_transaction(self, event: Event, expected_version: int | None = None) -> Event:
         session_id = str(event.session_id)
 
         last_seq = self._conn.execute(
-            "SELECT COALESCE(MAX(session_sequence_number), 0) "
-            "FROM events WHERE session_id = ?",
+            "SELECT COALESCE(MAX(session_sequence_number), 0) " "FROM events WHERE session_id = ?",
             (session_id,),
         ).fetchone()[0]
 
         if expected_version is not None and expected_version != last_seq:
-            raise ConcurrencyError(
-                f"Expected version {expected_version}, current {last_seq}"
-            )
+            raise ConcurrencyError(f"Expected version {expected_version}, current {last_seq}")
 
         if event.session_sequence_number <= last_seq:
-            raise ConcurrencyError(
-                "Event session_sequence_number must be strictly increasing"
-            )
+            raise ConcurrencyError("Event session_sequence_number must be strictly increasing")
 
         last_ts = self._conn.execute(
             "SELECT timestamp FROM events WHERE session_id = ? "
@@ -230,9 +219,7 @@ class SQLiteEventStore:
                 (*provenance_ids, session_id),
             ).fetchone()[0]
             if found != len(provenance_ids):
-                raise ValidationError(
-                    f"Provenance event(s) not found for {event.event_id}"
-                )
+                raise ValidationError(f"Provenance event(s) not found for {event.event_id}")
 
         stored = self._link_to_stream(event, self._stream_tail(session_id))
         row = to_row(stored)
@@ -293,14 +280,10 @@ class SQLiteEventStore:
 
                     if i == 0:
                         if last_ts is not None and event.timestamp < last_ts:
-                            raise ValidationError(
-                                "Event timestamps must be non-decreasing"
-                            )
+                            raise ValidationError("Event timestamps must be non-decreasing")
                     else:
                         if event.timestamp < events[i - 1].timestamp:
-                            raise ValidationError(
-                                "Event timestamps must be non-decreasing"
-                            )
+                            raise ValidationError("Event timestamps must be non-decreasing")
 
                     if event.provenance:
                         for prov in event.provenance:
@@ -415,8 +398,7 @@ class SQLiteEventStore:
 
     def get_last_sequence(self, session_id: SessionID) -> int:
         row = self._conn.execute(
-            "SELECT COALESCE(MAX(session_sequence_number), 0) "
-            "FROM events WHERE session_id = ?",
+            "SELECT COALESCE(MAX(session_sequence_number), 0) " "FROM events WHERE session_id = ?",
             (str(session_id),),
         ).fetchone()
         return int(row[0])

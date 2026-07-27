@@ -1,4 +1,5 @@
 """Repository-grounded fixtures for Phase 1 Mantra engine."""
+
 from __future__ import annotations
 
 from pathlib import Path

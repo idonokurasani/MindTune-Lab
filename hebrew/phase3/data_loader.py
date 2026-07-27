@@ -7,6 +7,7 @@ Data sources:
 - Phase 2 gold fixtures (immutable baseline)
 - Pealim reference (reference_only)
 """
+
 from __future__ import annotations
 
 import csv
@@ -142,13 +143,14 @@ class Phase3DataLoader:
                 surface = normalize_hebrew(cells[0])
                 tense = cells[1].strip().upper()
                 features = self._normalize_corpus_features(tense, cells[2:])
-                self._corpus_counts[(surface, features)] = self._corpus_counts.get(
-                    (surface, features), 0
-                ) + count
+                self._corpus_counts[(surface, features)] = (
+                    self._corpus_counts.get((surface, features), 0) + count
+                )
 
     @staticmethod
     def _normalize_corpus_features(tense: str, cells: list[str]) -> str:
         """Normalize corpus morphological cells to a form_key-like string."""
+
         # cells order depends on tense:
         # PAST/FUTURE/IMPERATIVE: gender, person, number
         # BEINONI (present): gender, person (A=any), number
@@ -222,7 +224,15 @@ class Phase3DataLoader:
         path = _pealim_path()
         if path.exists():
             raw = json.loads(path.read_text(encoding="utf-8"))
-            self._pealim = raw if isinstance(raw, dict) else {item["query"]: item for item in raw if isinstance(item, dict) and "query" in item}
+            self._pealim = (
+                raw
+                if isinstance(raw, dict)
+                else {
+                    item["query"]: item
+                    for item in raw
+                    if isinstance(item, dict) and "query" in item
+                }
+            )
 
     def eran_rows(self) -> list[dict[str, str]]:
         if self._eran_rows is None:
@@ -275,9 +285,7 @@ class Phase3DataLoader:
                     "table_number": key[1],
                     "base_form_plain": key[2],
                     "root": root,
-                    "infinitive_vocalized": rows[0]["vocalized_inflection"]
-                    if rows
-                    else "",
+                    "infinitive_vocalized": rows[0]["vocalized_inflection"] if rows else "",
                     "form_count": len(rows),
                 }
             )

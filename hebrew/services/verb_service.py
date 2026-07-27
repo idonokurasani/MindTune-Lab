@@ -1,4 +1,5 @@
 """Verb lookup and paradigm service."""
+
 from __future__ import annotations
 
 import json
@@ -31,8 +32,12 @@ class VerbService:
         pealim_audit_path: Path | None = None,
     ):
         self.data_dir = data_dir or (Path(__file__).resolve().parents[2] / "data" / "hebrew")
-        self.pealim_forms_path = pealim_forms_path or (self.data_dir / "resources" / "pealim" / "pealim_forms.json")
-        self.pealim_audit_path = pealim_audit_path or (self.data_dir / "resources" / "pealim" / "phonikud_evaluation.json")
+        self.pealim_forms_path = pealim_forms_path or (
+            self.data_dir / "resources" / "pealim" / "pealim_forms.json"
+        )
+        self.pealim_audit_path = pealim_audit_path or (
+            self.data_dir / "resources" / "pealim" / "phonikud_evaluation.json"
+        )
         self.eran_records: list[dict[str, Any]] = []
         self.eran_indexes: dict[str, Any] = {}
         self.pealim_records: list[dict[str, Any]] = []
@@ -55,7 +60,9 @@ class VerbService:
         if self.pealim_forms_path.exists() and self.pealim_audit_path.exists():
             from ..resources.pealim_reference import load_approved_verbs
 
-            self.pealim_records = load_approved_verbs(self.pealim_forms_path, self.pealim_audit_path)
+            self.pealim_records = load_approved_verbs(
+                self.pealim_forms_path, self.pealim_audit_path
+            )
 
     def get_engine(self) -> ConjugationEngine:
         return ConjugationEngine(
@@ -168,5 +175,7 @@ class VerbService:
     def compare_sources(self, lemma_plain: str) -> dict[str, Any]:
         return self.get_engine().compare_sources(lemma_plain)
 
-    def inflector_generate(self, base_form: str, pattern: str, table_number: int) -> list[dict[str, Any]]:
+    def inflector_generate(
+        self, base_form: str, pattern: str, table_number: int
+    ) -> list[dict[str, Any]]:
         return self.inflector.generate(base_form, pattern, table_number)

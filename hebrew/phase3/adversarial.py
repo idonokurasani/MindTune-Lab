@@ -4,6 +4,7 @@ Generate mutated surfaces from valid Eran Tomer forms and verify that a simple
 validator (membership in the Eran Tomer corpus) rejects them. Any mutated form
 that is found in the corpus is counted as a false acceptance.
 """
+
 from __future__ import annotations
 
 import random

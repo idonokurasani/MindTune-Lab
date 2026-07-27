@@ -1,4 +1,5 @@
 """Typed event stream for mantra generation and playback."""
+
 from __future__ import annotations
 
 import json

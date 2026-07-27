@@ -1,4 +1,5 @@
 """Unicode and Hebrew orthographic normalization utilities."""
+
 from __future__ import annotations
 
 import re
@@ -17,8 +18,10 @@ def decompose(text: str) -> str:
 
 def is_niqqud(char: str) -> bool:
     """True for Hebrew combining points/cantillation marks."""
-    return ("\u0591" <= char <= "\u05bd" or
-            char in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7")
+    return (
+        "\u0591" <= char <= "\u05bd"
+        or char in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7"
+    )
 
 
 def is_hebrew_letter(char: str) -> bool:

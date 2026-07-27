@@ -1,4 +1,5 @@
 """SVLM sentence and example service with safety checks."""
+
 from __future__ import annotations
 
 import json
@@ -41,7 +42,9 @@ class SentenceService:
         # Target form presence
         sentence.target_form_present = bool(target) and target in normalized
         sentence.target_form_exact_match = bool(target) and normalized == target
-        sentence.target_form_morphological_match = bool(target) and strip_niqqud(target) in strip_niqqud(normalized)
+        sentence.target_form_morphological_match = bool(target) and strip_niqqud(
+            target
+        ) in strip_niqqud(normalized)
 
         # Punctuation / noise
         latin_ratio = len(re.findall(r"[A-Za-z]", normalized)) / max(len(normalized), 1)
@@ -49,8 +52,9 @@ class SentenceService:
         weird_chars = len(re.findall(r"[^\u0590-\u05fe\s\d\-.'!?\"'()\[\]{}:;]", normalized))
 
         sentence.punctuation_quality_ok = (
-            normalized.endswith((".", "!", "?", "\"", "'", ":", ";")) or
-            normalized[-1].isalpha() if normalized else False
+            normalized.endswith((".", "!", "?", '"', "'", ":", ";")) or normalized[-1].isalpha()
+            if normalized
+            else False
         ) and weird_chars < 3
         sentence.suspected_noise = latin_ratio > 0.3 or digit_ratio > 0.2 or weird_chars > 3
 

@@ -1,4 +1,5 @@
 """TTS adapter boundary, deterministic cache, and SpeechGen he-IL provider."""
+
 from __future__ import annotations
 
 import io
@@ -169,7 +170,9 @@ class SpeechGenTTSProvider:
         channels: int | None = None,
         api_url: str | None = None,
     ):
-        self.api_key = api_key or os.environ.get("SPEECHGEN_API_KEY") or os.environ.get("SPEECHGEN_TOKEN")
+        self.api_key = (
+            api_key or os.environ.get("SPEECHGEN_API_KEY") or os.environ.get("SPEECHGEN_TOKEN")
+        )
         self.email = email or os.environ.get("SPEECHGEN_EMAIL")
         self.voice = voice
         self.rate = rate
@@ -203,15 +206,15 @@ class SpeechGenTTSProvider:
         timeout: int = 120,
     ) -> tuple[int, str, bytes]:
         """Execute a single HTTP request and return (status, content_type, body)."""
-        req = urllib.request.Request(url, data=data, headers=headers or {}, method="POST" if data else "GET")
+        req = urllib.request.Request(
+            url, data=data, headers=headers or {}, method="POST" if data else "GET"
+        )
         try:
             with urllib.request.urlopen(req, timeout=timeout) as response:
                 return response.status, response.headers.get("Content-Type", ""), response.read()
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="ignore")[:2000]
-            raise TTSRuntimeError(
-                f"SpeechGen HTTP {exc.code} at {url}: {body}"
-            ) from exc
+            raise TTSRuntimeError(f"SpeechGen HTTP {exc.code} at {url}: {body}") from exc
         except urllib.error.URLError as exc:
             raise TTSRuntimeError(f"SpeechGen request to {url} failed: {exc.reason}") from exc
 

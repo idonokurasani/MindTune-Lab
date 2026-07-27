@@ -4,6 +4,7 @@ Combines curriculum, specification, audio profile, and inventory into a typed
 readiness report.  Distinguishes learner-execution eligibility from
 asset-preparation eligibility.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -76,6 +77,7 @@ class VerbReadinessReport:
             "specification": self.specification.to_dict() if self.specification else None,
         }
 
+
 class ReadinessEvaluator:
     """Convenience wrapper that evaluates readiness for a curriculum verb."""
 
@@ -106,7 +108,6 @@ class ReadinessEvaluator:
         )
 
 
-
 def _has_unreviewed_linguistics(spec: HebrewVerbSpecification) -> bool:
     return any(
         entry.linguistic_review_status != LinguisticReviewStatus.VERIFIED_CONSENSUS
@@ -129,7 +130,13 @@ def _evaluate_assets(
     audio_profile: AudioProfile,
     asset_inventory: AudioAssetInventory,
     learner_eligibility: LearnerExecutionEligibility,
-) -> tuple[AssetAvailabilityReport, LearnerExecutionEligibility, list[str], AssetPreparationEligibility, list[str]]:
+) -> tuple[
+    AssetAvailabilityReport,
+    LearnerExecutionEligibility,
+    list[str],
+    AssetPreparationEligibility,
+    list[str],
+]:
     learner_reasons: list[str] = []
     preparation_reasons: list[str] = []
 
@@ -160,7 +167,13 @@ def _evaluate_assets(
     else:
         preparation_eligibility = AssetPreparationEligibility.ELIGIBLE
 
-    return asset_report, learner_eligibility, learner_reasons, preparation_eligibility, preparation_reasons
+    return (
+        asset_report,
+        learner_eligibility,
+        learner_reasons,
+        preparation_eligibility,
+        preparation_reasons,
+    )
 
 
 def _report_for_spec_error(verb_id: str, exc: HebrewSpecificationError) -> VerbReadinessReport:
@@ -210,9 +223,13 @@ def evaluate_verb_readiness(
         learner_eligibility = LearnerExecutionEligibility.ELIGIBLE
         learner_reasons = []
 
-    asset_report, learner_eligibility, learner_reasons, preparation_eligibility, preparation_reasons = _evaluate_assets(
-        spec, audio_profile, asset_inventory, learner_eligibility
-    )
+    (
+        asset_report,
+        learner_eligibility,
+        learner_reasons,
+        preparation_eligibility,
+        preparation_reasons,
+    ) = _evaluate_assets(spec, audio_profile, asset_inventory, learner_eligibility)
 
     return VerbReadinessReport(
         verb_id=verb_id,

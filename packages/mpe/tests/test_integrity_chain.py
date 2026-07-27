@@ -143,20 +143,14 @@ class CanonicalSerializationTests(unittest.TestCase):
         self.assertIn("previous_digest", fields)
 
     def test_the_two_representations_are_distinct(self) -> None:
-        self.assertNotEqual(
-            canonical_digest_bytes(self.event), canonical_record_bytes(self.event)
-        )
+        self.assertNotEqual(canonical_digest_bytes(self.event), canonical_record_bytes(self.event))
 
     def test_digest_is_deterministic(self) -> None:
-        self.assertEqual(
-            compute_content_digest(self.event), compute_content_digest(self.event)
-        )
+        self.assertEqual(compute_content_digest(self.event), compute_content_digest(self.event))
 
     def test_digest_changes_when_a_bound_field_changes(self) -> None:
         other = dataclasses.replace(self.event, component_version="9.9.9")
-        self.assertNotEqual(
-            compute_content_digest(self.event), compute_content_digest(other)
-        )
+        self.assertNotEqual(compute_content_digest(self.event), compute_content_digest(other))
 
 
 class InMemoryChainTests(unittest.TestCase):
@@ -175,15 +169,11 @@ class InMemoryChainTests(unittest.TestCase):
 
     def test_chained_stream_verifies(self) -> None:
         self._append(3)
-        self.assertEqual(
-            self.store.integrity_status(self.session_id), INTEGRITY_VERIFIED
-        )
+        self.assertEqual(self.store.integrity_status(self.session_id), INTEGRITY_VERIFIED)
 
     def test_schema_11_stream_reports_unavailable(self) -> None:
         self.store.append(make_event(self.session_id, 1, schema_version="1.1"))
-        self.assertEqual(
-            self.store.integrity_status(self.session_id), INTEGRITY_UNAVAILABLE
-        )
+        self.assertEqual(self.store.integrity_status(self.session_id), INTEGRITY_UNAVAILABLE)
         self.assertIsNone(self.store.read(self.session_id)[0].content_digest)
 
     def test_mixing_schema_versions_in_one_stream_is_refused(self) -> None:
@@ -261,12 +251,8 @@ class SQLiteIntegrityTests(unittest.TestCase):
 
     def test_a_recognition_session_is_verified_end_to_end(self) -> None:
         with SQLiteEventStore(self.path) as store:
-            result = run_recognition_session(
-                store, wall_clock=FixedWallClock(1_700_000_000.0)
-            )
-            self.assertEqual(
-                store.integrity_status(result.state.session_id), INTEGRITY_VERIFIED
-            )
+            result = run_recognition_session(store, wall_clock=FixedWallClock(1_700_000_000.0))
+            self.assertEqual(store.integrity_status(result.state.session_id), INTEGRITY_VERIFIED)
 
         with SQLiteEventStore(self.path) as reopened:
             events = reopened.read(result.state.session_id)
@@ -292,9 +278,7 @@ class SQLiteIntegrityTests(unittest.TestCase):
             session_id = result.state.session_id
             unreferenced = _unreferenced_interior_sequence(store.read(session_id))
 
-        self._tamper(
-            "DELETE FROM events WHERE session_sequence_number = ?", (unreferenced,)
-        )
+        self._tamper("DELETE FROM events WHERE session_sequence_number = ?", (unreferenced,))
 
         with SQLiteEventStore(self.path) as reopened:
             with self.assertRaises(IntegrityError):
@@ -305,9 +289,7 @@ class SQLiteIntegrityTests(unittest.TestCase):
             result = run_recognition_session(store)
             session_id = result.state.session_id
 
-        self._tamper(
-            "UPDATE events SET content_digest = NULL WHERE session_sequence_number = 2"
-        )
+        self._tamper("UPDATE events SET content_digest = NULL WHERE session_sequence_number = 2")
 
         with SQLiteEventStore(self.path) as reopened:
             with self.assertRaises(IntegrityError):
@@ -337,14 +319,10 @@ class SQLiteIntegrityTests(unittest.TestCase):
             session_id = result.state.session_id
             full_length = len(store.read(session_id))
 
-        self._tamper(
-            "DELETE FROM events WHERE session_sequence_number > ?", (full_length - 3,)
-        )
+        self._tamper("DELETE FROM events WHERE session_sequence_number > ?", (full_length - 3,))
 
         with SQLiteEventStore(self.path) as reopened:
-            self.assertEqual(
-                reopened.integrity_status(session_id), INTEGRITY_VERIFIED
-            )
+            self.assertEqual(reopened.integrity_status(session_id), INTEGRITY_VERIFIED)
             self.assertEqual(len(reopened.read(session_id)), full_length - 3)
 
 
@@ -369,9 +347,7 @@ class MigrationTests(unittest.TestCase):
             self.assertEqual(store.database_version, 1)
             events = store.read(self.legacy_session)
             self.assertEqual(len(events), 2)
-            self.assertEqual(
-                store.integrity_status(self.legacy_session), INTEGRITY_UNAVAILABLE
-            )
+            self.assertEqual(store.integrity_status(self.legacy_session), INTEGRITY_UNAVAILABLE)
             with self.assertRaises(IntegrityError):
                 store.append(make_event(SessionID("new-session"), 1))
 
@@ -385,20 +361,14 @@ class MigrationTests(unittest.TestCase):
             self.assertEqual(store.database_version, CURRENT_DATABASE_VERSION)
             after = store.read(self.legacy_session)
             self.assertEqual(before, after)
-            self.assertEqual(
-                store.integrity_status(self.legacy_session), INTEGRITY_UNAVAILABLE
-            )
+            self.assertEqual(store.integrity_status(self.legacy_session), INTEGRITY_UNAVAILABLE)
 
     def test_migration_accepts_new_schema_12_sessions(self) -> None:
         self._migrate()
         with SQLiteEventStore(self.path) as store:
             result = run_recognition_session(store)
-            self.assertEqual(
-                store.integrity_status(result.state.session_id), INTEGRITY_VERIFIED
-            )
-            self.assertEqual(
-                store.integrity_status(self.legacy_session), INTEGRITY_UNAVAILABLE
-            )
+            self.assertEqual(store.integrity_status(result.state.session_id), INTEGRITY_VERIFIED)
+            self.assertEqual(store.integrity_status(self.legacy_session), INTEGRITY_UNAVAILABLE)
 
     def test_migration_refuses_schema_12_appends_to_a_historical_stream(self) -> None:
         self._migrate()

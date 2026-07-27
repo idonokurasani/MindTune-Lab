@@ -5,6 +5,7 @@ synthesis text, expected pronunciation, explicit sheva decisions, the selected
 audio checksum, and the reviewer decision.  The primary key is the tuple
 (lexical_item, conjugated_form, provider, voice, provider_model).
 """
+
 from __future__ import annotations
 
 import json

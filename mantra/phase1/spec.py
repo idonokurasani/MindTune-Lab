@@ -1,4 +1,5 @@
 """Typed Mantra specification and validation."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -48,7 +49,9 @@ class MantraForm:
         object.__setattr__(self, "italian_gloss", normalize_unicode(self.italian_gloss))
         object.__setattr__(self, "transliteration", normalize_unicode(self.transliteration))
         if self.pronunciation_override is not None:
-            object.__setattr__(self, "pronunciation_override", normalize_unicode(self.pronunciation_override))
+            object.__setattr__(
+                self, "pronunciation_override", normalize_unicode(self.pronunciation_override)
+            )
         if not self.tts_input:
             object.__setattr__(self, "tts_input", self.hebrew_with_niqqud)
         else:
@@ -93,7 +96,9 @@ class MantraForm:
 
     def effective_stress(self) -> int:
         """Return the effective stress syllable index."""
-        return self.stress_override if self.stress_override is not None else self.stress_syllable_index
+        return (
+            self.stress_override if self.stress_override is not None else self.stress_syllable_index
+        )
 
     def to_dict(self) -> dict[str, Any]:
         return {
@@ -230,7 +235,9 @@ class MantraSpecification:
     cycles: int = 1
     speech: SpeechConfig = field(default_factory=SpeechConfig)
     italian_speech: SpeechConfig = field(
-        default_factory=lambda: SpeechConfig(provider="speechgen", language="it", locale="it-IT", voice="Giuseppe")
+        default_factory=lambda: SpeechConfig(
+            provider="speechgen", language="it", locale="it-IT", voice="Giuseppe"
+        )
     )
     pauses: PauseConfig = field(default_factory=PauseConfig)
     output_format: str = "wav"

@@ -4,6 +4,7 @@ This module is the deterministic bridge between a reviewed linguistic
 specification and the actual audio assets.  It builds requirements, computes
 cache keys, and inspects the inventory without calling SpeechGen.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -248,7 +249,9 @@ def _build_italian_requirement(
     sequence_index: int,
     profile: AudioProfile,
 ) -> AudioAssetRequirement | None:
-    is_core_infinitive = entry.section == GrammaticalSection.INFINITIVE and entry.role == EntryRole.CORE
+    is_core_infinitive = (
+        entry.section == GrammaticalSection.INFINITIVE and entry.role == EntryRole.CORE
+    )
     if not is_core_infinitive:
         return None
     voice_id, locale = profile.voice_for("it")
@@ -297,9 +300,7 @@ def build_asset_requirements(
     requirements: list[AudioAssetRequirement] = []
     sequence_index = 0
     for entry in _sorted_entries(spec):
-        requirements.append(
-            _build_hebrew_requirement(spec, entry, sequence_index, audio_profile)
-        )
+        requirements.append(_build_hebrew_requirement(spec, entry, sequence_index, audio_profile))
         sequence_index += 1
         italian_req = _build_italian_requirement(spec, entry, sequence_index, audio_profile)
         if italian_req is not None:
@@ -308,13 +309,15 @@ def build_asset_requirements(
     return tuple(requirements)
 
 
-_ALLOWED_COMPACT_SECTIONS = frozenset({
-    GrammaticalSection.INFINITIVE,
-    GrammaticalSection.PRESENT,
-    GrammaticalSection.PAST,
-    GrammaticalSection.FUTURE,
-    GrammaticalSection.IMPERATIVE,
-})
+_ALLOWED_COMPACT_SECTIONS = frozenset(
+    {
+        GrammaticalSection.INFINITIVE,
+        GrammaticalSection.PRESENT,
+        GrammaticalSection.PAST,
+        GrammaticalSection.FUTURE,
+        GrammaticalSection.IMPERATIVE,
+    }
+)
 
 _KIND_ORDER = {
     AssetKind.ITALIAN_PROMPT: 0,
@@ -336,13 +339,19 @@ def build_compact_mantra_requirements(
             continue
         if req.required_for_core_execution:
             filtered.append(req)
-        elif include_italian_intro and req.asset_kind == AssetKind.ITALIAN_PROMPT and req.section == GrammaticalSection.INFINITIVE:
+        elif (
+            include_italian_intro
+            and req.asset_kind == AssetKind.ITALIAN_PROMPT
+            and req.section == GrammaticalSection.INFINITIVE
+        ):
             filtered.append(req)
-    filtered.sort(key=lambda r: (
-        _section_order(r.section),
-        _KIND_ORDER.get(r.asset_kind, 2),
-        r.sequence_index,
-    ))
+    filtered.sort(
+        key=lambda r: (
+            _section_order(r.section),
+            _KIND_ORDER.get(r.asset_kind, 2),
+            r.sequence_index,
+        )
+    )
     return filtered
 
 
@@ -442,7 +451,9 @@ class AudioAssetInventory:
                 if req.required_for_core_execution:
                     blocking_reasons.append(f"{req.asset_id}: incompatible core asset")
 
-        ready = not missing and not incompatible and not available_unreviewed and not blocking_reasons
+        ready = (
+            not missing and not incompatible and not available_unreviewed and not blocking_reasons
+        )
         if not requirements:
             ready = False
             blocking_reasons.append("no_asset_requirements")
@@ -459,4 +470,3 @@ class AudioAssetInventory:
             blocking_reasons=tuple(blocking_reasons),
             ready_for_core_execution=ready,
         )
-

@@ -1,4 +1,5 @@
 """Shared pronunciation and phonemization engine with central override layer."""
+
 from __future__ import annotations
 
 import json
@@ -49,7 +50,9 @@ class PronunciationEngine:
         }
         self.save_overrides()
 
-    def get_pronunciation(self, text: str, context: dict[str, Any] | None = None) -> PronunciationRecord:
+    def get_pronunciation(
+        self, text: str, context: dict[str, Any] | None = None
+    ) -> PronunciationRecord:
         """Phonemize text and apply any central overrides."""
         text = normalize_hebrew(text)
         raw_phonemes = phonemize(text)
@@ -93,7 +96,11 @@ class PronunciationEngine:
             vocal_shva=(shva.shva_status == "vocal"),
             shva=shva,
             source="phonikud+overrides",
-            source_id="manual_override" if shva_override is not None or stress_override is not None else "phonikud",
+            source_id=(
+                "manual_override"
+                if shva_override is not None or stress_override is not None
+                else "phonikud"
+            ),
         )
 
     def apply_overrides(self, record: PronunciationRecord, target: str) -> PronunciationRecord:

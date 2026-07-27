@@ -1,4 +1,5 @@
 """One-shot ingestion pipeline for all shared Hebrew resources."""
+
 from __future__ import annotations
 
 from pathlib import Path

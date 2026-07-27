@@ -1,4 +1,5 @@
 """Automated tests for the MindTune Mantra Engine Phase 1 implementation."""
+
 from __future__ import annotations
 
 import os
@@ -187,7 +188,9 @@ class TimelineTests(unittest.TestCase):
                 GrammaticalGroup(
                     tense="present",
                     forms=[
-                        MantraForm(form_key="ms", hebrew_with_niqqud="כּוֹתֵב", italian_gloss="io scrivo")
+                        MantraForm(
+                            form_key="ms", hebrew_with_niqqud="כּוֹתֵב", italian_gloss="io scrivo"
+                        )
                     ],
                 )
             ],
@@ -218,9 +221,15 @@ class TTSTests(unittest.TestCase):
 
     def test_cache_key_includes_voice_locale_and_text(self) -> None:
         base = _cache_key("לִכְתֹּב", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="he-IL")
-        different_voice = _cache_key("לִכְתֹּב", "speechgen", "Hila", 1.0, 0.0, "wav", None, locale="he-IL")
-        different_locale = _cache_key("לִכְתֹּב", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="it-IT")
-        different_text = _cache_key("שָׁלוֹם", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="he-IL")
+        different_voice = _cache_key(
+            "לִכְתֹּב", "speechgen", "Hila", 1.0, 0.0, "wav", None, locale="he-IL"
+        )
+        different_locale = _cache_key(
+            "לִכְתֹּב", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="it-IT"
+        )
+        different_text = _cache_key(
+            "שָׁלוֹם", "speechgen", "Aaron", 1.0, 0.0, "wav", None, locale="he-IL"
+        )
         self.assertNotEqual(base, different_voice)
         self.assertNotEqual(base, different_locale)
         self.assertNotEqual(base, different_text)
@@ -401,7 +410,9 @@ class PlaybackTests(unittest.TestCase):
         events = EventEmitter()
         out_dir = Path(tempfile.mkdtemp())
         try:
-            assemble_audio(spec, timeline, FakeTTSProvider(base_duration=0.001), out_dir, events=EventEmitter())
+            assemble_audio(
+                spec, timeline, FakeTTSProvider(base_duration=0.001), out_dir, events=EventEmitter()
+            )
             controller = PlaybackController(
                 timeline,
                 out_dir / "segments",
@@ -442,7 +453,9 @@ class PlaybackTests(unittest.TestCase):
         events = EventEmitter()
         out_dir = Path(tempfile.mkdtemp())
         try:
-            assemble_audio(spec, timeline, FakeTTSProvider(base_duration=0.001), out_dir, events=EventEmitter())
+            assemble_audio(
+                spec, timeline, FakeTTSProvider(base_duration=0.001), out_dir, events=EventEmitter()
+            )
             controller = PlaybackController(
                 timeline,
                 out_dir / "segments",
@@ -465,7 +478,9 @@ class AdaptationTests(unittest.TestCase):
     def test_unsupported_command_rejected(self) -> None:
         boundary = AdaptationBoundary()
         with self.assertRaises(AdaptationError):
-            boundary.apply("s1", "m1", "v1", "seg1", "skip_ahead", {"delta_ms": 100}, "reason", "p1")
+            boundary.apply(
+                "s1", "m1", "v1", "seg1", "skip_ahead", {"delta_ms": 100}, "reason", "p1"
+            )
 
     def test_out_of_bound_pause_delta_rejected(self) -> None:
         boundary = AdaptationBoundary(max_pause_extension_ms=500)

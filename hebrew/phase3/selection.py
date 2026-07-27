@@ -4,6 +4,7 @@ The selection maximizes corpus frequency while covering the seven binyanim and
 major weak-root classes.  It does not promote any verb to verified_consensus;
 that decision is made later by the evidence pipeline.
 """
+
 from __future__ import annotations
 
 from collections import defaultdict
@@ -33,14 +34,10 @@ def classify_root(root: str) -> dict[str, bool]:
     initial_nun = letters[0] == "נ" if letters else False
     contains_yod_vav = any(c in {"י", "ו"} for c in letters)
     final_he = letters[-1] == "ה" if letters else False
-    hollow = (
-        len(letters) == 3 and letters[1] in {"ו", "י"}
-    ) or (
+    hollow = (len(letters) == 3 and letters[1] in {"ו", "י"}) or (
         len(letters) == 2 and letters[0] in {"ב", "ר", "ש"}
     )
-    geminate = (
-        len(letters) == 3 and letters[0] == letters[1]
-    ) or (
+    geminate = (len(letters) == 3 and letters[0] == letters[1]) or (
         len(letters) == 3 and letters[1] == letters[2]
     )
     quadriliteral = len(letters) >= 4
@@ -129,7 +126,9 @@ def select_100_verbs(
 
     # Sort primarily by infinitive frequency; verbs with no infinitive drop to the
     # bottom so that the expansion set is verb-first and high-frequency-first.
-    candidates.sort(key=lambda x: (x["infinitive_frequency"] == 0, -x["infinitive_frequency"], -x["frequency"]))
+    candidates.sort(
+        key=lambda x: (x["infinitive_frequency"] == 0, -x["infinitive_frequency"], -x["frequency"])
+    )
 
     by_binyan: dict[str, list[dict]] = defaultdict(list)
     by_root_class: dict[str, list[dict]] = defaultdict(list)

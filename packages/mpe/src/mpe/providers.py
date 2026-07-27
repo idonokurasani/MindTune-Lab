@@ -174,15 +174,17 @@ class MockKeyboardObservationProvider:
         }
 
     def inject(self, text: str) -> None:
-        self._pending.append({
-            "observation_id": str(make_id(ObservationID)),
-            "observation_type": "typed_input",
-            "payload": text,
-            "quality_dimensions": {},
-            "quality_flags": [],
-            "quality_model_id": "mock_qm",
-            "quality_model_version": "1.0.0",
-        })
+        self._pending.append(
+            {
+                "observation_id": str(make_id(ObservationID)),
+                "observation_type": "typed_input",
+                "payload": text,
+                "quality_dimensions": {},
+                "quality_flags": [],
+                "quality_model_id": "mock_qm",
+                "quality_model_version": "1.0.0",
+            }
+        )
 
     def set_failing(self, failing: bool) -> None:
         self._failing = failing
@@ -261,7 +263,9 @@ class MockDomainNormalizer:
             "domain_normalized_response_id": str(make_id(DomainNormalizedResponseID)),
             "response_window_id": response_interpretation["response_window_id"],
             "response_interpretation_id": response_interpretation["response_interpretation_id"],
-            "response_mode": response_interpretation.get("interpretation_type", ResponseMode.TYPED.value),
+            "response_mode": response_interpretation.get(
+                "interpretation_type", ResponseMode.TYPED.value
+            ),
             "normalizer_id": "mock_normalizer",
             "normalizer_version": self.version,
             "normalized_payload": response_interpretation["interpreted_payload"],
@@ -328,7 +332,9 @@ class MockEvaluator:
                 "domain_normalized_response_id", str(make_id(DomainNormalizedResponseID))
             ),
             "expected_content_item_id": expected_answer.content_item_id,
-            "answer_status": AnswerStatus.CORRECT.value if correct else AnswerStatus.INCORRECT.value,
+            "answer_status": (
+                AnswerStatus.CORRECT.value if correct else AnswerStatus.INCORRECT.value
+            ),
             "evaluation_status": EvaluationStatus.COMPLETED.value,
             "correctness_credit": 1.0 if correct else 0.0,
             "scope_status": ScopeStatus.IN_SCOPE.value,
@@ -382,7 +388,9 @@ class MockScheduler:
             "random_seed": context.random_seed or "seed_0",
             "selected_item_ids": selected,
             "decision_type": decision_type,
-            "decision_status": DecisionStatus.MADE.value if not self.abstain else DecisionStatus.ABSTAINED.value,
+            "decision_status": (
+                DecisionStatus.MADE.value if not self.abstain else DecisionStatus.ABSTAINED.value
+            ),
         }
 
 

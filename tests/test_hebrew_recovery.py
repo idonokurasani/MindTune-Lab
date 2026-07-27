@@ -27,13 +27,17 @@ class HebrewRecoveryTests(unittest.TestCase):
         }
         with (
             patch.object(server, "help_profile_state", return_value={"profile": profile}),
-            patch.object(server, "hebrew_source_registry_state", return_value={
-                "ready_count": 5,
-                "total_count": 8,
-                "operational_ready_count": 5,
-                "operational_total_count": 5,
-                "source_summary_label": "5/5 fonti operative · 2/2 supporto locale · Azure non configurata",
-            }),
+            patch.object(
+                server,
+                "hebrew_source_registry_state",
+                return_value={
+                    "ready_count": 5,
+                    "total_count": 8,
+                    "operational_ready_count": 5,
+                    "operational_total_count": 5,
+                    "source_summary_label": "5/5 fonti operative · 2/2 supporto locale · Azure non configurata",
+                },
+            ),
         ):
             result = server.hebrew_recovery_plan_state(30)
 
@@ -41,7 +45,10 @@ class HebrewRecoveryTests(unittest.TestCase):
         self.assertEqual(sum(phase["minutes"] for phase in plan["phases"]), 30)
         self.assertEqual(plan["evidence"]["resources_ready"], 5)
         self.assertEqual(plan["evidence"]["resources_total"], 5)
-        self.assertEqual(plan["evidence"]["resources_label"], "5/5 fonti operative · 2/2 supporto locale · Azure non configurata")
+        self.assertEqual(
+            plan["evidence"]["resources_label"],
+            "5/5 fonti operative · 2/2 supporto locale · Azure non configurata",
+        )
         self.assertEqual(plan["active_increment"], "morphological_production")
         self.assertEqual(plan["source_policy"]["citizen_cafe"], "legacy_personal_archive_only")
 
@@ -50,11 +57,18 @@ class HebrewRecoveryTests(unittest.TestCase):
             root = Path(temp)
             registry = root / "sources.json"
             registry.write_text(
-                json.dumps({
-                    "schema_version": "test/1",
-                    "policy": "test",
-                    "sources": [{"source_id": "hebrew_wordnet_shuly", "local_status": "catalogued_not_installed"}],
-                }),
+                json.dumps(
+                    {
+                        "schema_version": "test/1",
+                        "policy": "test",
+                        "sources": [
+                            {
+                                "source_id": "hebrew_wordnet_shuly",
+                                "local_status": "catalogued_not_installed",
+                            }
+                        ],
+                    }
+                ),
                 encoding="utf-8",
             )
             with (

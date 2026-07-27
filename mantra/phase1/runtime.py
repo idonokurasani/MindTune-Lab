@@ -5,6 +5,7 @@ MantraExecutionPlan, AudioAssetRequirement) meets the audio runtime
 (AudioAssetRegistry, build_compact_mantra).  It does not call TTS unless
 explicitly asked to prepare missing assets.
 """
+
 from __future__ import annotations
 
 from pathlib import Path

@@ -144,9 +144,7 @@ class WallClockPersistenceTests(unittest.TestCase):
         first_store = InMemoryEventStore()
         second_store = InMemoryEventStore()
 
-        first = run_recognition_session(
-            first_store, wall_clock=FixedWallClock(1_700_000_000.0)
-        )
+        first = run_recognition_session(first_store, wall_clock=FixedWallClock(1_700_000_000.0))
         second = run_recognition_session(
             second_store, wall_clock=FixedWallClock(1_900_000_000.0, step=3600.0)
         )

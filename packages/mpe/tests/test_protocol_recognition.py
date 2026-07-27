@@ -57,7 +57,9 @@ class RecognitionRunnerTests(unittest.TestCase):
         alpha_outcomes = [o for o in result.item_outcomes if o.content_item_id == "item.alpha"]
         self.assertEqual(len(alpha_outcomes), 1)
         self.assertEqual(alpha_outcomes[0].answer_status, AnswerStatus.CORRECT.value)
-        self.assertEqual(alpha_outcomes[0].selected_choice_index, alpha_outcomes[0].correct_choice_index)
+        self.assertEqual(
+            alpha_outcomes[0].selected_choice_index, alpha_outcomes[0].correct_choice_index
+        )
 
         beta_outcomes = [o for o in result.item_outcomes if o.content_item_id == "item.beta"]
         self.assertEqual(len(beta_outcomes), 2)
@@ -78,8 +80,10 @@ class RecognitionRunnerTests(unittest.TestCase):
     def test_repeat_cap_enforced(self) -> None:
         result = self._run(InMemoryEventStore())
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         self.assertEqual(beta_trials[0].payload.get("repeat_count"), 0)
@@ -178,8 +182,10 @@ class RecognitionRunnerTests(unittest.TestCase):
     def test_adaptation_source_recorded(self) -> None:
         result = self._run(InMemoryEventStore())
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         initial, repeat = beta_trials
@@ -190,9 +196,7 @@ class RecognitionRunnerTests(unittest.TestCase):
         # Beta is wrong, so the adaptation source is behavior, not latency.
         self.assertEqual(repeat.payload.get("adaptation_source"), "behavior")
 
-    def _fixture_with_beta(
-        self, beta: RecognitionFixtureItem
-    ) -> RecognitionFixture:
+    def _fixture_with_beta(self, beta: RecognitionFixtureItem) -> RecognitionFixture:
         alpha = self.fixture.items[0]
         return RecognitionFixture(
             fixture_id="minimal-recognition",
@@ -214,15 +218,21 @@ class RecognitionRunnerTests(unittest.TestCase):
             selected_choice_index=0,
             latency=0.5,
             assets={
-                "choice_0": FixtureAsset("item.beta.choice_0", "choice_0", "fixture://item.beta/choice_0", "v1.0.0"),
-                "choice_1": FixtureAsset("item.beta.choice_1", "choice_1", "fixture://item.beta/choice_1", "v1.0.0"),
+                "choice_0": FixtureAsset(
+                    "item.beta.choice_0", "choice_0", "fixture://item.beta/choice_0", "v1.0.0"
+                ),
+                "choice_1": FixtureAsset(
+                    "item.beta.choice_1", "choice_1", "fixture://item.beta/choice_1", "v1.0.0"
+                ),
             },
         )
         fixture = self._fixture_with_beta(beta)
         result = run_recognition_session(InMemoryEventStore(), fixture=fixture, rule=self.rule)
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         repeat_trial = beta_trials[1]
@@ -238,22 +248,29 @@ class RecognitionRunnerTests(unittest.TestCase):
             selected_choice_index=1,
             latency=5.0,
             assets={
-                "choice_0": FixtureAsset("item.beta.choice_0", "choice_0", "fixture://item.beta/choice_0", "v1.0.0"),
-                "choice_1": FixtureAsset("item.beta.choice_1", "choice_1", "fixture://item.beta/choice_1", "v1.0.0"),
+                "choice_0": FixtureAsset(
+                    "item.beta.choice_0", "choice_0", "fixture://item.beta/choice_0", "v1.0.0"
+                ),
+                "choice_1": FixtureAsset(
+                    "item.beta.choice_1", "choice_1", "fixture://item.beta/choice_1", "v1.0.0"
+                ),
             },
         )
         fixture = self._fixture_with_beta(beta)
         result = run_recognition_session(InMemoryEventStore(), fixture=fixture, rule=self.rule)
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         repeat_trial = beta_trials[1]
         self.assertEqual(repeat_trial.payload.get("adaptation_source"), "latency")
 
         beta_evaluations = [
-            e for e in result.events
+            e
+            for e in result.events
             if e.event_type == "evaluation_completed"
             and e.payload.get("expected_content_item_id") == "item.beta"
         ]
@@ -341,9 +358,7 @@ class RecognitionCLITests(unittest.TestCase):
     def test_cli_directory_path_exits_usage(self) -> None:
         dir_path = Path(self._td.name) / "a_directory"
         dir_path.mkdir()
-        code, out, err = self._run(
-            ["--store-path", str(dir_path), "run-recognition"]
-        )
+        code, out, err = self._run(["--store-path", str(dir_path), "run-recognition"])
         self.assertEqual(code, 2)
         self.assertEqual(out, "")
         self.assertIn("directory", err)
@@ -368,9 +383,7 @@ class RecognitionProcessTests(unittest.TestCase):
         cmd = [sys.executable, "-m", "mpe", "--store-path", str(self.store_path)] + argv
         env = dict(os.environ)
         env["PYTHONPATH"] = str(REPO_ROOT / "packages" / "mpe" / "src")
-        return subprocess.run(
-            cmd, capture_output=True, text=True, cwd=str(REPO_ROOT), env=env
-        )
+        return subprocess.run(cmd, capture_output=True, text=True, cwd=str(REPO_ROOT), env=env)
 
     def test_python_mpe_invocation(self) -> None:
         run = self._run_process(["run-recognition", "--format", "json"])
@@ -379,7 +392,9 @@ class RecognitionProcessTests(unittest.TestCase):
         self.assertEqual(result["item_count"], 2)
         self.assertEqual(result["total_repeats"], 1)
 
-        replay = self._run_process(["show-recognition-summary", result["session_id"], "--format", "json"])
+        replay = self._run_process(
+            ["show-recognition-summary", result["session_id"], "--format", "json"]
+        )
         self.assertEqual(replay.returncode, 0, msg=replay.stderr)
         summary = json.loads(replay.stdout)
         self.assertEqual(summary["total_repeats"], 1)

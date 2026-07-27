@@ -30,7 +30,16 @@ class HeLPProfilerTests(unittest.TestCase):
         naming = self.root / "naming.csv"
         write_csv(
             lexical,
-            ["word", "lexicality", "frequency", "word_length", "orthographic_neighborhood_density", "phonological_entropy", "clitic_count", "semitic_structure"],
+            [
+                "word",
+                "lexicality",
+                "frequency",
+                "word_length",
+                "orthographic_neighborhood_density",
+                "phonological_entropy",
+                "clitic_count",
+                "semitic_structure",
+            ],
             [
                 {"word": "שמע", "lexicality": "word", "frequency": 42, "word_length": 3},
                 {"word": "כתב", "lexicality": "word", "frequency": 31, "word_length": 3},
@@ -38,13 +47,45 @@ class HeLPProfilerTests(unittest.TestCase):
         )
         write_csv(
             ld,
-            ["word_key", "stimulus_type", "ld_trials", "ld_median_rt", "ld_mean_rt", "ld_sd_rt", "ld_accuracy"],
-            [{"word_key": "שמע", "stimulus_type": "word", "ld_trials": 20, "ld_median_rt": 640, "ld_accuracy": 0.95}],
+            [
+                "word_key",
+                "stimulus_type",
+                "ld_trials",
+                "ld_median_rt",
+                "ld_mean_rt",
+                "ld_sd_rt",
+                "ld_accuracy",
+            ],
+            [
+                {
+                    "word_key": "שמע",
+                    "stimulus_type": "word",
+                    "ld_trials": 20,
+                    "ld_median_rt": 640,
+                    "ld_accuracy": 0.95,
+                }
+            ],
         )
         write_csv(
             naming,
-            ["word_key", "naming_trials", "naming_valid_trials", "naming_median_rt", "naming_mean_rt", "naming_sd_rt", "naming_accuracy"],
-            [{"word_key": "שמע", "naming_trials": 10, "naming_valid_trials": 9, "naming_median_rt": 510, "naming_accuracy": 0.9}],
+            [
+                "word_key",
+                "naming_trials",
+                "naming_valid_trials",
+                "naming_median_rt",
+                "naming_mean_rt",
+                "naming_sd_rt",
+                "naming_accuracy",
+            ],
+            [
+                {
+                    "word_key": "שמע",
+                    "naming_trials": 10,
+                    "naming_valid_trials": 9,
+                    "naming_median_rt": 510,
+                    "naming_accuracy": 0.9,
+                }
+            ],
         )
         self.norms = help_profiler.HeLPNorms(lexical, ld, naming)
 
@@ -133,18 +174,67 @@ class HeLPProfilerTests(unittest.TestCase):
         )
         rows = [
             ("start", "trial.start", 1, {"trial_id": "t1"}),
-            ("response", "trial.response", 2, {"trial_id": "t1", "response_raw": "שמע", "response_normalized": "שמע"}),
-            ("score-0", "trial.score", 3, {"trial_id": "t1", "outcome": "incorrect", "correction_sequence": 0, "score_metadata": {"hebrew": {"root": "שמע", "binyan": "paal"}}}),
-            ("score-1", "trial.score", 4, {"trial_id": "t1", "outcome": "correct", "correction_of_event_id": "score-0", "correction_sequence": 1, "score_metadata": {"hebrew": {"root": "שמע", "binyan": "paal"}}}),
-            ("malformed", "trial.score", 5, {"trial_id": "t1", "outcome": "incorrect", "correction_of_event_id": "not-latest", "correction_sequence": 2}),
+            (
+                "response",
+                "trial.response",
+                2,
+                {"trial_id": "t1", "response_raw": "שמע", "response_normalized": "שמע"},
+            ),
+            (
+                "score-0",
+                "trial.score",
+                3,
+                {
+                    "trial_id": "t1",
+                    "outcome": "incorrect",
+                    "correction_sequence": 0,
+                    "score_metadata": {"hebrew": {"root": "שמע", "binyan": "paal"}},
+                },
+            ),
+            (
+                "score-1",
+                "trial.score",
+                4,
+                {
+                    "trial_id": "t1",
+                    "outcome": "correct",
+                    "correction_of_event_id": "score-0",
+                    "correction_sequence": 1,
+                    "score_metadata": {"hebrew": {"root": "שמע", "binyan": "paal"}},
+                },
+            ),
+            (
+                "malformed",
+                "trial.score",
+                5,
+                {
+                    "trial_id": "t1",
+                    "outcome": "incorrect",
+                    "correction_of_event_id": "not-latest",
+                    "correction_sequence": 2,
+                },
+            ),
             ("start-2", "trial.start", 6, {"trial_id": "t2"}),
             ("response-2", "trial.response", 7, {"trial_id": "t2", "response_raw": "כתב"}),
-            ("score-unknown", "trial.score", 8, {"trial_id": "t2", "outcome": "unknown", "correction_sequence": 0}),
+            (
+                "score-unknown",
+                "trial.score",
+                8,
+                {"trial_id": "t2", "outcome": "unknown", "correction_sequence": 0},
+            ),
         ]
         for event_id, event_type, order, payload in rows:
             connection.execute(
                 "INSERT INTO events VALUES (?, ?, ?, ?, ?, ?, ?)",
-                (event_id, event_type, f"2026-07-15T10:00:0{order}Z", order, "s1", "u1", json.dumps(payload)),
+                (
+                    event_id,
+                    event_type,
+                    f"2026-07-15T10:00:0{order}Z",
+                    order,
+                    "s1",
+                    "u1",
+                    json.dumps(payload),
+                ),
             )
         connection.commit()
         connection.close()
@@ -212,7 +302,9 @@ class HeLPProfilerTests(unittest.TestCase):
         speech_summary = profile["input_mode_summaries"][0]
         self.assertEqual(speech_summary["input_mode"], "speech_to_text")
         self.assertEqual(speech_summary["median_transcription_confidence"], 0.91)
-        self.assertTrue(any("not Hebrew pronunciation quality" in note for note in profile["notes"]))
+        self.assertTrue(
+            any("not Hebrew pronunciation quality" in note for note in profile["notes"])
+        )
 
     def test_recovery_events_feed_help_without_counting_warmup_or_summaries(self) -> None:
         eeg = self.root / "eeg"
@@ -227,43 +319,50 @@ class HeLPProfilerTests(unittest.TestCase):
                 if index < 4
                 else "hebrew_recovery_comprehension_response"
             )
-            rows.append({
-                "behavioral_event_id": f"recovery-{index}",
-                "behavioral_session_id": f"recovery-session-{1 + index // 4}",
-                "type": event_type,
-                "event": {
-                    "event_id": f"recovery-{index}",
-                    "timestamp": f"2026-07-21T10:00:0{index}Z",
-                    "correct": index not in {1, 5},
-                    "reaction_time_ms": 800 + index * 100,
-                    "verb_id": verb_id,
-                    "infinitive": "לאכול" if verb_id == "verb-eat" else "לכתוב",
-                    "phrase": "הוא אוכל" if verb_id == "verb-eat" else "היא כותבת",
-                    "root": "אכל" if verb_id == "verb-eat" else "כתב",
-                    "binyan": "paal",
+            rows.append(
+                {
+                    "behavioral_event_id": f"recovery-{index}",
+                    "behavioral_session_id": f"recovery-session-{1 + index // 4}",
+                    "type": event_type,
+                    "event": {
+                        "event_id": f"recovery-{index}",
+                        "timestamp": f"2026-07-21T10:00:0{index}Z",
+                        "correct": index not in {1, 5},
+                        "reaction_time_ms": 800 + index * 100,
+                        "verb_id": verb_id,
+                        "infinitive": "לאכול" if verb_id == "verb-eat" else "לכתוב",
+                        "phrase": "הוא אוכל" if verb_id == "verb-eat" else "היא כותבת",
+                        "root": "אכל" if verb_id == "verb-eat" else "כתב",
+                        "binyan": "paal",
+                    },
+                }
+            )
+        rows.extend(
+            [
+                {
+                    "behavioral_event_id": "warmup-1",
+                    "behavioral_session_id": "recovery-session-1",
+                    "type": "hebrew_recovery_activation_response",
+                    "event": {"correct": False, "reaction_time_ms": 9999},
                 },
-            })
-        rows.extend([
-            {
-                "behavioral_event_id": "warmup-1",
-                "behavioral_session_id": "recovery-session-1",
-                "type": "hebrew_recovery_activation_response",
-                "event": {"correct": False, "reaction_time_ms": 9999},
-            },
-            {
-                "behavioral_event_id": "summary-1",
-                "behavioral_session_id": "recovery-session-2",
-                "type": "hebrew_recovery_session_completed",
-                "event": {"before_accuracy": 0, "after_accuracy": 0},
-            },
-        ])
+                {
+                    "behavioral_event_id": "summary-1",
+                    "behavioral_session_id": "recovery-session-2",
+                    "type": "hebrew_recovery_session_completed",
+                    "event": {"before_accuracy": 0, "after_accuracy": 0},
+                },
+            ]
+        )
         payload = "".join(json.dumps(row, ensure_ascii=False) + "\n" for row in rows)
         (local / "recovery.events.jsonl").write_text(payload, encoding="utf-8")
         (eeg / "duplicate.events.jsonl").write_text(payload, encoding="utf-8")
 
         observations = help_profiler.recovery_observations(eeg, local)
         self.assertEqual(len(observations), 8)
-        self.assertEqual({row["session_ref"] for row in observations}, {"recovery-session-1", "recovery-session-2"})
+        self.assertEqual(
+            {row["session_ref"] for row in observations},
+            {"recovery-session-1", "recovery-session-2"},
+        )
         self.assertEqual({row["item_ref"] for row in observations}, {"verb-eat", "verb-write"})
         self.assertTrue(all(row["binyan"] == "paal" for row in observations))
 

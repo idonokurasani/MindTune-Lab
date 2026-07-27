@@ -146,7 +146,9 @@ def first_dict_url(query: str, expected_en: str) -> str:
     search = f"{BASE}/search/?q={quote(query)}"
     text = fetch(search)
     candidates = []
-    for match in re.finditer(r'<div class="verb-search-data">(.*?)<div class="verb-search-forms">', text, flags=re.S):
+    for match in re.finditer(
+        r'<div class="verb-search-data">(.*?)<div class="verb-search-forms">', text, flags=re.S
+    ):
         block = match.group(1)
         link_match = re.search(r'href="([^"]*/dict/[^"]+/)"', block)
         if not link_match:
@@ -248,7 +250,9 @@ def main() -> int:
             verbs.append(build_entry(query, italian, expected_en, index))
             time.sleep(0.25)
         except Exception as exc:
-            failures.append({"query": query, "italian": italian, "expected_en": expected_en, "error": str(exc)})
+            failures.append(
+                {"query": query, "italian": italian, "expected_en": expected_en, "error": str(exc)}
+            )
     payload = {
         "schema_version": "pealim_verb_cache_v1",
         "source": "Pealim Hebrew conjugation tables",

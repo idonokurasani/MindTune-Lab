@@ -1,4 +1,5 @@
 """Audit logging for the Hebrew engine."""
+
 from __future__ import annotations
 
 import json
@@ -29,5 +30,9 @@ class AuditService:
     def log_disagreement(self, lemma: str, report: dict[str, Any]) -> Path:
         return self.log(
             "disagreement",
-            {"lemma": lemma, "generated_at": datetime.now(timezone.utc).isoformat(), "report": report},
+            {
+                "lemma": lemma,
+                "generated_at": datetime.now(timezone.utc).isoformat(),
+                "report": report,
+            },
         )

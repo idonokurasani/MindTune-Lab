@@ -4,6 +4,7 @@ The override registry is the authoritative place for manual pronunciation
 adjustments. It can be loaded from the previous audit JSON or from any future
 override file with the same schema.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -60,7 +61,9 @@ class OverrideRegistry:
             raw_phonemes = row.get("phonikud_phonemes", "")
             corrected_phonemes = row.get("manual_override") or raw_phonemes
             raw_stress = int(row.get("phonikud_stress") or 1)
-            corrected_stress = int(row.get("override_stress") or row.get("expected_stress") or raw_stress)
+            corrected_stress = int(
+                row.get("override_stress") or row.get("expected_stress") or raw_stress
+            )
             raw_vocal_shva = bool(row.get("vocal_shva_phonikud", False))
             corrected_vocal_shva = bool(row.get("vocal_shva_override", raw_vocal_shva))
 

@@ -1,4 +1,5 @@
 """Phase 2 adaptation command boundary — Phase 1 validation only."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -90,7 +91,10 @@ class AdaptationBoundary:
                     f"Pause delta {delta_ms}ms exceeds bound {self.max_pause_extension_ms}ms"
                 )
 
-        if command in (AdaptationCommand.REPEAT_CURRENT_FORM, AdaptationCommand.REPEAT_CURRENT_GROUP):
+        if command in (
+            AdaptationCommand.REPEAT_CURRENT_FORM,
+            AdaptationCommand.REPEAT_CURRENT_GROUP,
+        ):
             count = delta.get("count", 1)
             if not isinstance(count, int) or count < 1 or count > self.max_repeat_count:
                 raise AdaptationError(

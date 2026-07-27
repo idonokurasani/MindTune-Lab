@@ -115,8 +115,7 @@ def walk_session_legacy(events: list[Event]) -> SessionWalk:
     schema_version = _stream_schema_version(events)
     if is_chained_schema(schema_version):
         raise ValidationError(
-            f"The legacy API does not accept schema-{schema_version} streams; use "
-            "walk_session"
+            f"The legacy API does not accept schema-{schema_version} streams; use " "walk_session"
         )
     return _walk(events, ProvenanceReference.unavailable_legacy(schema_version))
 

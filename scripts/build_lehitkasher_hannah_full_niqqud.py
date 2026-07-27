@@ -167,11 +167,47 @@ def _entries() -> list[ConjugationEntry]:
         ("2", "feminine", "singular", "אַתְּ", "at", "הִתְקַשַּׁרְתְּ", "hitkashart", "tu hai telefonato (f.)"),
         ("3", "masculine", "singular", "הוּא", "hu", "הִתְקַשֵּׁר", "hitkasher", "lui ha telefonato"),
         ("3", "feminine", "singular", "הִיא", "hi", "הִתְקַשְּׁרָה", "hitkashra", "lei ha telefonato"),
-        ("1", None, "plural", "אֲנַחְנוּ", "anachnu", "הִתְקַשַּׁרְנוּ", "hitkasharnu", "noi abbiamo telefonato"),
-        ("2", "masculine", "plural", "אַתֶּם", "atem", "הִתְקַשַּׁרְתֶּם", "hitkashartem", "voi avete telefonato"),
-        ("2", "feminine", "plural", "אַתֶּן", "aten", "הִתְקַשַּׁרְתֶּן", "hitkasharten", "voi avete telefonato (f.)"),
+        (
+            "1",
+            None,
+            "plural",
+            "אֲנַחְנוּ",
+            "anachnu",
+            "הִתְקַשַּׁרְנוּ",
+            "hitkasharnu",
+            "noi abbiamo telefonato",
+        ),
+        (
+            "2",
+            "masculine",
+            "plural",
+            "אַתֶּם",
+            "atem",
+            "הִתְקַשַּׁרְתֶּם",
+            "hitkashartem",
+            "voi avete telefonato",
+        ),
+        (
+            "2",
+            "feminine",
+            "plural",
+            "אַתֶּן",
+            "aten",
+            "הִתְקַשַּׁרְתֶּן",
+            "hitkasharten",
+            "voi avete telefonato (f.)",
+        ),
         ("3", "masculine", "plural", "הֵם", "hem", "הִתְקַשְּׁרוּ", "hitkashru", "loro hanno telefonato"),
-        ("3", "feminine", "plural", "הֵן", "hen", "הִתְקַשְּׁרוּ", "hitkashru", "loro hanno telefonato (f.)"),
+        (
+            "3",
+            "feminine",
+            "plural",
+            "הֵן",
+            "hen",
+            "הִתְקַשְּׁרוּ",
+            "hitkashru",
+            "loro hanno telefonato (f.)",
+        ),
     ]
     for person, past_gender, number, subject, subj_lat, form, _form_lat, it_trans in past_entries:
         sentence = f"{subject} {form}"
@@ -207,7 +243,16 @@ def _entries() -> list[ConjugationEntry]:
         ("3", "masculine", "plural", "הֵם", "hem", "יִתְקַשְּׁרוּ", "yitkashru", "loro telefoneranno"),
         ("3", "feminine", "plural", "הֵן", "hen", "יִתְקַשְּׁרוּ", "yitkashru", "loro telefoneranno (f.)"),
     ]
-    for person, future_gender, number, subject, subj_lat, form, _form_lat, it_trans in future_entries:
+    for (
+        person,
+        future_gender,
+        number,
+        subject,
+        subj_lat,
+        form,
+        _form_lat,
+        it_trans,
+    ) in future_entries:
         sentence = f"{subject} {form}"
         add(
             entry_id=f"future_{person}_{future_gender or 'common'}_{number}",
@@ -263,7 +308,9 @@ def _validate(entries: list[ConjugationEntry], hannah_meta: dict[str, Any]) -> l
 
     report.append("## Hannah voice identifier")
     report.append(f"- SpeechGen `voice` field: `{hannah_meta.get('voice')}`")
-    report.append(f"- type: {hannah_meta.get('type')!r}, sex: {hannah_meta.get('sex')!r}, cpm: {hannah_meta.get('cpm')!r}")
+    report.append(
+        f"- type: {hannah_meta.get('type')!r}, sex: {hannah_meta.get('sex')!r}, cpm: {hannah_meta.get('cpm')!r}"
+    )
     report.append("")
 
     report.append("## Full-niqqud validation")
@@ -352,7 +399,7 @@ def _ensure_audio(
         except TTSRuntimeError as exc:
             last_error = exc
             if attempt < 2:
-                wait = 2 ** attempt
+                wait = 2**attempt
                 print(f"Synthesis failed for {seg_id}, retrying in {wait}s: {exc}")
                 time.sleep(wait)
     else:
@@ -477,13 +524,21 @@ def _write_index_html(conjugation: list[dict[str, Any]]) -> None:
             html.append(f"<tr><th>Gender</th><td>{c['gender'] or '-'}</td></tr>")
             html.append(f"<tr><th>Number</th><td>{c['number'] or '-'}</td></tr>")
             html.append(f"<tr><th>Subject</th><td class='rtl'>{c['subject'] or '-'}</td></tr>")
-            html.append(f"<tr><th>Canonical / TTS text (same)</th><td class='rtl'>{c['sentence_source']}</td></tr>")
-            html.append(f"<tr><th>Voice sent to Hannah</th><td>{c.get('hebrew_voice', HEBREW_VOICE)}</td></tr>")
+            html.append(
+                f"<tr><th>Canonical / TTS text (same)</th><td class='rtl'>{c['sentence_source']}</td></tr>"
+            )
+            html.append(
+                f"<tr><th>Voice sent to Hannah</th><td>{c.get('hebrew_voice', HEBREW_VOICE)}</td></tr>"
+            )
             html.append(f"<tr><th>Human review</th><td>{c['human_review_status']}</td></tr>")
             html.append(f"<tr><th>Italian translation</th><td>{c['italian_translation']}</td></tr>")
             html.append("</table>")
-            html.append(f"<p>Italian label:</p><audio controls src='audio/italian/{c['entry_id']}.wav'></audio>")
-            html.append(f"<p>Hebrew sentence/form:</p><audio controls src='audio/hebrew_sentences/{c['entry_id']}.wav'></audio>")
+            html.append(
+                f"<p>Italian label:</p><audio controls src='audio/italian/{c['entry_id']}.wav'></audio>"
+            )
+            html.append(
+                f"<p>Hebrew sentence/form:</p><audio controls src='audio/hebrew_sentences/{c['entry_id']}.wav'></audio>"
+            )
             html.append("</div>")
         html.append("</div>")
 
@@ -578,7 +633,14 @@ def main() -> None:
 
     for e in entries:
         # Italian label (Giuseppe)
-        label_key = ("italian_label", e.italian_label, ITALIAN_VOICE, ITALIAN_LOCALE, ITALIAN_RATE, ITALIAN_PITCH)
+        label_key = (
+            "italian_label",
+            e.italian_label,
+            ITALIAN_VOICE,
+            ITALIAN_LOCALE,
+            ITALIAN_RATE,
+            ITALIAN_PITCH,
+        )
         if label_key in audio_files:
             label_path = audio_files[label_key]
             label_bytes = label_path.read_bytes()
@@ -604,12 +666,30 @@ def main() -> None:
             label_path.write_bytes(label_bytes)
             audio_files[label_key] = label_path
         manifest.append(
-            _manifest_row(e, "italian_label", label_path, label_bytes, label_src_sr, label_dur, label_cache_key, e.italian_label, "it", ITALIAN_VOICE)
+            _manifest_row(
+                e,
+                "italian_label",
+                label_path,
+                label_bytes,
+                label_src_sr,
+                label_dur,
+                label_cache_key,
+                e.italian_label,
+                "it",
+                ITALIAN_VOICE,
+            )
         )
 
         # Hebrew sentence/form (Hannah) — source_text == tts_text
         he_text = e.sentence_tts
-        he_key = ("hebrew_sentence", he_text, HEBREW_VOICE, HEBREW_LOCALE, HEBREW_RATE, HEBREW_PITCH)
+        he_key = (
+            "hebrew_sentence",
+            he_text,
+            HEBREW_VOICE,
+            HEBREW_LOCALE,
+            HEBREW_RATE,
+            HEBREW_PITCH,
+        )
         if he_key in audio_files:
             sentence_path = audio_files[he_key]
             sentence_bytes = sentence_path.read_bytes()
@@ -635,44 +715,59 @@ def main() -> None:
             sentence_path.write_bytes(sentence_bytes)
             audio_files[he_key] = sentence_path
         manifest.append(
-            _manifest_row(e, "hebrew_sentence", sentence_path, sentence_bytes, sentence_src_sr, sentence_dur, sentence_cache_key, he_text, "he", HEBREW_VOICE)
+            _manifest_row(
+                e,
+                "hebrew_sentence",
+                sentence_path,
+                sentence_bytes,
+                sentence_src_sr,
+                sentence_dur,
+                sentence_cache_key,
+                he_text,
+                "he",
+                HEBREW_VOICE,
+            )
         )
 
         # Entry combined audio: label, silence, Hebrew sentence/form, trailing silence.
         label_samples, _ = _decode_wav_to_int16(label_bytes)
         sentence_samples, _ = _decode_wav_to_int16(sentence_bytes)
-        entry_audio = np.concatenate([
-            label_samples,
-            _silence(SILENCE_AFTER_LABEL),
-            sentence_samples,
-            _silence(SILENCE_BETWEEN_ENTRIES),
-        ])
+        entry_audio = np.concatenate(
+            [
+                label_samples,
+                _silence(SILENCE_AFTER_LABEL),
+                sentence_samples,
+                _silence(SILENCE_BETWEEN_ENTRIES),
+            ]
+        )
         section_parts[e.tense].append(entry_audio)
 
-        conjugation.append({
-            "entry_id": e.entry_id,
-            "tense": e.tense,
-            "mood": e.mood,
-            "binyan": e.binyan,
-            "root": e.root,
-            "person": e.person,
-            "number": e.number,
-            "gender": e.gender,
-            "subject": e.subject,
-            "subject_latin": e.subject_latin,
-            "form_source": e.form_source,
-            "form_tts": e.form_tts,
-            "sentence_source": e.sentence_source,
-            "sentence_tts": e.sentence_tts,
-            "italian_label": e.italian_label,
-            "italian_translation": e.italian_translation,
-            "hebrew_voice": HEBREW_VOICE,
-            "human_review_status": e.human_review_status,
-            "files": {
-                "italian_label": str(label_path),
-                "hebrew_sentence": str(sentence_path),
-            },
-        })
+        conjugation.append(
+            {
+                "entry_id": e.entry_id,
+                "tense": e.tense,
+                "mood": e.mood,
+                "binyan": e.binyan,
+                "root": e.root,
+                "person": e.person,
+                "number": e.number,
+                "gender": e.gender,
+                "subject": e.subject,
+                "subject_latin": e.subject_latin,
+                "form_source": e.form_source,
+                "form_tts": e.form_tts,
+                "sentence_source": e.sentence_source,
+                "sentence_tts": e.sentence_tts,
+                "italian_label": e.italian_label,
+                "italian_translation": e.italian_translation,
+                "hebrew_voice": HEBREW_VOICE,
+                "human_review_status": e.human_review_status,
+                "files": {
+                    "italian_label": str(label_path),
+                    "hebrew_sentence": str(sentence_path),
+                },
+            }
+        )
 
     # Silence constants manifest entry.
     manifest.append(

@@ -1,4 +1,5 @@
 """Conjugation engine that aggregates sources, builds consensus and runs approval."""
+
 from __future__ import annotations
 
 from typing import Any
@@ -53,23 +54,29 @@ class ConjugationEngine:
     def _pealim_records_for_verb(self, lemma_plain: str) -> list[dict[str, Any]]:
         target = strip_niqqud(lemma_plain).strip()
         return [
-            r for r in self.pealim_records
+            r
+            for r in self.pealim_records
             if strip_niqqud(r.get("verb_query", "")).strip() == target
         ]
 
     def _eran_records_for_base(self, base_plain: str) -> list[dict[str, Any]]:
         return [
-            r for r in self.eran_records
+            r
+            for r in self.eran_records
             if strip_niqqud(r.get("base_form_vocalized", "")) == base_plain
         ]
 
-    def _inflector_records_for_base(self, base_form: str, pattern: str, table_number: int) -> list[dict[str, Any]]:
+    def _inflector_records_for_base(
+        self, base_form: str, pattern: str, table_number: int
+    ) -> list[dict[str, Any]]:
         try:
             return self.inflector.generate(base_form, pattern, table_number)
         except Exception:
             return []
 
-    def _make_source_evidence(self, source_id: str, record: dict[str, Any], confidence: float = 1.0, trust_tier: int = 3) -> SourceEvidence:
+    def _make_source_evidence(
+        self, source_id: str, record: dict[str, Any], confidence: float = 1.0, trust_tier: int = 3
+    ) -> SourceEvidence:
         return SourceEvidence(
             source_id=source_id,
             source=source_id,
@@ -79,7 +86,9 @@ class ConjugationEngine:
             trust_tier=trust_tier,
         )
 
-    def _build_form_from_pealim(self, rec: dict[str, Any], lemma_vocalized: str, lemma_plain: str) -> VerbForm:
+    def _build_form_from_pealim(
+        self, rec: dict[str, Any], lemma_vocalized: str, lemma_plain: str
+    ) -> VerbForm:
         surface = normalize_hebrew(rec["surface_vocalized"])
         features = MorphologicalFeatures(**rec.get("morphology", {}))
         canonical_key = rec.get("canonical_form_key") or rec["form_key"]
@@ -107,9 +116,13 @@ class ConjugationEngine:
         self.approval.normalize(form, ["normalized from Pealim reference"])
         return form
 
-    def _build_form_from_eran(self, rec: dict[str, Any], lemma_vocalized: str, lemma_plain: str) -> VerbForm:
+    def _build_form_from_eran(
+        self, rec: dict[str, Any], lemma_vocalized: str, lemma_plain: str
+    ) -> VerbForm:
         surface = normalize_hebrew(rec["surface_vocalized"])
-        features = parse_morphology_tag(rec["morphology"], rec.get("pattern", ""), rec.get("table_number", 0))
+        features = parse_morphology_tag(
+            rec["morphology"], rec.get("pattern", ""), rec.get("table_number", 0)
+        )
         pron = self.pronunciation.get_pronunciation(surface)
         form = VerbForm(
             form_key=morphology_features_to_form_key(features),
@@ -132,7 +145,9 @@ class ConjugationEngine:
         self.approval.normalize(form, ["normalized from Eran Tomer"])
         return form
 
-    def _build_form_from_inflector(self, rec: dict[str, Any], lemma_vocalized: str, lemma_plain: str) -> VerbForm:
+    def _build_form_from_inflector(
+        self, rec: dict[str, Any], lemma_vocalized: str, lemma_plain: str
+    ) -> VerbForm:
         surface = normalize_hebrew(rec["surface_vocalized"])
         features = MorphologicalFeatures(**rec.get("features", {}))
         pron = self.pronunciation.get_pronunciation(surface)
@@ -157,7 +172,9 @@ class ConjugationEngine:
         self.approval.normalize(form, ["normalized from Verb Inflector"])
         return form
 
-    def _build_infinitive_form(self, lemma_vocalized: str, lemma_plain: str, root: str, binyan: str) -> VerbForm:
+    def _build_infinitive_form(
+        self, lemma_vocalized: str, lemma_plain: str, root: str, binyan: str
+    ) -> VerbForm:
         pron = self.pronunciation.get_pronunciation(lemma_vocalized)
         form = VerbForm(
             form_key="infinitive",
@@ -172,7 +189,11 @@ class ConjugationEngine:
             phonemes_corrected=pron.phonemes_corrected,
             lexical_stress=pron.lexical_stress,
             shva=pron.shva,
-            source_evidence=[self._make_source_evidence("manual_override", {"lemma": lemma_vocalized}, trust_tier=1)],
+            source_evidence=[
+                self._make_source_evidence(
+                    "manual_override", {"lemma": lemma_vocalized}, trust_tier=1
+                )
+            ],
         )
         self.approval.normalize(form, ["infinitive supplied by curriculum"])
         return form
@@ -213,7 +234,9 @@ class ConjugationEngine:
                 existing_key = plain_to_key[plain_key]
                 existing = source_forms[existing_key].setdefault(source_id, form)
                 if existing is not form:
-                    existing.source_evidence.append(self._make_source_evidence(source_id, record, trust_tier=4))
+                    existing.source_evidence.append(
+                        self._make_source_evidence(source_id, record, trust_tier=4)
+                    )
                 return
             if form.form_key in source_forms and source_id not in source_forms[form.form_key]:
                 source_forms[form.form_key][source_id] = form
@@ -242,7 +265,9 @@ class ConjugationEngine:
         # Verb Inflector
         if inflector_base_form and inflector_pattern and inflector_table:
             try:
-                for rec in self._inflector_records_for_base(inflector_base_form, inflector_pattern, inflector_table):
+                for rec in self._inflector_records_for_base(
+                    inflector_base_form, inflector_pattern, inflector_table
+                ):
                     form = self._build_form_from_inflector(rec, lemma_vocalized, lemma_plain)
                     add_form(form, "verb_inflector", rec)
             except Exception:
@@ -267,12 +292,20 @@ class ConjugationEngine:
             if consensus.source_evidence:
                 if any(ev.source_id == "manual_override" for ev in consensus.source_evidence):
                     self.approval.validate(consensus, 1.0, ["manual override present"])
-                    self.approval.approve_for_curriculum(consensus, "consensus_engine", ["manual override"])
+                    self.approval.approve_for_curriculum(
+                        consensus, "consensus_engine", ["manual override"]
+                    )
                 elif any(ev.source_id == "pealim" for ev in consensus.source_evidence):
-                    self.approval.candidate(consensus, consensus.consensus.confidence, ["Pealim reference"])
-                    self.approval.validate(consensus, consensus.consensus.confidence, ["Pealim reference"])
+                    self.approval.candidate(
+                        consensus, consensus.consensus.confidence, ["Pealim reference"]
+                    )
+                    self.approval.validate(
+                        consensus, consensus.consensus.confidence, ["Pealim reference"]
+                    )
                 else:
-                    self.approval.candidate(consensus, consensus.consensus.confidence, ["single/computed source"])
+                    self.approval.candidate(
+                        consensus, consensus.consensus.confidence, ["single/computed source"]
+                    )
 
             paradigm.forms[form_key] = consensus
 

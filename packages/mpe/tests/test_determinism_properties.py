@@ -64,9 +64,7 @@ class DeterminismProperties(unittest.TestCase):
 
     @PROPERTY_SETTINGS
     @given(learner_ids, seeds)
-    def test_the_chain_verifies_and_provenance_is_second(
-        self, learner_id: str, seed: str
-    ) -> None:
+    def test_the_chain_verifies_and_provenance_is_second(self, learner_id: str, seed: str) -> None:
         store, session_id = _session(learner_id, seed)
         events = store.read(session_id)
         self.assertEqual(verify_stream(events), INTEGRITY_VERIFIED)
@@ -83,22 +81,14 @@ class DeterminismProperties(unittest.TestCase):
     ) -> None:
         store, session_id = _session(learner_id, seed)
         for event in store.read(session_id):
-            self.assertEqual(
-                canonical_digest_bytes(event), canonical_digest_bytes(event)
-            )
-            self.assertEqual(
-                canonical_record_bytes(event), canonical_record_bytes(event)
-            )
-            self.assertNotEqual(
-                canonical_digest_bytes(event), canonical_record_bytes(event)
-            )
+            self.assertEqual(canonical_digest_bytes(event), canonical_digest_bytes(event))
+            self.assertEqual(canonical_record_bytes(event), canonical_record_bytes(event))
+            self.assertNotEqual(canonical_digest_bytes(event), canonical_record_bytes(event))
             self.assertEqual(compute_content_digest(event), event.content_digest)
 
     @PROPERTY_SETTINGS
     @given(learner_ids, seeds)
-    def test_a_record_round_trip_preserves_the_event(
-        self, learner_id: str, seed: str
-    ) -> None:
+    def test_a_record_round_trip_preserves_the_event(self, learner_id: str, seed: str) -> None:
         store, session_id = _session(learner_id, seed)
         for event in store.read(session_id):
             rebuilt = event_from_record(json.loads(canonical_record_bytes(event)))

@@ -66,7 +66,10 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
     def test_repeat_cap_enforced(self) -> None:
         result = self._run(InMemoryEventStore())
         beta_trials = [
-            e for e in result.events if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
 
@@ -156,8 +159,10 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
     def test_adaptation_source_recorded(self) -> None:
         result = self._run(InMemoryEventStore())
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         initial, repeat = beta_trials
@@ -189,15 +194,24 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
             self_confirmation="negative",
             latency=0.5,
             assets={
-                "prompt": FixtureAsset("item.beta.prompt", "prompt", "fixture://item.beta/prompt", "v1.0.0"),
-                "confirmation": FixtureAsset("item.beta.confirmation", "confirmation", "fixture://item.beta/confirmation", "v1.0.0"),
+                "prompt": FixtureAsset(
+                    "item.beta.prompt", "prompt", "fixture://item.beta/prompt", "v1.0.0"
+                ),
+                "confirmation": FixtureAsset(
+                    "item.beta.confirmation",
+                    "confirmation",
+                    "fixture://item.beta/confirmation",
+                    "v1.0.0",
+                ),
             },
         )
         fixture = self._fixture_with_beta(beta)
         result = run_immediate_recall_session(InMemoryEventStore(), fixture=fixture, rule=self.rule)
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         repeat_trial = beta_trials[1]
@@ -217,22 +231,32 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
             self_confirmation="positive",
             latency=5.0,
             assets={
-                "prompt": FixtureAsset("item.beta.prompt", "prompt", "fixture://item.beta/prompt", "v1.0.0"),
-                "confirmation": FixtureAsset("item.beta.confirmation", "confirmation", "fixture://item.beta/confirmation", "v1.0.0"),
+                "prompt": FixtureAsset(
+                    "item.beta.prompt", "prompt", "fixture://item.beta/prompt", "v1.0.0"
+                ),
+                "confirmation": FixtureAsset(
+                    "item.beta.confirmation",
+                    "confirmation",
+                    "fixture://item.beta/confirmation",
+                    "v1.0.0",
+                ),
             },
         )
         fixture = self._fixture_with_beta(beta)
         result = run_immediate_recall_session(InMemoryEventStore(), fixture=fixture, rule=self.rule)
         beta_trials = [
-            e for e in result.events
-            if e.event_type == "trial_created" and e.payload.get("content_item_ids") == ["item.beta"]
+            e
+            for e in result.events
+            if e.event_type == "trial_created"
+            and e.payload.get("content_item_ids") == ["item.beta"]
         ]
         self.assertEqual(len(beta_trials), 2)
         repeat_trial = beta_trials[1]
         self.assertEqual(repeat_trial.payload.get("adaptation_source"), "latency")
 
         beta_evaluations = [
-            e for e in result.events
+            e
+            for e in result.events
             if e.event_type == "evaluation_completed"
             and e.payload.get("expected_content_item_id") == "item.beta"
         ]
@@ -253,8 +277,15 @@ class ImmediateRecallRunnerTests(unittest.TestCase):
             self_confirmation="positive",
             latency=5.0,
             assets={
-                "prompt": FixtureAsset("item.beta.prompt", "prompt", "fixture://item.beta/prompt", "v1.0.0"),
-                "confirmation": FixtureAsset("item.beta.confirmation", "confirmation", "fixture://item.beta/confirmation", "v1.0.0"),
+                "prompt": FixtureAsset(
+                    "item.beta.prompt", "prompt", "fixture://item.beta/prompt", "v1.0.0"
+                ),
+                "confirmation": FixtureAsset(
+                    "item.beta.confirmation",
+                    "confirmation",
+                    "fixture://item.beta/confirmation",
+                    "v1.0.0",
+                ),
             },
         )
         fixture = self._fixture_with_beta(beta)
@@ -339,9 +370,7 @@ class ImmediateRecallCLITests(unittest.TestCase):
     def test_cli_directory_path_exits_usage(self) -> None:
         dir_path = Path(self._td.name) / "a_directory"
         dir_path.mkdir()
-        code, out, err = self._run(
-            ["--store-path", str(dir_path), "run-immediate-recall"]
-        )
+        code, out, err = self._run(["--store-path", str(dir_path), "run-immediate-recall"])
         self.assertEqual(code, 2)
         self.assertEqual(out, "")
         self.assertIn("directory", err)
@@ -375,7 +404,9 @@ class ImmediateRecallProcessTests(unittest.TestCase):
         result = json.loads(run.stdout)
         self.assertEqual(result["item_count"], 2)
 
-        replay = self._run_process(["show-protocol-summary", result["session_id"], "--format", "json"])
+        replay = self._run_process(
+            ["show-protocol-summary", result["session_id"], "--format", "json"]
+        )
         self.assertEqual(replay.returncode, 0)
         summary = json.loads(replay.stdout)
         self.assertEqual(summary["total_repeats"], 1)

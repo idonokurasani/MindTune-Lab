@@ -1,4 +1,5 @@
 """Phase 4D tests for specification-driven asset contract, readiness, and runtime."""
+
 from __future__ import annotations
 
 import tempfile
@@ -68,9 +69,7 @@ class _Phase4DTestBase(unittest.TestCase):
         self._orig_cache_dir = assets_module.GLOBAL_CACHE_DIR
         assets_module.GLOBAL_CACHE_DIR = self.cache_dir
         asset_contract_module.GLOBAL_CACHE_DIR = self.cache_dir
-        self.addCleanup(
-            lambda: setattr(assets_module, "GLOBAL_CACHE_DIR", self._orig_cache_dir)
-        )
+        self.addCleanup(lambda: setattr(assets_module, "GLOBAL_CACHE_DIR", self._orig_cache_dir))
         self.addCleanup(
             lambda: setattr(asset_contract_module, "GLOBAL_CACHE_DIR", self._orig_cache_dir)
         )
@@ -121,9 +120,7 @@ class AssetContractTests(_Phase4DTestBase):
         reqs = build_asset_requirements(spec, self.TEST_PROFILE)
         inventory = self.make_inventory()
         for req in reqs:
-            self.assertEqual(
-                inventory.classify(req), AssetAvailabilityClass.MISSING_SYNTHESIZABLE
-            )
+            self.assertEqual(inventory.classify(req), AssetAvailabilityClass.MISSING_SYNTHESIZABLE)
 
 
 class ReadinessTests(_Phase4DTestBase):

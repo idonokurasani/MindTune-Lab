@@ -13,7 +13,9 @@ class CanonicalEnum(str, Enum):
         return [m.value for m in cls]
 
     @classmethod
-    def validate(cls, value: str | "CanonicalEnum" | None, required: bool = True) -> "CanonicalEnum" | None:
+    def validate(
+        cls, value: str | "CanonicalEnum" | None, required: bool = True
+    ) -> "CanonicalEnum" | None:
         if value is None:
             if required:
                 raise ValueError(f"{cls.__name__} is required")
@@ -242,15 +244,28 @@ class DataClassification(CanonicalEnum):
 # Valid session lifecycle transitions
 SESSION_TRANSITIONS: dict[SessionStatus | None, set[SessionStatus]] = {
     None: {SessionStatus.CREATED},
-    SessionStatus.CREATED: {SessionStatus.STARTED, SessionStatus.CANCELLED, SessionStatus.TERMINATED},
+    SessionStatus.CREATED: {
+        SessionStatus.STARTED,
+        SessionStatus.CANCELLED,
+        SessionStatus.TERMINATED,
+    },
     SessionStatus.STARTED: {
         SessionStatus.PAUSED,
         SessionStatus.COMPLETED,
         SessionStatus.CANCELLED,
         SessionStatus.TERMINATED,
     },
-    SessionStatus.PAUSED: {SessionStatus.RESUMED, SessionStatus.CANCELLED, SessionStatus.TERMINATED},
-    SessionStatus.RESUMED: {SessionStatus.PAUSED, SessionStatus.COMPLETED, SessionStatus.CANCELLED, SessionStatus.TERMINATED},
+    SessionStatus.PAUSED: {
+        SessionStatus.RESUMED,
+        SessionStatus.CANCELLED,
+        SessionStatus.TERMINATED,
+    },
+    SessionStatus.RESUMED: {
+        SessionStatus.PAUSED,
+        SessionStatus.COMPLETED,
+        SessionStatus.CANCELLED,
+        SessionStatus.TERMINATED,
+    },
     SessionStatus.COMPLETED: set(),
     SessionStatus.CANCELLED: set(),
     SessionStatus.TERMINATED: set(),

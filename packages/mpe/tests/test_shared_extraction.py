@@ -137,9 +137,7 @@ class BoundedRepeatTests(unittest.TestCase):
             correct_choice_index=0 if correct else 1,
             latency=latency,
             repeats_used=0,
-            answer_status=(
-                AnswerStatus.CORRECT.value if correct else AnswerStatus.INCORRECT.value
-            ),
+            answer_status=(AnswerStatus.CORRECT.value if correct else AnswerStatus.INCORRECT.value),
         )
         return runner._repeat_decision(outcome)
 
@@ -186,7 +184,9 @@ class BoundedRepeatTests(unittest.TestCase):
         plan: BoundedRepeatPlan[str] = BoundedRepeatPlan(["a", "b"], cap=1, key=lambda i: i)
         executed: list[tuple[str, int, str | None]] = []
         for step in plan:
-            executed.append((step.item, step.metadata.repeat_count, step.metadata.adaptation_source))
+            executed.append(
+                (step.item, step.metadata.repeat_count, step.metadata.adaptation_source)
+            )
             step.record(RepeatDecision(True, SOURCE_BEHAVIOR, "always"))
         self.assertEqual(
             executed,

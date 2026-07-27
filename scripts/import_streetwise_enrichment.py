@@ -20,7 +20,9 @@ from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "mindtune_console" / "data"
-CITIZEN = DATA / "citizen_cafe_all_courses" / "CITIZEN_CAFE_ALL_COURSES_CANONICAL_MODEL_DRAFT_v1.1.json"
+CITIZEN = (
+    DATA / "citizen_cafe_all_courses" / "CITIZEN_CAFE_ALL_COURSES_CANONICAL_MODEL_DRAFT_v1.1.json"
+)
 OUT = DATA / "hebrew_enrichment" / "streetwise_hebrew"
 
 HEBREW_RE = re.compile(r"[\u0590-\u05ff]")
@@ -116,7 +118,9 @@ def clean_space(value: Any) -> str:
 def strip_niqqud(value: Any) -> str:
     text = unicodedata.normalize("NFKD", str(value or ""))
     text = HEBREW_MARKS_RE.sub("", text)
-    text = "".join(ch for ch in text if not (unicodedata.combining(ch) and "\u0590" <= ch <= "\u05ff"))
+    text = "".join(
+        ch for ch in text if not (unicodedata.combining(ch) and "\u0590" <= ch <= "\u05ff")
+    )
     return unicodedata.normalize("NFC", text)
 
 
@@ -141,7 +145,9 @@ def read_json(path: Path) -> Any:
 
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
@@ -205,7 +211,9 @@ def parse_html_document(
     parser = StreetwiseHTMLParser()
     text = payload.decode("utf-8", errors="replace")
     parser.feed(text)
-    title = parser.title or clean_space(Path(file_path).stem if file_path else urlparse(url).path.rsplit("/", 1)[-1])
+    title = parser.title or clean_space(
+        Path(file_path).stem if file_path else urlparse(url).path.rsplit("/", 1)[-1]
+    )
     source_type = parse_source_type(url, title, file_path, declared_source_type)
     source_id = stable_id("streetwise_src", source_label, url or file_path, sha256_bytes(payload))
     return SourceDocument(
@@ -286,7 +294,8 @@ def parse_rss_documents(
                 url=link or url,
                 file_path=file_path,
                 title=title,
-                description=parsed_description.description or clean_space(parsed_description.text)[:MAX_EXCERPT_CHARS],
+                description=parsed_description.description
+                or clean_space(parsed_description.text)[:MAX_EXCERPT_CHARS],
                 audio_urls=sorted(set(audio_urls)),
                 text=parsed_description.text,
                 retrieved_at=generated_at,
@@ -322,7 +331,9 @@ def parse_verified_snapshot(
             english = clean_space(entry.get("english_gloss"))
             transliteration = clean_space(entry.get("transliteration"))
             if hebrew:
-                lines.append(" - ".join(part for part in (transliteration, english, hebrew) if part))
+                lines.append(
+                    " - ".join(part for part in (transliteration, english, hebrew) if part)
+                )
                 lexical_entries.append(
                     {
                         "hebrew": hebrew,
@@ -368,7 +379,11 @@ def parse_input_documents(
     content = payload.lstrip()
     if suffix == ".json" or content.startswith(b"{"):
         return parse_verified_snapshot(payload, file_path=file_path, retrieved_at=retrieved_at)
-    if declared_source_type in {"podcast_rss", "rss"} or suffix in {".rss", ".xml"} or content.startswith(b"<?xml"):
+    if (
+        declared_source_type in {"podcast_rss", "rss"}
+        or suffix in {".rss", ".xml"}
+        or content.startswith(b"<?xml")
+    ):
         return parse_rss_documents(
             payload,
             url=url,
@@ -427,7 +442,9 @@ def hebrew_line_snippets(text: str) -> list[str]:
     return snippets
 
 
-def build_matches(doc: SourceDocument, canonical_items: list[dict[str, Any]]) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
+def build_matches(
+    doc: SourceDocument, canonical_items: list[dict[str, Any]]
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     normalized_text = normalize_hebrew(doc.text)
     raw_snippets = hebrew_line_snippets(doc.text)
     normalized_snippets = [(raw, normalize_hebrew(raw)) for raw in raw_snippets]
@@ -437,7 +454,9 @@ def build_matches(doc: SourceDocument, canonical_items: list[dict[str, Any]]) ->
         hebrew = normalize_hebrew(item.get("hebrew"))
         if not hebrew or len(hebrew) < 2:
             continue
-        exact_snippet = next((raw for raw, normalized in normalized_snippets if normalized == hebrew), "")
+        exact_snippet = next(
+            (raw for raw, normalized in normalized_snippets if normalized == hebrew), ""
+        )
         phrase_match = (
             not exact_snippet
             and len(hebrew.split()) >= 2
@@ -446,10 +465,16 @@ def build_matches(doc: SourceDocument, canonical_items: list[dict[str, Any]]) ->
         )
         if not exact_snippet and not phrase_match:
             continue
-        excerpt = clean_space(exact_snippet) if exact_snippet else excerpt_around(normalized_text, hebrew) or hebrew
+        excerpt = (
+            clean_space(exact_snippet)
+            if exact_snippet
+            else excerpt_around(normalized_text, hebrew) or hebrew
+        )
         match_type = "exact_lexical_entry" if exact_snippet else "normalized_hebrew_phrase"
         confidence = "high" if exact_snippet else "medium"
-        match_id = stable_id("streetwise_match", doc.source_id, item.get("canonical_item_id"), hebrew)
+        match_id = stable_id(
+            "streetwise_match", doc.source_id, item.get("canonical_item_id"), hebrew
+        )
         matches.append(
             {
                 "match_id": match_id,
@@ -645,19 +670,33 @@ def collect_inputs(args: argparse.Namespace) -> list[dict[str, Any]]:
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Import Streetwise Hebrew metadata/enrichment candidates.")
-    parser.add_argument("--url", action="append", help="Streetwise/TLV1 page URL to fetch. Use sparingly; no crawl.")
+    parser = argparse.ArgumentParser(
+        description="Import Streetwise Hebrew metadata/enrichment candidates."
+    )
+    parser.add_argument(
+        "--url", action="append", help="Streetwise/TLV1 page URL to fetch. Use sparingly; no crawl."
+    )
     parser.add_argument("--file", action="append", help="Saved HTML file to import.")
     parser.add_argument("--dir", action="append", help="Directory containing saved HTML files.")
-    parser.add_argument("--source-list", action="append", help="CSV source list with url/file_path and import_status.")
+    parser.add_argument(
+        "--source-list",
+        action="append",
+        help="CSV source list with url/file_path and import_status.",
+    )
     parser.add_argument(
         "--include-status",
         action="append",
         default=None,
         help="Import source-list rows with this status. Default: queued and selected.",
     )
-    parser.add_argument("--max-pages", type=int, default=10, help="Safety limit for one import run.")
-    parser.add_argument("--dry-run", action="store_true", help="List selected sources without fetching URLs or writing outputs.")
+    parser.add_argument(
+        "--max-pages", type=int, default=10, help="Safety limit for one import run."
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="List selected sources without fetching URLs or writing outputs.",
+    )
     parser.add_argument("--out", default=str(OUT), help="Output directory.")
     args = parser.parse_args()
     if args.include_status is None:
@@ -667,9 +706,13 @@ def main() -> None:
     canonical_items = load_canonical_items()
     inputs = collect_inputs(args)
     if not inputs:
-        raise SystemExit("No input. Use --url, --file, --dir, or --source-list with queued/selected rows.")
+        raise SystemExit(
+            "No input. Use --url, --file, --dir, or --source-list with queued/selected rows."
+        )
     if len(inputs) > args.max_pages:
-        raise SystemExit(f"Refusing to import {len(inputs)} sources; raise --max-pages explicitly if intentional.")
+        raise SystemExit(
+            f"Refusing to import {len(inputs)} sources; raise --max-pages explicitly if intentional."
+        )
     if args.dry_run:
         for index, item in enumerate(inputs, start=1):
             print(
@@ -719,7 +762,9 @@ def main() -> None:
                     "content_sha256": doc.content_sha256,
                     "audio_urls": doc.audio_urls[:10],
                     "hebrew_snippet_count": len(hebrew_line_snippets(doc.text)),
-                    "matched_canonical_items": sum(1 for row in matches if row.get("canonical_item_id")),
+                    "matched_canonical_items": sum(
+                        1 for row in matches if row.get("canonical_item_id")
+                    ),
                     "copyright_policy": "metadata_and_short_excerpts_only",
                 }
             )
@@ -729,8 +774,12 @@ def main() -> None:
 
     linked_matches = [row for row in all_matches if row.get("canonical_item_id")]
     matched_canonical_items = {row["canonical_item_id"] for row in linked_matches}
-    exact_matches = sum(1 for row in linked_matches if row.get("match_type") == "exact_lexical_entry")
-    phrase_matches = sum(1 for row in linked_matches if row.get("match_type") == "normalized_hebrew_phrase")
+    exact_matches = sum(
+        1 for row in linked_matches if row.get("match_type") == "exact_lexical_entry"
+    )
+    phrase_matches = sum(
+        1 for row in linked_matches if row.get("match_type") == "normalized_hebrew_phrase"
+    )
     source_only_records = sum(1 for row in all_matches if not row.get("canonical_item_id"))
 
     manifest = {
@@ -755,7 +804,9 @@ def main() -> None:
     }
     write_json(out_dir / "STREETWISE_HEBREW_IMPORT_MANIFEST_v0.1.json", manifest)
     write_json(out_dir / "STREETWISE_HEBREW_RAW_SOURCES_v0.1.json", {"items": sources})
-    write_json(out_dir / "STREETWISE_HEBREW_ENRICHMENT_CANDIDATES_v0.1.json", {"items": all_enrichment})
+    write_json(
+        out_dir / "STREETWISE_HEBREW_ENRICHMENT_CANDIDATES_v0.1.json", {"items": all_enrichment}
+    )
     write_jsonl(out_dir / "STREETWISE_HEBREW_MATCHES_v0.1.jsonl", all_matches)
     write_jsonl(out_dir / "STREETWISE_HEBREW_LEXICAL_EVIDENCE_v0.2.jsonl", all_lexical_evidence)
     write_csv(
@@ -793,7 +844,9 @@ def main() -> None:
         f"- Controlled phrase matches: **{phrase_matches}**.",
         f"- Source-only episode records: **{source_only_records}**.",
     ]
-    (out_dir / "STREETWISE_IMPORT_REPORT_v0.2.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+    (out_dir / "STREETWISE_IMPORT_REPORT_v0.2.md").write_text(
+        "\n".join(report) + "\n", encoding="utf-8"
+    )
 
     print(
         f"sources={len(sources)} lexical_evidence={len(all_lexical_evidence)} "

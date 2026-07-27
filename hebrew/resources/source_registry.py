@@ -1,4 +1,5 @@
 """Machine-readable source registry and eligibility filtering."""
+
 from __future__ import annotations
 
 import json
@@ -62,12 +63,7 @@ class SourceRegistry:
 
     @staticmethod
     def _default_path() -> Path:
-        return (
-            Path(__file__).resolve().parents[2]
-            / "data"
-            / "hebrew"
-            / "source_registry.json"
-        )
+        return Path(__file__).resolve().parents[2] / "data" / "hebrew" / "source_registry.json"
 
     def load(self) -> None:
         if not self.registry_path.exists():

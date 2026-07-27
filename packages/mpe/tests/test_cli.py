@@ -82,9 +82,7 @@ class CLITests(unittest.TestCase):
 
     def test_replay_missing_session_fails(self) -> None:
         # First create an empty store by running a session, so the store exists.
-        self._run(
-            ["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"]
-        )
+        self._run(["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"])
         code, out, err = self._run(
             ["--store-path", str(self.store_path), "replay", "missing-session", "--format", "json"]
         )
@@ -113,9 +111,7 @@ class CLITests(unittest.TestCase):
             self.assertEqual(s["last_sequence"], 23)
 
     def test_validate_store_passes(self) -> None:
-        self._run(
-            ["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"]
-        )
+        self._run(["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"])
         code, out, err = self._run(
             ["--store-path", str(self.store_path), "validate-store", "--format", "json"]
         )
@@ -127,9 +123,7 @@ class CLITests(unittest.TestCase):
         self.assertIsNone(result["error"])
 
     def test_validate_store_fails_on_corrupt_row(self) -> None:
-        self._run(
-            ["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"]
-        )
+        self._run(["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"])
         # Corrupt the first event's payload to an empty dict.
         conn = sqlite3.connect(str(self.store_path))
         conn.execute("UPDATE events SET payload = ? WHERE session_sequence_number = 1", ("{}",))
@@ -161,9 +155,7 @@ class CLITests(unittest.TestCase):
                 os.environ["MPE_EVENT_STORE_PATH"] = old
 
     def test_format_json_for_all_commands(self) -> None:
-        self._run(
-            ["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"]
-        )
+        self._run(["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"])
         for command in [
             ["--store-path", str(self.store_path), "replay", "s1", "--format", "json"],
             ["--store-path", str(self.store_path), "list-sessions", "--format", "json"],
@@ -202,12 +194,8 @@ class CLITests(unittest.TestCase):
                 self.assertIn("not found", err)
 
     def test_human_list_sessions_format(self) -> None:
-        self._run(
-            ["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"]
-        )
-        code, out, _err = self._run(
-            ["--store-path", str(self.store_path), "list-sessions"]
-        )
+        self._run(["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"])
+        code, out, _err = self._run(["--store-path", str(self.store_path), "list-sessions"])
         self.assertEqual(code, 0)
         parts = out.split()
         self.assertEqual(parts[1], "23")
@@ -215,12 +203,8 @@ class CLITests(unittest.TestCase):
 
     def test_invalid_session_id_exits_usage(self) -> None:
         # Create a store so missing store does not mask the usage error.
-        self._run(
-            ["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"]
-        )
-        code, out, err = self._run(
-            ["--store-path", str(self.store_path), "replay", ""]
-        )
+        self._run(["--store-path", str(self.store_path), "run-mock-session", "--session-id", "s1"])
+        code, out, err = self._run(["--store-path", str(self.store_path), "replay", ""])
         self.assertEqual(code, 2)
         self.assertEqual(out, "")
         self.assertIn("invalid session ID", err)
@@ -228,9 +212,7 @@ class CLITests(unittest.TestCase):
     def test_directory_path_exits_usage(self) -> None:
         dir_path = Path(self._td.name) / "a_directory"
         dir_path.mkdir()
-        code, out, err = self._run(
-            ["--store-path", str(dir_path), "run-mock-session"]
-        )
+        code, out, err = self._run(["--store-path", str(dir_path), "run-mock-session"])
         self.assertEqual(code, 2)
         self.assertEqual(out, "")
         self.assertIn("directory", err)
@@ -245,9 +227,7 @@ class CLITests(unittest.TestCase):
         self._ensure_store_file_exists()
         with patch("mpe.cli.open_store") as mock_open:
             mock_open.side_effect = ConcurrencyError("database is locked")
-            code, out, err = self._run(
-                ["--store-path", str(self.store_path), "list-sessions"]
-            )
+            code, out, err = self._run(["--store-path", str(self.store_path), "list-sessions"])
         self.assertEqual(code, 5)
         self.assertEqual(out, "")
         self.assertIn("database is locked", err)
@@ -256,9 +236,7 @@ class CLITests(unittest.TestCase):
         self._ensure_store_file_exists()
         with patch("mpe.cli.open_store") as mock_open:
             mock_open.side_effect = RuntimeError("unexpected boom")
-            code, out, err = self._run(
-                ["--store-path", str(self.store_path), "list-sessions"]
-            )
+            code, out, err = self._run(["--store-path", str(self.store_path), "list-sessions"])
         self.assertEqual(code, 1)
         self.assertEqual(out, "")
         self.assertIn("unexpected boom", err)

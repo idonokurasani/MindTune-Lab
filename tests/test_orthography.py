@@ -1,4 +1,5 @@
 """Tests for the normative Hebrew orthography module."""
+
 from __future__ import annotations
 
 import unittest

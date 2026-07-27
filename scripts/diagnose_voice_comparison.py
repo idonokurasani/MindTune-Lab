@@ -53,7 +53,9 @@ def _fetch_voices(api_key: str, email: str) -> list[dict[str, Any]]:
     for lang, voices in data.items():
         if lang.lower() == "hebrew" and isinstance(voices, list):
             return voices
-    raise TTSRuntimeError(f"No Hebrew voice group found in catalogue; languages: {list(data.keys())}")
+    raise TTSRuntimeError(
+        f"No Hebrew voice group found in catalogue; languages: {list(data.keys())}"
+    )
 
 
 def _synthesize(
@@ -130,12 +132,8 @@ def build_diagnostic() -> None:
         isolated_file = audio_dir / f"{safe}_isolated.wav"
         sentence_file = audio_dir / f"{safe}_sentence.wav"
 
-        isolated = _synthesize(
-            he_provider, ISOLATED_TEXT, voice, "he-IL", f"vc_iso_{safe}"
-        )
-        sentence = _synthesize(
-            he_provider, SENTENCE_TEXT, voice, "he-IL", f"vc_sent_{safe}"
-        )
+        isolated = _synthesize(he_provider, ISOLATED_TEXT, voice, "he-IL", f"vc_iso_{safe}")
+        sentence = _synthesize(he_provider, SENTENCE_TEXT, voice, "he-IL", f"vc_sent_{safe}")
 
         if isolated is None or sentence is None:
             manifest.append(
@@ -227,7 +225,9 @@ def build_diagnostic() -> None:
     print(f"Processed {len(manifest)} voices; output in {OUTPUT_DIR}")
 
 
-def _write_html_index(output_dir: Path, voices: list[dict[str, Any]], manifest: list[dict[str, Any]]) -> None:
+def _write_html_index(
+    output_dir: Path, voices: list[dict[str, Any]], manifest: list[dict[str, Any]]
+) -> None:
     voice_map = {v.get("voice", ""): v for v in voices}
     lines = [
         "<!DOCTYPE html>",

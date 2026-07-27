@@ -1,4 +1,5 @@
 """Deterministic timeline compilation for a Mantra specification."""
+
 # ruff: noqa: C901
 from __future__ import annotations
 
@@ -176,7 +177,9 @@ def _speech_segment(
             "stress_syllable_index": form.effective_stress(),
             "pronunciation_override": form.pronunciation_override,
             "sheva_annotations": [a.to_dict() for a in form.sheva_annotations],
-            "tts_omit_silent": tts_variant(form.hebrew_with_niqqud, form.sheva_annotations, "omit_silent"),
+            "tts_omit_silent": tts_variant(
+                form.hebrew_with_niqqud, form.sheva_annotations, "omit_silent"
+            ),
         }
     is_italian = segment_type in {SegmentType.ITALIAN_CUE, SegmentType.GRAMMATICAL_LABEL}
     speech_cfg = spec.italian_speech if is_italian else spec.speech

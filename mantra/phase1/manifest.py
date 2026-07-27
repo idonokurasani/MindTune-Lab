@@ -1,4 +1,5 @@
 """Manifest generation for a built mantra artifact."""
+
 from __future__ import annotations
 
 import datetime
@@ -139,7 +140,9 @@ def write_manifest(
         metadata={"build_engine_version": "1.0.0"},
     )
     manifest.validation_results = _validate_manifest(manifest)
-    manifest.status = "completed" if manifest.validation_results["valid"] else "completed_with_warnings"
+    manifest.status = (
+        "completed" if manifest.validation_results["valid"] else "completed_with_warnings"
+    )
 
     save_json(assembly.manifest_path, manifest.to_dict())
     events.save(assembly.events_path)

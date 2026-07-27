@@ -1,4 +1,5 @@
 """Tests for shared audio assets, compact mantra, and Domino tense rules."""
+
 from __future__ import annotations
 
 import json
@@ -43,7 +44,9 @@ class SharedAudioAssetTests(unittest.TestCase):
 
         # Redirect global paths to temp dir for tests.
         self.cache_patcher = patch("mantra.phase1.assets.GLOBAL_CACHE_DIR", self.cache_dir)
-        self.registry_patcher = patch("mantra.phase1.assets.ASSET_REGISTRY_PATH", self.registry_path)
+        self.registry_patcher = patch(
+            "mantra.phase1.assets.ASSET_REGISTRY_PATH", self.registry_path
+        )
         self.cache_patcher.start()
         self.registry_patcher.start()
 
@@ -93,7 +96,9 @@ class SharedAudioAssetTests(unittest.TestCase):
         provider = CountingProvider()
         registry = self._registry()
         text = "אֲנִי הִתְקַשַּׁרְתִּי"
-        registry.ensure("he.roundtrip", text, "Hannah", "he-IL", source_text=text, provider=provider)
+        registry.ensure(
+            "he.roundtrip", text, "Hannah", "he-IL", source_text=text, provider=provider
+        )
 
         # Reload registry from disk.
         registry2 = self._registry()
@@ -137,14 +142,26 @@ class CompactMantraOutputTests(unittest.TestCase):
             raise unittest.SkipTest("compact mantra has not been built yet")
 
     def test_one_italian_intro_and_no_grammatical_labels(self) -> None:
-        manifest = json.loads((self.OUTPUT_DIR / "compact_manifest.json").read_text(encoding="utf-8"))
+        manifest = json.loads(
+            (self.OUTPUT_DIR / "compact_manifest.json").read_text(encoding="utf-8")
+        )
         asset_ids = manifest.get("asset_ids", [])
 
         italian_ids = [aid for aid in asset_ids if aid.startswith("it.")]
-        self.assertEqual(len(italian_ids), 1, "Only one Italian utterance is allowed in a compact mantra")
+        self.assertEqual(
+            len(italian_ids), 1, "Only one Italian utterance is allowed in a compact mantra"
+        )
         self.assertEqual(italian_ids[0], "it.lehitkasher.infinitive")
 
-        forbidden = ("Passato", "Presente", "Futuro", "Imperativo", "prima persona", "seconda persona", "terza persona")
+        forbidden = (
+            "Passato",
+            "Presente",
+            "Futuro",
+            "Imperativo",
+            "prima persona",
+            "seconda persona",
+            "terza persona",
+        )
         registry = AudioAssetRegistry()
         for aid in asset_ids:
             asset = registry.get(aid)
@@ -157,7 +174,9 @@ class CompactMantraOutputTests(unittest.TestCase):
 
     def test_hebrew_sequence_fully_pointed(self) -> None:
         registry = AudioAssetRegistry()
-        manifest = json.loads((self.OUTPUT_DIR / "compact_manifest.json").read_text(encoding="utf-8"))
+        manifest = json.loads(
+            (self.OUTPUT_DIR / "compact_manifest.json").read_text(encoding="utf-8")
+        )
         for aid in manifest.get("asset_ids", []):
             asset = registry.get(aid)
             if not asset or asset.voice != "Hannah":
@@ -170,7 +189,9 @@ class CompactMantraOutputTests(unittest.TestCase):
 
     def test_combined_plural_lines_use_ve_and_no_separate_duplicates(self) -> None:
         registry = AudioAssetRegistry()
-        manifest = json.loads((self.OUTPUT_DIR / "compact_manifest.json").read_text(encoding="utf-8"))
+        manifest = json.loads(
+            (self.OUTPUT_DIR / "compact_manifest.json").read_text(encoding="utf-8")
+        )
         asset_ids = manifest.get("asset_ids", [])
 
         # Combined plural lines should appear.
@@ -194,7 +215,9 @@ class CompactMantraOutputTests(unittest.TestCase):
         self.assertNotIn("he.lehitkasher.future.3fpl", asset_ids)
 
     def test_domino_exercises_use_only_canonical_tense_markers(self) -> None:
-        exercises = json.loads((self.OUTPUT_DIR / "domino_exercises.json").read_text(encoding="utf-8"))
+        exercises = json.loads(
+            (self.OUTPUT_DIR / "domino_exercises.json").read_text(encoding="utf-8")
+        )
         allowed_markers = {"בֶּעָבָר", "בַּהוֹוֶה", "בֶּעָתִיד"}
         forbidden_temporal = [
             "una settimana fa",
@@ -212,7 +235,9 @@ class CompactMantraOutputTests(unittest.TestCase):
 
     def test_domino_tense_markers_match_global_assets(self) -> None:
         registry = AudioAssetRegistry()
-        exercises = json.loads((self.OUTPUT_DIR / "domino_exercises.json").read_text(encoding="utf-8"))
+        exercises = json.loads(
+            (self.OUTPUT_DIR / "domino_exercises.json").read_text(encoding="utf-8")
+        )
         tense_markers = {ex["tense_marker_asset_id"] for ex in exercises}
         self.assertEqual(tense_markers, {"he.tense.past", "he.tense.present", "he.tense.future"})
         for marker in tense_markers:

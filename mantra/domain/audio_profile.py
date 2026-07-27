@@ -4,6 +4,7 @@ The audio profile centralizes provider, voice, locale, and synthesis settings.
 Curriculum and linguistic specifications reference only the profile ID/version,
 so switching voices never requires editing domain content.
 """
+
 from __future__ import annotations
 
 import json

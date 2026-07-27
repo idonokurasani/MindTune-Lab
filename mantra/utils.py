@@ -1,4 +1,5 @@
 """Utility helpers for text normalization and phoneme processing."""
+
 from __future__ import annotations
 
 import json
@@ -12,7 +13,10 @@ def strip_niqqud(text: str) -> str:
     return "".join(
         c
         for c in text
-        if not ("\u0591" <= c <= "\u05bd" or c in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7")
+        if not (
+            "\u0591" <= c <= "\u05bd"
+            or c in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7"
+        )
     )
 
 
@@ -21,7 +25,9 @@ def _hebrew_base(c: str) -> bool:
 
 
 def _is_niqqud(c: str) -> bool:
-    return "\u0591" <= c <= "\u05bd" or c in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7"
+    return (
+        "\u0591" <= c <= "\u05bd" or c in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7"
+    )
 
 
 def standard_unvocalized(vocalized: str, chaser: str = "", hebrew_without_niqqud: str = "") -> str:
@@ -37,7 +43,12 @@ def standard_unvocalized(vocalized: str, chaser: str = "", hebrew_without_niqqud
     if chaser and "~" in chaser:
         candidate = chaser.split("~", 1)[-1].strip()
         candidate_clean = strip_niqqud(candidate).replace(" ", "").replace("ו", "").replace("י", "")
-        base_clean = strip_niqqud(hebrew_without_niqqud or vocalized).replace(" ", "").replace("ו", "").replace("י", "")
+        base_clean = (
+            strip_niqqud(hebrew_without_niqqud or vocalized)
+            .replace(" ", "")
+            .replace("ו", "")
+            .replace("י", "")
+        )
         if candidate_clean == base_clean and candidate_clean:
             return strip_niqqud(candidate)
 

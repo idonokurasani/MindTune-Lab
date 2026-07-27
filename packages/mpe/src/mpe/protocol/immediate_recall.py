@@ -132,9 +132,7 @@ class ImmediateRecallRunner:
             self.item_outcomes.append(outcome)
             step.record(self._repeat_decision(outcome))
 
-        self.pipeline.emit_block_completed(
-            block_id, completed_trial_count=len(self.item_outcomes)
-        )
+        self.pipeline.emit_block_completed(block_id, completed_trial_count=len(self.item_outcomes))
         self.runtime.complete_session(final_trial_index=self._trial_index)
 
         state = self.runtime.state
@@ -307,7 +305,6 @@ class ImmediateRecallRunner:
             repeats_used=repeats_used,
             answer_status=answer_status,
         )
-
 
 
 def run_immediate_recall_session(

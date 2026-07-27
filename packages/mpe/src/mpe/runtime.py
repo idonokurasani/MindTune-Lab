@@ -106,9 +106,7 @@ class FixedWallClock:
         return value
 
 
-_PRE_PROVENANCE_EVENT_TYPES = frozenset(
-    {"session_created", "session_provenance_recorded"}
-)
+_PRE_PROVENANCE_EVENT_TYPES = frozenset({"session_created", "session_provenance_recorded"})
 
 
 class Runtime:
@@ -157,10 +155,7 @@ class Runtime:
             raise IllegalStateTransitionError("Cannot emit event before session is created")
         if self._protocol_version_id is None:
             raise IllegalStateTransitionError("Cannot emit event before session is created")
-        if (
-            event_type not in _PRE_PROVENANCE_EVENT_TYPES
-            and self.state.provenance_event_id is None
-        ):
+        if event_type not in _PRE_PROVENANCE_EVENT_TYPES and self.state.provenance_event_id is None:
             raise IllegalStateTransitionError(
                 f"Cannot emit {event_type} before session_provenance_recorded"
             )
@@ -513,11 +508,13 @@ class Runtime:
             provenance=[self.state.events[-1].event_id],
         )
 
-        rendered = self.providers.renderer.render({
-            "stimulus_request_id": str(stimulus_request_id),
-            "trial_id": str(trial_id),
-            "content_item_id": content_item.content_item_id,
-        })
+        rendered = self.providers.renderer.render(
+            {
+                "stimulus_request_id": str(stimulus_request_id),
+                "trial_id": str(trial_id),
+                "content_item_id": content_item.content_item_id,
+            }
+        )
         self.emit(
             "stimulus_ready",
             {
@@ -633,13 +630,15 @@ class Runtime:
             provenance=[self.state.events[-1].event_id],
         )
 
-        interpretation = self.providers.interpreter.interpret({
-            "captured_response_id": str(captured_response_id),
-            "response_window_id": str(response_window_id),
-            "response_mode": ResponseMode.TYPED.value,
-            "captured_payload": raw_obs["payload"],
-            "captured_at": captured_at,
-        })
+        interpretation = self.providers.interpreter.interpret(
+            {
+                "captured_response_id": str(captured_response_id),
+                "response_window_id": str(response_window_id),
+                "response_mode": ResponseMode.TYPED.value,
+                "captured_payload": raw_obs["payload"],
+                "captured_at": captured_at,
+            }
+        )
         self.emit(
             "response_interpreted",
             {
@@ -717,7 +716,11 @@ class Runtime:
     def _emit_feedback(self, trial_id: TrialID, content_item: ContentItem) -> None:
         feedback_event_id = FeedbackEventID(str(make_id(FeedbackEventID)))
         trial = self.state.trials.get(str(trial_id))
-        answer = AnswerStatus.CORRECT if (trial and trial.answer_status == AnswerStatus.CORRECT) else AnswerStatus.INCORRECT
+        answer = (
+            AnswerStatus.CORRECT
+            if (trial and trial.answer_status == AnswerStatus.CORRECT)
+            else AnswerStatus.INCORRECT
+        )
         feedback_type = (
             FeedbackType.CORRECT_ANSWER.value
             if answer == AnswerStatus.CORRECT
@@ -761,13 +764,9 @@ class Runtime:
     def outcome(self) -> Outcome:
         """Compute an Outcome from the current live state."""
         total = len(self.state.trials)
-        completed = sum(
-            1 for t in self.state.trials.values() if t.status == "completed"
-        )
+        completed = sum(1 for t in self.state.trials.values() if t.status == "completed")
         evaluated = [t for t in self.state.trials.values() if t.answer_status is not None]
-        correct = sum(
-            1 for t in evaluated if t.answer_status == AnswerStatus.CORRECT
-        )
+        correct = sum(1 for t in evaluated if t.answer_status == AnswerStatus.CORRECT)
         accuracy = correct / len(evaluated) if evaluated else None
         status = self.state.session_status.value if self.state.session_status else "unknown"
         return Outcome(

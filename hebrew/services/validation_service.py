@@ -1,4 +1,5 @@
 """High-level validation service."""
+
 from __future__ import annotations
 
 from ..models import ValidationResult

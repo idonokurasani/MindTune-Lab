@@ -78,10 +78,22 @@ def _strip_diacritics(text: str) -> str:
 def _parse_form_key(form_key: str, tense: str) -> dict[str, Any] | None:
     """Infer person, number, gender from a fixture form key."""
     if form_key == "infinitive" and tense == "infinitive":
-        return {"form_key": form_key, "person": None, "number": None, "gender": None, "mood": "infinitive"}
+        return {
+            "form_key": form_key,
+            "person": None,
+            "number": None,
+            "gender": None,
+            "mood": "infinitive",
+        }
     if form_key == "example" and tense == "infinitive":
         # The example is a present masculine-singular sentence.
-        return {"form_key": form_key, "person": "1", "number": "singular", "gender": "masculine", "mood": "indicative"}
+        return {
+            "form_key": form_key,
+            "person": "1",
+            "number": "singular",
+            "gender": "masculine",
+            "mood": "indicative",
+        }
 
     parts = form_key.split("_")
     person = None
@@ -94,7 +106,13 @@ def _parse_form_key(form_key: str, tense: str) -> dict[str, Any] | None:
             number = part
         elif part in {"masculine", "feminine"}:
             gender = part
-    return {"form_key": form_key, "person": person, "number": number, "gender": gender, "mood": "indicative"}
+    return {
+        "form_key": form_key,
+        "person": person,
+        "number": number,
+        "gender": gender,
+        "mood": "indicative",
+    }
 
 
 def _subject_for(tense: str, morph: dict[str, Any]) -> tuple[str, str]:
@@ -121,7 +139,9 @@ def _subject_for(tense: str, morph: dict[str, Any]) -> tuple[str, str]:
     return SUBJECT_PRONOUNS.get(key, ("", ""))
 
 
-def _expected_transliteration(tense: str, form_key: str, subject_latin: str, verb_latin: str) -> str:
+def _expected_transliteration(
+    tense: str, form_key: str, subject_latin: str, verb_latin: str
+) -> str:
     if tense == "infinitive" and form_key == "infinitive":
         return f"{subject_latin} rotse {verb_latin} mikhtav"
     if tense == "infinitive" and form_key == "example":
@@ -202,7 +222,9 @@ def _validate(sentences: list[dict[str, Any]]) -> tuple[bool, list[str]]:  # noq
         stripped = _strip_diacritics(s["pointed_sentence"])
         if stripped != s["unpointed_sentence"]:
             ok = False
-            report.append(f"| {form_id} | ... | ... | ... | ... | ... | FAILED: pointed/unpointed mismatch |")
+            report.append(
+                f"| {form_id} | ... | ... | ... | ... | ... | FAILED: pointed/unpointed mismatch |"
+            )
             continue
 
         # 2. Verify the verb token in the pointed sentence matches the fixture verb.
@@ -395,10 +417,16 @@ def build_diagnostic() -> None:
             manifest.append(
                 {
                     "form_id": form_id,
-                    "submitted_text": s["pointed_sentence"] if variant == "pointed" else s["unpointed_sentence"],
+                    "submitted_text": (
+                        s["pointed_sentence"] if variant == "pointed" else s["unpointed_sentence"]
+                    ),
                     "code_points": [
                         f"U+{ord(c):04X}"
-                        for c in (s["pointed_sentence"] if variant == "pointed" else s["unpointed_sentence"])
+                        for c in (
+                            s["pointed_sentence"]
+                            if variant == "pointed"
+                            else s["unpointed_sentence"]
+                        )
                     ],
                     "subject": s["subject_hebrew"],
                     "conjugated_verb": s["verb_hebrew"],
@@ -455,7 +483,9 @@ def _write_html_index(output_dir: Path, sentences: list[dict[str, Any]]) -> None
         lines.append(f"<h2>{s['form_id']}</h2>")
         lines.append(f"<p>subject: {s['subject_hebrew']} ({s['subject_latin']})</p>")
         lines.append(f"<p>tense/mood: {s['tense']} / {s['mood']}</p>")
-        lines.append(f"<p>person: {s['person'] or '-'} | number: {s['number'] or '-'} | gender: {s['gender'] or '-'}</p>")
+        lines.append(
+            f"<p>person: {s['person'] or '-'} | number: {s['number'] or '-'} | gender: {s['gender'] or '-'}</p>"
+        )
         lines.append(f"<p>canonical verb: <span class='rtl'>{s['verb_hebrew']}</span></p>")
         lines.append(f"<p>expected: <em>{s['expected_transliteration']}</em></p>")
         lines.append(f"<p class='rtl'><strong>Pointed:</strong> {s['pointed_sentence']}</p>")

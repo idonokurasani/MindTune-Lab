@@ -1,4 +1,5 @@
 """Tests for the versioned Hebrew curriculum and MantraSelectionPolicy."""
+
 from __future__ import annotations
 
 import tempfile

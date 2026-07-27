@@ -1,4 +1,5 @@
 """Validate the shared Hebrew engine with לכתוב, להיות, לעשות."""
+
 from __future__ import annotations
 
 import json

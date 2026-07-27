@@ -5,6 +5,7 @@ Each asset maps to a deterministic TTS cache key (provider + voice + exact
 Unicode text + settings), so Mantra, Domino, review and feedback all share
 one synthesized copy and never call SpeechGen twice for the same utterance.
 """
+
 from __future__ import annotations
 
 import json
@@ -115,7 +116,9 @@ class AudioAssetRegistry:
     ) -> Path:
         """Return the asset WAV path, synthesizing only if missing globally."""
         normalized_text = normalize_unicode(text)
-        cache_key = _cache_key(normalized_text, provider_name, voice, rate, pitch, fmt, None, locale=locale)
+        cache_key = _cache_key(
+            normalized_text, provider_name, voice, rate, pitch, fmt, None, locale=locale
+        )
 
         cache = TTSCache(GLOBAL_CACHE_DIR)
         existing = cache.get(cache_key)
@@ -124,7 +127,11 @@ class AudioAssetRegistry:
             # Use cached result; update registry if new asset_id.
             if asset_id not in self._assets:
                 wav_path = cache.cached_path(cache_key)
-                checksum = sha256_hex(existing.audio_bytes) if wav_path is None else sha256_hex(wav_path.read_bytes())
+                checksum = (
+                    sha256_hex(existing.audio_bytes)
+                    if wav_path is None
+                    else sha256_hex(wav_path.read_bytes())
+                )
                 self.register(
                     AudioAsset(
                         asset_id=asset_id,

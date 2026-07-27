@@ -65,9 +65,7 @@ def event_from_record(record: dict[str, Any]) -> Event:
         component=record["component"],
         component_version=record["component_version"],
         correlation_id=(
-            CorrelationID(record["correlation_id"])
-            if record.get("correlation_id")
-            else None
+            CorrelationID(record["correlation_id"]) if record.get("correlation_id") else None
         ),
         provenance=[EventID(eid) for eid in record.get("provenance", [])],
         payload=record.get("payload", {}),
@@ -111,9 +109,7 @@ def import_stream(store: Any, lines: Iterable[bytes | str]) -> int:
 
     sessions = {event.session_id for event in events}
     if len(sessions) > 1:
-        raise ValidationError(
-            f"An import covers exactly one session, got {len(sessions)}"
-        )
+        raise ValidationError(f"An import covers exactly one session, got {len(sessions)}")
 
     session_id = events[0].session_id
     if store.get_last_sequence(session_id) != 0:

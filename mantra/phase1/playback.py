@@ -1,4 +1,5 @@
 """Playback foundation with segment-aware events and Phase 2 extension hooks."""
+
 from __future__ import annotations
 
 import platform

@@ -72,9 +72,7 @@ def _ensure_path_is_not_directory(path: Path) -> int | None:
     return None
 
 
-def _open_store_for_command(
-    path: Path, *, read_only: bool = False
-) -> SQLiteEventStore | int:
+def _open_store_for_command(path: Path, *, read_only: bool = False) -> SQLiteEventStore | int:
     bad = _ensure_path_is_not_directory(path)
     if bad is not None:
         return bad
@@ -316,11 +314,7 @@ def cmd_validate_store(args: argparse.Namespace) -> int:
                         "session_id": str(summary.session_id),
                         "event_count": summary.event_count,
                         "last_sequence": summary.last_sequence,
-                        "status": (
-                            state.session_status.value
-                            if state.session_status
-                            else None
-                        ),
+                        "status": (state.session_status.value if state.session_status else None),
                         "terminal": state.terminal,
                     }
                 )
@@ -347,8 +341,6 @@ def cmd_validate_store(args: argparse.Namespace) -> int:
             print(f"store invalid: {error_message}")
 
     return EXIT_OK if valid else EXIT_STORE_INVALID
-
-
 
 
 def _format_protocol_summary(summary: Any) -> str:
@@ -487,9 +479,7 @@ def cmd_run_immediate_recall(args: argparse.Namespace) -> int:
 
 
 def cmd_show_protocol_summary(args: argparse.Namespace) -> int:
-    return _show_protocol_session_summary(
-        args, load_protocol_summary, _format_protocol_summary
-    )
+    return _show_protocol_session_summary(args, load_protocol_summary, _format_protocol_summary)
 
 
 def cmd_run_recognition(args: argparse.Namespace) -> int:
@@ -569,7 +559,9 @@ def _build_parser() -> argparse.ArgumentParser:
         description="MindTune Protocol Engine (MPE) v1.1 CLI",
     )
     parser.add_argument("--version", action="version", version=f"mpe {__version__}")
-    parser.add_argument("-v", "--verbose", action="store_true", help="Emit diagnostic output to stderr")
+    parser.add_argument(
+        "-v", "--verbose", action="store_true", help="Emit diagnostic output to stderr"
+    )
     parser.add_argument(
         "--store-path",
         default=None,
@@ -578,27 +570,41 @@ def _build_parser() -> argparse.ArgumentParser:
 
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    run_parser = subparsers.add_parser("run-mock-session", help="Execute and persist the mock session")
+    run_parser = subparsers.add_parser(
+        "run-mock-session", help="Execute and persist the mock session"
+    )
     run_parser.add_argument("--session-id", default=None, help="Fixed session identifier")
     run_parser.add_argument("--learner-id", default="learner_001", help="Learner identifier")
     run_parser.add_argument("--random-seed", default="seed_0", help="Random seed")
-    run_parser.add_argument("--format", choices=["human", "json"], default="human", help="Output format")
+    run_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
 
     replay_parser = subparsers.add_parser("replay", help="Replay a persisted session")
     replay_parser.add_argument("session_id", help="Session identifier")
-    replay_parser.add_argument("--format", choices=["human", "json"], default="human", help="Output format")
+    replay_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
 
     list_parser = subparsers.add_parser("list-sessions", help="List sessions in the store")
-    list_parser.add_argument("--format", choices=["human", "json"], default="human", help="Output format")
+    list_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
 
     validate_parser = subparsers.add_parser("validate-store", help="Validate the event store")
-    validate_parser.add_argument("--format", choices=["human", "json"], default="human", help="Output format")
+    validate_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
 
     immediate_recall_parser = subparsers.add_parser(
         "run-immediate-recall", help="Execute and persist an Immediate Recall session"
     )
-    immediate_recall_parser.add_argument("--session-id", default=None, help="Fixed session identifier")
-    immediate_recall_parser.add_argument("--learner-id", default="learner_001", help="Learner identifier")
+    immediate_recall_parser.add_argument(
+        "--session-id", default=None, help="Fixed session identifier"
+    )
+    immediate_recall_parser.add_argument(
+        "--learner-id", default="learner_001", help="Learner identifier"
+    )
     immediate_recall_parser.add_argument("--random-seed", default="seed_0", help="Random seed")
     immediate_recall_parser.add_argument(
         "--format", choices=["human", "json"], default="human", help="Output format"
@@ -616,7 +622,9 @@ def _build_parser() -> argparse.ArgumentParser:
         "run-recognition", help="Execute and persist a Recognition session"
     )
     recognition_parser.add_argument("--session-id", default=None, help="Fixed session identifier")
-    recognition_parser.add_argument("--learner-id", default="learner_001", help="Learner identifier")
+    recognition_parser.add_argument(
+        "--learner-id", default="learner_001", help="Learner identifier"
+    )
     recognition_parser.add_argument("--random-seed", default="seed_0", help="Random seed")
     recognition_parser.add_argument(
         "--format", choices=["human", "json"], default="human", help="Output format"

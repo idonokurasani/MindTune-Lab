@@ -13,6 +13,7 @@ Conventions
 * ``phonemic`` is an IPA-style phonemic string.  ``practical`` is a
   simplified Israeli Hebrew respelling in Latin characters.
 """
+
 from __future__ import annotations
 
 import json
@@ -44,9 +45,7 @@ NIQQUD_NAME: dict[str, str] = {
     "\u05c7": "qamats_qatan",
 }
 
-_VOWEL_POINTS = frozenset(
-    c for c in NIQQUD_NAME if NIQQUD_NAME[c] not in ("dagesh",)
-)
+_VOWEL_POINTS = frozenset(c for c in NIQQUD_NAME if NIQQUD_NAME[c] not in ("dagesh",))
 
 # Begedkefet mapping: base letter -> (plosive IPA, spirant IPA).
 # In Modern Israeli Hebrew ג, ד, ת do not consistently spirantize,
@@ -277,10 +276,7 @@ class PronunciationValidator:
     """
 
     DEFAULT_OVERRIDE_PATHS: tuple[Path, ...] = (
-        Path(__file__).resolve().parents[1]
-        / "data"
-        / "phonikud_eval"
-        / "phonikud_evaluation.json",
+        Path(__file__).resolve().parents[1] / "data" / "phonikud_eval" / "phonikud_evaluation.json",
         Path(__file__).resolve().parents[1]
         / "data"
         / "hebrew"
@@ -368,18 +364,12 @@ class PronunciationValidator:
         if tense == "past":
             if person == "first" and number == "plural":
                 return max(1, n_syllables - 1)
-            if (
-                number == "singular"
-                and person in ("first", "second")
-                and gender != "feminine"
-            ):
+            if number == "singular" and person in ("first", "second") and gender != "feminine":
                 return max(1, n_syllables - 1)
 
         return n_syllables
 
-    def validate(
-        self, vocalized: str, context: Any | None = None
-    ) -> dict[str, Any]:
+    def validate(self, vocalized: str, context: Any | None = None) -> dict[str, Any]:
         """Validate a vocalized Hebrew verb form.
 
         Returns a dict with phonemic, practical, syllabification,
@@ -478,9 +468,7 @@ class PronunciationValidator:
                         preceding_vowel = name
                         break
                 letter_with_marks = base + "".join(marks)
-                realization = begadkefat_realization(
-                    letter_with_marks, preceding_vowel, idx
-                )
+                realization = begadkefat_realization(letter_with_marks, preceding_vowel, idx)
                 if base in BEGADKEFAT:
                     begadkefat[idx] = realization["realized"]
         rule_trace.append("dagesh_scan")
@@ -501,11 +489,9 @@ class PronunciationValidator:
         if override:
             override_comparison = (
                 phonikud_phonemes == manual_phonemes
-                and phonikud_stress == (manual_stress if manual_stress is not None else phonikud_stress)
-                and (
-                    manual_vocal_shva is None
-                    or phonikud_vocal_shva == manual_vocal_shva
-                )
+                and phonikud_stress
+                == (manual_stress if manual_stress is not None else phonikud_stress)
+                and (manual_vocal_shva is None or phonikud_vocal_shva == manual_vocal_shva)
             )
             if phonikud_phonemes and (
                 phonikud_phonemes != manual_phonemes

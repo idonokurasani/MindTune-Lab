@@ -1,4 +1,5 @@
 """Local Pealim reference layer for manually approved verb forms."""
+
 from __future__ import annotations
 
 import json

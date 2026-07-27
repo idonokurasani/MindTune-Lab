@@ -62,9 +62,7 @@ def canonical_digest_bytes(event: Event) -> bytes:
     `previous_digest`, and excludes `content_digest` itself.
     """
     fields = {
-        key: value
-        for key, value in event.as_dict().items()
-        if key not in _DIGEST_EXCLUDED_FIELDS
+        key: value for key, value in event.as_dict().items() if key not in _DIGEST_EXCLUDED_FIELDS
     }
     return canonical_json(fields).encode("utf-8")
 
@@ -97,9 +95,7 @@ def chain_event(event: Event, previous_digest: str | None) -> Event:
     if not is_chained_schema(event.schema_version):
         return event
 
-    linked = dataclasses.replace(
-        event, previous_digest=previous_digest, content_digest=None
-    )
+    linked = dataclasses.replace(event, previous_digest=previous_digest, content_digest=None)
     return dataclasses.replace(linked, content_digest=compute_content_digest(linked))
 
 

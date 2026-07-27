@@ -113,9 +113,7 @@ class RebuildFromEmptyTests(InterchangeTestCase):
     def test_import_refuses_more_than_one_session(self) -> None:
         with SQLiteEventStore(self.source_path) as store:
             other = run_recognition_session(store).state.session_id
-            mixed = list(export_stream(store, self.session_id)) + list(
-                export_stream(store, other)
-            )
+            mixed = list(export_stream(store, self.session_id)) + list(export_stream(store, other))
         with SQLiteEventStore(self.target_path) as store:
             with self.assertRaises(ValidationError):
                 import_stream(store, mixed)
