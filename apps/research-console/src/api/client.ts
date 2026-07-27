@@ -207,6 +207,13 @@ export const api = {
     request<import('./models').CalibrationSelectionResponse>('POST', `/participants/${encodeURIComponent(participantId)}/calibration-profiles/${encodeURIComponent(profileId)}/select`),
   getCalibrationStatus: (participantId: string) =>
     request<import('./models').CalibrationStatus>('GET', `/participants/${encodeURIComponent(participantId)}/calibration-status`),
+
+  // CLM-08 scientific validation endpoints
+  listStudies: () => request<{ items: Record<string, unknown>[] }>('GET', '/studies'),
+  createStudy: (data: Record<string, unknown>) =>
+    request<Record<string, unknown>>('POST', '/studies', data),
+  preregisterStudy: (id: string) =>
+    request<Record<string, unknown>>('POST', `/studies/${encodeURIComponent(id)}/preregister`),
 };
 
 export const isApiError = (error: unknown): error is ApiError =>

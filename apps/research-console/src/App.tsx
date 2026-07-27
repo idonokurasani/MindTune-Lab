@@ -13,6 +13,7 @@ import HebrewSessionPage from './pages/HebrewSessionPage';
 import CurriculumPage from './pages/CurriculumPage';
 import LearnerProgressionPage from './pages/LearnerProgressionPage';
 import ItemInspectionPage from './pages/ItemInspectionPage';
+import { ScientificValidationPage } from './pages/ScientificValidationPage';
 import { SystemPage } from './pages/SystemPage';
 import { api } from './api/client';
 import { toApiMode } from './api/models';
@@ -139,6 +140,8 @@ const App: React.FC = () => {
         return <LearnerProgressionPage />;
       case 'item-inspection':
         return <ItemInspectionPage />;
+      case 'validation':
+        return <ScientificValidationPage />;
       case 'system':
         return <SystemPage health={health} protocols={protocols} sensors={sensors} />;
       default:

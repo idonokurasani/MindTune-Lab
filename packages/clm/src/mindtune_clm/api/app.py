@@ -25,6 +25,7 @@ from mindtune_clm.api import (
     sensors,
     sessions,
     stimuli,
+    validation,
 )
 from mindtune_clm.api.calibration_service import CalibrationAPIService
 from mindtune_clm.api.config import CLM05APIConfig
@@ -57,6 +58,7 @@ def _setup_routers(app: FastAPI) -> None:
     app.include_router(hebrew.router, prefix="/api/v1")
     app.include_router(hebrew_clm06b.router, prefix="/api/v1")
     app.include_router(calibrations.router, prefix="/api/v1")
+    app.include_router(validation.router, prefix="/api/v1")
 
 
 def _setup_exception_handlers(app: FastAPI) -> None:
@@ -108,6 +110,7 @@ def create_app(config: CLM05APIConfig | None = None) -> FastAPI:
     app.state.config = config
     app.state.service = service
     app.state.calibration_service = calibration_service
+    app.state.validation_service = validation.ValidationService()
     app.state.hebrew_service = None
 
     _setup_middlewares(app, config)
