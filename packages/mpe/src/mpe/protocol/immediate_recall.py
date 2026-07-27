@@ -41,7 +41,7 @@ from mpe.protocol.trial_pipeline import (
     TrialPipeline,
 )
 from mpe.providers import ContentItem
-from mpe.runtime import Clock, Runtime
+from mpe.runtime import Clock, Runtime, WallClock
 from mpe.types import (
     BlockID,
     ProtocolVersionID,
@@ -83,12 +83,13 @@ class ImmediateRecallRunner:
         fixture: ImmediateRecallFixture | None = None,
         rule: AdaptationRule | None = None,
         clock: Clock | None = None,
+        wall_clock: WallClock | None = None,
     ) -> None:
         self.fixture = fixture or make_minimal_fixture()
         self.rule = rule or default_adaptation_rule()
         self.clock = clock or Clock()
         self.providers = FixtureProviderSet(self.fixture).set
-        self.runtime = Runtime(store, self.providers, self.clock)
+        self.runtime = Runtime(store, self.providers, self.clock, wall_clock)
         self.pipeline = TrialPipeline(self.runtime, self.providers)
         self.item_outcomes: list[ItemOutcome] = []
         self._trial_index = 0
@@ -317,9 +318,12 @@ def run_immediate_recall_session(
     fixture: ImmediateRecallFixture | None = None,
     rule: AdaptationRule | None = None,
     clock: Clock | None = None,
+    wall_clock: WallClock | None = None,
 ) -> ImmediateRecallResult:
     """High-level entry point for running an Immediate Recall session."""
-    runner = ImmediateRecallRunner(store, fixture=fixture, rule=rule, clock=clock)
+    runner = ImmediateRecallRunner(
+        store, fixture=fixture, rule=rule, clock=clock, wall_clock=wall_clock
+    )
     return runner.run_session(
         learner_id=learner_id,
         random_seed=random_seed,

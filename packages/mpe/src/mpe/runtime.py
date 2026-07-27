@@ -2,8 +2,9 @@
 
 from __future__ import annotations
 
+import time
 from dataclasses import dataclass
-from typing import Any
+from typing import Any, Protocol
 
 from mpe.aggregates import RuntimeState
 from mpe.enums import (
@@ -57,7 +58,11 @@ class Outcome:
 
 
 class Clock:
-    """Deterministic monotonic session clock."""
+    """Deterministic monotonic session clock.
+
+    Measures protocol time. It is not a record of when the session happened;
+    that is `WallClock`.
+    """
 
     def __init__(self, start: float = 1.0, step: float = 0.1) -> None:
         self._time = start
@@ -70,6 +75,36 @@ class Clock:
         self._time += self._step
 
 
+class WallClock(Protocol):
+    """Source of UTC epoch seconds recorded alongside protocol time."""
+
+    def now_utc(self) -> float: ...
+
+
+class SystemWallClock:
+    """UTC wall clock backed by the operating system.
+
+    The value is self-asserted: it records what this machine believed the time
+    to be, and is not externally attested (ADR-0001 sec. 2.6).
+    """
+
+    def now_utc(self) -> float:
+        return time.time()
+
+
+class FixedWallClock:
+    """Wall clock returning a pinned value, for deterministic tests."""
+
+    def __init__(self, value: float = 0.0, step: float = 0.0) -> None:
+        self._value = value
+        self._step = step
+
+    def now_utc(self) -> float:
+        value = self._value
+        self._value += self._step
+        return value
+
+
 class Runtime:
     """MPE runtime: emits canonical events and reconstructs state via replay."""
 
@@ -78,10 +113,12 @@ class Runtime:
         store: EventStore,
         providers: ProviderSet,
         clock: Clock | None = None,
+        wall_clock: WallClock | None = None,
     ) -> None:
         self.store = store
         self.providers = providers
         self.clock = clock or Clock()
+        self.wall_clock: WallClock = wall_clock or SystemWallClock()
         self.state = RuntimeState()
 
         self._session_id: SessionID | None = None
@@ -118,6 +155,7 @@ class Runtime:
         next_seq = last_seq + 1
         timestamp = self.clock.now()
         self.clock.advance()
+        wallclock_at = self.wall_clock.now_utc()
 
         event = Event(
             event_id=make_id(EventID),
@@ -127,6 +165,7 @@ class Runtime:
             session_sequence_number=next_seq,
             protocol_version_id=ProtocolVersionID(str(self._protocol_version_id)),
             timestamp=timestamp,
+            wallclock_at=wallclock_at,
             component=component,
             component_version=component_version,
             correlation_id=correlation_id,
