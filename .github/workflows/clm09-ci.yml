@@ -1,0 +1,57 @@
+name: CLM-09 CI
+
+on:
+  push:
+    branches: [feat/clm-09-production-hardening]
+  pull_request:
+    branches: [feat/clm-09-production-hardening]
+
+jobs:
+  backend:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]" -e ./packages/mpe -e ./packages/clm
+      - name: Lint
+        run: |
+          ruff check packages/clm/src/mindtune_clm/ops packages/clm/tests/ packages/mpe/src/mpe/
+          mypy --exclude 'hebrew/' packages/clm/src/mindtune_clm/ops
+      - name: Test CLM-09
+        run: pytest packages/clm/tests/test_clm09.py -v
+      - name: Test prior CLM tests
+        run: pytest packages/clm/tests/test_clm08.py packages/clm/tests/test_clm07.py -v
+      - name: MPE tests
+        run: pytest packages/mpe/tests -q
+      - name: Import smoke
+        run: python -c "from mindtune_clm.api.app import create_app; from mindtune_clm.ops.config import load_config; print('ok')"
+
+  frontend:
+    runs-on: ubuntu-22.04
+    defaults:
+      run:
+        working-directory: apps/research-console
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - run: npm install
+      - run: npm run lint
+      - run: npm run typecheck
+      - run: npm run test
+      - run: npm run build
+
+  docker:
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build CLM image
+        run: docker build -f deploy/docker/Dockerfile.clm -t mindtune/clm:test .
+      - name: Image smoke
+        run: docker run --rm mindtune/clm:test python -c "import mindtune_clm.ops; print('ok')"

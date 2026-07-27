@@ -47,3 +47,11 @@ apps/research-console/*.log
 apps/research-console/package-lock.json
 apps/research-console/test-results/
 
+# CLM-09 operational secrets and generated artifacts
+.env
+deploy/compose/.env
+*.manifest.json
+data/logs/
+data/backups/
+data/tmp/
+

@@ -1,0 +1,19 @@
+[Unit]
+Description=MindTune CLM-09 API
+After=network.target
+
+[Service]
+Type=simple
+User=mindtune
+Group=mindtune
+WorkingDirectory=/opt/mindtune
+EnvironmentFile=-/opt/mindtune/.env
+Environment="CLM09_DEPLOYMENT_MODE=raspberry_service"
+ExecStart=/opt/mindtune/.venv/bin/uvicorn mindtune_clm.api.app:create_app --host 127.0.0.1 --port 8005
+ExecStop=/bin/kill -TERM $MAINPID
+TimeoutStopSec=15
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -21,6 +21,7 @@ from mindtune_clm.api import (
     health,
     hebrew,
     hebrew_clm06b,
+    ops,
     protocols,
     sensors,
     sessions,
@@ -32,6 +33,7 @@ from mindtune_clm.api.config import CLM05APIConfig
 from mindtune_clm.api.errors import CLM05APIError
 from mindtune_clm.api.security import RequestSizeLimitMiddleware
 from mindtune_clm.api.services import CLM05Service
+from mindtune_clm.ops.config import load_config
 
 
 def _setup_middlewares(app: FastAPI, config: CLM05APIConfig) -> None:
@@ -59,6 +61,7 @@ def _setup_routers(app: FastAPI) -> None:
     app.include_router(hebrew_clm06b.router, prefix="/api/v1")
     app.include_router(calibrations.router, prefix="/api/v1")
     app.include_router(validation.router, prefix="/api/v1")
+    app.include_router(ops.router, prefix="/api/v1")
 
 
 def _setup_exception_handlers(app: FastAPI) -> None:
@@ -108,6 +111,7 @@ def create_app(config: CLM05APIConfig | None = None) -> FastAPI:
         lifespan=lifespan,
     )
     app.state.config = config
+    app.state.clm09_config = load_config()
     app.state.service = service
     app.state.calibration_service = calibration_service
     app.state.validation_service = validation.ValidationService()
