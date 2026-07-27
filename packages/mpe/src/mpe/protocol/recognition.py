@@ -40,7 +40,7 @@ from mpe.protocol.trial_pipeline import (
     TrialPipeline,
 )
 from mpe.providers import ContentItem
-from mpe.runtime import Clock, Runtime
+from mpe.runtime import Clock, Runtime, WallClock
 from mpe.types import (
     BlockID,
     ProtocolVersionID,
@@ -83,12 +83,13 @@ class RecognitionRunner:
         fixture: RecognitionFixture | None = None,
         rule: AdaptationRule | None = None,
         clock: Clock | None = None,
+        wall_clock: WallClock | None = None,
     ) -> None:
         self.fixture = fixture or make_minimal_recognition_fixture()
         self.rule = rule or default_adaptation_rule()
         self.clock = clock or Clock()
         self.providers = RecognitionProviderSet(self.fixture).set
-        self.runtime = Runtime(store, self.providers, self.clock)
+        self.runtime = Runtime(store, self.providers, self.clock, wall_clock)
         self.pipeline = TrialPipeline(self.runtime, self.providers)
         self.item_outcomes: list[RecognitionItemOutcome] = []
         self._trial_index = 0
@@ -314,9 +315,12 @@ def run_recognition_session(
     fixture: RecognitionFixture | None = None,
     rule: AdaptationRule | None = None,
     clock: Clock | None = None,
+    wall_clock: WallClock | None = None,
 ) -> RecognitionResult:
     """High-level entry point for running a Recognition session."""
-    runner = RecognitionRunner(store, fixture=fixture, rule=rule, clock=clock)
+    runner = RecognitionRunner(
+        store, fixture=fixture, rule=rule, clock=clock, wall_clock=wall_clock
+    )
     return runner.run_session(
         learner_id=learner_id,
         random_seed=random_seed,
