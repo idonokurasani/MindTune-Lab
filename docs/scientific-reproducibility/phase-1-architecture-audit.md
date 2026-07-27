@@ -1,6 +1,7 @@
-# Phase 1 — Scientific Reproducibility Architecture Audit
+# Scientific Reproducibility Milestone 1 (SR-M1) — Architecture Audit
 
-**Status:** read-only audit. No production code was modified.
+**Status:** read-only audit, revised after review. No production code was modified.
+**Programme:** SR-M1 — a parallel programme, deliberately **not** mapped onto the MPE phase numbering (not Phase 4D, not Phase 5).
 **Repository:** `idonokurasani/MindTune-Lab` (local mirror of `mindtune_console`)
 **Audited revision:** `78b984c656d5555b5405163886f5ea84631a6029`
 **Audit date:** 2026-07-27
@@ -118,7 +119,9 @@ Verified absent from `packages/mpe`:
 | Optional source-device timestamp | **No** | No device-time field; no device concept. |
 | Integrity verification command | **Partial** | `mpe validate-store` (`cli.py:290`) exists and re-replays every session, so it detects schema, ordering, and provenance violations. It cannot detect content mutation of an individual event, because there is nothing to compare a payload against. |
 
-**Assessment.** The store is append-only *by discipline and by validation*, not *tamper-evident*. Any actor with write access to the SQLite file can edit a payload in place and the store will accept it on read, provided ordering and payload schema still validate. This is the single largest Milestone 1 gap.
+**Assessment.** The store is append-only *by discipline and by validation*, not *tamper-evident*. Any actor with write access to the SQLite file can edit a payload in place and the store will accept it on read, provided ordering and payload schema still validate. This is the single largest SR-M1 gap.
+
+**Limit of the proposed remedy, stated here so it is not overstated later.** A per-stream SHA-256 chain closes the mutation, interior-deletion, insertion, and reordering cases. It does **not** close tail truncation: a stream whose final events are removed remains an internally consistent chain, so nothing in the retained data reveals the loss. Tail truncation is detectable only against an **independently retained anchor** — a separately stored terminal digest, a separately stored event count, a signed manifest, or an external append-only log. No such anchor exists in the repository today and none is proposed for SR-M1; see §1 and §3.1.7 of the implementation plan.
 
 ### A2 — Replay verification
 
@@ -127,7 +130,7 @@ Verified absent from `packages/mpe`:
 | Same stream → same projection | **Yes** | `tests/test_replay.py::test_repeated_replay_is_equal`, `test_full_replay_matches_live_state`; `tests/persistence/test_replay_from_disk.py::test_live_equals_replay_from_disk` compares live state to a cross-process replay. |
 | Rebuild from an empty database | **Partial** | `persistence/restart_demo.py` and the restart-recovery tests demonstrate a fresh-process rebuild from a persisted file, but there is no test that constructs an empty DB, ingests an exported stream, and asserts projection equality. |
 | Snapshots discardable | **N/A / satisfied** | No snapshots exist. This should be recorded as an explicit architectural decision so it is not "solved" later by adding a second source of truth. |
-| Corrupted or reordered events detected | **Partial** | Reordering is detected (`EventOrderingError` on read via `validate_event(..., previous_events=...)`); corrupt JSON is detected (`ReplayError` in `from_row`); **semantic content tampering is not detected**. |
+| Corrupted or reordered events detected | **Partial** | Reordering is detected (`EventOrderingError` on read via `validate_event(..., previous_events=...)`); corrupt JSON is detected (`ReplayError` in `from_row`); **semantic content tampering is not detected**, and **tail truncation is not detected and will remain undetected after SR-M1** for the reason given in §3/A1. |
 | Unsupported schema versions fail explicitly | **Yes** | `UnknownSchemaVersionError`; DB-level `PRAGMA user_version` mismatch raises `ValidationError`. |
 
 ### A3 — Protocol provenance
@@ -165,6 +168,7 @@ Each event carries `protocol_version_id`. `session_started` carries `program_ver
 | # | Risk | Severity | Evidence |
 |---|---|---|---|
 | R1 | Stored events are mutable in practice; no cryptographic binding of content | High | No digest fields; SQLite file is directly editable |
+| R1b | Even after a hash chain is added, silent loss of a session's final events remains undetectable without a retained anchor | High (residual) | Structural property of a per-stream chain; no anchor exists or is planned in SR-M1 |
 | R2 | No wall-clock record of when a session occurred | High | `Clock` starts at `1.0`; `wallclock_at` never populated by `Runtime.emit` |
 | R3 | No software revision recorded in any session | High | `component_version="1.0.0"` default literal in `Runtime.emit` |
 | R4 | Provider versions are verified but not persisted | Medium | `ProviderSet.check_versions` raises on mismatch, writes nothing |
@@ -173,11 +177,11 @@ Each event carries `protocol_version_id`. `session_started` carries `program_ver
 | R7 | Non-portable absolute macOS path hard-coded in a test | Low (but blocks CI) | `packages/mpe/tests/test_protocol_recognition.py:369` uses `cwd="/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console"`; this is the single failing test on any non-Andrea machine |
 | R8 | `AGENTS.md` documents the same absolute macOS path as the canonical `PYTHONPATH` | Low | `AGENTS.md`, lint/test command block |
 | R9 | `black` is a declared dev dependency but the codebase is not black-formatted (23 of 50 files would be reformatted), so "run the formatter" is currently a destructive instruction | Low | `black --check packages/mpe` |
-| R10 | Roadmap language risk: a hash chain alone must not be described as tamper-proof | Documentation | Roadmap §A1 explicitly requires the term "tamper-evident" |
+| R10 | Language risk: a hash chain alone must not be described as tamper-proof, nor as detecting truncation | Documentation | Roadmap §A1 requires "tamper-evident"; truncation additionally requires an independently retained anchor |
 
 ---
 
-## 6. What Milestone 1 must not do
+## 6. What SR-M1 must not do
 
 Derived from the roadmap's non-goals and from the current phase gates in `docs/project/NEXT_TASK.md`:
 
@@ -185,7 +189,7 @@ Derived from the roadmap's non-goals and from the current phase gates in `docs/p
 - do not introduce snapshots as scientific evidence;
 - do not add EEG, sensor, BIDS, or statistical modules in Milestone 1;
 - do not modify `docs/MPE_*.md`, `docs/specification/v1.1/*`, or the canonical registries without an approved ADR;
-- do not describe the hash chain as proving authorship, external timestamping, or tamper-proofness;
+- do not describe the hash chain as proving authorship, external timestamping, tamper-proofness, or truncation detection;
 - do not break the existing `EventStore` protocol for `InMemoryEventStore` consumers.
 
 ---
@@ -198,7 +202,7 @@ Strengths: a single authoritative append-only event history; typed identifiers; 
 
 Gaps, in priority order: (1) no cryptographic integrity chain; (2) no real recorded time; (3) no software/provider/policy revision provenance; (4) no versioned-policy concept at all; (5) no derived-analysis record type.
 
-Milestone 1 is achievable as a persistence-layer extension plus a provenance event, with no change to the runtime's conceptual model.
+SR-M1 is achievable as a persistence-layer extension plus a provenance event, with no change to the runtime's conceptual model. It does, however, require an event-schema bump to `1.2`, because both the new envelope fields and the new event type change the canonical event contract. It will leave one residual gap open by design: tail truncation, which no per-stream chain can close without an independently retained anchor.
 
 ---
 
