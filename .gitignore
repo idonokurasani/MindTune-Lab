@@ -39,3 +39,11 @@ audio_cache/
 audit/
 *.egg-info/
 
+# Research Console
+apps/research-console/node_modules/
+apps/research-console/dist/
+apps/research-console/.env
+apps/research-console/*.log
+apps/research-console/package-lock.json
+apps/research-console/test-results/
+
