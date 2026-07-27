@@ -285,4 +285,128 @@ describe('CLM-05B Research Console', () => {
     await expect(api.getSession('s1')).rejects.toThrow('not found');
     expect(fetchMock.mock.calls[0][0] as string).toMatch(/sessions\/s1/);
   });
+
+  // Expanded CLM-05B property coverage
+
+  ['healthy', 'degraded', 'stale', 'disconnected', 'failed', 'stopped'].forEach((status) => {
+    it(`StatusBadge shows ${status} text label`, () => {
+      const { container } = render(<StatusBadge status={status as any} label="Subsystem" />);
+      expect(container.textContent).toContain(`Subsystem: ${status}`);
+    });
+  });
+
+  ['overview', 'experiments', 'sessions', 'system'].forEach((tab) => {
+    it(`AppShell renders ${tab} tab`, () => {
+      const { container } = render(<AppShell activeTab={tab as any} setTab={() => {}}><div>{tab}</div></AppShell>);
+      expect(container.textContent).toContain(tab);
+    });
+  });
+
+  ['missing_aaron_asset', 'rejected_pronunciation_asset', 'sensor_disconnected', 'playback_unavailable'].forEach((reason) => {
+    it(`ReadinessPanel surfaces blocker ${reason}`, () => {
+      const { container } = render(<ReadinessPanel readiness={{ ready: false, blocking_reasons: [reason], warnings: [] }} />);
+      expect(container.textContent).toContain('Blockers');
+      expect(container.textContent).toContain(reason);
+    });
+  });
+
+  it('ReadinessPanel shows ready state when no blockers', () => {
+    const { container } = render(<ReadinessPanel readiness={{ ready: true, blocking_reasons: [], warnings: [] }} />);
+    expect(container.textContent).toMatch(/ready/i);
+  });
+
+  it('ReadinessPanel shows warnings without blocking', () => {
+    const { container } = render(<ReadinessPanel readiness={{ ready: true, blocking_reasons: [], warnings: ['slow_sensor'] }} />);
+    expect(container.textContent).toContain('slow_sensor');
+    expect(container.textContent).toMatch(/warning/i);
+  });
+
+  const controls: [string, string][] = [
+    ['prepare', 'Prepare'],
+    ['start', 'Start'],
+    ['pause', 'Pause'],
+    ['resume', 'Resume'],
+    ['freeze', 'Freeze'],
+    ['unfreeze', 'Unfreeze'],
+    ['force_baseline', 'Force Baseline'],
+    ['release_baseline', 'Release Baseline'],
+    ['stop', 'Stop']
+  ];
+  controls.forEach(([command, label]) => {
+    it(`SafetyControls invokes ${command} via the API`, () => {
+      const handler = vi.fn();
+      const { container, unmount } = render(<SafetyControls onCommand={handler} />);
+      const button = Array.from(container.querySelectorAll('button')).find((b) => b.textContent === label);
+      if (button) fireEvent.click(button);
+      expect(handler).toHaveBeenCalledWith(command);
+      unmount();
+    });
+  });
+
+  [true, false].forEach((connected) => {
+    it(`SensorPanel renders connected=${connected} and avoids deterioration label`, () => {
+      const id = `sensor-${connected}`;
+      const { container } = render(<SensorPanel sensor={{ sensor_id: id, sensor_type: 'synthetic', connected, session_id: 's1', lock_owner: connected ? 's1' : null }} onConnect={vi.fn()} onDisconnect={vi.fn()} />);
+      expect(container.textContent).toContain(`${id}: ${connected ? 'healthy' : 'disconnected'}`);
+      expect(container.textContent).not.toContain('cognitive deterioration');
+    });
+  });
+
+  it('DecisionPanel displays requested, applied, and fallback states', () => {
+    const { container } = render(<DecisionPanel requestedState='running' appliedState='paused' fallbackReason='baseline_lock' />);
+    expect(container.textContent).toContain('running');
+    expect(container.textContent).toContain('paused');
+    expect(container.textContent).toContain('baseline_lock');
+  });
+
+  it('DecisionPanel shows matching requested and applied states', () => {
+    const { container } = render(<DecisionPanel requestedState='intervene' appliedState='intervene' />);
+    expect(container.textContent).toContain('intervene');
+  });
+
+  it('DecisionPanel shows withdraw state', () => {
+    const { container } = render(<DecisionPanel requestedState='withdraw' appliedState='withdraw' />);
+    expect(container.textContent).toContain('withdraw');
+  });
+
+  ['name', 'email', 'phone', 'birth', 'address'].forEach((field) => {
+    it(`SessionCreatePage does not render ${field} field`, () => {
+      const { container } = render(<SessionCreatePage experiments={[]} protocols={[]} onCreate={vi.fn()} onStart={vi.fn()} />);
+      expect(container.innerHTML).not.toMatch(new RegExp(field, 'i'));
+    });
+  });
+
+  ['api_key', 'token', 'secret', 'password', 'credential'].forEach((word) => {
+    it(`SystemPage does not render ${word}`, () => {
+      const { container } = render(<SystemPage health={null} protocols={[]} sensors={[]} />);
+      expect(container.textContent).not.toMatch(new RegExp(word, 'i'));
+    });
+  });
+
+  ['MAC', 'Users/', 'John Doe', 'birth date'].forEach((leak) => {
+    it(`OverviewPage does not leak ${leak}`, () => {
+      const health: HealthResponse = { status: 'ok', ready: true, blocking_reasons: [], warnings: [], version: 'v1' };
+      const { container } = render(<OverviewPage health={health} liveness={{ status: 'ok' }} />);
+      expect(container.textContent).not.toContain(leak);
+    });
+  });
+
+  it('ExperimentsPage calls onDelete with experiment id', () => {
+    const onDelete = vi.fn();
+    const experiments: ExperimentResponse[] = [{ id: 'exp-1', name: 'Exp A', protocol_version_id: 'clm-05-experimental.v1', parameters: {}, created_at: 0 }];
+    const protocols: ProtocolReference[] = [{ protocol_version_id: 'clm-05-experimental.v1', name: 'CLM-05', description: '' }];
+    const { container } = render(<ExperimentsPage experiments={experiments} protocols={protocols} onCreate={vi.fn()} onDelete={onDelete} />);
+    const del = Array.from(container.querySelectorAll('button')).find((b) => b.textContent === 'Delete');
+    if (del) fireEvent.click(del);
+    expect(onDelete).toHaveBeenCalledWith('exp-1');
+  });
+
+  it('sanitizeNotes escapes script tags from researcher notes', () => {
+    const clean = sanitizeNotes('<script>alert(1)</script>');
+    expect(clean).not.toContain('<script>');
+  });
+
+  it('parseSSE handles a valid SSE data line', () => {
+    expect(() => parseSSE('data: {}')).not.toThrow();
+  });
 });
