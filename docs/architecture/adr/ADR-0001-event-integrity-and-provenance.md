@@ -1,6 +1,6 @@
 # ADR-0001 — Event integrity and provenance
 
-**Status:** Proposed — published for review. No production code may be written against this ADR until it is approved.
+**Status:** Proposed (revision 2, conditions applied) — published for final approval. No production code may be written against this ADR until an approving token is recorded in §6.
 **Date:** 2026-07-27
 **Programme:** Scientific Reproducibility Milestone 1 (SR-M1). A parallel programme; deliberately not mapped onto the MPE phase numbering.
 **Context revision:** `78b984c656d5555b5405163886f5ea84631a6029`
@@ -19,17 +19,17 @@ The SR-M1 audit found three consequences of what is missing:
 2. **No session records when it actually happened.** `timestamp` is a deterministic protocol clock starting at `1.0` and advancing by `0.1`. `wallclock_at` exists in the envelope, the SQLite schema, and the serializer, but `Runtime.emit` never populates it.
 3. **No session records what produced it.** `component_version` is the literal `"1.0.0"`; `ProviderSet.check_versions()` verifies provider versions at runtime and then persists nothing; no curriculum, condition, stimulus-set, or policy version exists anywhere in the stream.
 
-A session therefore cannot today be independently verified, dated, or attributed to a build.
+A session therefore cannot today be checked for the integrity properties defined in §2.10, carries no self-asserted UTC wall-clock time, and has no recorded software-revision metadata.
 
 ---
 
 ## 2. Decision
 
-Extend the existing persistence layer with a per-stream hash chain, populate a real recorded time, and introduce one provenance event that every derived result must causally reference. Concretely, the eleven decisions below.
+Extend the existing persistence layer with a per-stream hash chain, populate a self-asserted UTC wall-clock time, and introduce one provenance event that every schema-1.2 derived result must causally reference. Concretely, the eleven decisions below.
 
 ### 2.1 Integrity extends the existing store; no parallel audit log
 
-The hash chain lives in `packages/mpe/src/mpe/persistence/` (`serializer.py`, `store.py`) as an optional capability of the store that already exists. A separate audit-log subsystem is rejected: it would create a second record of runtime activity, and the moment the two disagree there is no principled way to decide which is authoritative. One authoritative history is the whole point of the architecture. This also means the existing `EventStore` protocol continues to be satisfied by both `InMemoryEventStore` and `SQLiteEventStore`, with identical digest semantics on both.
+The hash chain lives in `packages/mpe/src/mpe/persistence/` (`serializer.py`, `store.py`) as **a native capability of the existing store, unavailable for historical schema-1.1 streams and mandatory for all schema-1.2 streams**. A separate audit-log subsystem is rejected: it would create a second record of runtime activity, and the moment the two disagree there is no principled way to decide which is authoritative. One authoritative history is the whole point of the architecture. This also means the existing `EventStore` protocol continues to be satisfied by both `InMemoryEventStore` and `SQLiteEventStore`, with identical digest semantics on both.
 
 ### 2.2 Snapshots are excluded as scientific evidence
 
@@ -46,6 +46,17 @@ Two distinct concerns, deliberately not merged into one "metadata" group:
 
 `writer_revision` is **not** part of the integrity mechanism. It is provenance that the integrity mechanism happens to protect. A matching digest is evidence about bytes, never evidence about authorship, and this ADR states that explicitly so a later reader cannot conflate the two.
 
+#### 2.3.1 Two canonical serializations, not one
+
+Digest input and stored/exported record are **different objects** and must never be described as the same serialization. They share one canonical encoder (sorted keys, fixed separators, `ensure_ascii=False`, deterministic `Identifier`/`CanonicalEnum` handling) and differ in their field sets:
+
+| Function | Purpose | Field set |
+|---|---|---|
+| `canonical_digest_bytes(event)` | the exact input to `sha256` | **all semantically bound fields, including `previous_digest`**; **excludes `content_digest`**, which is the output of this function and cannot be an input to itself |
+| `canonical_record_bytes(event)` | the complete stored row and the exported line | the full record, **including both `content_digest` and `previous_digest`** |
+
+Consequences to respect in implementation: a digest is recomputed from `canonical_digest_bytes` and compared against the stored `content_digest`; export and import use `canonical_record_bytes`; a round-trip through `canonical_record_bytes` must reproduce byte-identical `canonical_digest_bytes`, and a test asserts exactly that. Sharing the encoder is an implementation detail; conflating the two representations would either make the digest self-referential or leave the digest fields unprotected on export.
+
 ### 2.4 Three version namespaces; these changes require event schema `1.2`
 
 | Namespace | Where | Meaning | Decision |
@@ -56,14 +67,33 @@ Two distinct concerns, deliberately not merged into one "metadata" group:
 
 Adding `content_digest`, `previous_digest`, and `writer_revision` to the envelope, and adding `session_provenance_recorded` to `SUPPORTED_EVENT_TYPES`, both change the canonical event contract: a reader implementing only `1.1` cannot validate a `1.2` stream, and a `1.1` writer cannot produce a chain. Therefore `SUPPORTED_SCHEMA_VERSIONS` becomes `{"1.1", "1.2"}`; historical `1.1` streams stay readable, new events are `1.2`, and a single stream must not mix versions — the store rejects a `1.1` append into a `1.2` stream and vice versa.
 
-### 2.5 Verification is the default read path for v2 stores
+### 2.5 Integrity status is a property of the stream, not of the file
 
-| Store `user_version` | `read` / `all_events` | Status reported |
-|---|---|---|
-| 2 | recompute and compare every digest; raise `IntegrityError` at the first divergence | `integrity: verified`, or an error |
-| 1 | no chain exists to check; existing validation still applies | `integrity: unavailable` |
+A store's `PRAGMA user_version` describes only the physical table layout. What may be verified is determined by the **stream**: its `schema_version` and its chain state. The authoritative matrix:
 
-An unverified read of a v2 store is **not** a flag on the normal API. It is a separately named recovery entry point, `read_unverified(..., reason: str)`, which logs the supplied reason, marks anything it produces `integrity: unverified`, and is called from no normal application path (`Runtime`, `Replay`, `ProtocolSummary`, standard CLI commands). A test asserts that no module outside the recovery path and its own tests references it. Rationale: an opt-in `verify=True` parameter would make the unsafe behaviour the default for every caller that forgets it.
+| Store `user_version` | Stream `schema_version` | Chain state | Read behaviour | Status | Append |
+|---|---|---|---|---|---|
+| 1 | 1.1 | no digest columns exist | readable; existing validation only | `integrity: unavailable` | **refused** — no new appends to a v1 store |
+| 2 | 1.1 (historical) | no digests | readable; existing validation only | `integrity: unavailable` | **refused** — the stream is closed to append |
+| 2 | 1.2 | complete chain | **verification mandatory** — recompute and compare every digest | `integrity: verified`, or raise `IntegrityError` | allowed, chain continuity enforced |
+| 2 | 1.2 | digest fields missing or partial | **invalid** — raise `IntegrityError` on read and on append | error | refused |
+
+The fourth row is deliberate: a schema-1.2 stream with a partial chain is not "partly verified" and not "unavailable", it is corrupt. There is no state in which a 1.2 stream is read without verification through the normal path, and no state in which a 1.1 stream is claimed to be verified.
+
+#### 2.5.1 Backend-independent semantics
+
+`InMemoryEventStore` has no `PRAGMA user_version`, so integrity meaning cannot be derived from storage layout. It is derived from the stream in both backends, identically:
+
+- a schema-1.2 stream **requires** a complete, verified chain;
+- a schema-1.1 stream reports `integrity: unavailable` and is closed to append;
+- **no partial chains** — a 1.2 stream with any missing digest is an error, not a degraded state;
+- **no mixed schema versions within one stream** — enforced on append in both backends.
+
+SQLite `user_version` therefore only answers "does this file have the columns?"; the stream answers "what may be claimed about this data?". The shared `EventStore` contract tests assert the same status semantics against both backends.
+
+#### 2.5.2 Unverified access
+
+An unverified read of a schema-1.2 stream is **not** a flag on the normal API. It is a separately named recovery entry point, `read_unverified(..., reason: str)`, which logs the supplied reason, marks anything it produces `integrity: unverified`, and is called from no normal application path (`Runtime`, `Replay`, `ProtocolSummary`, standard CLI commands). A test asserts that no module outside the recovery path and its own tests references it. Rationale: an opt-in `verify=True` parameter would make the unsafe behaviour the default for every caller that forgets it.
 
 ### 2.6 Two clocks now, three later
 
@@ -83,17 +113,35 @@ One shared function with a strict ordered fallback:
 
 `git rev-parse` is explicitly the development-only last resort: a deployed container, a wheel install, or a read-only image has no `.git` directory, and shelling out to git at runtime is fragile and costs startup time. The resolver never raises and never blocks session start. The `source` is always recorded next to the value so a reader can judge its strength. An unresolved revision is recorded as an explicit `unknown` — never an empty string, a placeholder, or a fabricated version. A session reporting `source: "unknown"` remains valid but must be flagged in any downstream scientific report.
 
-### 2.8 Provenance is causally binding, not conventional
+### 2.8 Provenance is causally binding for schema 1.2; legacy streams are explicitly discriminated
 
 One new event type, `session_provenance_recorded`, emitted immediately after `session_created`, carrying protocol, curriculum, condition, seed, stimulus-set, policy versions, software revision, and the verified provider-version map. Nullable-by-design fields are explicit `null`, never invented defaults.
 
 Three enforcement mechanisms, so that omission is impossible rather than merely discouraged:
 
 1. `Runtime` refuses to emit any event other than `session_created` until the provenance event has been appended, raising `IllegalStateTransitionError`. Provenance always occupies sequence 2.
-2. `ProtocolSummary` (and any future derived-analysis record) gains a **required** `provenance_event_id`, and `summary_walk.walk_session` raises rather than returning a summary when no provenance event is present — including for historical `1.1` streams, which go through an explicitly labelled legacy path that marks provenance as absent instead of silently producing an unprovenanced result.
+2. Derived results carry a **discriminated** provenance reference (§2.8.1), and the normal analysis API raises rather than returning a schema-1.2 result without one.
 3. The first trial event of the session lists the provenance event's `EventID` in its existing `provenance` list, so the linkage is visible in the stream, not only in the projection.
 
-The invariant: an unprovenanced derived result cannot be constructed.
+#### 2.8.1 Discriminated provenance result model
+
+The earlier absolute phrasing — "an unprovenanced derived result cannot be constructed" — contradicted the requirement that historical `1.1` streams remain analysable. It is replaced by a two-case model that is honest about which case a result belongs to:
+
+```
+provenance_status:   "recorded" | "unavailable_legacy"
+provenance_event_id: EventID | None
+```
+
+The rules, enforced by validation on construction of every derived result:
+
+| `provenance_status` | `provenance_event_id` | Permitted for | Reachable via |
+|---|---|---|---|
+| `"recorded"` | **required**, must reference a `session_provenance_recorded` event in that stream | schema 1.2 only | the normal analysis API |
+| `"unavailable_legacy"` | **must be `None`** | **schema 1.1 only** | an explicitly named legacy API only |
+
+Therefore: a schema-1.2 derived result cannot exist without a valid `session_provenance_recorded` reference; `"recorded"` with a `None` id is invalid; `"unavailable_legacy"` with an id is invalid; and `"unavailable_legacy"` on a schema-1.2 stream is invalid. Schema-1.1 streams may be analysed **only** through the named legacy entry point (e.g. `walk_session_legacy`), which cannot be reached accidentally from the normal path and always produces `unavailable_legacy` results.
+
+The invariant, correctly stated: **no derived result can be silently unprovenanced** — every result declares whether provenance was recorded or is unavailable because the stream predates it, and the unavailable case is confined to schema 1.1 behind a deliberately separate API.
 
 ### 2.9 A supported export/import interchange
 
@@ -122,7 +170,17 @@ The system is **tamper-evident**. It is not tamper-proof, and no document, docst
 
 ### 2.11 Migration of existing stores
 
-Existing `user_version = 1` / schema `1.1` stores remain readable and report `integrity: unavailable`. They are **not** rewritten to add digests: rewriting historical events would itself be a mutation, and would fabricate provenance that was never recorded. New sessions are written as `1.2` into `user_version = 2` stores. `1.1` streams cannot be extended with `1.2` events.
+Existing `user_version = 1` / schema `1.1` stores remain readable and report `integrity: unavailable`. They are **not** rewritten to add digests: rewriting historical events would itself be a mutation, and would fabricate provenance that was never recorded.
+
+The structural migration from database v1 to v2 is exactly this, and nothing more:
+
+1. `ALTER TABLE events` to add the new columns — `content_digest`, `previous_digest`, `writer_revision` — all **nullable**, so existing rows remain valid without modification;
+2. `PRAGMA user_version = 2`;
+3. **do not rewrite, re-encode, or re-digest any historical event**;
+4. preserve every existing schema-1.1 session exactly as stored: readable, `integrity: unavailable`, and closed to further append;
+5. write **only new sessions** as schema 1.2, with a complete chain from sequence 1.
+
+A migrated v2 file therefore legitimately contains both kinds of stream side by side, distinguished by the stream's `schema_version` (§2.5), not by the file. A `1.1` stream can never be extended with a `1.2` event, and migration is one-way — no downgrade path is provided.
 
 ---
 
@@ -143,13 +201,13 @@ Existing `user_version = 1` / schema `1.1` stores remain readable and report `in
 
 ## 4. Consequences
 
-**Positive.** A session becomes independently verifiable against interior tampering, dated with a recorded UTC time, and attributable to a build, a protocol version, a seed, and a verified provider set. Derived results cannot be produced without a provenance reference. Reproducibility becomes a testable property via a supported export/import path.
+**Positive.** A schema-1.2 session becomes verifiable for the integrity properties defined in §2.10, recorded with a self-asserted UTC wall-clock time, and associated with recorded software-revision, protocol, seed, and provider-version metadata. Derived results declare their provenance status rather than leaving it implicit. Reproducibility becomes a testable property via a supported export/import path.
 
 **Negative / accepted costs.**
 
 - An event-schema bump to `1.2`, with two supported versions to maintain and a legacy path for `1.1` streams.
 - Digest computation on every append and every read; expected to be negligible against SQLite I/O, but it is real work on the hot path.
-- Historical `1.1` sessions can never be retrofitted with integrity or provenance, and are permanently weaker evidence.
+- Historical `1.1` sessions can never be retrofitted with integrity or provenance, are closed to further append, are analysable only through the named legacy API, and are permanently weaker evidence.
 - Tail truncation remains undetected until a future milestone delivers an anchor. This is an accepted, documented residual risk (audit R1b), not an oversight.
 - A `source: "unknown"` software revision is a valid but weaker session, and downstream reports must carry that flag.
 
@@ -164,12 +222,15 @@ This ADR is satisfied when the SR-M1 test suite demonstrates all of the followin
 1. digest stability across processes;
 2. rejection of an in-place payload edit, an interior deletion, an insertion, and a reordering;
 3. **acceptance** of a truncated tail with `tail_truncation: undetermined`, and rejection only when an `expected_terminal` is supplied — the executable statement of §2.10;
-4. verified-by-default reads on v2 stores, `integrity: unavailable` on v1, and `read_unverified` reachable only from the recovery path;
-5. a full stream exported and re-imported into an empty database yielding an identical terminal digest, `RuntimeState.as_dict()`, and `ProtocolSummary`;
-6. no artifact other than the `events` table required to produce a `ProtocolSummary`;
-7. explicit failure on unsupported `schema_version` and on mixing `1.1` and `1.2` within one stream;
-8. inability to emit past `session_created` without provenance, and inability to construct an unprovenanced `ProtocolSummary`;
-9. property-based determinism over generated valid streams (`hypothesis`).
+4. the four rows of the §2.5 status matrix, each asserted independently, including that a schema-1.2 stream with a partial chain raises `IntegrityError` rather than reporting `unavailable`; and `read_unverified` reachable only from the recovery path;
+5. the same status semantics asserted against `InMemoryEventStore` and `SQLiteEventStore` through the shared contract tests (§2.5.1);
+6. the two canonical serializations are distinct and mutually consistent: `content_digest` is absent from `canonical_digest_bytes` and present in `canonical_record_bytes`, and a `canonical_record_bytes` round-trip reproduces byte-identical `canonical_digest_bytes` (§2.3.1);
+7. a full stream exported and re-imported into an empty database yielding an identical terminal digest, `RuntimeState.as_dict()`, and derived summary;
+8. no artifact other than the `events` table required to produce a derived summary;
+9. explicit failure on unsupported `schema_version` and on mixing `1.1` and `1.2` within one stream;
+10. inability to emit past `session_created` without provenance on schema 1.2; the discriminated model of §2.8.1 rejects `"recorded"` with a `None` id, `"unavailable_legacy"` with an id, and `"unavailable_legacy"` on a schema-1.2 stream; and `unavailable_legacy` results are reachable only through the named legacy API;
+11. **migration acceptance test.** A database structurally migrated from `user_version = 1` to `user_version = 2` must: preserve historical schema-1.1 streams byte-unchanged and readable with `integrity: unavailable`; accept new schema-1.2 sessions and report them `integrity: verified`; and refuse a schema-1.2 append to a historical schema-1.1 stream;
+12. property-based determinism over generated valid streams (`hypothesis`).
 
 ---
 

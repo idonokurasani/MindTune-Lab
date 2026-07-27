@@ -24,7 +24,7 @@ Everything outside the exit criterion — behavioral policies, EEG, BIDS, prereg
 
 ## 2. Design constraints
 
-1. The existing `EventStore` remains the sole authoritative record (roadmap §2.1). Integrity is an **optional capability of the existing persistence layer**, not a new subsystem.
+1. The existing `EventStore` remains the sole authoritative record (roadmap §2.1). Integrity is **a native capability of the existing persistence layer** — unavailable for historical schema-1.1 streams and mandatory for all schema-1.2 streams — not a new subsystem.
 2. No snapshot store (roadmap §2.2).
 3. `InMemoryEventStore` and `SQLiteEventStore` must continue to satisfy one shared `EventStore` protocol; existing callers (`Runtime`, `Replay`, CLI, both protocols) must keep working unchanged.
 4. Existing persisted stores (`PRAGMA user_version = 1`) must remain readable and report `integrity: unavailable`. For `user_version = 2` stores, verification is **not** opt-in: it is the default read behaviour, and any unverified read is an explicitly named recovery path (§3.1.5).
@@ -42,7 +42,12 @@ Everything outside the exit criterion — behavioral policies, EEG, BIDS, prereg
 
 #### 3.1.1 Canonical event bytes
 
-Extend `serializer.py` with `canonical_bytes(event) -> bytes` producing a deterministic UTF-8 encoding of the *whole* envelope (sorted keys, fixed separators, explicit null handling, integrity fields excluded from their own digest input). Reuse the existing `_to_json` conventions so payload encoding does not change.
+Extend `serializer.py` with **two** deterministic UTF-8 serializations sharing one canonical encoder (sorted keys, fixed separators, explicit null handling, the existing `_to_json` conventions so payload encoding does not change):
+
+- `canonical_digest_bytes(event)` — the input to `sha256`: all semantically bound fields **including `previous_digest`**, **excluding `content_digest`** (its own output);
+- `canonical_record_bytes(event)` — the complete stored row and exported line, **including both digest fields**.
+
+They must not be described as producing the same object; a `canonical_record_bytes` round-trip must reproduce byte-identical `canonical_digest_bytes` (ADR-0001 §2.3.1).
 
 #### 3.1.2 Integrity metadata vs provenance metadata (separated)
 
@@ -73,12 +78,16 @@ In `_append_in_transaction` and `append_batch`: compute `content_digest`, requir
 
 #### 3.1.5 Verification on read — verified by default for v2
 
-Verification is the **normal** read path, not an option:
+Verification is the **normal** read path, not an option, and integrity status is a property of the **stream** (its `schema_version` and chain state), not of the file. The authoritative matrix is ADR-0001 §2.5:
 
-| Store `user_version` | `read` / `all_events` default behaviour | Reported status |
-|---|---|---|
-| 2 | recompute and compare every digest; raise `IntegrityError` at the first divergence | `integrity: verified`, or a raised error |
-| 1 | no chain exists to check; existing validation still applies | `integrity: unavailable` |
+| Store `user_version` | Stream schema | Chain | Behaviour | Status | Append |
+|---|---|---|---|---|---|
+| 1 | 1.1 | none | readable | `integrity: unavailable` | refused |
+| 2 | 1.1 (historical) | none | readable | `integrity: unavailable` | refused (stream closed) |
+| 2 | 1.2 | complete | verification mandatory | `verified` or `IntegrityError` | allowed |
+| 2 | 1.2 | missing/partial | invalid | `IntegrityError` | refused |
+
+`InMemoryEventStore` has no `PRAGMA user_version` and derives the same semantics from the stream alone (ADR-0001 §2.5.1): no partial chains, no mixed schema versions in one stream.
 
 Unverified reads of a v2 store are reachable **only** through an explicitly named recovery API — `read_unverified(..., reason: str)` — which is called nowhere in the normal application path (`Runtime`, `Replay`, `ProtocolSummary`, standard CLI commands), logs the supplied reason, and marks any result it produces `integrity: unverified`. A test asserts that no module outside the recovery path and its own tests references it.
 
@@ -141,10 +150,10 @@ Rules: the resolver never raises and never blocks session start; the `source` is
 Provenance must be impossible to omit, not merely conventional:
 
 1. **Runtime enforcement.** `Runtime` refuses to emit any event other than `session_created` until `session_provenance_recorded` has been appended to that stream, raising `IllegalStateTransitionError`. Provenance therefore always occupies sequence 2.
-2. **Causal reference from derived results.** Every derived result carries the provenance event's `EventID`. Concretely, `ProtocolSummary` (and any future derived-analysis record) gains a required `provenance_event_id` field, and `summary_walk.walk_session` raises rather than returning a summary when no `session_provenance_recorded` event is present in the stream — including for historical `1.1` streams, which must be handled through an explicit, labelled legacy path rather than by silently producing an unprovenanced summary.
+2. **Causal reference from derived results, discriminated by schema.** Derived results carry `provenance_status: "recorded" | "unavailable_legacy"` and `provenance_event_id: EventID | None`. `"recorded"` requires a valid ID and is the only case permitted for schema 1.2; `"unavailable_legacy"` requires `None` and is permitted only for schema 1.1, reachable only through an explicitly named legacy API. `summary_walk.walk_session` raises on a schema-1.2 stream lacking `session_provenance_recorded`. See ADR-0001 §2.8.1.
 3. **Event-level linkage.** The first trial event of the session includes the provenance event's `EventID` in its existing `provenance` list, so causal linkage is visible in the stream itself and not only in the projection.
 
-The intended invariant: **an unprovenanced derived result cannot be constructed**, rather than being merely discouraged.
+The intended invariant: **no derived result can be silently unprovenanced** — a schema-1.2 result cannot exist without a valid provenance reference, and a legacy result must declare `unavailable_legacy` explicitly.
 
 **Estimate:** ~260 lines of production code, ~220 lines of tests.
 
@@ -183,7 +192,7 @@ One repository-level ADR at the confirmed path `docs/architecture/adr/ADR-0001-e
 5. verified-by-default reads for v2 stores and the explicitly unsafe recovery path (§3.1.5);
 6. the two-clock (soon three-clock) model (WP-2);
 7. the software-revision resolver ordering, with `git rev-parse` as a development fallback only and `unknown` as an explicit outcome (§3.3.1);
-8. the causal binding that makes an unprovenanced derived result unconstructable (§3.3.2);
+8. the discriminated provenance model that prevents a silently unprovenanced derived result (§3.3.2);
 9. the supported export/import interchange (§3.4.1);
 10. the threat model, stated in the ADR's own words: the chain detects mutation, interior deletion, insertion, and reordering; **it does not detect tail truncation**, which is detectable only against an independently retained expected terminal state, and no such anchor is delivered by SR-M1; the system is tamper-evident, not tamper-proof, and proves neither authorship nor recorded time;
 11. the migration path for `user_version = 1` / schema `1.1` stores.
