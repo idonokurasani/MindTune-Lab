@@ -1,6 +1,6 @@
 # ADR-0001 — Event integrity and provenance
 
-**Status:** Proposed (revision 2, conditions applied) — published for final approval. No production code may be written against this ADR until an approving token is recorded in §6.
+**Status:** **Accepted** (revision 3). Approved by Andrea Amarante on 2026-07-27; the approval token is recorded in §6.
 **Date:** 2026-07-27
 **Programme:** Scientific Reproducibility Milestone 1 (SR-M1). A parallel programme; deliberately not mapped onto the MPE phase numbering.
 **Context revision:** `78b984c656d5555b5405163886f5ea84631a6029`
@@ -145,7 +145,7 @@ The invariant, correctly stated: **no derived result can be silently unprovenanc
 
 ### 2.9 A supported export/import interchange
 
-`packages/mpe/src/mpe/persistence/interchange.py`, surfaced as `mpe export-session` and `mpe import-session`. Export emits one canonical JSON object per line, in ascending sequence, using the same encoding as the digest, and reads through the verified path — refusing to export a stream that fails verification. Import appends through the **ordinary** `append` / `append_batch` API, so every existing invariant is re-applied on ingest, and refuses to write into a stream that already exists.
+`packages/mpe/src/mpe/persistence/interchange.py`, surfaced as `mpe export-session` and `mpe import-session`. Export emits one `canonical_record_bytes(event)` JSON object per line, in ascending sequence. It uses the shared canonical encoder but the complete record field set, including `content_digest` and `previous_digest`. Digest verification separately recomputes `canonical_digest_bytes(event)`. Export reads through the verified path and refuses to export a stream that fails verification. Import appends through the **ordinary** `append` / `append_batch` API, so every existing invariant is re-applied on ingest, and refuses to write into a stream that already exists.
 
 This exists so that "rebuild from an empty database" is a property of the system rather than of a test that pokes SQLite tables directly. It is an internal reproducibility path — explicitly not a scientific archive format, and not BIDS.
 
@@ -236,6 +236,18 @@ This ADR is satisfied when the SR-M1 test suite demonstrates all of the followin
 
 ## 6. Decision record
 
-`APPROVE_ADR_0001` / `APPROVE_ADR_0001_WITH_CONDITIONS` / `REVISE_ADR_0001` / `BLOCK_ADR_0001`
+```
+APPROVE_ADR_0001
+```
 
-Awaiting review. No SR-M1 production code may be written until one of the approving tokens is recorded here.
+Recorded by Andrea Amarante, 2026-07-27, against revision 3 of this document.
+
+Review history:
+
+| Revision | Outcome |
+|---|---|
+| 1 | Approved in direction; six conditions required (stream-based integrity matrix, two canonical serializations, discriminated legacy provenance, backend-independent semantics, softened wording, migration acceptance test) |
+| 2 | Approved except for the §2.9 export-encoding wording, which conflicted with §2.3.1 |
+| 3 | **`APPROVE_ADR_0001`** |
+
+SR-M1 implementation is unblocked as of this commit, in the order given in the implementation plan §9. Every claim in §2.10 remains binding on the implementation: the chain does not detect tail truncation, and no document, docstring, report, or CLI output may state otherwise.

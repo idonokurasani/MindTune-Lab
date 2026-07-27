@@ -1,6 +1,6 @@
 # Scientific Reproducibility Milestone 1 (SR-M1) — Implementation Plan
 
-**Status:** proposal, revised after review. No implementation is included in this deliverable, and none may begin until `ADR-0001` is reviewed and approved.
+**Status:** proposal, revised after review. No implementation is included in this deliverable. `ADR-0001` was **approved on 2026-07-27** (`APPROVE_ADR_0001`), so the gate in §9 is now satisfied; implementation is authorised from the commit that records the token.
 **Programme:** SR-M1. This is a parallel programme; it is deliberately **not** mapped onto the MPE phase numbering (it is not Phase 4D and not Phase 5).
 **Companion document:** `phase-1-architecture-audit.md` (same directory).
 **Audited revision:** `78b984c656d5555b5405163886f5ea84631a6029`
@@ -173,7 +173,7 @@ Add to `packages/mpe/tests/persistence/`:
 
 `test_rebuild_from_empty.py` must exercise a real, supported, user-facing path — manipulating SQLite tables directly would test the test rather than the system. SR-M1 therefore defines a minimal stream interchange in `packages/mpe/src/mpe/persistence/interchange.py`:
 
-- **Export.** `mpe export-session --session-id <id> --out <file.jsonl>`, backed by `export_stream(store, session_id) -> Iterator[bytes]`, emitting one canonical JSON object per line using the same `canonical_bytes` encoding as the digest, in ascending `session_sequence_number`, including the integrity and provenance fields. Export is read-only and reads through the normal verified path; it refuses to export a stream that fails verification.
+- **Export.** `mpe export-session --session-id <id> --out <file.jsonl>`, backed by `export_stream(store, session_id) -> Iterator[bytes]`, emitting one `canonical_record_bytes(event)` JSON object per line, in ascending `session_sequence_number`. It uses the shared canonical encoder but the complete record field set, including `content_digest` and `previous_digest`; digest verification separately recomputes `canonical_digest_bytes(event)`. Export is read-only and reads through the normal verified path; it refuses to export a stream that fails verification.
 - **Import.** `mpe import-session --in <file.jsonl> --store <path>`, backed by `import_stream(store, lines)`, appending each event through the **ordinary** `append` / `append_batch` API so every existing invariant — schema validation, ordering, provenance existence, chain continuity — is re-applied on ingest. Import refuses to write into a stream that already exists.
 - **Round-trip property.** For any exported stream, re-importing into an empty database yields byte-identical canonical bytes per event, an identical terminal `content_digest`, an identical `RuntimeState.as_dict()`, and an identical `ProtocolSummary`.
 
@@ -218,7 +218,7 @@ None of the three is part of this read-only deliverable.
 
 | Step | Work package | Gate |
 |---|---|---|
-| 1 | WP-5 (ADR) | **Hard gate** — no production implementation of any other work package may begin until the ADR is reviewed and approved |
+| 1 | WP-5 (ADR) | **Hard gate — satisfied.** `APPROVE_ADR_0001` recorded 2026-07-27; implementation is authorised from the commit publishing the token |
 | 2 | WP-6.1–6.2 (path fixes) | Approved; separate change, no formatting |
 | 2b | WP-6.3 (`black`) | Isolated commit or PR of its own, at any time, never mixed with SR-M1 |
 | 3 | WP-2 | Wall-clock recording; must not break replay-equality tests |
