@@ -60,6 +60,8 @@ class RuntimeState:
     program_version_id: str | None = None
     protocol_version_id: str | None = None
     random_seed: str | None = None
+    provenance_event_id: str | None = None
+    provenance: dict[str, Any] | None = None
     terminal: bool = False
     final_trial_index: int | None = None
     events: list[Event] = field(default_factory=list)
@@ -90,6 +92,8 @@ class RuntimeState:
             "program_version_id": self.program_version_id,
             "protocol_version_id": self.protocol_version_id,
             "random_seed": self.random_seed,
+            "provenance_event_id": self.provenance_event_id,
+            "provenance": self.provenance,
             "terminal": self.terminal,
             "final_trial_index": self.final_trial_index,
             "trials": {
@@ -128,6 +132,17 @@ def _on_session_created(state: RuntimeState, event: Event) -> None:
     state.learner_id = event.payload.get("learner_id")
     state.program_version_id = event.payload.get("program_version_id")
     state.protocol_version_id = str(event.protocol_version_id)
+
+
+def _on_session_provenance_recorded(state: RuntimeState, event: Event) -> None:
+    if state.session_status is not SessionStatus.CREATED:
+        raise IllegalStateTransitionError(
+            "session_provenance_recorded must follow session_created immediately"
+        )
+    if state.provenance_event_id is not None:
+        raise IllegalStateTransitionError("Session provenance is already recorded")
+    state.provenance_event_id = str(event.event_id)
+    state.provenance = dict(event.payload)
 
 
 def _on_session_started(state: RuntimeState, event: Event) -> None:
@@ -368,6 +383,7 @@ def _require_trial(state: RuntimeState, trial_id: Any, context: str) -> TrialSta
 
 _EVENT_HANDLERS: dict[str, Any] = {
     "session_created": _on_session_created,
+    "session_provenance_recorded": _on_session_provenance_recorded,
     "session_started": _on_session_started,
     "session_completed": _on_session_completed,
     "session_cancelled": _on_session_cancelled,

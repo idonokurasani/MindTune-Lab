@@ -20,7 +20,8 @@ class ReferenceFlowTests(unittest.TestCase):
         # 2. All required events are produced in order.
         event_types = [e.event_type for e in events]
         self.assertEqual(event_types[0], "session_created")
-        self.assertEqual(event_types[1], "session_started")
+        self.assertEqual(event_types[1], "session_provenance_recorded")
+        self.assertEqual(event_types[2], "session_started")
         self.assertIn("trial_created", event_types)
         self.assertIn("response_window_opened", event_types)
         self.assertIn("captured_response_created", event_types)

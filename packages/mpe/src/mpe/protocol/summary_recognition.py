@@ -7,7 +7,13 @@ from typing import Any
 
 from mpe.enums import AnswerStatus, SessionStatus
 from mpe.events import Event
-from mpe.protocol.summary_walk import TrialItemRecord, walk_session
+from mpe.protocol.summary_walk import (
+    SessionWalk,
+    TrialItemRecord,
+    walk_session,
+    walk_session_legacy,
+)
+from mpe.provenance import ProvenanceReference
 from mpe.types import SessionID
 
 
@@ -51,6 +57,7 @@ class RecognitionSummary:
     total_repeats: int
     event_count: int
     latency_bound: float
+    provenance: ProvenanceReference | None = None
     items: list[RecognitionItemSummary] = field(default_factory=list)
 
     def as_dict(self) -> dict[str, Any]:
@@ -66,6 +73,7 @@ class RecognitionSummary:
             "event_count": self.event_count,
             "latency_bound": self.latency_bound,
             "items": [item.as_dict() for item in self.items],
+            **(self.provenance.as_dict() if self.provenance else {}),
         }
 
 
@@ -97,12 +105,30 @@ def derive_recognition_summary(
     repeat_cap: int = 1,
     latency_bound: float = 2.0,
 ) -> RecognitionSummary:
-    """Derive a Recognition session summary from events.
+    """Derive a Recognition summary from a schema-1.2 event stream.
 
     The summary is built solely from the persisted event stream: no fixture
-    is consulted and no runtime state is reconstructed.
+    is consulted and no runtime state is reconstructed. The result is bound to
+    the session's provenance event and cannot be produced without one.
     """
-    walk = walk_session(events)
+    return _derive(events, walk_session(events), repeat_cap, latency_bound)
+
+
+def derive_recognition_summary_legacy(
+    events: list[Event],
+    repeat_cap: int = 1,
+    latency_bound: float = 2.0,
+) -> RecognitionSummary:
+    """Legacy API for historical schema-1.1 streams (`unavailable_legacy`)."""
+    return _derive(events, walk_session_legacy(events), repeat_cap, latency_bound)
+
+
+def _derive(
+    events: list[Event],
+    walk: SessionWalk,
+    repeat_cap: int,
+    latency_bound: float,
+) -> RecognitionSummary:
 
     item_summaries: list[RecognitionItemSummary] = []
     total_repeats = 0
@@ -160,6 +186,7 @@ def derive_recognition_summary(
         event_count=len(events),
         latency_bound=latency_bound,
         items=item_summaries,
+        provenance=walk.provenance,
     )
 
 
@@ -172,3 +199,16 @@ def summarize_session(
     """Load a session's events from a store and derive its Recognition summary."""
     events = store.read(session_id)
     return derive_recognition_summary(events, repeat_cap=repeat_cap, latency_bound=latency_bound)
+
+
+def summarize_session_legacy(
+    session_id: SessionID,
+    store: Any,
+    repeat_cap: int = 1,
+    latency_bound: float = 2.0,
+) -> RecognitionSummary:
+    """Legacy entry point for historical schema-1.1 sessions."""
+    events = store.read(session_id)
+    return derive_recognition_summary_legacy(
+        events, repeat_cap=repeat_cap, latency_bound=latency_bound
+    )

@@ -105,10 +105,11 @@ class RuntimeWallClockTests(unittest.TestCase):
         )
         second = runtime.start_session(random_seed="seed_0")
 
+        # Sequence 2 is session_provenance_recorded, emitted by create_session.
         self.assertEqual(first.timestamp, 1.0)
-        self.assertAlmostEqual(second.timestamp, 1.1)
+        self.assertAlmostEqual(second.timestamp, 1.2)
         self.assertEqual(first.wallclock_at, 1_700_000_000.0)
-        self.assertEqual(second.wallclock_at, 1_700_000_060.0)
+        self.assertEqual(second.wallclock_at, 1_700_000_120.0)
 
     def test_two_clocks_are_independent(self) -> None:
         """Protocol time is deterministic; wall time is not derived from it."""

@@ -29,6 +29,7 @@ from mpe.types import BlockID, CorrelationID, EventID, ProtocolVersionID, Sessio
 SUPPORTED_EVENT_TYPES = frozenset(
     {
         "session_created",
+        "session_provenance_recorded",
         "session_started",
         "session_completed",
         "session_cancelled",
@@ -145,6 +146,24 @@ PAYLOAD_SCHEMAS: dict[str, list[_FieldRule]] = {
         _FieldRule("program_version_id", True, "id"),
         _FieldRule("protocol_version_id", True, "id"),
         _FieldRule("learner_id", True, "str"),
+    ],
+    "session_provenance_recorded": [
+        _FieldRule("session_id", True, "id"),
+        _FieldRule("protocol_id", True, "id"),
+        _FieldRule("protocol_version_id", True, "id"),
+        _FieldRule("curriculum_id", False, "id"),
+        _FieldRule("curriculum_version", False, "str"),
+        _FieldRule("experimental_condition", False, "str"),
+        _FieldRule("randomization_seed", True, "str"),
+        _FieldRule("stimulus_set_id", False, "id"),
+        _FieldRule("stimulus_set_version", False, "str"),
+        _FieldRule("scoring_policy_version", False, "str"),
+        _FieldRule("rt_policy_version", False, "str"),
+        _FieldRule("signal_processing_policy_version", False, "str"),
+        _FieldRule("software_revision", True, "dict"),
+        _FieldRule("provider_versions", True, "dict"),
+        _FieldRule("writer_component", True, "str"),
+        _FieldRule("writer_version", True, "str"),
     ],
     "session_started": [
         _FieldRule("session_id", True, "id"),
