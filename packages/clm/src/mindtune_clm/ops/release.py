@@ -97,7 +97,7 @@ def _get_git_sha() -> str:
 
 
 def _is_tree_dirty() -> bool:
-    status = _git_output(["status", "--porcelain"])
+    status = _git_output(["status", "--porcelain", "--untracked-files=no"])
     return bool(status)
 
 
