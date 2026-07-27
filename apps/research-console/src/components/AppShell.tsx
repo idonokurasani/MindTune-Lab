@@ -7,6 +7,7 @@ const TABS: { id: Tab; label: string }[] = [
   { id: 'session-create', label: 'Create Session' },
   { id: 'session-live', label: 'Live Session' },
   { id: 'session-review', label: 'Review' },
+  { id: 'hebrew', label: 'Hebrew' },
   { id: 'system', label: 'System' },
 ];
 

@@ -9,7 +9,8 @@ export type Tab =
   | 'session-create'
   | 'session-live'
   | 'session-review'
-  | 'system';
+  | 'system'
+  | 'hebrew';
 
 export interface AppState {
   activeTab: Tab;

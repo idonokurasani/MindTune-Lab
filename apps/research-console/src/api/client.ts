@@ -125,6 +125,28 @@ export const api = {
     request<string>('GET', `/sessions/${encodeURIComponent(sessionId)}/export/summary?format=${format}`),
   exportManifest: (sessionId: string, format: 'json' | 'jsonl') =>
     request<string>('GET', `/sessions/${encodeURIComponent(sessionId)}/export/manifest?format=${format}`),
+
+  hebrewReadiness: () => request<import('./models').HebrewReadiness>('GET', '/hebrew/readiness'),
+  listHebrewItems: () => request<{ items: import('./models').HebrewItem[] }>('GET', '/hebrew/items'),
+  getHebrewItem: (id: string) =>
+    request<import('./models').HebrewItem>('GET', `/hebrew/items/${encodeURIComponent(id)}`),
+  createHebrewSession: () =>
+    request<{ session_id: string; status: string }>('POST', '/hebrew/sessions', {
+      learner_id: 'anonymous',
+      parameters: {},
+    }),
+  getHebrewSessionState: (sessionId: string) =>
+    request<Record<string, unknown>>('GET', `/sessions/${encodeURIComponent(sessionId)}/hebrew/state`),
+  getHebrewCurrentTrial: (sessionId: string) =>
+    request<import('./models').HebrewTrial>('GET', `/sessions/${encodeURIComponent(sessionId)}/trials/current`),
+  submitHebrewResponse: (sessionId: string, trialId: string, data: import('./models').HebrewResponseSubmit) =>
+    request<import('./models').HebrewResponseResult>(
+      'POST',
+      `/sessions/${encodeURIComponent(sessionId)}/trials/${encodeURIComponent(trialId)}/response`,
+      data,
+    ),
+  getHebrewLearningSummary: (sessionId: string) =>
+    request<Record<string, unknown>>('GET', `/sessions/${encodeURIComponent(sessionId)}/learning-summary`),
 };
 
 export const isApiError = (error: unknown): error is ApiError =>

@@ -209,6 +209,71 @@ export interface CausalTrace {
   interventionOutcome?: CausalLink;
 }
 
+export interface HebrewItem {
+  item_id: string;
+  lemma: string;
+  lemma_pointed: string;
+  lemma_unpointed: string;
+  root: string;
+  binyan: string;
+  tense: string;
+  mood: string;
+  person: string;
+  gender: string;
+  number: string;
+  canonical_pointed: string;
+  canonical_unpointed: string;
+  transliteration: string;
+  italian_gloss: string;
+  natural_italian: string;
+  morphology_provenance: string;
+  pointing_provenance: string;
+  help_references: string[];
+  linguistic_validation_status: string;
+  pronunciation_review_status: string;
+  required_audio_asset_ids: string[];
+}
+
+export interface HebrewReadiness {
+  ready: boolean;
+  approved_count: number;
+  ready_count: number;
+  missing_assets: string[];
+  blockers: string[];
+}
+
+export interface HebrewTrial {
+  trial_id: string;
+  presentation_id: string;
+  prompt_id: string;
+  item_id: string;
+  trial_type: string;
+  direction: string;
+  prompt_text: string;
+  pointed_hebrew: string;
+  unpointed_hebrew: string;
+  italian_meaning: string;
+  choices: string[] | null;
+  expected: string;
+}
+
+export interface HebrewResponseSubmit {
+  response_text: string;
+  response_time_ms?: number;
+  confidence?: number;
+  idempotency_key?: string;
+}
+
+export interface HebrewResponseResult {
+  response: Record<string, unknown>;
+  score: Record<string, unknown>;
+  cognitive_state: string;
+  control_state: Record<string, unknown>;
+  playback_receipt: Record<string, unknown> | null;
+  pedagogical_decision: Record<string, unknown>;
+  next_trial: HebrewTrial | null;
+}
+
 export interface HebrewStimulusMetadata {
   curriculum_item_id: string;
   lemma: string;

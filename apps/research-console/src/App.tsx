@@ -6,6 +6,7 @@ import { ExperimentsPage } from './pages/ExperimentsPage';
 import { SessionCreatePage } from './pages/SessionCreatePage';
 import { SessionLivePage } from './pages/SessionLivePage';
 import { SessionReviewPage } from './pages/SessionReviewPage';
+import HebrewSessionPage from './pages/HebrewSessionPage';
 import { SystemPage } from './pages/SystemPage';
 import { api } from './api/client';
 import { toApiMode } from './api/models';
@@ -118,6 +119,8 @@ const App: React.FC = () => {
         return <SessionLivePage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
       case 'session-review':
         return <SessionReviewPage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
+      case 'hebrew':
+        return <HebrewSessionPage />;
       case 'system':
         return <SystemPage health={health} protocols={protocols} sensors={sensors} />;
       default:
