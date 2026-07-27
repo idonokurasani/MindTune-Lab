@@ -54,6 +54,7 @@ class SQLiteEventStore:
             str(self.path),
             isolation_level=None,
             timeout=5.0,
+            check_same_thread=False,
         )
         conn.row_factory = sqlite3.Row
         conn.execute("PRAGMA journal_mode = WAL")

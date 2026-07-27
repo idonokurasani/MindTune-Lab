@@ -101,13 +101,16 @@ def _is_tree_dirty() -> bool:
     return bool(status)
 
 
+CLM10_BASE_SHA = "220b3de11b8b09eadd282805e33d1b4bf44be0b9"
+
+
 def _get_base_sha(override: str | None = None) -> str:
     if override:
         return override
     env = os.environ.get("CLM10_BASE_SHA")
     if env:
         return env
-    return _git_output(["rev-parse", "HEAD"])
+    return CLM10_BASE_SHA
 
 
 def _get_package_versions() -> dict[str, str]:
