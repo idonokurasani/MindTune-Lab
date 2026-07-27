@@ -114,7 +114,7 @@ Introduce **one** new event type, `session_provenance_recorded`, emitted immedia
 | `randomization_seed` | `session_started.random_seed` | duplicated here intentionally for a single provenance record |
 | `stimulus_set_id`, `stimulus_set_version` | fixture assets | |
 | `scoring_policy_version`, `rt_policy_version`, `signal_processing_policy_version` | none | nullable in Milestone 1; populated in Milestones 2–3 |
-| `software_revision` | none | `git rev-parse HEAD` resolved at build/run time, plus a dirty flag |
+| `software_revision` | none | resolved by the deployment-safe resolver of §3.3.1; recorded together with its `source`, and as an explicit `unknown` when unresolvable. Git is only the development fallback |
 | `provider_versions` | `ProviderSet.check_versions` | persist the same map that is verified |
 | `schema_version`, `writer_component`, `writer_version`, `writer_revision` | envelope | |
 
