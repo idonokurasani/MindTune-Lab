@@ -5,6 +5,7 @@ import { DecisionPanel } from '../components/DecisionPanel';
 import { EventTimeline } from '../components/EventTimeline';
 import { OutcomePanel } from '../components/OutcomePanel';
 import { ReadinessPanel } from '../components/ReadinessPanel';
+import { CalibrationLivePanel } from '../components/CalibrationLivePanel';
 import { SafetyControls } from '../components/SafetyControls';
 import { SensorPanel } from '../components/SensorPanel';
 import { StatusBadge } from '../components/StatusBadge';
@@ -62,6 +63,7 @@ export const SessionLivePage: React.FC<SessionLivePageProps> = ({ sessionId }) =
           <AudioPanel stimuli={stimuli} />
           <DecisionPanel requestedState={session.status} appliedState={readiness?.ready ? 'applied' : 'pending'} />
           <OutcomePanel outcome={{ status: session.status, level: 0, tempo_ratio: 1, pause_duration_ms: 0 }} />
+          <CalibrationLivePanel participantId={session.learner_id} profileId={session.calibration_profile_id ?? null} />
           <EventTimeline events={sse.events} />
         </>
       )}

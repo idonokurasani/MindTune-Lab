@@ -160,6 +160,8 @@ class APISession:
     sse_lock: threading.Lock = field(default_factory=threading.Lock)
     owned_locks: set[str] = field(default_factory=set)
     store: Any | None = None
+    calibration_profile_id: str | None = None
+    calibration_profile_version: str | None = None
 
     def on_event(self, event: Event) -> None:
         if str(event.session_id) != str(self.id):
@@ -177,6 +179,8 @@ class APISession:
             "protocol_version_id": self.protocol_version_id,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
+            "calibration_profile_id": self.calibration_profile_id,
+            "calibration_profile_version": self.calibration_profile_version,
         }
 
     def close(self) -> None:
@@ -206,9 +210,14 @@ class CLM05Service:
             {"protocol_version_id": "clm-04.v1.0.0", "name": "CLM-04 Live FC11 Gateway", "description": "Provider-neutral live sensor gateway"},
             {"protocol_version_id": "clm-03b.v1.0.0", "name": "CLM-03B SpeechGen Voice", "description": "Giuseppe/Aaron voice pipeline"},
         ]
+        self._calibration_service: Any | None = None
 
     def _request_id(self) -> str:
         return _new_request_id()
+
+    def set_calibration_service(self, service: Any | None) -> None:
+        """Attach the CLM-07 calibration service for session profile selection."""
+        self._calibration_service = service
 
     def _check_mutations(self) -> None:
         if not self.accepting_mutations:
@@ -355,6 +364,22 @@ class CLM05Service:
                 store_path=store_path,
             )
             session.store = self._create_store(session_id, session.on_event)
+
+            # Pin a calibration profile version at session creation when possible.
+            if self._calibration_service is not None:
+                params = payload.get("parameters", {})
+                participant_id = params.get("participant_id") or session.learner_id
+                profile_id, profile_version = self._calibration_service.select_profile_for_session(
+                    participant_id=participant_id,
+                    sensor_family=params.get("sensor_family", "fc11"),
+                    sensor_config_fingerprint=params.get("sensor_config_fingerprint", "fc11.default"),
+                    parser_version=params.get("parser_version", "fc11.parser.v1"),
+                    feature_schema_version=params.get("feature_schema_version", "clm07.schema.v1"),
+                    pinned_profile_id=params.get("calibration_profile_id"),
+                )
+                session.calibration_profile_id = profile_id
+                session.calibration_profile_version = profile_version
+
             with self._lock:
                 self.sessions[session_id] = session
             return session.response_dict()

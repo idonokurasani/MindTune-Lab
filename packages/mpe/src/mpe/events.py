@@ -160,6 +160,24 @@ SUPPORTED_EVENT_TYPES = frozenset(
         "live_closed_loop_latency_exceeded",
         "live_closed_loop_health_changed",
         "live_closed_loop_intervention_outcome",
+        # CLM-07 personal calibration events
+        "calibration_session_created",
+        "calibration_readiness_evaluated",
+        "calibration_collection_started",
+        "calibration_observation_accepted",
+        "calibration_observation_rejected",
+        "calibration_block_completed",
+        "calibration_stability_evaluated",
+        "calibration_profile_created",
+        "calibration_profile_validated",
+        "calibration_profile_invalidated",
+        "calibration_profile_superseded",
+        "calibration_profile_selected",
+        "calibration_profile_rejected_as_incompatible",
+        "calibrated_observation_created",
+        "calibration_drift_detected",
+        "calibration_recalibration_recommended",
+        "calibration_session_aborted",
     }
 )
 

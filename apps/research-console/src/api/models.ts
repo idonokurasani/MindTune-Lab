@@ -64,6 +64,8 @@ export interface SessionResponse {
   protocol_version_id: string;
   created_at: number;
   updated_at: number;
+  calibration_profile_id?: string | null;
+  calibration_profile_version?: string | null;
 }
 
 export interface SessionList {
@@ -445,6 +447,125 @@ export interface HebrewProgressionResponse {
   decision: HebrewProgressionDecision;
   score?: Record<string, unknown>;
   idempotent?: boolean;
+}
+
+export interface CalibrationFeatureBaseline {
+  feature_name: string;
+  modality: string;
+  unit: string;
+  sample_count: number;
+  accepted_count: number;
+  rejected_count: number;
+  missing_count: number;
+  central_tendency: number;
+  dispersion: number;
+  robust_min: number;
+  robust_max: number;
+  selected_quantiles: Record<string, number>;
+  outlier_policy: string;
+  distribution_shape: Record<string, unknown>;
+  stability_metrics: Record<string, number>;
+  quality_status: string;
+  transformation_recommendation: string;
+  algorithm_version: string;
+}
+
+export type CalibrationProfileStatus =
+  | 'collecting'
+  | 'insufficient_data'
+  | 'unstable'
+  | 'valid'
+  | 'degraded'
+  | 'expired'
+  | 'incompatible'
+  | 'superseded'
+  | 'invalid';
+
+export interface CalibrationProfile {
+  profile_id: string;
+  profile_version: string;
+  participant_id: string;
+  sensor_family: string;
+  sensor_config_fingerprint: string;
+  feature_schema_version: string;
+  validity_status: CalibrationProfileStatus;
+  accepted_observation_count: number;
+  rejected_observation_count: number;
+  created_at: number;
+  feature_baselines: Record<string, CalibrationFeatureBaseline>;
+}
+
+export interface CalibrationProfileList {
+  items: CalibrationProfile[];
+}
+
+export interface CalibrationStatus {
+  participant_id: string;
+  total_profiles: number;
+  valid_profiles: number;
+  latest_profile_id: string | null;
+}
+
+export interface CalibrationSession {
+  session_id: string;
+  participant_id: string;
+  protocol_id: string | null;
+  protocol_version: string | null;
+  status: string;
+  created_at: number;
+  updated_at: number;
+  pinned_profile_id: string | null;
+  pinned_profile_version: string | null;
+}
+
+export interface CalibrationSessionCreate {
+  participant_id: string;
+  protocol_id?: string;
+  protocol_version?: string;
+  sensor_family?: string;
+  sensor_config_fingerprint?: string;
+  parser_version?: string;
+  feature_schema_version?: string;
+  idempotency_key?: string;
+}
+
+export interface CalibrationSessionResponse extends CalibrationSession {}
+
+export interface CalibrationSessionList {
+  items: CalibrationSession[];
+}
+
+export interface CalibrationReadinessResponse {
+  ready: boolean;
+  blocking_reasons: string[];
+  warnings: string[];
+}
+
+export interface CalibrationSummaryResponse {
+  session_id: string;
+  status: string;
+  block_count: number;
+  accepted: number;
+  rejected: number;
+  missing: number;
+}
+
+export interface CalibrationProfileAction {
+  reason?: string;
+  idempotency_key?: string;
+}
+
+export interface CalibrationSelectionResponse {
+  profile_id: string | null;
+  profile_version: string | null;
+  reason: string;
+}
+
+export interface CalibrationHealthResponse {
+  status: string;
+  ready: boolean;
+  blockers: string[];
+  warnings: string[];
 }
 
 export const toApiMode = (runtime: RuntimeMode): ApiMode => {

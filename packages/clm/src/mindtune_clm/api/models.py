@@ -68,6 +68,8 @@ class SessionResponse(BaseModel):
     protocol_version_id: str
     created_at: float
     updated_at: float
+    calibration_profile_id: str | None = None
+    calibration_profile_version: str | None = None
 
 
 class SessionList(BaseModel):
@@ -183,3 +185,95 @@ class IdempotencyRecord(BaseModel):
     created_at: float
 
     model_config = ConfigDict(arbitrary_types_allowed=True)
+
+
+# ---------------------------------------------------------------------- #
+# CLM-07 calibration API models
+# ---------------------------------------------------------------------- #
+
+
+class CalibrationSessionCreate(BaseModel):
+    participant_id: str
+    protocol_id: str | None = None
+    protocol_version: str = "v1"
+    sensor_family: str = "fc11"
+    sensor_config_fingerprint: str = ""
+    parser_version: str = ""
+    feature_schema_version: str = ""
+    idempotency_key: str | None = None
+
+
+class CalibrationSessionResponse(BaseModel):
+    session_id: str
+    participant_id: str
+    protocol_id: str | None
+    protocol_version: str | None
+    status: str
+    created_at: float
+    updated_at: float
+    pinned_profile_id: str | None = None
+    pinned_profile_version: str | None = None
+
+
+class CalibrationStatusResponse(BaseModel):
+    session_id: str
+    status: str
+    block_count: int
+    accepted: int
+    rejected: int
+    missing: int
+
+
+class CalibrationReadinessResponse(BaseModel):
+    ready: bool
+    blocking_reasons: list[str] = Field(default_factory=list)
+    warnings: list[str] = Field(default_factory=list)
+
+
+class CalibrationProfileResponse(BaseModel):
+    profile_id: str
+    profile_version: str
+    participant_id: str
+    sensor_family: str
+    sensor_config_fingerprint: str
+    feature_schema_version: str
+    validity_status: str
+    accepted_observation_count: int
+    rejected_observation_count: int
+    created_at: float
+    feature_baselines: dict[str, Any] = Field(default_factory=dict)
+
+
+class CalibrationProfileList(BaseModel):
+    items: list[CalibrationProfileResponse]
+
+
+class CalibrationProfileAction(BaseModel):
+    reason: str | None = None
+    idempotency_key: str | None = None
+
+
+class CalibratedObservationResponse(BaseModel):
+    calibrated_observation_id: str
+    source_observation_id: str
+    feature_name: str
+    raw_value: Any
+    calibrated_value: Any | None
+    normalization_method: str
+    compatibility_status: str
+    reason_codes: list[str]
+
+
+class CalibrationSelectionResponse(BaseModel):
+    profile_id: str | None
+    profile_version: str | None
+    reason: str
+
+
+class CalibrationExportResponse(BaseModel):
+    export_id: str
+    profile_id: str | None
+    format: str
+    checksum: str
+    record_count: int
+    redacted: bool

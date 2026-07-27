@@ -147,9 +147,21 @@ class StateEstimator:
     recovery_steps_remaining: int = 0
     estimate_counter: int = 0
 
-    def estimate(self, frame: ObservationFrame) -> CognitiveStateEstimate:
-        """Return the next immutable estimate from an observation frame."""
-        fused = fuse_observation(frame, latency_bound_ms=self.latency_bound_ms)
+    def estimate(
+        self,
+        frame: ObservationFrame,
+        calibrated_values: dict[str, float] | None = None,
+    ) -> CognitiveStateEstimate:
+        """Return the next immutable estimate from an observation frame.
+
+        When ``calibrated_values`` is supplied, the estimator fuses those values
+        while leaving the raw ObservationFrame unchanged for audit.
+        """
+        fused = fuse_observation(
+            frame,
+            latency_bound_ms=self.latency_bound_ms,
+            calibrated_values=calibrated_values,
+        )
         self.estimate_counter += 1
         self._transition(fused.load)
 

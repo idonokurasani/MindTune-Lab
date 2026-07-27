@@ -13,6 +13,7 @@ from fastapi.responses import JSONResponse
 
 from mindtune_clm.api import (
     __version__,
+    calibrations,
     control,
     events,
     experiments,
@@ -25,6 +26,7 @@ from mindtune_clm.api import (
     sessions,
     stimuli,
 )
+from mindtune_clm.api.calibration_service import CalibrationAPIService
 from mindtune_clm.api.config import CLM05APIConfig
 from mindtune_clm.api.errors import CLM05APIError
 from mindtune_clm.api.security import RequestSizeLimitMiddleware
@@ -54,6 +56,7 @@ def _setup_routers(app: FastAPI) -> None:
     app.include_router(exports.router, prefix="/api/v1")
     app.include_router(hebrew.router, prefix="/api/v1")
     app.include_router(hebrew_clm06b.router, prefix="/api/v1")
+    app.include_router(calibrations.router, prefix="/api/v1")
 
 
 def _setup_exception_handlers(app: FastAPI) -> None:
@@ -80,6 +83,8 @@ def create_app(config: CLM05APIConfig | None = None) -> FastAPI:
     """Create and configure the CLM-05 FastAPI application."""
     config = config or CLM05APIConfig.from_env()
     service = CLM05Service(config)
+    calibration_service = CalibrationAPIService()
+    service.set_calibration_service(calibration_service)
 
     @asynccontextmanager
     async def lifespan(app: FastAPI) -> AsyncIterator[None]:
@@ -102,6 +107,7 @@ def create_app(config: CLM05APIConfig | None = None) -> FastAPI:
     )
     app.state.config = config
     app.state.service = service
+    app.state.calibration_service = calibration_service
     app.state.hebrew_service = None
 
     _setup_middlewares(app, config)

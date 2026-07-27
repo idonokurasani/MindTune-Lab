@@ -6,6 +6,9 @@ import { ExperimentsPage } from './pages/ExperimentsPage';
 import { SessionCreatePage } from './pages/SessionCreatePage';
 import { SessionLivePage } from './pages/SessionLivePage';
 import { SessionReviewPage } from './pages/SessionReviewPage';
+import CalibrationOverviewPage from './pages/CalibrationOverviewPage';
+import CalibrationProfilePage from './pages/CalibrationProfilePage';
+import CalibrationSessionPage from './pages/CalibrationSessionPage';
 import HebrewSessionPage from './pages/HebrewSessionPage';
 import CurriculumPage from './pages/CurriculumPage';
 import LearnerProgressionPage from './pages/LearnerProgressionPage';
@@ -122,6 +125,12 @@ const App: React.FC = () => {
         return <SessionLivePage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
       case 'session-review':
         return <SessionReviewPage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
+      case 'calibration-overview':
+        return <CalibrationOverviewPage />;
+      case 'calibration-session':
+        return <CalibrationSessionPage />;
+      case 'calibration-profile-review':
+        return <CalibrationProfilePage />;
       case 'hebrew':
         return <HebrewSessionPage />;
       case 'curriculum':

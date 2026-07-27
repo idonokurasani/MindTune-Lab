@@ -38,6 +38,13 @@ def _bad_quality(quality: str | None, bad_flags: set[str]) -> bool:
     return bool(parts & bad_flags)
 
 
+def _value(frame: ObservationFrame, calibrated_values: dict[str, float] | None, name: str) -> float | None:
+    """Return the calibrated value when provided, otherwise the raw value."""
+    if calibrated_values is not None and name in calibrated_values:
+        return calibrated_values[name]
+    return getattr(frame, name)  # type: ignore[no-any-return]
+
+
 @dataclass
 class FusedEvidence:
     """Result of fusing the observation frame into a single load sample."""
@@ -49,13 +56,21 @@ class FusedEvidence:
     reason_codes: list[str] = field(default_factory=list)
 
 
-def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) -> FusedEvidence:  # noqa: C901
+def fuse_observation(  # noqa: C901
+    frame: ObservationFrame,
+    latency_bound_ms: float = 1000.0,
+    calibrated_values: dict[str, float] | None = None,
+) -> FusedEvidence:
     """Fuse all available, high-quality modalities into a 0..1 load sample.
 
     Missing modalities are ignored. Low-quality evidence is explicitly rejected
     and the reason is preserved. EEG is not authoritative: one noisy EEG sample
     cannot cause an immediate high-impact intervention because the resulting load
     is only one input to the hysteretic state estimator.
+
+    When ``calibrated_values`` is supplied, those values are used in place of
+    the raw values for the named features while the raw ObservationFrame is
+    left unchanged for audit.
     """
     used: list[str] = []
     rejected: list[dict[str, Any]] = []
@@ -65,16 +80,19 @@ def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) 
     bad_eeg_flags = {"artifact", "poor_signal", "poor"}
 
     # Behavioral evidence
-    if frame.behavioral_latency_ms is not None or frame.hesitation_score is not None or frame.error_score is not None:
+    behavioral_latency = _value(frame, calibrated_values, "behavioral_latency_ms")
+    hesitation = _value(frame, calibrated_values, "hesitation_score")
+    error = _value(frame, calibrated_values, "error_score")
+    if behavioral_latency is not None or hesitation is not None or error is not None:
         behavioral_load = 0.0
         behavioral_parts: list[str] = []
-        if frame.error_score is not None and frame.error_score >= 0.5:
+        if error is not None and error >= 0.5:
             behavioral_load = max(behavioral_load, 1.0)
             behavioral_parts.append("error")
-        if frame.hesitation_score is not None and frame.hesitation_score >= 0.5:
+        if hesitation is not None and hesitation >= 0.5:
             behavioral_load = max(behavioral_load, 0.7)
             behavioral_parts.append("hesitation")
-        if frame.behavioral_latency_ms is not None and frame.behavioral_latency_ms > latency_bound_ms:
+        if behavioral_latency is not None and behavioral_latency > latency_bound_ms:
             behavioral_load = max(behavioral_load, 0.5)
             behavioral_parts.append("latency")
         if behavioral_parts:
@@ -88,18 +106,20 @@ def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) 
             reason_codes.append("behavioral_load=0.00(within_bounds)")
 
     # EEG evidence
-    if frame.eeg_stability is not None or frame.eeg_quality is not None:
-        if _bad_quality(frame.eeg_quality, bad_eeg_flags):
+    eeg_stability = _value(frame, calibrated_values, "eeg_stability")
+    eeg_quality = frame.eeg_quality
+    if eeg_stability is not None or eeg_quality is not None:
+        if _bad_quality(eeg_quality, bad_eeg_flags):
             rejected.append({
                 "observation_frame_id": frame.observation_frame_id,
                 "modality": "eeg",
                 "reason": "low_quality",
-                "quality": frame.eeg_quality,
+                "quality": eeg_quality,
             })
             reason_codes.append("eeg_rejected_low_quality")
-        elif frame.eeg_stability is not None:
+        elif eeg_stability is not None:
             # Low stability implies higher cognitive load.
-            eeg_load = max(0.0, min(1.0, 1.0 - frame.eeg_stability))
+            eeg_load = max(0.0, min(1.0, 1.0 - eeg_stability))
             used.append("eeg")
             loads.append(eeg_load)
             reason_codes.append(f"eeg_load={eeg_load:.2f}")
@@ -108,15 +128,15 @@ def fuse_observation(frame: ObservationFrame, latency_bound_ms: float = 1000.0) 
                 "observation_frame_id": frame.observation_frame_id,
                 "modality": "eeg",
                 "reason": "missing_stability",
-                "quality": frame.eeg_quality,
+                "quality": eeg_quality,
             })
             reason_codes.append("eeg_rejected_missing_stability")
 
     # Respiration and voice placeholders are accepted but not used in CLM-01.
-    if frame.respiration_stability is not None:
+    if _value(frame, calibrated_values, "respiration_stability") is not None:
         used.append("respiration")
         reason_codes.append("respiration_ignored_placeholder")
-    if frame.voice_stability is not None:
+    if _value(frame, calibrated_values, "voice_stability") is not None:
         used.append("voice")
         reason_codes.append("voice_ignored_placeholder")
 

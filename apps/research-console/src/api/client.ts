@@ -170,6 +170,43 @@ export const api = {
       `/hebrew/progression/${encodeURIComponent(sessionId)}/next`,
       data,
     ),
+
+  // CLM-07 calibration endpoints
+  createCalibration: (data: import('./models').CalibrationSessionCreate) =>
+    request<import('./models').CalibrationSessionResponse>('POST', '/calibrations', data),
+  listCalibrations: () => request<import('./models').CalibrationSessionList>('GET', '/calibrations'),
+  getCalibration: (id: string) =>
+    request<import('./models').CalibrationSessionResponse>('GET', `/calibrations/${encodeURIComponent(id)}`),
+  prepareCalibration: (id: string) =>
+    request<import('./models').CalibrationReadinessResponse>('POST', `/calibrations/${encodeURIComponent(id)}/prepare`),
+  startCalibration: (id: string, parameters?: Record<string, unknown>) =>
+    request<import('./models').CalibrationSessionResponse>('POST', `/calibrations/${encodeURIComponent(id)}/start`, parameters),
+  pauseCalibration: (id: string) =>
+    request<import('./models').CalibrationSessionResponse>('POST', `/calibrations/${encodeURIComponent(id)}/pause`),
+  resumeCalibration: (id: string) =>
+    request<import('./models').CalibrationSessionResponse>('POST', `/calibrations/${encodeURIComponent(id)}/resume`),
+  stopCalibration: (id: string) =>
+    request<import('./models').CalibrationSessionResponse>('POST', `/calibrations/${encodeURIComponent(id)}/stop`),
+  abortCalibration: (id: string) =>
+    request<import('./models').CalibrationSessionResponse>('POST', `/calibrations/${encodeURIComponent(id)}/abort`),
+  getCalibrationReadiness: (id: string) =>
+    request<import('./models').CalibrationReadinessResponse>('GET', `/calibrations/${encodeURIComponent(id)}/readiness`),
+  getCalibrationHealth: (id: string) =>
+    request<import('./models').CalibrationHealthResponse>('GET', `/calibrations/${encodeURIComponent(id)}/health`),
+  getCalibrationSummary: (id: string) =>
+    request<import('./models').CalibrationSummaryResponse>('GET', `/calibrations/${encodeURIComponent(id)}/summary`),
+  listCalibrationProfiles: (participantId: string) =>
+    request<import('./models').CalibrationProfileList>('GET', `/participants/${encodeURIComponent(participantId)}/calibration-profiles`),
+  getCalibrationProfile: (participantId: string, profileId: string) =>
+    request<import('./models').CalibrationProfile>('GET', `/participants/${encodeURIComponent(participantId)}/calibration-profiles/${encodeURIComponent(profileId)}`),
+  validateCalibrationProfile: (participantId: string, profileId: string, data?: import('./models').CalibrationProfileAction) =>
+    request<import('./models').CalibrationProfile>('POST', `/participants/${encodeURIComponent(participantId)}/calibration-profiles/${encodeURIComponent(profileId)}/validate`, data),
+  invalidateCalibrationProfile: (participantId: string, profileId: string, data: import('./models').CalibrationProfileAction) =>
+    request<import('./models').CalibrationProfile>('POST', `/participants/${encodeURIComponent(participantId)}/calibration-profiles/${encodeURIComponent(profileId)}/invalidate`, data),
+  selectCalibrationProfile: (participantId: string, profileId: string) =>
+    request<import('./models').CalibrationSelectionResponse>('POST', `/participants/${encodeURIComponent(participantId)}/calibration-profiles/${encodeURIComponent(profileId)}/select`),
+  getCalibrationStatus: (participantId: string) =>
+    request<import('./models').CalibrationStatus>('GET', `/participants/${encodeURIComponent(participantId)}/calibration-status`),
 };
 
 export const isApiError = (error: unknown): error is ApiError =>
