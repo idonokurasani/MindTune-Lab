@@ -61,18 +61,30 @@ def duration_of(path: pathlib.Path) -> float:
     return len(data) / sr
 
 
-def run_infer(csv_path: pathlib.Path, output_dir: pathlib.Path, speaker: str = "osim", top_k: int = 40, mbd: bool = False) -> tuple[float, float, int]:
+def run_infer(
+    csv_path: pathlib.Path,
+    output_dir: pathlib.Path,
+    speaker: str = "osim",
+    top_k: int = 40,
+    mbd: bool = False,
+) -> tuple[float, float, int]:
     """Run infer.py on a CSV. Returns (elapsed_seconds, peak_rss_mb, returncode)."""
     env = os.environ.copy()
     env["TORCH_FORCE_NO_WEIGHTS_ONLY_LOAD"] = "1"
 
     cmd = [
-        str(VENV_PYTHON), "infer.py",
-        "--checkpoint", "ckpt.pt",
-        "--output-dir", str(output_dir),
-        "--csv_path", str(csv_path),
-        "--speaker", speaker,
-        "--top-k", str(top_k),
+        str(VENV_PYTHON),
+        "infer.py",
+        "--checkpoint",
+        "ckpt.pt",
+        "--output-dir",
+        str(output_dir),
+        "--csv_path",
+        str(csv_path),
+        "--speaker",
+        speaker,
+        "--top-k",
+        str(top_k),
     ]
     if mbd:
         cmd.extend(["--mbd", "True"])
@@ -98,7 +110,9 @@ def run_infer(csv_path: pathlib.Path, output_dir: pathlib.Path, speaker: str = "
         while proc.poll() is None:
             try:
                 children = p.children(recursive=True)
-                mems = [child.memory_info().rss for child in children if child.is_running()] + [p.memory_info().rss]
+                mems = [child.memory_info().rss for child in children if child.is_running()] + [
+                    p.memory_info().rss
+                ]
                 peak_mb = max(peak_mb, max(mems, default=0) / (1024 * 1024))
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 pass
@@ -166,7 +180,12 @@ def build_samples(pealim_data: list, audit_data: list) -> List[Sample]:
     for verb_record in pealim_data:
         verb = verb_record["query"]
         forms = verb_record["forms"]
-        chosen = ["infinitive", "present_masculine_singular", "past_1_singular", "future_1_singular"]
+        chosen = [
+            "infinitive",
+            "present_masculine_singular",
+            "past_1_singular",
+            "future_1_singular",
+        ]
         for fk in chosen:
             if fk not in forms:
                 continue
@@ -176,20 +195,34 @@ def build_samples(pealim_data: list, audit_data: list) -> List[Sample]:
             plain = standard_unvocalized(p)
             trans = clean_transliteration(p.get("transcription_html", ""))
 
-            samples.append(Sample(
-                verb=verb, form_key=fk, label=f"{fk}_plain", text=plain, input_type="plain",
-                pealim_vocalized=vocalized, pealim_transliteration=trans,
-                expected_stress=p.get("pealim_stress_syllable", 0),
-                phonikud_override=a.get("manual_override", a.get("phonikud_phonemes", "")),
-            ))
+            samples.append(
+                Sample(
+                    verb=verb,
+                    form_key=fk,
+                    label=f"{fk}_plain",
+                    text=plain,
+                    input_type="plain",
+                    pealim_vocalized=vocalized,
+                    pealim_transliteration=trans,
+                    expected_stress=p.get("pealim_stress_syllable", 0),
+                    phonikud_override=a.get("manual_override", a.get("phonikud_phonemes", "")),
+                )
+            )
             # vocalized is expected to crash; handled in a dedicated one-sample batch
-            samples.append(Sample(
-                verb=verb, form_key=fk, label=f"{fk}_vocalized", text=vocalized, input_type="vocalized",
-                pealim_vocalized=vocalized, pealim_transliteration=trans,
-                expected_stress=p.get("pealim_stress_syllable", 0),
-                phonikud_override=a.get("manual_override", a.get("phonikud_phonemes", "")),
-                notes="expected to fail because tokenizer does not accept niqqud",
-            ))
+            samples.append(
+                Sample(
+                    verb=verb,
+                    form_key=fk,
+                    label=f"{fk}_vocalized",
+                    text=vocalized,
+                    input_type="vocalized",
+                    pealim_vocalized=vocalized,
+                    pealim_transliteration=trans,
+                    expected_stress=p.get("pealim_stress_syllable", 0),
+                    phonikud_override=a.get("manual_override", a.get("phonikud_phonemes", "")),
+                    notes="expected to fail because tokenizer does not accept niqqud",
+                )
+            )
 
         # sentence
         if verb == "לכתוב":
@@ -202,20 +235,71 @@ def build_samples(pealim_data: list, audit_data: list) -> List[Sample]:
             sentence_plain = "אני רוצה לעשות"
             sentence_vocalized = "אֲנִי רוֹצֶה לַעֲשׂוֹת"
 
-        samples.append(Sample(verb=verb, form_key="sentence", label="sentence_plain", text=sentence_plain, input_type="sentence"))
-        samples.append(Sample(verb=verb, form_key="sentence", label="sentence_vocalized", text=sentence_vocalized, input_type="sentence_vocalized", notes="vocalized sentence; expected crash"))
+        samples.append(
+            Sample(
+                verb=verb,
+                form_key="sentence",
+                label="sentence_plain",
+                text=sentence_plain,
+                input_type="sentence",
+            )
+        )
+        samples.append(
+            Sample(
+                verb=verb,
+                form_key="sentence",
+                label="sentence_vocalized",
+                text=sentence_vocalized,
+                input_type="sentence_vocalized",
+                notes="vocalized sentence; expected crash",
+            )
+        )
 
     # determinism / repeated / top-k on infinitive plain
     for i in range(3):
-        samples.append(Sample(verb="לכתוב", form_key="infinitive", label=f"repeat_{i}", text="לכתוב", input_type="repeated"))
+        samples.append(
+            Sample(
+                verb="לכתוב",
+                form_key="infinitive",
+                label=f"repeat_{i}",
+                text="לכתוב",
+                input_type="repeated",
+            )
+        )
     for k in [1, 80]:
-        samples.append(Sample(verb="לכתוב", form_key="infinitive", label=f"topk_{k}", text="לכתוב", top_k=k, input_type="topk"))
+        samples.append(
+            Sample(
+                verb="לכתוב",
+                form_key="infinitive",
+                label=f"topk_{k}",
+                text="לכתוב",
+                top_k=k,
+                input_type="topk",
+            )
+        )
 
     # punctuation
-    samples.append(Sample(verb="לכתוב", form_key="sentence", label="sentence_comma", text="אני רוצה לכתוב,", input_type="punctuation"))
+    samples.append(
+        Sample(
+            verb="לכתוב",
+            form_key="sentence",
+            label="sentence_comma",
+            text="אני רוצה לכתוב,",
+            input_type="punctuation",
+        )
+    )
 
     # phoneme input
-    samples.append(Sample(verb="לכתוב", form_key="infinitive", label="phoneme_ipa", text="liχtˈov", input_type="phoneme", notes="IPA phonemes as text; expected to fail or produce noise"))
+    samples.append(
+        Sample(
+            verb="לכתוב",
+            form_key="infinitive",
+            label="phoneme_ipa",
+            text="liχtˈov",
+            input_type="phoneme",
+            notes="IPA phonemes as text; expected to fail or produce noise",
+        )
+    )
 
     return samples
 
@@ -225,7 +309,10 @@ def write_csv(path: pathlib.Path, samples: List[Sample]) -> None:
         w = csv.writer(f)
         w.writerow(["filename", "text"])
         for s in samples:
-            s.output_wav = AUDIO / f"{s.verb}_{s.label}_spk-{s.speaker}_topk-{s.top_k}{'_mbd' if s.mbd else ''}.wav"
+            s.output_wav = (
+                AUDIO
+                / f"{s.verb}_{s.label}_spk-{s.speaker}_topk-{s.top_k}{'_mbd' if s.mbd else ''}.wav"
+            )
             w.writerow([s.output_wav.name, s.text])
 
 
@@ -259,13 +346,19 @@ def run_batch(samples: List[Sample], label: str) -> None:
 
 
 def main() -> int:
-    pealim_data = json.loads((APP / "data" / "phonikud_eval" / "pealim_forms.json").read_text(encoding="utf-8"))
-    audit_data = json.loads((APP / "data" / "phonikud_eval" / "phonikud_evaluation.json").read_text(encoding="utf-8"))
+    pealim_data = json.loads(
+        (APP / "data" / "phonikud_eval" / "pealim_forms.json").read_text(encoding="utf-8")
+    )
+    audit_data = json.loads(
+        (APP / "data" / "phonikud_eval" / "phonikud_evaluation.json").read_text(encoding="utf-8")
+    )
 
     samples = build_samples(pealim_data, audit_data)
 
     # Plain + experiments that should work (no niqqud)
-    plain_samples = [s for s in samples if "vocalized" not in s.input_type and s.input_type != "phoneme"]
+    plain_samples = [
+        s for s in samples if "vocalized" not in s.input_type and s.input_type != "phoneme"
+    ]
     # Keep phoneme separate because it may crash; put punctuation/repeats/topk in the plain batch
     phoneme_samples = [s for s in samples if s.input_type == "phoneme"]
     vocalized_samples = [s for s in samples if "vocalized" in s.input_type]
@@ -280,32 +373,54 @@ def main() -> int:
             s.notes = "vocalized inputs not attempted because tokenizer crashes on niqqud"
 
     # Speaker variations for infinitive plain (osim already in plain batch; add geek/shaul)
-    infinitive_plain = [s for s in samples if s.form_key == "infinitive" and s.input_type == "plain"]
+    infinitive_plain = [
+        s for s in samples if s.form_key == "infinitive" and s.input_type == "plain"
+    ]
     speaker_samples = []
     for spk in ["geek", "shaul"]:
         for s in infinitive_plain:
-            speaker_samples.append(Sample(
-                verb=s.verb, form_key=s.form_key, label=f"{s.label}_spk-{spk}", text=s.text,
-                speaker=spk, input_type="speaker_variation",
-                pealim_vocalized=s.pealim_vocalized, pealim_transliteration=s.pealim_transliteration,
-                expected_stress=s.expected_stress, phonikud_override=s.phonikud_override,
-            ))
+            speaker_samples.append(
+                Sample(
+                    verb=s.verb,
+                    form_key=s.form_key,
+                    label=f"{s.label}_spk-{spk}",
+                    text=s.text,
+                    speaker=spk,
+                    input_type="speaker_variation",
+                    pealim_vocalized=s.pealim_vocalized,
+                    pealim_transliteration=s.pealim_transliteration,
+                    expected_stress=s.expected_stress,
+                    phonikud_override=s.phonikud_override,
+                )
+            )
     run_batch(speaker_samples, "speaker_variations")
 
     # MBD attempt
-    mbd_samples = [Sample(
-        verb="לכתוב", form_key="infinitive", label="infinitive_plain_mbd", text="לכתוב",
-        mbd=True, input_type="mbd", notes="Multi Band Diffusion; requires audiocraft",
-    )]
+    mbd_samples = [
+        Sample(
+            verb="לכתוב",
+            form_key="infinitive",
+            label="infinitive_plain_mbd",
+            text="לכתוב",
+            mbd=True,
+            input_type="mbd",
+            notes="Multi Band Diffusion; requires audiocraft",
+        )
+    ]
     run_batch(mbd_samples, "mbd")
 
     all_samples = samples + speaker_samples + mbd_samples
 
     def as_dict(s: Sample) -> dict:
         return {
-            "verb": s.verb, "form_key": s.form_key, "label": s.label,
-            "input_type": s.input_type, "text": s.text, "speaker": s.speaker,
-            "top_k": s.top_k, "mbd": s.mbd,
+            "verb": s.verb,
+            "form_key": s.form_key,
+            "label": s.label,
+            "input_type": s.input_type,
+            "text": s.text,
+            "speaker": s.speaker,
+            "top_k": s.top_k,
+            "mbd": s.mbd,
             "pealim_vocalized": s.pealim_vocalized,
             "pealim_transliteration": s.pealim_transliteration,
             "expected_stress": s.expected_stress,
@@ -324,7 +439,10 @@ def main() -> int:
 
     json_path = DATA / "hebtts_evaluation.json"
     csv_path = DATA / "hebtts_evaluation.csv"
-    json_path.write_text(json.dumps([as_dict(s) for s in all_samples], ensure_ascii=False, indent=2), encoding="utf-8")
+    json_path.write_text(
+        json.dumps([as_dict(s) for s in all_samples], ensure_ascii=False, indent=2),
+        encoding="utf-8",
+    )
 
     keys = list(as_dict(all_samples[0]).keys())
     with open(csv_path, "w", encoding="utf-8", newline="") as f:

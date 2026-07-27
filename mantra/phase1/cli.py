@@ -1,4 +1,5 @@
 """Command-line interface for the Phase 1 Mantra engine."""
+
 from __future__ import annotations
 
 import argparse
@@ -90,7 +91,9 @@ def cmd_build(args: argparse.Namespace) -> int:
         print(f"Error: invalid specification: {exc}", file=sys.stderr)
         return 2
 
-    events.emit(MantraEventType.SPEC_VALIDATED, {"valid": True, "id": spec.id, "version": spec.version})
+    events.emit(
+        MantraEventType.SPEC_VALIDATED, {"valid": True, "id": spec.id, "version": spec.version}
+    )
 
     if args.validate_only:
         print(f"Specification {spec.id} is valid.")
@@ -118,7 +121,10 @@ def cmd_build(args: argparse.Namespace) -> int:
     timeline = compile_timeline(spec)
     events.emit(
         MantraEventType.TIMELINE_COMPILED,
-        {"segment_count": len(timeline), "planned_duration": sum(s.planned_duration for s in timeline)},
+        {
+            "segment_count": len(timeline),
+            "planned_duration": sum(s.planned_duration for s in timeline),
+        },
     )
 
     providers = _resolve_providers(spec, args)
@@ -227,7 +233,9 @@ def main(argv: list[str] | None = None) -> int:
 
     play_p = subparsers.add_parser("play", help="Play a built mantra")
     play_p.add_argument("manifest", help="Path to the manifest JSON")
-    play_p.add_argument("--fake-audio", action="store_true", help="Use null audio player for testing")
+    play_p.add_argument(
+        "--fake-audio", action="store_true", help="Use null audio player for testing"
+    )
     play_p.add_argument("--event-log", help="Path to write playback events")
     play_p.set_defaults(func=cmd_play)
 

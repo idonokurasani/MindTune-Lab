@@ -42,7 +42,6 @@ def _derive_gloss(data: dict[str, Any]) -> str:
     return ""
 
 
-
 def main() -> None:
     data_dir = Path("data/hebrew/specifications/v1")
     paths = sorted(data_dir.glob("*.json"))

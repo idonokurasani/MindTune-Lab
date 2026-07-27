@@ -5,6 +5,7 @@ confidence engine.  Records are not called "gold" unless they come from the
 frozen external benchmark; internal candidates are high_confidence_candidate,
 verified_consensus, disputed, unresolved, or rejected.
 """
+
 from __future__ import annotations
 
 import csv
@@ -22,6 +23,7 @@ from .selection import select_100_verbs
 def _load_orthography() -> Any:
     try:
         from .. import orthography
+
         return orthography
     except Exception:
         return None
@@ -30,6 +32,7 @@ def _load_orthography() -> Any:
 def _load_phonology() -> Any:
     try:
         from .. import phonology
+
         return phonology
     except Exception:
         return None
@@ -91,7 +94,12 @@ def _canonical_unvocalized(vocalized: str, root: str, binyan: str, form_key: str
         "rule_trace": ["standard_unvocalized_fallback"],
         "confidence": 0.5,
         "unresolved": False,
-        "variants": {"full": spelling, "defective": spelling, "common_nonstandard": [], "rejected": []},
+        "variants": {
+            "full": spelling,
+            "defective": spelling,
+            "common_nonstandard": [],
+            "rejected": [],
+        },
     }
 
 
@@ -129,7 +137,13 @@ def build_automatic_gold_100(
         loader = Phase3DataLoader()
         loader.load_all()
     if output_path is None:
-        output_path = Path(__file__).resolve().parents[2] / "data" / "hebrew" / "phase3" / "automatic_gold_100.json"
+        output_path = (
+            Path(__file__).resolve().parents[2]
+            / "data"
+            / "hebrew"
+            / "phase3"
+            / "automatic_gold_100.json"
+        )
     else:
         output_path = Path(output_path)
 
@@ -172,7 +186,12 @@ def build_automatic_gold_100(
             orth = _canonical_unvocalized(vocalized, verb["root"], verb["binyan"], form_key)
             pron = _pronunciation(vocalized, verb["root"], verb["binyan"], form_key)
 
-            inflector_key = (verb["pattern"], verb["table_number"], verb["base_form_plain"], form_key)
+            inflector_key = (
+                verb["pattern"],
+                verb["table_number"],
+                verb["base_form_plain"],
+                form_key,
+            )
             inflector_surfaces = inflector_forms.get(inflector_key, set())
             norm_vocalized = normalize_hebrew(vocalized)
             inflector_agrees = norm_vocalized in inflector_surfaces
@@ -188,14 +207,21 @@ def build_automatic_gold_100(
 
             evidence = {
                 "canonical": {"surface_vocalized": vocalized},
-                "eran_tomer": {"present": True, "surface_vocalized": vocalized, "agrees": True, "group": "eran_tomer_derivative"},
+                "eran_tomer": {
+                    "present": True,
+                    "surface_vocalized": vocalized,
+                    "agrees": True,
+                    "group": "eran_tomer_derivative",
+                },
                 "verb_inflector": verb_inflector_evidence,
                 "corpus": {"present": count > 0, "count": count, "group": "corpus_attestation"},
             }
 
             # Phonology disagreements are recorded on the pronunciation object but
             # do not by themselves block a spelling/morphology consensus.
-            orth_unresolved = orth.get("unresolved", False) and "standard_unvocalized_fallback" not in orth.get("rule_trace", [])
+            orth_unresolved = orth.get(
+                "unresolved", False
+            ) and "standard_unvocalized_fallback" not in orth.get("rule_trace", [])
             confidence, status = confidence_from_evidence(
                 evidence,
                 corpus_count=count,

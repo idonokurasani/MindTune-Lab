@@ -1,4 +1,5 @@
 """Approval-layer transitions for Hebrew linguistic records."""
+
 from __future__ import annotations
 
 from dataclasses import asdict
@@ -22,7 +23,13 @@ class ApprovalPipeline:
         If any source is production-approved, the form is production-eligible.
         Otherwise return the most restrictive tier found.
         """
-        restrictive_order = ["blocked", "unknown", "reference_only", "private_research_only", "production_approved"]
+        restrictive_order = [
+            "blocked",
+            "unknown",
+            "reference_only",
+            "private_research_only",
+            "production_approved",
+        ]
         values = set()
         for ev in form.source_evidence:
             try:
@@ -40,7 +47,10 @@ class ApprovalPipeline:
     def _any_reference_only(self, form: VerbForm) -> bool:
         for ev in form.source_evidence:
             try:
-                if self.registry.get(ev.source_id or ev.source).production_eligibility == "reference_only":
+                if (
+                    self.registry.get(ev.source_id or ev.source).production_eligibility
+                    == "reference_only"
+                ):
                     return True
             except Exception:
                 pass
@@ -52,14 +62,18 @@ class ApprovalPipeline:
         form.validation_evidence.extend(validation_notes or [])
         return form
 
-    def candidate(self, form: VerbForm, confidence: float, notes: list[str] | None = None) -> VerbForm:
+    def candidate(
+        self, form: VerbForm, confidence: float, notes: list[str] | None = None
+    ) -> VerbForm:
         form.linguistic_status = "candidate"
         form.confidence = confidence
         if notes:
             form.validation_evidence.extend(notes)
         return form
 
-    def validate(self, form: VerbForm, confidence: float, notes: list[str] | None = None) -> VerbForm:
+    def validate(
+        self, form: VerbForm, confidence: float, notes: list[str] | None = None
+    ) -> VerbForm:
         """Validate a candidate; reference sources may validate but not be curriculum-approved."""
         eligibility = self._source_evidence_eligibility(form)
         if eligibility in ("blocked", "unknown"):
@@ -73,7 +87,9 @@ class ApprovalPipeline:
             form.validation_evidence.extend(notes)
         return form
 
-    def approve_for_curriculum(self, form: VerbForm, reviewer: str, notes: list[str] | None = None) -> VerbForm:
+    def approve_for_curriculum(
+        self, form: VerbForm, reviewer: str, notes: list[str] | None = None
+    ) -> VerbForm:
         """Approve a validated record for curriculum use."""
         if form.linguistic_status != "validated":
             form.curriculum_status = "rejected"
@@ -104,5 +120,5 @@ class ApprovalPipeline:
         else:
             sentence.curriculum_suitability = "pending_review"
             sentence.curriculum_status = "not_reviewed"
-        sentence.approved = (sentence.curriculum_status == "approved")
+        sentence.approved = sentence.curriculum_status == "approved"
         return sentence

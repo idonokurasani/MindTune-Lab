@@ -64,9 +64,7 @@ class InMemoryEventStore:
         stream = self._streams.setdefault(event.session_id, [])
 
         if str(event.event_id) in self._event_ids:
-            raise ConcurrencyError(
-                f"Event {event.event_id} already exists in store"
-            )
+            raise ConcurrencyError(f"Event {event.event_id} already exists in store")
 
         current_version = len(stream)
         if expected_version is not None and expected_version != current_version:
@@ -75,17 +73,13 @@ class InMemoryEventStore:
             )
 
         if stream and event.session_sequence_number <= stream[-1].session_sequence_number:
-            raise ConcurrencyError(
-                "Event session_sequence_number must be strictly increasing"
-            )
+            raise ConcurrencyError("Event session_sequence_number must be strictly increasing")
 
         if stream and event.timestamp < stream[-1].timestamp:
             raise ValidationError("Event timestamps must be non-decreasing")
 
         if not self._provenance_exists(event):
-            raise ValidationError(
-                f"Provenance event(s) not found for {event.event_id}"
-            )
+            raise ValidationError(f"Provenance event(s) not found for {event.event_id}")
 
         linked = self._link_to_stream(event, stream)
         self._event_ids.add(str(event.event_id))

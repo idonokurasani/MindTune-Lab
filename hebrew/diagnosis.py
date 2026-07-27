@@ -1,4 +1,5 @@
 """Typed learner-answer diagnosis schema and comparison logic."""
+
 from __future__ import annotations
 
 from .models import ValidationResult, VerbForm

@@ -1,4 +1,5 @@
 """Morphological parsing and feature conversion."""
+
 from __future__ import annotations
 
 from .models import MorphologicalFeatures
@@ -30,7 +31,9 @@ NUMBER_MAP = {
 }
 
 
-def parse_morphology_tag(tag: str, pattern: str = "", table_number: int = 0) -> MorphologicalFeatures:
+def parse_morphology_tag(
+    tag: str, pattern: str = "", table_number: int = 0
+) -> MorphologicalFeatures:
     """Parse a Verb Inflector morphology tag into a MorphologicalFeatures object."""
     parts = [p.strip() for p in tag.split("+")]
     features = MorphologicalFeatures(pattern=pattern, table_number=table_number)
@@ -58,6 +61,7 @@ def parse_morphology_tag(tag: str, pattern: str = "", table_number: int = 0) -> 
 
 def morphology_features_to_form_key(features: MorphologicalFeatures) -> str:
     """Convert a feature set to a normalized form key."""
+
     def normalize(value: str) -> str:
         value = value.lower().strip()
         if value in ("masculine+feminine", "masc+fem"):
@@ -72,7 +76,12 @@ def morphology_features_to_form_key(features: MorphologicalFeatures) -> str:
     include_person = features.tense not in ("present", "past_participle")
     person = normalize(features.person) if include_person else ""
 
-    parts = [normalize(features.tense), person, normalize(features.gender), normalize(features.number)]
+    parts = [
+        normalize(features.tense),
+        person,
+        normalize(features.gender),
+        normalize(features.number),
+    ]
     parts = [p for p in parts if p]
     return "_".join(parts) or "unknown"
 

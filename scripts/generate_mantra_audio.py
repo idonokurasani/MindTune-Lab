@@ -54,7 +54,9 @@ def main() -> int:
                 out_path.write_bytes(resp.read())
             print(f"ok  -> {out_path}")
         except urllib.error.HTTPError as exc:
-            print(f"err -> {ssml_path.name}: HTTP {exc.code} - {exc.read().decode('utf-8', errors='ignore')[:200]}")
+            print(
+                f"err -> {ssml_path.name}: HTTP {exc.code} - {exc.read().decode('utf-8', errors='ignore')[:200]}"
+            )
         except Exception as exc:
             print(f"err -> {ssml_path.name}: {exc}")
         time.sleep(0.5)

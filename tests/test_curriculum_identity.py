@@ -1,4 +1,5 @@
 """Canonical curriculum identity, provenance, and determinism tests."""
+
 from __future__ import annotations
 
 import json
@@ -94,7 +95,9 @@ class CurriculumDeterminismTests(unittest.TestCase):
             raise AssertionError(result.stderr.decode("utf-8", errors="ignore"))
 
         self.assertEqual(CURRICULUM_PATH.read_bytes(), before_curriculum)
-        self.assertEqual(Path("data/hebrew/curriculum_v1_320_audit.json").read_bytes(), before_audit)
+        self.assertEqual(
+            Path("data/hebrew/curriculum_v1_320_audit.json").read_bytes(), before_audit
+        )
         self.assertEqual(Path("docs/audits/curriculum_v1_320_audit.md").read_bytes(), before_md)
 
 
@@ -131,11 +134,15 @@ class CurriculumAuditTests(unittest.TestCase):
         self.assertEqual(audit["summary"]["blocking_issues"], 0)
 
     def test_audit_reports_zero_duplicate_verb_ids(self) -> None:
-        audit = json.loads(Path("data/hebrew/curriculum_v1_320_audit.json").read_text(encoding="utf-8"))
+        audit = json.loads(
+            Path("data/hebrew/curriculum_v1_320_audit.json").read_text(encoding="utf-8")
+        )
         self.assertEqual(audit["summary"]["duplicate_verb_ids"], 0)
 
     def test_audit_reports_zero_duplicate_asset_prefixes(self) -> None:
-        audit = json.loads(Path("data/hebrew/curriculum_v1_320_audit.json").read_text(encoding="utf-8"))
+        audit = json.loads(
+            Path("data/hebrew/curriculum_v1_320_audit.json").read_text(encoding="utf-8")
+        )
         self.assertEqual(audit["summary"]["duplicate_asset_id_prefixes"], 0)
 
 

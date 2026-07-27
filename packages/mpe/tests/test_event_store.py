@@ -42,7 +42,8 @@ class EventStoreContractTests:
             component="runtime",
             component_version="1.0.0",
             provenance=provenance or [],
-            payload=payload or {
+            payload=payload
+            or {
                 "session_id": str(self.session_id),
                 "program_version_id": str(ProgramVersionID("pv")),
                 "protocol_version_id": str(self.protocol_version_id),

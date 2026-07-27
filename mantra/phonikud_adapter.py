@@ -1,4 +1,5 @@
 """Phonikud adapter: vocalized Hebrew → IPA phonemes."""
+
 from __future__ import annotations
 
 from dataclasses import dataclass
@@ -14,7 +15,9 @@ class PhonikudResult:
     stress: int
 
 
-def phonemize(vocalized: str, predict_stress: bool = True, predict_vocal_shva: bool = True) -> PhonikudResult:
+def phonemize(
+    vocalized: str, predict_stress: bool = True, predict_vocal_shva: bool = True
+) -> PhonikudResult:
     """Phonemize vocalized Hebrew using the phonikud library.
 
     Returns IPA-style phonemes and the stress syllable index derived from the

@@ -1,4 +1,5 @@
 """Shared utilities for Phase 1 Mantra engine."""
+
 from __future__ import annotations
 
 import hashlib

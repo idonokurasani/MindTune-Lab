@@ -5,6 +5,7 @@ only as contextual advisers.  They never create, modify, or promote automatic
 gold records.  Any evaluator result must be merged into the deterministic engine's
 evidence pipeline by the existing approval layer.
 """
+
 from __future__ import annotations
 
 import json
@@ -54,8 +55,9 @@ class EvaluatorResult:
 class _InferenceBackend(Protocol):
     """Pluggable backend for running a local model."""
 
-    def generate(self, prompt: str, max_tokens: int, temperature: float, seed: int | None) -> str:
-        ...
+    def generate(
+        self, prompt: str, max_tokens: int, temperature: float, seed: int | None
+    ) -> str: ...
 
 
 class HebrewEvaluatorAgent(ABC):
@@ -67,7 +69,9 @@ class HebrewEvaluatorAgent(ABC):
     conflicting advice is ignored by downstream approval logic.
     """
 
-    def __init__(self, model_identity: str, model_version: str, prompt_version: str = "1.0") -> None:
+    def __init__(
+        self, model_identity: str, model_version: str, prompt_version: str = "1.0"
+    ) -> None:
         self.model_identity = model_identity
         self.model_version = model_version
         self.prompt_version = prompt_version
@@ -119,23 +123,50 @@ class HebrewEvaluatorAgent(ABC):
             prompt_used=prompt,
         )
 
-    def evaluate_sentence_naturalness(self, sentence: str, deterministic: dict[str, Any] | None = None) -> EvaluatorResult:
+    def evaluate_sentence_naturalness(
+        self, sentence: str, deterministic: dict[str, Any] | None = None
+    ) -> EvaluatorResult:
         return self.evaluate("sentence_naturalness", sentence, {}, deterministic)
 
-    def disambiguate_morphology(self, form: str, candidates: list[dict[str, Any]], deterministic: dict[str, Any] | None = None) -> EvaluatorResult:
-        return self.evaluate("morphological_disambiguation", form, {"candidates": candidates}, deterministic)
+    def disambiguate_morphology(
+        self,
+        form: str,
+        candidates: list[dict[str, Any]],
+        deterministic: dict[str, Any] | None = None,
+    ) -> EvaluatorResult:
+        return self.evaluate(
+            "morphological_disambiguation", form, {"candidates": candidates}, deterministic
+        )
 
-    def classify_register(self, sentence: str, deterministic: dict[str, Any] | None = None) -> EvaluatorResult:
+    def classify_register(
+        self, sentence: str, deterministic: dict[str, Any] | None = None
+    ) -> EvaluatorResult:
         return self.evaluate("register_classification", sentence, {}, deterministic)
 
-    def assess_semantic_plausibility(self, sentence: str, deterministic: dict[str, Any] | None = None) -> EvaluatorResult:
+    def assess_semantic_plausibility(
+        self, sentence: str, deterministic: dict[str, Any] | None = None
+    ) -> EvaluatorResult:
         return self.evaluate("semantic_plausibility", sentence, {}, deterministic)
 
-    def diagnose_contextual_error(self, sentence: str, target_form: str, deterministic: dict[str, Any] | None = None) -> EvaluatorResult:
-        return self.evaluate("contextual_error_diagnosis", sentence, {"target_form": target_form}, deterministic)
+    def diagnose_contextual_error(
+        self, sentence: str, target_form: str, deterministic: dict[str, Any] | None = None
+    ) -> EvaluatorResult:
+        return self.evaluate(
+            "contextual_error_diagnosis", sentence, {"target_form": target_form}, deterministic
+        )
 
-    def compare_variants(self, variants: list[str], context: dict[str, Any], deterministic: dict[str, Any] | None = None) -> EvaluatorResult:
-        return self.evaluate("compare_accepted_variants", variants[0] if variants else "", {"variants": variants, **context}, deterministic)
+    def compare_variants(
+        self,
+        variants: list[str],
+        context: dict[str, Any],
+        deterministic: dict[str, Any] | None = None,
+    ) -> EvaluatorResult:
+        return self.evaluate(
+            "compare_accepted_variants",
+            variants[0] if variants else "",
+            {"variants": variants, **context},
+            deterministic,
+        )
 
     @staticmethod
     def _default_json_schema() -> dict[str, Any]:
@@ -152,7 +183,9 @@ class HebrewEvaluatorAgent(ABC):
             "required": ["analysis", "confidence", "abstain"],
         }
 
-    def _parse_and_validate(self, raw: str, schema: dict[str, Any]) -> tuple[dict[str, Any], float, bool]:
+    def _parse_and_validate(
+        self, raw: str, schema: dict[str, Any]
+    ) -> tuple[dict[str, Any], float, bool]:
         """Best-effort JSON extraction and validation."""
         parsed: dict[str, Any] = {}
         confidence = 0.0
@@ -177,7 +210,9 @@ class HebrewEvaluatorAgent(ABC):
         abstain = bool(parsed.get("abstain", True))
         return parsed, max(0.0, min(1.0, confidence)), abstain
 
-    def _compare_with_engine(self, parsed: dict[str, Any], engine_result: dict[str, Any]) -> bool | None:
+    def _compare_with_engine(
+        self, parsed: dict[str, Any], engine_result: dict[str, Any]
+    ) -> bool | None:
         """Return whether the evaluator agrees with the deterministic engine."""
         if not engine_result:
             return None
@@ -254,16 +289,19 @@ class DictaLMEvaluator(HebrewEvaluatorAgent):
             return self.backend
         try:
             import mlx_lm  # noqa: F401
+
             return "mlx"
         except Exception:
             pass
         try:
             import llama_cpp  # noqa: F401
+
             return "llama_cpp"
         except Exception:
             pass
         try:
             import transformers  # noqa: F401
+
             return "transformers"
         except Exception:
             pass
@@ -278,8 +316,12 @@ class DictaLMEvaluator(HebrewEvaluatorAgent):
         model, tokenizer = self._mlx_model, self._mlx_tokenizer
         if tokenizer.chat_template:
             messages = json.loads(prompt)
-            prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
-        return generate(model, tokenizer, prompt=prompt, max_tokens=max_tokens, temp=temperature, verbose=False)
+            prompt = tokenizer.apply_chat_template(
+                messages, tokenize=False, add_generation_prompt=True
+            )
+        return generate(
+            model, tokenizer, prompt=prompt, max_tokens=max_tokens, temp=temperature, verbose=False
+        )
 
     def _call_llama_cpp(self, prompt: str, max_tokens: int, temperature: float) -> str:
         from llama_cpp import Llama
@@ -295,7 +337,9 @@ class DictaLMEvaluator(HebrewEvaluatorAgent):
 
         import openai
 
-        client = openai.OpenAI(base_url=os.environ.get("VLLM_BASE_URL", "http://localhost:8000/v1"), api_key="no-key")
+        client = openai.OpenAI(
+            base_url=os.environ.get("VLLM_BASE_URL", "http://localhost:8000/v1"), api_key="no-key"
+        )
         messages = json.loads(prompt)
         response = client.chat.completions.create(
             model=self.model_identity,
@@ -316,7 +360,13 @@ class DictaLMEvaluator(HebrewEvaluatorAgent):
             trust_remote_code=True,
         )
         messages = json.loads(prompt)
-        pipe = pipeline("text-generation", model=model, tokenizer=tokenizer, max_new_tokens=max_tokens, temperature=temperature)
+        pipe = pipeline(
+            "text-generation",
+            model=model,
+            tokenizer=tokenizer,
+            max_new_tokens=max_tokens,
+            temperature=temperature,
+        )
         out = pipe(messages)
         return out[0]["generated_text"][-1]["content"]
 

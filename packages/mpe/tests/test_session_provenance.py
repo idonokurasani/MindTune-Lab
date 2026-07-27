@@ -127,9 +127,7 @@ class ProvenanceReferenceTests(unittest.TestCase):
 
     def test_unavailable_legacy_must_not_carry_an_event_id(self) -> None:
         with self.assertRaises(ValidationError):
-            ProvenanceReference(
-                PROVENANCE_UNAVAILABLE_LEGACY, make_id(EventID), "1.1"
-            )
+            ProvenanceReference(PROVENANCE_UNAVAILABLE_LEGACY, make_id(EventID), "1.1")
 
     def test_unavailable_legacy_is_not_permitted_for_schema_12(self) -> None:
         with self.assertRaises(ValidationError):
@@ -202,9 +200,7 @@ class RuntimeProvenanceTests(unittest.TestCase):
 
     def test_the_software_revision_records_its_source(self) -> None:
         self._create()
-        revision = self.store.read(self.runtime.state.session_id)[1].payload[
-            "software_revision"
-        ]
+        revision = self.store.read(self.runtime.state.session_id)[1].payload["software_revision"]
         self.assertIn("revision", revision)
         self.assertIn(
             revision["source"],
@@ -221,9 +217,7 @@ class RuntimeProvenanceTests(unittest.TestCase):
         self._create()
         state: RuntimeState = self.runtime.state
         self.assertIsNotNone(state.provenance_event_id)
-        self.assertEqual(
-            state.as_dict()["provenance_event_id"], state.provenance_event_id
-        )
+        self.assertEqual(state.as_dict()["provenance_event_id"], state.provenance_event_id)
 
     def test_the_first_trial_event_names_the_provenance_event(self) -> None:
         store = InMemoryEventStore()
@@ -244,15 +238,11 @@ class DerivedResultProvenanceTests(unittest.TestCase):
         summary = derive_recognition_summary(self.events)
         assert summary.provenance is not None
         self.assertEqual(summary.provenance.status, PROVENANCE_RECORDED)
-        self.assertEqual(
-            summary.as_dict()["provenance_event_id"], str(self.events[1].event_id)
-        )
+        self.assertEqual(summary.as_dict()["provenance_event_id"], str(self.events[1].event_id))
 
     def test_a_schema_12_stream_without_provenance_yields_no_result(self) -> None:
         stripped = [
-            event
-            for event in self.events
-            if event.event_type != "session_provenance_recorded"
+            event for event in self.events if event.event_type != "session_provenance_recorded"
         ]
         with self.assertRaises(ValidationError):
             derive_recognition_summary(stripped)

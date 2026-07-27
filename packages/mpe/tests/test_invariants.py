@@ -18,10 +18,8 @@ class InvariantTests(unittest.TestCase):
     def test_completed_session_cannot_emit_normal_flow_events(self) -> None:
         # The mock flow ends with session_completed; no trial events follow it.
         _live_state, events, _replayed, _store = run_demo()
-        terminal_idx = next(
-            i for i, e in enumerate(events) if e.event_type == "session_completed"
-        )
-        after_terminal = events[terminal_idx + 1:]
+        terminal_idx = next(i for i, e in enumerate(events) if e.event_type == "session_completed")
+        after_terminal = events[terminal_idx + 1 :]
         for event in after_terminal:
             self.assertNotIn(event.event_type, {"trial_created", "response_window_opened"})
 

@@ -1,4 +1,5 @@
 """Audio assembly: concatenate speech and silence segments into a WAV artifact."""
+
 from __future__ import annotations
 
 import io
@@ -113,7 +114,10 @@ def assemble_audio(
     segments_dir.mkdir(exist_ok=True)
 
     def _speech_config_for_segment(segment: TimelineSegment) -> SpeechConfig:
-        if segment.locale == spec.italian_speech.locale or segment.language == spec.italian_speech.language:
+        if (
+            segment.locale == spec.italian_speech.locale
+            or segment.language == spec.italian_speech.language
+        ):
             return spec.italian_speech
         return spec.speech
 
@@ -143,9 +147,15 @@ def assemble_audio(
             segment.artifact_reference = None
             samples = _silence_int16(duration, target_sample_rate)
         else:
-            text = normalize_unicode(segment.tts_text or segment.source_text) if (segment.tts_text or segment.source_text) else ""
+            text = (
+                normalize_unicode(segment.tts_text or segment.source_text)
+                if (segment.tts_text or segment.source_text)
+                else ""
+            )
             if not text:
-                warnings.append(f"Segment {segment.segment_id} has empty source text; using silence")
+                warnings.append(
+                    f"Segment {segment.segment_id} has empty source text; using silence"
+                )
                 duration = 0.0
                 segment.actual_duration = duration
                 segment.generation_status = "skipped"
@@ -157,10 +167,10 @@ def assemble_audio(
             if providers and segment.language:
                 segment_provider = providers.get(segment.language, provider)
 
-            if (
-                pronunciation_lexicon is not None
-                and segment.segment_type in {SegmentType.HEBREW_FORM, SegmentType.HEBREW_INFINITIVE}
-            ):
+            if pronunciation_lexicon is not None and segment.segment_type in {
+                SegmentType.HEBREW_FORM,
+                SegmentType.HEBREW_INFINITIVE,
+            }:
                 meta = segment.grammatical_metadata
                 conjugated = f"{meta.get('tense', '')}/{meta.get('form_key', '')}"
                 entry = pronunciation_lexicon.get(

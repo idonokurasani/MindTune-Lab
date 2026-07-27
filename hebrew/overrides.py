@@ -2,6 +2,7 @@
 
 Corrections made here propagate to all Hebrew Lab consumers.
 """
+
 from __future__ import annotations
 
 import json

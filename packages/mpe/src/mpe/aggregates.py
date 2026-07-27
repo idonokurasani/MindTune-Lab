@@ -77,9 +77,7 @@ class RuntimeState:
         """Apply a single canonical event to this state."""
         handler = _EVENT_HANDLERS.get(event.event_type)
         if handler is None:
-            raise IllegalStateTransitionError(
-                f"No state handler for event type {event.event_type}"
-            )
+            raise IllegalStateTransitionError(f"No state handler for event type {event.event_type}")
         handler(self, event)
         self.events.append(event)
 
@@ -102,7 +100,9 @@ class RuntimeState:
                     "block_id": t.block_id,
                     "status": t.status,
                     "answer_status": t.answer_status.value if t.answer_status else None,
-                    "response_window_id": t.response_window.response_window_id if t.response_window else None,
+                    "response_window_id": (
+                        t.response_window.response_window_id if t.response_window else None
+                    ),
                     "evaluation_id": t.evaluation_id,
                 }
                 for tid, t in self.trials.items()
@@ -235,7 +235,9 @@ def _on_response_window_opened(state: RuntimeState, event: Event) -> None:
     trial_id = p.get("trial_id")
     response_window_id = p.get("response_window_id")
     if trial_id is None or response_window_id is None:
-        raise IllegalStateTransitionError("response_window_opened missing trial_id or response_window_id")
+        raise IllegalStateTransitionError(
+            "response_window_opened missing trial_id or response_window_id"
+        )
     trial = state.trials.get(str(trial_id))
     if trial is None:
         raise IllegalStateTransitionError(f"response_window_opened for unknown trial {trial_id}")
@@ -264,7 +266,9 @@ def _on_captured_response_created(state: RuntimeState, event: Event) -> None:
     if response_window_id is None:
         raise IllegalStateTransitionError("captured_response_created missing response_window_id")
     trial = _require_trial(state, trial_id, "captured_response_created")
-    if trial.response_window is None or trial.response_window.response_window_id != str(response_window_id):
+    if trial.response_window is None or trial.response_window.response_window_id != str(
+        response_window_id
+    ):
         raise IllegalStateTransitionError(
             f"captured_response_created without open response window {response_window_id}"
         )
@@ -286,7 +290,9 @@ def _on_response_interpreted(state: RuntimeState, event: Event) -> None:
             "response_interpreted does not follow captured_response_created"
         )
     if trial.response_window.captured_response_id != p.get("captured_response_id"):
-        raise IllegalStateTransitionError("response_interpreted references wrong captured_response_id")
+        raise IllegalStateTransitionError(
+            "response_interpreted references wrong captured_response_id"
+        )
     trial.response_window.status = "interpreted"
     trial.response_window.response_interpretation_id = p.get("response_interpretation_id")
 
@@ -319,7 +325,9 @@ def _on_evaluation_completed(state: RuntimeState, event: Event) -> None:
         raise IllegalStateTransitionError(
             f"evaluation_completed for trial {trial_id} without normalized response"
         )
-    if trial.response_window.domain_normalized_response_id != p.get("domain_normalized_response_id"):
+    if trial.response_window.domain_normalized_response_id != p.get(
+        "domain_normalized_response_id"
+    ):
         raise IllegalStateTransitionError(
             "evaluation_completed references wrong domain_normalized_response_id"
         )

@@ -1,4 +1,5 @@
 """Adapter for the Java Verb Inflector."""
+
 from __future__ import annotations
 
 import csv
@@ -93,9 +94,7 @@ class VerbInflectorAdapter:
                 raise InflectorError(f"Verb Inflector timed out: {exc}") from exc
 
             if result.returncode != 0:
-                raise InflectorError(
-                    f"Verb Inflector failed: {result.stderr or result.stdout}"
-                )
+                raise InflectorError(f"Verb Inflector failed: {result.stderr or result.stdout}")
 
             output_path = Path(tmpdir) / "Generated Inflections.txt"
             if not output_path.exists():
@@ -150,9 +149,7 @@ class VerbInflectorAdapter:
 
         return self.generate(base_form, pattern, table_number)
 
-    def _resolve_pattern_table(
-        self, base_form: str, binyan: str | None = None
-    ) -> tuple[str, int]:
+    def _resolve_pattern_table(self, base_form: str, binyan: str | None = None) -> tuple[str, int]:
         """Resolve pattern and table number from TheVerbIndex.csv."""
         index_path = (
             Path(__file__).resolve().parents[2]
@@ -168,6 +165,4 @@ class VerbInflectorAdapter:
             for row in reader:
                 if strip_niqqud(row["base_form"]) == base_plain:
                     return row["pattern_1"], int(row["table_number_1"])
-        raise InflectorError(
-            f"Could not resolve pattern/table for base form {base_form}"
-        )
+        raise InflectorError(f"Could not resolve pattern/table for base form {base_form}")

@@ -1,4 +1,5 @@
 """Markdown report generators for Phase 3."""
+
 from __future__ import annotations
 
 import json
@@ -26,9 +27,15 @@ def metrics_to_markdown(metrics: dict, title: str = "Phase 3 Reliability Metrics
         ["Coverage", metrics.get("coverage", 0)],
         ["Abstention rate", metrics.get("abstention_rate", 0.0)],
         ["False-confidence rate", metrics.get("false_confidence_rate", 0.0)],
-        ["False acceptance of nonexistent forms", metrics.get("false_acceptance_of_nonexistent_forms", 0.0)],
+        [
+            "False acceptance of nonexistent forms",
+            metrics.get("false_acceptance_of_nonexistent_forms", 0.0),
+        ],
         ["Morphology accuracy", metrics.get("morphology_accuracy", 0.0)],
-        ["Canonical unvocalized spelling accuracy", metrics.get("canonical_unvocalized_spelling_accuracy", 0.0)],
+        [
+            "Canonical unvocalized spelling accuracy",
+            metrics.get("canonical_unvocalized_spelling_accuracy", 0.0),
+        ],
         ["Vocalized exact-match accuracy", metrics.get("vocalized_exact_match_accuracy", 0.0)],
         ["Pronunciation accuracy", metrics.get("pronunciation_accuracy", 0.0)],
         ["Stress accuracy", metrics.get("stress_accuracy", 0.0)],

@@ -6,6 +6,7 @@ conflicts is marked as curriculum-approved with a `manual_override` review
 record.  Forms with unresolved surface conflicts or no Pealim attestation
 remain restricted.
 """
+
 from __future__ import annotations
 
 import json
@@ -104,7 +105,9 @@ def _build_fixture(
     for key, form in sorted(paradigm.forms.items()):
         # Recompute usage classification with core-form override.
         core = key in GOLD_FILE_KEYS
-        form.usage_classification = classify_form(form, form.corpus_attestation_count, core_override=core)
+        form.usage_classification = classify_form(
+            form, form.corpus_attestation_count, core_override=core
+        )
 
         source_ids = {ev.source_id for ev in form.source_evidence}
         has_pealim = "pealim" in source_ids
@@ -149,12 +152,14 @@ def _build_fixture(
             if surf and surf != canonical and surf not in accepted_variants:
                 accepted_variants.append(surf)
         for d in form.unresolved_conflicts:
-            known_exceptions.append({
-                "form_key": key,
-                "field": d.field_name,
-                "severity": d.severity,
-                "values": d.values,
-            })
+            known_exceptions.append(
+                {
+                    "form_key": key,
+                    "field": d.field_name,
+                    "severity": d.severity,
+                    "values": d.values,
+                }
+            )
 
     fixture: dict[str, Any] = {
         "approved_lemma": lemma_vocalized,

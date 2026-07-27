@@ -1,4 +1,5 @@
 """Tests for the Hebrew phonological validation module (Phase 3)."""
+
 from __future__ import annotations
 
 import csv
@@ -18,6 +19,7 @@ try:
         extract_syllables,
     )
     from hebrew.shva import classify_shva
+
     _PHONIKUD_AVAILABLE = True
 except ImportError as exc:
     if "phonikud" not in str(exc):
@@ -142,39 +144,19 @@ class TestPhonologicalValidator(unittest.TestCase):
     def test_begadkefat_realization(self):
         """Begedkefet letters realize as plosive or spirant correctly."""
         # ב spirant after a vowel, plosive initially
-        self.assertEqual(
-            begadkefat_realization("ב", None, 0)["realized"], "b"
-        )
-        self.assertEqual(
-            begadkefat_realization("ב", "qamats", 1)["realized"], "v"
-        )
+        self.assertEqual(begadkefat_realization("ב", None, 0)["realized"], "b")
+        self.assertEqual(begadkefat_realization("ב", "qamats", 1)["realized"], "v")
         # כ plosive initially, spirant after a vowel, dagesh overrides
-        self.assertEqual(
-            begadkefat_realization("כ", "qamats", 0)["realized"], "k"
-        )
-        self.assertEqual(
-            begadkefat_realization("כְ", "hiriq", 1)["realized"], "χ"
-        )
-        self.assertEqual(
-            begadkefat_realization("כְּ", "hiriq", 1)["realized"], "k"
-        )
+        self.assertEqual(begadkefat_realization("כ", "qamats", 0)["realized"], "k")
+        self.assertEqual(begadkefat_realization("כְ", "hiriq", 1)["realized"], "χ")
+        self.assertEqual(begadkefat_realization("כְּ", "hiriq", 1)["realized"], "k")
         # פ spirant after a vowel, plosive with dagesh
-        self.assertEqual(
-            begadkefat_realization("פְ", "patah", 2)["realized"], "f"
-        )
-        self.assertEqual(
-            begadkefat_realization("פּ", "qamats", 0)["realized"], "p"
-        )
+        self.assertEqual(begadkefat_realization("פְ", "patah", 2)["realized"], "f")
+        self.assertEqual(begadkefat_realization("פּ", "qamats", 0)["realized"], "p")
         # ג, ד, ת remain plosive in modern Hebrew
-        self.assertEqual(
-            begadkefat_realization("ג", "qamats", 1)["realized"], "g"
-        )
-        self.assertEqual(
-            begadkefat_realization("דְ", "segol", 2)["realized"], "d"
-        )
-        self.assertEqual(
-            begadkefat_realization("ת", "qamats", 3)["realized"], "t"
-        )
+        self.assertEqual(begadkefat_realization("ג", "qamats", 1)["realized"], "g")
+        self.assertEqual(begadkefat_realization("דְ", "segol", 2)["realized"], "d")
+        self.assertEqual(begadkefat_realization("ת", "qamats", 3)["realized"], "t")
 
     def test_gold_verbs(self):
         """The three Phase 2 verified verbs validate without exceptions."""
@@ -187,9 +169,7 @@ class TestPhonologicalValidator(unittest.TestCase):
                 result = self.validator.validate(surface, context)
                 self.assertTrue(REQUIRED_KEYS.issubset(result.keys()))
                 self.assertGreaterEqual(result["lexical_stress"], 1)
-                self.assertLessEqual(
-                    result["lexical_stress"], len(result["syllabification"]) or 1
-                )
+                self.assertLessEqual(result["lexical_stress"], len(result["syllabification"]) or 1)
 
     def test_eran_tomer_csv_forms(self):
         """CSV inflected forms produce valid phonological records."""
@@ -199,9 +179,7 @@ class TestPhonologicalValidator(unittest.TestCase):
         self.assertGreaterEqual(len(rows), 30, "CSV should have at least 30 rows")
         for row in rows[:35]:
             with self.subTest(vocalized=row["vocalized_inflection"]):
-                result = self.validator.validate(
-                    row["vocalized_inflection"], row["morphology"]
-                )
+                result = self.validator.validate(row["vocalized_inflection"], row["morphology"])
                 self.assertTrue(REQUIRED_KEYS.issubset(result.keys()))
                 self.assertIsInstance(result["phonemic"], str)
                 self.assertIsInstance(result["practical"], str)

@@ -9,6 +9,7 @@ Status hierarchy:
 - unresolved: insufficient evidence or a known ambiguity.
 - rejected: a production source or normative rule explicitly rejects the form.
 """
+
 from __future__ import annotations
 
 import math

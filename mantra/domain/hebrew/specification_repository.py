@@ -4,6 +4,7 @@ The repository loads immutable JSON fixtures, validates schema versions,
 detects duplicate entry IDs, and verifies SHA-256 content checksums. It does
 not synthesize audio, mutate the filesystem, or fall back to unrelated lemmas.
 """
+
 from __future__ import annotations
 
 import copy
@@ -30,9 +31,7 @@ class HebrewSpecificationRepository:
 
     def __init__(self, data_dir: Path | str | None = None) -> None:
         if data_dir is None:
-            data_dir = (
-                Path(__file__).resolve().parents[3] / "data/hebrew/specifications/v1"
-            )
+            data_dir = Path(__file__).resolve().parents[3] / "data/hebrew/specifications/v1"
         self._data_dir = Path(data_dir)
 
     def _path_for(self, verb_id: str) -> Path:
@@ -80,13 +79,7 @@ class HebrewSpecificationRepository:
 
     def list_available(self) -> tuple[str, ...]:
         """Return the stable, sorted tuple of available verb IDs."""
-        return tuple(
-            sorted(
-                path.stem
-                for path in self._data_dir.glob("*.json")
-                if path.is_file()
-            )
-        )
+        return tuple(sorted(path.stem for path in self._data_dir.glob("*.json") if path.is_file()))
 
     def has(self, verb_id: str) -> bool:
         """Return True when a fixture exists for *verb_id*."""
@@ -95,9 +88,7 @@ class HebrewSpecificationRepository:
     def _load_raw(self, verb_id: str) -> dict[str, Any]:
         path = self._path_for(verb_id)
         if not path.is_file():
-            raise HebrewSpecificationError(
-                f"no specification for verb {verb_id!r}"
-            )
+            raise HebrewSpecificationError(f"no specification for verb {verb_id!r}")
         text = path.read_text(encoding="utf-8")
         return cast(dict[str, Any], json.loads(text))
 
@@ -115,19 +106,13 @@ class HebrewSpecificationRepository:
         errors: list[str] = []
 
         schema_version = raw.get("schema_version", "")
-        schema_version_supported = (
-            schema_version in self.SUPPORTED_SCHEMA_VERSIONS
-        )
+        schema_version_supported = schema_version in self.SUPPORTED_SCHEMA_VERSIONS
         if not schema_version_supported:
-            errors.append(
-                f"unsupported schema version {schema_version!r}"
-            )
+            errors.append(f"unsupported schema version {schema_version!r}")
 
         stored_checksum = raw.get("content_checksum")
         computed_checksum = self.compute_checksum(raw)
-        checksum_match = (
-            stored_checksum is not None and stored_checksum == computed_checksum
-        )
+        checksum_match = stored_checksum is not None and stored_checksum == computed_checksum
         if stored_checksum is None:
             errors.append("missing content_checksum")
         elif not checksum_match:
@@ -137,11 +122,7 @@ class HebrewSpecificationRepository:
         if not isinstance(entries, list):
             errors.append("entries must be a list")
         else:
-            entry_ids = [
-                e.get("entry_id")
-                for e in entries
-                if isinstance(e, dict)
-            ]
+            entry_ids = [e.get("entry_id") for e in entries if isinstance(e, dict)]
             if len(entry_ids) != len(set(entry_ids)):
                 errors.append("duplicate entry IDs")
 
@@ -169,9 +150,7 @@ class HebrewSpecificationRepository:
                 domain validation.
         """
         if not self.has(verb_id):
-            raise HebrewSpecificationError(
-                f"no specification for verb {verb_id!r}"
-            )
+            raise HebrewSpecificationError(f"no specification for verb {verb_id!r}")
 
         result = self.validate(verb_id)
         if not result.valid:

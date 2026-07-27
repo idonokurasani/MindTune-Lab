@@ -4,6 +4,7 @@ Both data sets are expected to be identical because the Eran Tomer CSV was
 produced by the Verb Inflector. This module still detects and reports any
 mismatches or derivation differences.
 """
+
 from __future__ import annotations
 
 import csv

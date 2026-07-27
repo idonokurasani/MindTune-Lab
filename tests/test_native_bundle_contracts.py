@@ -21,8 +21,8 @@ class NativeBundleContractTests(unittest.TestCase):
 
     def test_build_requires_verified_pylsl_runtime(self) -> None:
         source = BUILD_SCRIPT.read_text(encoding="utf-8")
-        self.assertIn('PYLSL_SITE=', source)
-        self.assertIn('exit 3', source)
+        self.assertIn("PYLSL_SITE=", source)
+        self.assertIn("exit 3", source)
 
 
 if __name__ == "__main__":

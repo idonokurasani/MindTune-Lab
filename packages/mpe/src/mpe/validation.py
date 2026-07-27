@@ -60,7 +60,10 @@ def _validate_provenance(event: Event, previous_events: list[Event]) -> None:
             )
         # Causal ordering: provenance events must have lower sequence numbers.
         for prev in previous_events:
-            if prev.event_id == prov and prev.session_sequence_number >= event.session_sequence_number:
+            if (
+                prev.event_id == prov
+                and prev.session_sequence_number >= event.session_sequence_number
+            ):
                 raise EventOrderingError(
                     f"provenance event {prov} has sequence {prev.session_sequence_number} "
                     f">= current {event.session_sequence_number}"
@@ -107,9 +110,7 @@ def _validate_field(event_type: str, rule: Any, value: Any) -> None:
 
 def _check_id(event_type: str, name: str, value: Any) -> None:
     if not isinstance(value, str) or not value:
-        raise ValidationError(
-            f"{event_type}.{name} must be a non-empty string identifier"
-        )
+        raise ValidationError(f"{event_type}.{name} must be a non-empty string identifier")
 
 
 def _check_str(event_type: str, name: str, value: Any) -> None:
@@ -176,6 +177,4 @@ def validate_session_transition(
 def validate_identifier_type(value: Any, expected: type[Identifier]) -> None:
     """Validate that a value is an Identifier of the expected type."""
     if not isinstance(value, expected):
-        raise ValidationError(
-            f"Expected {expected.__name__}, got {type(value).__name__}"
-        )
+        raise ValidationError(f"Expected {expected.__name__}, got {type(value).__name__}")

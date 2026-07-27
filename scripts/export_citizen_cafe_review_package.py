@@ -135,7 +135,16 @@ def main() -> None:
         "study_ready",
         "quality_flags",
     ]
-    z_fields = ["deck", "front_hebrew", "back_italian", "study_ready", "quality_flags", "id", "source_file", "source_row"]
+    z_fields = [
+        "deck",
+        "front_hebrew",
+        "back_italian",
+        "study_ready",
+        "quality_flags",
+        "id",
+        "source_file",
+        "source_row",
+    ]
 
     write_csv(OUT / "citizen_cafe_all_courses_compact.csv", items, compact_fields)
     write_csv(OUT / "citizen_cafe_all_courses_study_ready_only.csv", ready, compact_fields)
@@ -173,7 +182,9 @@ def main() -> None:
         "study_ready_cards": len(ready),
         "blocked_review_cards": len(blocked),
         "ready_by_deck": {deck: ready_counts.get(deck, 0) for deck in COLOR_ORDER},
-        "blocked_by_deck": {deck: blocked_counts.get(deck, 0) for deck in COLOR_ORDER if blocked_counts.get(deck, 0)},
+        "blocked_by_deck": {
+            deck: blocked_counts.get(deck, 0) for deck in COLOR_ORDER if blocked_counts.get(deck, 0)
+        },
         "notes": [
             "UTF-8/UTF-8-SIG exports preserve Hebrew logical order.",
             "Do not edit canonical seed directly; use blocked_review files or source_map refs for corrections.",
@@ -182,7 +193,9 @@ def main() -> None:
         ],
         "files": sorted(path.name for path in OUT.iterdir() if path.is_file()),
     }
-    (OUT / "MANIFEST.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (OUT / "MANIFEST.json").write_text(
+        json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
 
     readme = [
         "# Citizen Cafe All Courses Review Package",

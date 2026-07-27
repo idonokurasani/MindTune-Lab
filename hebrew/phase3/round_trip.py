@@ -6,6 +6,7 @@ Inflector can reconstruct the expected surface for that form key. Because a
 single form key can map to multiple orthographic variants, a round-trip succeeds
 when the expected surface appears in the generated set.
 """
+
 from __future__ import annotations
 
 import csv

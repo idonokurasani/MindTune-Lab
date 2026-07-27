@@ -19,7 +19,12 @@ ARTIFACT_VERSION = "1.1"
 AUDIT = DATA / "quizlet_hebrew_audit.csv"
 SEED = DATA / "quizlet_hebrew_seed.json"
 ACTIVE_SEED = OUT / "quizlet_hebrew_seed.canonical.json"
-PATCH_BACK_ONLY = ROOT.parent / "exports" / "zai_patch_review_20260714" / "zai_patch_candidate_apply_back_only.csv"
+PATCH_BACK_ONLY = (
+    ROOT.parent
+    / "exports"
+    / "zai_patch_review_20260714"
+    / "zai_patch_candidate_apply_back_only.csv"
+)
 
 HEBREW_MARKS_RE = re.compile(r"[\u0591-\u05bd\u05bf-\u05c7]")
 HEBREW_RE = re.compile(r"[\u0590-\u05ff]")
@@ -91,7 +96,9 @@ def clean_space(value: Any) -> str:
 def strip_niqqud(value: Any) -> str:
     text = unicodedata.normalize("NFKD", str(value or ""))
     text = HEBREW_MARKS_RE.sub("", text)
-    text = "".join(ch for ch in text if not (unicodedata.combining(ch) and "\u0590" <= ch <= "\u05ff"))
+    text = "".join(
+        ch for ch in text if not (unicodedata.combining(ch) and "\u0590" <= ch <= "\u05ff")
+    )
     return unicodedata.normalize("NFC", text)
 
 
@@ -150,7 +157,9 @@ def load_back_only_patches() -> dict[str, dict[str, str]]:
     return patches
 
 
-def apply_back_patch(item: dict[str, Any], patches: dict[str, dict[str, str]]) -> tuple[str, dict[str, str] | None]:
+def apply_back_patch(
+    item: dict[str, Any], patches: dict[str, dict[str, str]]
+) -> tuple[str, dict[str, str] | None]:
     item_id = clean_space(item.get("id"))
     current_front = normalize_hebrew(item.get("raw_front") or item.get("term"))
     current_back = normalize_translation(item.get("raw_back") or item.get("meaning"))
@@ -165,7 +174,9 @@ def apply_back_patch(item: dict[str, Any], patches: dict[str, dict[str, str]]) -
     return proposed or current_back, patch
 
 
-def apply_local_back_correction(item: dict[str, Any], current_back: str) -> tuple[str, dict[str, str] | None]:
+def apply_local_back_correction(
+    item: dict[str, Any], current_back: str
+) -> tuple[str, dict[str, str] | None]:
     item_id = clean_space(item.get("id"))
     proposed = LOCAL_BACK_CORRECTIONS.get(item_id)
     if not proposed:
@@ -251,8 +262,12 @@ def main() -> None:
     for position, item in enumerate(seed_items, start=1):
         deck = clean_space(item.get("deck") or item.get("citizen_color") or "Unclassified")
         slug, level, swatch = COLOR_BY_LABEL.get(deck, ("unclassified", 99, "#9ca3af"))
-        front_original = clean_space(item.get("raw_front_original") or item.get("raw_front") or item.get("term"))
-        back_original = clean_space(item.get("raw_back_original") or item.get("raw_back") or item.get("meaning"))
+        front_original = clean_space(
+            item.get("raw_front_original") or item.get("raw_front") or item.get("term")
+        )
+        back_original = clean_space(
+            item.get("raw_back_original") or item.get("raw_back") or item.get("meaning")
+        )
         front = normalize_hebrew(item.get("raw_front") or front_original)
         back_before_patch = normalize_translation(item.get("raw_back") or back_original)
         back, applied_patch = apply_back_patch(item, back_patches)
@@ -267,7 +282,11 @@ def main() -> None:
         audit_matches = audit_index.get((deck, front, back), [])
         audit_match = audit_matches[0] if audit_matches else None
         flags = quality_flags(item, audit_match)
-        if effective_patch and "translation_language_mixed" in flags and not ENGLISH_TOKEN_RE.search(back):
+        if (
+            effective_patch
+            and "translation_language_mixed" in flags
+            and not ENGLISH_TOKEN_RE.search(back)
+        ):
             flags = [flag for flag in flags if flag != "translation_language_mixed"]
         flags = sorted(set(flags + structural_quality_flags(front, back)))
         key = (deck, front, back)
@@ -286,13 +305,21 @@ def main() -> None:
             "back_too_short",
             "front_contains_latin",
         }
-        quarantine_status = "quarantine" if (blocking_flags.intersection(flags) or duplicate_candidate) else "active_candidate"
+        quarantine_status = (
+            "quarantine"
+            if (blocking_flags.intersection(flags) or duplicate_candidate)
+            else "active_candidate"
+        )
         if quarantine_status == "quarantine":
             quarantined += 1
-        item_id = clean_space(item.get("id")) or stable_id("cc", deck, source_file, source_row, front, back)
+        item_id = clean_space(item.get("id")) or stable_id(
+            "cc", deck, source_file, source_row, front, back
+        )
         canonical_item_id = stable_id("cclex", deck, front, back)
         lu_id = stable_id("lu", "hebrew_modern", canonical_item_id, "flashcard")
-        source_ref = stable_id("src", deck, source, source_file, source_row, front_original, back_original)
+        source_ref = stable_id(
+            "src", deck, source, source_file, source_row, front_original, back_original
+        )
 
         raw_records.append(
             {
@@ -313,8 +340,11 @@ def main() -> None:
                 "normalized_translation_before_patch": back_before_patch,
                 "applied_patch_id": stable_id("patch", item_id) if effective_patch else "",
                 "rtl_reversal_flag": False,
-                "front_back_pairing_confidence": "high" if audit_match or source != "pdf_extracted_raw" else "medium",
-                "extraction_confidence": item.get("extraction_confidence") or ("verified" if item.get("study_ready", True) else "candidate"),
+                "front_back_pairing_confidence": (
+                    "high" if audit_match or source != "pdf_extracted_raw" else "medium"
+                ),
+                "extraction_confidence": item.get("extraction_confidence")
+                or ("verified" if item.get("study_ready", True) else "candidate"),
                 "duplicate_candidate": duplicate_candidate,
                 "duplicate_of": duplicate_of or "",
                 "quarantine_status": quarantine_status,
@@ -370,12 +400,16 @@ def main() -> None:
                 "raw_front_original": front_original,
                 "raw_back_original": back_original,
                 "raw_back_before_patch": back_before_patch,
-                "applied_patch": {
-                    "source": str(PATCH_BACK_ONLY) if applied_patch else "",
-                    "motivo": applied_patch.get("motivo", "") if applied_patch else "",
-                    "confidenza": applied_patch.get("confidenza", "") if applied_patch else "",
-                    "flag": applied_patch.get("flag", "") if applied_patch else "",
-                } if applied_patch else (local_patch or {}),
+                "applied_patch": (
+                    {
+                        "source": str(PATCH_BACK_ONLY) if applied_patch else "",
+                        "motivo": applied_patch.get("motivo", "") if applied_patch else "",
+                        "confidenza": applied_patch.get("confidenza", "") if applied_patch else "",
+                        "flag": applied_patch.get("flag", "") if applied_patch else "",
+                    }
+                    if applied_patch
+                    else (local_patch or {})
+                ),
                 "audit_status": audit_match.get("status") if audit_match else "",
                 "audit_flags": audit_match.get("flags") if audit_match else "",
             }
@@ -430,15 +464,22 @@ def main() -> None:
         active_seed_items.append(
             {
                 **seed_item,
-                "id": clean_space(seed_item.get("id")) or stable_id("seed", canonical["canonical_item_id"]),
+                "id": clean_space(seed_item.get("id"))
+                or stable_id("seed", canonical["canonical_item_id"]),
                 "deck": deck,
                 "term": canonical["hebrew"],
                 "meaning": canonical["italian"],
                 "raw_front": canonical["hebrew"],
                 "raw_back": canonical["italian"],
-                "raw_back_before_patch": canonical.get("italian_before_patch", canonical["italian"]),
-                "raw_front_original": clean_space(seed_item.get("raw_front_original") or canonical["hebrew"]),
-                "raw_back_original": clean_space(seed_item.get("raw_back_original") or canonical["italian"]),
+                "raw_back_before_patch": canonical.get(
+                    "italian_before_patch", canonical["italian"]
+                ),
+                "raw_front_original": clean_space(
+                    seed_item.get("raw_front_original") or canonical["hebrew"]
+                ),
+                "raw_back_original": clean_space(
+                    seed_item.get("raw_back_original") or canonical["italian"]
+                ),
                 "citizen_color": canonical["citizen_color"],
                 "citizen_level": canonical["citizen_level"],
                 "study_position": position,
@@ -458,8 +499,12 @@ def main() -> None:
         "source_seed": str(SEED),
         "source_audit": str(AUDIT),
         "total_cards": len(active_seed_items),
-        "study_ready_cards": sum(1 for item in active_seed_items if item.get("study_ready") is not False),
-        "human_review_cards": sum(1 for item in active_seed_items if item.get("study_ready") is False),
+        "study_ready_cards": sum(
+            1 for item in active_seed_items if item.get("study_ready") is not False
+        ),
+        "human_review_cards": sum(
+            1 for item in active_seed_items if item.get("study_ready") is False
+        ),
         "decks": [label for _, label, _, _ in COLOR_LEVELS if counts[label]],
         "source_counts": dict(source_counts),
         "duplicate_cards_skipped": 0,
@@ -479,41 +524,67 @@ def main() -> None:
     )
     write_json(
         OUT / f"CITIZEN_CAFE_ALL_COURSES_SOURCE_MAP_v{ARTIFACT_VERSION}.json",
-        {"schema": f"citizen_cafe.source_map.all_courses.v{ARTIFACT_VERSION}", "generated_at": now, "items": source_map},
+        {
+            "schema": f"citizen_cafe.source_map.all_courses.v{ARTIFACT_VERSION}",
+            "generated_at": now,
+            "items": source_map,
+        },
     )
     write_json(
         OUT / f"CITIZEN_CAFE_ALL_COURSES_CANONICAL_MODEL_DRAFT_v{ARTIFACT_VERSION}.json",
-        {"schema": f"citizen_cafe.canonical_linguistic_model.all_courses.v{ARTIFACT_VERSION}", "generated_at": now, "items": canonical_items},
+        {
+            "schema": f"citizen_cafe.canonical_linguistic_model.all_courses.v{ARTIFACT_VERSION}",
+            "generated_at": now,
+            "items": canonical_items,
+        },
     )
     write_json(
         OUT / f"CITIZEN_CAFE_ALL_COURSES_CURRICULUM_MODEL_DRAFT_v{ARTIFACT_VERSION}.json",
-        {"schema": f"citizen_cafe.curriculum_model.all_courses.v{ARTIFACT_VERSION}", "generated_at": now, "items": curriculum_items},
+        {
+            "schema": f"citizen_cafe.curriculum_model.all_courses.v{ARTIFACT_VERSION}",
+            "generated_at": now,
+            "items": curriculum_items,
+        },
     )
     write_json(
         OUT / f"CITIZEN_CAFE_ALL_COURSES_REVIEW_MODEL_DRAFT_v{ARTIFACT_VERSION}.json",
-        {"schema": f"citizen_cafe.review_model.all_courses.v{ARTIFACT_VERSION}", "generated_at": now, "items": review_records},
+        {
+            "schema": f"citizen_cafe.review_model.all_courses.v{ARTIFACT_VERSION}",
+            "generated_at": now,
+            "items": review_records,
+        },
     )
     write_json(
         OUT / f"CITIZEN_CAFE_ALL_COURSES_LU_PROJECTION_CANDIDATES_v{ARTIFACT_VERSION}.json",
-        {"schema": f"citizen_cafe.learning_unit_projection_candidates.all_courses.v{ARTIFACT_VERSION}", "generated_at": now, "items": lu_candidates},
+        {
+            "schema": f"citizen_cafe.learning_unit_projection_candidates.all_courses.v{ARTIFACT_VERSION}",
+            "generated_at": now,
+            "items": lu_candidates,
+        },
     )
 
     ledger_path = OUT / f"CITIZEN_CAFE_ALL_COURSES_CORRECTION_LEDGER_v{ARTIFACT_VERSION}.jsonl"
     with ledger_path.open("w", encoding="utf-8") as f:
         for record in review_records:
-            f.write(json.dumps({
-                "decision_id": stable_id("decision", record["review_id"]),
-                "canonical_item_id": record["canonical_item_id"],
-                "json_pointer": "/quality_flags",
-                "previous_value": record["flags"],
-                "proposed_value": None,
-                "rationale": "Open human review item generated by deterministic local normalization.",
-                "evidence_ref": record["source_map_ref"],
-                "review_status": "open",
-                "reviewer_role": record["responsible_owner"],
-                "created_at": now,
-                "supersedes_decision_id": "",
-            }, ensure_ascii=False) + "\n")
+            f.write(
+                json.dumps(
+                    {
+                        "decision_id": stable_id("decision", record["review_id"]),
+                        "canonical_item_id": record["canonical_item_id"],
+                        "json_pointer": "/quality_flags",
+                        "previous_value": record["flags"],
+                        "proposed_value": None,
+                        "rationale": "Open human review item generated by deterministic local normalization.",
+                        "evidence_ref": record["source_map_ref"],
+                        "review_status": "open",
+                        "reviewer_role": record["responsible_owner"],
+                        "created_at": now,
+                        "supersedes_decision_id": "",
+                    },
+                    ensure_ascii=False,
+                )
+                + "\n"
+            )
 
     inventory_lines = [
         f"# Citizen Cafe All Courses - Raw Inventory v{ARTIFACT_VERSION}",
@@ -533,22 +604,27 @@ def main() -> None:
     ]
     for _, label, level, _ in COLOR_LEVELS:
         inventory_lines.append(f"| {label} | {level} | {counts[label]} |")
-    inventory_lines.extend([
-        "",
-        f"Total cards promoted: **{len(active_seed_items)}**",
-        f"Study-ready cards: **{sum(1 for item in active_seed_items if item.get('study_ready') is not False)}**",
-        f"Cards blocked pending human review: **{sum(1 for item in active_seed_items if item.get('study_ready') is False)}**",
-        f"Quarantined candidates: **{quarantined}**",
-        f"Duplicate candidates detected in promoted seed: **{duplicate_count}**",
-        "",
-        "## Source Counts",
-        "",
-        "| Source | Cards |",
-        "|---|---:|",
-    ])
+    inventory_lines.extend(
+        [
+            "",
+            f"Total cards promoted: **{len(active_seed_items)}**",
+            f"Study-ready cards: **{sum(1 for item in active_seed_items if item.get('study_ready') is not False)}**",
+            f"Cards blocked pending human review: **{sum(1 for item in active_seed_items if item.get('study_ready') is False)}**",
+            f"Quarantined candidates: **{quarantined}**",
+            f"Duplicate candidates detected in promoted seed: **{duplicate_count}**",
+            "",
+            "## Source Counts",
+            "",
+            "| Source | Cards |",
+            "|---|---:|",
+        ]
+    )
     for source, count in source_counts.most_common():
         inventory_lines.append(f"| `{source}` | {count} |")
-    write_text(OUT / f"CITIZEN_CAFE_ALL_COURSES_RAW_INVENTORY_v{ARTIFACT_VERSION}.md", "\n".join(inventory_lines))
+    write_text(
+        OUT / f"CITIZEN_CAFE_ALL_COURSES_RAW_INVENTORY_v{ARTIFACT_VERSION}.md",
+        "\n".join(inventory_lines),
+    )
 
     audit_lines = [
         f"# Citizen Cafe All Courses - Source Audit v{ARTIFACT_VERSION}",
@@ -569,7 +645,10 @@ def main() -> None:
         "",
         "These artifacts are normalized and structured, not frozen. Human linguistic review remains required before declaring the corpus approved.",
     ]
-    write_text(OUT / f"CITIZEN_CAFE_ALL_COURSES_SOURCE_AUDIT_v{ARTIFACT_VERSION}.md", "\n".join(audit_lines))
+    write_text(
+        OUT / f"CITIZEN_CAFE_ALL_COURSES_SOURCE_AUDIT_v{ARTIFACT_VERSION}.md",
+        "\n".join(audit_lines),
+    )
 
     review_lines = [
         f"# Citizen Cafe All Courses - Human Review Queue v{ARTIFACT_VERSION}",
@@ -586,8 +665,13 @@ def main() -> None:
             f"| {record['deck']} | {record['hebrew']} | {record['italian']} | {', '.join(record['flags'])} |"
         )
     if len(review_records) > 400:
-        review_lines.append(f"| ... | ... | ... | {len(review_records) - 400} more records in JSON review model |")
-    write_text(OUT / f"CITIZEN_CAFE_ALL_COURSES_HUMAN_REVIEW_QUEUE_v{ARTIFACT_VERSION}.md", "\n".join(review_lines))
+        review_lines.append(
+            f"| ... | ... | ... | {len(review_records) - 400} more records in JSON review model |"
+        )
+    write_text(
+        OUT / f"CITIZEN_CAFE_ALL_COURSES_HUMAN_REVIEW_QUEUE_v{ARTIFACT_VERSION}.md",
+        "\n".join(review_lines),
+    )
 
     completeness_lines = [
         f"# Citizen Cafe All Courses - Completeness Report v{ARTIFACT_VERSION}",
@@ -610,7 +694,10 @@ def main() -> None:
         "",
         "READY FOR HUMAN LINGUISTIC REVIEW — NOT APPROVED FOR CURRICULUM FREEZE",
     ]
-    write_text(OUT / f"CITIZEN_CAFE_ALL_COURSES_COMPLETENESS_REPORT_v{ARTIFACT_VERSION}.md", "\n".join(completeness_lines))
+    write_text(
+        OUT / f"CITIZEN_CAFE_ALL_COURSES_COMPLETENESS_REPORT_v{ARTIFACT_VERSION}.md",
+        "\n".join(completeness_lines),
+    )
 
     print(f"generated_cards={len(active_seed_items)}")
     print(f"review_records={len(review_records)}")

@@ -8,7 +8,9 @@ class FrontendContractTests(unittest.TestCase):
     def test_conjugation_domino_keeps_the_same_verb(self):
         source = APP_JS.read_text(encoding="utf-8")
 
-        self.assertIn("const verb = previousStep?.verb || randomItem(activeConjugationVerbs());", source)
+        self.assertIn(
+            "const verb = previousStep?.verb || randomItem(activeConjugationVerbs());", source
+        )
         self.assertIn("const previousEntry = previousStep?.target || null;", source)
         self.assertIn("nextConjugationDominoStep(conjugationDomino)", source)
         self.assertNotIn("nextConjugationDominoStep(previousTarget)", source)
@@ -17,15 +19,17 @@ class FrontendContractTests(unittest.TestCase):
         source = APP_JS.read_text(encoding="utf-8")
 
         self.assertIn('const modernSourcePerson = { "אתן": "אתם", "הן": "הם" }[personHe];', source)
-        self.assertIn('verb.targets[`בעתיד · ${modernSourcePerson}`]', source)
-        self.assertIn("uniqueConjugationForms([modernForm, pealimForm]).join(\"|\")", source)
+        self.assertIn("verb.targets[`בעתיד · ${modernSourcePerson}`]", source)
+        self.assertIn('uniqueConjugationForms([modernForm, pealimForm]).join("|")', source)
         self.assertIn("function conjugationAcceptedPhrases", source)
 
     def test_hebrew_recovery_replaces_flashcards_as_the_active_course(self):
         source = APP_JS.read_text(encoding="utf-8")
 
-        preset_block = source[source.index("memory: {"):source.index("piano: {", source.index("memory: {"))]
-        startup_block = source[source.index("populateFamilies();"):]
+        preset_block = source[
+            source.index("memory: {") : source.index("piano: {", source.index("memory: {"))
+        ]
+        startup_block = source[source.index("populateFamilies();") :]
         self.assertIn('id: "hebrew_recovery"', preset_block)
         self.assertIn("hebrew: true", preset_block)
         self.assertNotIn("flashcards: true", preset_block)
@@ -40,16 +44,18 @@ class FrontendContractTests(unittest.TestCase):
         self.assertIn('phase = "comprehension"', source)
         self.assertIn('phase = "reentry"', source)
         self.assertIn('phase = "complete"', source)
-        self.assertIn('before_accuracy:', source)
-        self.assertIn('after_accuracy:', source)
+        self.assertIn("before_accuracy:", source)
+        self.assertIn("after_accuracy:", source)
 
     def test_recovery_domino_is_hidden_until_preflight_finishes(self):
         source = APP_JS.read_text(encoding="utf-8")
 
         self.assertIn('hebrewRecoveryFlow?.phase === "domino"', source)
-        self.assertIn('els.conjugationWorkspace.hidden = false;', source)
-        self.assertIn('els.conjugationWorkspace.hidden = true;', source)
-        self.assertIn('if (preset.id === "hebrew_recovery") {\n    startHebrewRecoveryFlow();', source)
+        self.assertIn("els.conjugationWorkspace.hidden = false;", source)
+        self.assertIn("els.conjugationWorkspace.hidden = true;", source)
+        self.assertIn(
+            'if (preset.id === "hebrew_recovery") {\n    startHebrewRecoveryFlow();', source
+        )
 
     def test_recovery_events_keep_before_work_and_after_separate(self):
         source = APP_JS.read_text(encoding="utf-8")
@@ -80,7 +86,9 @@ class FrontendContractTests(unittest.TestCase):
     def test_unvalidated_games_are_not_offered_as_scientific_tasks(self):
         source = APP_JS.read_text(encoding="utf-8")
 
-        apk_block = source[source.index("apk_lab: {"):source.index("memory: {", source.index("apk_lab: {"))]
+        apk_block = source[
+            source.index("apk_lab: {") : source.index("memory: {", source.index("apk_lab: {"))
+        ]
         self.assertIn('label: "Test cognitivi"', apk_block)
         self.assertNotIn("apk_stability_balloon", apk_block)
         self.assertNotIn("apk_airballoon", apk_block)

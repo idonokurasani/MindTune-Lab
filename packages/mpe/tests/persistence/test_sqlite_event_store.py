@@ -40,20 +40,22 @@ class SQLiteEventStorePersistenceTests(unittest.TestCase):
             component="runtime",
             component_version="1.0.0",
             provenance=provenance or [],
-            payload={
-                "session_id": str(self.session_id),
-                "program_version_id": str(ProgramVersionID("pv-1")),
-                "protocol_version_id": str(self.protocol_version_id),
-                "learner_id": "learner_1",
-            }
-            if seq == 1
-            else {
-                "session_id": str(self.session_id),
-                "program_version_id": str(ProgramVersionID("pv-1")),
-                "protocol_version_id": str(self.protocol_version_id),
-                "learner_id": "learner_1",
-                "random_seed": "seed_0",
-            },
+            payload=(
+                {
+                    "session_id": str(self.session_id),
+                    "program_version_id": str(ProgramVersionID("pv-1")),
+                    "protocol_version_id": str(self.protocol_version_id),
+                    "learner_id": "learner_1",
+                }
+                if seq == 1
+                else {
+                    "session_id": str(self.session_id),
+                    "program_version_id": str(ProgramVersionID("pv-1")),
+                    "protocol_version_id": str(self.protocol_version_id),
+                    "learner_id": "learner_1",
+                    "random_seed": "seed_0",
+                }
+            ),
         )
 
     def test_wal_and_recovery(self) -> None:
@@ -161,7 +163,9 @@ class SQLiteEventStorePersistenceTests(unittest.TestCase):
         store.close()
 
         conn = sqlite3.connect(self.path)
-        conn.execute("UPDATE events SET schema_version = '2.0' WHERE event_id = ?", (str(e1.event_id),))
+        conn.execute(
+            "UPDATE events SET schema_version = '2.0' WHERE event_id = ?", (str(e1.event_id),)
+        )
         conn.commit()
         conn.close()
 
@@ -177,7 +181,9 @@ class SQLiteEventStorePersistenceTests(unittest.TestCase):
         store.close()
 
         conn = sqlite3.connect(self.path)
-        conn.execute("UPDATE events SET payload = 'not-json' WHERE event_id = ?", (str(e1.event_id),))
+        conn.execute(
+            "UPDATE events SET payload = 'not-json' WHERE event_id = ?", (str(e1.event_id),)
+        )
         conn.commit()
         conn.close()
 

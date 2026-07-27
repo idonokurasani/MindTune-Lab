@@ -1,4 +1,5 @@
 """Tests for the versioned audio profile contract."""
+
 from __future__ import annotations
 
 import tempfile

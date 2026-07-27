@@ -1,4 +1,5 @@
 """Validation tests for Phase 3 independent validation modules."""
+
 from __future__ import annotations
 
 import json
@@ -100,7 +101,9 @@ def test_benchmark_partitions(loader: Phase3DataLoader) -> None:
         pair = (rec["surface_vocalized"], rec["form_key"])
         part = rec["partition"]
         if pair in pair_to_partition:
-            assert pair_to_partition[pair] == part, f"leakage for pair {pair}: {part} vs {pair_to_partition[pair]}"
+            assert (
+                pair_to_partition[pair] == part
+            ), f"leakage for pair {pair}: {part} vs {pair_to_partition[pair]}"
         else:
             pair_to_partition[pair] = part
 

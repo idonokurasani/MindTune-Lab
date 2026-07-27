@@ -114,7 +114,9 @@ class Event:
             "provenance": [str(e) for e in self.provenance],
             "payload": dict(self.payload),
             "sensitive": self.sensitive,
-            "data_classification": self.data_classification.value if self.data_classification else None,
+            "data_classification": (
+                self.data_classification.value if self.data_classification else None
+            ),
             "trial_id": str(self.trial_id) if self.trial_id else None,
             "block_id": str(self.block_id) if self.block_id else None,
             "quality_flags": list(self.quality_flags),

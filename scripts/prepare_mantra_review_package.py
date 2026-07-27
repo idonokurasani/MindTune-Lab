@@ -65,7 +65,9 @@ def build_review_package(build_dir: Path) -> Path:
             if group_index < len(spec.groups) and form_index < len(spec.groups[group_index].forms)
             else None
         )
-        form_key = segment["grammatical_metadata"].get("form_key", form.form_key if form else "unknown")
+        form_key = segment["grammatical_metadata"].get(
+            "form_key", form.form_key if form else "unknown"
+        )
         hebrew_vocalized = segment["source_text"]
         hebrew_unvocalized = form.hebrew_plain if form else _strip_vowels(hebrew_vocalized)
         person = segment["grammatical_metadata"].get("person") or (form.person if form else "")

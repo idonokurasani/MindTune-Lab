@@ -10,7 +10,9 @@ RESOURCE_ROOT = ROOT / "data" / "hebrew_resources"
 
 class HebrewVendorResourceTests(unittest.TestCase):
     def test_wordnet_compact_index_is_hebrew_and_semantic(self) -> None:
-        payload = json.loads((RESOURCE_ROOT / "derived" / "hebrew_wordnet_compact.json").read_text(encoding="utf-8"))
+        payload = json.loads(
+            (RESOURCE_ROOT / "derived" / "hebrew_wordnet_compact.json").read_text(encoding="utf-8")
+        )
         self.assertEqual(payload["source"]["commit"], "55a814bad768206ca2679f10337fe63a7f8540f9")
         self.assertGreater(len(payload["lemmas"]), 5_000)
         self.assertGreater(len(payload["synsets"]), 5_000)
@@ -19,7 +21,9 @@ class HebrewVendorResourceTests(unittest.TestCase):
         self.assertIn("automatic translation truth", payload["policy"])
 
     def test_nnlp_verb_resource_is_validated_but_not_prompt_truth(self) -> None:
-        payload = json.loads((RESOURCE_ROOT / "derived" / "nnlp_verb_index.json").read_text(encoding="utf-8"))
+        payload = json.loads(
+            (RESOURCE_ROOT / "derived" / "nnlp_verb_index.json").read_text(encoding="utf-8")
+        )
         self.assertEqual(payload["source"]["commit"], "84d5db034fba56c27786b7c645d77370223263c3")
         self.assertGreater(payload["summary"]["verb_index_rows"], 4_000)
         self.assertGreater(payload["summary"]["inflected_form_rows"], 240_000)

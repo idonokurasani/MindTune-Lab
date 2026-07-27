@@ -42,10 +42,14 @@ class FakeResponse:
 
 class AzureSpeechTests(unittest.TestCase):
     def test_status_never_exposes_the_key(self) -> None:
-        with patch.dict(os.environ, {
-            "MINDTUNE_AZURE_SPEECH_KEY": "secret-value",
-            "MINDTUNE_AZURE_SPEECH_REGION": "switzerlandnorth",
-        }, clear=False):
+        with patch.dict(
+            os.environ,
+            {
+                "MINDTUNE_AZURE_SPEECH_KEY": "secret-value",
+                "MINDTUNE_AZURE_SPEECH_REGION": "switzerlandnorth",
+            },
+            clear=False,
+        ):
             result = azure_speech.status()
         self.assertTrue(result["configured"])
         self.assertNotIn("secret-value", json.dumps(result))
@@ -57,15 +61,21 @@ class AzureSpeechTests(unittest.TestCase):
         def opener(request, timeout):
             captured["request"] = request
             captured["timeout"] = timeout
-            return FakeResponse({
-                "RecognitionStatus": "Success",
-                "NBest": [{"Display": "אני כותב", "Confidence": 0.91}],
-            })
+            return FakeResponse(
+                {
+                    "RecognitionStatus": "Success",
+                    "NBest": [{"Display": "אני כותב", "Confidence": 0.91}],
+                }
+            )
 
-        with patch.dict(os.environ, {
-            "MINDTUNE_AZURE_SPEECH_KEY": "secret-value",
-            "MINDTUNE_AZURE_SPEECH_REGION": "switzerlandnorth",
-        }, clear=False):
+        with patch.dict(
+            os.environ,
+            {
+                "MINDTUNE_AZURE_SPEECH_KEY": "secret-value",
+                "MINDTUNE_AZURE_SPEECH_REGION": "switzerlandnorth",
+            },
+            clear=False,
+        ):
             result = azure_speech.transcribe_wav(wav_bytes(), opener=opener)
 
         self.assertTrue(result["ok"])

@@ -40,14 +40,17 @@ FORM_IDS = {
     "future_3_plural": "IMPF-3mp",
 }
 
+
 def fetch(url: str) -> str:
     req = Request(url, headers={"User-Agent": "MindTuneLab/3.17 Pealim phoneme extractor"})
     with urlopen(req, timeout=30) as r:
         return r.read().decode("utf-8", "ignore")
 
+
 def stress_from_transcription(t: str) -> int:
     before, _, _ = t.partition("<b>")
     return len(re.findall(r"[aeiou]", before.lower())) + 1
+
 
 def _find_in_window(page: str, start_pos: int, end_pos: int, pattern: str) -> str | None:
     m = re.search(pattern, page[start_pos:end_pos], re.S)
@@ -77,6 +80,7 @@ def extract_form(page: str, fid: str) -> dict | None:
         "pealim_stress_syllable": stress,
     }
 
+
 def extract_meta(page: str) -> dict:
     root = binyan = ""
     m = re.search(r'<meta content="([^"]+)" name="description"', page)
@@ -89,9 +93,12 @@ def extract_meta(page: str) -> dict:
         binyan = bm.group(1).strip()
     return {"root": root, "binyan": binyan, "description": desc}
 
+
 def search_url(query: str) -> str:
     text = fetch(f"{BASE}/search/?q={quote(query)}")
-    for match in re.finditer(r'<div class="verb-search-data">(.*?)<div class="verb-search-forms">', text, re.S):
+    for match in re.finditer(
+        r'<div class="verb-search-data">(.*?)<div class="verb-search-forms">', text, re.S
+    ):
         link = re.search(r'href="([^"]*dict/[^"]+/)"', match.group(1))
         if not link:
             continue
@@ -100,6 +107,7 @@ def search_url(query: str) -> str:
             continue
         return urljoin(BASE, href)
     raise RuntimeError(f"No Pealim result for {query}")
+
 
 def build_verb(query: str) -> dict:
     url = search_url(query)
@@ -114,6 +122,7 @@ def build_verb(query: str) -> dict:
     out["forms"] = forms
     return out
 
+
 def main() -> int:
     verbs = ["לכתוב", "להיות", "לעשות"]
     data = []
@@ -124,6 +133,7 @@ def main() -> int:
     OUT.write_text(json.dumps(data, indent=2, ensure_ascii=False), encoding="utf-8")
     print("Wrote", OUT)
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())

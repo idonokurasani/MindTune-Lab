@@ -52,7 +52,9 @@ class FixtureRenderer(Renderer):
         content_item_id = request.get("content_item_id")
         role = request.get("asset_role", "prompt")
         if not isinstance(content_item_id, str) or not isinstance(role, str):
-            raise ProviderFailureError("Invalid stimulus request: missing content_item_id or asset_role")
+            raise ProviderFailureError(
+                "Invalid stimulus request: missing content_item_id or asset_role"
+            )
         item = self.fixture.item_by_id(content_item_id)
         if item is None or role not in item.assets:
             raise ProviderFailureError(
@@ -107,16 +109,18 @@ class FixtureObservationProvider(ObservationProvider):
         else:
             latency = 0.0
             value = text
-        self._pending.append({
-            "observation_id": str(make_id(ObservationID)),
-            "observation_type": "touch_input",
-            "payload": value,
-            "latency": latency,
-            "quality_dimensions": {},
-            "quality_flags": [],
-            "quality_model_id": "fixture_qm",
-            "quality_model_version": "1.0.0",
-        })
+        self._pending.append(
+            {
+                "observation_id": str(make_id(ObservationID)),
+                "observation_type": "touch_input",
+                "payload": value,
+                "latency": latency,
+                "quality_dimensions": {},
+                "quality_flags": [],
+                "quality_model_id": "fixture_qm",
+                "quality_model_version": "1.0.0",
+            }
+        )
 
     def set_failing(self, failing: bool) -> None:
         self._failing = failing

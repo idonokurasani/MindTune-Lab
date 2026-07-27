@@ -88,6 +88,7 @@ def _safe_name(text: str) -> str:
 # Catalogue / Aaron identifier
 # ---------------------------------------------------------------------------
 
+
 def _fetch_voice_catalogue(api_key: str, email: str) -> dict[str, Any]:
     params = urllib.parse.urlencode({"token": api_key, "email": email})
     url = f"https://speechgen.io/index.php?r=api/voices&{params}"
@@ -112,6 +113,7 @@ def _resolve_aaron_metadata(catalogue: dict[str, Any]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 # Conjugation data
 # ---------------------------------------------------------------------------
+
 
 def _entries() -> list[ConjugationEntry]:
     entries: list[ConjugationEntry] = []
@@ -317,7 +319,9 @@ def _entries() -> list[ConjugationEntry]:
             sentence_source=f"{form_src} {POINTED_OBJECT}",
             sentence_tts=_strip_diacritics(f"{form_src} {POINTED_OBJECT}"),
             sentence_latin=f"{form_lat} mikhtav",
-            italian_label=(f"Imperativo, {gender_it} {number_it}" if gender_it else f"Imperativo, {number_it}"),
+            italian_label=(
+                f"Imperativo, {gender_it} {number_it}" if gender_it else f"Imperativo, {number_it}"
+            ),
             italian_translation=it_trans,
         )
 
@@ -348,13 +352,18 @@ def _entries() -> list[ConjugationEntry]:
 # Validation
 # ---------------------------------------------------------------------------
 
-def _validate(entries: list[ConjugationEntry], aaron_meta: dict[str, Any]) -> list[str]:  # noqa: C901
+
+def _validate(
+    entries: list[ConjugationEntry], aaron_meta: dict[str, Any]
+) -> list[str]:  # noqa: C901
     report: list[str] = ["# Conjugation validation report\n"]
     ok = True
 
     report.append("## Aaron voice identifier")
     report.append(f"- SpeechGen `voice` field: `{aaron_meta.get('voice')}`")
-    report.append(f"- type: {aaron_meta.get('type')!r}, sex: {aaron_meta.get('sex')!r}, cpm: {aaron_meta.get('cpm')!r}")
+    report.append(
+        f"- type: {aaron_meta.get('type')!r}, sex: {aaron_meta.get('sex')!r}, cpm: {aaron_meta.get('cpm')!r}"
+    )
     report.append("")
 
     report.append("## Entry validation")
@@ -408,6 +417,7 @@ def _validate(entries: list[ConjugationEntry], aaron_meta: dict[str, Any]) -> li
 # ---------------------------------------------------------------------------
 # Synthesis helpers
 # ---------------------------------------------------------------------------
+
 
 def _ensure_audio(
     text: str,
@@ -464,7 +474,7 @@ def _ensure_audio(
         except TTSRuntimeError as exc:
             last_error = exc
             if attempt < 2:
-                wait = 2 ** attempt
+                wait = 2**attempt
                 print(f"Synthesis failed for {seg_id}, retrying in {wait}s: {exc}")
                 time.sleep(wait)
     else:
@@ -510,6 +520,7 @@ def _write_event_log(event_log: list[dict[str, Any]]) -> None:
 # Build
 # ---------------------------------------------------------------------------
 
+
 def main() -> None:
     api_key = os.environ.get("SPEECHGEN_API_KEY")
     email = os.environ.get("SPEECHGEN_EMAIL")
@@ -530,8 +541,11 @@ def main() -> None:
     )
 
     event_log: list[dict[str, Any]] = [
-        {"event": "voice_catalogue_query", "hebrew_voice_count": len(catalogue.get("Hebrew", [])),
-         "resolved_voice": aaron_meta.get("voice")}
+        {
+            "event": "voice_catalogue_query",
+            "hebrew_voice_count": len(catalogue.get("Hebrew", [])),
+            "resolved_voice": aaron_meta.get("voice"),
+        }
     ]
 
     entries = _entries()
@@ -588,7 +602,19 @@ def main() -> None:
             event_log,
         )
         label_path.write_bytes(label_bytes)
-        manifest.append(_manifest_row(e, "italian_label", label_path, label_bytes, label_src_sr, label_dur, label_key, e.italian_label, "it"))
+        manifest.append(
+            _manifest_row(
+                e,
+                "italian_label",
+                label_path,
+                label_bytes,
+                label_src_sr,
+                label_dur,
+                label_key,
+                e.italian_label,
+                "it",
+            )
+        )
 
         # Hebrew sentence
         sentence_path = OUTPUT_DIR / "audio" / "hebrew_sentences" / f"{e.entry_id}.wav"
@@ -606,10 +632,29 @@ def main() -> None:
             event_log,
         )
         sentence_path.write_bytes(sentence_bytes)
-        manifest.append(_manifest_row(e, "hebrew_sentence", sentence_path, sentence_bytes, sentence_src_sr, sentence_dur, sentence_key, e.sentence_tts, "he"))
+        manifest.append(
+            _manifest_row(
+                e,
+                "hebrew_sentence",
+                sentence_path,
+                sentence_bytes,
+                sentence_src_sr,
+                sentence_dur,
+                sentence_key,
+                e.sentence_tts,
+                "he",
+            )
+        )
 
         # Hebrew isolated form (deduplicated)
-        form_key = (e.form_source, e.form_tts, HEBREW_VOICE, HEBREW_LOCALE, HEBREW_RATE, HEBREW_PITCH)
+        form_key = (
+            e.form_source,
+            e.form_tts,
+            HEBREW_VOICE,
+            HEBREW_LOCALE,
+            HEBREW_RATE,
+            HEBREW_PITCH,
+        )
         if form_key in form_files:
             form_path = form_files[form_key]
             # Re-use cached form metadata for manifest: read file and compute dur
@@ -635,45 +680,61 @@ def main() -> None:
             )
             form_path.write_bytes(form_bytes)
             form_files[form_key] = form_path
-            manifest.append(_manifest_row(e, "hebrew_form", form_path, form_bytes, form_src_sr, form_dur, form_cache_key, e.form_tts, "he"))
+            manifest.append(
+                _manifest_row(
+                    e,
+                    "hebrew_form",
+                    form_path,
+                    form_bytes,
+                    form_src_sr,
+                    form_dur,
+                    form_cache_key,
+                    e.form_tts,
+                    "he",
+                )
+            )
 
         # Entry combined audio: label, 0.2s, sentence, 0.2s, form, 1.0s
         label_samples, _ = _decode_wav_to_int16(label_bytes)
         sentence_samples, _ = _decode_wav_to_int16(sentence_bytes)
         form_samples, _ = _decode_wav_to_int16(form_bytes)
-        entry_audio = np.concatenate([
-            label_samples,
-            _silence(0.2),
-            sentence_samples,
-            _silence(0.2),
-            form_samples,
-            _silence(1.0),
-        ])
+        entry_audio = np.concatenate(
+            [
+                label_samples,
+                _silence(0.2),
+                sentence_samples,
+                _silence(0.2),
+                form_samples,
+                _silence(1.0),
+            ]
+        )
         section_parts[e.tense].append(entry_audio)
 
-        conjugation.append({
-            "entry_id": e.entry_id,
-            "tense": e.tense,
-            "mood": e.mood,
-            "person": e.person,
-            "number": e.number,
-            "gender": e.gender,
-            "subject": e.subject,
-            "subject_latin": e.subject_latin,
-            "form_source": e.form_source,
-            "form_tts": e.form_tts,
-            "form_latin": e.form_latin,
-            "sentence_source": e.sentence_source,
-            "sentence_tts": e.sentence_tts,
-            "sentence_latin": e.sentence_latin,
-            "italian_label": e.italian_label,
-            "italian_translation": e.italian_translation,
-            "files": {
-                "italian_label": str(label_path),
-                "hebrew_sentence": str(sentence_path),
-                "hebrew_form": str(form_path),
-            },
-        })
+        conjugation.append(
+            {
+                "entry_id": e.entry_id,
+                "tense": e.tense,
+                "mood": e.mood,
+                "person": e.person,
+                "number": e.number,
+                "gender": e.gender,
+                "subject": e.subject,
+                "subject_latin": e.subject_latin,
+                "form_source": e.form_source,
+                "form_tts": e.form_tts,
+                "form_latin": e.form_latin,
+                "sentence_source": e.sentence_source,
+                "sentence_tts": e.sentence_tts,
+                "sentence_latin": e.sentence_latin,
+                "italian_label": e.italian_label,
+                "italian_translation": e.italian_translation,
+                "files": {
+                    "italian_label": str(label_path),
+                    "hebrew_sentence": str(sentence_path),
+                    "hebrew_form": str(form_path),
+                },
+            }
+        )
 
     # Per-tense WAVs
     complete_parts: list[np.ndarray] = []
@@ -826,15 +887,23 @@ def _write_index_html(conjugation: list[dict[str, Any]]) -> None:
             html.append(f"<tr><th>Subject</th><td>{c['subject'] or '-'}</td></tr>")
             html.append(f"<tr><th>Canonical form</th><td class='rtl'>{c['form_source']}</td></tr>")
             html.append(f"<tr><th>TTS form</th><td class='rtl'>{c['form_tts']}</td></tr>")
-            html.append(f"<tr><th>Pointed sentence</th><td class='rtl'>{c['sentence_source']}</td></tr>")
+            html.append(
+                f"<tr><th>Pointed sentence</th><td class='rtl'>{c['sentence_source']}</td></tr>"
+            )
             html.append(f"<tr><th>TTS sentence</th><td class='rtl'>{c['sentence_tts']}</td></tr>")
             html.append(f"<tr><th>Italian translation</th><td>{c['italian_translation']}</td></tr>")
             html.append(f"<tr><th>Expected transliteration</th><td>{c['sentence_latin']}</td></tr>")
             html.append("</table>")
-            html.append(f"<p>Italian label:</p><audio controls src='audio/italian/{c['entry_id']}.wav'></audio>")
-            html.append(f"<p>Hebrew sentence:</p><audio controls src='audio/hebrew_sentences/{c['entry_id']}.wav'></audio>")
+            html.append(
+                f"<p>Italian label:</p><audio controls src='audio/italian/{c['entry_id']}.wav'></audio>"
+            )
+            html.append(
+                f"<p>Hebrew sentence:</p><audio controls src='audio/hebrew_sentences/{c['entry_id']}.wav'></audio>"
+            )
             form_file = Path(c["files"]["hebrew_form"]).name
-            html.append(f"<p>Isolated form:</p><audio controls src='audio/hebrew_forms/{form_file}'></audio>")
+            html.append(
+                f"<p>Isolated form:</p><audio controls src='audio/hebrew_forms/{form_file}'></audio>"
+            )
             html.append("</div>")
         html.append("</div>")
 

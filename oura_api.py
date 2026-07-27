@@ -19,7 +19,9 @@ def first_existing_path(*paths: Path) -> Path:
     return paths[0].resolve()
 
 
-CREDENTIALS_FILE = first_existing_path(ROOT / ".oura_credentials", PROJECT_ROOT_FALLBACK / ".oura_credentials")
+CREDENTIALS_FILE = first_existing_path(
+    ROOT / ".oura_credentials", PROJECT_ROOT_FALLBACK / ".oura_credentials"
+)
 TOKEN_FILE = first_existing_path(ROOT / ".oura_token", PROJECT_ROOT_FALLBACK / ".oura_token")
 TOKEN_CANDIDATES = [
     ROOT / ".oura_token",
@@ -139,7 +141,10 @@ class _CallbackHandler(BaseHTTPRequestHandler):
         code = query.get("code", [None])[0]
         error = query.get("error", [None])[0]
         if error:
-            _CallbackHandler._token_result = {"error": error, "error_description": query.get("error_description", [""])[0]}
+            _CallbackHandler._token_result = {
+                "error": error,
+                "error_description": query.get("error_description", [""])[0],
+            }
         elif not code:
             _CallbackHandler._token_result = {"error": "no_code"}
         else:
@@ -179,7 +184,9 @@ def get_auth_url() -> tuple[dict, str]:
         "response_type": "code",
         "scope": scopes,
     }
-    return {"ok": True}, OURA_AUTH_URL + "?" + urllib.parse.urlencode(params, quote_via=urllib.parse.quote)
+    return {"ok": True}, OURA_AUTH_URL + "?" + urllib.parse.urlencode(
+        params, quote_via=urllib.parse.quote
+    )
 
 
 def ensure_callback_server() -> None:
@@ -207,14 +214,22 @@ def start_oauth_flow() -> dict:
         return result
     ensure_callback_server()
     webbrowser.open(auth_url, new=2)
-    return {"ok": True, "message": "Autorizzazione Oura avviata nel browser. Completa l'accesso e torna all'app. Il widget si aggiorna entro 60 secondi."}
+    return {
+        "ok": True,
+        "message": "Autorizzazione Oura avviata nel browser. Completa l'accesso e torna all'app. Il widget si aggiorna entro 60 secondi.",
+    }
 
 
 def fetch_oura_daily(requested_day: str = "") -> dict:
     token_data = load_token()
     token = token_data.get("access_token")
     if not token:
-        return {"ok": False, "needs_auth": True, "error": "Token Oura non trovato", **token_status()}
+        return {
+            "ok": False,
+            "needs_auth": True,
+            "error": "Token Oura non trovato",
+            **token_status(),
+        }
 
     def seconds_to_h(value):
         return round(value / 3600.0, 2) if isinstance(value, (int, float)) else None
@@ -239,7 +254,9 @@ def fetch_oura_daily(requested_day: str = "") -> dict:
             elif isinstance(value, (str, int, float, bool)) or value is None:
                 out[name] = value
 
-    def make_payload(sleep_data: dict, readiness_data: dict, activity_data: dict, stress_data: dict, day: str) -> dict:
+    def make_payload(
+        sleep_data: dict, readiness_data: dict, activity_data: dict, stress_data: dict, day: str
+    ) -> dict:
         def activity_to_intensity(a: dict) -> str:
             if not a:
                 return "none"
@@ -263,11 +280,23 @@ def fetch_oura_daily(requested_day: str = "") -> dict:
                 return 4
             return None
 
-        raw_session = sleep_data.get("_selected_sleep_session") if isinstance(sleep_data.get("_selected_sleep_session"), dict) else {}
-        sleep_total_s = first_number(sleep_data.get("total_sleep_duration"), raw_session.get("total_sleep_duration"))
-        deep_s = first_number(sleep_data.get("deep_sleep_duration"), raw_session.get("deep_sleep_duration"))
-        rem_s = first_number(sleep_data.get("rem_sleep_duration"), raw_session.get("rem_sleep_duration"))
-        light_s = first_number(sleep_data.get("light_sleep_duration"), raw_session.get("light_sleep_duration"))
+        raw_session = (
+            sleep_data.get("_selected_sleep_session")
+            if isinstance(sleep_data.get("_selected_sleep_session"), dict)
+            else {}
+        )
+        sleep_total_s = first_number(
+            sleep_data.get("total_sleep_duration"), raw_session.get("total_sleep_duration")
+        )
+        deep_s = first_number(
+            sleep_data.get("deep_sleep_duration"), raw_session.get("deep_sleep_duration")
+        )
+        rem_s = first_number(
+            sleep_data.get("rem_sleep_duration"), raw_session.get("rem_sleep_duration")
+        )
+        light_s = first_number(
+            sleep_data.get("light_sleep_duration"), raw_session.get("light_sleep_duration")
+        )
         awake_s = first_number(sleep_data.get("awake_time"), raw_session.get("awake_time"))
         time_in_bed_s = first_number(sleep_data.get("time_in_bed"), raw_session.get("time_in_bed"))
         latency_s = first_number(sleep_data.get("latency"), raw_session.get("latency"))
@@ -294,16 +323,32 @@ def fetch_oura_daily(requested_day: str = "") -> dict:
             "latency_s": latency_s,
             "latency_min": seconds_to_min(latency_s),
             "efficiency": first_number(sleep_data.get("efficiency"), raw_session.get("efficiency")),
-            "restlessness": first_number(sleep_data.get("restlessness"), raw_session.get("restlessness")),
+            "restlessness": first_number(
+                sleep_data.get("restlessness"), raw_session.get("restlessness")
+            ),
             "bedtime_start": raw_session.get("bedtime_start") or sleep_data.get("bedtime_start"),
             "bedtime_end": raw_session.get("bedtime_end") or sleep_data.get("bedtime_end"),
-            "sleep_average_hr": first_number(raw_session.get("average_heart_rate"), sleep_data.get("average_heart_rate"), sleep_data.get("hr_average")),
-            "sleep_lowest_hr": first_number(raw_session.get("lowest_heart_rate"), sleep_data.get("lowest_heart_rate"), sleep_data.get("hr_lowest")),
-            "sleep_average_hrv": first_number(raw_session.get("average_hrv"), sleep_data.get("average_hrv")),
-            "sleep_average_breath": first_number(raw_session.get("average_breath"), sleep_data.get("average_breath")),
+            "sleep_average_hr": first_number(
+                raw_session.get("average_heart_rate"),
+                sleep_data.get("average_heart_rate"),
+                sleep_data.get("hr_average"),
+            ),
+            "sleep_lowest_hr": first_number(
+                raw_session.get("lowest_heart_rate"),
+                sleep_data.get("lowest_heart_rate"),
+                sleep_data.get("hr_lowest"),
+            ),
+            "sleep_average_hrv": first_number(
+                raw_session.get("average_hrv"), sleep_data.get("average_hrv")
+            ),
+            "sleep_average_breath": first_number(
+                raw_session.get("average_breath"), sleep_data.get("average_breath")
+            ),
             "readiness_score": readiness_data.get("score"),
             "cognitive_energy": readiness_data.get("score"),
-            "temperature_deviation": first_number(readiness_data.get("temperature_deviation"), readiness_data.get("temperature_delta")),
+            "temperature_deviation": first_number(
+                readiness_data.get("temperature_deviation"), readiness_data.get("temperature_delta")
+            ),
             "temperature_trend_deviation": readiness_data.get("temperature_trend_deviation"),
             "activity_score": activity_data.get("score"),
             "steps": activity_data.get("steps"),
@@ -339,20 +384,57 @@ def fetch_oura_daily(requested_day: str = "") -> dict:
 
     today = time.strftime("%Y-%m-%d")
     start = time.strftime("%Y-%m-%d", time.localtime(time.time() - 7 * 86400))
-    sleep_ok, sleep_resp = _http_get(OURA_DAILY_SLEEP_URL, token, {"start_date": start, "end_date": today})
-    readiness_ok, readiness_resp = _http_get(OURA_DAILY_READINESS_URL, token, {"start_date": start, "end_date": today})
-    activity_ok, activity_resp = _http_get(OURA_DAILY_ACTIVITY_URL, token, {"start_date": start, "end_date": today})
-    stress_ok, stress_resp = _http_get(OURA_DAILY_STRESS_URL, token, {"start_date": start, "end_date": today})
-    sleep_session_ok, sleep_session_resp = _http_get(OURA_SLEEP_URL, token, {"start_date": start, "end_date": today})
+    sleep_ok, sleep_resp = _http_get(
+        OURA_DAILY_SLEEP_URL, token, {"start_date": start, "end_date": today}
+    )
+    readiness_ok, readiness_resp = _http_get(
+        OURA_DAILY_READINESS_URL, token, {"start_date": start, "end_date": today}
+    )
+    activity_ok, activity_resp = _http_get(
+        OURA_DAILY_ACTIVITY_URL, token, {"start_date": start, "end_date": today}
+    )
+    stress_ok, stress_resp = _http_get(
+        OURA_DAILY_STRESS_URL, token, {"start_date": start, "end_date": today}
+    )
+    sleep_session_ok, sleep_session_resp = _http_get(
+        OURA_SLEEP_URL, token, {"start_date": start, "end_date": today}
+    )
     api_status = {
-        "daily_sleep": {"ok": sleep_ok, "error": sleep_resp.get("message") or sleep_resp.get("error")},
-        "daily_readiness": {"ok": readiness_ok, "error": readiness_resp.get("message") or readiness_resp.get("error")},
-        "daily_activity": {"ok": activity_ok, "error": activity_resp.get("message") or activity_resp.get("error")},
-        "daily_stress": {"ok": stress_ok, "error": stress_resp.get("message") or stress_resp.get("error")},
-        "sleep": {"ok": sleep_session_ok, "error": sleep_session_resp.get("message") or sleep_session_resp.get("error")},
+        "daily_sleep": {
+            "ok": sleep_ok,
+            "error": sleep_resp.get("message") or sleep_resp.get("error"),
+        },
+        "daily_readiness": {
+            "ok": readiness_ok,
+            "error": readiness_resp.get("message") or readiness_resp.get("error"),
+        },
+        "daily_activity": {
+            "ok": activity_ok,
+            "error": activity_resp.get("message") or activity_resp.get("error"),
+        },
+        "daily_stress": {
+            "ok": stress_ok,
+            "error": stress_resp.get("message") or stress_resp.get("error"),
+        },
+        "sleep": {
+            "ok": sleep_session_ok,
+            "error": sleep_session_resp.get("message") or sleep_session_resp.get("error"),
+        },
     }
-    if not sleep_ok and not readiness_ok and not activity_ok and not stress_ok and not sleep_session_ok:
-        return {"ok": False, "day": today, "error": "Oura API non disponibile", "api_status": api_status, **token_status()}
+    if (
+        not sleep_ok
+        and not readiness_ok
+        and not activity_ok
+        and not stress_ok
+        and not sleep_session_ok
+    ):
+        return {
+            "ok": False,
+            "day": today,
+            "error": "Oura API non disponibile",
+            "api_status": api_status,
+            **token_status(),
+        }
     sleep_rows = {row.get("day"): row for row in (sleep_resp.get("data") or [])}
     readiness_rows = {row.get("day"): row for row in (readiness_resp.get("data") or [])}
     activity_rows = {row.get("day"): row for row in (activity_resp.get("data") or [])}
@@ -362,7 +444,9 @@ def fetch_oura_daily(requested_day: str = "") -> dict:
         key=lambda r: r.get("bedtime_end") or r.get("day") or "",
         reverse=True,
     )
-    candidates = [time.strftime("%Y-%m-%d", time.localtime(time.time() - i * 86400)) for i in range(8)]
+    candidates = [
+        time.strftime("%Y-%m-%d", time.localtime(time.time() - i * 86400)) for i in range(8)
+    ]
 
     # Giorno principale: il più recente con sleep o readiness
     main_day = None
@@ -387,7 +471,9 @@ def fetch_oura_daily(requested_day: str = "") -> dict:
             break
 
     # Trova la sessione di sonno piu lunga entro +/- 1 giorno dal main_day
-    prev_day = time.strftime("%Y-%m-%d", time.localtime(time.mktime(time.strptime(main_day, "%Y-%m-%d")) - 86400))
+    prev_day = time.strftime(
+        "%Y-%m-%d", time.localtime(time.mktime(time.strptime(main_day, "%Y-%m-%d")) - 86400)
+    )
     matching = [s for s in sleep_sessions if s.get("day", "") in (main_day, prev_day)]
     session = max(matching, key=lambda s: s.get("total_sleep_duration") or 0, default=None)
     if session:

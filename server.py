@@ -42,8 +42,12 @@ DONE = BRIDGE / "done"
 FAILED = BRIDGE / "failed"
 LOGS = BRIDGE / "logs"
 MAC_CAPTURE = Path(os.environ.get("MINDTUNE_MAC_CAPTURE", ROOT / "mindtune_capture")).resolve()
-MAC_RECORDER = Path(os.environ.get("MINDTUNE_MAC_RECORDER", MAC_CAPTURE / "fc11_mac_capture.py")).resolve()
-MAC_VENV_PY = Path(os.environ.get("MINDTUNE_MAC_PYTHON", MAC_CAPTURE / ".venv" / "bin" / "python")).absolute()
+MAC_RECORDER = Path(
+    os.environ.get("MINDTUNE_MAC_RECORDER", MAC_CAPTURE / "fc11_mac_capture.py")
+).resolve()
+MAC_VENV_PY = Path(
+    os.environ.get("MINDTUNE_MAC_PYTHON", MAC_CAPTURE / ".venv" / "bin" / "python")
+).absolute()
 MAC_LOGS = MAC_CAPTURE / "logs"
 MAC_SESSIONS = MAC_CAPTURE / "sessions"
 MINDTUNE_SESSIONS = MAC_CAPTURE / "mindtune_sessions"
@@ -59,8 +63,14 @@ MAC_START_SIGNAL = MAC_RUNTIME / "start_recording.signal"
 MAC_STOP_SIGNAL = MAC_RUNTIME / "stop_recording.signal"
 MAC_COMMAND_SIGNAL = MAC_RUNTIME / "command.signal"
 MEMORY_FILE = MAC_CAPTURE / "memory_protocol.json"
-CANONICAL_FLASHCARD_SEED_FILE = APP / "data" / "citizen_cafe_all_courses" / "quizlet_hebrew_seed.canonical.json"
-FLASHCARD_SEED_FILE = CANONICAL_FLASHCARD_SEED_FILE if CANONICAL_FLASHCARD_SEED_FILE.exists() else APP / "data" / "quizlet_hebrew_seed.json"
+CANONICAL_FLASHCARD_SEED_FILE = (
+    APP / "data" / "citizen_cafe_all_courses" / "quizlet_hebrew_seed.canonical.json"
+)
+FLASHCARD_SEED_FILE = (
+    CANONICAL_FLASHCARD_SEED_FILE
+    if CANONICAL_FLASHCARD_SEED_FILE.exists()
+    else APP / "data" / "quizlet_hebrew_seed.json"
+)
 HEBREW_VERB_CATALOG_FILE = APP / "data" / "hebrew_verbs_conjugated.json"
 PEALIM_VERB_CATALOG_FILE = APP / "data" / "pealim_hebrew_verbs.json"
 HELP_PROCESSED_DIR = Path(
@@ -74,15 +84,23 @@ HELP_LD_SUMMARY_FILE = HELP_PROCESSED_DIR / "help_ld_summary.csv"
 HELP_NAMING_SUMMARY_FILE = HELP_PROCESSED_DIR / "help_naming_summary.csv"
 FLASHCARD_CATALOG_PATCH_FILE = MAC_CAPTURE / "flashcard_catalog_patches.json"
 STREETWISE_ENRICHMENT_DIR = APP / "data" / "hebrew_enrichment" / "streetwise_hebrew"
-STREETWISE_CANDIDATES_FILE = STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_ENRICHMENT_CANDIDATES_v0.1.json"
+STREETWISE_CANDIDATES_FILE = (
+    STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_ENRICHMENT_CANDIDATES_v0.1.json"
+)
 STREETWISE_SOURCES_FILE = STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_RAW_SOURCES_v0.1.json"
 STREETWISE_MATCHES_FILE = STREETWISE_ENRICHMENT_DIR / "STREETWISE_HEBREW_MATCHES_v0.1.jsonl"
 HEBREW_SOURCE_REGISTRY_FILE = APP / "data" / "hebrew_resources" / "source_registry.json"
 HEBREW_WORDNET_DIR = APP / "data" / "hebrew_resources" / "vendor" / "HebrewWordnetShuly"
-HEBREW_WORDNET_INDEX_FILE = APP / "data" / "hebrew_resources" / "derived" / "hebrew_wordnet_compact.json"
+HEBREW_WORDNET_INDEX_FILE = (
+    APP / "data" / "hebrew_resources" / "derived" / "hebrew_wordnet_compact.json"
+)
 NNLP_VERB_INDEX_FILE = APP / "data" / "hebrew_resources" / "derived" / "nnlp_verb_index.json"
-SHORESH_TASK = Path(os.environ.get("MINDTUNE_SHORESH_TASK", ENGINE_ROOT / "mindtune_lab" / "tasks" / "shoresh_lab")).resolve()
-SHORESH_DATA_TASK = Path(os.environ.get("MINDTUNE_SHORESH_DATA_TASK", ROOT / "mindtune_lab" / "tasks" / "shoresh_lab")).resolve()
+SHORESH_TASK = Path(
+    os.environ.get("MINDTUNE_SHORESH_TASK", ENGINE_ROOT / "mindtune_lab" / "tasks" / "shoresh_lab")
+).resolve()
+SHORESH_DATA_TASK = Path(
+    os.environ.get("MINDTUNE_SHORESH_DATA_TASK", ROOT / "mindtune_lab" / "tasks" / "shoresh_lab")
+).resolve()
 SHORESH_ITEMS_FILE = SHORESH_TASK / "stimuli" / "shoresh_items_v1.json"
 SHORESH_SESSIONS = SHORESH_DATA_TASK / "data" / "sessions"
 SHORESH_EXPORTS = SHORESH_DATA_TASK / "data" / "exports"
@@ -91,7 +109,16 @@ REMOTE_EXPORT_BASE = "/mnt/biohacking/home/mindtune/macbook_exports"
 APP_VERSION = "3.22.0"
 APP_BUILD = os.environ.get("MINDTUNE_APP_BUILD", "dev")
 SERIOUS_DATA_START_TS = float(os.environ.get("MINDTUNE_SERIOUS_DATA_START_TS", "1782742800"))
-ACTIVE_PHASES = {"scan", "connecting", "ble_link", "handshake_sent", "connected", "starting", "prep", "recording"}
+ACTIVE_PHASES = {
+    "scan",
+    "connecting",
+    "ble_link",
+    "handshake_sent",
+    "connected",
+    "starting",
+    "prep",
+    "recording",
+}
 TERMINAL_PHASES = {"done", "error", "interrupted"}
 ACTIVE_STATUS_MAX_AGE_S = 12
 
@@ -196,7 +223,9 @@ def _run_hebrew_mlf_job(func: Any) -> Any:
         return func()
     with _HEBREW_MLF_LOCK:
         if not _HEBREW_MLF_WORKER_STARTED:
-            worker = threading.Thread(target=_hebrew_mlf_worker, name="MindTuneHebrewMLF", daemon=True)
+            worker = threading.Thread(
+                target=_hebrew_mlf_worker, name="MindTuneHebrewMLF", daemon=True
+            )
             worker.start()
             _HEBREW_MLF_WORKER_STARTED = True
     done = threading.Event()
@@ -218,13 +247,19 @@ def first_existing_path(*paths: Path) -> Path:
 
 PROJECT_ROOT_FALLBACK = Path.home() / "Documents" / "Chatgpt" / "Biohacking"
 SSH_KEY = first_existing_path(
-    Path(os.environ["MINDTUNE_SSH_KEY"]) if os.environ.get("MINDTUNE_SSH_KEY") else ROOT / ".ssh_agent" / "codex_biohacking_ed25519",
+    (
+        Path(os.environ["MINDTUNE_SSH_KEY"])
+        if os.environ.get("MINDTUNE_SSH_KEY")
+        else ROOT / ".ssh_agent" / "codex_biohacking_ed25519"
+    ),
     PROJECT_ROOT_FALLBACK / ".ssh_agent" / "codex_biohacking_ed25519",
 )
 REMOTE_MINDTUNE_INSTALLER = first_existing_path(
-    Path(os.environ["MINDTUNE_REMOTE_INSTALLER"])
-    if os.environ.get("MINDTUNE_REMOTE_INSTALLER")
-    else ROOT / "tools" / "remote_install_mindtune_v2_brainlab.py",
+    (
+        Path(os.environ["MINDTUNE_REMOTE_INSTALLER"])
+        if os.environ.get("MINDTUNE_REMOTE_INSTALLER")
+        else ROOT / "tools" / "remote_install_mindtune_v2_brainlab.py"
+    ),
     PROJECT_ROOT_FALLBACK / "tools" / "remote_install_mindtune_v2_brainlab.py",
 )
 
@@ -279,7 +314,9 @@ def mac_env() -> dict:
     env = os.environ.copy()
     if MAC_PYTHONPATH:
         existing = env.get("PYTHONPATH")
-        env["PYTHONPATH"] = MAC_PYTHONPATH if not existing else f"{MAC_PYTHONPATH}{os.pathsep}{existing}"
+        env["PYTHONPATH"] = (
+            MAC_PYTHONPATH if not existing else f"{MAC_PYTHONPATH}{os.pathsep}{existing}"
+        )
     env["PYTHONDONTWRITEBYTECODE"] = "1"
     env["PYTHONUNBUFFERED"] = "1"
     return env
@@ -387,8 +424,10 @@ def mac_status() -> dict:
     sessions = list_mac_sessions()
     latest = next(
         (
-            session for session in sessions
-            if session.get("source") != "task" and int(session.get("samples") or session.get("rows") or 0) > 0
+            session
+            for session in sessions
+            if session.get("source") != "task"
+            and int(session.get("samples") or session.get("rows") or 0) > 0
         ),
         sessions[0] if sessions else None,
     )
@@ -519,14 +558,26 @@ def list_mindtune_task_sessions() -> list[dict]:
             payload = json.loads(path.read_text(encoding="utf-8"))
         except Exception:
             payload = {}
-        has_eeg_payload = (path.parent / "samples.csv").exists() or (path.parent / "packets.csv").exists()
+        has_eeg_payload = (path.parent / "samples.csv").exists() or (
+            path.parent / "packets.csv"
+        ).exists()
         if not has_eeg_payload and payload.get("eeg_linked"):
             continue
         context = payload.get("context") if isinstance(payload.get("context"), dict) else {}
         score = payload.get("score") if isinstance(payload.get("score"), dict) else {}
-        covariates = payload.get("covariates") if isinstance(payload.get("covariates"), dict) else {}
+        covariates = (
+            payload.get("covariates") if isinstance(payload.get("covariates"), dict) else {}
+        )
         session_id = safe_memory_text(str(payload.get("session_id") or path.parent.name), 120)
-        label = safe_memory_text(str(payload.get("label") or context.get("task_label") or payload.get("condition") or session_id), 160)
+        label = safe_memory_text(
+            str(
+                payload.get("label")
+                or context.get("task_label")
+                or payload.get("condition")
+                or session_id
+            ),
+            160,
+        )
         samples = payload.get("sample_count")
         if samples is None and (path.parent / "samples.csv").exists():
             try:
@@ -552,7 +603,9 @@ def list_mindtune_task_sessions() -> list[dict]:
             "samples": int(samples or 0) if has_eeg_payload else 0,
             "sample_rate_est_hz": payload.get("sample_rate_hz") if has_eeg_payload else None,
             "packet_index_gaps": None if has_eeg_payload else 0,
-            "behavioral_events": events_count if events_count is not None else len(payload.get("events", [])),
+            "behavioral_events": (
+                events_count if events_count is not None else len(payload.get("events", []))
+            ),
             "behavioral_score": score,
             "session_covariates": covariates,
             "study_context": context or payload.get("study_context"),
@@ -587,7 +640,14 @@ def delete_mac_session(params: dict) -> dict:
     deleted = []
     csv_path.unlink()
     deleted.append(csv_path.name)
-    for path in (meta_path, manifest_path, flashcard_json, flashcard_jsonl, events_json, events_jsonl):
+    for path in (
+        meta_path,
+        manifest_path,
+        flashcard_json,
+        flashcard_jsonl,
+        events_json,
+        events_jsonl,
+    ):
         if path.exists() and path.is_file():
             path.unlink()
             deleted.append(path.name)
@@ -634,19 +694,23 @@ def delete_aborted_mac_sessions() -> dict:
             events = int(session.get("behavioral_events") or 0)
             samples = int(session.get("samples") or 0)
             if events == 0 and samples == 0:
-                result = delete_mindtune_task_session({
-                    "session_id": session.get("session_id", ""),
-                    "session_dir": session.get("session_dir", ""),
-                })
+                result = delete_mindtune_task_session(
+                    {
+                        "session_id": session.get("session_id", ""),
+                        "session_dir": session.get("session_dir", ""),
+                    }
+                )
                 deleted.extend(result.get("deleted", []))
             continue
         if session.get("source") == "eeg_v2":
             samples = int(session.get("samples") or 0)
             if samples == 0:
-                result = delete_mindtune_task_session({
-                    "session_id": session.get("session_id", ""),
-                    "session_dir": session.get("session_dir", ""),
-                })
+                result = delete_mindtune_task_session(
+                    {
+                        "session_id": session.get("session_id", ""),
+                        "session_dir": session.get("session_dir", ""),
+                    }
+                )
                 deleted.extend(result.get("deleted", []))
             continue
         samples = session.get("samples")
@@ -824,22 +888,35 @@ def streetwise_enrichment_state(params: dict | None = None) -> dict:
     items = []
     seen_sources: set[str] = set()
     for candidate in candidates:
-        source_ref = candidate.get("source_ref") if isinstance(candidate.get("source_ref"), dict) else {}
+        source_ref = (
+            candidate.get("source_ref") if isinstance(candidate.get("source_ref"), dict) else {}
+        )
         source_id = str(source_ref.get("source_id") or "")
         if not source_id or source_id in seen_sources:
             continue
         seen_sources.add(source_id)
         source = index["sources"].get(source_id, {})
         match = matches_by_source.get(source_id, {})
-        audio_refs = candidate.get("audio_refs") if isinstance(candidate.get("audio_refs"), list) else []
+        audio_refs = (
+            candidate.get("audio_refs") if isinstance(candidate.get("audio_refs"), list) else []
+        )
         audio_urls = source.get("audio_urls") if isinstance(source.get("audio_urls"), list) else []
-        usage_examples = candidate.get("usage_examples") if isinstance(candidate.get("usage_examples"), list) else []
+        usage_examples = (
+            candidate.get("usage_examples")
+            if isinstance(candidate.get("usage_examples"), list)
+            else []
+        )
         items.append(
             {
                 "enrichment_id": str(candidate.get("enrichment_id") or ""),
                 "canonical_item_id": canonical_id,
                 "source_id": source_id,
-                "episode_title": str(source.get("title") or source_ref.get("title") or source_ref.get("source_label") or "Streetwise Hebrew"),
+                "episode_title": str(
+                    source.get("title")
+                    or source_ref.get("title")
+                    or source_ref.get("source_label")
+                    or "Streetwise Hebrew"
+                ),
                 "published_at": str(source.get("published_at") or ""),
                 "episode_url": str(source.get("url") or source_ref.get("url") or ""),
                 "audio_url": str((audio_urls or audio_refs or [""])[0]),
@@ -858,7 +935,9 @@ def streetwise_enrichment_state(params: dict | None = None) -> dict:
                 "review_status": str(candidate.get("review_status") or "draft_unverified"),
             }
         )
-    items.sort(key=lambda item: (item.get("published_at", ""), item.get("source_id", "")), reverse=True)
+    items.sort(
+        key=lambda item: (item.get("published_at", ""), item.get("source_id", "")), reverse=True
+    )
     return {
         "ok": True,
         "canonical_item_id": canonical_id,
@@ -908,7 +987,14 @@ def help_item_state(params: dict | None = None) -> dict:
     hebrew = raw_flashcard_text(strip_hebrew_niqqud(str(params.get("hebrew") or "")), 500)
     item_id = safe_memory_text(str(params.get("item_id") or ""), 120)
     memory = memory_db()
-    item = next((candidate for candidate in memory.get("items", []) if str(candidate.get("id") or "") == item_id), None)
+    item = next(
+        (
+            candidate
+            for candidate in memory.get("items", [])
+            if str(candidate.get("id") or "") == item_id
+        ),
+        None,
+    )
     if item and not hebrew:
         hebrew = raw_flashcard_text(str(item.get("raw_front") or item.get("term") or ""), 500)
     personal_events = [event for event in (item or {}).get("events", []) if isinstance(event, dict)]
@@ -932,7 +1018,9 @@ def help_item_state(params: dict | None = None) -> dict:
         "personal": {
             "observation_count": len(personal_events),
             "result_counts": result_counts,
-            "median_recall_latency_ms": round(statistics.median(latencies), 1) if latencies else None,
+            "median_recall_latency_ms": (
+                round(statistics.median(latencies), 1) if latencies else None
+            ),
             "last_result": (item or {}).get("last_result"),
             "next_due_at": (item or {}).get("next_due_at"),
         },
@@ -942,14 +1030,16 @@ def help_item_state(params: dict | None = None) -> dict:
 def help_profile_state() -> dict:
     memory = memory_db()
     active_items = [
-        item for item in memory.get("items", [])
+        item
+        for item in memory.get("items", [])
         if isinstance(item, dict) and is_study_ready_flashcard(item)
     ]
     active_item_ids = {str(item.get("id") or "") for item in active_items}
     profile_memory = dict(memory)
     profile_memory["items"] = active_items
     profile_memory["events"] = [
-        event for event in memory.get("events", [])
+        event
+        for event in memory.get("events", [])
         if isinstance(event, dict) and str(event.get("item_id") or "") in active_item_ids
     ]
     profile = help_profiler.build_profile(
@@ -972,8 +1062,11 @@ def conjugation_catalog_state() -> dict:
         except Exception as exc:
             pealim_catalog = {"error": str(exc), "verbs": []}
     pealim_practice_verbs = [
-        verb for verb in pealim_catalog.get("verbs", [])
-        if verb.get("source") == "pealim" and isinstance(verb.get("present"), list) and isinstance(verb.get("targets"), dict)
+        verb
+        for verb in pealim_catalog.get("verbs", [])
+        if verb.get("source") == "pealim"
+        and isinstance(verb.get("present"), list)
+        and isinstance(verb.get("targets"), dict)
     ]
     return {
         "pealim_catalog_path": str(PEALIM_VERB_CATALOG_FILE),
@@ -1003,8 +1096,12 @@ def hebrew_source_registry_state() -> dict:
     checks = {
         "academy_hebrew_language": lambda: True,
         "pealim": lambda: PEALIM_VERB_CATALOG_FILE.exists(),
-        "help_lexicon": lambda: all(path.exists() for path in (HELP_LEXICAL_METRICS_FILE, HELP_LD_SUMMARY_FILE, HELP_NAMING_SUMMARY_FILE)),
-        "streetwise_hebrew": lambda: STREETWISE_CANDIDATES_FILE.exists() and STREETWISE_SOURCES_FILE.exists(),
+        "help_lexicon": lambda: all(
+            path.exists()
+            for path in (HELP_LEXICAL_METRICS_FILE, HELP_LD_SUMMARY_FILE, HELP_NAMING_SUMMARY_FILE)
+        ),
+        "streetwise_hebrew": lambda: STREETWISE_CANDIDATES_FILE.exists()
+        and STREETWISE_SOURCES_FILE.exists(),
         "hebrew_wordnet_shuly": lambda: HEBREW_WORDNET_INDEX_FILE.exists(),
         "nnlp_hebrew_resources": lambda: NNLP_VERB_INDEX_FILE.exists(),
         "azure_speech": lambda: bool(azure_speech.status().get("configured")),
@@ -1029,13 +1126,24 @@ def hebrew_source_registry_state() -> dict:
         source["source_category"] = source_category
         source["active_for_recovery"] = available and source_category == "operational"
         sources.append(source)
-    operational_sources = [source for source in sources if source.get("source_category") == "operational"]
+    operational_sources = [
+        source for source in sources if source.get("source_category") == "operational"
+    ]
     support_sources = [source for source in sources if source.get("source_category") == "support"]
-    optional_runtime_sources = [source for source in sources if source.get("source_category") == "optional_runtime"]
+    optional_runtime_sources = [
+        source for source in sources if source.get("source_category") == "optional_runtime"
+    ]
     operational_ready = sum(bool(source.get("available")) for source in operational_sources)
     support_ready = sum(bool(source.get("available")) for source in support_sources)
     optional_ready = sum(bool(source.get("available")) for source in optional_runtime_sources)
-    azure = next((source for source in optional_runtime_sources if source.get("source_id") == "azure_speech"), None)
+    azure = next(
+        (
+            source
+            for source in optional_runtime_sources
+            if source.get("source_id") == "azure_speech"
+        ),
+        None,
+    )
     azure_label = "Azure pronta" if azure and azure.get("available") else "Azure non configurata"
     source_summary_label = (
         f"{operational_ready}/{len(operational_sources)} fonti operative"
@@ -1059,14 +1167,20 @@ def hebrew_source_registry_state() -> dict:
     }
 
 
-def hebrew_recovery_plan_state(minutes: int = 30, readiness: float | None = None, sleep_h: float | None = None) -> dict:
+def hebrew_recovery_plan_state(
+    minutes: int = 30, readiness: float | None = None, sleep_h: float | None = None
+) -> dict:
     """Build a domain-level recovery plan without promoting any source to curriculum truth."""
     duration = max(15, min(90, int(minutes or 30)))
     profile = help_profile_state().get("profile") or {}
     evidence = profile.get("evidence") if isinstance(profile.get("evidence"), dict) else {}
     performance = profile.get("performance") if isinstance(profile.get("performance"), dict) else {}
-    source_counts = evidence.get("source_counts") if isinstance(evidence.get("source_counts"), dict) else {}
-    low_recovery_context = (readiness is not None and readiness < 70) or (sleep_h is not None and sleep_h < 6.5)
+    source_counts = (
+        evidence.get("source_counts") if isinstance(evidence.get("source_counts"), dict) else {}
+    )
+    low_recovery_context = (readiness is not None and readiness < 70) or (
+        sleep_h is not None and sleep_h < 6.5
+    )
     insufficient_personal_data = evidence.get("status") != "preliminary"
     if low_recovery_context:
         weights = [0.14, 0.23, 0.25, 0.20, 0.18]
@@ -1080,18 +1194,52 @@ def hebrew_recovery_plan_state(minutes: int = 30, readiness: float | None = None
     phase_minutes = [max(1, round(duration * weight)) for weight in weights]
     phase_minutes[2] += duration - sum(phase_minutes)
     phases = [
-        {"id": "activation", "label": "Prima · controllo", "purpose": "controllo attentivo breve, senza allenare uno score", "minutes": phase_minutes[0], "source": "behavioral_warmup"},
-        {"id": "lexical_access", "label": "Prima · lessico", "purpose": "accesso lessicale caratterizzato con le norme HeLP quando disponibili", "minutes": phase_minutes[1], "source": "help_norms"},
-        {"id": "morphological_production", "label": "Domino produttivo", "purpose": "persona, tempo e recupero generativo su verbi Pealim", "minutes": phase_minutes[2], "source": "pealim"},
-        {"id": "live_comprehension", "label": "Comprensione", "purpose": "riconoscimento di forme flesse; Streetwise arricchisce solo elementi verificati", "minutes": phase_minutes[3], "source": "pealim_context+streetwise_enrichment"},
-        {"id": "reentry", "label": "Dopo · re-entry", "purpose": "nuova prova sugli elementi fragili o più lenti osservati oggi", "minutes": phase_minutes[4], "source": "personal_event_stream"},
+        {
+            "id": "activation",
+            "label": "Prima · controllo",
+            "purpose": "controllo attentivo breve, senza allenare uno score",
+            "minutes": phase_minutes[0],
+            "source": "behavioral_warmup",
+        },
+        {
+            "id": "lexical_access",
+            "label": "Prima · lessico",
+            "purpose": "accesso lessicale caratterizzato con le norme HeLP quando disponibili",
+            "minutes": phase_minutes[1],
+            "source": "help_norms",
+        },
+        {
+            "id": "morphological_production",
+            "label": "Domino produttivo",
+            "purpose": "persona, tempo e recupero generativo su verbi Pealim",
+            "minutes": phase_minutes[2],
+            "source": "pealim",
+        },
+        {
+            "id": "live_comprehension",
+            "label": "Comprensione",
+            "purpose": "riconoscimento di forme flesse; Streetwise arricchisce solo elementi verificati",
+            "minutes": phase_minutes[3],
+            "source": "pealim_context+streetwise_enrichment",
+        },
+        {
+            "id": "reentry",
+            "label": "Dopo · re-entry",
+            "purpose": "nuova prova sugli elementi fragili o più lenti osservati oggi",
+            "minutes": phase_minutes[4],
+            "source": "personal_event_stream",
+        },
     ]
     resource_state = hebrew_source_registry_state()
     return {
         "ok": True,
         "plan": {
             "schema_version": "mindtune.hebrew_recovery_plan/1.0.0",
-            "status_label": "Profilo preliminare" if evidence.get("status") == "preliminary" else "Calibrazione attiva",
+            "status_label": (
+                "Profilo preliminare"
+                if evidence.get("status") == "preliminary"
+                else "Calibrazione attiva"
+            ),
             "duration_minutes": duration,
             "rationale": "Le prestazioni osservabili guidano la dose; Oura regola soltanto la partenza, HeLP caratterizza gli stimoli e Pealim alimenta la produzione.",
             "dose": {
@@ -1107,8 +1255,12 @@ def hebrew_recovery_plan_state(minutes: int = 30, readiness: float | None = None
                 "items": int(evidence.get("distinct_item_count") or 0),
                 "success_ratio": performance.get("success_ratio"),
                 "source_counts": source_counts,
-                "resources_ready": resource_state.get("operational_ready_count", resource_state.get("ready_count", 0)),
-                "resources_total": resource_state.get("operational_total_count", resource_state.get("total_count", 0)),
+                "resources_ready": resource_state.get(
+                    "operational_ready_count", resource_state.get("ready_count", 0)
+                ),
+                "resources_total": resource_state.get(
+                    "operational_total_count", resource_state.get("total_count", 0)
+                ),
                 "resources_label": resource_state.get("source_summary_label", ""),
             },
             "phases": phases,
@@ -1160,7 +1312,13 @@ def shoresh_catalog_state() -> dict:
     try:
         payload = json.loads(SHORESH_ITEMS_FILE.read_text(encoding="utf-8"))
     except Exception as exc:
-        return {"ok": False, "error": str(exc), "items": [], "coverage_report": {}, "session_blueprint": {}}
+        return {
+            "ok": False,
+            "error": str(exc),
+            "items": [],
+            "coverage_report": {},
+            "session_blueprint": {},
+        }
     payload.setdefault("items", [])
     return {
         "ok": True,
@@ -1220,7 +1378,9 @@ def shoresh_percentile(values: list[float], pct: float) -> float | None:
 
 
 def shoresh_accuracy(rows: list[dict]) -> float:
-    return sum(1 for row in rows if shoresh_bool(row.get("is_correct"))) / len(rows) if rows else 0.0
+    return (
+        sum(1 for row in rows if shoresh_bool(row.get("is_correct"))) / len(rows) if rows else 0.0
+    )
 
 
 def shoresh_rt_values(rows: list[dict], correct_only: bool = False) -> list[float]:
@@ -1240,23 +1400,32 @@ def shoresh_score_rows(rows: list[dict], session_meta: dict) -> dict:
     total = len(rows)
     rts = shoresh_rt_values(rows)
     first = rows[: max(1, total // 3)] if rows else []
-    last = rows[-max(1, total // 3):] if rows else []
-    timeout_rate = sum(1 for row in rows if shoresh_bool(row.get("timeout"))) / total if total else 0.0
+    last = rows[-max(1, total // 3) :] if rows else []
+    timeout_rate = (
+        sum(1 for row in rows if shoresh_bool(row.get("timeout"))) / total if total else 0.0
+    )
     accuracy_total = shoresh_accuracy(rows)
     median_rt = shoresh_median(rts) or 0
     p90_rt = shoresh_percentile(rts, 0.90) or 0
-    fatigue_slope_rt = (shoresh_median(shoresh_rt_values(last)) or 0) - (shoresh_median(shoresh_rt_values(first)) or 0) if rows else None
+    fatigue_slope_rt = (
+        (shoresh_median(shoresh_rt_values(last)) or 0)
+        - (shoresh_median(shoresh_rt_values(first)) or 0)
+        if rows
+        else None
+    )
     fatigue_slope_accuracy = shoresh_accuracy(first) - shoresh_accuracy(last) if rows else None
     correct_rts = shoresh_rt_values(rows, correct_only=True)
     p75_correct = shoresh_percentile(correct_rts, 0.75)
     hesitation_index = None
     if p75_correct is not None and correct_rts:
         hesitation_index = sum(1 for value in correct_rts if value > p75_correct) / len(correct_rts)
+
     def grouped(key: str) -> dict[str, list[dict]]:
         out: dict[str, list[dict]] = {}
         for row in rows:
             out.setdefault(str(row.get(key) or ""), []).append(row)
         return out
+
     by_task = grouped("task_type")
     by_level = grouped("level")
     flags = []
@@ -1266,7 +1435,9 @@ def shoresh_score_rows(rows: list[dict], session_meta: dict) -> dict:
         flags.append("too_fast_responses")
     if total < 40:
         flags.append("low_item_count")
-    missing_help = sum(1 for row in rows if not row.get("help_frequency_mean") and not row.get("help_ld_rt_mean"))
+    missing_help = sum(
+        1 for row in rows if not row.get("help_frequency_mean") and not row.get("help_ld_rt_mean")
+    )
     if total and missing_help / total > 0.50:
         flags.append("missing_help_metrics")
     if session_meta.get("interrupted"):
@@ -1283,12 +1454,24 @@ def shoresh_score_rows(rows: list[dict], session_meta: dict) -> dict:
         "accuracy_total": round(accuracy_total, 4),
         "median_rt_ms": round(median_rt, 1),
         "p90_rt_ms": round(p90_rt, 1),
-        "accuracy_by_task_type": {key: round(shoresh_accuracy(value), 4) for key, value in by_task.items()},
-        "median_rt_by_task_type": {key: round(shoresh_median(shoresh_rt_values(value)) or 0, 1) for key, value in by_task.items()},
-        "accuracy_by_level": {key: round(shoresh_accuracy(value), 4) for key, value in by_level.items()},
-        "median_rt_by_level": {key: round(shoresh_median(shoresh_rt_values(value)) or 0, 1) for key, value in by_level.items()},
+        "accuracy_by_task_type": {
+            key: round(shoresh_accuracy(value), 4) for key, value in by_task.items()
+        },
+        "median_rt_by_task_type": {
+            key: round(shoresh_median(shoresh_rt_values(value)) or 0, 1)
+            for key, value in by_task.items()
+        },
+        "accuracy_by_level": {
+            key: round(shoresh_accuracy(value), 4) for key, value in by_level.items()
+        },
+        "median_rt_by_level": {
+            key: round(shoresh_median(shoresh_rt_values(value)) or 0, 1)
+            for key, value in by_level.items()
+        },
         "fatigue_slope_rt": None if fatigue_slope_rt is None else round(fatigue_slope_rt, 1),
-        "fatigue_slope_accuracy": None if fatigue_slope_accuracy is None else round(fatigue_slope_accuracy, 4),
+        "fatigue_slope_accuracy": (
+            None if fatigue_slope_accuracy is None else round(fatigue_slope_accuracy, 4)
+        ),
         "timeout_rate": round(timeout_rate, 4),
         "hesitation_index": None if hesitation_index is None else round(hesitation_index, 4),
         "root_skill_score": round(100 * accuracy_total * speed_factor * stability_factor, 1),
@@ -1319,32 +1502,38 @@ def shoresh_save_session(params: dict) -> dict:
             continue
         item_id = str(event.get("item_id") or "")
         item = items_by_id.get(item_id, {})
-        timestamp = safe_memory_text(str(event.get("timestamp") or time.strftime("%Y-%m-%dT%H:%M:%S%z")), 80)
+        timestamp = safe_memory_text(
+            str(event.get("timestamp") or time.strftime("%Y-%m-%dT%H:%M:%S%z")), 80
+        )
         is_correct = bool(event.get("is_correct"))
         timeout = bool(event.get("timeout"))
-        rows.append({
-            "session_id": session_id,
-            "timestamp": timestamp,
-            "item_id": item_id,
-            "task_type": item.get("task_type", event.get("task_type", "")),
-            "level": item.get("level", event.get("level", "")),
-            "root": item.get("root", event.get("root", "")),
-            "answer": raw_flashcard_text(str(event.get("answer", "")), 400),
-            "correct_answer": raw_flashcard_text(str(item.get("correct_answer", event.get("correct_answer", ""))), 400),
-            "is_correct": "true" if is_correct else "false",
-            "reaction_time_ms": int(float(event.get("reaction_time_ms") or 0)),
-            "timeout": "true" if timeout else "false",
-            "semantic_transparency": item.get("semantic_transparency", ""),
-            "help_frequency_mean": shoresh_help_mean(item, "frequency"),
-            "help_ld_rt_mean": shoresh_help_mean(item, "ld_mean_rt"),
-            "help_ld_accuracy_mean": shoresh_help_mean(item, "ld_accuracy"),
-            "self_lucidity_pre": as_int(pre.get("lucidity"), 0, 0, 7),
-            "self_fatigue_pre": as_int(pre.get("fatigue"), 0, 0, 7),
-            "self_hebrew_familiarity_pre": as_int(pre.get("hebrew_familiarity"), 0, 0, 7),
-            "self_effort_post": as_int(post.get("effort"), 0, 0, 7),
-            "self_frustration_post": as_int(post.get("frustration"), 0, 0, 7),
-            "self_focus_post": as_int(post.get("focus"), 0, 0, 7),
-        })
+        rows.append(
+            {
+                "session_id": session_id,
+                "timestamp": timestamp,
+                "item_id": item_id,
+                "task_type": item.get("task_type", event.get("task_type", "")),
+                "level": item.get("level", event.get("level", "")),
+                "root": item.get("root", event.get("root", "")),
+                "answer": raw_flashcard_text(str(event.get("answer", "")), 400),
+                "correct_answer": raw_flashcard_text(
+                    str(item.get("correct_answer", event.get("correct_answer", ""))), 400
+                ),
+                "is_correct": "true" if is_correct else "false",
+                "reaction_time_ms": int(float(event.get("reaction_time_ms") or 0)),
+                "timeout": "true" if timeout else "false",
+                "semantic_transparency": item.get("semantic_transparency", ""),
+                "help_frequency_mean": shoresh_help_mean(item, "frequency"),
+                "help_ld_rt_mean": shoresh_help_mean(item, "ld_mean_rt"),
+                "help_ld_accuracy_mean": shoresh_help_mean(item, "ld_accuracy"),
+                "self_lucidity_pre": as_int(pre.get("lucidity"), 0, 0, 7),
+                "self_fatigue_pre": as_int(pre.get("fatigue"), 0, 0, 7),
+                "self_hebrew_familiarity_pre": as_int(pre.get("hebrew_familiarity"), 0, 0, 7),
+                "self_effort_post": as_int(post.get("effort"), 0, 0, 7),
+                "self_frustration_post": as_int(post.get("frustration"), 0, 0, 7),
+                "self_focus_post": as_int(post.get("focus"), 0, 0, 7),
+            }
+        )
     if not rows:
         raise ValueError("nessuna risposta Shoresh valida")
     SHORESH_SESSIONS.mkdir(parents=True, exist_ok=True)
@@ -1361,7 +1550,11 @@ def shoresh_save_session(params: dict) -> dict:
         "export_paths": {"csv": str(csv_path), "summary_json": str(json_path)},
         "pre": pre,
         "post": post,
-        "training_policy": "training excluded from primary test trend" if mode == "training" else "primary behavioral test",
+        "training_policy": (
+            "training excluded from primary test trend"
+            if mode == "training"
+            else "primary behavioral test"
+        ),
     }
     with csv_path.open("w", encoding="utf-8", newline="") as handle:
         writer = csv.DictWriter(handle, fieldnames=SHORESH_COLUMNS)
@@ -1371,7 +1564,12 @@ def shoresh_save_session(params: dict) -> dict:
     meta["data_quality_flags"] = summary.get("data_quality_flags", [])
     summary.update({key: meta[key] for key in ("device", "export_paths", "pre", "post")})
     json_path.write_text(json.dumps(summary, ensure_ascii=False, indent=2), encoding="utf-8")
-    return {"session_id": session_id, "csv": str(csv_path), "summary_json": str(json_path), "summary": summary}
+    return {
+        "session_id": session_id,
+        "csv": str(csv_path),
+        "summary_json": str(json_path),
+        "summary": summary,
+    }
 
 
 def hebrew_verb_catalog() -> dict:
@@ -1500,7 +1698,9 @@ def cleanup_legacy_flashcard_memory() -> dict:
     ]
     if not legacy_items:
         return {"changed": False, "reason": "no_legacy_flashcards"}
-    backup = MEMORY_FILE.with_name(f"memory_protocol_legacy_backup_{time.strftime('%Y%m%d_%H%M%S')}.json")
+    backup = MEMORY_FILE.with_name(
+        f"memory_protocol_legacy_backup_{time.strftime('%Y%m%d_%H%M%S')}.json"
+    )
     backup.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
     clean = {
         "items": [],
@@ -1521,21 +1721,24 @@ def migrate_blue_purple_docker_safe_memory() -> dict:
     if marker.exists():
         return {"changed": False, "reason": "already_migrated"}
     if not MEMORY_FILE.exists() or not FLASHCARD_SEED_FILE.exists():
-        marker.write_text(json.dumps({"changed": False, "reason": "missing_files"}, indent=2), encoding="utf-8")
+        marker.write_text(
+            json.dumps({"changed": False, "reason": "missing_files"}, indent=2), encoding="utf-8"
+        )
         return {"changed": False, "reason": "missing_files"}
     try:
         payload = json.loads(MEMORY_FILE.read_text(encoding="utf-8"))
         seed = json.loads(FLASHCARD_SEED_FILE.read_text(encoding="utf-8"))
     except Exception as exc:
-        marker.write_text(json.dumps({"changed": False, "reason": repr(exc)}, indent=2), encoding="utf-8")
+        marker.write_text(
+            json.dumps({"changed": False, "reason": repr(exc)}, indent=2), encoding="utf-8"
+        )
         return {"changed": False, "reason": "unreadable"}
 
     approved: dict[str, dict] = {}
     for seed_item in seed.get("items", []):
-        if (
-            seed_item.get("source") == "citizen_cafe_text_export_import"
-            and seed_item.get("deck") in {"Blue", "Purple"}
-        ):
+        if seed_item.get("source") == "citizen_cafe_text_export_import" and seed_item.get(
+            "deck"
+        ) in {"Blue", "Purple"}:
             seed_id = str(seed_item.get("id") or "")
             if seed_id and seed_item.get("raw_back"):
                 approved[seed_id] = seed_item
@@ -1557,15 +1760,25 @@ def migrate_blue_purple_docker_safe_memory() -> dict:
         item["raw_back"] = new_back
         item["italian_review_status"] = "docker_safe_approved"
         item["semantic_method"] = "docker_safe_italian_review"
-        item["semantic_note"] = "Traduzione italiana approvata da revisione Docker safe; originale preservato in raw_back_original."
+        item["semantic_note"] = (
+            "Traduzione italiana approvata da revisione Docker safe; originale preservato in raw_back_original."
+        )
         item["updated_at"] = time.time()
         item["updated_label"] = time.strftime("%Y-%m-%d %H:%M")
         changed += 1
 
-    result = {"changed": bool(changed), "updated_items": changed, "approved_seed_items": len(approved)}
+    result = {
+        "changed": bool(changed),
+        "updated_items": changed,
+        "approved_seed_items": len(approved),
+    }
     if changed:
-        backup = MEMORY_FILE.with_name(f"memory_protocol_before_blue_purple_docker_safe_{time.strftime('%Y%m%d_%H%M%S')}.json")
-        backup.write_text(json.dumps(original_payload, indent=2, ensure_ascii=False), encoding="utf-8")
+        backup = MEMORY_FILE.with_name(
+            f"memory_protocol_before_blue_purple_docker_safe_{time.strftime('%Y%m%d_%H%M%S')}.json"
+        )
+        backup.write_text(
+            json.dumps(original_payload, indent=2, ensure_ascii=False), encoding="utf-8"
+        )
         write_memory_db(payload)
         result["backup"] = str(backup)
     marker.write_text(json.dumps(result, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -1592,14 +1805,21 @@ def strip_hebrew_niqqud(value: str) -> str:
     decomposed = unicodedata.normalize("NFKD", value or "")
     without_hebrew_marks = HEBREW_MARKS_RE.sub("", decomposed)
     without_combining = "".join(
-        ch for ch in without_hebrew_marks if not (unicodedata.combining(ch) and "\u0590" <= ch <= "\u05ff")
+        ch
+        for ch in without_hebrew_marks
+        if not (unicodedata.combining(ch) and "\u0590" <= ch <= "\u05ff")
     )
     return unicodedata.normalize("NFC", without_combining)
 
 
 def infer_citizen_color_level(deck: str) -> tuple[str, int]:
     key = (deck or "").lower().replace("_", " ")
-    if "dark green" in key or "d.g" in key or re.search(r"\bdark\s*g\b", key) or re.search(r"\bdk\b", key):
+    if (
+        "dark green" in key
+        or "d.g" in key
+        or re.search(r"\bdark\s*g\b", key)
+        or re.search(r"\bdk\b", key)
+    ):
         return "dark green", 9
     for color, level in COLOR_LEVELS:
         if color in key:
@@ -1732,7 +1952,11 @@ def memory_state() -> dict:
     items.sort(key=memory_sort_key)
     due = [item for item in items if float(item.get("next_due_at") or 0) <= now]
     decks = sorted(
-        {str(item.get("deck") or item.get("context") or "").strip() for item in items if str(item.get("deck") or item.get("context") or "").strip()},
+        {
+            str(item.get("deck") or item.get("context") or "").strip()
+            for item in items
+            if str(item.get("deck") or item.get("context") or "").strip()
+        },
         key=lambda deck: (infer_citizen_color_level(deck)[1], deck.lower()),
     )
     return {
@@ -1758,7 +1982,14 @@ def memory_save_item(params: dict) -> dict:
         item = next((candidate for candidate in items if candidate.get("id") == item_id), None)
     if item is None:
         folded = term.casefold()
-        item = next((candidate for candidate in items if str(candidate.get("term", "")).casefold() == folded), None)
+        item = next(
+            (
+                candidate
+                for candidate in items
+                if str(candidate.get("term", "")).casefold() == folded
+            ),
+            None,
+        )
     now = time.time()
     if item is None:
         item = {
@@ -1793,7 +2024,9 @@ def memory_update_item(params: dict) -> dict:
     if not raw_front or not raw_back:
         raise ValueError("fronte e retro non possono essere vuoti")
     payload = memory_db()
-    item = next((candidate for candidate in payload["items"] if candidate.get("id") == item_id), None)
+    item = next(
+        (candidate for candidate in payload["items"] if candidate.get("id") == item_id), None
+    )
     if item is None:
         raise ValueError("item memoria non trovato")
     now = time.time()
@@ -1868,7 +2101,8 @@ def memory_add_flashcard(params: dict) -> dict:
     items = payload["items"]
     duplicate = next(
         (
-            item for item in items
+            item
+            for item in items
             if str(item.get("deck") or item.get("context") or "") == deck
             and str(item.get("raw_front") or item.get("term") or "") == raw_front
         ),
@@ -1878,7 +2112,12 @@ def memory_add_flashcard(params: dict) -> dict:
         raise ValueError("questa carta esiste gia nel mazzo")
     color, level = infer_citizen_color_level(deck)
     max_position = max(
-        [int(item.get("study_position") or 0) for item in items if str(item.get("deck") or item.get("context") or "") == deck] or [0]
+        [
+            int(item.get("study_position") or 0)
+            for item in items
+            if str(item.get("deck") or item.get("context") or "") == deck
+        ]
+        or [0]
     )
     now = time.time()
     item = {
@@ -1981,7 +2220,13 @@ def memory_import_flashcards(params: dict) -> dict:
         }
     )
     write_memory_db(payload)
-    return {"imported": len(imported), "skipped": skipped, "deck": deck, "items": imported[:20], "memory": memory_state()}
+    return {
+        "imported": len(imported),
+        "skipped": skipped,
+        "deck": deck,
+        "items": imported[:20],
+        "memory": memory_state(),
+    }
 
 
 def seed_catalog() -> dict:
@@ -2012,7 +2257,10 @@ def seed_catalog() -> dict:
             },
         )
         entry["cards"] += 1
-    decks = sorted(deck_counts.values(), key=lambda item: (int(item.get("citizen_level") or 99), str(item.get("deck", "")).lower()))
+    decks = sorted(
+        deck_counts.values(),
+        key=lambda item: (int(item.get("citizen_level") or 99), str(item.get("deck", "")).lower()),
+    )
     for deck in decks:
         color = deck.get("citizen_color") or ""
         target = by_color.get(color) if color else unclassified
@@ -2055,7 +2303,11 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
     ensure_mac_dirs()
     payload = memory_db()
     if only_if_empty and payload.get("items"):
-        return {"imported": 0, "skipped": len(payload.get("items", [])), "reason": "memory_not_empty"}
+        return {
+            "imported": 0,
+            "skipped": len(payload.get("items", [])),
+            "reason": "memory_not_empty",
+        }
     if not FLASHCARD_SEED_FILE.exists():
         return {"imported": 0, "skipped": 0, "reason": "seed_missing"}
     seed = json.loads(FLASHCARD_SEED_FILE.read_text(encoding="utf-8"))
@@ -2078,7 +2330,9 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
     updated = 0
     skipped = 0
     params = params or {}
-    colors = {str(value).strip().lower() for value in params.get("colors", []) if str(value).strip()}
+    colors = {
+        str(value).strip().lower() for value in params.get("colors", []) if str(value).strip()
+    }
     decks = {str(value).strip() for value in params.get("decks", []) if str(value).strip()}
     if not only_if_empty and not colors and not decks:
         return {"imported": 0, "skipped": 0, "reason": "no_color_selected"}
@@ -2097,8 +2351,12 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
         if decks and deck not in decks:
             continue
         selected_seed_items.append((index, seed_item))
-    for study_position, (index, seed_item) in enumerate(round_robin_seed_items(selected_seed_items), start=1):
-        raw_front = raw_flashcard_text(strip_hebrew_niqqud(str(seed_item.get("raw_front", ""))), 2000)
+    for study_position, (index, seed_item) in enumerate(
+        round_robin_seed_items(selected_seed_items), start=1
+    ):
+        raw_front = raw_flashcard_text(
+            strip_hebrew_niqqud(str(seed_item.get("raw_front", ""))), 2000
+        )
         raw_back = raw_flashcard_text(strip_hebrew_niqqud(str(seed_item.get("raw_back", ""))), 5000)
         deck = raw_flashcard_text(str(seed_item.get("deck", "Ebraico moderno")), 220)
         if not raw_front or not raw_back:
@@ -2106,29 +2364,63 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
         seed_source_id = str(seed_item.get("id") or seed_item.get("seed_id") or "").strip()
         existing_seed_item = existing_by_seed_id.get(seed_source_id) if seed_source_id else None
         if existing_seed_item is not None:
-            before_front = str(existing_seed_item.get("raw_front", existing_seed_item.get("term", "")))
-            before_back = str(existing_seed_item.get("raw_back", existing_seed_item.get("meaning", "")))
+            before_front = str(
+                existing_seed_item.get("raw_front", existing_seed_item.get("term", ""))
+            )
+            before_back = str(
+                existing_seed_item.get("raw_back", existing_seed_item.get("meaning", ""))
+            )
             existing_seed_item["deck"] = deck
             existing_seed_item["term"] = raw_front
             existing_seed_item["meaning"] = raw_back
             existing_seed_item["context"] = deck
             existing_seed_item["raw_front"] = raw_front
             existing_seed_item["raw_back"] = raw_back
-            existing_seed_item["raw_front_original"] = raw_flashcard_text(str(seed_item.get("raw_front_original", raw_front)), 2000)
-            existing_seed_item["raw_back_original"] = raw_flashcard_text(str(seed_item.get("raw_back_original", raw_back)), 5000)
-            existing_seed_item["raw_back_before_patch"] = seed_item.get("raw_back_before_patch", existing_seed_item.get("raw_back_before_patch", ""))
-            existing_seed_item["source"] = seed_item.get("source", existing_seed_item.get("source", "quizlet_seed"))
-            existing_seed_item["source_file"] = seed_item.get("source_file", existing_seed_item.get("source_file", ""))
-            existing_seed_item["source_row"] = seed_item.get("source_row", existing_seed_item.get("source_row", ""))
-            existing_seed_item["citizen_color"] = seed_item.get("citizen_color", existing_seed_item.get("citizen_color", ""))
-            existing_seed_item["citizen_level"] = seed_item.get("citizen_level", existing_seed_item.get("citizen_level", ""))
-            existing_seed_item["canonical_item_id"] = seed_item.get("canonical_item_id", existing_seed_item.get("canonical_item_id", ""))
-            existing_seed_item["canonical_item_version"] = seed_item.get("canonical_item_version", existing_seed_item.get("canonical_item_version", ""))
-            existing_seed_item["source_map_ref"] = seed_item.get("source_map_ref", existing_seed_item.get("source_map_ref", ""))
-            existing_seed_item["quality_flags"] = seed_item.get("quality_flags", existing_seed_item.get("quality_flags", []))
-            existing_seed_item["study_ready"] = seed_item.get("study_ready", existing_seed_item.get("study_ready", True))
-            existing_seed_item["semantic_method"] = seed_item.get("semantic_method", existing_seed_item.get("semantic_method", ""))
-            existing_seed_item["semantic_note"] = seed_item.get("semantic_note", existing_seed_item.get("semantic_note", ""))
+            existing_seed_item["raw_front_original"] = raw_flashcard_text(
+                str(seed_item.get("raw_front_original", raw_front)), 2000
+            )
+            existing_seed_item["raw_back_original"] = raw_flashcard_text(
+                str(seed_item.get("raw_back_original", raw_back)), 5000
+            )
+            existing_seed_item["raw_back_before_patch"] = seed_item.get(
+                "raw_back_before_patch", existing_seed_item.get("raw_back_before_patch", "")
+            )
+            existing_seed_item["source"] = seed_item.get(
+                "source", existing_seed_item.get("source", "quizlet_seed")
+            )
+            existing_seed_item["source_file"] = seed_item.get(
+                "source_file", existing_seed_item.get("source_file", "")
+            )
+            existing_seed_item["source_row"] = seed_item.get(
+                "source_row", existing_seed_item.get("source_row", "")
+            )
+            existing_seed_item["citizen_color"] = seed_item.get(
+                "citizen_color", existing_seed_item.get("citizen_color", "")
+            )
+            existing_seed_item["citizen_level"] = seed_item.get(
+                "citizen_level", existing_seed_item.get("citizen_level", "")
+            )
+            existing_seed_item["canonical_item_id"] = seed_item.get(
+                "canonical_item_id", existing_seed_item.get("canonical_item_id", "")
+            )
+            existing_seed_item["canonical_item_version"] = seed_item.get(
+                "canonical_item_version", existing_seed_item.get("canonical_item_version", "")
+            )
+            existing_seed_item["source_map_ref"] = seed_item.get(
+                "source_map_ref", existing_seed_item.get("source_map_ref", "")
+            )
+            existing_seed_item["quality_flags"] = seed_item.get(
+                "quality_flags", existing_seed_item.get("quality_flags", [])
+            )
+            existing_seed_item["study_ready"] = seed_item.get(
+                "study_ready", existing_seed_item.get("study_ready", True)
+            )
+            existing_seed_item["semantic_method"] = seed_item.get(
+                "semantic_method", existing_seed_item.get("semantic_method", "")
+            )
+            existing_seed_item["semantic_note"] = seed_item.get(
+                "semantic_note", existing_seed_item.get("semantic_note", "")
+            )
             if before_front != raw_front or before_back != raw_back:
                 updated += 1
             skipped += 1
@@ -2148,8 +2440,12 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
             "context": deck,
             "raw_front": raw_front,
             "raw_back": raw_back,
-            "raw_front_original": raw_flashcard_text(str(seed_item.get("raw_front_original", raw_front)), 2000),
-            "raw_back_original": raw_flashcard_text(str(seed_item.get("raw_back_original", raw_back)), 5000),
+            "raw_front_original": raw_flashcard_text(
+                str(seed_item.get("raw_front_original", raw_front)), 2000
+            ),
+            "raw_back_original": raw_flashcard_text(
+                str(seed_item.get("raw_back_original", raw_back)), 5000
+            ),
             "raw_line": raw_flashcard_text(str(seed_item.get("raw_line", "")), 10000),
             "raw_delimiter": seed_item.get("raw_delimiter", ""),
             "source": seed_item.get("source", "quizlet_seed"),
@@ -2157,7 +2453,10 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
             "source_row": seed_item.get("source_row", ""),
             "seed_id": seed_item.get("id") or seed_item.get("seed_id", ""),
             "tags": seed_item.get("tags", ""),
-            "extraction_confidence": seed_item.get("extraction_confidence", "verified" if seed_item.get("source") == "verified_tabular" else ""),
+            "extraction_confidence": seed_item.get(
+                "extraction_confidence",
+                "verified" if seed_item.get("source") == "verified_tabular" else "",
+            ),
             "created_at": now,
             "created_label": time.strftime("%Y-%m-%d %H:%M"),
             "next_due_at": now,
@@ -2212,7 +2511,12 @@ def memory_auto_import_seed(only_if_empty: bool = True, params: dict | None = No
         }
     )
     write_memory_db(payload)
-    return {"imported": len(imported), "updated": updated, "skipped": skipped, "reason": "imported_seed"}
+    return {
+        "imported": len(imported),
+        "updated": updated,
+        "skipped": skipped,
+        "reason": "imported_seed",
+    }
 
 
 def append_flashcard_eeg_event(event: dict) -> dict | None:
@@ -2275,7 +2579,9 @@ def append_flashcard_eeg_event(event: dict) -> dict | None:
 
 def session_covariates_from_state() -> dict:
     state = read_mac_state()
-    return state.get("session_covariates") if isinstance(state.get("session_covariates"), dict) else {}
+    return (
+        state.get("session_covariates") if isinstance(state.get("session_covariates"), dict) else {}
+    )
 
 
 def write_session_manifest(csv_path: Path, study_context: dict | None = None) -> Path | None:
@@ -2309,13 +2615,18 @@ def append_task_eeg_event(params: dict) -> dict:
     if sessions_root not in csv_path.parents or not csv_path.name.startswith("session_"):
         return {"recorded": False, "reason": "sessione EEG non valida"}
 
-    write_session_manifest(csv_path, params.get("study_context") if isinstance(params.get("study_context"), dict) else {})
+    write_session_manifest(
+        csv_path,
+        params.get("study_context") if isinstance(params.get("study_context"), dict) else {},
+    )
 
     sidecar = csv_path.with_suffix(".events.jsonl")
     summary = csv_path.with_suffix(".events.json")
     annotation_type = str(params.get("annotation_type") or "task_event")[:80]
     event = params.get("event") if isinstance(params.get("event"), dict) else {}
-    study_context = params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+    study_context = (
+        params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+    )
     event_id = task_event_id(params)
     behavioral_session_id = safe_behavioral_session_id(params)
     if jsonl_contains_event(sidecar, event_id):
@@ -2457,7 +2768,9 @@ def append_local_behavioral_event(params: dict, eeg_reason: str = "") -> dict:
         "eeg_phase": "none",
         "eeg_unavailable_reason": str(eeg_reason or "nessuna registrazione EEG attiva")[:160],
         "event": event,
-        "study_context": params.get("study_context") if isinstance(params.get("study_context"), dict) else {},
+        "study_context": (
+            params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+        ),
     }
     with sidecar.open("a", encoding="utf-8") as handle:
         handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
@@ -2515,8 +2828,12 @@ def save_training_session(params: dict) -> dict:
         "session_id": session_id,
         "session_type": "training_lab",
         "reason": safe_memory_text(str(params.get("reason") or "stop"), 80),
-        "label": safe_memory_text(str(params.get("label") or context.get("task_label") or "Training Lab"), 160),
-        "condition": safe_memory_text(str(params.get("condition") or context.get("task_id") or "training_lab"), 160),
+        "label": safe_memory_text(
+            str(params.get("label") or context.get("task_label") or "Training Lab"), 160
+        ),
+        "condition": safe_memory_text(
+            str(params.get("condition") or context.get("task_id") or "training_lab"), 160
+        ),
         "created_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "started_at_ms": started_ms,
         "ended_at_ms": ended_ms,
@@ -2534,7 +2851,9 @@ def save_training_session(params: dict) -> dict:
         },
     }
 
-    (session_dir / "session.json").write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    (session_dir / "session.json").write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
     with (session_dir / "events.jsonl").open("w", encoding="utf-8") as handle:
         for event in safe_events:
             handle.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
@@ -2554,7 +2873,9 @@ def memory_log_recall(params: dict) -> dict:
         saved = memory_save_item(params)
         item_id = saved["item"]["id"]
     payload = memory_db()
-    item = next((candidate for candidate in payload["items"] if candidate.get("id") == item_id), None)
+    item = next(
+        (candidate for candidate in payload["items"] if candidate.get("id") == item_id), None
+    )
     if item is None:
         raise ValueError("item memoria non trovato")
     result = str(params.get("result", "correct"))
@@ -2569,13 +2890,23 @@ def memory_log_recall(params: dict) -> dict:
         for value in (params.get("selected_decks") or [])
         if raw_flashcard_text(str(value), 220)
     ][:24]
-    study_context = params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
-    streetwise_evidence = params.get("streetwise_evidence") if isinstance(params.get("streetwise_evidence"), dict) else None
-    help_evidence = params.get("help_evidence") if isinstance(params.get("help_evidence"), dict) else None
+    study_context = (
+        params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+    )
+    streetwise_evidence = (
+        params.get("streetwise_evidence")
+        if isinstance(params.get("streetwise_evidence"), dict)
+        else None
+    )
+    help_evidence = (
+        params.get("help_evidence") if isinstance(params.get("help_evidence"), dict) else None
+    )
     now = time.time()
     previous_interval = float(item.get("interval_days") or 1.0)
     if result == "correct":
-        interval = min(30.0, max(1.0, previous_interval * (1.75 if confidence >= 7 and effort <= 5 else 1.35)))
+        interval = min(
+            30.0, max(1.0, previous_interval * (1.75 if confidence >= 7 and effort <= 5 else 1.35))
+        )
     elif result == "partial":
         interval = max(1.0, previous_interval * 0.75)
     else:
@@ -2590,11 +2921,18 @@ def memory_log_recall(params: dict) -> dict:
         "effort": effort,
         "latency_s": latency_s,
         "review_s": review_s,
-        "deck": item.get("deck") or item.get("context") or raw_flashcard_text(str(params.get("deck", "")), 220),
-        "citizen_color": item.get("citizen_color") or raw_flashcard_text(str(params.get("citizen_color", "")), 80),
+        "deck": item.get("deck")
+        or item.get("context")
+        or raw_flashcard_text(str(params.get("deck", "")), 220),
+        "citizen_color": item.get("citizen_color")
+        or raw_flashcard_text(str(params.get("citizen_color", "")), 80),
         "selected_decks": selected_decks,
-        "front": raw_flashcard_text(str(params.get("front") or item.get("raw_front") or item.get("term") or ""), 2000),
-        "back": raw_flashcard_text(str(params.get("back") or item.get("raw_back") or item.get("meaning") or ""), 5000),
+        "front": raw_flashcard_text(
+            str(params.get("front") or item.get("raw_front") or item.get("term") or ""), 2000
+        ),
+        "back": raw_flashcard_text(
+            str(params.get("back") or item.get("raw_back") or item.get("meaning") or ""), 5000
+        ),
         "study_context": study_context,
         "streetwise_evidence": streetwise_evidence,
         "help_evidence": help_evidence,
@@ -2753,7 +3091,7 @@ def job_script(action: str, params: dict) -> str:
         "#!/usr/bin/env bash",
         "set -euo pipefail",
         f'echo "== MindTune console: {action} =="',
-        'date -Is',
+        "date -Is",
         "",
     ]
 
@@ -2788,7 +3126,11 @@ def job_script(action: str, params: dict) -> str:
         piece_id = optional_piece_id(str(params.get("piece_id", "")))
         difficulty = as_int(params.get("difficulty"), 0, 0, 10)
         session_note = safe_note(str(params.get("session_note", "")))
-        session_covariates = params.get("session_covariates") if isinstance(params.get("session_covariates"), dict) else {}
+        session_covariates = (
+            params.get("session_covariates")
+            if isinstance(params.get("session_covariates"), dict)
+            else {}
+        )
         command = [
             "/mnt/biohacking/home/mindtune/bin/mindtune_record_start",
             "--condition",
@@ -3007,7 +3349,10 @@ def one_shot_minisession_cleanup() -> None:
                 removed.append(str(path))
         except OSError:
             pass
-    marker.write_text(json.dumps({"removed": removed, "at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}, indent=2), encoding="utf-8")
+    marker.write_text(
+        json.dumps({"removed": removed, "at": time.strftime("%Y-%m-%dT%H:%M:%S%z")}, indent=2),
+        encoding="utf-8",
+    )
 
 
 def ensure_serious_marker() -> Path:
@@ -3448,7 +3793,9 @@ def mac_connect_recording(params: dict) -> dict:
                 "log": current.get("log"),
                 "phase": phase,
                 "battery_percent": status.get("battery_percent"),
-                "message": "casco gia collegato" if phase == "connected" else "sessione gia in corso",
+                "message": (
+                    "casco gia collegato" if phase == "connected" else "sessione gia in corso"
+                ),
             }
         stop_process(current.get("pid"))
         try:
@@ -3466,7 +3813,9 @@ def mac_connect_recording(params: dict) -> dict:
     condition = validate_condition(str(params.get("condition", "eyes_open")))
     duration = as_int(params.get("duration"), 120, 5, 7200)
     prep = as_int(params.get("prep"), 20, 0, 600)
-    study_context = params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+    study_context = (
+        params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+    )
 
     stamp = time.strftime("%Y%m%d_%H%M%S")
     log_path = MAC_LOGS / f"mac_{stamp}_arm_{condition}.log"
@@ -3478,7 +3827,9 @@ def mac_connect_recording(params: dict) -> dict:
         MAC_STOP_SIGNAL.unlink()
     if MAC_COMMAND_SIGNAL.exists():
         MAC_COMMAND_SIGNAL.unlink()
-    command = recording_command(condition, duration, prep, scan, MAC_START_SIGNAL, MAC_STOP_SIGNAL, MAC_COMMAND_SIGNAL)
+    command = recording_command(
+        condition, duration, prep, scan, MAC_START_SIGNAL, MAC_STOP_SIGNAL, MAC_COMMAND_SIGNAL
+    )
     log = log_path.open("w", encoding="utf-8")
     log.write("== MindTune Mac: auto connect and wait ==\n")
     log.write(time.strftime("%Y-%m-%dT%H:%M:%S%z") + "\n")
@@ -3549,14 +3900,37 @@ def mac_start_recording(params: dict) -> dict:
     if current.get("running"):
         status = mac_status()
         if status.get("phase") in {"prep", "recording"}:
-            return {"started": True, "pid": current.get("pid"), "log": current.get("log"), "phase": status.get("phase")}
+            return {
+                "started": True,
+                "pid": current.get("pid"),
+                "log": current.get("log"),
+                "phase": status.get("phase"),
+            }
         if status.get("phase") in {"connected", "done"} and current.get("armed"):
-            condition = validate_condition(str(params.get("condition", current.get("condition") or "eyes_open")))
+            condition = validate_condition(
+                str(params.get("condition", current.get("condition") or "eyes_open"))
+            )
             duration = as_int(params.get("duration"), int(current.get("duration") or 120), 5, 7200)
             prep = as_int(params.get("prep"), int(current.get("prep") or 20), 0, 600)
-            study_context = params.get("study_context") if isinstance(params.get("study_context"), dict) else current.get("study_context", {})
-            session_covariates = params.get("session_covariates") if isinstance(params.get("session_covariates"), dict) else current.get("session_covariates", {})
-            current.update({"condition": condition, "duration": duration, "prep": prep, "study_context": study_context, "session_covariates": session_covariates})
+            study_context = (
+                params.get("study_context")
+                if isinstance(params.get("study_context"), dict)
+                else current.get("study_context", {})
+            )
+            session_covariates = (
+                params.get("session_covariates")
+                if isinstance(params.get("session_covariates"), dict)
+                else current.get("session_covariates", {})
+            )
+            current.update(
+                {
+                    "condition": condition,
+                    "duration": duration,
+                    "prep": prep,
+                    "study_context": study_context,
+                    "session_covariates": session_covariates,
+                }
+            )
             MAC_STATE.write_text(json.dumps(current, indent=2), encoding="utf-8")
             MAC_START_SIGNAL.write_text(
                 json.dumps(
@@ -3574,12 +3948,18 @@ def mac_start_recording(params: dict) -> dict:
             )
             started = wait_for_mac_phase({"prep", "recording", "error"}, timeout=12)
             if started.get("phase") in {"prep", "recording"}:
-                return {"started": True, "pid": current.get("pid"), "log": current.get("log"), "phase": started.get("phase")}
+                return {
+                    "started": True,
+                    "pid": current.get("pid"),
+                    "log": current.get("log"),
+                    "phase": started.get("phase"),
+                }
             return {
                 "started": False,
                 "pid": current.get("pid"),
                 "log": current.get("log"),
-                "message": started.get("error") or "Start inviato, ma la registrazione non e partita.",
+                "message": started.get("error")
+                or "Start inviato, ma la registrazione non e partita.",
             }
         if status.get("phase") in {"scan", "connecting", "ble_link", "handshake_sent", "starting"}:
             return {
@@ -3604,8 +3984,14 @@ def mac_start_recording(params: dict) -> dict:
     duration = as_int(params.get("duration"), 120, 5, 7200)
     prep = as_int(params.get("prep"), 20, 0, 600)
     scan = as_int(params.get("scan_seconds"), 12, 1, 60)
-    study_context = params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
-    session_covariates = params.get("session_covariates") if isinstance(params.get("session_covariates"), dict) else {}
+    study_context = (
+        params.get("study_context") if isinstance(params.get("study_context"), dict) else {}
+    )
+    session_covariates = (
+        params.get("session_covariates")
+        if isinstance(params.get("session_covariates"), dict)
+        else {}
+    )
 
     stamp = time.strftime("%Y%m%d_%H%M%S")
     log_path = MAC_LOGS / f"mac_{stamp}_record_{condition}.log"
@@ -3649,7 +4035,12 @@ def mac_start_recording(params: dict) -> dict:
 
     started = wait_for_mac_phase({"prep", "recording", "error"}, timeout=scan + 18)
     if started.get("phase") in {"prep", "recording"}:
-        return {"started": True, "pid": process.pid, "log": current.get("log"), "phase": started.get("phase")}
+        return {
+            "started": True,
+            "pid": process.pid,
+            "log": current.get("log"),
+            "phase": started.get("phase"),
+        }
     if started.get("phase") == "error":
         return {
             "started": False,
@@ -3658,7 +4049,12 @@ def mac_start_recording(params: dict) -> dict:
             "message": started.get("error") or "errore dopo Start",
         }
     if not started.get("running"):
-        return {"started": False, "pid": process.pid, "log": current.get("log"), "message": "il recorder si e fermato dopo Start"}
+        return {
+            "started": False,
+            "pid": process.pid,
+            "log": current.get("log"),
+            "message": "il recorder si e fermato dopo Start",
+        }
     stop_process(process.pid)
     message = "Start inviato, ma il casco non ha aperto lo streaming EEG."
     MAC_STATUS_FILE.write_text(
@@ -3681,18 +4077,31 @@ def mac_start_recording(params: dict) -> dict:
         MAC_STATE.unlink()
     except OSError:
         pass
-    return {"started": False, "pid": current.get("pid"), "log": current.get("log"), "message": message}
+    return {
+        "started": False,
+        "pid": current.get("pid"),
+        "log": current.get("log"),
+        "message": message,
+    }
 
 
 def mac_stop_recording() -> dict:
     state = read_mac_state()
     pid = int(state.get("pid") or 0)
     if not state.get("running"):
-        return {"stopped": False, "message": "nessuna registrazione Mac attiva", "log": state.get("log")}
+        return {
+            "stopped": False,
+            "message": "nessuna registrazione Mac attiva",
+            "log": state.get("log"),
+        }
     status = mac_status()
     phase = status.get("phase")
     if phase == "connected":
-        return {"stopped": False, "message": "casco gia collegato e in attesa", "log": state.get("log")}
+        return {
+            "stopped": False,
+            "message": "casco gia collegato e in attesa",
+            "log": state.get("log"),
+        }
     if phase in {"prep", "recording"}:
         MAC_STOP_SIGNAL.write_text(str(time.time()), encoding="utf-8")
         stopped = wait_for_mac_phase({"connected", "done", "error"}, timeout=8)
@@ -3764,12 +4173,14 @@ def mac_send_hardware_command(params: dict) -> dict:
         return {"ok": False, "message": "tipo comando non supportato"}
     payload = {"type": cmd_type}
     if cmd_type == "led_color":
-        payload.update({
-            "r": max(0, min(255, int(params.get("r", 0)))),
-            "g": max(0, min(255, int(params.get("g", 0)))),
-            "b": max(0, min(255, int(params.get("b", 0)))),
-            "encoding": str(params.get("encoding", "varint")),
-        })
+        payload.update(
+            {
+                "r": max(0, min(255, int(params.get("r", 0)))),
+                "g": max(0, min(255, int(params.get("g", 0)))),
+                "b": max(0, min(255, int(params.get("b", 0)))),
+                "encoding": str(params.get("encoding", "varint")),
+            }
+        )
     elif cmd_type == "vibration":
         payload["intensity"] = max(0, min(100, int(params.get("intensity", 50))))
     MAC_COMMAND_SIGNAL.write_text(json.dumps(payload), encoding="utf-8")
@@ -3808,7 +4219,15 @@ LIMIT 1;
 def ssh_remote(command: str, timeout: int = 20) -> tuple[bool, str]:
     host = os.environ.get("MINDTUNE_RPI_HOST", DEFAULT_RPI_HOST)
     key = str(SSH_KEY) if SSH_KEY.exists() else None
-    args = ["ssh", "-o", "BatchMode=yes", "-o", "StrictHostKeyChecking=accept-new", "-o", "ConnectTimeout=8"]
+    args = [
+        "ssh",
+        "-o",
+        "BatchMode=yes",
+        "-o",
+        "StrictHostKeyChecking=accept-new",
+        "-o",
+        "ConnectTimeout=8",
+    ]
     if key:
         args.extend(["-i", key])
     args.append(host)
@@ -3847,6 +4266,7 @@ def query_oura_daily(requested_day: str = "") -> dict:
 # ---------------------------------------------------------------------------
 # MLF B2.7 Hebrew vertical-slice backend
 # ---------------------------------------------------------------------------
+
 
 def _mlf_error(message: str, code: int = 400) -> dict:
     payload = {"ok": False, "error": message, "mlf_available": _MLF_AVAILABLE}
@@ -3964,7 +4384,10 @@ def hebrew_mlf_start(params: dict) -> dict:
 
     unit_id = str(params.get("unit_id", "")).strip()
     trial_type = str(params.get("trial_type", "")).strip()
-    student_name = str(params.get("student_name", HEBREW_MLF_DEFAULT_STUDENT)).strip() or HEBREW_MLF_DEFAULT_STUDENT
+    student_name = (
+        str(params.get("student_name", HEBREW_MLF_DEFAULT_STUDENT)).strip()
+        or HEBREW_MLF_DEFAULT_STUDENT
+    )
 
     if not unit_id or not trial_type:
         return _mlf_error("unit_id e trial_type sono obbligatori")
@@ -3984,7 +4407,9 @@ def hebrew_mlf_start(params: dict) -> dict:
             return _mlf_error(f"trial_type {trial_type} non supportato per questa unit")
 
         student = _hebrew_mlf_student(student_name)
-        session = brainlab.start_session(student, protocol_id="pilot-a", condition="hebrew_mlf_b2_7")
+        session = brainlab.start_session(
+            student, protocol_id="pilot-a", condition="hebrew_mlf_b2_7"
+        )
         trial = brainlab.start_trial(session, unit, trial_type, process_target="retrieval")
 
         with _HEBREW_MLF_LOCK:
@@ -4057,7 +4482,9 @@ def hebrew_mlf_respond(params: dict) -> dict:
         score = trial.score
 
         feedback_key = "correct" if score and score.outcome == "correct" else "root_hint"
-        feedback_text = unit.metadata.get("feedback", {}).get(feedback_key, score.outcome if score else "")
+        feedback_text = unit.metadata.get("feedback", {}).get(
+            feedback_key, score.outcome if score else ""
+        )
         brainlab.give_feedback(session, trial, "outcome", feedback_text)
 
         retest_warning = ""
@@ -4137,11 +4564,19 @@ class Handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         parsed = urlparse(self.path)
         if parsed.path == "/":
-            return text_response(self, (APP / "index.html").read_text(encoding="utf-8"), "text/html; charset=utf-8")
+            return text_response(
+                self, (APP / "index.html").read_text(encoding="utf-8"), "text/html; charset=utf-8"
+            )
         if parsed.path == "/styles.css":
-            return text_response(self, (APP / "styles.css").read_text(encoding="utf-8"), "text/css; charset=utf-8")
+            return text_response(
+                self, (APP / "styles.css").read_text(encoding="utf-8"), "text/css; charset=utf-8"
+            )
         if parsed.path == "/app.js":
-            return text_response(self, (APP / "app.js").read_text(encoding="utf-8"), "application/javascript; charset=utf-8")
+            return text_response(
+                self,
+                (APP / "app.js").read_text(encoding="utf-8"),
+                "application/javascript; charset=utf-8",
+            )
         if parsed.path.startswith("/assets/"):
             name = Path(parsed.path).name
             asset = (APP / "assets" / name).resolve()
@@ -4149,7 +4584,10 @@ class Handler(BaseHTTPRequestHandler):
             if assets_root in asset.parents and asset.exists() and asset.is_file():
                 data = asset.read_bytes()
                 self.send_response(200)
-                self.send_header("Content-Type", mimetypes.guess_type(asset.name)[0] or "application/octet-stream")
+                self.send_header(
+                    "Content-Type",
+                    mimetypes.guess_type(asset.name)[0] or "application/octet-stream",
+                )
                 self.send_header("Cache-Control", "no-store")
                 self.send_header("Content-Length", str(len(data)))
                 self.end_headers()
@@ -4261,7 +4699,9 @@ class Handler(BaseHTTPRequestHandler):
                 token = str(payload.get("token", "")).strip()
                 if not token:
                     return json_response(self, {"ok": False, "error": "token mancante"}, status=400)
-                oura_api.save_token({"access_token": token, "token_type": "Bearer", "obtained_at": time.time()})
+                oura_api.save_token(
+                    {"access_token": token, "token_type": "Bearer", "obtained_at": time.time()}
+                )
                 return json_response(self, {"ok": True})
             except Exception as exc:
                 return json_response(self, {"ok": False, "error": str(exc)}, status=400)

@@ -99,9 +99,15 @@ def transcribe_wav(
     try:
         with opener(request, timeout=timeout) as response:
             payload = json.loads(response.read().decode("utf-8"))
-            request_id = str(response.headers.get("X-RequestId") or response.headers.get("X-Request-ID") or "")
+            request_id = str(
+                response.headers.get("X-RequestId") or response.headers.get("X-Request-ID") or ""
+            )
     except urllib.error.HTTPError as exc:
-        message = "autenticazione non valida" if exc.code in {401, 403} else f"servizio Azure non disponibile ({exc.code})"
+        message = (
+            "autenticazione non valida"
+            if exc.code in {401, 403}
+            else f"servizio Azure non disponibile ({exc.code})"
+        )
         raise RuntimeError(message) from exc
     except (urllib.error.URLError, TimeoutError) as exc:
         raise RuntimeError("Azure Speech non raggiungibile") from exc
@@ -111,7 +117,9 @@ def transcribe_wav(
     status_value = str(payload.get("RecognitionStatus") or "")
     alternatives = payload.get("NBest") if isinstance(payload.get("NBest"), list) else []
     best = alternatives[0] if alternatives and isinstance(alternatives[0], dict) else {}
-    text = str(best.get("Display") or best.get("Lexical") or payload.get("DisplayText") or "").strip()
+    text = str(
+        best.get("Display") or best.get("Lexical") or payload.get("DisplayText") or ""
+    ).strip()
     confidence = best.get("Confidence")
     try:
         confidence = round(float(confidence), 4) if confidence is not None else None

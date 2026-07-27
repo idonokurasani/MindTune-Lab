@@ -5,6 +5,7 @@ table_number, base_form, morphology) so that no exact form used for rule
 building appears in calibration or blind evaluation.  Vocalized surfaces come
 from the external Eran Tomer / Verb Inflector CSV.
 """
+
 from __future__ import annotations
 
 import hashlib
@@ -167,7 +168,11 @@ def build_benchmark_partitions(
         )
 
     # Cross-partition leakage check by pair signature.
-    partition_sets: dict[str, set[str]] = {"development": set(), "calibration": set(), "blind_evaluation": set()}
+    partition_sets: dict[str, set[str]] = {
+        "development": set(),
+        "calibration": set(),
+        "blind_evaluation": set(),
+    }
     for rec in records:
         partition_sets[rec["partition"]].add(rec["record_id"])
     for a, set_a in partition_sets.items():
@@ -176,7 +181,9 @@ def build_benchmark_partitions(
                 continue
             cross = set_a & set_b
             for sig in cross:
-                leakage.append({"type": "cross_partition", "partitions": f"{a},{b}", "signature": sig})
+                leakage.append(
+                    {"type": "cross_partition", "partitions": f"{a},{b}", "signature": sig}
+                )
 
     partition_counts = {p: sum(1 for r in records if r["partition"] == p) for p in ratios}
     selected_100_records = sum(1 for r in records if r["selected_100"])

@@ -3,6 +3,7 @@
 Includes explicit approval layers, source filtering, consensus, usage
 classification and shva diagnosis fields.
 """
+
 from __future__ import annotations
 
 from dataclasses import dataclass, field
@@ -41,7 +42,9 @@ class MorphologicalFeatures:
 class SourceEvidence:
     source_id: str = ""  # registered source id
     source: str = ""  # legacy display name
-    source_eligibility: str = "unknown"  # production_approved, private_research_only, reference_only, blocked, unknown
+    source_eligibility: str = (
+        "unknown"  # production_approved, private_research_only, reference_only, blocked, unknown
+    )
     record: dict[str, Any] = field(default_factory=dict)
     confidence: float = 1.0
     trust_tier: int = 3  # 1=manual, 2=approved, 3=verified, 4=candidate
@@ -181,7 +184,9 @@ class VerbForm:
     reviewer_status: str = "none"  # none, pending, reviewed
     confidence: float = 0.0
     rejection_reason: str = ""
-    usage_classification: str = "unknown"  # core_modern, common_modern, valid_but_rare, literary, archaic, disputed, unattested, unknown
+    usage_classification: str = (
+        "unknown"  # core_modern, common_modern, valid_but_rare, literary, archaic, disputed, unattested, unknown
+    )
 
     # Pronunciation
     transliteration: str = ""

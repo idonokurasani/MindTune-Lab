@@ -280,12 +280,14 @@ class TrialPipeline:
         )
         provenance_event_id = self.runtime.state.events[-1].event_id
 
-        rendered = self.providers.renderer.render({
-            "stimulus_request_id": str(stimulus_request_id),
-            "trial_id": str(trial_id),
-            "content_item_id": spec.content_item_id,
-            "asset_role": spec.asset_role,
-        })
+        rendered = self.providers.renderer.render(
+            {
+                "stimulus_request_id": str(stimulus_request_id),
+                "trial_id": str(trial_id),
+                "content_item_id": spec.content_item_id,
+                "asset_role": spec.asset_role,
+            }
+        )
         self.runtime.emit(
             "stimulus_ready",
             {
@@ -419,13 +421,15 @@ class TrialPipeline:
         )
         self._advance()
 
-        interpretation = self.providers.interpreter.interpret({
-            "captured_response_id": str(captured_response_id),
-            "response_window_id": str(response_window_id),
-            "response_mode": response_mode,
-            "captured_payload": captured_payload,
-            "captured_at": captured_at,
-        })
+        interpretation = self.providers.interpreter.interpret(
+            {
+                "captured_response_id": str(captured_response_id),
+                "response_window_id": str(response_window_id),
+                "response_mode": response_mode,
+                "captured_payload": captured_payload,
+                "captured_at": captured_at,
+            }
+        )
         self.runtime.emit(
             "response_interpreted",
             {

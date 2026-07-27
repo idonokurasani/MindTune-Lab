@@ -5,6 +5,7 @@ an optional Phonikud G2P signal, and an optional manual lexicon, and falls back
 to ``UNCERTAIN`` whenever the evidence is unclear.  Uncertain cases must be
 reviewed before a sheva is used to select a production TTS variant.
 """
+
 from __future__ import annotations
 
 import enum
@@ -292,7 +293,9 @@ def tts_variant(text: str, annotations: list[ShevaAnnotation], variant: str = "c
 
     if variant == "omit_silent":
         clusters = parse_grapheme_clusters(normalized)
-        silent_indices = {a.base_letter_index for a in annotations if a.status == ShevaStatus.SILENT}
+        silent_indices = {
+            a.base_letter_index for a in annotations if a.status == ShevaStatus.SILENT
+        }
         result: list[str] = []
         for i, cluster in enumerate(clusters):
             if i in silent_indices:
@@ -319,15 +322,11 @@ def load_sheva_lexicon(path: Path | str) -> dict[str, list[ShevaAnnotation]]:
     """Load a JSON sheva lexicon mapping canonical text to annotations."""
     data = json.loads(Path(path).read_text(encoding="utf-8"))
     return {
-        normalize_unicode(k): [ShevaAnnotation.from_dict(a) for a in v]
-        for k, v in data.items()
+        normalize_unicode(k): [ShevaAnnotation.from_dict(a) for a in v] for k, v in data.items()
     }
 
 
 def save_sheva_lexicon(path: Path | str, lexicon: dict[str, list[ShevaAnnotation]]) -> None:
     """Save a sheva lexicon to JSON."""
-    payload = {
-        k: [a.to_dict() for a in v]
-        for k, v in lexicon.items()
-    }
+    payload = {k: [a.to_dict() for a in v] for k, v in lexicon.items()}
     Path(path).write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

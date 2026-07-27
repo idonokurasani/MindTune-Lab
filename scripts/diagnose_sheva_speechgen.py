@@ -188,7 +188,11 @@ def build_diagnostic_package() -> None:
             unpointed_dur = _wav_duration(unpointed_path)
 
             expected_pronunciation = " ".join(
-                a.expected_phoneme or "?" if a.status == ShevaStatus.UNCERTAIN else (a.expected_phoneme or "_")
+                (
+                    a.expected_phoneme or "?"
+                    if a.status == ShevaStatus.UNCERTAIN
+                    else (a.expected_phoneme or "_")
+                )
                 for a in annotations
             )
 
@@ -311,14 +315,20 @@ def _write_html_index(output_dir: Path, comparison: list[dict[str, Any]]) -> Non
         lines.append(f"<p class='rtl'><strong>Display:</strong> {item['display_text']}</p>")
         lines.append(f"<p class='rtl'><strong>Variant B:</strong> {item['omit_silent_text']}</p>")
         lines.append(f"<p class='rtl'><strong>Variant C:</strong> {item['unpointed_text']}</p>")
-        lines.append("<table><tr><th>index</th><th>cluster</th><th>status</th><th>expected</th><th>source</th><th>reason</th></tr>")
+        lines.append(
+            "<table><tr><th>index</th><th>cluster</th><th>status</th><th>expected</th><th>source</th><th>reason</th></tr>"
+        )
         for a in item["sheva_annotations"]:
             lines.append(
                 f"<tr><td>{a['base_letter_index']}</td><td>{a['grapheme_cluster_id']}</td>"
                 f"<td>{a['status']}</td><td>{a['expected_phoneme']}</td><td>{a['source']}</td><td>{a['reason']}</td></tr>"
             )
         lines.append("</table>")
-        for label, wav in [("A canonical", item["canonical_wav"]), ("B omit silent", item["omit_silent_wav"]), ("C unpointed", item["unpointed_wav"])]:
+        for label, wav in [
+            ("A canonical", item["canonical_wav"]),
+            ("B omit silent", item["omit_silent_wav"]),
+            ("C unpointed", item["unpointed_wav"]),
+        ]:
             lines.append(f"<p>{label} ({_wav_duration(output_dir / wav):.3f}s)</p>")
             lines.append(f"<audio controls src='{wav}'></audio>")
         lines.append("</div>")
@@ -351,7 +361,9 @@ def _write_report(output_dir: Path, comparison: list[dict[str, Any]]) -> None:
             }
         ),
     }
-    (output_dir / "sheva_report.json").write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    (output_dir / "sheva_report.json").write_text(
+        json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
 
 if __name__ == "__main__":

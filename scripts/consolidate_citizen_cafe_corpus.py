@@ -48,7 +48,9 @@ def read_json(path: Path) -> Any:
 
 def write_json(path: Path, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
 
 def clean(value: Any) -> str:
@@ -78,7 +80,9 @@ def load_source_index() -> dict[str, dict[str, Any]]:
     }
 
 
-def score_item(item: dict[str, Any], source: dict[str, Any] | None, streetwise_hits: list[dict[str, Any]]) -> dict[str, Any]:
+def score_item(
+    item: dict[str, Any], source: dict[str, Any] | None, streetwise_hits: list[dict[str, Any]]
+) -> dict[str, Any]:
     flags = [clean(flag) for flag in item.get("quality_flags") or [] if clean(flag)]
     hebrew = clean(item.get("hebrew"))
     italian = clean(item.get("italian"))
@@ -165,7 +169,11 @@ def main() -> None:
     streetwise_index = load_streetwise_index()
 
     rows = [
-        score_item(item, source_index.get(clean(item.get("canonical_item_id"))), streetwise_index.get(clean(item.get("canonical_item_id")), []))
+        score_item(
+            item,
+            source_index.get(clean(item.get("canonical_item_id"))),
+            streetwise_index.get(clean(item.get("canonical_item_id")), []),
+        )
         for item in items
     ]
     tier_counts = Counter(row["consolidation_tier"] for row in rows)
@@ -228,7 +236,13 @@ def main() -> None:
         "| Deck | Solid | Review | Quarantine |",
         "|---|---:|---:|---:|",
     ]
-    for deck in sorted({row["deck"] for row in rows}, key=lambda value: (next((r["citizen_level"] for r in rows if r["deck"] == value), 99), value)):
+    for deck in sorted(
+        {row["deck"] for row in rows},
+        key=lambda value: (
+            next((r["citizen_level"] for r in rows if r["deck"] == value), 99),
+            value,
+        ),
+    ):
         report.append(
             f"| {deck} | {deck_counts[(deck, 'solid_base_candidate')]} | {deck_counts[(deck, 'usable_with_review')]} | {deck_counts[(deck, 'quarantine')]} |"
         )
@@ -265,7 +279,9 @@ def main() -> None:
             "5. Only then project stable items into MLF LearningUnits.",
         ]
     )
-    (OUT / f"CITIZEN_CAFE_CONSOLIDATION_REPORT_v{ARTIFACT_VERSION}.md").write_text("\n".join(report) + "\n", encoding="utf-8")
+    (OUT / f"CITIZEN_CAFE_CONSOLIDATION_REPORT_v{ARTIFACT_VERSION}.md").write_text(
+        "\n".join(report) + "\n", encoding="utf-8"
+    )
 
     matrix = [
         f"# Citizen Cafe vs External Hebrew Learning Sources v{ARTIFACT_VERSION}",
@@ -275,8 +291,8 @@ def main() -> None:
         "| Source family | Role in MindTune | Strength | Weakness | Boundary |",
         "|---|---|---|---|---|",
         "| Citizen Cafe | Personal re-entry corpus from Andrea's prior study | Historically meaningful exposure path; practical color progression; large available set | Quizlet-derived, uneven translations, not normalized enough; not a general authority | Domain corpus only; never MLF Core |",
-            "| Academy of the Hebrew Language | Normative authority | Grammar, orthography, terminology, verb/noun tables, rulings, Hebrew-Hebrew dictionary | Not a learner curriculum and mostly Hebrew-only | Authority/reference layer; never copied wholesale into cards |",
-            "| Streetwise Hebrew | Contextual enrichment and spoken-register evidence | Real-life spoken examples, podcast/audio context, idioms | Not a structured curriculum; copyright boundary; needs selective metadata import | Enrichment/read-model layer only |",
+        "| Academy of the Hebrew Language | Normative authority | Grammar, orthography, terminology, verb/noun tables, rulings, Hebrew-Hebrew dictionary | Not a learner curriculum and mostly Hebrew-only | Authority/reference layer; never copied wholesale into cards |",
+        "| Streetwise Hebrew | Contextual enrichment and spoken-register evidence | Real-life spoken examples, podcast/audio context, idioms | Not a structured curriculum; copyright boundary; needs selective metadata import | Enrichment/read-model layer only |",
         "| Ulpan-style courses | Methodological benchmark | Oral production, active recycling, communicative competence | Public syllabi often incomplete; not personalized | Curriculum design reference only |",
         "| University Modern Hebrew | Rigor benchmark | Placement levels, morphology, reading/listening/writing assessment | Can be slower and less usage-driven | Curriculum/review benchmark only |",
         "| Pealim | Morphological validator | Roots, binyanim, conjugation forms | Not a pedagogy by itself | Hebrew-domain validator/cache only |",
@@ -284,19 +300,23 @@ def main() -> None:
         "",
         "## Public Methodology Links To Keep As References",
         "",
-            "- Streetwise Hebrew official site: https://www.streetwisehebrew.com/",
-            "- TLV1 Streetwise podcast index: https://tlv1.fm/podcasts/streetwise-hebrew-show/",
-            "- Academy online resources: https://eng.hebrew-academy.org.il/our-work/online-resources/",
-            "- Academy terminology database: https://terms.hebrew-academy.org.il/",
-            "- Ulpan-Or public program catalogue / levels: https://www.ulpanor.com/",
+        "- Streetwise Hebrew official site: https://www.streetwisehebrew.com/",
+        "- TLV1 Streetwise podcast index: https://tlv1.fm/podcasts/streetwise-hebrew-show/",
+        "- Academy online resources: https://eng.hebrew-academy.org.il/our-work/online-resources/",
+        "- Academy terminology database: https://terms.hebrew-academy.org.il/",
+        "- Ulpan-Or public program catalogue / levels: https://www.ulpanor.com/",
         "- Council of Europe CEFR resources: https://www.coe.int/en/web/common-european-framework-reference-languages",
         "",
         "These references are methodological comparators. They are not imported as corpora.",
     ]
-    (OUT / f"CITIZEN_CAFE_ULPAN_COMPARISON_MATRIX_v{ARTIFACT_VERSION}.md").write_text("\n".join(matrix) + "\n", encoding="utf-8")
+    (OUT / f"CITIZEN_CAFE_ULPAN_COMPARISON_MATRIX_v{ARTIFACT_VERSION}.md").write_text(
+        "\n".join(matrix) + "\n", encoding="utf-8"
+    )
 
     print(f"items={len(rows)}")
-    print(f"solid={tier_counts['solid_base_candidate']} review={tier_counts['usable_with_review']} quarantine={tier_counts['quarantine']}")
+    print(
+        f"solid={tier_counts['solid_base_candidate']} review={tier_counts['usable_with_review']} quarantine={tier_counts['quarantine']}"
+    )
     print(f"streetwise_matched={sum(1 for row in rows if row['streetwise_match_count'])}")
     print(f"out={OUT}")
 

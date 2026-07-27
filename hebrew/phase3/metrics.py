@@ -4,6 +4,7 @@ All metrics compare engine predictions against a frozen external reference.
 The reference is the benchmark partition loaded from
 hebrew.phase3.benchmark (or a similar frozen source), not the engine output.
 """
+
 from __future__ import annotations
 
 from collections import Counter, defaultdict
@@ -18,8 +19,17 @@ class BenchmarkMetrics:
 
     def compute(self) -> dict[str, Any]:
         total = len(self.rows)
-        accepted = [r for r in self.rows if r.get("predicted_status") in ("verified_consensus", "high_confidence_candidate")]
-        abstained = [r for r in self.rows if r.get("predicted_status") in ("unresolved", "disputed", "rejected") or r.get("predicted_status") is None]
+        accepted = [
+            r
+            for r in self.rows
+            if r.get("predicted_status") in ("verified_consensus", "high_confidence_candidate")
+        ]
+        abstained = [
+            r
+            for r in self.rows
+            if r.get("predicted_status") in ("unresolved", "disputed", "rejected")
+            or r.get("predicted_status") is None
+        ]
         accepted_count = len(accepted)
         abstention_count = len(abstained)
 
@@ -68,10 +78,9 @@ class BenchmarkMetrics:
                         stress_match += 1
                     if pred.get("shva_status") == ref.get("shva_status"):
                         shva_match += 1
-                    if (
-                        pred.get("form_key") == ref.get("form_key")
-                        and pred.get("surface_vocalized") == ref.get("surface_vocalized")
-                    ):
+                    if pred.get("form_key") == ref.get("form_key") and pred.get(
+                        "surface_vocalized"
+                    ) == ref.get("surface_vocalized"):
                         morphology_match += 1
                     if pred.get("surface_vocalized") == ref.get("surface_vocalized"):
                         accepted_correct += 1
@@ -108,7 +117,9 @@ class BenchmarkMetrics:
             "false_confidence_rate": false_confidence_rate,
             "false_acceptance_of_nonexistent_forms": false_acceptance_rate,
             "morphology_accuracy": safe(morphology_match, accepted_total_with_reference),
-            "canonical_unvocalized_spelling_accuracy": safe(canonical_match, accepted_total_with_reference),
+            "canonical_unvocalized_spelling_accuracy": safe(
+                canonical_match, accepted_total_with_reference
+            ),
             "vocalized_exact_match_accuracy": safe(vocalized_match, accepted_total_with_reference),
             "pronunciation_accuracy": safe(pronunciation_match, accepted_total_with_reference),
             "stress_accuracy": safe(stress_match, accepted_total_with_reference),

@@ -4,6 +4,7 @@ The model separates pointed source text from unpointed TTS input, keeps
 linguistic and human-audio review statuses independent, and distinguishes
 production core forms from alternate and reference forms.
 """
+
 from __future__ import annotations
 
 import unicodedata
@@ -24,11 +25,7 @@ def _has_niqqud(text: str) -> bool:
 
 def _without_niqqud(text: str) -> str:
     """Return *text* with Hebrew pointing diacritics removed."""
-    return "".join(
-        char
-        for char in _normalize(text)
-        if not ("\u0591" <= char <= "\u05c7")
-    )
+    return "".join(char for char in _normalize(text) if not ("\u0591" <= char <= "\u05c7"))
 
 
 class Binyan(str, Enum):
@@ -173,17 +170,11 @@ class HebrewTextPair:
         if not tts:
             raise ValueError("HebrewTextPair.tts_text is required")
         if not _has_niqqud(source):
-            raise ValueError(
-                f"HebrewTextPair.source_text must be pointed: {source!r}"
-            )
+            raise ValueError(f"HebrewTextPair.source_text must be pointed: {source!r}")
         if _has_niqqud(tts):
-            raise ValueError(
-                f"HebrewTextPair.tts_text must be unpointed: {tts!r}"
-            )
+            raise ValueError(f"HebrewTextPair.tts_text must be unpointed: {tts!r}")
         if script != "he":
-            raise ValueError(
-                f"HebrewTextPair.script must be 'he': {script!r}"
-            )
+            raise ValueError(f"HebrewTextPair.script must be 'he': {script!r}")
         object.__setattr__(self, "source_text", source)
         object.__setattr__(self, "tts_text", tts)
         object.__setattr__(self, "script", script)
@@ -222,9 +213,7 @@ class ItalianPrompt:
         if not text:
             raise ValueError("ItalianPrompt.text is required")
         if language != "it":
-            raise ValueError(
-                f"ItalianPrompt.language must be 'it': {language!r}"
-            )
+            raise ValueError(f"ItalianPrompt.language must be 'it': {language!r}")
         object.__setattr__(self, "text", text)
         object.__setattr__(self, "language", language)
 
@@ -267,9 +256,7 @@ class LinguisticProvenance:
         if not license_:
             raise ValueError("LinguisticProvenance.license is required")
         if not 1 <= self.trust_tier <= 5:
-            raise ValueError(
-                f"LinguisticProvenance.trust_tier must be 1-5: {self.trust_tier}"
-            )
+            raise ValueError(f"LinguisticProvenance.trust_tier must be 1-5: {self.trust_tier}")
         object.__setattr__(self, "source_id", source_id)
         object.__setattr__(self, "source_url", source_url)
         object.__setattr__(self, "retrieved_date", retrieved_date)
@@ -328,9 +315,7 @@ class PedagogicalEntry:
             )
         if self.role == EntryRole.REJECTED:
             if self.rejection_reason == RejectionReasonCode.NOT_APPLICABLE:
-                raise ValueError(
-                    "Rejected PedagogicalEntry must specify a rejection_reason"
-                )
+                raise ValueError("Rejected PedagogicalEntry must specify a rejection_reason")
         object.__setattr__(self, "entry_id", entry_id)
         object.__setattr__(self, "phonemes", phonemes)
 
@@ -365,12 +350,8 @@ class PedagogicalEntry:
             gender=GrammaticalGender(data["gender"]),
             number=GrammaticalNumber(data["number"]),
             register=PedagogicalRegister(data["register"]),
-            linguistic_review_status=LinguisticReviewStatus(
-                data["linguistic_review_status"]
-            ),
-            human_audio_review_status=HumanAudioReviewStatus(
-                data["human_audio_review_status"]
-            ),
+            linguistic_review_status=LinguisticReviewStatus(data["linguistic_review_status"]),
+            human_audio_review_status=HumanAudioReviewStatus(data["human_audio_review_status"]),
             rejection_reason=RejectionReasonCode(
                 data.get("rejection_reason", RejectionReasonCode.NOT_APPLICABLE.value)
             ),
@@ -429,18 +410,12 @@ class HebrewVerbSpecification:
         if not primary_italian_gloss:
             raise ValueError("HebrewVerbSpecification.primary_italian_gloss is required")
         if not content_checksum:
-            raise ValueError(
-                "HebrewVerbSpecification.content_checksum is required"
-            )
+            raise ValueError("HebrewVerbSpecification.content_checksum is required")
         if not self.entries:
-            raise ValueError(
-                f"HebrewVerbSpecification {spec_id!r} must contain at least one entry"
-            )
+            raise ValueError(f"HebrewVerbSpecification {spec_id!r} must contain at least one entry")
         ids = [entry.entry_id for entry in self.entries]
         if len(ids) != len(set(ids)):
-            raise ValueError(
-                f"HebrewVerbSpecification {spec_id!r} contains duplicate entry IDs"
-            )
+            raise ValueError(f"HebrewVerbSpecification {spec_id!r} contains duplicate entry IDs")
         sorted_entries = tuple(sorted(self.entries, key=lambda e: e.entry_id))
         object.__setattr__(self, "spec_id", spec_id)
         object.__setattr__(self, "schema_version", schema_version)

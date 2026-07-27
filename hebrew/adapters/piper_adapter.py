@@ -1,4 +1,5 @@
 """Shared Piper / Phonikud-TTS adapter."""
+
 from __future__ import annotations
 
 from pathlib import Path
@@ -50,20 +51,12 @@ class PiperAdapter:
 
     @staticmethod
     def _default_model_path() -> Path:
-        return (
-            Path(__file__).resolve().parents[2]
-            / "data"
-            / "phonikud_models"
-            / "shaul.onnx"
-        )
+        return Path(__file__).resolve().parents[2] / "data" / "phonikud_models" / "shaul.onnx"
 
     @staticmethod
     def _default_config_path() -> Path:
         return (
-            Path(__file__).resolve().parents[2]
-            / "data"
-            / "phonikud_models"
-            / "shaul.config.json"
+            Path(__file__).resolve().parents[2] / "data" / "phonikud_models" / "shaul.config.json"
         )
 
     def render(

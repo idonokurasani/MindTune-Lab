@@ -1,4 +1,5 @@
 """Source provenance and conflict detection."""
+
 from __future__ import annotations
 
 from dataclasses import asdict
@@ -80,21 +81,19 @@ def build_provenance_report(
 
     # Surface form disagreement
     surface_values = {
-        k: v.get("surface_vocalized", "")
-        for k, v in sources.items()
-        if v.get("surface_vocalized")
+        k: v.get("surface_vocalized", "") for k, v in sources.items() if v.get("surface_vocalized")
     }
     if len(set(surface_values.values())) > 1:
         report["disagreements"].append(
             compare_values("surface_vocalized", "surface_vocalized", surface_values)
         )
-    report["resolved"]["surface_vocalized"] = surface_values.get(approved_source, list(surface_values.values())[0] if surface_values else "")
+    report["resolved"]["surface_vocalized"] = surface_values.get(
+        approved_source, list(surface_values.values())[0] if surface_values else ""
+    )
 
     # Stress disagreement
     stress_values = {
-        k: v.get("lexical_stress", 0)
-        for k, v in sources.items()
-        if v.get("lexical_stress")
+        k: v.get("lexical_stress", 0) for k, v in sources.items() if v.get("lexical_stress")
     }
     if len(set(stress_values.values())) > 1:
         report["disagreements"].append(

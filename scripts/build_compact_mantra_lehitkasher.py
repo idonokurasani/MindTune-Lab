@@ -90,7 +90,13 @@ def main() -> None:
         ensure(
             asset_id=f"he.lehitkasher.present.{key}",
             text=text,
-            **_metadata("present", "participial", person="", number=key[1], gender="masculine" if key[0] == "m" else "feminine"),
+            **_metadata(
+                "present",
+                "participial",
+                person="",
+                number=key[1],
+                gender="masculine" if key[0] == "m" else "feminine",
+            ),
         )
 
     # Past (3pl masculine/feminine merged).
@@ -189,7 +195,9 @@ def main() -> None:
     compact_manifest["voice"] = he_voice
     compact_manifest["intro_voice"] = it_voice
     compact_manifest["asset_registry"] = str(ASSET_REGISTRY_PATH)
-    COMPACT_MANIFEST.write_text(json.dumps(compact_manifest, ensure_ascii=False, indent=2), encoding="utf-8")
+    COMPACT_MANIFEST.write_text(
+        json.dumps(compact_manifest, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
     # Domino exercises: tense marker + target form.
     domino_items: list[dict[str, Any]] = []
@@ -229,7 +237,9 @@ def main() -> None:
             }
         )
 
-    DOMINO_EXERCISES.write_text(json.dumps(domino_items, ensure_ascii=False, indent=2), encoding="utf-8")
+    DOMINO_EXERCISES.write_text(
+        json.dumps(domino_items, ensure_ascii=False, indent=2), encoding="utf-8"
+    )
 
     # HTML review page for compact mantra.
     html = [
@@ -253,7 +263,9 @@ def main() -> None:
         asset = registry.get(asset_id)
         text = asset.text if asset else ""
         voice = asset.voice if asset else ""
-        html.append(f"<tr><td>{idx}</td><td>{asset_id}</td><td class='rtl'>{text}</td><td>{voice}</td></tr>")
+        html.append(
+            f"<tr><td>{idx}</td><td>{asset_id}</td><td class='rtl'>{text}</td><td>{voice}</td></tr>"
+        )
     html.append("</table>")
     html.append("<h2>Domino exercises</h2>")
     html.append("<p>See <a href='domino_exercises.json'>domino_exercises.json</a></p>")

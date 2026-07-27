@@ -5,6 +5,7 @@ nothing about EEG and never calls TTS.  It selects a verb from the canonical
 curriculum based on explicit learner-state signals, then hands an asset
 sequence to the audio runtime for execution.
 """
+
 from __future__ import annotations
 
 import json
@@ -93,9 +94,7 @@ class CurriculumVerb:
         data["infinitive_pointed"] = unicodedata.normalize(
             "NFC", data.get("infinitive_pointed", "")
         )
-        data["infinitive_plain"] = unicodedata.normalize(
-            "NFC", data.get("infinitive_plain", "")
-        )
+        data["infinitive_plain"] = unicodedata.normalize("NFC", data.get("infinitive_plain", ""))
         return cls(**data)
 
     def required_asset_ids(self) -> list[str]:
@@ -203,7 +202,10 @@ def _is_hebrew_letter(char: str) -> bool:
 
 
 def _is_niqqud(char: str) -> bool:
-    return ("\u0591" <= char <= "\u05bd" or char in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7")
+    return (
+        "\u0591" <= char <= "\u05bd"
+        or char in "\u05bf\u05c0\u05c1\u05c2\u05c3\u05c4\u05c5\u05c6\u05c7"
+    )
 
 
 def _letter_clusters(vocalized: str) -> list[dict[str, Any]]:
@@ -348,7 +350,8 @@ def hebrew_infinitive_to_latin_slug(vocalized: str) -> str:  # noqa: C901
                     future
                     and future[0]["base"] == "\u05d5"
                     and (
-                        _vowel_name(future[0].get("marks", [])) in ("holam", "qubuts", "qamats_qatan")
+                        _vowel_name(future[0].get("marks", []))
+                        in ("holam", "qubuts", "qamats_qatan")
                         or _has_dagesh(future[0].get("marks", []))
                     )
                 ):
@@ -433,7 +436,9 @@ class MantraSelectionPolicy:
         """Return verbs that are candidates for selection."""
         eligible: list[CurriculumVerb] = []
         for verb in self.curriculum.verbs:
-            if not asset_preparation_mode and not self._assets_ready(verb, asset_preparation_mode=asset_preparation_mode):
+            if not asset_preparation_mode and not self._assets_ready(
+                verb, asset_preparation_mode=asset_preparation_mode
+            ):
                 continue
             # Respect recent exposure limits.
             hours_since = state.last_exposure_hours.get(verb.verb_id, float("inf"))
@@ -490,7 +495,11 @@ class MantraSelectionPolicy:
 
         # 2. Overdue review.
         if state.overdue_review:
-            overdue = [self._verb_map[vid] for vid in state.overdue_review if vid in self._verb_map and self._verb_map[vid] in eligible]
+            overdue = [
+                self._verb_map[vid]
+                for vid in state.overdue_review
+                if vid in self._verb_map and self._verb_map[vid] in eligible
+            ]
             overdue.sort(
                 key=lambda v: (
                     state.recall_scores.get(v.verb_id, 1.0),
@@ -504,9 +513,7 @@ class MantraSelectionPolicy:
         if state.recent_domino_errors:
             error_verbs = [
                 self._verb_map[vid]
-                for vid, _ in sorted(
-                    state.recent_domino_errors.items(), key=lambda kv: -kv[1]
-                )
+                for vid, _ in sorted(state.recent_domino_errors.items(), key=lambda kv: -kv[1])
                 if vid in self._verb_map and self._verb_map[vid] in eligible
             ]
             if error_verbs:
@@ -658,9 +665,7 @@ def build_execution_plan(
     if readiness_source is not None and audio_profile is not None:
         report = readiness_source.evaluate(result.selected_verb)
         if report.specification is not None:
-            requirements = build_compact_mantra_requirements(
-                report.specification, audio_profile
-            )
+            requirements = build_compact_mantra_requirements(report.specification, audio_profile)
             sequence = [r.asset_id for r in requirements]
         else:
             sequence = plan_compact_mantra(result.selected_verb)

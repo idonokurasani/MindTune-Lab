@@ -7,6 +7,7 @@ spelling classes (full / defective / common nonstandard / rejected).
 It is intentionally decoupled from any LLM evaluator and can be unit-tested
 purely against the vocalised input, the root, the binyan and the form key.
 """
+
 from __future__ import annotations
 
 from .normalization import (

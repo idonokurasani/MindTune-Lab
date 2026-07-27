@@ -3,6 +3,7 @@
 This module is the only place that depends on the Piper ONNX voice. Replacing
 it with another voice engine requires only re-implementing this adapter.
 """
+
 from __future__ import annotations
 
 import tempfile

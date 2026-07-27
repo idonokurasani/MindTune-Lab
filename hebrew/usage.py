@@ -1,4 +1,5 @@
 """Modern-usage classification for Hebrew forms and sentences."""
+
 from __future__ import annotations
 
 from .models import ExampleSentence, VerbForm

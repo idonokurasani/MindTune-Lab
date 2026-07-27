@@ -51,7 +51,11 @@ class BehavioralEventStoreTests(unittest.TestCase):
         self.assertFalse(first["deduplicated"])
         self.assertEqual(first["storage"], "local_behavioral")
         self.assertTrue(second["deduplicated"])
-        rows = (self.behavioral / "conjugation-test-session.events.jsonl").read_text(encoding="utf-8").splitlines()
+        rows = (
+            (self.behavioral / "conjugation-test-session.events.jsonl")
+            .read_text(encoding="utf-8")
+            .splitlines()
+        )
         self.assertEqual(len(rows), 1)
         self.assertEqual(json.loads(rows[0])["behavioral_event_id"], "answer-1")
 

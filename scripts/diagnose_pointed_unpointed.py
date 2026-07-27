@@ -179,8 +179,12 @@ def _write_html_index(output_dir: Path, manifest: list[dict[str, object]]) -> No
         lines.append(f"<h2>{item['tense']} — {item['form_key']} ({item['review_status']})</h2>")
         lines.append(f"<p class='rtl'><strong>Display:</strong> {item['display_text']}</p>")
         lines.append(f"<p class='rtl'><strong>TTS:</strong> {item['tts_text']}</p>")
-        lines.append(f"<p>A: pointed ({item['pointed_duration']:.3f}s)</p><audio controls src='{item['pointed_file']}'></audio>")
-        lines.append(f"<p>B: unpointed ({item['unpointed_duration']:.3f}s)</p><audio controls src='{item['unpointed_file']}'></audio>")
+        lines.append(
+            f"<p>A: pointed ({item['pointed_duration']:.3f}s)</p><audio controls src='{item['pointed_file']}'></audio>"
+        )
+        lines.append(
+            f"<p>B: unpointed ({item['unpointed_duration']:.3f}s)</p><audio controls src='{item['unpointed_file']}'></audio>"
+        )
         lines.append("</div>")
     lines.append("</body></html>")
     (output_dir / "index.html").write_text("\n".join(lines), encoding="utf-8")

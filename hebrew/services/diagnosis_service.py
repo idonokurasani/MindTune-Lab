@@ -1,4 +1,5 @@
 """Learner-answer diagnosis service."""
+
 from __future__ import annotations
 
 from ..diagnosis import diagnose_answer
