@@ -131,6 +131,7 @@ class SerializationTests(unittest.TestCase):
             "timestamp REAL, wallclock_at REAL, component TEXT, component_version TEXT, "
             "correlation_id TEXT, provenance TEXT, payload TEXT, sensitive INTEGER, "
             "data_classification TEXT, trial_id TEXT, block_id TEXT, quality_flags TEXT, "
+            "content_digest TEXT, previous_digest TEXT, writer_revision TEXT, "
             "inserted_at REAL)"
         )
         columns = ",".join(row.keys())

@@ -20,7 +20,7 @@ from mpe.enums import (
 )
 from mpe.errors import IllegalStateTransitionError, ProviderFailureError
 from mpe.event_store import EventStore
-from mpe.events import Event
+from mpe.events import CURRENT_EVENT_SCHEMA_VERSION, Event
 from mpe.providers import ContentItem, ProviderSet, SchedulingContext, TrialContext
 from mpe.replay import Replay
 from mpe.types import (
@@ -160,7 +160,7 @@ class Runtime:
         event = Event(
             event_id=make_id(EventID),
             event_type=event_type,
-            schema_version="1.1",
+            schema_version=CURRENT_EVENT_SCHEMA_VERSION,
             session_id=self._session_id,
             session_sequence_number=next_seq,
             protocol_version_id=ProtocolVersionID(str(self._protocol_version_id)),
@@ -176,9 +176,9 @@ class Runtime:
             trial_id=trial_id,
             block_id=block_id,
         )
-        self.store.append(event, expected_version=expected_version)
-        self.state.apply(event)
-        return event
+        stored = self.store.append(event, expected_version=expected_version)
+        self.state.apply(stored)
+        return stored
 
     # --------------------------------------------------------------------- #
     # Session lifecycle

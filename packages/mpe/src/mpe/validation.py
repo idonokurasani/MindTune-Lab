@@ -15,7 +15,7 @@ from mpe.errors import (
 from mpe.events import PAYLOAD_SCHEMAS, SUPPORTED_EVENT_TYPES, Event
 from mpe.types import Identifier
 
-SUPPORTED_SCHEMA_VERSIONS = frozenset({"1.1"})
+SUPPORTED_SCHEMA_VERSIONS = frozenset({"1.1", "1.2"})
 
 
 def validate_event(event: Event, *, previous_events: list[Event] | None = None) -> None:

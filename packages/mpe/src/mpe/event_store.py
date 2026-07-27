@@ -5,8 +5,9 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Protocol
 
-from mpe.errors import ConcurrencyError, ValidationError
+from mpe.errors import ConcurrencyError, IntegrityError, ValidationError
 from mpe.events import SUPPORTED_EVENT_TYPES, Event
+from mpe.integrity import chain_event, is_chained_schema, verify_link, verify_stream
 from mpe.types import SessionID
 from mpe.validation import validate_event
 
@@ -23,13 +24,15 @@ class SessionSummary:
 class EventStore(Protocol):
     """Common event-store contract for in-memory and persistent backends."""
 
-    def append(self, event: Event, expected_version: int | None = None) -> None: ...
+    def append(self, event: Event, expected_version: int | None = None) -> Event: ...
     def read(
         self,
         session_id: SessionID,
         from_seq: int | None = None,
         to_seq: int | None = None,
     ) -> list[Event]: ...
+    def read_unverified(self, session_id: SessionID, *, reason: str) -> list[Event]: ...
+    def integrity_status(self, session_id: SessionID) -> str: ...
     def get_last_sequence(self, session_id: SessionID) -> int: ...
     def all_events(self) -> list[Event]: ...
     def list_sessions(self) -> list[SessionSummary]: ...
@@ -37,13 +40,19 @@ class EventStore(Protocol):
 
 
 class InMemoryEventStore:
-    """Append-only in-memory event store."""
+    """Append-only in-memory event store.
+
+    Has no `PRAGMA user_version`, so integrity meaning is derived from the
+    stream itself, exactly as in the SQLite backend: a schema-1.2 stream carries
+    a complete chain, a schema-1.1 stream reports `integrity: unavailable`, and
+    no stream mixes schema versions (ADR-0001 sec. 2.5.1).
+    """
 
     def __init__(self) -> None:
         self._streams: dict[SessionID, list[Event]] = {}
         self._event_ids: set[str] = set()
 
-    def append(self, event: Event, expected_version: int | None = None) -> None:
+    def append(self, event: Event, expected_version: int | None = None) -> Event:
         if not isinstance(event, Event):
             raise ValidationError("Can only append Event instances")
 
@@ -78,8 +87,26 @@ class InMemoryEventStore:
                 f"Provenance event(s) not found for {event.event_id}"
             )
 
+        linked = self._link_to_stream(event, stream)
         self._event_ids.add(str(event.event_id))
-        stream.append(event)
+        stream.append(linked)
+        return linked
+
+    @staticmethod
+    def _link_to_stream(event: Event, stream: list[Event]) -> Event:
+        """Chain onto the stream tail, or verify a digest the event already carries."""
+        if stream and stream[-1].schema_version != event.schema_version:
+            raise IntegrityError(
+                f"Refusing to append a schema-{event.schema_version} event to a "
+                f"schema-{stream[-1].schema_version} stream ({event.session_id})"
+            )
+        if not is_chained_schema(event.schema_version):
+            return event
+        previous_digest = stream[-1].content_digest if stream else None
+        if event.content_digest is not None:
+            verify_link(event, previous_digest)
+            return event
+        return chain_event(event, previous_digest)
 
     def _provenance_exists(self, event: Event) -> bool:
         stream = self._streams.get(event.session_id, [])
@@ -96,9 +123,24 @@ class InMemoryEventStore:
         to_seq: int | None = None,
     ) -> list[Event]:
         stream = self._streams.get(session_id, [])
+        verify_stream(stream)
         start = (from_seq - 1) if from_seq is not None else 0
         end = to_seq if to_seq is not None else len(stream)
         return stream[start:end]
+
+    def read_unverified(self, session_id: SessionID, *, reason: str) -> list[Event]:
+        """Read a stream without verifying its chain. Recovery path only."""
+        if not reason.strip():
+            raise ValidationError("read_unverified requires a non-empty reason")
+        return list(self._streams.get(session_id, []))
+
+    def integrity_status(self, session_id: SessionID) -> str:
+        """Return `verified` or `unavailable`, or raise `IntegrityError`.
+
+        A `verified` result says nothing about whether the tail of the stream is
+        complete (ADR-0001 sec. 2.10).
+        """
+        return verify_stream(self._streams.get(session_id, []))
 
     def get_last_sequence(self, session_id: SessionID) -> int:
         stream = self._streams.get(session_id, [])

@@ -6,9 +6,10 @@ import json
 import time
 from typing import Any, cast
 
-from mpe.enums import CanonicalEnum, DataClassification
+from mpe.enums import DataClassification
 from mpe.errors import ReplayError
 from mpe.events import Event
+from mpe.integrity import canonical_json
 from mpe.types import (
     BlockID,
     CorrelationID,
@@ -19,26 +20,7 @@ from mpe.types import (
     TrialID,
 )
 
-_JSON_SEPARATORS = (",", ":")
-
-
-def _json_default(obj: Any) -> Any:
-    """Fallback JSON encoder for Identifier and CanonicalEnum values."""
-    if isinstance(obj, Identifier):
-        return obj.value
-    if isinstance(obj, CanonicalEnum):
-        return obj.value
-    raise TypeError(f"Object of type {type(obj).__name__} is not JSON serializable")
-
-
-def _to_json(value: Any) -> str:
-    return json.dumps(
-        value,
-        sort_keys=True,
-        separators=_JSON_SEPARATORS,
-        ensure_ascii=False,
-        default=_json_default,
-    )
+_to_json = canonical_json
 
 
 def _identifier_or_none(cls: type[Identifier], value: str | None) -> Identifier | None:
@@ -68,8 +50,20 @@ def to_row(event: Event) -> dict[str, Any]:
         "trial_id": str(event.trial_id) if event.trial_id else None,
         "block_id": str(event.block_id) if event.block_id else None,
         "quality_flags": _to_json(list(event.quality_flags)),
+        "content_digest": event.content_digest,
+        "previous_digest": event.previous_digest,
+        "writer_revision": event.writer_revision,
         "inserted_at": time.time(),
     }
+
+
+def _optional_column(row: Any, column: str) -> str | None:
+    """Read a column that a database still on layout v1 does not have."""
+    try:
+        value = row[column]
+    except (IndexError, KeyError):
+        return None
+    return cast("str | None", value)
 
 
 def from_row(row: Any) -> Event:
@@ -113,4 +107,7 @@ def from_row(row: Any) -> Event:
         trial_id=cast(TrialID | None, _identifier_or_none(TrialID, row["trial_id"])),
         block_id=cast(BlockID | None, _identifier_or_none(BlockID, row["block_id"])),
         quality_flags=list(quality_flags_raw),
+        content_digest=_optional_column(row, "content_digest"),
+        previous_digest=_optional_column(row, "previous_digest"),
+        writer_revision=_optional_column(row, "writer_revision"),
     )

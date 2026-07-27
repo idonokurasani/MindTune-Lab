@@ -7,7 +7,7 @@ import unittest
 
 from mpe.errors import ConcurrencyError, ValidationError
 from mpe.event_store import EventStore, InMemoryEventStore
-from mpe.events import Event
+from mpe.events import CURRENT_EVENT_SCHEMA_VERSION, Event
 from mpe.persistence.store import SQLiteEventStore
 from mpe.types import EventID, ProgramVersionID, ProtocolVersionID, SessionID, make_id
 
@@ -34,7 +34,7 @@ class EventStoreContractTests:
         return Event(
             event_id=make_id(EventID),
             event_type=event_type,
-            schema_version="1.1",
+            schema_version=CURRENT_EVENT_SCHEMA_VERSION,
             session_id=self.session_id,
             session_sequence_number=seq,
             protocol_version_id=self.protocol_version_id,
@@ -103,7 +103,7 @@ class EventStoreContractTests:
         e_other = Event(
             event_id=make_id(EventID),
             event_type="session_created",
-            schema_version="1.1",
+            schema_version=CURRENT_EVENT_SCHEMA_VERSION,
             session_id=other_session,
             session_sequence_number=1,
             protocol_version_id=self.protocol_version_id,
@@ -146,7 +146,7 @@ class EventStoreContractTests:
         e_other = Event(
             event_id=make_id(EventID),
             event_type="session_created",
-            schema_version="1.1",
+            schema_version=CURRENT_EVENT_SCHEMA_VERSION,
             session_id=other_session,
             session_sequence_number=1,
             protocol_version_id=self.protocol_version_id,

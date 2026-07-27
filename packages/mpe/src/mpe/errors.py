@@ -89,3 +89,15 @@ class ReplayError(MPEError):
 
     def __init__(self, message: str) -> None:
         super().__init__(message)
+
+
+class IntegrityError(MPEError):
+    """Raised when a stored event stream fails hash-chain verification.
+
+    Signals a detected inconsistency within the retained stream. It is not a
+    statement about tail truncation, which no per-stream chain can decide on its
+    own (ADR-0001 sec. 2.10).
+    """
+
+    def __init__(self, message: str) -> None:
+        super().__init__(message)
