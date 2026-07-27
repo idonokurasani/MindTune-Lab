@@ -101,6 +101,8 @@ const App: React.FC = () => {
   };
 
   const renderPage = () => {
+    const activeSessionId =
+      selectedSessionId ?? sessions.find((s) => s.status === 'running')?.id ?? sessions[0]?.id ?? null;
     switch (activeTab) {
       case 'overview':
         return <OverviewPage health={health} liveness={liveness} />;
@@ -123,9 +125,9 @@ const App: React.FC = () => {
           />
         );
       case 'session-live':
-        return <SessionLivePage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
+        return <SessionLivePage sessionId={activeSessionId} />;
       case 'session-review':
-        return <SessionReviewPage sessionId={selectedSessionId ?? sessions[0]?.id ?? null} />;
+        return <SessionReviewPage sessionId={activeSessionId} />;
       case 'calibration-overview':
         return <CalibrationOverviewPage />;
       case 'calibration-session':
