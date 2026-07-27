@@ -4,8 +4,8 @@ import json
 import unittest
 from pathlib import Path
 
-ROOT = Path(__file__).resolve().parents[2]
-RESOURCE_ROOT = ROOT / "mindtune_console" / "data" / "hebrew_resources"
+ROOT = Path(__file__).resolve().parents[1]
+RESOURCE_ROOT = ROOT / "data" / "hebrew_resources"
 
 
 class HebrewVendorResourceTests(unittest.TestCase):
