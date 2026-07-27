@@ -214,6 +214,13 @@ export const api = {
     request<Record<string, unknown>>('POST', '/studies', data),
   preregisterStudy: (id: string) =>
     request<Record<string, unknown>>('POST', `/studies/${encodeURIComponent(id)}/preregister`),
+
+  // CLM-10 release-candidate endpoints
+  getRelease: () => request<import('./models').ReleaseInfo>('GET', '/release'),
+  getReleaseManifest: () => request<import('./models').ReleaseManifest>('GET', '/release/manifest'),
+  getReleaseValidation: () => request<import('./models').ReleaseValidation>('GET', '/release/validation'),
+  getReleaseLimitations: () => request<import('./models').ReleaseLimitations>('GET', '/release/limitations'),
+  getReleaseEvidence: () => request<import('./models').ReleaseEvidence>('GET', '/release/evidence'),
 };
 
 export const isApiError = (error: unknown): error is ApiError =>

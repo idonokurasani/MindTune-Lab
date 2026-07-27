@@ -15,6 +15,7 @@ import LearnerProgressionPage from './pages/LearnerProgressionPage';
 import ItemInspectionPage from './pages/ItemInspectionPage';
 import { ScientificValidationPage } from './pages/ScientificValidationPage';
 import { SystemPage } from './pages/SystemPage';
+import { ReleasePage } from './pages/ReleasePage';
 import { api } from './api/client';
 import { toApiMode } from './api/models';
 import type { ExperimentCreate, ExperimentResponse, HealthResponse, ProtocolReference, RuntimeMode, SensorResponse, SessionResponse } from './api/models';
@@ -144,6 +145,8 @@ const App: React.FC = () => {
         return <ItemInspectionPage />;
       case 'validation':
         return <ScientificValidationPage />;
+      case 'release':
+        return <ReleasePage />;
       case 'system':
         return <SystemPage health={health} protocols={protocols} sensors={sensors} />;
       default:

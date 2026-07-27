@@ -17,7 +17,8 @@ export type Tab =
   | 'curriculum'
   | 'learner-progression'
   | 'item-inspection'
-  | 'validation';
+  | 'validation'
+  | 'release';
 
 export interface AppState {
   activeTab: Tab;

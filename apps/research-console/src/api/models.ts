@@ -568,6 +568,64 @@ export interface CalibrationHealthResponse {
   warnings: string[];
 }
 
+export interface ReleaseInfo {
+  release_id: string;
+  semantic_version: string;
+  git_commit_sha: string;
+  base_sha: string;
+  dirty_tree: boolean;
+  build_timestamp: string;
+  status: string;
+}
+
+export interface ReleaseManifest {
+  release_id: string;
+  semantic_version: string;
+  release_candidate_number: number;
+  git_commit_sha: string;
+  base_sha: string;
+  dirty_tree: boolean;
+  build_timestamp: string;
+  python_version: string;
+  node_version: string | null;
+  package_versions: Record<string, string>;
+  frontend_build_checksum: string | null;
+  backend_package_checksum: string | null;
+  configuration_schema_version: string;
+  event_schema_versions: Record<string, string>;
+  protocol_versions: Record<string, string>;
+  curriculum_versions: Record<string, string>;
+  calibration_algorithm_versions: Record<string, string>;
+  estimator_version: string;
+  control_policy_version: string;
+  safety_policy_version: string;
+  voice_cache_contract_version: string;
+  audio_renderer_version: string;
+  api_version: string;
+  research_console_version: string;
+  storage_migration_version: string;
+  supported_deployment_modes: string[];
+  known_limitations: string[];
+  container_image_digest: string | null;
+  provenance: string;
+}
+
+export interface ReleaseValidation {
+  status: string;
+  hardware_tests: string;
+  validation_matrix_path: string;
+}
+
+export interface ReleaseLimitations {
+  known_limitations: string[];
+  limitations_path: string;
+}
+
+export interface ReleaseEvidence {
+  evidence_index: string;
+  status: string;
+}
+
 export const toApiMode = (runtime: RuntimeMode): ApiMode => {
   switch (runtime) {
     case 'fc11_live':

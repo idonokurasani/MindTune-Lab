@@ -55,6 +55,51 @@ def get_version() -> dict[str, Any]:
     }
 
 
+@router.get("/release")
+def get_release() -> dict[str, Any]:
+    manifest = build_release_manifest()
+    return {
+        "release_id": manifest.release_id,
+        "semantic_version": manifest.semantic_version,
+        "git_commit_sha": manifest.git_commit_sha,
+        "base_sha": manifest.base_sha,
+        "dirty_tree": manifest.dirty_tree,
+        "build_timestamp": manifest.build_timestamp,
+        "status": "release_candidate",
+    }
+
+
+@router.get("/release/manifest")
+def get_release_manifest() -> dict[str, Any]:
+    return build_release_manifest().to_dict()
+
+
+@router.get("/release/validation")
+def get_release_validation() -> dict[str, Any]:
+    return {
+        "status": "conditional_go",
+        "hardware_tests": "blocked_by_hardware",
+        "validation_matrix_path": "docs/release/CLM_10_VALIDATION_MATRIX.md",
+    }
+
+
+@router.get("/release/limitations")
+def get_release_limitations() -> dict[str, Any]:
+    manifest = build_release_manifest()
+    return {
+        "known_limitations": manifest.known_limitations,
+        "limitations_path": "docs/release/CLM_10_KNOWN_LIMITATIONS.md",
+    }
+
+
+@router.get("/release/evidence")
+def get_release_evidence() -> dict[str, Any]:
+    return {
+        "evidence_index": "docs/release/evidence/clm-10/README.md",
+        "status": "indexed",
+    }
+
+
 @router.get("/health/components")
 def get_components(
     config: CLM09Config = Depends(_ops_enabled),

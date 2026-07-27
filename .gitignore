@@ -55,3 +55,7 @@ data/logs/
 data/backups/
 data/tmp/
 
+# CLM-10 generated release bundle (metadata committed under docs/release/)
+/release/
+!docs/release/
+
