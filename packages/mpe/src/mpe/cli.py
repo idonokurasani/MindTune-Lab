@@ -39,6 +39,7 @@ from mpe.errors import (
     UnsupportedProviderVersionError,
     ValidationError,
 )
+from mpe.persistence.interchange import import_stream, write_stream
 from mpe.persistence.store import SQLiteEventStore
 from mpe.types import SessionID
 
@@ -501,6 +502,67 @@ def cmd_show_recognition_summary(args: argparse.Namespace) -> int:
     )
 
 
+def cmd_export_session(args: argparse.Namespace) -> int:
+    path = _store_path_from(args)
+    if args.verbose:
+        log_verbose(f"Resolved store path: {path}")
+
+    session_id = _safe_session_id(args.session_id)
+    if isinstance(session_id, int):
+        return session_id
+
+    opened = _open_store_for_command(path, read_only=True)
+    if isinstance(opened, int):
+        return opened
+
+    out_path = Path(args.out)
+    try:
+        with opened as store:
+            if store.get_last_sequence(session_id) == 0:
+                print(f"error: session not found: {session_id}", file=sys.stderr)
+                return EXIT_NOT_FOUND
+            with out_path.open("wb") as handle:
+                count = write_stream(store, session_id, handle)
+    except Exception as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        if args.verbose:
+            traceback.print_exc(file=sys.stderr)
+        return _exit_code_for(exc)
+
+    _output_json(
+        {"session_id": str(session_id), "event_count": count, "out": str(out_path)},
+        args,
+    )
+    return EXIT_OK
+
+
+def cmd_import_session(args: argparse.Namespace) -> int:
+    path = _store_path_from(args)
+    if args.verbose:
+        log_verbose(f"Resolved store path: {path}")
+
+    in_path = Path(getattr(args, "in"))
+    if not in_path.exists():
+        print(f"error: interchange file not found: {in_path}", file=sys.stderr)
+        return EXIT_NOT_FOUND
+
+    opened = _open_store_for_command(path)
+    if isinstance(opened, int):
+        return opened
+
+    try:
+        with opened as store, in_path.open("rb") as handle:
+            count = import_stream(store, handle)
+    except Exception as exc:
+        print(f"error: {exc}", file=sys.stderr)
+        if args.verbose:
+            traceback.print_exc(file=sys.stderr)
+        return _exit_code_for(exc)
+
+    _output_json({"event_count": count, "store": str(path)}, args)
+    return EXIT_OK
+
+
 def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="mpe",
@@ -560,6 +622,23 @@ def _build_parser() -> argparse.ArgumentParser:
         "--format", choices=["human", "json"], default="human", help="Output format"
     )
 
+    export_parser = subparsers.add_parser(
+        "export-session", help="Export one session as canonical JSONL records"
+    )
+    export_parser.add_argument("--session-id", required=True, help="Session identifier")
+    export_parser.add_argument("--out", required=True, help="Destination .jsonl file")
+    export_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
+
+    import_parser = subparsers.add_parser(
+        "import-session", help="Import a session from canonical JSONL records"
+    )
+    import_parser.add_argument("--in", required=True, help="Source .jsonl file")
+    import_parser.add_argument(
+        "--format", choices=["human", "json"], default="human", help="Output format"
+    )
+
     show_recognition_parser = subparsers.add_parser(
         "show-recognition-summary", help="Show the Recognition protocol summary for a session"
     )
@@ -584,6 +663,8 @@ def main(argv: Sequence[str] | None = None) -> int:
         "replay": cmd_replay,
         "list-sessions": cmd_list_sessions,
         "validate-store": cmd_validate_store,
+        "export-session": cmd_export_session,
+        "import-session": cmd_import_session,
     }
 
     command = command_map.get(args.command)
