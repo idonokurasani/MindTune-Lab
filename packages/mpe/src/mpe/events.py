@@ -56,6 +56,15 @@ SUPPORTED_EVENT_TYPES = frozenset(
 )
 
 
+CURRENT_EVENT_SCHEMA_VERSION = "1.2"
+"""Event contract emitted by this build.
+
+Schema 1.2 adds the integrity fields (`content_digest`, `previous_digest`) and
+the provenance field (`writer_revision`) to the envelope. Schema 1.1 streams
+remain readable but carry no chain (ADR-0001 sec. 2.4).
+"""
+
+
 @dataclass(frozen=True, slots=True)
 class Event:
     """Canonical MPE event envelope with payload."""
@@ -78,6 +87,9 @@ class Event:
     block_id: BlockID | None = None
     correlation_id: CorrelationID | None = None
     quality_flags: list[str] = field(default_factory=list)
+    content_digest: str | None = None
+    previous_digest: str | None = None
+    writer_revision: str | None = None
 
     def __post_init__(self) -> None:
         payload_copy = copy.deepcopy(dict(self.payload))
@@ -105,6 +117,9 @@ class Event:
             "trial_id": str(self.trial_id) if self.trial_id else None,
             "block_id": str(self.block_id) if self.block_id else None,
             "quality_flags": list(self.quality_flags),
+            "content_digest": self.content_digest,
+            "previous_digest": self.previous_digest,
+            "writer_revision": self.writer_revision,
         }
 
 

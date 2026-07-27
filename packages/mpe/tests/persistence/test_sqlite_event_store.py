@@ -8,7 +8,7 @@ import threading
 import unittest
 
 from mpe.errors import ConcurrencyError, ReplayError, UnknownSchemaVersionError, ValidationError
-from mpe.events import Event
+from mpe.events import CURRENT_EVENT_SCHEMA_VERSION, Event
 from mpe.persistence.serializer import to_row
 from mpe.persistence.store import SQLiteEventStore
 from mpe.types import EventID, ProgramVersionID, ProtocolVersionID, SessionID, make_id
@@ -32,7 +32,7 @@ class SQLiteEventStorePersistenceTests(unittest.TestCase):
         return Event(
             event_id=event_id or make_id(EventID),
             event_type="session_created" if seq == 1 else "session_started",
-            schema_version="1.1",
+            schema_version=CURRENT_EVENT_SCHEMA_VERSION,
             session_id=self.session_id,
             session_sequence_number=seq,
             protocol_version_id=self.protocol_version_id,
@@ -61,15 +61,15 @@ class SQLiteEventStorePersistenceTests(unittest.TestCase):
         e2 = self._make_event(2, provenance=[e1.event_id])
 
         store1 = SQLiteEventStore(self.path)
-        store1.append(e1)
-        store1.append(e2)
+        stored1 = store1.append(e1)
+        stored2 = store1.append(e2)
         store1.close()
 
         store2 = SQLiteEventStore(self.path)
         events = store2.read(self.session_id)
         self.assertEqual(len(events), 2)
-        self.assertEqual(events[0], e1)
-        self.assertEqual(events[1], e2)
+        self.assertEqual(events[0], stored1)
+        self.assertEqual(events[1], stored2)
         store2.close()
 
     def test_uncommitted_transaction_rollback(self) -> None:
@@ -115,7 +115,7 @@ class SQLiteEventStorePersistenceTests(unittest.TestCase):
         e2 = Event(
             event_id=e1.event_id,
             event_type="session_created",
-            schema_version="1.1",
+            schema_version=CURRENT_EVENT_SCHEMA_VERSION,
             session_id=other_session,
             session_sequence_number=1,
             protocol_version_id=self.protocol_version_id,

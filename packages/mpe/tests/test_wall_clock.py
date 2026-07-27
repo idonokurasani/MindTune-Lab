@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import json
 import tempfile
 import time
 import unittest
@@ -34,6 +35,14 @@ def _providers() -> ProviderSet:
         evaluator=MockEvaluator(),
         scheduler=MockScheduler(),
     )
+
+
+def _order_independent(normalized: dict[str, object]) -> dict[str, object]:
+    """Sort the trial list, whose order follows randomly generated trial ids."""
+    trials = normalized.get("trials")
+    if isinstance(trials, list):
+        normalized = {**normalized, "trials": sorted(trials, key=json.dumps)}
+    return normalized
 
 
 def _runtime(store: InMemoryEventStore, wall_clock: WallClock | None = None) -> Runtime:
@@ -144,8 +153,8 @@ class WallClockPersistenceTests(unittest.TestCase):
         first_state = Replay(first_store).replay(first.state.session_id)
         second_state = Replay(second_store).replay(second.state.session_id)
         self.assertEqual(
-            normalize_state_dict(first_state.as_dict()),
-            normalize_state_dict(second_state.as_dict()),
+            _order_independent(normalize_state_dict(first_state.as_dict())),
+            _order_independent(normalize_state_dict(second_state.as_dict())),
         )
 
         first_events = first_store.read(first.state.session_id)
