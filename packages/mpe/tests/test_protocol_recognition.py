@@ -28,6 +28,8 @@ from mpe.protocol.recognition import RecognitionResult, run_recognition_session
 from mpe.protocol.summary_recognition import derive_recognition_summary
 from mpe.replay import Replay
 
+REPO_ROOT = Path(__file__).resolve().parents[3]
+
 
 class RecognitionRunnerTests(unittest.TestCase):
     def setUp(self) -> None:
@@ -365,8 +367,10 @@ class RecognitionProcessTests(unittest.TestCase):
     def _run_process(self, argv: list[str]) -> subprocess.CompletedProcess[str]:
         cmd = [sys.executable, "-m", "mpe", "--store-path", str(self.store_path)] + argv
         env = dict(os.environ)
-        env["PYTHONPATH"] = "packages/mpe/src"
-        return subprocess.run(cmd, capture_output=True, text=True, cwd="/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console", env=env)
+        env["PYTHONPATH"] = str(REPO_ROOT / "packages" / "mpe" / "src")
+        return subprocess.run(
+            cmd, capture_output=True, text=True, cwd=str(REPO_ROOT), env=env
+        )
 
     def test_python_mpe_invocation(self) -> None:
         run = self._run_process(["run-recognition", "--format", "json"])

@@ -2,16 +2,24 @@
 
 ## Lint / Type / Test commands
 
+All commands are run from the repository root. `PYTHONPATH=$PWD` keeps them portable — do not hard-code an absolute checkout path.
+
 ```bash
 .venv/bin/ruff check <path>
 .venv/bin/mypy --exclude 'hebrew/' <path>
-PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python -m unittest tests.test_shared_assets tests.test_mantra_engine tests.test_frontend_contracts tests.test_phase4d tests.test_curriculum_policy
+PYTHONPATH=$PWD .venv/bin/python -m unittest tests.test_shared_assets tests.test_mantra_engine tests.test_frontend_contracts tests.test_phase4d tests.test_curriculum_policy
+```
 
 Full suite (requires `phonikud`, use `.venv_phonikud` on Python 3.12 or install `pip install -e ".[hebrew]"`):
 
 ```bash
-PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv_phonikud/bin/python -m unittest discover -s tests -p 'test_*.py'
+PYTHONPATH=$PWD .venv_phonikud/bin/python -m unittest discover -s tests -p 'test_*.py'
 ```
+
+MPE package suite:
+
+```bash
+PYTHONPATH=$PWD .venv/bin/python -m unittest discover -s packages/mpe/tests -t packages/mpe -p 'test_*.py'
 ```
 
 ## SpeechGen credentials
@@ -28,13 +36,13 @@ export SPEECHGEN_EMAIL="..."
 Full-niqqud diagnostic package for a verb:
 
 ```bash
-PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python scripts/build_lehitkasher_hannah_full_niqqud.py
+PYTHONPATH=$PWD .venv/bin/python scripts/build_lehitkasher_hannah_full_niqqud.py
 ```
 
 Compact mantra + shared assets + Domino exercises for לְהִתְקַשֵּׁר:
 
 ```bash
-PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python scripts/build_compact_mantra_lehitkasher.py
+PYTHONPATH=$PWD .venv/bin/python scripts/build_compact_mantra_lehitkasher.py
 ```
 
 ## Output paths
@@ -58,7 +66,7 @@ PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .v
 - Generate/regenerate the 320-verb canonical curriculum:
 
   ```bash
-  PYTHONPATH=/Users/idonokurasani/Documents/Chatgpt/Biohacking/mindtune_console .venv/bin/python scripts/generate_curriculum_320.py
+  PYTHONPATH=$PWD .venv/bin/python scripts/generate_curriculum_320.py
   ```
 
 - Curriculum JSON: `data/hebrew/curriculum_v1_320.json`
